@@ -25,7 +25,6 @@ const {
   UserTypeApi,
   InlineHookApi,
   ProfileMappingApi,
-  DomainApi,
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
@@ -51,6 +50,9 @@ const {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
+  RoleTargetApi,
+  RoleAssignmentApi,
+  CustomDomainApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -131,7 +133,6 @@ class Client {
     this.schemaApi = new SchemaApi(configuration);
     this.inlineHookApi = new InlineHookApi(configuration);
     this.profileMappingApi = new ProfileMappingApi(configuration);
-    this.domainApi = new DomainApi(configuration);
     this.linkedObjectApi = new LinkedObjectApi(configuration);
     this.systemLogApi = new SystemLogApi(configuration);
     this.featureApi = new FeatureApi(configuration);
@@ -157,6 +158,9 @@ class Client {
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
+    this.roleTargetApi = new RoleTargetApi(configuration);
+    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
+    this.customDomainApi = new CustomDomainApi(configuration);
   }
 }
 

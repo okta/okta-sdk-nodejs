@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 import {
+  Application,
   BasicAuthApplication,
   BookmarkApplication,
+  Client,
   Collection,
   DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -15,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-list-applications`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -35,7 +36,7 @@ const createBookmarkApp = async () => {
     }
   };
   await utils.removeAppByLabel(client, app.label);
-  return await client.createApplication(app);
+  return await client.applicationApi.createApplication({application: app});
 };
 
 const createBasicAuthApp = async () => {
@@ -51,7 +52,7 @@ const createBasicAuthApp = async () => {
     }
   };
   await utils.removeAppByLabel(client, app.label);
-  return await client.createApplication(app);
+  return await client.applicationApi.createApplication({application: app});
 };
 
 describe('client.listApplications()', () => {
@@ -64,20 +65,20 @@ describe('client.listApplications()', () => {
   });
 
   after(async () => {
-    await client.deactivateApplication(bookmarkApplication.id);
-    await client.deleteApplication(bookmarkApplication.id);
-    await client.deactivateApplication(basicApplication.id);
-    await client.deleteApplication(basicApplication.id);
+    await client.applicationApi.deactivateApplication({appId: bookmarkApplication.id});
+    await client.applicationApi.deleteApplication({appId: bookmarkApplication.id});
+    await client.applicationApi.deactivateApplication({appId: basicApplication.id});
+    await client.applicationApi.deleteApplication({appId: basicApplication.id});
   });
 
   it('should return a collection', async () => {
-    expect(await client.listApplications()).to.be.an.instanceof(Collection);
+    expect(await client.applicationApi.listApplications()).to.be.an.instanceof(Collection);
   });
 
   it('should return the correct application types', async () => {
     let bookmarkApp;
     let basicApp;
-    await (await client.listApplications()).each(app => {
+    await (await client.applicationApi.listApplications()).each(app => {
       if (app.label === bookmarkApplication.label && app instanceof BookmarkApplication) {
         bookmarkApp = app;
       }
@@ -92,11 +93,11 @@ describe('client.listApplications()', () => {
 });
 
 describe('client.listApplications({ })', () => {
-  const apps = [];
+  const apps: Application[] = [];
 
   before(async () => {
     const stagedApp = await createBookmarkApp();
-    await client.deactivateApplication(stagedApp.id);
+    await client.applicationApi.deactivateApplication({appId: stagedApp.id});
     apps.push(stagedApp);
     for (let i = 0 ; i < 2 ; i++) {
       const app = await createBasicAuthApp();
@@ -110,8 +111,8 @@ describe('client.listApplications({ })', () => {
 
   after(async () => {
     for (const app of apps) {
-      await client.deactivateApplication(app.id);
-      await client.deleteApplication(app.id);
+      await client.applicationApi.deactivateApplication({appId: app.id});
+      await client.applicationApi.deleteApplication({appId: app.id});
     }
   });
 
@@ -120,7 +121,7 @@ describe('client.listApplications({ })', () => {
       filter: 'name eq "bookmark"',
       limit: 1
     };
-    const collection = await client.listApplications(queryParameters);
+    const collection = await client.applicationApi.listApplications({...queryParameters});
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(app => {
@@ -138,7 +139,7 @@ describe('client.listApplications({ })', () => {
       q: 'node-sdk: Filter Sample Basic Auth App',
       limit: 1
     };
-    const collection = await client.listApplications(queryParameters);
+    const collection = await client.applicationApi.listApplications({...queryParameters});
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(app => {

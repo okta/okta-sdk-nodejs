@@ -14,11 +14,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -71,8 +67,12 @@ __exportStar(require("./ApplicationGroupAssignment"), exports);
 __exportStar(require("./ApplicationLayout"), exports);
 __exportStar(require("./ApplicationLayoutRule"), exports);
 __exportStar(require("./ApplicationLayoutRuleCondition"), exports);
+__exportStar(require("./ApplicationLayouts"), exports);
+__exportStar(require("./ApplicationLayoutsLinks"), exports);
+__exportStar(require("./ApplicationLayoutsLinksItem"), exports);
 __exportStar(require("./ApplicationLicensing"), exports);
 __exportStar(require("./ApplicationLifecycleStatus"), exports);
+__exportStar(require("./ApplicationLinks"), exports);
 __exportStar(require("./ApplicationSettings"), exports);
 __exportStar(require("./ApplicationSettingsNotes"), exports);
 __exportStar(require("./ApplicationSettingsNotifications"), exports);
@@ -104,6 +104,7 @@ __exportStar(require("./AutoLoginApplication"), exports);
 __exportStar(require("./AutoLoginApplicationSettings"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsSignOn"), exports);
 __exportStar(require("./AutoUpdateSchedule"), exports);
+__exportStar(require("./AwsRegion"), exports);
 __exportStar(require("./BaseEmailDomain"), exports);
 __exportStar(require("./BasicApplicationSettings"), exports);
 __exportStar(require("./BasicApplicationSettingsApplication"), exports);
@@ -130,7 +131,12 @@ __exportStar(require("./BouncesRemoveListObj"), exports);
 __exportStar(require("./BouncesRemoveListResult"), exports);
 __exportStar(require("./Brand"), exports);
 __exportStar(require("./BrandDefaultApp"), exports);
+__exportStar(require("./BrandDomains"), exports);
+__exportStar(require("./BrandLinks"), exports);
+__exportStar(require("./BrandRequest"), exports);
 __exportStar(require("./BrowserPluginApplication"), exports);
+__exportStar(require("./BulkDeleteRequestBody"), exports);
+__exportStar(require("./BulkUpsertRequestBody"), exports);
 __exportStar(require("./CAPTCHAInstance"), exports);
 __exportStar(require("./CAPTCHAType"), exports);
 __exportStar(require("./CallUserFactor"), exports);
@@ -145,7 +151,9 @@ __exportStar(require("./ChangePasswordRequest"), exports);
 __exportStar(require("./ChannelBinding"), exports);
 __exportStar(require("./ClientPolicyCondition"), exports);
 __exportStar(require("./Compliance"), exports);
+__exportStar(require("./ContentSecurityPolicySetting"), exports);
 __exportStar(require("./ContextPolicyRuleCondition"), exports);
+__exportStar(require("./CreateBrandRequest"), exports);
 __exportStar(require("./CreateSessionRequest"), exports);
 __exportStar(require("./CreateUserRequest"), exports);
 __exportStar(require("./Csr"), exports);
@@ -157,15 +165,22 @@ __exportStar(require("./CustomHotpUserFactorProfile"), exports);
 __exportStar(require("./CustomizablePage"), exports);
 __exportStar(require("./DNSRecord"), exports);
 __exportStar(require("./DNSRecordType"), exports);
+__exportStar(require("./Device"), exports);
 __exportStar(require("./DeviceAccessPolicyRuleCondition"), exports);
 __exportStar(require("./DeviceAssurance"), exports);
 __exportStar(require("./DeviceAssuranceDiskEncryptionType"), exports);
 __exportStar(require("./DeviceAssuranceScreenLockType"), exports);
+__exportStar(require("./DeviceDisplayName"), exports);
+__exportStar(require("./DeviceLinks"), exports);
+__exportStar(require("./DevicePlatform"), exports);
 __exportStar(require("./DevicePolicyMDMFramework"), exports);
 __exportStar(require("./DevicePolicyPlatformType"), exports);
 __exportStar(require("./DevicePolicyRuleCondition"), exports);
 __exportStar(require("./DevicePolicyRuleConditionPlatform"), exports);
 __exportStar(require("./DevicePolicyTrustLevel"), exports);
+__exportStar(require("./DeviceProfile"), exports);
+__exportStar(require("./DeviceStatus"), exports);
+__exportStar(require("./DigestAlgorithm"), exports);
 __exportStar(require("./DiskEncryptionType"), exports);
 __exportStar(require("./Domain"), exports);
 __exportStar(require("./DomainCertificate"), exports);
@@ -198,6 +213,7 @@ __exportStar(require("./EmailUserFactorProfile"), exports);
 __exportStar(require("./EnabledStatus"), exports);
 __exportStar(require("./EndUserDashboardTouchPointVariant"), exports);
 __exportStar(require("./ErrorErrorCausesInner"), exports);
+__exportStar(require("./ErrorPage"), exports);
 __exportStar(require("./ErrorPageTouchPointVariant"), exports);
 __exportStar(require("./EventHook"), exports);
 __exportStar(require("./EventHookChannel"), exports);
@@ -226,6 +242,10 @@ __exportStar(require("./GrantOrTokenStatus"), exports);
 __exportStar(require("./GrantTypePolicyRuleCondition"), exports);
 __exportStar(require("./Group"), exports);
 __exportStar(require("./GroupCondition"), exports);
+__exportStar(require("./GroupLinks"), exports);
+__exportStar(require("./GroupOwner"), exports);
+__exportStar(require("./GroupOwnerOriginType"), exports);
+__exportStar(require("./GroupOwnerType"), exports);
 __exportStar(require("./GroupPolicyRuleCondition"), exports);
 __exportStar(require("./GroupProfile"), exports);
 __exportStar(require("./GroupRule"), exports);
@@ -246,11 +266,16 @@ __exportStar(require("./GroupSchemaDefinitions"), exports);
 __exportStar(require("./GroupType"), exports);
 __exportStar(require("./HardwareUserFactor"), exports);
 __exportStar(require("./HardwareUserFactorProfile"), exports);
+__exportStar(require("./HookKey"), exports);
 __exportStar(require("./HostedPage"), exports);
 __exportStar(require("./HostedPageType"), exports);
 __exportStar(require("./HrefObject"), exports);
 __exportStar(require("./HrefObjectHints"), exports);
 __exportStar(require("./HttpMethod"), exports);
+__exportStar(require("./IamRole"), exports);
+__exportStar(require("./IamRoleLinks"), exports);
+__exportStar(require("./IamRoles"), exports);
+__exportStar(require("./IamRolesLinks"), exports);
 __exportStar(require("./IdentityProvider"), exports);
 __exportStar(require("./IdentityProviderApplicationUser"), exports);
 __exportStar(require("./IdentityProviderCredentials"), exports);
@@ -262,6 +287,10 @@ __exportStar(require("./IdentityProviderPolicy"), exports);
 __exportStar(require("./IdentityProviderPolicyProvider"), exports);
 __exportStar(require("./IdentityProviderPolicyRuleCondition"), exports);
 __exportStar(require("./IdentityProviderType"), exports);
+__exportStar(require("./IdentitySourceSession"), exports);
+__exportStar(require("./IdentitySourceSessionStatus"), exports);
+__exportStar(require("./IdentitySourceUserProfileForDelete"), exports);
+__exportStar(require("./IdentitySourceUserProfileForUpsert"), exports);
 __exportStar(require("./IdpPolicyRuleAction"), exports);
 __exportStar(require("./IdpPolicyRuleActionProvider"), exports);
 __exportStar(require("./IframeEmbedScopeAllowedApps"), exports);
@@ -272,7 +301,13 @@ __exportStar(require("./InlineHookChannel"), exports);
 __exportStar(require("./InlineHookChannelConfig"), exports);
 __exportStar(require("./InlineHookChannelConfigAuthScheme"), exports);
 __exportStar(require("./InlineHookChannelConfigHeaders"), exports);
+__exportStar(require("./InlineHookChannelHttp"), exports);
+__exportStar(require("./InlineHookChannelOAuth"), exports);
 __exportStar(require("./InlineHookChannelType"), exports);
+__exportStar(require("./InlineHookOAuthBasicConfig"), exports);
+__exportStar(require("./InlineHookOAuthChannelConfig"), exports);
+__exportStar(require("./InlineHookOAuthClientSecretConfig"), exports);
+__exportStar(require("./InlineHookOAuthPrivateKeyJwtConfig"), exports);
 __exportStar(require("./InlineHookResponse"), exports);
 __exportStar(require("./InlineHookResponseCommandValue"), exports);
 __exportStar(require("./InlineHookResponseCommands"), exports);
@@ -282,6 +317,7 @@ __exportStar(require("./IssuerMode"), exports);
 __exportStar(require("./JsonWebKey"), exports);
 __exportStar(require("./JwkUse"), exports);
 __exportStar(require("./JwkUseType"), exports);
+__exportStar(require("./KeyRequest"), exports);
 __exportStar(require("./KnowledgeConstraint"), exports);
 __exportStar(require("./LifecycleCreateSettingObject"), exports);
 __exportStar(require("./LifecycleDeactivateSettingObject"), exports);
@@ -290,6 +326,7 @@ __exportStar(require("./LifecycleStatus"), exports);
 __exportStar(require("./LinkedObject"), exports);
 __exportStar(require("./LinkedObjectDetails"), exports);
 __exportStar(require("./LinkedObjectDetailsType"), exports);
+__exportStar(require("./LoadingPageTouchPointVariant"), exports);
 __exportStar(require("./LocationGranularity"), exports);
 __exportStar(require("./LogActor"), exports);
 __exportStar(require("./LogAuthenticationContext"), exports);
@@ -307,6 +344,14 @@ __exportStar(require("./LogOutcome"), exports);
 __exportStar(require("./LogRequest"), exports);
 __exportStar(require("./LogSecurityContext"), exports);
 __exportStar(require("./LogSeverity"), exports);
+__exportStar(require("./LogStream"), exports);
+__exportStar(require("./LogStreamAws"), exports);
+__exportStar(require("./LogStreamLinks"), exports);
+__exportStar(require("./LogStreamSchema"), exports);
+__exportStar(require("./LogStreamSettingsAws"), exports);
+__exportStar(require("./LogStreamSettingsSplunk"), exports);
+__exportStar(require("./LogStreamSplunk"), exports);
+__exportStar(require("./LogStreamType"), exports);
 __exportStar(require("./LogTarget"), exports);
 __exportStar(require("./LogTransaction"), exports);
 __exportStar(require("./LogUserAgent"), exports);
@@ -315,6 +360,7 @@ __exportStar(require("./MDMEnrollmentPolicyRuleCondition"), exports);
 __exportStar(require("./ModelError"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicy"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettings"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorStatus"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorType"), exports);
@@ -374,6 +420,9 @@ __exportStar(require("./OrgOktaSupportSetting"), exports);
 __exportStar(require("./OrgOktaSupportSettingsObj"), exports);
 __exportStar(require("./OrgPreferences"), exports);
 __exportStar(require("./OrgSetting"), exports);
+__exportStar(require("./PageRoot"), exports);
+__exportStar(require("./PageRootEmbedded"), exports);
+__exportStar(require("./PageRootLinks"), exports);
 __exportStar(require("./PasswordCredential"), exports);
 __exportStar(require("./PasswordCredentialHash"), exports);
 __exportStar(require("./PasswordCredentialHashAlgorithm"), exports);
@@ -406,6 +455,13 @@ __exportStar(require("./PasswordPolicyRuleActions"), exports);
 __exportStar(require("./PasswordPolicyRuleConditions"), exports);
 __exportStar(require("./PasswordPolicySettings"), exports);
 __exportStar(require("./PasswordSettingObject"), exports);
+__exportStar(require("./PerClientRateLimitMode"), exports);
+__exportStar(require("./PerClientRateLimitSettings"), exports);
+__exportStar(require("./PerClientRateLimitSettingsUseCaseModeOverrides"), exports);
+__exportStar(require("./Permission"), exports);
+__exportStar(require("./PermissionLinks"), exports);
+__exportStar(require("./Permissions"), exports);
+__exportStar(require("./PipelineType"), exports);
 __exportStar(require("./Platform"), exports);
 __exportStar(require("./PlatformConditionEvaluatorPlatform"), exports);
 __exportStar(require("./PlatformConditionEvaluatorPlatformOperatingSystem"), exports);
@@ -482,14 +538,39 @@ __exportStar(require("./ProvisioningSuspendedCondition"), exports);
 __exportStar(require("./PushProvider"), exports);
 __exportStar(require("./PushUserFactor"), exports);
 __exportStar(require("./PushUserFactorProfile"), exports);
+__exportStar(require("./RateLimitAdminNotifications"), exports);
 __exportStar(require("./RecoveryQuestionCredential"), exports);
 __exportStar(require("./ReleaseChannel"), exports);
 __exportStar(require("./RequiredEnum"), exports);
 __exportStar(require("./ResetPasswordToken"), exports);
+__exportStar(require("./ResourceSet"), exports);
+__exportStar(require("./ResourceSetBindingAddMembersRequest"), exports);
+__exportStar(require("./ResourceSetBindingCreateRequest"), exports);
+__exportStar(require("./ResourceSetBindingMember"), exports);
+__exportStar(require("./ResourceSetBindingMembers"), exports);
+__exportStar(require("./ResourceSetBindingMembersLinks"), exports);
+__exportStar(require("./ResourceSetBindingResponse"), exports);
+__exportStar(require("./ResourceSetBindingResponseLinks"), exports);
+__exportStar(require("./ResourceSetBindingRole"), exports);
+__exportStar(require("./ResourceSetBindingRoleLinks"), exports);
+__exportStar(require("./ResourceSetBindings"), exports);
+__exportStar(require("./ResourceSetLinks"), exports);
+__exportStar(require("./ResourceSetResource"), exports);
+__exportStar(require("./ResourceSetResourcePatchRequest"), exports);
+__exportStar(require("./ResourceSetResources"), exports);
+__exportStar(require("./ResourceSetResourcesLinks"), exports);
+__exportStar(require("./ResourceSets"), exports);
+__exportStar(require("./RiskEvent"), exports);
+__exportStar(require("./RiskEventSubject"), exports);
+__exportStar(require("./RiskEventSubjectRiskLevel"), exports);
 __exportStar(require("./RiskPolicyRuleCondition"), exports);
+__exportStar(require("./RiskProvider"), exports);
+__exportStar(require("./RiskProviderAction"), exports);
+__exportStar(require("./RiskProviderLinks"), exports);
 __exportStar(require("./RiskScorePolicyRuleCondition"), exports);
 __exportStar(require("./Role"), exports);
 __exportStar(require("./RoleAssignmentType"), exports);
+__exportStar(require("./RolePermissionType"), exports);
 __exportStar(require("./RoleType"), exports);
 __exportStar(require("./SamlApplication"), exports);
 __exportStar(require("./SamlApplicationSettings"), exports);
@@ -524,6 +605,10 @@ __exportStar(require("./SocialAuthToken"), exports);
 __exportStar(require("./SpCertificate"), exports);
 __exportStar(require("./Subscription"), exports);
 __exportStar(require("./SubscriptionStatus"), exports);
+__exportStar(require("./SupportedMethods"), exports);
+__exportStar(require("./SupportedMethodsAlgorithms"), exports);
+__exportStar(require("./SupportedMethodsSettings"), exports);
+__exportStar(require("./SupportedMethodsTransactionTypes"), exports);
 __exportStar(require("./SwaApplicationSettings"), exports);
 __exportStar(require("./SwaApplicationSettingsApplication"), exports);
 __exportStar(require("./TempPassword"), exports);
@@ -541,10 +626,12 @@ __exportStar(require("./TrustedOriginScope"), exports);
 __exportStar(require("./TrustedOriginScopeType"), exports);
 __exportStar(require("./U2fUserFactor"), exports);
 __exportStar(require("./U2fUserFactorProfile"), exports);
+__exportStar(require("./UpdateDomain"), exports);
 __exportStar(require("./UpdateEmailDomain"), exports);
 __exportStar(require("./UpdateUserRequest"), exports);
 __exportStar(require("./User"), exports);
 __exportStar(require("./UserActivationToken"), exports);
+__exportStar(require("./UserBlock"), exports);
 __exportStar(require("./UserCondition"), exports);
 __exportStar(require("./UserCredentials"), exports);
 __exportStar(require("./UserFactor"), exports);
@@ -554,6 +641,7 @@ __exportStar(require("./UserIdentifierPolicyRuleCondition"), exports);
 __exportStar(require("./UserIdentifierType"), exports);
 __exportStar(require("./UserIdentityProviderLinkRequest"), exports);
 __exportStar(require("./UserLifecycleAttributePolicyRuleCondition"), exports);
+__exportStar(require("./UserLockoutSettings"), exports);
 __exportStar(require("./UserNextLogin"), exports);
 __exportStar(require("./UserPolicyRuleCondition"), exports);
 __exportStar(require("./UserProfile"), exports);
@@ -589,6 +677,11 @@ __exportStar(require("./WebAuthnUserFactor"), exports);
 __exportStar(require("./WebAuthnUserFactorProfile"), exports);
 __exportStar(require("./WebUserFactor"), exports);
 __exportStar(require("./WebUserFactorProfile"), exports);
+__exportStar(require("./WellKnownAppAuthenticatorConfiguration"), exports);
+__exportStar(require("./WellKnownAppAuthenticatorConfigurationSettings"), exports);
+__exportStar(require("./WellKnownOrgMetadata"), exports);
+__exportStar(require("./WellKnownOrgMetadataLinks"), exports);
+__exportStar(require("./WellKnownOrgMetadataSettings"), exports);
 __exportStar(require("./WsFederationApplication"), exports);
 __exportStar(require("./WsFederationApplicationSettings"), exports);
 __exportStar(require("./WsFederationApplicationSettingsApplication"), exports);
@@ -628,7 +721,11 @@ const ApplicationGroupAssignment_1 = require("./ApplicationGroupAssignment");
 const ApplicationLayout_1 = require("./ApplicationLayout");
 const ApplicationLayoutRule_1 = require("./ApplicationLayoutRule");
 const ApplicationLayoutRuleCondition_1 = require("./ApplicationLayoutRuleCondition");
+const ApplicationLayouts_1 = require("./ApplicationLayouts");
+const ApplicationLayoutsLinks_1 = require("./ApplicationLayoutsLinks");
+const ApplicationLayoutsLinksItem_1 = require("./ApplicationLayoutsLinksItem");
 const ApplicationLicensing_1 = require("./ApplicationLicensing");
+const ApplicationLinks_1 = require("./ApplicationLinks");
 const ApplicationSettings_1 = require("./ApplicationSettings");
 const ApplicationSettingsNotes_1 = require("./ApplicationSettingsNotes");
 const ApplicationSettingsNotifications_1 = require("./ApplicationSettingsNotifications");
@@ -679,7 +776,12 @@ const BouncesRemoveListObj_1 = require("./BouncesRemoveListObj");
 const BouncesRemoveListResult_1 = require("./BouncesRemoveListResult");
 const Brand_1 = require("./Brand");
 const BrandDefaultApp_1 = require("./BrandDefaultApp");
+const BrandDomains_1 = require("./BrandDomains");
+const BrandLinks_1 = require("./BrandLinks");
+const BrandRequest_1 = require("./BrandRequest");
 const BrowserPluginApplication_1 = require("./BrowserPluginApplication");
+const BulkDeleteRequestBody_1 = require("./BulkDeleteRequestBody");
+const BulkUpsertRequestBody_1 = require("./BulkUpsertRequestBody");
 const CAPTCHAInstance_1 = require("./CAPTCHAInstance");
 const CallUserFactor_1 = require("./CallUserFactor");
 const CallUserFactorProfile_1 = require("./CallUserFactorProfile");
@@ -691,7 +793,9 @@ const ChangePasswordRequest_1 = require("./ChangePasswordRequest");
 const ChannelBinding_1 = require("./ChannelBinding");
 const ClientPolicyCondition_1 = require("./ClientPolicyCondition");
 const Compliance_1 = require("./Compliance");
+const ContentSecurityPolicySetting_1 = require("./ContentSecurityPolicySetting");
 const ContextPolicyRuleCondition_1 = require("./ContextPolicyRuleCondition");
+const CreateBrandRequest_1 = require("./CreateBrandRequest");
 const CreateSessionRequest_1 = require("./CreateSessionRequest");
 const CreateUserRequest_1 = require("./CreateUserRequest");
 const Csr_1 = require("./Csr");
@@ -702,12 +806,16 @@ const CustomHotpUserFactor_1 = require("./CustomHotpUserFactor");
 const CustomHotpUserFactorProfile_1 = require("./CustomHotpUserFactorProfile");
 const CustomizablePage_1 = require("./CustomizablePage");
 const DNSRecord_1 = require("./DNSRecord");
+const Device_1 = require("./Device");
 const DeviceAccessPolicyRuleCondition_1 = require("./DeviceAccessPolicyRuleCondition");
 const DeviceAssurance_1 = require("./DeviceAssurance");
 const DeviceAssuranceDiskEncryptionType_1 = require("./DeviceAssuranceDiskEncryptionType");
 const DeviceAssuranceScreenLockType_1 = require("./DeviceAssuranceScreenLockType");
+const DeviceDisplayName_1 = require("./DeviceDisplayName");
+const DeviceLinks_1 = require("./DeviceLinks");
 const DevicePolicyRuleCondition_1 = require("./DevicePolicyRuleCondition");
 const DevicePolicyRuleConditionPlatform_1 = require("./DevicePolicyRuleConditionPlatform");
+const DeviceProfile_1 = require("./DeviceProfile");
 const Domain_1 = require("./Domain");
 const DomainCertificate_1 = require("./DomainCertificate");
 const DomainCertificateMetadata_1 = require("./DomainCertificateMetadata");
@@ -732,6 +840,7 @@ const EmailTemplateLinks_1 = require("./EmailTemplateLinks");
 const EmailUserFactor_1 = require("./EmailUserFactor");
 const EmailUserFactorProfile_1 = require("./EmailUserFactorProfile");
 const ErrorErrorCausesInner_1 = require("./ErrorErrorCausesInner");
+const ErrorPage_1 = require("./ErrorPage");
 const EventHook_1 = require("./EventHook");
 const EventHookChannel_1 = require("./EventHookChannel");
 const EventHookChannelConfig_1 = require("./EventHookChannelConfig");
@@ -746,6 +855,8 @@ const ForgotPasswordResponse_1 = require("./ForgotPasswordResponse");
 const GrantTypePolicyRuleCondition_1 = require("./GrantTypePolicyRuleCondition");
 const Group_1 = require("./Group");
 const GroupCondition_1 = require("./GroupCondition");
+const GroupLinks_1 = require("./GroupLinks");
+const GroupOwner_1 = require("./GroupOwner");
 const GroupPolicyRuleCondition_1 = require("./GroupPolicyRuleCondition");
 const GroupProfile_1 = require("./GroupProfile");
 const GroupRule_1 = require("./GroupRule");
@@ -764,9 +875,14 @@ const GroupSchemaCustom_1 = require("./GroupSchemaCustom");
 const GroupSchemaDefinitions_1 = require("./GroupSchemaDefinitions");
 const HardwareUserFactor_1 = require("./HardwareUserFactor");
 const HardwareUserFactorProfile_1 = require("./HardwareUserFactorProfile");
+const HookKey_1 = require("./HookKey");
 const HostedPage_1 = require("./HostedPage");
 const HrefObject_1 = require("./HrefObject");
 const HrefObjectHints_1 = require("./HrefObjectHints");
+const IamRole_1 = require("./IamRole");
+const IamRoleLinks_1 = require("./IamRoleLinks");
+const IamRoles_1 = require("./IamRoles");
+const IamRolesLinks_1 = require("./IamRolesLinks");
 const IdentityProvider_1 = require("./IdentityProvider");
 const IdentityProviderApplicationUser_1 = require("./IdentityProviderApplicationUser");
 const IdentityProviderCredentials_1 = require("./IdentityProviderCredentials");
@@ -775,6 +891,9 @@ const IdentityProviderCredentialsSigning_1 = require("./IdentityProviderCredenti
 const IdentityProviderCredentialsTrust_1 = require("./IdentityProviderCredentialsTrust");
 const IdentityProviderPolicy_1 = require("./IdentityProviderPolicy");
 const IdentityProviderPolicyRuleCondition_1 = require("./IdentityProviderPolicyRuleCondition");
+const IdentitySourceSession_1 = require("./IdentitySourceSession");
+const IdentitySourceUserProfileForDelete_1 = require("./IdentitySourceUserProfileForDelete");
+const IdentitySourceUserProfileForUpsert_1 = require("./IdentitySourceUserProfileForUpsert");
 const IdpPolicyRuleAction_1 = require("./IdpPolicyRuleAction");
 const IdpPolicyRuleActionProvider_1 = require("./IdpPolicyRuleActionProvider");
 const ImageUploadResponse_1 = require("./ImageUploadResponse");
@@ -784,11 +903,18 @@ const InlineHookChannel_1 = require("./InlineHookChannel");
 const InlineHookChannelConfig_1 = require("./InlineHookChannelConfig");
 const InlineHookChannelConfigAuthScheme_1 = require("./InlineHookChannelConfigAuthScheme");
 const InlineHookChannelConfigHeaders_1 = require("./InlineHookChannelConfigHeaders");
+const InlineHookChannelHttp_1 = require("./InlineHookChannelHttp");
+const InlineHookChannelOAuth_1 = require("./InlineHookChannelOAuth");
+const InlineHookOAuthBasicConfig_1 = require("./InlineHookOAuthBasicConfig");
+const InlineHookOAuthChannelConfig_1 = require("./InlineHookOAuthChannelConfig");
+const InlineHookOAuthClientSecretConfig_1 = require("./InlineHookOAuthClientSecretConfig");
+const InlineHookOAuthPrivateKeyJwtConfig_1 = require("./InlineHookOAuthPrivateKeyJwtConfig");
 const InlineHookResponse_1 = require("./InlineHookResponse");
 const InlineHookResponseCommandValue_1 = require("./InlineHookResponseCommandValue");
 const InlineHookResponseCommands_1 = require("./InlineHookResponseCommands");
 const JsonWebKey_1 = require("./JsonWebKey");
 const JwkUse_1 = require("./JwkUse");
+const KeyRequest_1 = require("./KeyRequest");
 const KnowledgeConstraint_1 = require("./KnowledgeConstraint");
 const LifecycleCreateSettingObject_1 = require("./LifecycleCreateSettingObject");
 const LifecycleDeactivateSettingObject_1 = require("./LifecycleDeactivateSettingObject");
@@ -807,6 +933,13 @@ const LogIssuer_1 = require("./LogIssuer");
 const LogOutcome_1 = require("./LogOutcome");
 const LogRequest_1 = require("./LogRequest");
 const LogSecurityContext_1 = require("./LogSecurityContext");
+const LogStream_1 = require("./LogStream");
+const LogStreamAws_1 = require("./LogStreamAws");
+const LogStreamLinks_1 = require("./LogStreamLinks");
+const LogStreamSchema_1 = require("./LogStreamSchema");
+const LogStreamSettingsAws_1 = require("./LogStreamSettingsAws");
+const LogStreamSettingsSplunk_1 = require("./LogStreamSettingsSplunk");
+const LogStreamSplunk_1 = require("./LogStreamSplunk");
 const LogTarget_1 = require("./LogTarget");
 const LogTransaction_1 = require("./LogTransaction");
 const LogUserAgent_1 = require("./LogUserAgent");
@@ -814,6 +947,7 @@ const MDMEnrollmentPolicyRuleCondition_1 = require("./MDMEnrollmentPolicyRuleCon
 const ModelError_1 = require("./ModelError");
 const MultifactorEnrollmentPolicy_1 = require("./MultifactorEnrollmentPolicy");
 const MultifactorEnrollmentPolicyAuthenticatorSettings_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettings");
+const MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints");
 const MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll");
 const MultifactorEnrollmentPolicySettings_1 = require("./MultifactorEnrollmentPolicySettings");
 const NetworkZone_1 = require("./NetworkZone");
@@ -848,6 +982,9 @@ const OrgOktaCommunicationSetting_1 = require("./OrgOktaCommunicationSetting");
 const OrgOktaSupportSettingsObj_1 = require("./OrgOktaSupportSettingsObj");
 const OrgPreferences_1 = require("./OrgPreferences");
 const OrgSetting_1 = require("./OrgSetting");
+const PageRoot_1 = require("./PageRoot");
+const PageRootEmbedded_1 = require("./PageRootEmbedded");
+const PageRootLinks_1 = require("./PageRootLinks");
 const PasswordCredential_1 = require("./PasswordCredential");
 const PasswordCredentialHash_1 = require("./PasswordCredentialHash");
 const PasswordCredentialHook_1 = require("./PasswordCredentialHook");
@@ -878,6 +1015,11 @@ const PasswordPolicyRuleActions_1 = require("./PasswordPolicyRuleActions");
 const PasswordPolicyRuleConditions_1 = require("./PasswordPolicyRuleConditions");
 const PasswordPolicySettings_1 = require("./PasswordPolicySettings");
 const PasswordSettingObject_1 = require("./PasswordSettingObject");
+const PerClientRateLimitSettings_1 = require("./PerClientRateLimitSettings");
+const PerClientRateLimitSettingsUseCaseModeOverrides_1 = require("./PerClientRateLimitSettingsUseCaseModeOverrides");
+const Permission_1 = require("./Permission");
+const PermissionLinks_1 = require("./PermissionLinks");
+const Permissions_1 = require("./Permissions");
 const PlatformConditionEvaluatorPlatform_1 = require("./PlatformConditionEvaluatorPlatform");
 const PlatformConditionEvaluatorPlatformOperatingSystem_1 = require("./PlatformConditionEvaluatorPlatformOperatingSystem");
 const PlatformConditionEvaluatorPlatformOperatingSystemVersion_1 = require("./PlatformConditionEvaluatorPlatformOperatingSystemVersion");
@@ -927,9 +1069,31 @@ const ProvisioningSuspendedCondition_1 = require("./ProvisioningSuspendedConditi
 const PushProvider_1 = require("./PushProvider");
 const PushUserFactor_1 = require("./PushUserFactor");
 const PushUserFactorProfile_1 = require("./PushUserFactorProfile");
+const RateLimitAdminNotifications_1 = require("./RateLimitAdminNotifications");
 const RecoveryQuestionCredential_1 = require("./RecoveryQuestionCredential");
 const ResetPasswordToken_1 = require("./ResetPasswordToken");
+const ResourceSet_1 = require("./ResourceSet");
+const ResourceSetBindingAddMembersRequest_1 = require("./ResourceSetBindingAddMembersRequest");
+const ResourceSetBindingCreateRequest_1 = require("./ResourceSetBindingCreateRequest");
+const ResourceSetBindingMember_1 = require("./ResourceSetBindingMember");
+const ResourceSetBindingMembers_1 = require("./ResourceSetBindingMembers");
+const ResourceSetBindingMembersLinks_1 = require("./ResourceSetBindingMembersLinks");
+const ResourceSetBindingResponse_1 = require("./ResourceSetBindingResponse");
+const ResourceSetBindingResponseLinks_1 = require("./ResourceSetBindingResponseLinks");
+const ResourceSetBindingRole_1 = require("./ResourceSetBindingRole");
+const ResourceSetBindingRoleLinks_1 = require("./ResourceSetBindingRoleLinks");
+const ResourceSetBindings_1 = require("./ResourceSetBindings");
+const ResourceSetLinks_1 = require("./ResourceSetLinks");
+const ResourceSetResource_1 = require("./ResourceSetResource");
+const ResourceSetResourcePatchRequest_1 = require("./ResourceSetResourcePatchRequest");
+const ResourceSetResources_1 = require("./ResourceSetResources");
+const ResourceSetResourcesLinks_1 = require("./ResourceSetResourcesLinks");
+const ResourceSets_1 = require("./ResourceSets");
+const RiskEvent_1 = require("./RiskEvent");
+const RiskEventSubject_1 = require("./RiskEventSubject");
 const RiskPolicyRuleCondition_1 = require("./RiskPolicyRuleCondition");
+const RiskProvider_1 = require("./RiskProvider");
+const RiskProviderLinks_1 = require("./RiskProviderLinks");
 const RiskScorePolicyRuleCondition_1 = require("./RiskScorePolicyRuleCondition");
 const Role_1 = require("./Role");
 const SamlApplication_1 = require("./SamlApplication");
@@ -957,6 +1121,10 @@ const SmsUserFactorProfile_1 = require("./SmsUserFactorProfile");
 const SocialAuthToken_1 = require("./SocialAuthToken");
 const SpCertificate_1 = require("./SpCertificate");
 const Subscription_1 = require("./Subscription");
+const SupportedMethods_1 = require("./SupportedMethods");
+const SupportedMethodsAlgorithms_1 = require("./SupportedMethodsAlgorithms");
+const SupportedMethodsSettings_1 = require("./SupportedMethodsSettings");
+const SupportedMethodsTransactionTypes_1 = require("./SupportedMethodsTransactionTypes");
 const SwaApplicationSettings_1 = require("./SwaApplicationSettings");
 const SwaApplicationSettingsApplication_1 = require("./SwaApplicationSettingsApplication");
 const TempPassword_1 = require("./TempPassword");
@@ -973,10 +1141,12 @@ const TrustedOrigin_1 = require("./TrustedOrigin");
 const TrustedOriginScope_1 = require("./TrustedOriginScope");
 const U2fUserFactor_1 = require("./U2fUserFactor");
 const U2fUserFactorProfile_1 = require("./U2fUserFactorProfile");
+const UpdateDomain_1 = require("./UpdateDomain");
 const UpdateEmailDomain_1 = require("./UpdateEmailDomain");
 const UpdateUserRequest_1 = require("./UpdateUserRequest");
 const User_1 = require("./User");
 const UserActivationToken_1 = require("./UserActivationToken");
+const UserBlock_1 = require("./UserBlock");
 const UserCondition_1 = require("./UserCondition");
 const UserCredentials_1 = require("./UserCredentials");
 const UserFactor_1 = require("./UserFactor");
@@ -984,6 +1154,7 @@ const UserIdentifierConditionEvaluatorPattern_1 = require("./UserIdentifierCondi
 const UserIdentifierPolicyRuleCondition_1 = require("./UserIdentifierPolicyRuleCondition");
 const UserIdentityProviderLinkRequest_1 = require("./UserIdentityProviderLinkRequest");
 const UserLifecycleAttributePolicyRuleCondition_1 = require("./UserLifecycleAttributePolicyRuleCondition");
+const UserLockoutSettings_1 = require("./UserLockoutSettings");
 const UserPolicyRuleCondition_1 = require("./UserPolicyRuleCondition");
 const UserProfile_1 = require("./UserProfile");
 const UserSchema_1 = require("./UserSchema");
@@ -1011,6 +1182,11 @@ const WebAuthnUserFactor_1 = require("./WebAuthnUserFactor");
 const WebAuthnUserFactorProfile_1 = require("./WebAuthnUserFactorProfile");
 const WebUserFactor_1 = require("./WebUserFactor");
 const WebUserFactorProfile_1 = require("./WebUserFactorProfile");
+const WellKnownAppAuthenticatorConfiguration_1 = require("./WellKnownAppAuthenticatorConfiguration");
+const WellKnownAppAuthenticatorConfigurationSettings_1 = require("./WellKnownAppAuthenticatorConfigurationSettings");
+const WellKnownOrgMetadata_1 = require("./WellKnownOrgMetadata");
+const WellKnownOrgMetadataLinks_1 = require("./WellKnownOrgMetadataLinks");
+const WellKnownOrgMetadataSettings_1 = require("./WellKnownOrgMetadataSettings");
 const WsFederationApplication_1 = require("./WsFederationApplication");
 const WsFederationApplicationSettings_1 = require("./WsFederationApplicationSettings");
 const WsFederationApplicationSettingsApplication_1 = require("./WsFederationApplicationSettingsApplication");
@@ -1048,14 +1224,21 @@ let enumsMap = new Set([
     'AuthenticatorType',
     'AuthorizationServerCredentialsRotationMode',
     'AuthorizationServerCredentialsUse',
+    'AwsRegion',
     'BehaviorRuleType',
+    'BulkDeleteRequestBodyEntityTypeEnum',
+    'BulkUpsertRequestBodyEntityTypeEnum',
     'CAPTCHAType',
     'CatalogApplicationStatus',
     'ChangeEnum',
+    'ContentSecurityPolicySettingModeEnum',
     'DNSRecordType',
+    'DevicePlatform',
     'DevicePolicyMDMFramework',
     'DevicePolicyPlatformType',
     'DevicePolicyTrustLevel',
+    'DeviceStatus',
+    'DigestAlgorithm',
     'DiskEncryptionType',
     'DomainCertificateSourceType',
     'DomainCertificateType',
@@ -1079,6 +1262,8 @@ let enumsMap = new Set([
     'FeatureType',
     'FipsEnum',
     'GrantOrTokenStatus',
+    'GroupOwnerOriginType',
+    'GroupOwnerType',
     'GroupRuleStatus',
     'GroupType',
     'HostedPageType',
@@ -1086,6 +1271,7 @@ let enumsMap = new Set([
     'IdentityProviderCredentialsTrustRevocation',
     'IdentityProviderPolicyProvider',
     'IdentityProviderType',
+    'IdentitySourceSessionStatus',
     'IframeEmbedScopeAllowedApps',
     'InlineHookChannelType',
     'InlineHookStatus',
@@ -1094,11 +1280,13 @@ let enumsMap = new Set([
     'JwkUseType',
     'LifecycleStatus',
     'LinkedObjectDetailsType',
+    'LoadingPageTouchPointVariant',
     'LocationGranularity',
     'LogAuthenticationProvider',
     'LogCredentialProvider',
     'LogCredentialType',
     'LogSeverity',
+    'LogStreamType',
     'MDMEnrollmentPolicyEnrollment',
     'MultifactorEnrollmentPolicyAuthenticatorStatus',
     'MultifactorEnrollmentPolicyAuthenticatorType',
@@ -1127,6 +1315,8 @@ let enumsMap = new Set([
     'OrgOktaSupportSetting',
     'PasswordCredentialHashAlgorithm',
     'PasswordPolicyAuthenticationProviderType',
+    'PerClientRateLimitMode',
+    'PipelineType',
     'Platform',
     'PlatformConditionOperatingSystemVersionMatchType',
     'PolicyAccess',
@@ -1156,7 +1346,10 @@ let enumsMap = new Set([
     'ProvisioningSuspendedAction',
     'ReleaseChannel',
     'RequiredEnum',
+    'RiskEventSubjectRiskLevel',
+    'RiskProviderAction',
     'RoleAssignmentType',
+    'RolePermissionType',
     'RoleType',
     'ScreenLockType',
     'SeedEnum',
@@ -1166,6 +1359,7 @@ let enumsMap = new Set([
     'SignInPageTouchPointVariant',
     'SmsTemplateType',
     'SubscriptionStatus',
+    'SupportedMethodsTypeEnum',
     'TrustedOriginScopeType',
     'UserIdentifierMatchType',
     'UserIdentifierType',
@@ -1177,6 +1371,7 @@ let enumsMap = new Set([
     'UserStatus',
     'UserVerificationEnum',
     'VerifyUserFactorResult',
+    'WellKnownAppAuthenticatorConfigurationTypeEnum',
 ]);
 let typeMap = {
     'APNSConfiguration': APNSConfiguration_1.APNSConfiguration,
@@ -1215,7 +1410,11 @@ let typeMap = {
     'ApplicationLayout': ApplicationLayout_1.ApplicationLayout,
     'ApplicationLayoutRule': ApplicationLayoutRule_1.ApplicationLayoutRule,
     'ApplicationLayoutRuleCondition': ApplicationLayoutRuleCondition_1.ApplicationLayoutRuleCondition,
+    'ApplicationLayouts': ApplicationLayouts_1.ApplicationLayouts,
+    'ApplicationLayoutsLinks': ApplicationLayoutsLinks_1.ApplicationLayoutsLinks,
+    'ApplicationLayoutsLinksItem': ApplicationLayoutsLinksItem_1.ApplicationLayoutsLinksItem,
     'ApplicationLicensing': ApplicationLicensing_1.ApplicationLicensing,
+    'ApplicationLinks': ApplicationLinks_1.ApplicationLinks,
     'ApplicationSettings': ApplicationSettings_1.ApplicationSettings,
     'ApplicationSettingsNotes': ApplicationSettingsNotes_1.ApplicationSettingsNotes,
     'ApplicationSettingsNotifications': ApplicationSettingsNotifications_1.ApplicationSettingsNotifications,
@@ -1266,7 +1465,12 @@ let typeMap = {
     'BouncesRemoveListResult': BouncesRemoveListResult_1.BouncesRemoveListResult,
     'Brand': Brand_1.Brand,
     'BrandDefaultApp': BrandDefaultApp_1.BrandDefaultApp,
+    'BrandDomains': BrandDomains_1.BrandDomains,
+    'BrandLinks': BrandLinks_1.BrandLinks,
+    'BrandRequest': BrandRequest_1.BrandRequest,
     'BrowserPluginApplication': BrowserPluginApplication_1.BrowserPluginApplication,
+    'BulkDeleteRequestBody': BulkDeleteRequestBody_1.BulkDeleteRequestBody,
+    'BulkUpsertRequestBody': BulkUpsertRequestBody_1.BulkUpsertRequestBody,
     'CAPTCHAInstance': CAPTCHAInstance_1.CAPTCHAInstance,
     'CallUserFactor': CallUserFactor_1.CallUserFactor,
     'CallUserFactorProfile': CallUserFactorProfile_1.CallUserFactorProfile,
@@ -1278,7 +1482,9 @@ let typeMap = {
     'ChannelBinding': ChannelBinding_1.ChannelBinding,
     'ClientPolicyCondition': ClientPolicyCondition_1.ClientPolicyCondition,
     'Compliance': Compliance_1.Compliance,
+    'ContentSecurityPolicySetting': ContentSecurityPolicySetting_1.ContentSecurityPolicySetting,
     'ContextPolicyRuleCondition': ContextPolicyRuleCondition_1.ContextPolicyRuleCondition,
+    'CreateBrandRequest': CreateBrandRequest_1.CreateBrandRequest,
     'CreateSessionRequest': CreateSessionRequest_1.CreateSessionRequest,
     'CreateUserRequest': CreateUserRequest_1.CreateUserRequest,
     'Csr': Csr_1.Csr,
@@ -1289,12 +1495,16 @@ let typeMap = {
     'CustomHotpUserFactorProfile': CustomHotpUserFactorProfile_1.CustomHotpUserFactorProfile,
     'CustomizablePage': CustomizablePage_1.CustomizablePage,
     'DNSRecord': DNSRecord_1.DNSRecord,
+    'Device': Device_1.Device,
     'DeviceAccessPolicyRuleCondition': DeviceAccessPolicyRuleCondition_1.DeviceAccessPolicyRuleCondition,
     'DeviceAssurance': DeviceAssurance_1.DeviceAssurance,
     'DeviceAssuranceDiskEncryptionType': DeviceAssuranceDiskEncryptionType_1.DeviceAssuranceDiskEncryptionType,
     'DeviceAssuranceScreenLockType': DeviceAssuranceScreenLockType_1.DeviceAssuranceScreenLockType,
+    'DeviceDisplayName': DeviceDisplayName_1.DeviceDisplayName,
+    'DeviceLinks': DeviceLinks_1.DeviceLinks,
     'DevicePolicyRuleCondition': DevicePolicyRuleCondition_1.DevicePolicyRuleCondition,
     'DevicePolicyRuleConditionPlatform': DevicePolicyRuleConditionPlatform_1.DevicePolicyRuleConditionPlatform,
+    'DeviceProfile': DeviceProfile_1.DeviceProfile,
     'Domain': Domain_1.Domain,
     'DomainCertificate': DomainCertificate_1.DomainCertificate,
     'DomainCertificateMetadata': DomainCertificateMetadata_1.DomainCertificateMetadata,
@@ -1319,6 +1529,7 @@ let typeMap = {
     'EmailUserFactor': EmailUserFactor_1.EmailUserFactor,
     'EmailUserFactorProfile': EmailUserFactorProfile_1.EmailUserFactorProfile,
     'ErrorErrorCausesInner': ErrorErrorCausesInner_1.ErrorErrorCausesInner,
+    'ErrorPage': ErrorPage_1.ErrorPage,
     'EventHook': EventHook_1.EventHook,
     'EventHookChannel': EventHookChannel_1.EventHookChannel,
     'EventHookChannelConfig': EventHookChannelConfig_1.EventHookChannelConfig,
@@ -1333,6 +1544,8 @@ let typeMap = {
     'GrantTypePolicyRuleCondition': GrantTypePolicyRuleCondition_1.GrantTypePolicyRuleCondition,
     'Group': Group_1.Group,
     'GroupCondition': GroupCondition_1.GroupCondition,
+    'GroupLinks': GroupLinks_1.GroupLinks,
+    'GroupOwner': GroupOwner_1.GroupOwner,
     'GroupPolicyRuleCondition': GroupPolicyRuleCondition_1.GroupPolicyRuleCondition,
     'GroupProfile': GroupProfile_1.GroupProfile,
     'GroupRule': GroupRule_1.GroupRule,
@@ -1351,9 +1564,14 @@ let typeMap = {
     'GroupSchemaDefinitions': GroupSchemaDefinitions_1.GroupSchemaDefinitions,
     'HardwareUserFactor': HardwareUserFactor_1.HardwareUserFactor,
     'HardwareUserFactorProfile': HardwareUserFactorProfile_1.HardwareUserFactorProfile,
+    'HookKey': HookKey_1.HookKey,
     'HostedPage': HostedPage_1.HostedPage,
     'HrefObject': HrefObject_1.HrefObject,
     'HrefObjectHints': HrefObjectHints_1.HrefObjectHints,
+    'IamRole': IamRole_1.IamRole,
+    'IamRoleLinks': IamRoleLinks_1.IamRoleLinks,
+    'IamRoles': IamRoles_1.IamRoles,
+    'IamRolesLinks': IamRolesLinks_1.IamRolesLinks,
     'IdentityProvider': IdentityProvider_1.IdentityProvider,
     'IdentityProviderApplicationUser': IdentityProviderApplicationUser_1.IdentityProviderApplicationUser,
     'IdentityProviderCredentials': IdentityProviderCredentials_1.IdentityProviderCredentials,
@@ -1362,6 +1580,9 @@ let typeMap = {
     'IdentityProviderCredentialsTrust': IdentityProviderCredentialsTrust_1.IdentityProviderCredentialsTrust,
     'IdentityProviderPolicy': IdentityProviderPolicy_1.IdentityProviderPolicy,
     'IdentityProviderPolicyRuleCondition': IdentityProviderPolicyRuleCondition_1.IdentityProviderPolicyRuleCondition,
+    'IdentitySourceSession': IdentitySourceSession_1.IdentitySourceSession,
+    'IdentitySourceUserProfileForDelete': IdentitySourceUserProfileForDelete_1.IdentitySourceUserProfileForDelete,
+    'IdentitySourceUserProfileForUpsert': IdentitySourceUserProfileForUpsert_1.IdentitySourceUserProfileForUpsert,
     'IdpPolicyRuleAction': IdpPolicyRuleAction_1.IdpPolicyRuleAction,
     'IdpPolicyRuleActionProvider': IdpPolicyRuleActionProvider_1.IdpPolicyRuleActionProvider,
     'ImageUploadResponse': ImageUploadResponse_1.ImageUploadResponse,
@@ -1371,11 +1592,18 @@ let typeMap = {
     'InlineHookChannelConfig': InlineHookChannelConfig_1.InlineHookChannelConfig,
     'InlineHookChannelConfigAuthScheme': InlineHookChannelConfigAuthScheme_1.InlineHookChannelConfigAuthScheme,
     'InlineHookChannelConfigHeaders': InlineHookChannelConfigHeaders_1.InlineHookChannelConfigHeaders,
+    'InlineHookChannelHttp': InlineHookChannelHttp_1.InlineHookChannelHttp,
+    'InlineHookChannelOAuth': InlineHookChannelOAuth_1.InlineHookChannelOAuth,
+    'InlineHookOAuthBasicConfig': InlineHookOAuthBasicConfig_1.InlineHookOAuthBasicConfig,
+    'InlineHookOAuthChannelConfig': InlineHookOAuthChannelConfig_1.InlineHookOAuthChannelConfig,
+    'InlineHookOAuthClientSecretConfig': InlineHookOAuthClientSecretConfig_1.InlineHookOAuthClientSecretConfig,
+    'InlineHookOAuthPrivateKeyJwtConfig': InlineHookOAuthPrivateKeyJwtConfig_1.InlineHookOAuthPrivateKeyJwtConfig,
     'InlineHookResponse': InlineHookResponse_1.InlineHookResponse,
     'InlineHookResponseCommandValue': InlineHookResponseCommandValue_1.InlineHookResponseCommandValue,
     'InlineHookResponseCommands': InlineHookResponseCommands_1.InlineHookResponseCommands,
     'JsonWebKey': JsonWebKey_1.JsonWebKey,
     'JwkUse': JwkUse_1.JwkUse,
+    'KeyRequest': KeyRequest_1.KeyRequest,
     'KnowledgeConstraint': KnowledgeConstraint_1.KnowledgeConstraint,
     'LifecycleCreateSettingObject': LifecycleCreateSettingObject_1.LifecycleCreateSettingObject,
     'LifecycleDeactivateSettingObject': LifecycleDeactivateSettingObject_1.LifecycleDeactivateSettingObject,
@@ -1394,6 +1622,13 @@ let typeMap = {
     'LogOutcome': LogOutcome_1.LogOutcome,
     'LogRequest': LogRequest_1.LogRequest,
     'LogSecurityContext': LogSecurityContext_1.LogSecurityContext,
+    'LogStream': LogStream_1.LogStream,
+    'LogStreamAws': LogStreamAws_1.LogStreamAws,
+    'LogStreamLinks': LogStreamLinks_1.LogStreamLinks,
+    'LogStreamSchema': LogStreamSchema_1.LogStreamSchema,
+    'LogStreamSettingsAws': LogStreamSettingsAws_1.LogStreamSettingsAws,
+    'LogStreamSettingsSplunk': LogStreamSettingsSplunk_1.LogStreamSettingsSplunk,
+    'LogStreamSplunk': LogStreamSplunk_1.LogStreamSplunk,
     'LogTarget': LogTarget_1.LogTarget,
     'LogTransaction': LogTransaction_1.LogTransaction,
     'LogUserAgent': LogUserAgent_1.LogUserAgent,
@@ -1401,6 +1636,7 @@ let typeMap = {
     'ModelError': ModelError_1.ModelError,
     'MultifactorEnrollmentPolicy': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
     'MultifactorEnrollmentPolicyAuthenticatorSettings': MultifactorEnrollmentPolicyAuthenticatorSettings_1.MultifactorEnrollmentPolicyAuthenticatorSettings,
+    'MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints': MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints_1.MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints,
     'MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll': MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1.MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll,
     'MultifactorEnrollmentPolicySettings': MultifactorEnrollmentPolicySettings_1.MultifactorEnrollmentPolicySettings,
     'NetworkZone': NetworkZone_1.NetworkZone,
@@ -1435,6 +1671,9 @@ let typeMap = {
     'OrgOktaSupportSettingsObj': OrgOktaSupportSettingsObj_1.OrgOktaSupportSettingsObj,
     'OrgPreferences': OrgPreferences_1.OrgPreferences,
     'OrgSetting': OrgSetting_1.OrgSetting,
+    'PageRoot': PageRoot_1.PageRoot,
+    'PageRootEmbedded': PageRootEmbedded_1.PageRootEmbedded,
+    'PageRootLinks': PageRootLinks_1.PageRootLinks,
     'PasswordCredential': PasswordCredential_1.PasswordCredential,
     'PasswordCredentialHash': PasswordCredentialHash_1.PasswordCredentialHash,
     'PasswordCredentialHook': PasswordCredentialHook_1.PasswordCredentialHook,
@@ -1465,6 +1704,11 @@ let typeMap = {
     'PasswordPolicyRuleConditions': PasswordPolicyRuleConditions_1.PasswordPolicyRuleConditions,
     'PasswordPolicySettings': PasswordPolicySettings_1.PasswordPolicySettings,
     'PasswordSettingObject': PasswordSettingObject_1.PasswordSettingObject,
+    'PerClientRateLimitSettings': PerClientRateLimitSettings_1.PerClientRateLimitSettings,
+    'PerClientRateLimitSettingsUseCaseModeOverrides': PerClientRateLimitSettingsUseCaseModeOverrides_1.PerClientRateLimitSettingsUseCaseModeOverrides,
+    'Permission': Permission_1.Permission,
+    'PermissionLinks': PermissionLinks_1.PermissionLinks,
+    'Permissions': Permissions_1.Permissions,
     'PlatformConditionEvaluatorPlatform': PlatformConditionEvaluatorPlatform_1.PlatformConditionEvaluatorPlatform,
     'PlatformConditionEvaluatorPlatformOperatingSystem': PlatformConditionEvaluatorPlatformOperatingSystem_1.PlatformConditionEvaluatorPlatformOperatingSystem,
     'PlatformConditionEvaluatorPlatformOperatingSystemVersion': PlatformConditionEvaluatorPlatformOperatingSystemVersion_1.PlatformConditionEvaluatorPlatformOperatingSystemVersion,
@@ -1514,9 +1758,31 @@ let typeMap = {
     'PushProvider': PushProvider_1.PushProvider,
     'PushUserFactor': PushUserFactor_1.PushUserFactor,
     'PushUserFactorProfile': PushUserFactorProfile_1.PushUserFactorProfile,
+    'RateLimitAdminNotifications': RateLimitAdminNotifications_1.RateLimitAdminNotifications,
     'RecoveryQuestionCredential': RecoveryQuestionCredential_1.RecoveryQuestionCredential,
     'ResetPasswordToken': ResetPasswordToken_1.ResetPasswordToken,
+    'ResourceSet': ResourceSet_1.ResourceSet,
+    'ResourceSetBindingAddMembersRequest': ResourceSetBindingAddMembersRequest_1.ResourceSetBindingAddMembersRequest,
+    'ResourceSetBindingCreateRequest': ResourceSetBindingCreateRequest_1.ResourceSetBindingCreateRequest,
+    'ResourceSetBindingMember': ResourceSetBindingMember_1.ResourceSetBindingMember,
+    'ResourceSetBindingMembers': ResourceSetBindingMembers_1.ResourceSetBindingMembers,
+    'ResourceSetBindingMembersLinks': ResourceSetBindingMembersLinks_1.ResourceSetBindingMembersLinks,
+    'ResourceSetBindingResponse': ResourceSetBindingResponse_1.ResourceSetBindingResponse,
+    'ResourceSetBindingResponseLinks': ResourceSetBindingResponseLinks_1.ResourceSetBindingResponseLinks,
+    'ResourceSetBindingRole': ResourceSetBindingRole_1.ResourceSetBindingRole,
+    'ResourceSetBindingRoleLinks': ResourceSetBindingRoleLinks_1.ResourceSetBindingRoleLinks,
+    'ResourceSetBindings': ResourceSetBindings_1.ResourceSetBindings,
+    'ResourceSetLinks': ResourceSetLinks_1.ResourceSetLinks,
+    'ResourceSetResource': ResourceSetResource_1.ResourceSetResource,
+    'ResourceSetResourcePatchRequest': ResourceSetResourcePatchRequest_1.ResourceSetResourcePatchRequest,
+    'ResourceSetResources': ResourceSetResources_1.ResourceSetResources,
+    'ResourceSetResourcesLinks': ResourceSetResourcesLinks_1.ResourceSetResourcesLinks,
+    'ResourceSets': ResourceSets_1.ResourceSets,
+    'RiskEvent': RiskEvent_1.RiskEvent,
+    'RiskEventSubject': RiskEventSubject_1.RiskEventSubject,
     'RiskPolicyRuleCondition': RiskPolicyRuleCondition_1.RiskPolicyRuleCondition,
+    'RiskProvider': RiskProvider_1.RiskProvider,
+    'RiskProviderLinks': RiskProviderLinks_1.RiskProviderLinks,
     'RiskScorePolicyRuleCondition': RiskScorePolicyRuleCondition_1.RiskScorePolicyRuleCondition,
     'Role': Role_1.Role,
     'SamlApplication': SamlApplication_1.SamlApplication,
@@ -1544,6 +1810,10 @@ let typeMap = {
     'SocialAuthToken': SocialAuthToken_1.SocialAuthToken,
     'SpCertificate': SpCertificate_1.SpCertificate,
     'Subscription': Subscription_1.Subscription,
+    'SupportedMethods': SupportedMethods_1.SupportedMethods,
+    'SupportedMethodsAlgorithms': SupportedMethodsAlgorithms_1.SupportedMethodsAlgorithms,
+    'SupportedMethodsSettings': SupportedMethodsSettings_1.SupportedMethodsSettings,
+    'SupportedMethodsTransactionTypes': SupportedMethodsTransactionTypes_1.SupportedMethodsTransactionTypes,
     'SwaApplicationSettings': SwaApplicationSettings_1.SwaApplicationSettings,
     'SwaApplicationSettingsApplication': SwaApplicationSettingsApplication_1.SwaApplicationSettingsApplication,
     'TempPassword': TempPassword_1.TempPassword,
@@ -1560,10 +1830,12 @@ let typeMap = {
     'TrustedOriginScope': TrustedOriginScope_1.TrustedOriginScope,
     'U2fUserFactor': U2fUserFactor_1.U2fUserFactor,
     'U2fUserFactorProfile': U2fUserFactorProfile_1.U2fUserFactorProfile,
+    'UpdateDomain': UpdateDomain_1.UpdateDomain,
     'UpdateEmailDomain': UpdateEmailDomain_1.UpdateEmailDomain,
     'UpdateUserRequest': UpdateUserRequest_1.UpdateUserRequest,
     'User': User_1.User,
     'UserActivationToken': UserActivationToken_1.UserActivationToken,
+    'UserBlock': UserBlock_1.UserBlock,
     'UserCondition': UserCondition_1.UserCondition,
     'UserCredentials': UserCredentials_1.UserCredentials,
     'UserFactor': UserFactor_1.UserFactor,
@@ -1571,6 +1843,7 @@ let typeMap = {
     'UserIdentifierPolicyRuleCondition': UserIdentifierPolicyRuleCondition_1.UserIdentifierPolicyRuleCondition,
     'UserIdentityProviderLinkRequest': UserIdentityProviderLinkRequest_1.UserIdentityProviderLinkRequest,
     'UserLifecycleAttributePolicyRuleCondition': UserLifecycleAttributePolicyRuleCondition_1.UserLifecycleAttributePolicyRuleCondition,
+    'UserLockoutSettings': UserLockoutSettings_1.UserLockoutSettings,
     'UserPolicyRuleCondition': UserPolicyRuleCondition_1.UserPolicyRuleCondition,
     'UserProfile': UserProfile_1.UserProfile,
     'UserSchema': UserSchema_1.UserSchema,
@@ -1598,6 +1871,11 @@ let typeMap = {
     'WebAuthnUserFactorProfile': WebAuthnUserFactorProfile_1.WebAuthnUserFactorProfile,
     'WebUserFactor': WebUserFactor_1.WebUserFactor,
     'WebUserFactorProfile': WebUserFactorProfile_1.WebUserFactorProfile,
+    'WellKnownAppAuthenticatorConfiguration': WellKnownAppAuthenticatorConfiguration_1.WellKnownAppAuthenticatorConfiguration,
+    'WellKnownAppAuthenticatorConfigurationSettings': WellKnownAppAuthenticatorConfigurationSettings_1.WellKnownAppAuthenticatorConfigurationSettings,
+    'WellKnownOrgMetadata': WellKnownOrgMetadata_1.WellKnownOrgMetadata,
+    'WellKnownOrgMetadataLinks': WellKnownOrgMetadataLinks_1.WellKnownOrgMetadataLinks,
+    'WellKnownOrgMetadataSettings': WellKnownOrgMetadataSettings_1.WellKnownOrgMetadataSettings,
     'WsFederationApplication': WsFederationApplication_1.WsFederationApplication,
     'WsFederationApplicationSettings': WsFederationApplicationSettings_1.WsFederationApplicationSettings,
     'WsFederationApplicationSettingsApplication': WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
@@ -1639,7 +1917,9 @@ let typeMap = {
     'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
     'APNS': APNSPushProvider_1.APNSPushProvider,
-    'FCM': FCMPushProvider_1.FCMPushProvider
+    'FCM': FCMPushProvider_1.FCMPushProvider,
+    'InlineHookChannel_HTTP': InlineHookChannelHttp_1.InlineHookChannelHttp,
+    'InlineHookChannel_OAUTH': InlineHookChannelOAuth_1.InlineHookChannelOAuth,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
@@ -1689,9 +1969,6 @@ class ObjectSerializer {
         else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;
         }
-        else if (format === 'date-time') {
-            return data;
-        }
         else if (type.lastIndexOf('Array<', 0) === 0) { // string.startsWith pre es6
             let subType = type.replace('Array<', ''); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
@@ -1711,7 +1988,19 @@ class ObjectSerializer {
                 return data.getFullYear() + '-' + month + '-' + day;
             }
             else {
-                return data.toISOString();
+                // format === 'date-time'
+                return data.toISOString().replace(/\.\d{3}/, '');
+            }
+        }
+        else if (type === 'HttpFile') {
+            if (data.data) {
+                data = data.data;
+            }
+            if (data instanceof Buffer) {
+                return data.toString();
+            }
+            else {
+                return data;
             }
         }
         else {
@@ -1792,6 +2081,12 @@ class ObjectSerializer {
         return certMediaTypes.includes(mediaType);
     }
     static getPreferredMediaTypeForCert(body) {
+        if (body.data) {
+            body = body.data;
+        }
+        if (body instanceof Buffer) {
+            body = body.toString();
+        }
         const isPem = typeof body === 'string' && body.indexOf('-----BEGIN') === 0;
         const isDer = typeof body === 'string' && body.charCodeAt(0) === 0x30;
         const isBase64 = typeof body === 'string' && !isPem && !isDer && /^[A-Za-z0-9+\/=\-_]+$/.test(body);

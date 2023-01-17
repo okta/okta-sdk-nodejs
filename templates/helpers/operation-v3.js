@@ -67,7 +67,6 @@ const V3ApiOperations = {
     'addApplicationTargetToAdminRoleGivenToGroup',
     'addGroupTargetToGroupAdministratorRoleForGroup',
     'addUserToGroup',
-    'assignRoleToGroup',
     'createGroup',
     'createGroupRule',
     'deactivateGroupRule',
@@ -76,9 +75,7 @@ const V3ApiOperations = {
     'getGroup',
     'getGroupRule',
     'getRole',
-    'listApplicationTargetsForApplicationAdministratorRoleForGroup',
     'listAssignedApplicationsForGroup',
-    'listGroupAssignedRoles',
     'listGroupRules',
     'listGroupTargetsForGroupRole',
     'listGroupUsers',
@@ -86,7 +83,6 @@ const V3ApiOperations = {
     'removeApplicationTargetFromAdministratorRoleGivenToGroup',
     'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup',
     'removeGroupTargetFromGroupAdministratorRoleGivenToGroup',
-    'removeRoleFromGroup',
     'removeUserFromGroup',
     'updateGroup',
     'updateGroupRule',
@@ -275,8 +271,6 @@ const V3ApiOperations = {
     'addAllAppsAsTargetToRole',
     'addApplicationTargetToAdminRoleForUser',
     'addApplicationTargetToAppAdminRoleForUser',
-    'addGroupTargetToRole',
-    'assignRoleToUser',
     'changePassword',
     'changeRecoveryQuestion',
     'clearUserSessions',
@@ -294,7 +288,6 @@ const V3ApiOperations = {
     'getUserRole',
     'listAppLinks',
     'listApplicationTargetsForApplicationAdministratorRoleForUser',
-    'listAssignedRolesForUser',
     'listGrantsForUserAndClient',
     'listGroupTargetsForRole',
     'listRefreshTokensForUserAndClient',
@@ -395,7 +388,36 @@ const V3ApiOperations = {
     'subscribeUserSubscriptionByNotificationType',
     'unsubscribeRoleSubscriptionByNotificationType',
     'unsubscribeUserSubscriptionByNotificationType',
-  ]
+  ],
+  RoleAssignmentApi: [
+    'listGroupAssignedRoles',
+    'assignRoleToGroup',
+    'getGroupAssignedRole',
+    'removeRoleFromGroup',
+    'listAssignedRolesForUser',
+    'assignRoleToUser',
+    'getUserAssignedRole',
+    'removeRoleFromUser',
+  ],
+  RoleTargetApi: [
+    'listApplicationTargetsForApplicationAdministratorRoleForGroup',
+    'assignAppTargetToAdminRoleForGroup',
+    'unassignAppTargetToAdminRoleForGroup',
+    'assignAppInstanceTargetToAppAdminRoleForGroup',
+    'unassignAppInstanceTargetToAppAdminRoleForGroup',
+    'listGroupTargetsForGroupRole',
+    'assignGroupTargetToGroupAdminRole',
+    'unassignGroupTargetFromGroupAdminRole',
+    'listApplicationTargetsForApplicationAdministratorRoleForUser',
+    'assignAllAppsAsTargetToRoleForUser',
+    'assignAppTargetToAdminRoleForUser',
+    'unassignAppTargetFromAppAdminRoleForUser',
+    'assignAppInstanceTargetToAppAdminRoleForUser',
+    'unassignAppInstanceTargetFromAdminRoleForUser',
+    'listGroupTargetsForRole',
+    'addGroupTargetToRole',
+    'unassignGroupTargetFromUserAdminRole',
+  ],
 };
 
 function getV3ReturnType(operationId) {
@@ -460,6 +482,13 @@ function getV3ArgumentsOverride(argumentName, operationId) {
 
 function getV3MethodName(v2OperationId) {
   return {
+    addGroupTargetToRole: 'assignGroupTargetToUserRole',
+    removeGroupTargetFromRole: 'unassignGroupTargetFromUserAdminRole',
+    removeRoleFromGroup: 'unassignRoleFromGroup',
+    removeRoleFromUser: 'unassignRoleFromUser',
+    getRoleSubscriptionByNotificationType: 'listRoleSubscriptionsByNotificationType',
+    getUserSubscriptionByNotificationType: 'listUserSubscriptionsByNotificationType',
+
     createEmailTemplateCustomization: 'createEmailCustomization',
     deleteEmailTemplateCustomizations: 'deleteAllCustomizations',
     deleteEmailTemplateCustomization: 'deleteEmailCustomization',
@@ -481,6 +510,7 @@ function getV3MethodName(v2OperationId) {
     publishDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishBinaryDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishBinaryPemCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    deactivateOrDeleteUser: 'deleteUser',
   }[v2OperationId] || v2OperationId;
 }
 

@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Adds a new push provider to your organization.
+     * Creates a new push provider
      * Create a Push Provider
      * @param pushProvider
      */
@@ -50,12 +50,12 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+     * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
      * Delete a Push Provider
      * @param pushProviderId Id of the push provider
      */
@@ -86,12 +86,12 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a push provider by `pushProviderId`.
+     * Retrieves a push provider by `pushProviderId`
      * Retrieve a Push Provider
      * @param pushProviderId Id of the push provider
      */
@@ -122,12 +122,12 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates push providers in your organization.
+     * Lists all push providers
      * List all Push Providers
      * @param type Filters push providers by &#x60;providerType&#x60;
      */
@@ -155,12 +155,12 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -171,20 +171,20 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates a push provider by `pushProviderId`.
+     * Replaces a push provider by `pushProviderId`
      * Replace a Push Provider
      * @param pushProviderId Id of the push provider
      * @param pushProvider
      */
-  async updatePushProvider(pushProviderId, pushProvider, _options) {
+  async replacePushProvider(pushProviderId, pushProvider, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'pushProviderId' is not null or undefined
     if (pushProviderId === null || pushProviderId === undefined) {
-      throw new baseapi_1.RequiredError('PushProviderApi', 'updatePushProvider', 'pushProviderId');
+      throw new baseapi_1.RequiredError('PushProviderApi', 'replacePushProvider', 'pushProviderId');
     }
     // verify required parameter 'pushProvider' is not null or undefined
     if (pushProvider === null || pushProvider === undefined) {
-      throw new baseapi_1.RequiredError('PushProviderApi', 'updatePushProvider', 'pushProvider');
+      throw new baseapi_1.RequiredError('PushProviderApi', 'replacePushProvider', 'pushProvider');
     }
     // Path Params
     const path = '/api/v1/push-providers/{pushProviderId}';
@@ -204,12 +204,12 @@ class PushProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -353,10 +353,10 @@ class PushProviderApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePushProvider
+     * @params response Response returned by the server for a request to replacePushProvider
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updatePushProvider(response) {
+  async replacePushProvider(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'PushProvider', '');
@@ -369,6 +369,10 @@ class PushProviderApiResponseProcessor {
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');

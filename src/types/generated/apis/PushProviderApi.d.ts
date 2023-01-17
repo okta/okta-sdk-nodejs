@@ -21,36 +21,36 @@ import { PushProvider } from '../models/PushProvider';
  */
 export declare class PushProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Adds a new push provider to your organization.
+     * Creates a new push provider
      * Create a Push Provider
      * @param pushProvider
      */
   createPushProvider(pushProvider: PushProvider, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+     * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
      * Delete a Push Provider
      * @param pushProviderId Id of the push provider
      */
   deletePushProvider(pushProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a push provider by `pushProviderId`.
+     * Retrieves a push provider by `pushProviderId`
      * Retrieve a Push Provider
      * @param pushProviderId Id of the push provider
      */
   getPushProvider(pushProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates push providers in your organization.
+     * Lists all push providers
      * List all Push Providers
      * @param type Filters push providers by &#x60;providerType&#x60;
      */
   listPushProviders(type?: ProviderType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a push provider by `pushProviderId`.
+     * Replaces a push provider by `pushProviderId`
      * Replace a Push Provider
      * @param pushProviderId Id of the push provider
      * @param pushProvider
      */
-  updatePushProvider(pushProviderId: string, pushProvider: PushProvider, _options?: Configuration): Promise<RequestContext>;
+  replacePushProvider(pushProviderId: string, pushProvider: PushProvider, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class PushProviderApiResponseProcessor {
   /**
@@ -89,8 +89,8 @@ export declare class PushProviderApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePushProvider
+     * @params response Response returned by the server for a request to replacePushProvider
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updatePushProvider(response: ResponseContext): Promise<PushProvider>;
+  replacePushProvider(response: ResponseContext): Promise<PushProvider>;
 }

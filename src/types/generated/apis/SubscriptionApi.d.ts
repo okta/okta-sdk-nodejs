@@ -20,33 +20,33 @@ import { Subscription } from '../models/Subscription';
  */
 export declare class SubscriptionApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-     * List all Subscriptions of a Custom Role with a specific notification type
-     * @param roleTypeOrRoleId
-     * @param notificationType
-     */
-  getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-     * List all Subscriptions by type
-     * @param userId
-     * @param notificationType
-     */
-  getUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+     * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
      * List all Subscriptions of a Custom Role
      * @param roleTypeOrRoleId
      */
   listRoleSubscriptions(roleTypeOrRoleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+     * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
+     * List all Subscriptions of a Custom Role with a specific notification type
+     * @param roleTypeOrRoleId
+     * @param notificationType
+     */
+  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
      * List all Subscriptions
      * @param userId
      */
   listUserSubscriptions(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+     * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+     * List all Subscriptions by type
+     * @param userId
+     * @param notificationType
+     */
+  listUserSubscriptionsByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
      * Subscribe a Custom Role to a specific notification type
      * @param roleTypeOrRoleId
      * @param notificationType
@@ -60,7 +60,7 @@ export declare class SubscriptionApiRequestFactory extends BaseAPIRequestFactory
      */
   subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+     * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
      * Unsubscribe a Custom Role from a specific notification type
      * @param roleTypeOrRoleId
      * @param notificationType
@@ -79,22 +79,6 @@ export declare class SubscriptionApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getRoleSubscriptionByNotificationType
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  getRoleSubscriptionByNotificationType(response: ResponseContext): Promise<Subscription>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getUserSubscriptionByNotificationType
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  getUserSubscriptionByNotificationType(response: ResponseContext): Promise<Subscription>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to listRoleSubscriptions
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -103,10 +87,26 @@ export declare class SubscriptionApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to listRoleSubscriptionsByNotificationType
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listRoleSubscriptionsByNotificationType(response: ResponseContext): Promise<Subscription>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listUserSubscriptions
      * @throws ApiException if the response code was not in [200, 299]
      */
   listUserSubscriptions(response: ResponseContext): Promise<Array<Subscription>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listUserSubscriptionsByNotificationType
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listUserSubscriptionsByNotificationType(response: ResponseContext): Promise<Subscription>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

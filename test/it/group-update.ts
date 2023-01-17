@@ -2,7 +2,7 @@ import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/update-group`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -27,12 +27,12 @@ describe('Group API tests', () => {
       }
     };
 
-    group = await client.createGroup(newGroup);
+    group = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(group, newGroup);
   });
 
   afterEach(async () => {
-    await client.deleteGroup(group.id);
+    await client.groupApi.deleteGroup({groupId: group.id});
   });
 
   it('should update a group', async () => {
@@ -40,7 +40,7 @@ describe('Group API tests', () => {
     group.profile.description = 'Description updated';
 
     // const updatedGroup = await group.update();
-    const updatedGroup = await client.updateGroup(group.id, group);
+    const updatedGroup = await client.groupApi.replaceGroup({groupId: group.id, group});
     utils.validateGroup(updatedGroup, group);
   });
 });

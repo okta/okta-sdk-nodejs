@@ -15,40 +15,54 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { Authenticator } from '../models/Authenticator';
+import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 /**
  * no description
  */
 export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates an authenticator by `authenticatorId`.
+     * Activates an authenticator by `authenticatorId`
      * Activate an Authenticator
      * @param authenticatorId
      */
   activateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates an authenticator by `authenticatorId`.
+     * Creates an authenticator. You can use this operation as part of the \"Create a custom authenticator\" flow. See the [Custom authenticator integration guide](https://developer.okta.com/docs/guides/authenticators-custom-authenticator/android/main/).
+     * Create an Authenticator
+     * @param authenticator
+     * @param activate Whether to execute the activation lifecycle operation when Okta creates the authenticator
+     */
+  createAuthenticator(authenticator: Authenticator, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deactivates an authenticator by `authenticatorId`
      * Deactivate an Authenticator
      * @param authenticatorId
      */
   deactivateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches an authenticator from your Okta organization by `authenticatorId`.
+     * Retrieves an authenticator from your Okta organization by `authenticatorId`
      * Retrieve an Authenticator
      * @param authenticatorId
      */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates authenticators in your organization.
+     * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+     * Retrieve the Well-Known App Authenticator Configuration
+     * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+     */
+  getWellKnownAppAuthenticatorConfiguration(oauthClientId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all authenticators
      * List all Authenticators
      */
   listAuthenticators(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an authenticator
+     * Replaces an authenticator
      * Replace an Authenticator
      * @param authenticatorId
      * @param authenticator
      */
-  updateAuthenticator(authenticatorId: string, authenticator: Authenticator, _options?: Configuration): Promise<RequestContext>;
+  replaceAuthenticator(authenticatorId: string, authenticator: Authenticator, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AuthenticatorApiResponseProcessor {
   /**
@@ -59,6 +73,14 @@ export declare class AuthenticatorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activateAuthenticator(response: ResponseContext): Promise<Authenticator>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to createAuthenticator
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  createAuthenticator(response: ResponseContext): Promise<Authenticator>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -79,6 +101,14 @@ export declare class AuthenticatorApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getWellKnownAppAuthenticatorConfiguration
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getWellKnownAppAuthenticatorConfiguration(response: ResponseContext): Promise<Array<WellKnownAppAuthenticatorConfiguration>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listAuthenticators
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -87,8 +117,8 @@ export declare class AuthenticatorApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateAuthenticator
+     * @params response Response returned by the server for a request to replaceAuthenticator
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateAuthenticator(response: ResponseContext): Promise<Authenticator>;
+  replaceAuthenticator(response: ResponseContext): Promise<Authenticator>;
 }

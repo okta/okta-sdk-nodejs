@@ -15,14 +15,18 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext, HttpFile } from '../http/http';
 import { Brand } from '../models/Brand';
-import { CustomizablePage } from '../models/CustomizablePage';
+import { BrandDomains } from '../models/BrandDomains';
+import { BrandRequest } from '../models/BrandRequest';
+import { CreateBrandRequest } from '../models/CreateBrandRequest';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
+import { ErrorPage } from '../models/ErrorPage';
 import { HostedPage } from '../models/HostedPage';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
+import { PageRoot } from '../models/PageRoot';
 import { SignInPage } from '../models/SignInPage';
 import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
@@ -31,7 +35,13 @@ import { ThemeResponse } from '../models/ThemeResponse';
  */
 export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new email customization.
+     * Creates new brand in your org
+     * Create a Brand
+     * @param CreateBrandRequest
+     */
+  createBrand(CreateBrandRequest?: CreateBrandRequest, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Creates a new email customization
      * Create an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
@@ -39,35 +49,53 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   createEmailCustomization(brandId: string, templateName: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes all customizations for an email template.
+     * Deletes all customizations for an email template
      * Delete all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
   deleteAllCustomizations(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Theme background image.
+     * Deletes a brand by its unique identifier
+     * Delete a brand
+     * @param brandId The ID of the brand.
+     */
+  deleteBrand(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes a Theme background image
      * Delete the Background Image
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      */
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a Theme favicon. The theme will use the default Okta favicon.
      * Delete the Favicon
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      */
   deleteBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a Theme logo. The theme will use the default Okta logo.
      * Delete the Logo
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes an email customization by its unique identifier.
+     * Deletes the customized error page. As a result, the default error page appears in your live environment.
+     * Delete the Customized Error Page
+     * @param brandId The ID of the brand.
+     */
+  deleteCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+     * Delete the Customized Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  deleteCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes an email customization by its unique identifier
      * Delete an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
@@ -75,28 +103,64 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a brand by `brandId`
+     * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+     * Delete the Preview Error Page
+     * @param brandId The ID of the brand.
+     */
+  deletePreviewErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+     * Delete the Preview Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  deletePreviewSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves a brand by `brandId`
      * Retrieve a Brand
-     * @param brandId
+     * @param brandId The ID of the brand.
      */
   getBrand(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a theme for a brand
+     * Retrieves a theme for a brand
      * Retrieve a Theme
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      */
   getBrandTheme(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview an Email Customization
+     * Retrieves a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+     * Retrieve a Preview of an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
      */
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets an email customization by its unique identifier.
+     * Retrieves the customized error page. The customized error page appears in your live environment.
+     * Retrieve the Customized Error Page
+     * @param brandId The ID of the brand.
+     */
+  getCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
+     * Retrieve the Customized Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  getCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the default error page. The default error page appears when no customized error page exists.
+     * Retrieve the Default Error Page
+     * @param brandId The ID of the brand.
+     */
+  getDefaultErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
+     * Retrieve the Default Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  getDefaultSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves an email customization by its unique identifier
      * Retrieve an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
@@ -104,7 +168,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets an email template's default content.
+     * Retrieves an email template's default content
      * Retrieve an Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
@@ -112,22 +176,22 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailDefaultContent(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview the Email Template Default Content
+     * Retrieves a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+     * Retrieve a Preview of the Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
      */
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets an email template's settings.
+     * Retrieves an email template's settings
      * Retrieve the Email Template Settings
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
   getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets the details of an email template by name.
+     * Retrieves the details of an email template by name
      * Retrieve an Email Template
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
@@ -135,105 +199,145 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List all sign-in widget versions.
+     * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+     * Retrieve the Error Page Sub-Resources
+     * @param brandId The ID of the brand.
+     * @param expand Specifies additional metadata to be included in the response.
+     */
+  getErrorPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+     * Retrieve the Preview Error Page Preview
+     * @param brandId The ID of the brand.
+     */
+  getPreviewErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+     * Retrieve the Preview Sign-in Page Preview
+     * @param brandId The ID of the brand.
+     */
+  getPreviewSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+     * Retrieve the Sign-in Page Sub-Resources
+     * @param brandId The ID of the brand.
+     * @param expand Specifies additional metadata to be included in the response.
+     */
+  getSignInPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the sign-out page settings
+     * Retrieve the Sign-out Page Settings
+     * @param brandId The ID of the brand.
+     */
+  getSignOutPageSettings(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all sign-in widget versions supported by the current org
      * List all Sign-in Widget Versions
      * @param brandId The ID of the brand.
      */
   listAllSignInWidgetVersions(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List all the themes in your brand
+     * Lists all domains associated with a brand by `brandId`
+     * List all Domains associated with a Brand
+     * @param brandId The ID of the brand.
+     */
+  listBrandDomains(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all the themes in your brand
      * List all Themes
-     * @param brandId
+     * @param brandId The ID of the brand.
      */
   listBrandThemes(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List all the brands in your org.
+     * Lists all the brands in your org
      * List all Brands
      */
   listBrands(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all customizations of an email template.
+     * Lists all customizations of an email template
      * List all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
      */
   listEmailCustomizations(brandId: string, templateName: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all email templates.
+     * Lists all email templates
      * List all Email Templates
      * @param brandId The ID of the brand.
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
      * @param expand Specifies additional metadata to be included in the response.
      */
   listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Previews the error page.
-     * Preview the Error Page
+     * Replaces a brand by `brandId`
+     * Replace a Brand
      * @param brandId The ID of the brand.
-     * @param CustomizablePage
+     * @param brand
      */
-  previewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<RequestContext>;
+  replaceBrand(brandId: string, brand: BrandRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the error page.
-     * Replace the Error Page
+     * Replaces a theme for a brand
+     * Replace a Theme
      * @param brandId The ID of the brand.
-     * @param CustomizablePage
+     * @param themeId The ID of the theme.
+     * @param theme
      */
-  replaceErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<RequestContext>;
+  replaceBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the sign-in page.
-     * Replace the Sign-in Page
+     * Replaces the customized error page. The customized error page appears in your live environment.
+     * Replace the Customized Error Page
+     * @param brandId The ID of the brand.
+     * @param ErrorPage
+     */
+  replaceCustomizedErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
+     * Replace the Customized Sign-in Page
      * @param brandId The ID of the brand.
      * @param SignInPage
      */
-  replaceSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
+  replaceCustomizedSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replace the sign-in page preview.
-     * Replace the Sign-in Page Preview
+     * Replaces an existing email customization using the property values provided
+     * Replace an Email Customization
+     * @param brandId The ID of the brand.
+     * @param templateName The name of the email template.
+     * @param customizationId The ID of the email customization.
+     * @param instance Request
+     */
+  replaceEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces an email template's settings
+     * Replace the Email Template Settings
+     * @param brandId The ID of the brand.
+     * @param templateName The name of the email template.
+     * @param EmailSettings
+     */
+  replaceEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+     * Replace the Preview Error Page
+     * @param brandId The ID of the brand.
+     * @param ErrorPage
+     */
+  replacePreviewErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+     * Replace the Preview Sign-in Page
      * @param brandId The ID of the brand.
      * @param SignInPage
      */
-  replaceSignInPagePreview(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
+  replacePreviewSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the sign-out page settings.
+     * Replaces the sign-out page settings
      * Replace the Sign-out Page Settings
      * @param brandId The ID of the brand.
      * @param HostedPage
      */
   replaceSignOutPageSettings(brandId: string, HostedPage: HostedPage, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Resets the error page.
-     * Reset the Error Page
-     * @param brandId The ID of the brand.
-     */
-  resetErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Reset the sign-in page.
-     * Reset the Sign-in Page
-     * @param brandId The ID of the brand.
-     */
-  resetSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Retrieves the error page.
-     * Retrieve the Error Page
-     * @param brandId The ID of the brand.
-     */
-  retrieveErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Retrieves the sign-in page.
-     * Retrieve the Sign-in Page
-     * @param brandId The ID of the brand.
-     */
-  retrieveSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Retrieves the sign-out page settings.
-     * Retrieve the Sign-out Page Settings
-     * @param brandId The ID of the brand.
-     */
-  retrieveSignOutPageSettings(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
      * Send a Test Email
@@ -243,63 +347,39 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   sendTestEmail(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a brand by `brandId`
-     * Replace a Brand
-     * @param brandId
-     * @param brand
-     */
-  updateBrand(brandId: string, brand: Brand, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates a theme for a brand
-     * Replace a Theme
-     * @param brandId
-     * @param themeId
-     * @param theme
-     */
-  updateBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates an existing email customization using the property values provided.
-     * Replace an Email Customization
-     * @param brandId The ID of the brand.
-     * @param templateName The name of the email template.
-     * @param customizationId The ID of the email customization.
-     * @param instance Request
-     */
-  updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates an email template's settings.
-     * Replace the Email Template Settings
-     * @param brandId The ID of the brand.
-     * @param templateName The name of the email template.
-     * @param EmailSettings
-     */
-  updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates the background image for your Theme
+     * Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
      * Upload the Background Image
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      * @param file
      */
   uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the favicon for your theme
+     * Uploads and replaces the favicon for the theme
      * Upload the Favicon
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      * @param file
      */
   uploadBrandThemeFavicon(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the logo for your Theme
+     * Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
      * Upload the Logo
-     * @param brandId
-     * @param themeId
+     * @param brandId The ID of the brand.
+     * @param themeId The ID of the theme.
      * @param file
      */
   uploadBrandThemeLogo(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class CustomizationApiResponseProcessor {
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to createBrand
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  createBrand(response: ResponseContext): Promise<Brand>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -316,6 +396,14 @@ export declare class CustomizationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   deleteAllCustomizations(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteBrand
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteBrand(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -344,10 +432,42 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to deleteCustomizedErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteCustomizedErrorPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteCustomizedSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteCustomizedSignInPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deleteEmailCustomization
      * @throws ApiException if the response code was not in [200, 299]
      */
   deleteEmailCustomization(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deletePreviewErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deletePreviewErrorPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deletePreviewSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deletePreviewSignInPage(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -372,6 +492,38 @@ export declare class CustomizationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   getCustomizationPreview(response: ResponseContext): Promise<EmailPreview>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getCustomizedErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getCustomizedErrorPage(response: ResponseContext): Promise<ErrorPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getCustomizedSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getCustomizedSignInPage(response: ResponseContext): Promise<SignInPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getDefaultErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getDefaultErrorPage(response: ResponseContext): Promise<ErrorPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getDefaultSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getDefaultSignInPage(response: ResponseContext): Promise<SignInPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -416,10 +568,58 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getErrorPage(response: ResponseContext): Promise<PageRoot>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getPreviewErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getPreviewErrorPage(response: ResponseContext): Promise<ErrorPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getPreviewSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getPreviewSignInPage(response: ResponseContext): Promise<SignInPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getSignInPage(response: ResponseContext): Promise<PageRoot>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getSignOutPageSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getSignOutPageSettings(response: ResponseContext): Promise<HostedPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listAllSignInWidgetVersions
      * @throws ApiException if the response code was not in [200, 299]
      */
   listAllSignInWidgetVersions(response: ResponseContext): Promise<Array<string>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listBrandDomains
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listBrandDomains(response: ResponseContext): Promise<BrandDomains>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -456,34 +656,66 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to previewErrorPage
+     * @params response Response returned by the server for a request to replaceBrand
      * @throws ApiException if the response code was not in [200, 299]
      */
-  previewErrorPage(response: ResponseContext): Promise<string>;
+  replaceBrand(response: ResponseContext): Promise<Brand>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to replaceErrorPage
+     * @params response Response returned by the server for a request to replaceBrandTheme
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replaceErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  replaceBrandTheme(response: ResponseContext): Promise<ThemeResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to replaceSignInPage
+     * @params response Response returned by the server for a request to replaceCustomizedErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replaceSignInPage(response: ResponseContext): Promise<SignInPage>;
+  replaceCustomizedErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to replaceSignInPagePreview
+     * @params response Response returned by the server for a request to replaceCustomizedSignInPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replaceSignInPagePreview(response: ResponseContext): Promise<void>;
+  replaceCustomizedSignInPage(response: ResponseContext): Promise<SignInPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceEmailCustomization
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceEmailCustomization(response: ResponseContext): Promise<EmailCustomization>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceEmailSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceEmailSettings(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replacePreviewErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replacePreviewErrorPage(response: ResponseContext): Promise<ErrorPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replacePreviewSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replacePreviewSignInPage(response: ResponseContext): Promise<SignInPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -496,82 +728,10 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to resetErrorPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetErrorPage(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to resetSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetSignInPage(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to retrieveErrorPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  retrieveErrorPage(response: ResponseContext): Promise<CustomizablePage>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to retrieveSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  retrieveSignInPage(response: ResponseContext): Promise<SignInPage>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to retrieveSignOutPageSettings
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  retrieveSignOutPageSettings(response: ResponseContext): Promise<HostedPage>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to sendTestEmail
      * @throws ApiException if the response code was not in [200, 299]
      */
   sendTestEmail(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateBrand
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateBrand(response: ResponseContext): Promise<Brand>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateBrandTheme
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateBrandTheme(response: ResponseContext): Promise<ThemeResponse>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateEmailCustomization
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateEmailCustomization(response: ResponseContext): Promise<EmailCustomization>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateEmailSettings
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateEmailSettings(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

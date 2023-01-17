@@ -21,29 +21,29 @@ import { Session } from '../models/Session';
  */
 export declare class SessionApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-     * Create a Session with Session Token
+     * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+     * Create a Session with session token
      * @param createSessionRequest
      */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * End a session.
-     * Delete a Session
-     * @param sessionId
-     */
-  endSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Get details about a session.
+     * Retrieves information about the Session specified by the given session ID
      * Retrieve a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   getSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Refresh a session.
+     * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
      * Refresh a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   refreshSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes the specified Session
+     * Revoke a Session
+     * @param sessionId &#x60;id&#x60; of a valid Session
+     */
+  revokeSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SessionApiResponseProcessor {
   /**
@@ -54,14 +54,6 @@ export declare class SessionApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   createSession(response: ResponseContext): Promise<Session>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to endSession
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  endSession(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -78,4 +70,12 @@ export declare class SessionApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   refreshSession(response: ResponseContext): Promise<Session>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to revokeSession
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  revokeSession(response: ResponseContext): Promise<void>;
 }

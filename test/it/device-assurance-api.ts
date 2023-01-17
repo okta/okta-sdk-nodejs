@@ -43,7 +43,7 @@ describe('Device Assurance API', () => {
   it('updates device assurance policy', async () => {
     const mockPolicy = getMockAssurancePolicy();
     mockPolicy.osVersion.minimum = '14.0.0';
-    const updatedPolicy = await client.deviceAssuranceApi.updateDeviceAssurancePolicy({
+    const updatedPolicy = await client.deviceAssuranceApi.replaceDeviceAssurancePolicy({
       deviceAssuranceId: deviceAssurancePolicy.id,
       deviceAssurance: mockPolicy
     });

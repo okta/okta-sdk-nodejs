@@ -13,7 +13,7 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseSchemaApi = exports.PromisePushProviderApi = exports.PromiseProfileMappingApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseNetworkZoneApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentityProviderApi = exports.PromiseGroupApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseEmailDomainApi = exports.PromiseDomainApi = exports.PromiseDeviceAssuranceApi = exports.PromiseCustomizationApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseAgentPoolsApi = void 0;
+exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseSchemaApi = exports.PromiseRoleTargetApi = exports.PromiseRoleAssignmentApi = exports.PromiseRoleApi = exports.PromiseRiskProviderApi = exports.PromiseRiskEventApi = exports.PromiseResourceSetApi = exports.PromiseRateLimitSettingsApi = exports.PromisePushProviderApi = exports.PromiseProfileMappingApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseNetworkZoneApi = exports.PromiseLogStreamApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentitySourceApi = exports.PromiseIdentityProviderApi = exports.PromiseHookKeyApi = exports.PromiseGroupApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseEmailDomainApi = exports.PromiseDeviceAssuranceApi = exports.PromiseDeviceApi = exports.PromiseCustomizationApi = exports.PromiseCustomDomainApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseAttackProtectionApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseAgentPoolsApi = void 0;
 const ObservableAPI_1 = require('./ObservableAPI');
 class PromiseAgentPoolsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -60,18 +60,7 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Fetches AgentPools based on request parameters for a given org
-      * List all Agent Pools
-      * @param limitPerPoolType Maximum number of AgentPools being returned
-      * @param poolType Agent type to search for
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-      */
-  getAgentPools(limitPerPoolType, poolType, after, _options) {
-    const result = this.api.getAgentPools(limitPerPoolType, poolType, after, _options);
-    return result.toPromise();
-  }
-  /**
-      * Gets Agent pool update from updateId
+      * Retrieves Agent pool update from updateId
       * Retrieve an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
@@ -81,7 +70,7 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Gets the current state of the agent pool update instance settings
+      * Retrieves the current state of the agent pool update instance settings
       * Retrieve an Agent Pool update's settings
       * @param poolId Id of the agent pool for which the settings will apply
       */
@@ -90,13 +79,24 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Gets List of Agent pool updates
+      * Lists all agent pools with pagination support
+      * List all Agent Pools
+      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param poolType Agent type to search for
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listAgentPools(limitPerPoolType, poolType, after, _options) {
+    const result = this.api.listAgentPools(limitPerPoolType, poolType, after, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all agent pool updates
       * List all Agent Pool updates
       * @param poolId Id of the agent pool for which the settings will apply
       * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       */
-  getAgentPoolsUpdates(poolId, scheduled, _options) {
-    const result = this.api.getAgentPoolsUpdates(poolId, scheduled, _options);
+  listAgentPoolsUpdates(poolId, scheduled, _options) {
+    const result = this.api.listAgentPoolsUpdates(poolId, scheduled, _options);
     return result.toPromise();
   }
   /**
@@ -130,16 +130,6 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Updates Agent pool update settings
-      * Update an Agent pool update settings
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param AgentPoolUpdateSetting
-      */
-  setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options) {
-    const result = this.api.setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options);
-    return result.toPromise();
-  }
-  /**
       * Stops Agent pool update
       * Stop an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
@@ -160,6 +150,16 @@ class PromiseAgentPoolsApi {
     const result = this.api.updateAgentPoolsUpdate(poolId, updateId, AgentPoolUpdate, _options);
     return result.toPromise();
   }
+  /**
+      * Updates an agent pool update settings
+      * Update an Agent Pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdateSetting
+      */
+  updateAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options) {
+    const result = this.api.updateAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options);
+    return result.toPromise();
+  }
 }
 exports.PromiseAgentPoolsApi = PromiseAgentPoolsApi;
 const ObservableAPI_2 = require('./ObservableAPI');
@@ -168,7 +168,7 @@ class PromiseApiTokenApi {
     this.api = new ObservableAPI_2.ObservableApiTokenApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Get the metadata for an active API token by id.
+      * Retrieves the metadata for an active API token by id
       * Retrieve an API Token's Metadata
       * @param apiTokenId id of the API Token
       */
@@ -177,9 +177,9 @@ class PromiseApiTokenApi {
     return result.toPromise();
   }
   /**
-      * Enumerates the metadata of the active API tokens in your organization.
+      * Lists all the metadata of the active API tokens
       * List all API Token Metadata
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param q Finds a token that matches the name or clientName.
       */
@@ -188,7 +188,7 @@ class PromiseApiTokenApi {
     return result.toPromise();
   }
   /**
-      * Revoke an API token by id.
+      * Revokes an API token by `apiTokenId`
       * Revoke an API Token
       * @param apiTokenId id of the API Token
       */
@@ -197,7 +197,7 @@ class PromiseApiTokenApi {
     return result.toPromise();
   }
   /**
-      * Revokes the API token provided in the Authorization header.
+      * Revokes the API token provided in the Authorization header
       * Revoke the Current API Token
       */
   revokeCurrentApiToken(_options) {
@@ -212,7 +212,7 @@ class PromiseApplicationApi {
     this.api = new ObservableAPI_3.ObservableApplicationApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates an inactive application.
+      * Activates an inactive application
       * Activate an Application
       * @param appId
       */
@@ -221,12 +221,33 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Activates the default Provisioning Connection for an application.
+      * Activates the default Provisioning Connection for an application
       * Activate the default Provisioning Connection
       * @param appId
       */
   activateDefaultProvisioningConnectionForApplication(appId, _options) {
     const result = this.api.activateDefaultProvisioningConnectionForApplication(appId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns an application to a policy identified by `policyId`. If the application was previously assigned to another policy, this removes that assignment.
+      * Assign an Application to a Policy
+      * @param appId
+      * @param policyId
+      */
+  assignApplicationPolicy(appId, policyId, _options) {
+    const result = this.api.assignApplicationPolicy(appId, policyId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns a group to an application
+      * Assign a Group
+      * @param appId
+      * @param groupId
+      * @param applicationGroupAssignment
+      */
+  assignGroupToApplication(appId, groupId, applicationGroupAssignment, _options) {
+    const result = this.api.assignGroupToApplication(appId, groupId, applicationGroupAssignment, _options);
     return result.toPromise();
   }
   /**
@@ -251,7 +272,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Adds a new application to your Okta organization.
+      * Creates a new application to your Okta organization
       * Create an Application
       * @param application
       * @param activate Executes activation lifecycle operation when creating the app
@@ -262,18 +283,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Assigns a group to an application
-      * Assign a Group
-      * @param appId
-      * @param groupId
-      * @param applicationGroupAssignment
-      */
-  createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment, _options) {
-    const result = this.api.createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment, _options);
-    return result.toPromise();
-  }
-  /**
-      * Deactivates an active application.
+      * Deactivates an active application
       * Deactivate an Application
       * @param appId
       */
@@ -282,7 +292,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Deactivates the default Provisioning Connection for an application.
+      * Deactivates the default Provisioning Connection for an application
       * Deactivate the default Provisioning Connection for an Application
       * @param appId
       */
@@ -291,33 +301,12 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Removes an inactive application.
+      * Deletes an inactive application
       * Delete an Application
       * @param appId
       */
   deleteApplication(appId, _options) {
     const result = this.api.deleteApplication(appId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Removes a group assignment from an application.
-      * Unassign a Group
-      * @param appId
-      * @param groupId
-      */
-  deleteApplicationGroupAssignment(appId, groupId, _options) {
-    const result = this.api.deleteApplicationGroupAssignment(appId, groupId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Removes an assignment for a user from an application.
-      * Unassign a User
-      * @param appId
-      * @param userId
-      * @param sendEmail
-      */
-  deleteApplicationUser(appId, userId, sendEmail, _options) {
-    const result = this.api.deleteApplicationUser(appId, userId, sendEmail, _options);
     return result.toPromise();
   }
   /**
@@ -331,7 +320,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Generates a new key pair and returns the Certificate Signing Request for it.
+      * Generates a new key pair and returns the Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param appId
       * @param metadata
@@ -341,7 +330,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches an application from your Okta organization by `id`.
+      * Retrieves an application from your Okta organization by `id`
       * Retrieve an Application
       * @param appId
       * @param expand
@@ -351,7 +340,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches an application group assignment
+      * Retrieves an application group assignment
       * Retrieve an Assigned Group
       * @param appId
       * @param groupId
@@ -362,7 +351,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Gets a specific application key credential by kid
+      * Retrieves a specific application key credential by kid
       * Retrieve a Key Credential
       * @param appId
       * @param keyId
@@ -372,7 +361,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches a specific user assignment for application by `id`.
+      * Retrieves a specific user assignment for application by `id`
       * Retrieve an Assigned User
       * @param appId
       * @param userId
@@ -383,7 +372,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches a certificate signing request for the app by `id`.
+      * Retrieves a certificate signing request for the app by `id`
       * Retrieve a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -393,7 +382,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Get default Provisioning Connection for application
+      * Retrieves the default Provisioning Connection for application
       * Retrieve the default Provisioning Connection
       * @param appId
       */
@@ -402,7 +391,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches a Feature object for an application.
+      * Retrieves a Feature object for an application
       * Retrieve a Feature
       * @param appId
       * @param name
@@ -412,7 +401,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Gets a token for the specified application
+      * Retrieves a token for the specified application
       * Retrieve an OAuth 2.0 Token
       * @param appId
       * @param tokenId
@@ -423,7 +412,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Fetches a single scope consent grant for the application
+      * Retrieves a single scope consent grant for the application
       * Retrieve a Scope Consent Grant
       * @param appId
       * @param grantId
@@ -444,7 +433,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Enumerates group assignments for an application.
+      * Lists all group assignments for an application
       * List all Assigned Groups
       * @param appId
       * @param q
@@ -457,7 +446,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Enumerates key credentials for an application
+      * Lists all key credentials for an application
       * List all Key Credentials
       * @param appId
       */
@@ -466,7 +455,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all assigned [application users](#application-user-model) for an application.
+      * Lists all assigned [application users](#application-user-model) for an application
       * List all Assigned Users
       * @param appId
       * @param q
@@ -481,7 +470,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+      * Lists all applications with pagination. A subset of apps can be returned that match a supported filter expression or query.
       * List all Applications
       * @param q
       * @param after Specifies the pagination cursor for the next page of apps
@@ -495,7 +484,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Enumerates Certificate Signing Requests for an application
+      * Lists all Certificate Signing Requests for an application
       * List all Certificate Signing Requests
       * @param appId
       */
@@ -504,7 +493,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * List Features for application
+      * Lists all features for an application
       * List all Features
       * @param appId
       */
@@ -535,7 +524,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
+      * Publishes a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
       * Publish a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -546,7 +535,17 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Revokes a certificate signing request and deletes the key pair from the application.
+      * Replaces an application
+      * Replace an Application
+      * @param appId
+      * @param application
+      */
+  replaceApplication(appId, application, _options) {
+    const result = this.api.replaceApplication(appId, application, _options);
+    return result.toPromise();
+  }
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the application
       * Revoke a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -585,24 +584,24 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Set default Provisioning Connection for application
-      * Update the default Provisioning Connection
+      * Unassigns a group from an application
+      * Unassign a Group
       * @param appId
-      * @param ProvisioningConnectionRequest
-      * @param activate
+      * @param groupId
       */
-  setDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options) {
-    const result = this.api.setDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options);
+  unassignApplicationFromGroup(appId, groupId, _options) {
+    const result = this.api.unassignApplicationFromGroup(appId, groupId, _options);
     return result.toPromise();
   }
   /**
-      * Updates an application in your organization.
-      * Replace an Application
+      * Unassigns a user from an application
+      * Unassign a User
       * @param appId
-      * @param application
+      * @param userId
+      * @param sendEmail
       */
-  updateApplication(appId, application, _options) {
-    const result = this.api.updateApplication(appId, application, _options);
+  unassignUserFromApplication(appId, userId, sendEmail, _options) {
+    const result = this.api.unassignUserFromApplication(appId, userId, sendEmail, _options);
     return result.toPromise();
   }
   /**
@@ -617,7 +616,18 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Updates a Feature object for an application.
+      * Updates the default provisioning connection for application
+      * Update the default Provisioning Connection
+      * @param appId
+      * @param ProvisioningConnectionRequest
+      * @param activate
+      */
+  updateDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options) {
+    const result = this.api.updateDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options);
+    return result.toPromise();
+  }
+  /**
+      * Updates a Feature object for an application
       * Update a Feature
       * @param appId
       * @param name
@@ -628,7 +638,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Uploads a logo for the application. The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
       * Upload a Logo
       * @param appId
       * @param file
@@ -640,12 +650,36 @@ class PromiseApplicationApi {
 }
 exports.PromiseApplicationApi = PromiseApplicationApi;
 const ObservableAPI_4 = require('./ObservableAPI');
-class PromiseAuthenticatorApi {
+class PromiseAttackProtectionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_4.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_4.ObservableAttackProtectionApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates an authenticator by `authenticatorId`.
+      * Retrieves the User Lockout Settings for an org
+      * Retrieve the User Lockout Settings
+      */
+  getUserLockoutSettings(_options) {
+    const result = this.api.getUserLockoutSettings(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the User Lockout Settings for an org
+      * Replace the User Lockout Settings
+      * @param lockoutSettings
+      */
+  replaceUserLockoutSettings(lockoutSettings, _options) {
+    const result = this.api.replaceUserLockoutSettings(lockoutSettings, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseAttackProtectionApi = PromiseAttackProtectionApi;
+const ObservableAPI_5 = require('./ObservableAPI');
+class PromiseAuthenticatorApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_5.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Activates an authenticator by `authenticatorId`
       * Activate an Authenticator
       * @param authenticatorId
       */
@@ -654,7 +688,17 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
-      * Deactivates an authenticator by `authenticatorId`.
+      * Creates an authenticator. You can use this operation as part of the \"Create a custom authenticator\" flow. See the [Custom authenticator integration guide](https://developer.okta.com/docs/guides/authenticators-custom-authenticator/android/main/).
+      * Create an Authenticator
+      * @param authenticator
+      * @param activate Whether to execute the activation lifecycle operation when Okta creates the authenticator
+      */
+  createAuthenticator(authenticator, activate, _options) {
+    const result = this.api.createAuthenticator(authenticator, activate, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deactivates an authenticator by `authenticatorId`
       * Deactivate an Authenticator
       * @param authenticatorId
       */
@@ -663,7 +707,7 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an Authenticator
       * @param authenticatorId
       */
@@ -672,7 +716,16 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
-      * Enumerates authenticators in your organization.
+      * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+      * Retrieve the Well-Known App Authenticator Configuration
+      * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+      */
+  getWellKnownAppAuthenticatorConfiguration(oauthClientId, _options) {
+    const result = this.api.getWellKnownAppAuthenticatorConfiguration(oauthClientId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all authenticators
       * List all Authenticators
       */
   listAuthenticators(_options) {
@@ -680,24 +733,24 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
-      * Updates an authenticator
+      * Replaces an authenticator
       * Replace an Authenticator
       * @param authenticatorId
       * @param authenticator
       */
-  updateAuthenticator(authenticatorId, authenticator, _options) {
-    const result = this.api.updateAuthenticator(authenticatorId, authenticator, _options);
+  replaceAuthenticator(authenticatorId, authenticator, _options) {
+    const result = this.api.replaceAuthenticator(authenticatorId, authenticator, _options);
     return result.toPromise();
   }
 }
 exports.PromiseAuthenticatorApi = PromiseAuthenticatorApi;
-const ObservableAPI_5 = require('./ObservableAPI');
+const ObservableAPI_6 = require('./ObservableAPI');
 class PromiseAuthorizationServerApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_5.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_6.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Success
+      * Activates an authorization server
       * Activate an Authorization Server
       * @param authServerId
       */
@@ -706,7 +759,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Activate Authorization Server Policy
+      * Activates an authorization server policy
       * Activate a Policy
       * @param authServerId
       * @param policyId
@@ -716,7 +769,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Activate Authorization Server Policy Rule
+      * Activates an authorization server policy rule
       * Activate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -727,7 +780,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates an authorization server
       * Create an Authorization Server
       * @param authorizationServer
       */
@@ -736,7 +789,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates a policy
       * Create a Policy
       * @param authServerId
       * @param policy
@@ -746,7 +799,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Creates a policy rule for the specified Custom Authorization Server and Policy.
+      * Creates a policy rule for the specified Custom Authorization Server and Policy
       * Create a Policy Rule
       * @param policyId
       * @param authServerId
@@ -757,7 +810,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates a custom token claim
       * Create a Custom Token Claim
       * @param authServerId
       * @param oAuth2Claim
@@ -767,7 +820,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates a custom token scope
       * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
@@ -777,7 +830,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deactivates an authorization server
       * Deactivate an Authorization Server
       * @param authServerId
       */
@@ -786,7 +839,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Deactivate Authorization Server Policy
+      * Deactivates an authorization server policy
       * Deactivate a Policy
       * @param authServerId
       * @param policyId
@@ -796,7 +849,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Deactivate Authorization Server Policy Rule
+      * Deactivates an authorization server policy rule
       * Deactivate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -807,7 +860,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes an authorization server
       * Delete an Authorization Server
       * @param authServerId
       */
@@ -816,7 +869,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes a policy
       * Delete a Policy
       * @param authServerId
       * @param policyId
@@ -826,7 +879,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
       * Delete a Policy Rule
       * @param policyId
       * @param authServerId
@@ -837,7 +890,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes a custom token claim
       * Delete a Custom Token Claim
       * @param authServerId
       * @param claimId
@@ -847,7 +900,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes a custom token scope
       * Delete a Custom Token Scope
       * @param authServerId
       * @param scopeId
@@ -857,7 +910,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves an authorization server
       * Retrieve an Authorization Server
       * @param authServerId
       */
@@ -866,7 +919,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a policy
       * Retrieve a Policy
       * @param authServerId
       * @param policyId
@@ -876,7 +929,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+      * Retrieves a policy rule by `ruleId`
       * Retrieve a Policy Rule
       * @param policyId
       * @param authServerId
@@ -887,7 +940,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a custom token claim
       * Retrieve a Custom Token Claim
       * @param authServerId
       * @param claimId
@@ -897,7 +950,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a custom token scope
       * Retrieve a Custom Token Scope
       * @param authServerId
       * @param scopeId
@@ -907,7 +960,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a refresh token for a client
       * Retrieve a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -919,7 +972,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all credential keys
       * List all Credential Keys
       * @param authServerId
       */
@@ -928,7 +981,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all policies
       * List all Policies
       * @param authServerId
       */
@@ -937,7 +990,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+      * Lists all policy rules for the specified Custom Authorization Server and Policy
       * List all Policy Rules
       * @param policyId
       * @param authServerId
@@ -947,7 +1000,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all authorization servers
       * List all Authorization Servers
       * @param q
       * @param limit
@@ -958,7 +1011,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all custom token claims
       * List all Custom Token Claims
       * @param authServerId
       */
@@ -967,7 +1020,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all clients
       * List all Clients
       * @param authServerId
       */
@@ -976,7 +1029,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all custom token scopes
       * List all Custom Token Scopes
       * @param authServerId
       * @param q
@@ -989,7 +1042,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all refresh tokens for a client
       * List all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
@@ -1002,7 +1055,62 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Replaces an authorization server
+      * Replace an Authorization Server
+      * @param authServerId
+      * @param authorizationServer
+      */
+  replaceAuthorizationServer(authServerId, authorizationServer, _options) {
+    const result = this.api.replaceAuthorizationServer(authServerId, authorizationServer, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a policy
+      * Replace a Policy
+      * @param authServerId
+      * @param policyId
+      * @param policy
+      */
+  replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
+    const result = this.api.replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+      * Replace a Policy Rule
+      * @param policyId
+      * @param authServerId
+      * @param ruleId
+      * @param policyRule
+      */
+  replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
+    const result = this.api.replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a custom token claim
+      * Replace a Custom Token Claim
+      * @param authServerId
+      * @param claimId
+      * @param oAuth2Claim
+      */
+  replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
+    const result = this.api.replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a custom token scope
+      * Replace a Custom Token Scope
+      * @param authServerId
+      * @param scopeId
+      * @param oAuth2Scope
+      */
+  replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
+    const result = this.api.replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options);
+    return result.toPromise();
+  }
+  /**
+      * Revokes a refresh token for a client
       * Revoke a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -1013,7 +1121,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Revokes all refresh tokens for a client
       * Revoke all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
@@ -1023,7 +1131,7 @@ class PromiseAuthorizationServerApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Rotates all credential keys
       * Rotate all Credential Keys
       * @param authServerId
       * @param use
@@ -1032,70 +1140,15 @@ class PromiseAuthorizationServerApi {
     const result = this.api.rotateAuthorizationServerKeys(authServerId, use, _options);
     return result.toPromise();
   }
-  /**
-      * Success
-      * Replace an Authorization Server
-      * @param authServerId
-      * @param authorizationServer
-      */
-  updateAuthorizationServer(authServerId, authorizationServer, _options) {
-    const result = this.api.updateAuthorizationServer(authServerId, authorizationServer, _options);
-    return result.toPromise();
-  }
-  /**
-      * Success
-      * Replace a Policy
-      * @param authServerId
-      * @param policyId
-      * @param policy
-      */
-  updateAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
-    const result = this.api.updateAuthorizationServerPolicy(authServerId, policyId, policy, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Replace a Policy Rule
-      * @param policyId
-      * @param authServerId
-      * @param ruleId
-      * @param policyRule
-      */
-  updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
-    const result = this.api.updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options);
-    return result.toPromise();
-  }
-  /**
-      * Success
-      * Replace a Custom Token Claim
-      * @param authServerId
-      * @param claimId
-      * @param oAuth2Claim
-      */
-  updateOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
-    const result = this.api.updateOAuth2Claim(authServerId, claimId, oAuth2Claim, _options);
-    return result.toPromise();
-  }
-  /**
-      * Success
-      * Replace a Custom Token Scope
-      * @param authServerId
-      * @param scopeId
-      * @param oAuth2Scope
-      */
-  updateOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
-    const result = this.api.updateOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options);
-    return result.toPromise();
-  }
 }
 exports.PromiseAuthorizationServerApi = PromiseAuthorizationServerApi;
-const ObservableAPI_6 = require('./ObservableAPI');
+const ObservableAPI_7 = require('./ObservableAPI');
 class PromiseBehaviorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_6.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_7.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activate Behavior Detection Rule
+      * Activates a behavior detection rule
       * Activate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -1104,7 +1157,7 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Adds a new Behavior Detection Rule to your organization.
+      * Creates a new behavior detection rule
       * Create a Behavior Detection Rule
       * @param rule
       */
@@ -1113,7 +1166,7 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Deactivate Behavior Detection Rule
+      * Deactivates a behavior detection rule
       * Deactivate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -1122,7 +1175,7 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -1131,7 +1184,7 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -1140,7 +1193,7 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * Lists all behavior detection rules with pagination support
       * List all Behavior Detection Rules
       */
   listBehaviorDetectionRules(_options) {
@@ -1148,24 +1201,24 @@ class PromiseBehaviorApi {
     return result.toPromise();
   }
   /**
-      * Update a Behavior Detection Rule by `behaviorId`.
+      * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       * @param rule
       */
-  updateBehaviorDetectionRule(behaviorId, rule, _options) {
-    const result = this.api.updateBehaviorDetectionRule(behaviorId, rule, _options);
+  replaceBehaviorDetectionRule(behaviorId, rule, _options) {
+    const result = this.api.replaceBehaviorDetectionRule(behaviorId, rule, _options);
     return result.toPromise();
   }
 }
 exports.PromiseBehaviorApi = PromiseBehaviorApi;
-const ObservableAPI_7 = require('./ObservableAPI');
+const ObservableAPI_8 = require('./ObservableAPI');
 class PromiseCAPTCHAApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_7.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_8.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+      * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
       * Create a CAPTCHA instance
       * @param instance
       */
@@ -1174,7 +1227,7 @@ class PromiseCAPTCHAApi {
     return result.toPromise();
   }
   /**
-      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -1183,7 +1236,7 @@ class PromiseCAPTCHAApi {
     return result.toPromise();
   }
   /**
-      * Fetches a CAPTCHA instance by `captchaId`.
+      * Retrieves a CAPTCHA instance by `captchaId`
       * Retrieve a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -1192,7 +1245,7 @@ class PromiseCAPTCHAApi {
     return result.toPromise();
   }
   /**
-      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+      * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
       * List all CAPTCHA instances
       */
   listCaptchaInstances(_options) {
@@ -1200,18 +1253,18 @@ class PromiseCAPTCHAApi {
     return result.toPromise();
   }
   /**
-      * Partially update a CAPTCHA instance by `captchaId`.
-      * Update a CAPTCHA instance
+      * Replaces a CAPTCHA instance by `captchaId`
+      * Replace a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
-  partialUpdateCaptchaInstance(captchaId, instance, _options) {
-    const result = this.api.partialUpdateCaptchaInstance(captchaId, instance, _options);
+  replaceCaptchaInstance(captchaId, instance, _options) {
+    const result = this.api.replaceCaptchaInstance(captchaId, instance, _options);
     return result.toPromise();
   }
   /**
-      * Update a CAPTCHA instance by `captchaId`.
-      * Replace a CAPTCHA instance
+      * Partially updates a CAPTCHA instance by `captchaId`
+      * Update a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
@@ -1221,13 +1274,93 @@ class PromiseCAPTCHAApi {
   }
 }
 exports.PromiseCAPTCHAApi = PromiseCAPTCHAApi;
-const ObservableAPI_8 = require('./ObservableAPI');
-class PromiseCustomizationApi {
+const ObservableAPI_9 = require('./ObservableAPI');
+class PromiseCustomDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_8.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_9.ObservableCustomDomainApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Creates a new email customization.
+      * Creates your Custom Domain
+      * Create a Custom Domain
+      * @param domain
+      */
+  createCustomDomain(domain, _options) {
+    const result = this.api.createCustomDomain(domain, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a Custom Domain by `id`
+      * Delete a Custom Domain
+      * @param domainId
+      */
+  deleteCustomDomain(domainId, _options) {
+    const result = this.api.deleteCustomDomain(domainId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a Custom Domain by `id`
+      * Retrieve a Custom Domain
+      * @param domainId
+      */
+  getCustomDomain(domainId, _options) {
+    const result = this.api.getCustomDomain(domainId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all verified Custom Domains for the org
+      * List all Custom Domains
+      */
+  listCustomDomains(_options) {
+    const result = this.api.listCustomDomains(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a Custom Domain by `id`
+      * Replace a Custom Domain's brandId
+      * @param domainId
+      * @param UpdateDomain
+      */
+  replaceCustomDomain(domainId, UpdateDomain, _options) {
+    const result = this.api.replaceCustomDomain(domainId, UpdateDomain, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates or replaces the certificate for the custom domain
+      * Upsert the Certificate
+      * @param domainId
+      * @param certificate
+      */
+  upsertCertificate(domainId, certificate, _options) {
+    const result = this.api.upsertCertificate(domainId, certificate, _options);
+    return result.toPromise();
+  }
+  /**
+      * Verifies the Custom Domain by `id`
+      * Verify a Custom Domain
+      * @param domainId
+      */
+  verifyDomain(domainId, _options) {
+    const result = this.api.verifyDomain(domainId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseCustomDomainApi = PromiseCustomDomainApi;
+const ObservableAPI_10 = require('./ObservableAPI');
+class PromiseCustomizationApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_10.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates new brand in your org
+      * Create a Brand
+      * @param CreateBrandRequest
+      */
+  createBrand(CreateBrandRequest, _options) {
+    const result = this.api.createBrand(CreateBrandRequest, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a new email customization
       * Create an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1238,7 +1371,7 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Deletes all customizations for an email template.
+      * Deletes all customizations for an email template
       * Delete all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1248,10 +1381,19 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Deletes a Theme background image.
+      * Deletes a brand by its unique identifier
+      * Delete a brand
+      * @param brandId The ID of the brand.
+      */
+  deleteBrand(brandId, _options) {
+    const result = this.api.deleteBrand(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a Theme background image
       * Delete the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeBackgroundImage(brandId, themeId, _options) {
     const result = this.api.deleteBrandThemeBackgroundImage(brandId, themeId, _options);
@@ -1260,8 +1402,8 @@ class PromiseCustomizationApi {
   /**
       * Deletes a Theme favicon. The theme will use the default Okta favicon.
       * Delete the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeFavicon(brandId, themeId, _options) {
     const result = this.api.deleteBrandThemeFavicon(brandId, themeId, _options);
@@ -1270,15 +1412,33 @@ class PromiseCustomizationApi {
   /**
       * Deletes a Theme logo. The theme will use the default Okta logo.
       * Delete the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeLogo(brandId, themeId, _options) {
     const result = this.api.deleteBrandThemeLogo(brandId, themeId, _options);
     return result.toPromise();
   }
   /**
-      * Deletes an email customization by its unique identifier.
+      * Deletes the customized error page. As a result, the default error page appears in your live environment.
+      * Delete the Customized Error Page
+      * @param brandId The ID of the brand.
+      */
+  deleteCustomizedErrorPage(brandId, _options) {
+    const result = this.api.deleteCustomizedErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+      * Delete the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  deleteCustomizedSignInPage(brandId, _options) {
+    const result = this.api.deleteCustomizedSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1289,27 +1449,45 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Fetches a brand by `brandId`
+      * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Delete the Preview Error Page
+      * @param brandId The ID of the brand.
+      */
+  deletePreviewErrorPage(brandId, _options) {
+    const result = this.api.deletePreviewErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Delete the Preview Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  deletePreviewSignInPage(brandId, _options) {
+    const result = this.api.deletePreviewSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a brand by `brandId`
       * Retrieve a Brand
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   getBrand(brandId, _options) {
     const result = this.api.getBrand(brandId, _options);
     return result.toPromise();
   }
   /**
-      * Fetches a theme for a brand
+      * Retrieves a theme for a brand
       * Retrieve a Theme
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   getBrandTheme(brandId, themeId, _options) {
     const result = this.api.getBrandTheme(brandId, themeId, _options);
     return result.toPromise();
   }
   /**
-      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview an Email Customization
+      * Retrieves a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1319,7 +1497,43 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Gets an email customization by its unique identifier.
+      * Retrieves the customized error page. The customized error page appears in your live environment.
+      * Retrieve the Customized Error Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedErrorPage(brandId, _options) {
+    const result = this.api.getCustomizedErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
+      * Retrieve the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedSignInPage(brandId, _options) {
+    const result = this.api.getCustomizedSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the default error page. The default error page appears when no customized error page exists.
+      * Retrieve the Default Error Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultErrorPage(brandId, _options) {
+    const result = this.api.getDefaultErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
+      * Retrieve the Default Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultSignInPage(brandId, _options) {
+    const result = this.api.getDefaultSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves an email customization by its unique identifier
       * Retrieve an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1330,7 +1544,7 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Gets an email template's default content.
+      * Retrieves an email template's default content
       * Retrieve an Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1341,8 +1555,8 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview the Email Template Default Content
+      * Retrieves a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of the Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1352,7 +1566,7 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Gets an email template's settings.
+      * Retrieves an email template's settings
       * Retrieve the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1362,7 +1576,7 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Gets the details of an email template by name.
+      * Retrieves the details of an email template by name
       * Retrieve an Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1373,7 +1587,54 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * List all sign-in widget versions.
+      * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Error Page Sub-Resources
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getErrorPage(brandId, expand, _options) {
+    const result = this.api.getErrorPage(brandId, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Retrieve the Preview Error Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewErrorPage(brandId, _options) {
+    const result = this.api.getPreviewErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Retrieve the Preview Sign-in Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewSignInPage(brandId, _options) {
+    const result = this.api.getPreviewSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Sign-in Page Sub-Resources
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getSignInPage(brandId, expand, _options) {
+    const result = this.api.getSignInPage(brandId, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the sign-out page settings
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  getSignOutPageSettings(brandId, _options) {
+    const result = this.api.getSignOutPageSettings(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all sign-in widget versions supported by the current org
       * List all Sign-in Widget Versions
       * @param brandId The ID of the brand.
       */
@@ -1382,16 +1643,25 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * List all the themes in your brand
+      * Lists all domains associated with a brand by `brandId`
+      * List all Domains associated with a Brand
+      * @param brandId The ID of the brand.
+      */
+  listBrandDomains(brandId, _options) {
+    const result = this.api.listBrandDomains(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all the themes in your brand
       * List all Themes
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   listBrandThemes(brandId, _options) {
     const result = this.api.listBrandThemes(brandId, _options);
     return result.toPromise();
   }
   /**
-      * List all the brands in your org.
+      * Lists all the brands in your org
       * List all Brands
       */
   listBrands(_options) {
@@ -1399,11 +1669,11 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Lists all customizations of an email template.
+      * Lists all customizations of an email template
       * List all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       */
   listEmailCustomizations(brandId, templateName, after, limit, _options) {
@@ -1411,10 +1681,10 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Lists all email templates.
+      * Lists all email templates
       * List all Email Templates
       * @param brandId The ID of the brand.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param expand Specifies additional metadata to be included in the response.
       */
@@ -1423,98 +1693,97 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Previews the error page.
-      * Preview the Error Page
+      * Replaces a brand by `brandId`
+      * Replace a Brand
       * @param brandId The ID of the brand.
-      * @param CustomizablePage
+      * @param brand
       */
-  previewErrorPage(brandId, CustomizablePage, _options) {
-    const result = this.api.previewErrorPage(brandId, CustomizablePage, _options);
+  replaceBrand(brandId, brand, _options) {
+    const result = this.api.replaceBrand(brandId, brand, _options);
     return result.toPromise();
   }
   /**
-      * Replaces the error page.
-      * Replace the Error Page
+      * Replaces a theme for a brand
+      * Replace a Theme
       * @param brandId The ID of the brand.
-      * @param CustomizablePage
+      * @param themeId The ID of the theme.
+      * @param theme
       */
-  replaceErrorPage(brandId, CustomizablePage, _options) {
-    const result = this.api.replaceErrorPage(brandId, CustomizablePage, _options);
+  replaceBrandTheme(brandId, themeId, theme, _options) {
+    const result = this.api.replaceBrandTheme(brandId, themeId, theme, _options);
     return result.toPromise();
   }
   /**
-      * Replaces the sign-in page.
-      * Replace the Sign-in Page
+      * Replaces the customized error page. The customized error page appears in your live environment.
+      * Replace the Customized Error Page
+      * @param brandId The ID of the brand.
+      * @param ErrorPage
+      */
+  replaceCustomizedErrorPage(brandId, ErrorPage, _options) {
+    const result = this.api.replaceCustomizedErrorPage(brandId, ErrorPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
+      * Replace the Customized Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
       */
-  replaceSignInPage(brandId, SignInPage, _options) {
-    const result = this.api.replaceSignInPage(brandId, SignInPage, _options);
+  replaceCustomizedSignInPage(brandId, SignInPage, _options) {
+    const result = this.api.replaceCustomizedSignInPage(brandId, SignInPage, _options);
     return result.toPromise();
   }
   /**
-      * Replace the sign-in page preview.
-      * Replace the Sign-in Page Preview
+      * Replaces an existing email customization using the property values provided
+      * Replace an Email Customization
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param customizationId The ID of the email customization.
+      * @param instance Request
+      */
+  replaceEmailCustomization(brandId, templateName, customizationId, instance, _options) {
+    const result = this.api.replaceEmailCustomization(brandId, templateName, customizationId, instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces an email template's settings
+      * Replace the Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param EmailSettings
+      */
+  replaceEmailSettings(brandId, templateName, EmailSettings, _options) {
+    const result = this.api.replaceEmailSettings(brandId, templateName, EmailSettings, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Replace the Preview Error Page
+      * @param brandId The ID of the brand.
+      * @param ErrorPage
+      */
+  replacePreviewErrorPage(brandId, ErrorPage, _options) {
+    const result = this.api.replacePreviewErrorPage(brandId, ErrorPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Replace the Preview Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
       */
-  replaceSignInPagePreview(brandId, SignInPage, _options) {
-    const result = this.api.replaceSignInPagePreview(brandId, SignInPage, _options);
+  replacePreviewSignInPage(brandId, SignInPage, _options) {
+    const result = this.api.replacePreviewSignInPage(brandId, SignInPage, _options);
     return result.toPromise();
   }
   /**
-      * Replaces the sign-out page settings.
+      * Replaces the sign-out page settings
       * Replace the Sign-out Page Settings
       * @param brandId The ID of the brand.
       * @param HostedPage
       */
   replaceSignOutPageSettings(brandId, HostedPage, _options) {
     const result = this.api.replaceSignOutPageSettings(brandId, HostedPage, _options);
-    return result.toPromise();
-  }
-  /**
-      * Resets the error page.
-      * Reset the Error Page
-      * @param brandId The ID of the brand.
-      */
-  resetErrorPage(brandId, _options) {
-    const result = this.api.resetErrorPage(brandId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Reset the sign-in page.
-      * Reset the Sign-in Page
-      * @param brandId The ID of the brand.
-      */
-  resetSignInPage(brandId, _options) {
-    const result = this.api.resetSignInPage(brandId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Retrieves the error page.
-      * Retrieve the Error Page
-      * @param brandId The ID of the brand.
-      */
-  retrieveErrorPage(brandId, _options) {
-    const result = this.api.retrieveErrorPage(brandId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Retrieves the sign-in page.
-      * Retrieve the Sign-in Page
-      * @param brandId The ID of the brand.
-      */
-  retrieveSignInPage(brandId, _options) {
-    const result = this.api.retrieveSignInPage(brandId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Retrieves the sign-out page settings.
-      * Retrieve the Sign-out Page Settings
-      * @param brandId The ID of the brand.
-      */
-  retrieveSignOutPageSettings(brandId, _options) {
-    const result = this.api.retrieveSignOutPageSettings(brandId, _options);
     return result.toPromise();
   }
   /**
@@ -1529,54 +1798,10 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Updates a brand by `brandId`
-      * Replace a Brand
-      * @param brandId
-      * @param brand
-      */
-  updateBrand(brandId, brand, _options) {
-    const result = this.api.updateBrand(brandId, brand, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates a theme for a brand
-      * Replace a Theme
-      * @param brandId
-      * @param themeId
-      * @param theme
-      */
-  updateBrandTheme(brandId, themeId, theme, _options) {
-    const result = this.api.updateBrandTheme(brandId, themeId, theme, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates an existing email customization using the property values provided.
-      * Replace an Email Customization
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param customizationId The ID of the email customization.
-      * @param instance Request
-      */
-  updateEmailCustomization(brandId, templateName, customizationId, instance, _options) {
-    const result = this.api.updateEmailCustomization(brandId, templateName, customizationId, instance, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates an email template's settings.
-      * Replace the Email Template Settings
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param EmailSettings
-      */
-  updateEmailSettings(brandId, templateName, EmailSettings, _options) {
-    const result = this.api.updateEmailSettings(brandId, templateName, EmailSettings, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates the background image for your Theme
+      * Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
       * Upload the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeBackgroundImage(brandId, themeId, file, _options) {
@@ -1584,10 +1809,10 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Updates the favicon for your theme
+      * Uploads and replaces the favicon for the theme
       * Upload the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeFavicon(brandId, themeId, file, _options) {
@@ -1595,10 +1820,10 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Updates the logo for your Theme
+      * Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeLogo(brandId, themeId, file, _options) {
@@ -1607,13 +1832,85 @@ class PromiseCustomizationApi {
   }
 }
 exports.PromiseCustomizationApi = PromiseCustomizationApi;
-const ObservableAPI_9 = require('./ObservableAPI');
-class PromiseDeviceAssuranceApi {
+const ObservableAPI_11 = require('./ObservableAPI');
+class PromiseDeviceApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_9.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_11.ObservableDeviceApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Adds a new Device Assurance Policy.
+      * Activates a device by `deviceId`
+      * Activate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  activateDevice(deviceId, _options) {
+    const result = this.api.activateDevice(deviceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deactivates a device by `deviceId`
+      * Deactivate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deactivateDevice(deviceId, _options) {
+    const result = this.api.deactivateDevice(deviceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a device by `deviceId`
+      * Delete a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deleteDevice(deviceId, _options) {
+    const result = this.api.deleteDevice(deviceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a device by `deviceId`
+      * Retrieve a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  getDevice(deviceId, _options) {
+    const result = this.api.getDevice(deviceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all devices with pagination support.  A subset of Devices can be returned that match a supported search criteria using the `search` query parameter.  Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** Listing devices with `search` should not be used as a part of any critical flows—such as authentication or updates—to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object. <br> Don't use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss. <br> Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation equires [URL encoding](http://en.wikipedia.org/wiki/Percent-encoding). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * List all Devices
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param search SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties.
+      */
+  listDevices(after, limit, search, _options) {
+    const result = this.api.listDevices(after, limit, search, _options);
+    return result.toPromise();
+  }
+  /**
+      * Suspends a device by `deviceId`
+      * Suspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  suspendDevice(deviceId, _options) {
+    const result = this.api.suspendDevice(deviceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unsuspends a device by `deviceId`
+      * Unsuspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  unsuspendDevice(deviceId, _options) {
+    const result = this.api.unsuspendDevice(deviceId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseDeviceApi = PromiseDeviceApi;
+const ObservableAPI_12 = require('./ObservableAPI');
+class PromiseDeviceAssuranceApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_12.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates a new Device Assurance Policy
       * Create a Device Assurance Policy
       * @param deviceAssurance
       */
@@ -1622,7 +1919,7 @@ class PromiseDeviceAssuranceApi {
     return result.toPromise();
   }
   /**
-      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
       * Delete a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
@@ -1631,7 +1928,7 @@ class PromiseDeviceAssuranceApi {
     return result.toPromise();
   }
   /**
-      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieves a Device Assurance Policy by `deviceAssuranceId`
       * Retrieve a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
@@ -1640,7 +1937,7 @@ class PromiseDeviceAssuranceApi {
     return result.toPromise();
   }
   /**
-      * Enumerates Device Assurance Policies in your organization.
+      * Lists all device assurance policies
       * List all Device Assurance Policies
       */
   listDeviceAssurancePolicies(_options) {
@@ -1648,85 +1945,24 @@ class PromiseDeviceAssuranceApi {
     return result.toPromise();
   }
   /**
-      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replaces a Device Assurance Policy by `deviceAssuranceId`
       * Replace a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       * @param deviceAssurance
       */
-  updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
-    const result = this.api.updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options);
+  replaceDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
+    const result = this.api.replaceDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options);
     return result.toPromise();
   }
 }
 exports.PromiseDeviceAssuranceApi = PromiseDeviceAssuranceApi;
-const ObservableAPI_10 = require('./ObservableAPI');
-class PromiseDomainApi {
-  constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_10.ObservableDomainApi(configuration, requestFactory, responseProcessor);
-  }
-  /**
-      * Creates the Certificate for the Domain.
-      * Replace the Certificate
-      * @param domainId
-      * @param certificate
-      */
-  createCertificate(domainId, certificate, _options) {
-    const result = this.api.createCertificate(domainId, certificate, _options);
-    return result.toPromise();
-  }
-  /**
-      * Creates your domain.
-      * Create a Domain
-      * @param domain
-      */
-  createDomain(domain, _options) {
-    const result = this.api.createDomain(domain, _options);
-    return result.toPromise();
-  }
-  /**
-      * Deletes a Domain by `id`.
-      * Delete a Domain
-      * @param domainId
-      */
-  deleteDomain(domainId, _options) {
-    const result = this.api.deleteDomain(domainId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Fetches a Domain by `id`.
-      * Retrieve a Domain
-      * @param domainId
-      */
-  getDomain(domainId, _options) {
-    const result = this.api.getDomain(domainId, _options);
-    return result.toPromise();
-  }
-  /**
-      * List all verified custom Domains for the org.
-      * List all Domains
-      */
-  listDomains(_options) {
-    const result = this.api.listDomains(_options);
-    return result.toPromise();
-  }
-  /**
-      * Verifies the Domain by `id`.
-      * Verify a Domain
-      * @param domainId
-      */
-  verifyDomain(domainId, _options) {
-    const result = this.api.verifyDomain(domainId, _options);
-    return result.toPromise();
-  }
-}
-exports.PromiseDomainApi = PromiseDomainApi;
-const ObservableAPI_11 = require('./ObservableAPI');
+const ObservableAPI_13 = require('./ObservableAPI');
 class PromiseEmailDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_11.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_13.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Creates a custom email domain.
+      * Creates an Email Domain in your org, along with associated username and sender display name
       * Create an Email Domain
       * @param emailDomain
       */
@@ -1735,7 +1971,7 @@ class PromiseEmailDomainApi {
     return result.toPromise();
   }
   /**
-      * Deletes an Email Domain by `emailDomainId`.
+      * Deletes an Email Domain by `emailDomainId`
       * Delete an Email Domain
       * @param emailDomainId
       */
@@ -1744,7 +1980,7 @@ class PromiseEmailDomainApi {
     return result.toPromise();
   }
   /**
-      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
       * Retrieve a Email Domain
       * @param emailDomainId
       */
@@ -1753,7 +1989,7 @@ class PromiseEmailDomainApi {
     return result.toPromise();
   }
   /**
-      * List all brands linked to an email domain.
+      * Lists all brands linked to an email domain
       * List all brands linked to an email domain
       * @param emailDomainId
       */
@@ -1762,26 +1998,26 @@ class PromiseEmailDomainApi {
     return result.toPromise();
   }
   /**
-      * List all the email domains in your org.
-      * List all email domains
+      * Lists all the Email Domains in your org, along with associated username and sender display name
+      * List all Email Domains
       */
   listEmailDomains(_options) {
     const result = this.api.listEmailDomains(_options);
     return result.toPromise();
   }
   /**
-      * Updates an email domain by `emailDomainId`
-      * Update an Email Domain
+      * Replaces associated username and sender display name by `emailDomainId`
+      * Replace an Email Domain
       * @param emailDomainId
       * @param updateEmailDomain
       */
-  updateEmailDomain(emailDomainId, updateEmailDomain, _options) {
-    const result = this.api.updateEmailDomain(emailDomainId, updateEmailDomain, _options);
+  replaceEmailDomain(emailDomainId, updateEmailDomain, _options) {
+    const result = this.api.replaceEmailDomain(emailDomainId, updateEmailDomain, _options);
     return result.toPromise();
   }
   /**
-      * Verifies the Email Domain by `id`.
-      * Verify Email Domain
+      * Verifies an Email Domain by `emailDomainId`
+      * Verify an Email Domain
       * @param emailDomainId
       */
   verifyEmailDomain(emailDomainId, _options) {
@@ -1790,13 +2026,13 @@ class PromiseEmailDomainApi {
   }
 }
 exports.PromiseEmailDomainApi = PromiseEmailDomainApi;
-const ObservableAPI_12 = require('./ObservableAPI');
+const ObservableAPI_14 = require('./ObservableAPI');
 class PromiseEventHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_12.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_14.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Success
+      * Activates an event hook
       * Activate an Event Hook
       * @param eventHookId
       */
@@ -1805,7 +2041,7 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates an event hook
       * Create an Event Hook
       * @param eventHook
       */
@@ -1814,7 +2050,7 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deactivates an event hook
       * Deactivate an Event Hook
       * @param eventHookId
       */
@@ -1823,7 +2059,7 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes an event hook
       * Delete an Event Hook
       * @param eventHookId
       */
@@ -1832,7 +2068,7 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves an event hook
       * Retrieve an Event Hook
       * @param eventHookId
       */
@@ -1841,7 +2077,7 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all event hooks
       * List all Event Hooks
       */
   listEventHooks(_options) {
@@ -1849,17 +2085,17 @@ class PromiseEventHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Replaces an event hook
       * Replace an Event Hook
       * @param eventHookId
       * @param eventHook
       */
-  updateEventHook(eventHookId, eventHook, _options) {
-    const result = this.api.updateEventHook(eventHookId, eventHook, _options);
+  replaceEventHook(eventHookId, eventHook, _options) {
+    const result = this.api.replaceEventHook(eventHookId, eventHook, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Verifies an event hook
       * Verify an Event Hook
       * @param eventHookId
       */
@@ -1869,13 +2105,13 @@ class PromiseEventHookApi {
   }
 }
 exports.PromiseEventHookApi = PromiseEventHookApi;
-const ObservableAPI_13 = require('./ObservableAPI');
+const ObservableAPI_15 = require('./ObservableAPI');
 class PromiseFeatureApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_13.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_15.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Success
+      * Retrieves a feature
       * Retrieve a Feature
       * @param featureId
       */
@@ -1884,7 +2120,7 @@ class PromiseFeatureApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all dependencies
       * List all Dependencies
       * @param featureId
       */
@@ -1893,7 +2129,7 @@ class PromiseFeatureApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all dependents
       * List all Dependents
       * @param featureId
       */
@@ -1902,7 +2138,7 @@ class PromiseFeatureApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all features
       * List all Features
       */
   listFeatures(_options) {
@@ -1910,7 +2146,7 @@ class PromiseFeatureApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Updates a feature lifecycle
       * Update a Feature Lifecycle
       * @param featureId
       * @param lifecycle
@@ -1922,13 +2158,13 @@ class PromiseFeatureApi {
   }
 }
 exports.PromiseFeatureApi = PromiseFeatureApi;
-const ObservableAPI_14 = require('./ObservableAPI');
+const ObservableAPI_16 = require('./ObservableAPI');
 class PromiseGroupApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_14.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_16.ObservableGroupApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates a specific group rule by id from your organization
+      * Activates a specific group rule by `ruleId`
       * Activate a Group Rule
       * @param ruleId
       */
@@ -1937,62 +2173,27 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Add App Instance Target to App Administrator Role given to a Group
-      * Assign an Application Instance Target to Application Administrator Role
+      * Assigns a group owner
+      * Assign a Group Owner
       * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param GroupOwner
       */
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
-    const result = this.api.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId, _options);
+  assignGroupOwner(groupId, GroupOwner, _options) {
+    const result = this.api.assignGroupOwner(groupId, GroupOwner, _options);
     return result.toPromise();
   }
   /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName, _options) {
-    const result = this.api.addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName, _options);
-    return result.toPromise();
-  }
-  /**
-      * Enumerates group targets for a group role.
-      * Assign a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId, _options) {
-    const result = this.api.addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Adds a user to a group with 'OKTA_GROUP' type.
+      * Assigns a user to a group with 'OKTA_GROUP' type
       * Assign a User
       * @param groupId
       * @param userId
       */
-  addUserToGroup(groupId, userId, _options) {
-    const result = this.api.addUserToGroup(groupId, userId, _options);
+  assignUserToGroup(groupId, userId, _options) {
+    const result = this.api.assignUserToGroup(groupId, userId, _options);
     return result.toPromise();
   }
   /**
-      * Assigns a Role to a Group
-      * Assign a Role
-      * @param groupId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options) {
-    const result = this.api.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options);
-    return result.toPromise();
-  }
-  /**
-      * Adds a new group with `OKTA_GROUP` type to your organization.
+      * Creates a new group with `OKTA_GROUP` type
       * Create a Group
       * @param group
       */
@@ -2010,7 +2211,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Deactivates a specific group rule by id from your organization
+      * Deactivates a specific group rule by `ruleId`
       * Deactivate a Group Rule
       * @param ruleId
       */
@@ -2019,7 +2220,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Removes a group with `OKTA_GROUP` type from your organization.
+      * Deletes a group with `OKTA_GROUP` type
       * Delete a Group
       * @param groupId
       */
@@ -2028,7 +2229,17 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Removes a specific group rule by id from your organization
+      * Deletes a group owner from a specific group
+      * Delete a Group Owner
+      * @param groupId
+      * @param ownerId
+      */
+  deleteGroupOwner(groupId, ownerId, _options) {
+    const result = this.api.deleteGroupOwner(groupId, ownerId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a specific group rule by `ruleId`
       * Delete a group Rule
       * @param ruleId
       * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
@@ -2038,8 +2249,8 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Fetches a group from your organization.
-      * List all Group Rules
+      * Retrieves a group by `groupId`
+      * Retrieve a Group
       * @param groupId
       */
   getGroup(groupId, _options) {
@@ -2047,7 +2258,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Fetches a specific group rule by id from your organization
+      * Retrieves a specific group rule by `ruleId`
       * Retrieve a Group Rule
       * @param ruleId
       * @param expand
@@ -2057,29 +2268,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * Retrieve a Role
-      * @param groupId
-      * @param roleId
-      */
-  getRole(groupId, roleId, _options) {
-    const result = this.api.getRole(groupId, roleId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for an Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
-    const result = this.api.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options);
-    return result.toPromise();
-  }
-  /**
-      * Enumerates all applications that are assigned to a group.
+      * Lists all applications that are assigned to a group
       * List all Assigned Applications
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of apps
@@ -2090,17 +2279,19 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * List all Assigned Roles
+      * Lists all owners for a specific group
+      * List all Group Owners
       * @param groupId
-      * @param expand
+      * @param filter SCIM Filter expression for group owners. Allows to filter owners by type.
+      * @param after Specifies the pagination cursor for the next page of owners
+      * @param limit Specifies the number of owner results in a page
       */
-  listGroupAssignedRoles(groupId, expand, _options) {
-    const result = this.api.listGroupAssignedRoles(groupId, expand, _options);
+  listGroupOwners(groupId, filter, after, limit, _options) {
+    const result = this.api.listGroupOwners(groupId, filter, after, limit, _options);
     return result.toPromise();
   }
   /**
-      * Lists all group rules for your organization.
+      * Lists all group rules
       * List all Group Rules
       * @param limit Specifies the number of rule results in a page
       * @param after Specifies the pagination cursor for the next page of rules
@@ -2112,19 +2303,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Enumerates group targets for a group role.
-      * List all Group Targets for a Group Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
-    const result = this.api.listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options);
-    return result.toPromise();
-  }
-  /**
-      * Enumerates all users that are a member of a group.
+      * Lists all users that are a member of a group
       * List all Member Users
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of users
@@ -2135,7 +2314,7 @@ class PromiseGroupApi {
     return result.toPromise();
   }
   /**
-      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+      * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param q Searches the name property of groups for matching value
       * @param filter Filter expression for groups
@@ -2143,94 +2322,113 @@ class PromiseGroupApi {
       * @param limit Specifies the number of group results in a page
       * @param expand If specified, it causes additional metadata to be included in the response.
       * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
+      * @param sortBy Specifies field to sort by and can be any single property (for search queries only).
+      * @param sortOrder Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
       */
-  listGroups(q, filter, after, limit, expand, search, _options) {
-    const result = this.api.listGroups(q, filter, after, limit, expand, search, _options);
+  listGroups(q, filter, after, limit, expand, search, sortBy, sortOrder, _options) {
+    const result = this.api.listGroups(q, filter, after, limit, expand, search, sortBy, sortOrder, _options);
     return result.toPromise();
   }
   /**
-      * Remove App Instance Target to App Administrator Role given to a Group
-      * Delete an Application Instance Target to Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
-    const result = this.api.removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Success
-      * Delete an Application Target from Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName, _options) {
-    const result = this.api.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName, _options);
-    return result.toPromise();
-  }
-  /**
-      * remove group target for a group role.
-      * Delete a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId, _options) {
-    const result = this.api.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Unassigns a Role from a Group
-      * Delete a Role
-      * @param groupId
-      * @param roleId
-      */
-  removeRoleFromGroup(groupId, roleId, _options) {
-    const result = this.api.removeRoleFromGroup(groupId, roleId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Removes a user from a group with 'OKTA_GROUP' type.
-      * Unassign a User
-      * @param groupId
-      * @param userId
-      */
-  removeUserFromGroup(groupId, userId, _options) {
-    const result = this.api.removeUserFromGroup(groupId, userId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+      * Replaces the profile for a group with `OKTA_GROUP` type
       * Replace a Group
       * @param groupId
       * @param group
       */
-  updateGroup(groupId, group, _options) {
-    const result = this.api.updateGroup(groupId, group, _options);
+  replaceGroup(groupId, group, _options) {
+    const result = this.api.replaceGroup(groupId, group, _options);
     return result.toPromise();
   }
   /**
-      * Updates a group rule. Only `INACTIVE` rules can be updated.
+      * Replaces a group rule. Only `INACTIVE` rules can be updated.
       * Replace a Group Rule
       * @param ruleId
       * @param groupRule
       */
-  updateGroupRule(ruleId, groupRule, _options) {
-    const result = this.api.updateGroupRule(ruleId, groupRule, _options);
+  replaceGroupRule(ruleId, groupRule, _options) {
+    const result = this.api.replaceGroupRule(ruleId, groupRule, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a user from a group with 'OKTA_GROUP' type
+      * Unassign a User
+      * @param groupId
+      * @param userId
+      */
+  unassignUserFromGroup(groupId, userId, _options) {
+    const result = this.api.unassignUserFromGroup(groupId, userId, _options);
     return result.toPromise();
   }
 }
 exports.PromiseGroupApi = PromiseGroupApi;
-const ObservableAPI_15 = require('./ObservableAPI');
-class PromiseIdentityProviderApi {
+const ObservableAPI_17 = require('./ObservableAPI');
+class PromiseHookKeyApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_15.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_17.ObservableHookKeyApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates an inactive IdP.
+      * Creates a key
+      * Create a key
+      * @param keyRequest
+      */
+  createHookKey(keyRequest, _options) {
+    const result = this.api.createHookKey(keyRequest, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+      * Delete a key
+      * @param hookKeyId
+      */
+  deleteHookKey(hookKeyId, _options) {
+    const result = this.api.deleteHookKey(hookKeyId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a key by `hookKeyId`
+      * Retrieve a key
+      * @param hookKeyId
+      */
+  getHookKey(hookKeyId, _options) {
+    const result = this.api.getHookKey(hookKeyId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a public key by `keyId`
+      * Retrieve a public key
+      * @param keyId
+      */
+  getPublicKey(keyId, _options) {
+    const result = this.api.getPublicKey(keyId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all keys
+      * List all keys
+      */
+  listHookKeys(_options) {
+    const result = this.api.listHookKeys(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a key by `hookKeyId`
+      * Replace a key
+      * @param hookKeyId
+      * @param keyRequest
+      */
+  replaceHookKey(hookKeyId, keyRequest, _options) {
+    const result = this.api.replaceHookKey(hookKeyId, keyRequest, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseHookKeyApi = PromiseHookKeyApi;
+const ObservableAPI_18 = require('./ObservableAPI');
+class PromiseIdentityProviderApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_18.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Activates an inactive IdP
       * Activate an Identity Provider
       * @param idpId
       */
@@ -2250,7 +2448,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Adds a new IdP to your organization.
+      * Creates a new identity provider integration
       * Create an Identity Provider
       * @param identityProvider
       */
@@ -2259,7 +2457,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Adds a new X.509 certificate credential to the IdP key store.
+      * Creates a new X.509 certificate credential to the IdP key store.
       * Create an X.509 Certificate Public Key
       * @param jsonWebKey
       */
@@ -2268,7 +2466,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Deactivates an active IdP.
+      * Deactivates an active IdP
       * Deactivate an Identity Provider
       * @param idpId
       */
@@ -2277,7 +2475,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Removes an IdP from your organization.
+      * Deletes an identity provider integration by `idpId`
       * Delete an Identity Provider
       * @param idpId
       */
@@ -2286,7 +2484,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
       * Delete a Signing Credential Key
       * @param keyId
       */
@@ -2295,7 +2493,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Generates a new key pair and returns a Certificate Signing Request for it.
+      * Generates a new key pair and returns a Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param idpId
       * @param metadata
@@ -2315,7 +2513,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Gets a specific Certificate Signing Request model by id
+      * Retrieves a specific Certificate Signing Request model by id
       * Retrieve a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -2325,7 +2523,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Fetches an IdP by `id`.
+      * Retrieves an identity provider integration by `idpId`
       * Retrieve an Identity Provider
       * @param idpId
       */
@@ -2334,7 +2532,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Fetches a linked IdP user by ID
+      * Retrieves a linked IdP user by ID
       * Retrieve a User
       * @param idpId
       * @param userId
@@ -2344,7 +2542,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve an Credential Key
       * @param keyId
       */
@@ -2353,7 +2551,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve a Signing Credential Key
       * @param idpId
       * @param keyId
@@ -2374,7 +2572,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Enumerates Certificate Signing Requests for an IdP
+      * Lists all Certificate Signing Requests for an IdP
       * List all Certificate Signing Requests
       * @param idpId
       */
@@ -2383,7 +2581,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Find all the users linked to an identity provider
+      * Lists all users linked to the identity provider
       * List all Users
       * @param idpId
       */
@@ -2392,7 +2590,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Enumerates IdP key credentials.
+      * Lists all IdP key credentials
       * List all Credential Keys
       * @param after Specifies the pagination cursor for the next page of keys
       * @param limit Specifies the number of key results in a page
@@ -2402,7 +2600,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Enumerates signing key credentials for an IdP
+      * Lists all signing key credentials for an IdP
       * List all Signing Credential Keys
       * @param idpId
       */
@@ -2411,7 +2609,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+      * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all Identity Providers
       * @param q Searches the name property of IdPs for matching value
       * @param after Specifies the pagination cursor for the next page of IdPs
@@ -2423,7 +2621,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+      * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
       * List all Tokens from a OIDC Identity Provider
       * @param idpId
       * @param userId
@@ -2433,7 +2631,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+      * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
       * Publish a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -2444,7 +2642,17 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Revoke a Certificate Signing Request and delete the key pair from the IdP
+      * Replaces an identity provider integration by `idpId`
+      * Replace an Identity Provider
+      * @param idpId
+      * @param identityProvider
+      */
+  replaceIdentityProvider(idpId, identityProvider, _options) {
+    const result = this.api.replaceIdentityProvider(idpId, identityProvider, _options);
+    return result.toPromise();
+  }
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the IdP
       * Revoke a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -2454,7 +2662,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Removes the link between the Okta user and the IdP user.
+      * Unlinks the link between the Okta user and the IdP user
       * Unlink a User from IdP
       * @param idpId
       * @param userId
@@ -2463,25 +2671,92 @@ class PromiseIdentityProviderApi {
     const result = this.api.unlinkUserFromIdentityProvider(idpId, userId, _options);
     return result.toPromise();
   }
+}
+exports.PromiseIdentityProviderApi = PromiseIdentityProviderApi;
+const ObservableAPI_19 = require('./ObservableAPI');
+class PromiseIdentitySourceApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_19.ObservableIdentitySourceApi(configuration, requestFactory, responseProcessor);
+  }
   /**
-      * Updates the configuration for an IdP.
-      * Replace an Identity Provider
-      * @param idpId
-      * @param identityProvider
+      * Creates an identity source session for the given identity source instance
+      * Create an Identity Source Session
+      * @param identitySourceId
       */
-  updateIdentityProvider(idpId, identityProvider, _options) {
-    const result = this.api.updateIdentityProvider(idpId, identityProvider, _options);
+  createIdentitySourceSession(identitySourceId, _options) {
+    const result = this.api.createIdentitySourceSession(identitySourceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes an identity source session for a given `identitySourceId` and `sessionId`
+      * Delete an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  deleteIdentitySourceSession(identitySourceId, sessionId, _options) {
+    const result = this.api.deleteIdentitySourceSession(identitySourceId, sessionId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves an identity source session for a given identity source id and session id
+      * Retrieve an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  getIdentitySourceSession(identitySourceId, sessionId, _options) {
+    const result = this.api.getIdentitySourceSession(identitySourceId, sessionId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all identity source sessions for the given identity source instance
+      * List all Identity Source Sessions
+      * @param identitySourceId
+      */
+  listIdentitySourceSessions(identitySourceId, _options) {
+    const result = this.api.listIdentitySourceSessions(identitySourceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Starts the import from the identity source described by the uploaded bulk operations
+      * Start the import from the Identity Source
+      * @param identitySourceId
+      * @param sessionId
+      */
+  startImportFromIdentitySource(identitySourceId, sessionId, _options) {
+    const result = this.api.startImportFromIdentitySource(identitySourceId, sessionId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Uploads entities that need to be deleted in Okta from the identity source for the given session
+      * Upload the data to be deleted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkDeleteRequestBody
+      */
+  uploadIdentitySourceDataForDelete(identitySourceId, sessionId, BulkDeleteRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceDataForDelete(identitySourceId, sessionId, BulkDeleteRequestBody, _options);
+    return result.toPromise();
+  }
+  /**
+      * Uploads entities that need to be upserted in Okta from the identity source for the given session
+      * Upload the data to be upserted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkUpsertRequestBody
+      */
+  uploadIdentitySourceDataForUpsert(identitySourceId, sessionId, BulkUpsertRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceDataForUpsert(identitySourceId, sessionId, BulkUpsertRequestBody, _options);
     return result.toPromise();
   }
 }
-exports.PromiseIdentityProviderApi = PromiseIdentityProviderApi;
-const ObservableAPI_16 = require('./ObservableAPI');
+exports.PromiseIdentitySourceApi = PromiseIdentitySourceApi;
+const ObservableAPI_20 = require('./ObservableAPI');
 class PromiseInlineHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_16.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_20.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates the Inline Hook matching the provided id
+      * Activates the inline hook by `inlineHookId`
       * Activate an Inline Hook
       * @param inlineHookId
       */
@@ -2490,7 +2765,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates an inline hook
       * Create an Inline Hook
       * @param inlineHook
       */
@@ -2499,7 +2774,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Deactivates the Inline Hook matching the provided id
+      * Deactivates the inline hook by `inlineHookId`
       * Deactivate an Inline Hook
       * @param inlineHookId
       */
@@ -2508,7 +2783,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+      * Deletes an inline hook by `inlineHookId`. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * Delete an Inline Hook
       * @param inlineHookId
       */
@@ -2517,7 +2792,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+      * Executes the inline hook by `inlineHookId` using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * Execute an Inline Hook
       * @param inlineHookId
       * @param payloadData
@@ -2527,7 +2802,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Gets an inline hook by ID
+      * Retrieves an inline hook by `inlineHookId`
       * Retrieve an Inline Hook
       * @param inlineHookId
       */
@@ -2536,7 +2811,7 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all inline hooks
       * List all Inline Hooks
       * @param type
       */
@@ -2545,33 +2820,33 @@ class PromiseInlineHookApi {
     return result.toPromise();
   }
   /**
-      * Updates an inline hook by ID
+      * Replaces an inline hook by `inlineHookId`
       * Replace an Inline Hook
       * @param inlineHookId
       * @param inlineHook
       */
-  updateInlineHook(inlineHookId, inlineHook, _options) {
-    const result = this.api.updateInlineHook(inlineHookId, inlineHook, _options);
+  replaceInlineHook(inlineHookId, inlineHook, _options) {
+    const result = this.api.replaceInlineHook(inlineHookId, inlineHook, _options);
     return result.toPromise();
   }
 }
 exports.PromiseInlineHookApi = PromiseInlineHookApi;
-const ObservableAPI_17 = require('./ObservableAPI');
+const ObservableAPI_21 = require('./ObservableAPI');
 class PromiseLinkedObjectApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_17.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_21.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Success
+      * Creates a linked object definition
       * Create a Linked Object Definition
       * @param linkedObject
       */
-  addLinkedObjectDefinition(linkedObject, _options) {
-    const result = this.api.addLinkedObjectDefinition(linkedObject, _options);
+  createLinkedObjectDefinition(linkedObject, _options) {
+    const result = this.api.createLinkedObjectDefinition(linkedObject, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes a linked object definition
       * Delete a Linked Object Definition
       * @param linkedObjectName
       */
@@ -2580,7 +2855,7 @@ class PromiseLinkedObjectApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a linked object definition
       * Retrieve a Linked Object Definition
       * @param linkedObjectName
       */
@@ -2589,7 +2864,7 @@ class PromiseLinkedObjectApi {
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all linked object definitions
       * List all Linked Object Definitions
       */
   listLinkedObjectDefinitions(_options) {
@@ -2598,13 +2873,86 @@ class PromiseLinkedObjectApi {
   }
 }
 exports.PromiseLinkedObjectApi = PromiseLinkedObjectApi;
-const ObservableAPI_18 = require('./ObservableAPI');
-class PromiseNetworkZoneApi {
+const ObservableAPI_22 = require('./ObservableAPI');
+class PromiseLogStreamApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_18.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_22.ObservableLogStreamApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activate Network Zone
+      * Activates a log stream by `logStreamId`
+      * Activate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  activateLogStream(logStreamId, _options) {
+    const result = this.api.activateLogStream(logStreamId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a new log stream
+      * Create a Log Stream
+      * @param instance
+      */
+  createLogStream(instance, _options) {
+    const result = this.api.createLogStream(instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deactivates a log stream by `logStreamId`
+      * Deactivate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deactivateLogStream(logStreamId, _options) {
+    const result = this.api.deactivateLogStream(logStreamId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a log stream by `logStreamId`
+      * Delete a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deleteLogStream(logStreamId, _options) {
+    const result = this.api.deleteLogStream(logStreamId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a log stream by `logStreamId`
+      * Retrieve a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  getLogStream(logStreamId, _options) {
+    const result = this.api.getLogStream(logStreamId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all log streams. You can request a paginated list or a subset of Log Streams that match a supported filter expression.
+      * List all Log Streams
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param filter SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;.
+      */
+  listLogStreams(after, limit, filter, _options) {
+    const result = this.api.listLogStreams(after, limit, filter, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a log stream by `logStreamId`
+      * Replace a Log Stream
+      * @param logStreamId id of the log stream
+      * @param instance
+      */
+  replaceLogStream(logStreamId, instance, _options) {
+    const result = this.api.replaceLogStream(logStreamId, instance, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseLogStreamApi = PromiseLogStreamApi;
+const ObservableAPI_23 = require('./ObservableAPI');
+class PromiseNetworkZoneApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_23.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Activates a network zone by `zoneId`
       * Activate a Network Zone
       * @param zoneId
       */
@@ -2613,7 +2961,7 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Adds a new network zone to your Okta organization.
+      * Creates a new network zone. * At least one of either the `gateways` attribute or `proxies` attribute must be defined when creating a Network Zone. * At least one of the following attributes must be defined: `proxyType`, `locations`, or `asns`.
       * Create a Network Zone
       * @param zone
       */
@@ -2622,7 +2970,7 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Deactivates a network zone.
+      * Deactivates a network zone by `zoneId`
       * Deactivate a Network Zone
       * @param zoneId
       */
@@ -2631,7 +2979,7 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Removes network zone.
+      * Deletes network zone by `zoneId`
       * Delete a Network Zone
       * @param zoneId
       */
@@ -2640,7 +2988,7 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Fetches a network zone from your Okta organization by `id`.
+      * Retrieves a network zone by `zoneId`
       * Retrieve a Network Zone
       * @param zoneId
       */
@@ -2649,7 +2997,7 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
+      * Lists all network zones with pagination. A subset of zones can be returned that match a supported filter expression or query.  This operation requires URL encoding. For example, `filter=(id eq \"nzoul0wf9jyb8xwZm0g3\" or id eq \"nzoul1MxmGN18NDQT0g3\")` is encoded as `filter=%28id+eq+%22nzoul0wf9jyb8xwZm0g3%22+or+id+eq+%22nzoul1MxmGN18NDQT0g3%22%29`.  Okta supports filtering on the `id` and `usage` properties. See [Filtering](https://developer.okta.com/docs/reference/core-okta-api/#filter) for more information on the expressions that are used in filtering.
       * List all Network Zones
       * @param after Specifies the pagination cursor for the next page of network zones
       * @param limit Specifies the number of results for a page
@@ -2660,24 +3008,24 @@ class PromiseNetworkZoneApi {
     return result.toPromise();
   }
   /**
-      * Updates a network zone in your organization.
+      * Replaces a network zone by `zoneId`. The replaced network zone type must be the same as the existing type. You may replace the usage (`POLICY`, `BLOCKLIST`) of a network zone by updating the `usage` attribute.
       * Replace a Network Zone
       * @param zoneId
       * @param zone
       */
-  updateNetworkZone(zoneId, zone, _options) {
-    const result = this.api.updateNetworkZone(zoneId, zone, _options);
+  replaceNetworkZone(zoneId, zone, _options) {
+    const result = this.api.replaceNetworkZone(zoneId, zone, _options);
     return result.toPromise();
   }
 }
 exports.PromiseNetworkZoneApi = PromiseNetworkZoneApi;
-const ObservableAPI_19 = require('./ObservableAPI');
+const ObservableAPI_24 = require('./ObservableAPI');
 class PromiseOrgSettingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_19.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_24.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * A list of email addresses to be removed from the set of email addresses that are bounced.
+      * Removes a list of email addresses to be removed from the set of email addresses that are bounced
       * Remove Emails from Email Provider Bounce List
       * @param BouncesRemoveListObj
       */
@@ -2694,15 +3042,15 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Gets Okta Communication Settings of your organization.
-      * Retreive the Okta Communication Settings
+      * Retrieves Okta Communication Settings of your organization
+      * Retrieve the Okta Communication Settings
       */
   getOktaCommunicationSettings(_options) {
     const result = this.api.getOktaCommunicationSettings(_options);
     return result.toPromise();
   }
   /**
-      * Gets Contact Types of your organization.
+      * Retrieves Contact Types of your organization
       * Retrieve the Org Contact Types
       */
   getOrgContactTypes(_options) {
@@ -2710,7 +3058,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Retrieves the URL of the User associated with the specified Contact Type.
+      * Retrieves the URL of the User associated with the specified Contact Type
       * Retrieve the User of the Contact Type
       * @param contactType
       */
@@ -2719,7 +3067,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Gets Okta Support Settings of your organization.
+      * Retrieves Okta Support Settings of your organization
       * Retrieve the Okta Support Settings
       */
   getOrgOktaSupportSettings(_options) {
@@ -2727,7 +3075,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Gets preferences of your organization.
+      * Retrieves preferences of your organization
       * Retrieve the Org Preferences
       */
   getOrgPreferences(_options) {
@@ -2735,7 +3083,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Get settings of your organization.
+      * Retrieves the org settings
       * Retrieve the Org Settings
       */
   getOrgSettings(_options) {
@@ -2743,7 +3091,15 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+      * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
+      * Retrieve the Well-Known Org Metadata
+      */
+  getWellknownOrgMetadata(_options) {
+    const result = this.api.getWellknownOrgMetadata(_options);
+    return result.toPromise();
+  }
+  /**
+      * Grants Okta Support temporary access your org as an administrator for eight hours
       * Grant Okta Support Access to your Org
       */
   grantOktaSupport(_options) {
@@ -2751,15 +3107,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Hide the Okta UI footer for all end users of your organization.
-      * Update the Preference to Hide the Okta Dashboard Footer
-      */
-  hideOktaUIFooter(_options) {
-    const result = this.api.hideOktaUIFooter(_options);
-    return result.toPromise();
-  }
-  /**
-      * Opts in all users of this org to Okta Communication emails.
+      * Opts in all users of this org to Okta Communication emails
       * Opt in all Users to Okta Communication emails
       */
   optInUsersToOktaCommunicationEmails(_options) {
@@ -2767,7 +3115,7 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Opts out all users of this org from Okta Communication emails.
+      * Opts out all users of this org from Okta Communication emails
       * Opt out all Users from Okta Communication emails
       */
   optOutUsersFromOktaCommunicationEmails(_options) {
@@ -2775,16 +3123,26 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Partial update settings of your organization.
-      * Update the Org Settings
-      * @param OrgSetting
+      * Replaces the User associated with the specified Contact Type
+      * Replace the User of the Contact Type
+      * @param contactType
+      * @param orgContactUser
       */
-  partialUpdateOrgSetting(OrgSetting, _options) {
-    const result = this.api.partialUpdateOrgSetting(OrgSetting, _options);
+  replaceOrgContactUser(contactType, orgContactUser, _options) {
+    const result = this.api.replaceOrgContactUser(contactType, orgContactUser, _options);
     return result.toPromise();
   }
   /**
-      * Revokes Okta Support access to your organization.
+      * Replaces the settings of your organization
+      * Replace the Org Settings
+      * @param orgSetting
+      */
+  replaceOrgSettings(orgSetting, _options) {
+    const result = this.api.replaceOrgSettings(orgSetting, _options);
+    return result.toPromise();
+  }
+  /**
+      * Revokes Okta Support access to your organization
       * Revoke Okta Support Access
       */
   revokeOktaSupport(_options) {
@@ -2792,50 +3150,48 @@ class PromiseOrgSettingApi {
     return result.toPromise();
   }
   /**
-      * Makes the Okta UI footer visible for all end users of your organization.
+      * Updates the preference hide the Okta UI footer for all end users of your organization
+      * Update the Preference to Hide the Okta Dashboard Footer
+      */
+  updateOrgHideOktaUIFooter(_options) {
+    const result = this.api.updateOrgHideOktaUIFooter(_options);
+    return result.toPromise();
+  }
+  /**
+      * Partially updates the org settings depending on provided fields
+      * Update the Org Settings
+      * @param OrgSetting
+      */
+  updateOrgSettings(OrgSetting, _options) {
+    const result = this.api.updateOrgSettings(OrgSetting, _options);
+    return result.toPromise();
+  }
+  /**
+      * Updates the preference to show the Okta UI footer for all end users of your organization
       * Update the Preference to Show the Okta Dashboard Footer
       */
-  showOktaUIFooter(_options) {
-    const result = this.api.showOktaUIFooter(_options);
+  updateOrgShowOktaUIFooter(_options) {
+    const result = this.api.updateOrgShowOktaUIFooter(_options);
     return result.toPromise();
   }
   /**
-      * Updates the User associated with the specified Contact Type.
-      * Replace the User of the Contact Type
-      * @param contactType
-      * @param orgContactUser
-      */
-  updateOrgContactUser(contactType, orgContactUser, _options) {
-    const result = this.api.updateOrgContactUser(contactType, orgContactUser, _options);
-    return result.toPromise();
-  }
-  /**
-      * Updates the logo for your organization.
+      * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Org Logo
       * @param file
       */
-  updateOrgLogo(file, _options) {
-    const result = this.api.updateOrgLogo(file, _options);
-    return result.toPromise();
-  }
-  /**
-      * Update settings of your organization.
-      * Replace the Org Settings
-      * @param orgSetting
-      */
-  updateOrgSetting(orgSetting, _options) {
-    const result = this.api.updateOrgSetting(orgSetting, _options);
+  uploadOrgLogo(file, _options) {
+    const result = this.api.uploadOrgLogo(file, _options);
     return result.toPromise();
   }
 }
 exports.PromiseOrgSettingApi = PromiseOrgSettingApi;
-const ObservableAPI_20 = require('./ObservableAPI');
+const ObservableAPI_25 = require('./ObservableAPI');
 class PromisePolicyApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_20.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_25.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates a policy.
+      * Activates a policy
       * Activate a Policy
       * @param policyId
       */
@@ -2844,7 +3200,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Activates a policy rule.
+      * Activates a policy rule
       * Activate a Policy Rule
       * @param policyId
       * @param ruleId
@@ -2854,7 +3210,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Clones an existing policy.
+      * Clones an existing policy
       * Clone an existing policy
       * @param policyId
       */
@@ -2863,7 +3219,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Creates a policy.
+      * Creates a policy
       * Create a Policy
       * @param policy
       * @param activate
@@ -2873,7 +3229,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Creates a policy rule.
+      * Creates a policy rule
       * Create a Policy Rule
       * @param policyId
       * @param policyRule
@@ -2883,7 +3239,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Deactivates a policy.
+      * Deactivates a policy
       * Deactivate a Policy
       * @param policyId
       */
@@ -2892,7 +3248,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Deactivates a policy rule.
+      * Deactivates a policy rule
       * Deactivate a Policy Rule
       * @param policyId
       * @param ruleId
@@ -2902,7 +3258,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Removes a policy.
+      * Deletes a policy
       * Delete a Policy
       * @param policyId
       */
@@ -2911,7 +3267,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Removes a policy rule.
+      * Deletes a policy rule
       * Delete a Policy Rule
       * @param policyId
       * @param ruleId
@@ -2921,7 +3277,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Gets a policy.
+      * Retrieves a policy
       * Retrieve a Policy
       * @param policyId
       * @param expand
@@ -2931,7 +3287,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Gets a policy rule.
+      * Retrieves a policy rule
       * Retrieve a Policy Rule
       * @param policyId
       * @param ruleId
@@ -2941,7 +3297,7 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Gets all policies with the specified type.
+      * Lists all policies with the specified type
       * List all Policies
       * @param type
       * @param status
@@ -2952,7 +3308,16 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all policy rules.
+      * Lists all applications mapped to a policy identified by `policyId`
+      * List all Applications mapped to a Policy
+      * @param policyId
+      */
+  listPolicyApps(policyId, _options) {
+    const result = this.api.listPolicyApps(policyId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all policy rules
       * List all Policy Rules
       * @param policyId
       */
@@ -2961,35 +3326,35 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
-      * Updates a policy.
+      * Replaces a policy
       * Replace a Policy
       * @param policyId
       * @param policy
       */
-  updatePolicy(policyId, policy, _options) {
-    const result = this.api.updatePolicy(policyId, policy, _options);
+  replacePolicy(policyId, policy, _options) {
+    const result = this.api.replacePolicy(policyId, policy, _options);
     return result.toPromise();
   }
   /**
-      * Updates a policy rule.
+      * Replaces a policy rules
       * Replace a Policy Rule
       * @param policyId
       * @param ruleId
       * @param policyRule
       */
-  updatePolicyRule(policyId, ruleId, policyRule, _options) {
-    const result = this.api.updatePolicyRule(policyId, ruleId, policyRule, _options);
+  replacePolicyRule(policyId, ruleId, policyRule, _options) {
+    const result = this.api.replacePolicyRule(policyId, ruleId, policyRule, _options);
     return result.toPromise();
   }
 }
 exports.PromisePolicyApi = PromisePolicyApi;
-const ObservableAPI_21 = require('./ObservableAPI');
+const ObservableAPI_26 = require('./ObservableAPI');
 class PromisePrincipalRateLimitApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_21.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_26.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
       * Create a Principal Rate Limit
       * @param entity
       */
@@ -2998,7 +3363,7 @@ class PromisePrincipalRateLimitApi {
     return result.toPromise();
   }
   /**
-      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
       * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       */
@@ -3007,7 +3372,7 @@ class PromisePrincipalRateLimitApi {
     return result.toPromise();
   }
   /**
-      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * Lists all Principal Rate Limit entities considering the provided parameters
       * List all Principal Rate Limits
       * @param filter
       * @param after
@@ -3018,24 +3383,24 @@ class PromisePrincipalRateLimitApi {
     return result.toPromise();
   }
   /**
-      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Replaces a principal rate limit entity by `principalRateLimitId`
       * Replace a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       * @param entity
       */
-  updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
-    const result = this.api.updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options);
+  replacePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
+    const result = this.api.replacePrincipalRateLimitEntity(principalRateLimitId, entity, _options);
     return result.toPromise();
   }
 }
 exports.PromisePrincipalRateLimitApi = PromisePrincipalRateLimitApi;
-const ObservableAPI_22 = require('./ObservableAPI');
+const ObservableAPI_27 = require('./ObservableAPI');
 class PromiseProfileMappingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_22.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_27.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Fetches a single Profile Mapping referenced by its ID.
+      * Retrieves a single Profile Mapping referenced by its ID
       * Retrieve a Profile Mapping
       * @param mappingId
       */
@@ -3044,7 +3409,7 @@ class PromiseProfileMappingApi {
     return result.toPromise();
   }
   /**
-      * Enumerates Profile Mappings in your organization with pagination.
+      * Lists all profile mappings with pagination
       * List all Profile Mappings
       * @param after
       * @param limit
@@ -3056,7 +3421,7 @@ class PromiseProfileMappingApi {
     return result.toPromise();
   }
   /**
-      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
       * Update a Profile Mapping
       * @param mappingId
       * @param profileMapping
@@ -3067,13 +3432,13 @@ class PromiseProfileMappingApi {
   }
 }
 exports.PromiseProfileMappingApi = PromiseProfileMappingApi;
-const ObservableAPI_23 = require('./ObservableAPI');
+const ObservableAPI_28 = require('./ObservableAPI');
 class PromisePushProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_23.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_28.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Adds a new push provider to your organization.
+      * Creates a new push provider
       * Create a Push Provider
       * @param pushProvider
       */
@@ -3082,7 +3447,7 @@ class PromisePushProviderApi {
     return result.toPromise();
   }
   /**
-      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
       * Delete a Push Provider
       * @param pushProviderId Id of the push provider
       */
@@ -3091,7 +3456,7 @@ class PromisePushProviderApi {
     return result.toPromise();
   }
   /**
-      * Fetches a push provider by `pushProviderId`.
+      * Retrieves a push provider by `pushProviderId`
       * Retrieve a Push Provider
       * @param pushProviderId Id of the push provider
       */
@@ -3100,7 +3465,7 @@ class PromisePushProviderApi {
     return result.toPromise();
   }
   /**
-      * Enumerates push providers in your organization.
+      * Lists all push providers
       * List all Push Providers
       * @param type Filters push providers by &#x60;providerType&#x60;
       */
@@ -3109,33 +3474,701 @@ class PromisePushProviderApi {
     return result.toPromise();
   }
   /**
-      * Updates a push provider by `pushProviderId`.
+      * Replaces a push provider by `pushProviderId`
       * Replace a Push Provider
       * @param pushProviderId Id of the push provider
       * @param pushProvider
       */
-  updatePushProvider(pushProviderId, pushProvider, _options) {
-    const result = this.api.updatePushProvider(pushProviderId, pushProvider, _options);
+  replacePushProvider(pushProviderId, pushProvider, _options) {
+    const result = this.api.replacePushProvider(pushProviderId, pushProvider, _options);
     return result.toPromise();
   }
 }
 exports.PromisePushProviderApi = PromisePushProviderApi;
-const ObservableAPI_24 = require('./ObservableAPI');
-class PromiseSchemaApi {
+const ObservableAPI_29 = require('./ObservableAPI');
+class PromiseRateLimitSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_24.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_29.ObservableRateLimitSettingsApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
-      * Retrieve the UI Layout for an Application
-      * @param appName
+      * Retrieves the currently configured Rate Limit Admin Notification Settings
+      * Retrieve the Rate Limit Admin Notification Settings
       */
-  getApplicationLayout(appName, _options) {
-    const result = this.api.getApplicationLayout(appName, _options);
+  getRateLimitSettingsAdminNotifications(_options) {
+    const result = this.api.getRateLimitSettingsAdminNotifications(_options);
     return result.toPromise();
   }
   /**
-      * Fetches the Schema for an App User
+      * Retrieves the currently configured Per-Client Rate Limit Settings
+      * Retrieve the Per-Client Rate Limit Settings
+      */
+  getRateLimitSettingsPerClient(_options) {
+    const result = this.api.getRateLimitSettingsPerClient(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the Rate Limit Admin Notification Settings and returns the configured properties
+      * Replace the Rate Limit Admin Notification Settings
+      * @param RateLimitAdminNotifications
+      */
+  replaceRateLimitSettingsAdminNotifications(RateLimitAdminNotifications, _options) {
+    const result = this.api.replaceRateLimitSettingsAdminNotifications(RateLimitAdminNotifications, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the Per-Client Rate Limit Settings and returns the configured properties
+      * Replace the Per-Client Rate Limit Settings
+      * @param perClientRateLimitSettings
+      */
+  replaceRateLimitSettingsPerClient(perClientRateLimitSettings, _options) {
+    const result = this.api.replaceRateLimitSettingsPerClient(perClientRateLimitSettings, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRateLimitSettingsApi = PromiseRateLimitSettingsApi;
+const ObservableAPI_30 = require('./ObservableAPI');
+class PromiseResourceSetApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_30.ObservableResourceSetApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Adds more members to a resource set binding
+      * Add more Members to a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  addMembersToBinding(resourceSetId, roleIdOrLabel, instance, _options) {
+    const result = this.api.addMembersToBinding(resourceSetId, roleIdOrLabel, instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Adds more resources to a resource set
+      * Add more Resource to a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  addResourceSetResource(resourceSetId, instance, _options) {
+    const result = this.api.addResourceSetResource(resourceSetId, instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a new resource set
+      * Create a Resource Set
+      * @param instance
+      */
+  createResourceSet(instance, _options) {
+    const result = this.api.createResourceSet(instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a new resource set binding
+      * Create a Resource Set Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  createResourceSetBinding(resourceSetId, instance, _options) {
+    const result = this.api.createResourceSetBinding(resourceSetId, instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Delete a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteBinding(resourceSetId, roleIdOrLabel, _options) {
+    const result = this.api.deleteBinding(resourceSetId, roleIdOrLabel, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a role by `resourceSetId`
+      * Delete a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  deleteResourceSet(resourceSetId, _options) {
+    const result = this.api.deleteResourceSet(resourceSetId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a resource identified by `resourceId` from a resource set
+      * Delete a Resource from a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param resourceId &#x60;id&#x60; of a resource
+      */
+  deleteResourceSetResource(resourceSetId, resourceId, _options) {
+    const result = this.api.deleteResourceSetResource(resourceSetId, resourceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Retrieve a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getBinding(resourceSetId, roleIdOrLabel, _options) {
+    const result = this.api.getBinding(resourceSetId, roleIdOrLabel, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a member identified by `memberId` for a binding
+      * Retrieve a Member of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  getMemberOfBinding(resourceSetId, roleIdOrLabel, memberId, _options) {
+    const result = this.api.getMemberOfBinding(resourceSetId, roleIdOrLabel, memberId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a resource set by `resourceSetId`
+      * Retrieve a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  getResourceSet(resourceSetId, _options) {
+    const result = this.api.getResourceSet(resourceSetId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all resource set bindings with pagination support
+      * List all Bindings
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listBindings(resourceSetId, after, _options) {
+    const result = this.api.listBindings(resourceSetId, after, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all members of a resource set binding with pagination support
+      * List all Members of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options) {
+    const result = this.api.listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all resources that make up the resource set
+      * List all Resources of a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  listResourceSetResources(resourceSetId, _options) {
+    const result = this.api.listResourceSetResources(resourceSetId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all resource sets with pagination support
+      * List all Resource Sets
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listResourceSets(after, _options) {
+    const result = this.api.listResourceSets(after, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a resource set by `resourceSetId`
+      * Replace a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  replaceResourceSet(resourceSetId, instance, _options) {
+    const result = this.api.replaceResourceSet(resourceSetId, instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a member identified by `memberId` from a binding
+      * Unassign a Member from a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  unassignMemberFromBinding(resourceSetId, roleIdOrLabel, memberId, _options) {
+    const result = this.api.unassignMemberFromBinding(resourceSetId, roleIdOrLabel, memberId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseResourceSetApi = PromiseResourceSetApi;
+const ObservableAPI_31 = require('./ObservableAPI');
+class PromiseRiskEventApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_31.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
+      * Send multiple Risk Events
+      * @param instance
+      */
+  sendRiskEvents(instance, _options) {
+    const result = this.api.sendRiskEvents(instance, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRiskEventApi = PromiseRiskEventApi;
+const ObservableAPI_32 = require('./ObservableAPI');
+class PromiseRiskProviderApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_32.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
+      * Create a Risk Provider
+      * @param instance
+      */
+  createRiskProvider(instance, _options) {
+    const result = this.api.createRiskProvider(instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a Risk Provider object by its ID
+      * Delete a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+      */
+  deleteRiskProvider(riskProviderId, _options) {
+    const result = this.api.deleteRiskProvider(riskProviderId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a Risk Provider object by ID
+      * Retrieve a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+      */
+  getRiskProvider(riskProviderId, _options) {
+    const result = this.api.getRiskProvider(riskProviderId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all Risk Provider objects
+      * List all Risk Providers
+      */
+  listRiskProviders(_options) {
+    const result = this.api.listRiskProviders(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the properties for a given Risk Provider object ID
+      * Replace a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+      * @param instance
+      */
+  replaceRiskProvider(riskProviderId, instance, _options) {
+    const result = this.api.replaceRiskProvider(riskProviderId, instance, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRiskProviderApi = PromiseRiskProviderApi;
+const ObservableAPI_33 = require('./ObservableAPI');
+class PromiseRoleApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_33.ObservableRoleApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates a new role
+      * Create a Role
+      * @param instance
+      */
+  createRole(instance, _options) {
+    const result = this.api.createRole(instance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a permission specified by `permissionType` to the role
+      * Create a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  createRolePermission(roleIdOrLabel, permissionType, _options) {
+    const result = this.api.createRolePermission(roleIdOrLabel, permissionType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a role by `roleIdOrLabel`
+      * Delete a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteRole(roleIdOrLabel, _options) {
+    const result = this.api.deleteRole(roleIdOrLabel, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a permission from a role by `permissionType`
+      * Delete a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  deleteRolePermission(roleIdOrLabel, permissionType, _options) {
+    const result = this.api.deleteRolePermission(roleIdOrLabel, permissionType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a role by `roleIdOrLabel`
+      * Retrieve a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getRole(roleIdOrLabel, _options) {
+    const result = this.api.getRole(roleIdOrLabel, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a permission by `permissionType`
+      * Retrieve a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  getRolePermission(roleIdOrLabel, permissionType, _options) {
+    const result = this.api.getRolePermission(roleIdOrLabel, permissionType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all permissions of the role by `roleIdOrLabel`
+      * List all Permissions
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  listRolePermissions(roleIdOrLabel, _options) {
+    const result = this.api.listRolePermissions(roleIdOrLabel, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all roles with pagination support
+      * List all Roles
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listRoles(after, _options) {
+    const result = this.api.listRoles(after, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces a role by `roleIdOrLabel`
+      * Replace a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  replaceRole(roleIdOrLabel, instance, _options) {
+    const result = this.api.replaceRole(roleIdOrLabel, instance, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRoleApi = PromiseRoleApi;
+const ObservableAPI_34 = require('./ObservableAPI');
+class PromiseRoleAssignmentApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_34.ObservableRoleAssignmentApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Assigns a role to a group
+      * Assign a Role to a Group
+      * @param groupId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the group third-party admin status
+      */
+  assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options) {
+    const result = this.api.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns a role to a user identified by `userId`
+      * Assign a Role to a User
+      * @param userId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the user third-party admin status
+      */
+  assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options) {
+    const result = this.api.assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a role identified by `roleId` assigned to group identified by `groupId`
+      * Retrieve a Role assigned to Group
+      * @param groupId
+      * @param roleId
+      */
+  getGroupAssignedRole(groupId, roleId, _options) {
+    const result = this.api.getGroupAssignedRole(groupId, roleId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a role identified by `roleId` assigned to a user identified by `userId`
+      * Retrieve a Role assigned to a User
+      * @param userId
+      * @param roleId
+      */
+  getUserAssignedRole(userId, roleId, _options) {
+    const result = this.api.getUserAssignedRole(userId, roleId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all roles assigned to a user identified by `userId`
+      * List all Roles assigned to a User
+      * @param userId
+      * @param expand
+      */
+  listAssignedRolesForUser(userId, expand, _options) {
+    const result = this.api.listAssignedRolesForUser(userId, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all assigned roles of group identified by `groupId`
+      * List all Assigned Roles of Group
+      * @param groupId
+      * @param expand
+      */
+  listGroupAssignedRoles(groupId, expand, _options) {
+    const result = this.api.listGroupAssignedRoles(groupId, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a role identified by `roleId` assigned to group identified by `groupId`
+      * Unassign a Role from a Group
+      * @param groupId
+      * @param roleId
+      */
+  unassignRoleFromGroup(groupId, roleId, _options) {
+    const result = this.api.unassignRoleFromGroup(groupId, roleId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a role identified by `roleId` from a user identified by `userId`
+      * Unassign a Role from a User
+      * @param userId
+      * @param roleId
+      */
+  unassignRoleFromUser(userId, roleId, _options) {
+    const result = this.api.unassignRoleFromUser(userId, roleId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRoleAssignmentApi = PromiseRoleAssignmentApi;
+const ObservableAPI_35 = require('./ObservableAPI');
+class PromiseRoleTargetApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_35.ObservableRoleTargetApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Assigns all Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * @param userId
+      * @param roleId
+      */
+  assignAllAppsAsTargetToRoleForUser(userId, roleId, _options) {
+    const result = this.api.assignAllAppsAsTargetToRoleForUser(userId, roleId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options) {
+    const result = this.api.assignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns anapplication instance target to appplication administrator role
+      * Assign an Application Instance Target to an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
+    const result = this.api.assignAppInstanceTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options) {
+    const result = this.api.assignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForUser(userId, roleId, appName, _options) {
+    const result = this.api.assignAppTargetToAdminRoleForUser(userId, roleId, appName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns a group target to a group role
+      * Assign a Group Target to a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  assignGroupTargetToGroupAdminRole(groupId, roleId, targetGroupId, _options) {
+    const result = this.api.assignGroupTargetToGroupAdminRole(groupId, roleId, targetGroupId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Assigns a Group Target to Role
+      * Assign a Group Target to Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  assignGroupTargetToUserRole(userId, roleId, groupId, _options) {
+    const result = this.api.assignGroupTargetToUserRole(userId, roleId, groupId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
+    const result = this.api.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
+    const result = this.api.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all group targets for a group role
+      * List all Group Targets for a Group Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
+    const result = this.api.listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all group targets for role
+      * List all Group Targets for Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForRole(userId, roleId, after, limit, _options) {
+    const result = this.api.listGroupTargetsForRole(userId, roleId, after, limit, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns an application instance target from an application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetFromAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
+    const result = this.api.unassignAppInstanceTargetFromAdminRoleForUser(userId, roleId, appName, applicationId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns an application instance target from application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options) {
+    const result = this.api.unassignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetFromAppAdminRoleForUser(userId, roleId, appName, _options) {
+    const result = this.api.unassignAppTargetFromAppAdminRoleForUser(userId, roleId, appName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options) {
+    const result = this.api.unassignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a group target from a group role
+      * Unassign a Group Target from a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  unassignGroupTargetFromGroupAdminRole(groupId, roleId, targetGroupId, _options) {
+    const result = this.api.unassignGroupTargetFromGroupAdminRole(groupId, roleId, targetGroupId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unassigns a Group Target from Role
+      * Unassign a Group Target from Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  unassignGroupTargetFromUserAdminRole(userId, roleId, groupId, _options) {
+    const result = this.api.unassignGroupTargetFromUserAdminRole(userId, roleId, groupId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseRoleTargetApi = PromiseRoleTargetApi;
+const ObservableAPI_36 = require('./ObservableAPI');
+class PromiseSchemaApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_36.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Retrieves the UI schema for an Application given `appName`, `section` and `operation`
+      * Retrieve the UI schema for a section
+      * @param appName
+      * @param section
+      * @param operation
+      */
+  getAppUISchema(appName, section, operation, _options) {
+    const result = this.api.getAppUISchema(appName, section, operation, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the links for UI schemas for an Application given `appName`
+      * Retrieve the links for UI schemas for an Application
+      * @param appName
+      */
+  getAppUISchemaLinks(appName, _options) {
+    const result = this.api.getAppUISchemaLinks(appName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the Schema for an App User
       * Retrieve the default Application User Schema for an Application
       * @param appInstanceId
       */
@@ -3144,7 +4177,7 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Fetches the group schema
+      * Retrieves the group schema
       * Retrieve the default Group Schema
       */
   getGroupSchema(_options) {
@@ -3152,7 +4185,16 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Fetches the schema for a Schema Id.
+      * Retrieves the schema for a Log Stream type. The `logStreamType` element in the URL specifies the Log Stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+      * Retrieve the Log Stream Schema for the schema type
+      * @param logStreamType
+      */
+  getLogStreamSchema(logStreamType, _options) {
+    const result = this.api.getLogStreamSchema(logStreamType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the schema for a Schema Id
       * Retrieve a User Schema
       * @param schemaId
       */
@@ -3161,7 +4203,15 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Lists the schema for all log stream types visible for this org
+      * List the Log Stream Schemas
+      */
+  listLogStreamSchemas(_options) {
+    const result = this.api.listLogStreamSchemas(_options);
+    return result.toPromise();
+  }
+  /**
+      * Partially updates on the User Profile properties of the Application User Schema
       * Update the default Application User Schema for an Application
       * @param appInstanceId
       * @param body
@@ -3171,7 +4221,7 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Updates the default group schema. This updates, adds, or removes one or more custom Group Profile properties in the schema.
       * Update the default Group Schema
       * @param GroupSchema
       */
@@ -3180,7 +4230,7 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Partial updates on the User Profile properties of the user schema.
+      * Partially updates on the User Profile properties of the user schema
       * Update a User Schema
       * @param schemaId
       * @param userSchema
@@ -3191,14 +4241,14 @@ class PromiseSchemaApi {
   }
 }
 exports.PromiseSchemaApi = PromiseSchemaApi;
-const ObservableAPI_25 = require('./ObservableAPI');
+const ObservableAPI_37 = require('./ObservableAPI');
 class PromiseSessionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_25.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_37.ObservableSessionApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create a Session with Session Token
+      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Create a Session with session token
       * @param createSessionRequest
       */
   createSession(createSessionRequest, _options) {
@@ -3206,61 +4256,41 @@ class PromiseSessionApi {
     return result.toPromise();
   }
   /**
-      * End a session.
-      * Delete a Session
-      * @param sessionId
-      */
-  endSession(sessionId, _options) {
-    const result = this.api.endSession(sessionId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Get details about a session.
+      * Retrieves information about the Session specified by the given session ID
       * Retrieve a Session
-      * @param sessionId
+      * @param sessionId &#x60;id&#x60; of a valid Session
       */
   getSession(sessionId, _options) {
     const result = this.api.getSession(sessionId, _options);
     return result.toPromise();
   }
   /**
-      * Refresh a session.
+      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
       * Refresh a Session
-      * @param sessionId
+      * @param sessionId &#x60;id&#x60; of a valid Session
       */
   refreshSession(sessionId, _options) {
     const result = this.api.refreshSession(sessionId, _options);
     return result.toPromise();
   }
+  /**
+      * Revokes the specified Session
+      * Revoke a Session
+      * @param sessionId &#x60;id&#x60; of a valid Session
+      */
+  revokeSession(sessionId, _options) {
+    const result = this.api.revokeSession(sessionId, _options);
+    return result.toPromise();
+  }
 }
 exports.PromiseSessionApi = PromiseSessionApi;
-const ObservableAPI_26 = require('./ObservableAPI');
+const ObservableAPI_38 = require('./ObservableAPI');
 class PromiseSubscriptionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_26.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_38.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * List all Subscriptions of a Custom Role with a specific notification type
-      * @param roleTypeOrRoleId
-      * @param notificationType
-      */
-  getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {
-    const result = this.api.getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options);
-    return result.toPromise();
-  }
-  /**
-      * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List all Subscriptions by type
-      * @param userId
-      * @param notificationType
-      */
-  getUserSubscriptionByNotificationType(userId, notificationType, _options) {
-    const result = this.api.getUserSubscriptionByNotificationType(userId, notificationType, _options);
-    return result.toPromise();
-  }
-  /**
-      * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+      * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
       * List all Subscriptions of a Custom Role
       * @param roleTypeOrRoleId
       */
@@ -3269,7 +4299,17 @@ class PromiseSubscriptionApi {
     return result.toPromise();
   }
   /**
-      * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
+      * List all Subscriptions of a Custom Role with a specific notification type
+      * @param roleTypeOrRoleId
+      * @param notificationType
+      */
+  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options) {
+    const result = this.api.listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
       * List all Subscriptions
       * @param userId
       */
@@ -3278,7 +4318,17 @@ class PromiseSubscriptionApi {
     return result.toPromise();
   }
   /**
-      * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * List all Subscriptions by type
+      * @param userId
+      * @param notificationType
+      */
+  listUserSubscriptionsByNotificationType(userId, notificationType, _options) {
+    const result = this.api.listUserSubscriptionsByNotificationType(userId, notificationType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Subscribe a Custom Role to a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -3298,7 +4348,7 @@ class PromiseSubscriptionApi {
     return result.toPromise();
   }
   /**
-      * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Unsubscribe a Custom Role from a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -3319,13 +4369,13 @@ class PromiseSubscriptionApi {
   }
 }
 exports.PromiseSubscriptionApi = PromiseSubscriptionApi;
-const ObservableAPI_27 = require('./ObservableAPI');
+const ObservableAPI_39 = require('./ObservableAPI');
 class PromiseSystemLogApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_27.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_39.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+      * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
       * List all System Log Events
       * @param since
       * @param until
@@ -3335,19 +4385,19 @@ class PromiseSystemLogApi {
       * @param sortOrder
       * @param after
       */
-  getLogs(since, until, filter, q, limit, sortOrder, after, _options) {
-    const result = this.api.getLogs(since, until, filter, q, limit, sortOrder, after, _options);
+  listLogEvents(since, until, filter, q, limit, sortOrder, after, _options) {
+    const result = this.api.listLogEvents(since, until, filter, q, limit, sortOrder, after, _options);
     return result.toPromise();
   }
 }
 exports.PromiseSystemLogApi = PromiseSystemLogApi;
-const ObservableAPI_28 = require('./ObservableAPI');
+const ObservableAPI_40 = require('./ObservableAPI');
 class PromiseTemplateApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_28.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_40.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Adds a new custom SMS template to your organization.
+      * Creates a new custom SMS template
       * Create an SMS Template
       * @param smsTemplate
       */
@@ -3356,7 +4406,7 @@ class PromiseTemplateApi {
     return result.toPromise();
   }
   /**
-      * Removes an SMS template.
+      * Deletes an SMS template
       * Delete an SMS Template
       * @param templateId
       */
@@ -3365,7 +4415,7 @@ class PromiseTemplateApi {
     return result.toPromise();
   }
   /**
-      * Fetches a specific template by `id`
+      * Retrieves a specific template by `id`
       * Retrieve an SMS Template
       * @param templateId
       */
@@ -3374,7 +4424,7 @@ class PromiseTemplateApi {
     return result.toPromise();
   }
   /**
-      * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
       * List all SMS Templates
       * @param templateType
       */
@@ -3383,18 +4433,18 @@ class PromiseTemplateApi {
     return result.toPromise();
   }
   /**
-      * Updates only some of the SMS template properties:
-      * Update an SMS Template
+      * Replaces the SMS template
+      * Replace an SMS Template
       * @param templateId
       * @param smsTemplate
       */
-  partialUpdateSmsTemplate(templateId, smsTemplate, _options) {
-    const result = this.api.partialUpdateSmsTemplate(templateId, smsTemplate, _options);
+  replaceSmsTemplate(templateId, smsTemplate, _options) {
+    const result = this.api.replaceSmsTemplate(templateId, smsTemplate, _options);
     return result.toPromise();
   }
   /**
-      * Updates the SMS template.
-      * Replace an SMS Template
+      * Updates an SMS template
+      * Update an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -3404,13 +4454,13 @@ class PromiseTemplateApi {
   }
 }
 exports.PromiseTemplateApi = PromiseTemplateApi;
-const ObservableAPI_29 = require('./ObservableAPI');
+const ObservableAPI_41 = require('./ObservableAPI');
 class PromiseThreatInsightApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_29.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_41.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Gets current ThreatInsight configuration
+      * Retrieves current ThreatInsight configuration
       * Retrieve the ThreatInsight Configuration
       */
   getCurrentConfiguration(_options) {
@@ -3428,148 +4478,93 @@ class PromiseThreatInsightApi {
   }
 }
 exports.PromiseThreatInsightApi = PromiseThreatInsightApi;
-const ObservableAPI_30 = require('./ObservableAPI');
+const ObservableAPI_42 = require('./ObservableAPI');
 class PromiseTrustedOriginApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_30.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_42.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Success
+      * Activates a trusted origin
       * Activate a Trusted Origin
       * @param trustedOriginId
       */
-  activateOrigin(trustedOriginId, _options) {
-    const result = this.api.activateOrigin(trustedOriginId, _options);
+  activateTrustedOrigin(trustedOriginId, _options) {
+    const result = this.api.activateTrustedOrigin(trustedOriginId, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Creates a trusted origin
       * Create a Trusted Origin
       * @param trustedOrigin
       */
-  createOrigin(trustedOrigin, _options) {
-    const result = this.api.createOrigin(trustedOrigin, _options);
+  createTrustedOrigin(trustedOrigin, _options) {
+    const result = this.api.createTrustedOrigin(trustedOrigin, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Deactivates a trusted origin
       * Deactivate a Trusted Origin
       * @param trustedOriginId
       */
-  deactivateOrigin(trustedOriginId, _options) {
-    const result = this.api.deactivateOrigin(trustedOriginId, _options);
+  deactivateTrustedOrigin(trustedOriginId, _options) {
+    const result = this.api.deactivateTrustedOrigin(trustedOriginId, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Deletes a trusted origin
       * Delete a Trusted Origin
       * @param trustedOriginId
       */
-  deleteOrigin(trustedOriginId, _options) {
-    const result = this.api.deleteOrigin(trustedOriginId, _options);
+  deleteTrustedOrigin(trustedOriginId, _options) {
+    const result = this.api.deleteTrustedOrigin(trustedOriginId, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Retrieves a trusted origin
       * Retrieve a Trusted Origin
       * @param trustedOriginId
       */
-  getOrigin(trustedOriginId, _options) {
-    const result = this.api.getOrigin(trustedOriginId, _options);
+  getTrustedOrigin(trustedOriginId, _options) {
+    const result = this.api.getTrustedOrigin(trustedOriginId, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Lists all trusted origins
       * List all Trusted Origins
       * @param q
       * @param filter
       * @param after
       * @param limit
       */
-  listOrigins(q, filter, after, limit, _options) {
-    const result = this.api.listOrigins(q, filter, after, limit, _options);
+  listTrustedOrigins(q, filter, after, limit, _options) {
+    const result = this.api.listTrustedOrigins(q, filter, after, limit, _options);
     return result.toPromise();
   }
   /**
-      * Success
+      * Replaces a trusted origin
       * Replace a Trusted Origin
       * @param trustedOriginId
       * @param trustedOrigin
       */
-  updateOrigin(trustedOriginId, trustedOrigin, _options) {
-    const result = this.api.updateOrigin(trustedOriginId, trustedOrigin, _options);
+  replaceTrustedOrigin(trustedOriginId, trustedOrigin, _options) {
+    const result = this.api.replaceTrustedOrigin(trustedOriginId, trustedOrigin, _options);
     return result.toPromise();
   }
 }
 exports.PromiseTrustedOriginApi = PromiseTrustedOriginApi;
-const ObservableAPI_31 = require('./ObservableAPI');
+const ObservableAPI_43 = require('./ObservableAPI');
 class PromiseUserApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_31.ObservableUserApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_43.ObservableUserApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+      * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Activate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
       */
   activateUser(userId, sendEmail, _options) {
     const result = this.api.activateUser(userId, sendEmail, _options);
-    return result.toPromise();
-  }
-  /**
-      * Assign all Apps as Target to Role
-      * Assign all Apps as Target to Role
-      * @param userId
-      * @param roleId
-      */
-  addAllAppsAsTargetToRole(userId, roleId, _options) {
-    const result = this.api.addAllAppsAsTargetToRole(userId, roleId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleForUser(userId, roleId, appName, _options) {
-    const result = this.api.addApplicationTargetToAdminRoleForUser(userId, roleId, appName, _options);
-    return result.toPromise();
-  }
-  /**
-      * Add App Instance Target to App Administrator Role given to a User
-      * Assign an Application Instance Target to an Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
-    const result = this.api.addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Assign a Group Target to Role
-      * Assign a Group Target to Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  addGroupTargetToRole(userId, roleId, groupId, _options) {
-    const result = this.api.addGroupTargetToRole(userId, roleId, groupId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Assigns a role to a user.
-      * Assign a Role
-      * @param userId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options) {
-    const result = this.api.assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options);
     return result.toPromise();
   }
   /**
@@ -3594,17 +4589,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Delete all User Sessions
-      * @param userId
-      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
-      */
-  clearUserSessions(userId, oauthTokens, _options) {
-    const result = this.api.clearUserSessions(userId, oauthTokens, _options);
-    return result.toPromise();
-  }
-  /**
-      * Creates a new user in your Okta organization with or without credentials.
+      * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
@@ -3613,16 +4598,6 @@ class PromiseUserApi {
       */
   createUser(body, activate, provider, nextLogin, _options) {
     const result = this.api.createUser(body, activate, provider, nextLogin, _options);
-    return result.toPromise();
-  }
-  /**
-      * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete a User
-      * @param userId
-      * @param sendEmail
-      */
-  deactivateOrDeleteUser(userId, sendEmail, _options) {
-    const result = this.api.deactivateOrDeleteUser(userId, sendEmail, _options);
     return result.toPromise();
   }
   /**
@@ -3636,7 +4611,27 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+      * Deletes linked objects for a user, relationshipName can be ONLY a primary relationship name
+      * Delete a Linked Object
+      * @param userId
+      * @param relationshipName
+      */
+  deleteLinkedObjectForUser(userId, relationshipName, _options) {
+    const result = this.api.deleteLinkedObjectForUser(userId, relationshipName, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a user permanently. This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**. Calling this on an `ACTIVE` user will transition the user to `DEPROVISIONED`.
+      * Delete a User
+      * @param userId
+      * @param sendEmail
+      */
+  deleteUser(userId, sendEmail, _options) {
+    const result = this.api.deleteUser(userId, sendEmail, _options);
+    return result.toPromise();
+  }
+  /**
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login
       * Expire Password
       * @param userId
       */
@@ -3645,16 +4640,17 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response.
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
       * Expire Password and Set Temporary Password
       * @param userId
+      * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
       */
-  expirePasswordAndGetTemporaryPassword(userId, _options) {
-    const result = this.api.expirePasswordAndGetTemporaryPassword(userId, _options);
+  expirePasswordAndGetTemporaryPassword(userId, revokeSessions, _options) {
+    const result = this.api.expirePasswordAndGetTemporaryPassword(userId, revokeSessions, _options);
     return result.toPromise();
   }
   /**
-      * Initiate forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
+      * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
       * Initiate Forgot Password
       * @param userId
       * @param sendEmail
@@ -3664,7 +4660,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Resets the user's password to the specified password if the provided answer to the recovery question is correct.
+      * Resets the user's password to the specified password if the provided answer to the recovery question is correct
       * Reset Password with Recovery Question
       * @param userId
       * @param userCredentials
@@ -3675,19 +4671,18 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * List all Linked Objects
+      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
+      * Generate a Reset Password Token
       * @param userId
-      * @param relationshipName
-      * @param after
-      * @param limit
+      * @param sendEmail
+      * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
       */
-  getLinkedObjectsForUser(userId, relationshipName, after, limit, _options) {
-    const result = this.api.getLinkedObjectsForUser(userId, relationshipName, after, limit, _options);
+  generateResetPasswordToken(userId, sendEmail, revokeSessions, _options) {
+    const result = this.api.generateResetPasswordToken(userId, sendEmail, revokeSessions, _options);
     return result.toPromise();
   }
   /**
-      * Gets a refresh token issued for the specified User and Client.
+      * Retrieves a refresh token issued for the specified User and Client
       * Retrieve a Refresh Token for a Client
       * @param userId
       * @param clientId
@@ -3701,16 +4696,17 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Fetches a user from your Okta organization.
+      * Retrieves a user from your Okta organization
       * Retrieve a User
       * @param userId
+      * @param expand Specifies additional metadata to include in the response. Possible value: &#x60;blocks&#x60;
       */
-  getUser(userId, _options) {
-    const result = this.api.getUser(userId, _options);
+  getUser(userId, expand, _options) {
+    const result = this.api.getUser(userId, expand, _options);
     return result.toPromise();
   }
   /**
-      * Gets a grant for the specified user
+      * Retrieves a grant for the specified user
       * Retrieve a User Grant
       * @param userId
       * @param grantId
@@ -3721,44 +4717,12 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Gets role that is assigned to user.
-      * Retrieve a Role
-      * @param userId
-      * @param roleId
-      */
-  getUserRole(userId, roleId, _options) {
-    const result = this.api.getUserRole(userId, roleId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
+      * Lists all appLinks for all direct or indirect (via group membership) assigned applications
       * List all Assigned Application Links
       * @param userId
       */
   listAppLinks(userId, _options) {
     const result = this.api.listAppLinks(userId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
-    const result = this.api.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options);
-    return result.toPromise();
-  }
-  /**
-      * Lists all roles assigned to a user.
-      * List all Assigned Roles
-      * @param userId
-      * @param expand
-      */
-  listAssignedRolesForUser(userId, expand, _options) {
-    const result = this.api.listAssignedRolesForUser(userId, expand, _options);
     return result.toPromise();
   }
   /**
@@ -3775,19 +4739,19 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * List all Group Targets for Role
+      * Lists all linked objects for a user, relationshipName can be a primary or associated relationship name
+      * List all Linked Objects
       * @param userId
-      * @param roleId
+      * @param relationshipName
       * @param after
       * @param limit
       */
-  listGroupTargetsForRole(userId, roleId, after, limit, _options) {
-    const result = this.api.listGroupTargetsForRole(userId, roleId, after, limit, _options);
+  listLinkedObjectsForUser(userId, relationshipName, after, limit, _options) {
+    const result = this.api.listLinkedObjectsForUser(userId, relationshipName, after, limit, _options);
     return result.toPromise();
   }
   /**
-      * Lists all refresh tokens issued for the specified User and Client.
+      * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -3800,7 +4764,16 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Lists all client resources for which the specified user has grants or tokens.
+      * Lists information about how the user is blocked from accessing their account
+      * List all User Blocks
+      * @param userId
+      */
+  listUserBlocks(userId, _options) {
+    const result = this.api.listUserBlocks(userId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all client resources for which the specified user has grants or tokens
       * List all Clients
       * @param userId
       */
@@ -3822,7 +4795,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Fetches the groups of which the user is a member.
+      * Lists all groups of which the user is a member
       * List all Groups
       * @param userId
       */
@@ -3831,7 +4804,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Lists the IdPs associated with the user.
+      * Lists the IdPs associated with the user
       * List all Identity Providers
       * @param userId
       */
@@ -3840,29 +4813,18 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
+      * Lists all users that do not have a status of 'DEPROVISIONED' (by default), up to the maximum (200 for most orgs), with pagination.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
       * @param q Finds a user that matches firstName, lastName, and email properties
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
-      * @param search Searches for users with a supported filtering  expression for most properties
+      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance.
       * @param sortBy
       * @param sortOrder
       */
   listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options) {
     const result = this.api.listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options);
-    return result.toPromise();
-  }
-  /**
-      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Update a User
-      * @param userId
-      * @param user
-      * @param strict
-      */
-  partialUpdateUser(userId, user, strict, _options) {
-    const result = this.api.partialUpdateUser(userId, user, strict, _options);
     return result.toPromise();
   }
   /**
@@ -3876,76 +4838,23 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Remove App Instance Target to App Administrator Role given to a User
-      * Unassign an Application Instance Target to Application Administrator Role
+      * Replaces a user's profile and/or credentials using strict-update semantics
+      * Replace a User
       * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param user
+      * @param strict
       */
-  removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId, _options) {
-    const result = this.api.removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId, _options);
+  replaceUser(userId, user, strict, _options) {
+    const result = this.api.replaceUser(userId, user, strict, _options);
     return result.toPromise();
   }
   /**
-      * Success
-      * Unassign an Application Target from Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName, _options) {
-    const result = this.api.removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName, _options);
-    return result.toPromise();
-  }
-  /**
-      * Unassign a Group Target from Role
-      * Unassign a Group Target from Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  removeGroupTargetFromRole(userId, roleId, groupId, _options) {
-    const result = this.api.removeGroupTargetFromRole(userId, roleId, groupId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Delete a Linked Object
-      * @param userId
-      * @param relationshipName
-      */
-  removeLinkedObjectForUser(userId, relationshipName, _options) {
-    const result = this.api.removeLinkedObjectForUser(userId, relationshipName, _options);
-    return result.toPromise();
-  }
-  /**
-      * Unassigns a role from a user.
-      * Delete a Role
-      * @param userId
-      * @param roleId
-      */
-  removeRoleFromUser(userId, roleId, _options) {
-    const result = this.api.removeRoleFromUser(userId, roleId, _options);
-    return result.toPromise();
-  }
-  /**
-      * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
+      * Resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
       * Reset all Factors
       * @param userId
       */
   resetFactors(userId, _options) {
     const result = this.api.resetFactors(userId, _options);
-    return result.toPromise();
-  }
-  /**
-      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
-      * Reset Password
-      * @param userId
-      * @param sendEmail
-      */
-  resetPassword(userId, sendEmail, _options) {
-    const result = this.api.resetPassword(userId, sendEmail, _options);
     return result.toPromise();
   }
   /**
@@ -3959,7 +4868,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Revokes the specified refresh token.
+      * Revokes the specified refresh token
       * Revoke a Token for a Client
       * @param userId
       * @param clientId
@@ -3970,7 +4879,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Revokes all refresh tokens issued for the specified User and Client.
+      * Revokes all refresh tokens issued for the specified User and Client
       * Revoke all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -3999,7 +4908,17 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Sets a linked object for two users.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+      * Revoke all User Sessions
+      * @param userId
+      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
+      */
+  revokeUserSessions(userId, oauthTokens, _options) {
+    const result = this.api.revokeUserSessions(userId, oauthTokens, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates a linked object for two users
       * Create a Linked Object for two User
       * @param associatedUserId
       * @param primaryRelationshipName
@@ -4019,7 +4938,7 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
+      * Unlocks a user with a `LOCKED_OUT` status or unlocks a user with an `ACTIVE` status that is blocked from unknown devices. Unlocked users have an `ACTIVE` status and can sign in with their current password.
       * Unlock a User
       * @param userId
       */
@@ -4037,8 +4956,8 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Update a user's profile and/or credentials using strict-update semantics.
-      * Replace a User
+      * Updates a user partially determined by the request parameters
+      * Update a User
       * @param userId
       * @param user
       * @param strict
@@ -4049,13 +4968,13 @@ class PromiseUserApi {
   }
 }
 exports.PromiseUserApi = PromiseUserApi;
-const ObservableAPI_32 = require('./ObservableAPI');
+const ObservableAPI_44 = require('./ObservableAPI');
 class PromiseUserFactorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_32.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_44.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+      * Activates a factor. The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
       * Activate a Factor
       * @param userId
       * @param factorId
@@ -4066,18 +4985,7 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete a Factor
-      * @param userId
-      * @param factorId
-      * @param removeEnrollmentRecovery
-      */
-  deleteFactor(userId, factorId, removeEnrollmentRecovery, _options) {
-    const result = this.api.deleteFactor(userId, factorId, removeEnrollmentRecovery, _options);
-    return result.toPromise();
-  }
-  /**
-      * Enrolls a user with a supported factor.
+      * Enrolls a user with a supported factor
       * Enroll a Factor
       * @param userId
       * @param body Factor
@@ -4091,7 +4999,7 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Fetches a factor for the specified user
+      * Retrieves a factor for the specified user
       * Retrieve a Factor
       * @param userId
       * @param factorId
@@ -4101,7 +5009,7 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Polls factors verification transaction for status.
+      * Retrieves the factors verification transaction status
       * Retrieve a Factor Transaction Status
       * @param userId
       * @param factorId
@@ -4112,7 +5020,7 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all the enrolled factors for the specified user
+      * Lists all the enrolled factors for the specified user
       * List all Factors
       * @param userId
       */
@@ -4121,7 +5029,7 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all the supported factors that can be enrolled for the specified user
+      * Lists all the supported factors that can be enrolled for the specified user
       * List all Supported Factors
       * @param userId
       */
@@ -4130,12 +5038,23 @@ class PromiseUserFactorApi {
     return result.toPromise();
   }
   /**
-      * Enumerates all available security questions for a user's `question` factor
+      * Lists all available security questions for a user's `question` factor
       * List all Supported Security Questions
       * @param userId
       */
   listSupportedSecurityQuestions(userId, _options) {
     const result = this.api.listSupportedSecurityQuestions(userId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor
+      * Unenroll a Factor
+      * @param userId
+      * @param factorId
+      * @param removeEnrollmentRecovery
+      */
+  unenrollFactor(userId, factorId, removeEnrollmentRecovery, _options) {
+    const result = this.api.unenrollFactor(userId, factorId, removeEnrollmentRecovery, _options);
     return result.toPromise();
   }
   /**
@@ -4156,10 +5075,10 @@ class PromiseUserFactorApi {
   }
 }
 exports.PromiseUserFactorApi = PromiseUserFactorApi;
-const ObservableAPI_33 = require('./ObservableAPI');
+const ObservableAPI_45 = require('./ObservableAPI');
 class PromiseUserTypeApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_33.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_45.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
@@ -4180,7 +5099,7 @@ class PromiseUserTypeApi {
     return result.toPromise();
   }
   /**
-      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+      * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * Retrieve a User Type
       * @param typeId
       */
@@ -4189,7 +5108,7 @@ class PromiseUserTypeApi {
     return result.toPromise();
   }
   /**
-      * Fetches all User Types in your org
+      * Lists all User Types in your org
       * List all User Types
       */
   listUserTypes(_options) {
@@ -4197,7 +5116,7 @@ class PromiseUserTypeApi {
     return result.toPromise();
   }
   /**
-      * Replace an existing User Type
+      * Replaces an existing user type
       * Replace a User Type
       * @param typeId
       * @param userType

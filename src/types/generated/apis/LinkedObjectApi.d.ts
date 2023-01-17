@@ -20,25 +20,25 @@ import { LinkedObject } from '../models/LinkedObject';
  */
 export declare class LinkedObjectApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Success
+     * Creates a linked object definition
      * Create a Linked Object Definition
      * @param linkedObject
      */
-  addLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Promise<RequestContext>;
+  createLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes a linked object definition
      * Delete a Linked Object Definition
      * @param linkedObjectName
      */
   deleteLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves a linked object definition
      * Retrieve a Linked Object Definition
      * @param linkedObjectName
      */
   getLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all linked object definitions
      * List all Linked Object Definitions
      */
   listLinkedObjectDefinitions(_options?: Configuration): Promise<RequestContext>;
@@ -48,10 +48,10 @@ export declare class LinkedObjectApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to addLinkedObjectDefinition
+     * @params response Response returned by the server for a request to createLinkedObjectDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-  addLinkedObjectDefinition(response: ResponseContext): Promise<LinkedObject>;
+  createLinkedObjectDefinition(response: ResponseContext): Promise<LinkedObject>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/search-groups`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -33,7 +33,7 @@ const createTestGroups = async () => {
         },
       };
       await utils.cleanup(client, null, newGroup);
-      const createdGroup = await client.createGroup(newGroup as okta.Group);
+      const createdGroup = await client.groupApi.createGroup({group: newGroup as okta.Group});
       utils.validateGroup(createdGroup, newGroup);
       createdGroups.push(createdGroup);
     }
@@ -52,7 +52,7 @@ describe('Group API tests', () => {
 
   it('should paginate results', async () => {
     const listIds = new Set();
-    const collection = await client.listGroups({
+    const collection = await client.groupApi.listGroups({
       limit: 2
     });
     const pageSpy = spy(collection, 'getNextPage');
@@ -68,7 +68,7 @@ describe('Group API tests', () => {
   // Pagination does not work with q
   it('should search by name with q', async () => {
     const q = 'node-sdk: Search test Group GROUP_AB';
-    const collection = await client.listGroups({
+    const collection = await client.groupApi.listGroups({
       q
     });
     const filtered = new Set();
@@ -83,7 +83,7 @@ describe('Group API tests', () => {
   it('should filter with search and paginate results', async () => {
     const filtered = new Set();
     const q = 'node-sdk: Search test Group GROUP_XY';
-    const collection = await client.listGroups({
+    const collection = await client.groupApi.listGroups({
       search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,
       limit: 1
     });

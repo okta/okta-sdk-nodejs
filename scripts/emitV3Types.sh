@@ -8,6 +8,9 @@ sed -i '' '/this.signOnMode =/d' ./src/generated/models/*.ts
 sed -i '' '/this.type =/d' ./src/generated/models/*.ts
 sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
 
+# replace URI property type with string
+sed -i '' 's/: URI;/: string;/g' ./src/generated/models/*.ts
+
 # remove erroneous imports
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
 sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
@@ -43,3 +46,4 @@ rm `find ./src -name "*.d.ts" -not -path "./src/types/*"`
 # add copyright banner and fix formatting
 node ./utils/maintain-banners.js
 node ./node_modules/eslint/bin/eslint.js . --fix
+

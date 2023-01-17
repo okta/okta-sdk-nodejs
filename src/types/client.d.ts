@@ -20,7 +20,6 @@ import {
   UserTypeApi,
   InlineHookApi,
   ProfileMappingApi,
-  DomainApi,
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
@@ -46,6 +45,9 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  CustomDomainApi,
 } from './generated';
 export declare class Client {
   constructor(config?: V2Configuration);
@@ -65,7 +67,6 @@ export declare class Client {
   schemaApi: SchemaApi;
   inlineHookApi: InlineHookApi;
   profileMappingApi: ProfileMappingApi;
-  domainApi: DomainApi;
   linkedObjectApi: LinkedObjectApi;
   systemLogApi: SystemLogApi;
   featureApi: FeatureApi;
@@ -84,7 +85,6 @@ export declare class Client {
   sessionApi: SessionApi;
   templateApi: TemplateApi;
   policyApi: PolicyApi;
-  subscription: SubscriptionApi;
   agentPoolsApi: AgentPoolsApi;
   apiTokenApi: ApiTokenApi;
   behaviorApi: BehaviorApi;
@@ -92,4 +92,7 @@ export declare class Client {
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
   deviceAssuranceApi: DeviceAssuranceApi;
+  roleAssignmentApi: RoleAssignmentApi;
+  roleTargetApi: RoleTargetApi;
+  customDomainApi: CustomDomainApi;
 }

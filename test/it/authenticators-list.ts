@@ -1,7 +1,6 @@
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +8,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/list-authenticators`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.authenticators.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authenticators API tests', () => {
@@ -26,7 +25,7 @@ describe('Authenticators API tests', () => {
   });
 
   it('should list all available Authenticators', async () => {
-    const authenticators = await client.listAuthenticators();
+    const authenticators = await client.authenticatorApi.listAuthenticators();
     const expectedAuthenticators = ['email', 'app', 'password', 'phone', 'security_question'];
     await authenticators.each(a => {
       expect(a.type).to.equal(expectedAuthenticators.shift());

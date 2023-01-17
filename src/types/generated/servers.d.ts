@@ -52,15 +52,8 @@ export declare class ServerConfiguration<T extends {
   makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<T>): RequestContext;
 }
 export declare const server1: ServerConfiguration<{
-    subdomain: string;
-    domain: 'okta.com' | 'oktapreview.com' | 'okta-emea.com';
+    yourOktaDomain: string;
 }>;
-export declare const server2: ServerConfiguration<{
-    customDomain: string;
-}>;
-export declare const servers: (ServerConfiguration<{
-    subdomain: string;
-    domain: 'okta.com' | 'oktapreview.com' | 'okta-emea.com';
-}> | ServerConfiguration<{
-    customDomain: string;
-}>)[];
+export declare const servers: ServerConfiguration<{
+    yourOktaDomain: string;
+}>[];

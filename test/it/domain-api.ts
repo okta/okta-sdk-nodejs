@@ -1,41 +1,48 @@
 import {
   DefaultRequestExecutor,
+  Client,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
-const client: V2Client = utils.getV2Client({
-  orgUrl: process.env.OKTA_CLIENT_ORGURL,
+const orgUrl = process.env.OKTA_CLIENT_ORGURL;
+
+const client = new Client({
+  scopes: ['okta.clients.manage', 'okta.logs.read'],
+  orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor({
-    maxRetries: 0,
-    requestTimeout: 0
-  }),
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 
 describe('Domains API', () => {
 
   afterEach(async () => {
-    (await client.listDomains()).domains.forEach(async (domain) => {
-      await client.deleteDomain(domain.id);
+    const list = await client.customDomainApi.listCustomDomains();
+    list.domains.forEach(async (domain) => {
+      await client.customDomainApi.deleteCustomDomain({
+        domainId: domain.id
+      });
     });
     await utils.delay(3000);
   });
 
   it('can create, list and get domains by id', async function () {
     try {
-      const createdDomain = await client.createDomain({
-        domain: 'login.example.com',
-        certificateSourceType: 'MANUAL',
+      const createdDomain = await client.customDomainApi.createCustomDomain({
+        domain: {
+          domain: 'login.example.com',
+          certificateSourceType: 'MANUAL',
+        }
       });
       expect(createdDomain.dnsRecords.length).to.be.greaterThanOrEqual(1);
 
-      const domainsList = await client.listDomains();
+      const domainsList = await client.customDomainApi.listCustomDomains();
       expect(domainsList.domains.length).to.equal(1);
 
-      const fetchedDomain = await client.getDomain(createdDomain.id);
+      const fetchedDomain = await client.customDomainApi.getCustomDomain({
+        domainId: createdDomain.id
+      });
       expect(fetchedDomain.id).to.equal(createdDomain.id);
     } catch (e) {
       expect(e.status).to.equal(429);
@@ -46,14 +53,19 @@ describe('Domains API', () => {
 
   it('fails to create certificate for unverified domain', async function () {
     try {
-      const createdDomain = await client.createDomain({
-        domain: 'login2.example.com',
-        certificateSourceType: 'MANUAL',
+      const createdDomain = await client.customDomainApi.createCustomDomain({
+        domain: {
+          domain: 'login2.example.com',
+          certificateSourceType: 'MANUAL',
+        }
       });
       try {
-        await client.createCertificate(createdDomain.id, {
-          certificate: 'cert',
-          privateKey: 'pk',
+        await client.customDomainApi.upsertCertificate({
+          domainId: createdDomain.id,
+          certificate: {
+            certificate: 'cert',
+            privateKey: 'pk',
+          }
         });
       } catch (err) {
         expect(err.status).to.equal(403);
@@ -67,14 +79,20 @@ describe('Domains API', () => {
 
   it('can initiate domain verification', async function () {
     try {
-      const createdDomain = await client.createDomain({
-        domain: 'login3.example.com',
-        certificateSourceType: 'MANUAL',
+      const createdDomain = await client.customDomainApi.createCustomDomain({
+        domain: {
+          domain: 'login3.example.com',
+          certificateSourceType: 'MANUAL',
+        }
       });
       expect(createdDomain.validationStatus).to.equal('NOT_STARTED');
 
-      await client.verifyDomain(createdDomain.id);
-      const verifiedDomain = await client.getDomain(createdDomain.id);
+      await client.customDomainApi.verifyDomain({
+        domainId: createdDomain.id
+      });
+      const verifiedDomain = await client.customDomainApi.getCustomDomain({
+        domainId: createdDomain.id
+      });
       expect(verifiedDomain.validationStatus).to.equal('FAILED_TO_VERIFY');
     } catch (e) {
       expect(e.status).to.equal(429);

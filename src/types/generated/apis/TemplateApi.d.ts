@@ -21,39 +21,39 @@ import { SmsTemplateType } from '../models/SmsTemplateType';
  */
 export declare class TemplateApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Adds a new custom SMS template to your organization.
+     * Creates a new custom SMS template
      * Create an SMS Template
      * @param smsTemplate
      */
   createSmsTemplate(smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes an SMS template.
+     * Deletes an SMS template
      * Delete an SMS Template
      * @param templateId
      */
   deleteSmsTemplate(templateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a specific template by `id`
+     * Retrieves a specific template by `id`
      * Retrieve an SMS Template
      * @param templateId
      */
   getSmsTemplate(templateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+     * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
      * List all SMS Templates
      * @param templateType
      */
   listSmsTemplates(templateType?: SmsTemplateType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates only some of the SMS template properties:
-     * Update an SMS Template
+     * Replaces the SMS template
+     * Replace an SMS Template
      * @param templateId
      * @param smsTemplate
      */
-  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;
+  replaceSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the SMS template.
-     * Replace an SMS Template
+     * Updates an SMS template
+     * Update an SMS Template
      * @param templateId
      * @param smsTemplate
      */
@@ -96,10 +96,10 @@ export declare class TemplateApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to partialUpdateSmsTemplate
+     * @params response Response returned by the server for a request to replaceSmsTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-  partialUpdateSmsTemplate(response: ResponseContext): Promise<SmsTemplate>;
+  replaceSmsTemplate(response: ResponseContext): Promise<SmsTemplate>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -20,27 +20,27 @@ import { ApiToken } from '../models/ApiToken';
  */
 export declare class ApiTokenApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Get the metadata for an active API token by id.
+     * Retrieves the metadata for an active API token by id
      * Retrieve an API Token's Metadata
      * @param apiTokenId id of the API Token
      */
   getApiToken(apiTokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates the metadata of the active API tokens in your organization.
+     * Lists all the metadata of the active API tokens
      * List all API Token Metadata
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
      * @param q Finds a token that matches the name or clientName.
      */
   listApiTokens(after?: string, limit?: number, q?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revoke an API token by id.
+     * Revokes an API token by `apiTokenId`
      * Revoke an API Token
      * @param apiTokenId id of the API Token
      */
   revokeApiToken(apiTokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes the API token provided in the Authorization header.
+     * Revokes the API token provided in the Authorization header
      * Revoke the Current API Token
      */
   revokeCurrentApiToken(_options?: Configuration): Promise<RequestContext>;

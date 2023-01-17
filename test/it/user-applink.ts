@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import { Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Collection, DefaultRequestExecutor, Client, User } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockUser = require('./mocks/user-without-credentials');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-applink`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -18,9 +17,12 @@ const client: V2Client = utils.getV2Client({
 
 describe('User applink API', () => {
   describe('List applinks', () => {
-    let user;
+    let user: User;
     beforeEach(async () => {
-      user = await client.createUser(getMockUser(), { activate: false });
+      user = await client.userApi.createUser({
+        body: getMockUser(),
+        activate: false
+      });
     });
     afterEach(async () => {
       await utils.cleanupUser(client, user);
@@ -28,7 +30,9 @@ describe('User applink API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign applink to user
     it('should return a Collection', async () => {
-      const applinks = await client.listAppLinks(user.id);
+      const applinks = await client.userApi.listAppLinks({
+        userId: user.id
+      });
       expect(applinks).to.be.instanceOf(Collection);
     });
   });

@@ -32,18 +32,18 @@ export declare class UserTypeApiRequestFactory extends BaseAPIRequestFactory {
      */
   deleteUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+     * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
      * Retrieve a User Type
      * @param typeId
      */
   getUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches all User Types in your org
+     * Lists all User Types in your org
      * List all User Types
      */
   listUserTypes(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replace an existing User Type
+     * Replaces an existing user type
      * Replace a User Type
      * @param typeId
      * @param userType

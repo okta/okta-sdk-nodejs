@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockEventHook = require('./mocks/eventhook');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
-import utils = require('../utils');
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/eventhook-lifecycle`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -19,20 +18,20 @@ const client: V2Client = utils.getV2Client({
 describe('Event Hook Lifecycle API', () => {
   let eventHook;
   beforeEach(async () => {
-    eventHook = await client.createEventHook(getMockEventHook());
+    eventHook = await client.eventHookApi.createEventHook({eventHook: getMockEventHook()});
   });
   afterEach(async () => {
-    await client.deactivateEventHook(eventHook.id);
-    await client.deleteEventHook(eventHook.id);
+    await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+    await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
   });
 
   it('should activate event hook', async () => {
-    const res = await client.activateEventHook(eventHook.id);
+    const res = await client.eventHookApi.activateEventHook({eventHookId: eventHook.id});
     expect(res.status).to.equal('ACTIVE');
   });
 
   it('should deactive event hook', async () => {
-    const res = await client.deactivateEventHook(eventHook.id);
+    const res = await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
     expect(res.status).to.equal('INACTIVE');
   });
 
@@ -41,7 +40,7 @@ describe('Event Hook Lifecycle API', () => {
   // https://developer.okta.com/docs/reference/api/event-hooks/#verify-event-hook
   it('should get error response with status 400 and code E0000001', async () => {
     try {
-      await client.verifyEventHook(eventHook.id);
+      await client.eventHookApi.verifyEventHook({eventHookId: eventHook.id});
     } catch (err) {
       expect(err.status).to.equal(400);
       expect(err.errorCode).to.equal('E0000001');

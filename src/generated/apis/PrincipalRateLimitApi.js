@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+     * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
      * Create a Principal Rate Limit
      * @param entity
      */
@@ -50,12 +50,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     return requestContext;
   }
   /**
-     * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+     * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
      * Retrieve a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      */
@@ -86,12 +86,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     return requestContext;
   }
   /**
-     * Lists all Principal Rate Limit entities considering the provided parameters.
+     * Lists all Principal Rate Limit entities considering the provided parameters
      * List all Principal Rate Limits
      * @param filter
      * @param after
@@ -129,12 +129,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -145,20 +145,20 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     return requestContext;
   }
   /**
-     * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+     * Replaces a principal rate limit entity by `principalRateLimitId`
      * Replace a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      * @param entity
      */
-  async updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
+  async replacePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'principalRateLimitId' is not null or undefined
     if (principalRateLimitId === null || principalRateLimitId === undefined) {
-      throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'updatePrincipalRateLimitEntity', 'principalRateLimitId');
+      throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'replacePrincipalRateLimitEntity', 'principalRateLimitId');
     }
     // verify required parameter 'entity' is not null or undefined
     if (entity === null || entity === undefined) {
-      throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'updatePrincipalRateLimitEntity', 'entity');
+      throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'replacePrincipalRateLimitEntity', 'entity');
     }
     // Path Params
     const path = '/api/v1/principal-rate-limits/{principalRateLimitId}';
@@ -178,12 +178,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -300,10 +300,10 @@ class PrincipalRateLimitApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePrincipalRateLimitEntity
+     * @params response Response returned by the server for a request to replacePrincipalRateLimitEntity
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updatePrincipalRateLimitEntity(response) {
+  async replacePrincipalRateLimitEntity(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'PrincipalRateLimitEntity', '');

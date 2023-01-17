@@ -25,15 +25,15 @@ const util_1 = require('../util');
  */
 class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Success
+     * Creates a linked object definition
      * Create a Linked Object Definition
      * @param linkedObject
      */
-  async addLinkedObjectDefinition(linkedObject, _options) {
+  async createLinkedObjectDefinition(linkedObject, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'linkedObject' is not null or undefined
     if (linkedObject === null || linkedObject === undefined) {
-      throw new baseapi_1.RequiredError('LinkedObjectApi', 'addLinkedObjectDefinition', 'linkedObject');
+      throw new baseapi_1.RequiredError('LinkedObjectApi', 'createLinkedObjectDefinition', 'linkedObject');
     }
     // Path Params
     const path = '/api/v1/meta/schemas/user/linkedObjects';
@@ -50,12 +50,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Deletes a linked object definition
      * Delete a Linked Object Definition
      * @param linkedObjectName
      */
@@ -86,12 +86,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a linked object definition
      * Retrieve a Linked Object Definition
      * @param linkedObjectName
      */
@@ -122,12 +122,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Lists all linked object definitions
      * List all Linked Object Definitions
      */
   async listLinkedObjectDefinitions(_options) {
@@ -150,12 +150,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -172,10 +172,10 @@ class LinkedObjectApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to addLinkedObjectDefinition
+     * @params response Response returned by the server for a request to createLinkedObjectDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async addLinkedObjectDefinition(response) {
+  async createLinkedObjectDefinition(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'LinkedObject', '');

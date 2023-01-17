@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Adds a new custom SMS template to your organization.
+     * Creates a new custom SMS template
      * Create an SMS Template
      * @param smsTemplate
      */
@@ -50,12 +50,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Removes an SMS template.
+     * Deletes an SMS template
      * Delete an SMS Template
      * @param templateId
      */
@@ -86,12 +86,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a specific template by `id`
+     * Retrieves a specific template by `id`
      * Retrieve an SMS Template
      * @param templateId
      */
@@ -122,12 +122,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+     * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
      * List all SMS Templates
      * @param templateType
      */
@@ -155,12 +155,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -171,69 +171,20 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates only some of the SMS template properties:
-     * Update an SMS Template
-     * @param templateId
-     * @param smsTemplate
-     */
-  async partialUpdateSmsTemplate(templateId, smsTemplate, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'templateId' is not null or undefined
-    if (templateId === null || templateId === undefined) {
-      throw new baseapi_1.RequiredError('TemplateApi', 'partialUpdateSmsTemplate', 'templateId');
-    }
-    // verify required parameter 'smsTemplate' is not null or undefined
-    if (smsTemplate === null || smsTemplate === undefined) {
-      throw new baseapi_1.RequiredError('TemplateApi', 'partialUpdateSmsTemplate', 'smsTemplate');
-    }
-    // Path Params
-    const path = '/api/v1/templates/sms/{templateId}';
-    const vars = {
-      ['templateId']: String(templateId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], smsTemplate);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(smsTemplate, 'SmsTemplate', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Updates the SMS template.
+     * Replaces the SMS template
      * Replace an SMS Template
      * @param templateId
      * @param smsTemplate
      */
-  async updateSmsTemplate(templateId, smsTemplate, _options) {
+  async replaceSmsTemplate(templateId, smsTemplate, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'templateId' is not null or undefined
     if (templateId === null || templateId === undefined) {
-      throw new baseapi_1.RequiredError('TemplateApi', 'updateSmsTemplate', 'templateId');
+      throw new baseapi_1.RequiredError('TemplateApi', 'replaceSmsTemplate', 'templateId');
     }
     // verify required parameter 'smsTemplate' is not null or undefined
     if (smsTemplate === null || smsTemplate === undefined) {
-      throw new baseapi_1.RequiredError('TemplateApi', 'updateSmsTemplate', 'smsTemplate');
+      throw new baseapi_1.RequiredError('TemplateApi', 'replaceSmsTemplate', 'smsTemplate');
     }
     // Path Params
     const path = '/api/v1/templates/sms/{templateId}';
@@ -253,12 +204,61 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Updates an SMS template
+     * Update an SMS Template
+     * @param templateId
+     * @param smsTemplate
+     */
+  async updateSmsTemplate(templateId, smsTemplate, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'templateId' is not null or undefined
+    if (templateId === null || templateId === undefined) {
+      throw new baseapi_1.RequiredError('TemplateApi', 'updateSmsTemplate', 'templateId');
+    }
+    // verify required parameter 'smsTemplate' is not null or undefined
+    if (smsTemplate === null || smsTemplate === undefined) {
+      throw new baseapi_1.RequiredError('TemplateApi', 'updateSmsTemplate', 'smsTemplate');
+    }
+    // Path Params
+    const path = '/api/v1/templates/sms/{templateId}';
+    const vars = {
+      ['templateId']: String(templateId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], smsTemplate);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(smsTemplate, 'SmsTemplate', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -398,10 +398,10 @@ class TemplateApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to partialUpdateSmsTemplate
+     * @params response Response returned by the server for a request to replaceSmsTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async partialUpdateSmsTemplate(response) {
+  async replaceSmsTemplate(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'SmsTemplate', '');

@@ -4,7 +4,7 @@ import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -12,7 +12,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-rule-operations`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.groups.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -39,14 +39,14 @@ describe('Group-Rule API tests', () => {
     await utils.cleanup(client, newUser, newGroup);
 
     const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
-    const createdGroup = await client.createGroup(newGroup);
+    const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
 
     // 2. Create group rules
     const rules = [];
     const namePrefixes = [
-      'RULE_AB',
-      'RULE_XY'
+      'RULE_ABC',
+      'RULE_XYZ'
     ];
     for (const prefix of namePrefixes) {
       for (let i = 0 ; i < 2 ; i++) {
@@ -75,18 +75,18 @@ describe('Group-Rule API tests', () => {
             }
           }
         };
-        const createdRule = await client.createGroupRule(rule);
+        const createdRule = await client.groupApi.createGroupRule({groupRule: rule});
         rules.push(createdRule);
       }
     }
     const firstRule = rules[0];
 
     // Activate first rule
-    await client.activateGroupRule(firstRule.id);
+    await client.groupApi.activateGroupRule({ruleId: firstRule.id});
 
     // 3a. List group rules
     let foundRule = false;
-    await (await client.listGroupRules()).each(rule => {
+    await (await client.groupApi.listGroupRules()).each(rule => {
       if (rule.id === firstRule.id) {
         foundRule = true;
         return false;
@@ -96,15 +96,15 @@ describe('Group-Rule API tests', () => {
 
     // 3b. Search group rules with pagination
     const filtered = new Set();
-    const collection = await client.listGroupRules({
-      search: 'RULE_AB',
+    const collection = await client.groupApi.listGroupRules({
+      search: 'RULE_ABC',
       limit: 1
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(rule => {
       expect(filtered.has(rule.name)).to.be.false;
       filtered.add(rule.name);
-      expect(rule.name.indexOf('RULE_AB')).to.not.equal(-1);
+      expect(rule.name.indexOf('RULE_ABC')).to.not.equal(-1);
     });
     expect(filtered.size).to.equal(2);
     expect(pageSpy.getCalls().length).to.equal(2);
@@ -115,21 +115,21 @@ describe('Group-Rule API tests', () => {
     expect(userInGroup).to.equal(true);
 
     // 4. Deactivate the rule and update it
-    await client.deactivateGroupRule(firstRule.id);
+    await client.groupApi.deactivateGroupRule({ruleId: firstRule.id});
 
-    firstRule.name = faker.random.word();
+    firstRule.name = `node-sdk: ${faker.random.word()}`;
     firstRule.conditions.expression.value = 'user.lastName=="incorrect"';
-    const updatedRule = await client.updateGroupRule(firstRule.id, firstRule);
-    await client.activateGroupRule(updatedRule.id);
+    const updatedRule = await client.groupApi.replaceGroupRule({ruleId: firstRule.id, groupRule: firstRule});
+    await client.groupApi.activateGroupRule({ruleId: updatedRule.id});
 
     // Triggering the updated rule will remove the user from group i.e. userInGroup = false
     userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
     // 5. Delete the group, user and group rules
-    await client.deactivateGroupRule(updatedRule.id);
+    await client.groupApi.deactivateGroupRule({ruleId: updatedRule.id});
     for (const rule of rules) {
-      await client.deleteGroupRule(rule.id);
+      await client.groupApi.deleteGroupRule({ruleId: rule.id});
     }
     await utils.cleanup(client, createdUser, createdGroup);
   });

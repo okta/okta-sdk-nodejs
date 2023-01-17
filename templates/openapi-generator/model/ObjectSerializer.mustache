@@ -97,7 +97,10 @@ let typeMap: {[index: string]: any} = {
   'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP,
   'BehaviorRule_VELOCITY': BehaviorRuleVelocity,
   'APNS': APNSPushProvider,
-  'FCM': FCMPushProvider
+  'FCM': FCMPushProvider,
+
+  'InlineHookChannel_HTTP': InlineHookChannelHttp,
+  'InlineHookChannel_OAUTH': InlineHookChannelOAuth,
 }
 
 export class ObjectSerializer {
@@ -143,8 +146,6 @@ export class ObjectSerializer {
         return data;
       } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
         return data;
-      } else if (format === 'date-time') {
-        return data;
       } else if (type.lastIndexOf('Array<', 0) === 0) { // string.startsWith pre es6
         let subType: string = type.replace('Array<', ''); // Array<Type> => Type>
         subType = subType.substring(0, subType.length - 1); // Type> => Type
@@ -163,8 +164,32 @@ export class ObjectSerializer {
 
           return data.getFullYear() + '-' + month + '-' + day;
         } else {
-          return data.toISOString();
+          // format === 'date-time'
+          return data.toISOString().replace(/\.\d{3}/, '');
         }
+      } else if (type === 'HttpFile') {
+        {{#platforms}}
+        {{#node}}
+        if (data.data) {
+          data = data.data;
+        }
+        if (data instanceof Buffer) {
+          return data.toString();
+        } else {
+          return data;
+        }
+        {{/node}}
+        {{#browser}}
+        // @ts-ignore
+        if (data.text) {
+          // TODO: serialize method should be async then
+          // @ts-ignore
+          return await data.text();
+        } else {
+          return data;
+        }
+        {{/browser}}
+        {{/platforms}}
       } else {
         if (enumsMap.has(type)) {
           return data;
@@ -246,7 +271,25 @@ export class ObjectSerializer {
     return certMediaTypes.includes(mediaType);
   }
 
-  public static getPreferredMediaTypeForCert(body?: string): string | undefined {
+  public static getPreferredMediaTypeForCert(body?: any): string | undefined {
+    {{#platforms}}
+    {{#node}}
+    if (body.data) {
+      body = body.data;
+    }
+    if (body instanceof Buffer) {
+      body = body.toString();
+    }
+    {{/node}}
+    {{#browser}}
+    // @ts-ignore
+    if (body.text) {
+      // TODO: getPreferredMediaTypeForCert method should be async then
+      // @ts-ignore
+      body = await body.text();
+    }
+    {{/browser}}
+    {{/platforms}}
     const isPem = typeof body === 'string' && body.indexOf('-----BEGIN') === 0;
     const isDer = typeof body === 'string' && body.charCodeAt(0) === 0x30;
     const isBase64 = typeof body === 'string' && !isPem && !isDer && /^[A-Za-z0-9+\/=\-_]+$/.test(body);
@@ -265,7 +308,7 @@ export class ObjectSerializer {
     * The order of the given media types does not have any impact on the choice
     * made.
     */
-  public static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: string): [string, string | undefined] {
+  public static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: any): [string, string | undefined] {
     /** According to OAS 3 we should default to json */
     if (!mediaTypes) {
       return ['application/json', undefined];

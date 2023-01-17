@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
+  Client,
   Collection,
   DefaultRequestExecutor,
   IdentityProvider,
@@ -8,8 +9,6 @@ import {
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockFacebookIdp = require('./mocks/facebook-idp.js');
 import getMockGoogleIdp = require('./mocks/google-idp.js');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -17,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-crud`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -25,28 +24,28 @@ const client: V2Client = utils.getV2Client({
 
 describe('Idp Crud API', () => {
   describe('List idps', () => {
-    const idps = [];
+    const idps: IdentityProvider[] = [];
     before(async () => {
-      const mockIdps = [
+      const mockIdps: IdentityProvider[] = [
         getMockGenericOidcIdp(),
         getMockGenericOidcIdp(),
         getMockFacebookIdp(),
         getMockGoogleIdp()
       ];
       for (const mockIdp of mockIdps) {
-        const idp = await client.createIdentityProvider(mockIdp);
+        const idp = await client.identityProviderApi.createIdentityProvider({ identityProvider: mockIdp });
         idps.push(idp);
       }
     });
 
     after(async () => {
       await Promise.all(idps.map(async idp =>
-        await client.deleteIdentityProvider(idp.id)
+        await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id})
       ));
     });
 
     it('should return a Collection of IdentityProvider', async () => {
-      const idps = await client.listIdentityProviders();
+      const idps = await client.identityProviderApi.listIdentityProviders();
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idp => {
         expect(idp).to.be.instanceOf(IdentityProvider);
@@ -55,7 +54,7 @@ describe('Idp Crud API', () => {
 
     it('should return a collection with pagination', async () => {
       const listIds = new Set();
-      const collection = await client.listIdentityProviders({
+      const collection = await client.identityProviderApi.listIdentityProviders({
         limit: 2
       });
       const pageSpy = spy(collection, 'getNextPage');
@@ -69,40 +68,40 @@ describe('Idp Crud API', () => {
 
     // TODO: OKTA-515269 - Filter by type does not work correctly
     xit('should filter idps by type', async () => {
-      await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
-      await (await client.listIdentityProviders({ type: 'GOOGLE' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ type: 'GOOGLE' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ type: 'OIDC' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ type: 'OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
 
     // TODO: OKTA-515269 - Filter with q does not work correctly
     xit('should search idps with q', async () => {
-      await (await client.listIdentityProviders({ q: 'node-sdk: Facebook' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ q: 'node-sdk: Facebook' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
-      await (await client.listIdentityProviders({ q: 'node-sdk: Google' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ q: 'node-sdk: Google' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ q: 'node-sdk: OIDC' })).each(idp => {
+      await (await client.identityProviderApi.listIdentityProviders({ q: 'node-sdk: OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
   });
 
   describe('Create idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     afterEach(async () => {
-      await client.deleteIdentityProvider(idp.id);
+      await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
     });
 
     it('should create instance of IdentityProvider', async () => {
       const mockGenericOidcIdp = getMockGenericOidcIdp();
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+      idp = await client.identityProviderApi.createIdentityProvider({identityProvider: mockGenericOidcIdp});
       expect(idp).to.be.instanceOf(IdentityProvider);
       expect(idp).to.have.property('id');
       expect(idp.name).to.equal(mockGenericOidcIdp.name);
@@ -112,52 +111,52 @@ describe('Idp Crud API', () => {
   });
 
   describe('Get idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+      idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
 
     afterEach(async () => {
-      await client.deleteIdentityProvider(idp.id);
+      await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
     });
 
     it('should get IdentityProvider by id', async () => {
-      const idpFromGet = await client.getIdentityProvider(idp.id);
+      const idpFromGet = await client.identityProviderApi.getIdentityProvider({idpId: idp.id});
       expect(idpFromGet).to.be.instanceOf(IdentityProvider);
       expect(idpFromGet.name).to.equal(idp.name);
     });
   });
 
   describe('Update idp', () => {
-    let idp;
-    let updatedIdp;
+    let idp: IdentityProvider;
+    let updatedIdp: IdentityProvider;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+      idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
 
     afterEach(async () => {
-      await client.deleteIdentityProvider(idp.id);
+      await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
     });
 
     it('should update all properties in template', async () => {
       const mockName = 'Mock update idp';
       idp.name = mockName;
-      updatedIdp = await client.updateIdentityProvider(idp.id, idp);
+      updatedIdp = await client.identityProviderApi.replaceIdentityProvider({idpId: idp.id, identityProvider: idp});
       expect(updatedIdp.id).to.equal(idp.id);
       expect(updatedIdp.name).to.equal(mockName);
     });
   });
 
   describe('Delete idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+      idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
 
     it('should not get idp after deletion', async () => {
-      await client.deleteIdentityProvider(idp.id);
+      await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
       try {
-        await client.getIdentityProvider(idp.id);
+        await client.identityProviderApi.getIdentityProvider({idpId: idp.id});
       } catch (e) {
         expect(e.status).to.equal(404);
       }

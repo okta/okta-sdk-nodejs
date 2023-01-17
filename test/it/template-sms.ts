@@ -3,10 +3,9 @@ import {
   Collection,
   DefaultRequestExecutor,
   SmsTemplate,
+  Client
 } from '@okta/okta-sdk-nodejs';
 import getGeneralFakeTemplateObj = require('./mocks/template-sms');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -14,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/template-sms`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -22,48 +21,64 @@ const client: V2Client = utils.getV2Client({
 
 describe('SmsTemplate API', () => {
   describe('List templates', () => {
-    let template;
-    let fakeTemplateObj;
+    let template: SmsTemplate;
+    let fakeTemplateObj: SmsTemplate;
     beforeEach(async () => {
       fakeTemplateObj = getGeneralFakeTemplateObj();
-      template = await client.createSmsTemplate(fakeTemplateObj);
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: fakeTemplateObj
+      });
     });
 
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
     });
 
     it('should return a Collection', async () => {
-      const templates = await client.listSmsTemplates();
+      const templates = await client.templateApi.listSmsTemplates();
       expect(templates).to.be.instanceOf(Collection);
     });
 
     it('should resolve SmsTemplate in collection', async () => {
-      await (await client.listSmsTemplates()).each(template => {
+      await (await client.templateApi.listSmsTemplates()).each(template => {
         expect(template).to.be.instanceOf(SmsTemplate);
       });
     });
 
     it('should return a collection of templates by templateType', async () => {
-      fakeTemplateObj.type = 'fake_type';
-      const fakeTemplateInstance = await client.createSmsTemplate(fakeTemplateObj);
-      const collection = await client.listSmsTemplates({ templateType: 'fake_type' });
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      (fakeTemplateObj as any).type = 'fake_type';
+      const fakeTemplateInstance = await client.templateApi.createSmsTemplate({
+        smsTemplate: fakeTemplateObj
+      });
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      const collection = await client.templateApi.listSmsTemplates({
+        templateType: 'fake_type'
+      } as any);
       await collection.each(template => {
         expect(template.type).to.equal('fake_type');
       });
-      await client.deleteSmsTemplate(fakeTemplateInstance.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: fakeTemplateInstance.id
+      });
     });
   });
 
   describe('Create template', () => {
     let template;
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
     });
 
     it('should return correct model', async () => {
       const mockTemplate = getGeneralFakeTemplateObj();
-      template = await client.createSmsTemplate(mockTemplate);
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: mockTemplate
+      });
       expect(template).to.be.instanceOf(SmsTemplate);
       expect(template).to.have.property('id');
       expect(template.name).to.equal(mockTemplate.name);
@@ -71,19 +86,27 @@ describe('SmsTemplate API', () => {
   });
 
   describe('Delete template', () => {
-    let template;
+    let template: SmsTemplate;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: getGeneralFakeTemplateObj()
+      });
     });
 
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
     });
 
     it('should not get template after deletion', async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
       try {
-        await client.getSmsTemplate(template.id);
+        await client.templateApi.getSmsTemplate({
+          templateId: template.id
+        });
       } catch (e) {
         expect(e.status).to.equal(404);
       }
@@ -91,17 +114,23 @@ describe('SmsTemplate API', () => {
   });
 
   describe('Get template', () => {
-    let template;
+    let template: SmsTemplate;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: getGeneralFakeTemplateObj()
+      });
     });
 
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
     });
 
     it('should get SmsTemplate by id', async () => {
-      const templateFromGet = await client.getSmsTemplate(template.id);
+      const templateFromGet = await client.templateApi.getSmsTemplate({
+        templateId: template.id
+      });
       expect(templateFromGet).to.be.instanceOf(SmsTemplate);
       expect(templateFromGet.name).to.equal(template.name);
     });
@@ -110,15 +139,22 @@ describe('SmsTemplate API', () => {
   describe('Partial Update template', () => {
     let template;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: getGeneralFakeTemplateObj()
+      });
     });
 
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
     });
 
     it('should update template name property', async () => {
-      const updatedTemplate = await client.partialUpdateSmsTemplate(template.id, { name: 'fake updated name' });
+      const updatedTemplate = await client.templateApi.updateSmsTemplate({
+        templateId: template.id,
+        smsTemplate: { name: 'fake updated name' }
+      });
       expect(updatedTemplate).to.be.instanceOf(SmsTemplate);
       expect(updatedTemplate.id).to.equal(template.id);
       expect(updatedTemplate.name).to.equal('fake updated name');
@@ -130,21 +166,30 @@ describe('SmsTemplate API', () => {
     let template;
     let updatedTemplate;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
+      template = await client.templateApi.createSmsTemplate({
+        smsTemplate: getGeneralFakeTemplateObj()
+      });
     });
 
     afterEach(async () => {
-      await client.deleteSmsTemplate(template.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: template.id
+      });
       // Clean up updated resource here
       // Since new resource might be created if template type is changed during update.
-      await client.deleteSmsTemplate(updatedTemplate.id);
+      await client.templateApi.deleteSmsTemplate({
+        templateId: updatedTemplate.id
+      });
     });
 
     it('should update all properties in template', async () => {
-      updatedTemplate = await client.updateSmsTemplate(template.id,  {
-        name: 'fake updated name',
-        type: 'SMS_VERIFY_CODE',
-        template: 'Your fake updated verification code is ${code}.'
+      updatedTemplate = await client.templateApi.replaceSmsTemplate({
+        templateId: template.id,
+        smsTemplate: {
+          name: 'fake updated name',
+          type: 'SMS_VERIFY_CODE',
+          template: 'Your fake updated verification code is ${code}.'
+        }
       });
       expect(updatedTemplate.name).to.equal('fake updated name');
       expect(updatedTemplate.translations).to.be.undefined;

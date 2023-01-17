@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Adds a new Device Assurance Policy.
+     * Creates a new Device Assurance Policy
      * Create a Device Assurance Policy
      * @param deviceAssurance
      */
@@ -50,12 +50,12 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+     * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
      * Delete a Device Assurance Policy
      * @param deviceAssuranceId Id of the Device Assurance Policy
      */
@@ -86,12 +86,12 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+     * Retrieves a Device Assurance Policy by `deviceAssuranceId`
      * Retrieve a Device Assurance Policy
      * @param deviceAssuranceId Id of the Device Assurance Policy
      */
@@ -122,12 +122,12 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates Device Assurance Policies in your organization.
+     * Lists all device assurance policies
      * List all Device Assurance Policies
      */
   async listDeviceAssurancePolicies(_options) {
@@ -150,12 +150,12 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -166,20 +166,20 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates a Device Assurance Policy by `deviceAssuranceId`.
+     * Replaces a Device Assurance Policy by `deviceAssuranceId`
      * Replace a Device Assurance Policy
      * @param deviceAssuranceId Id of the Device Assurance Policy
      * @param deviceAssurance
      */
-  async updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
+  async replaceDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'deviceAssuranceId' is not null or undefined
     if (deviceAssuranceId === null || deviceAssuranceId === undefined) {
-      throw new baseapi_1.RequiredError('DeviceAssuranceApi', 'updateDeviceAssurancePolicy', 'deviceAssuranceId');
+      throw new baseapi_1.RequiredError('DeviceAssuranceApi', 'replaceDeviceAssurancePolicy', 'deviceAssuranceId');
     }
     // verify required parameter 'deviceAssurance' is not null or undefined
     if (deviceAssurance === null || deviceAssurance === undefined) {
-      throw new baseapi_1.RequiredError('DeviceAssuranceApi', 'updateDeviceAssurancePolicy', 'deviceAssurance');
+      throw new baseapi_1.RequiredError('DeviceAssuranceApi', 'replaceDeviceAssurancePolicy', 'deviceAssurance');
     }
     // Path Params
     const path = '/api/v1/device-assurances/{deviceAssuranceId}';
@@ -199,12 +199,12 @@ class DeviceAssuranceApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -348,10 +348,10 @@ class DeviceAssuranceApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateDeviceAssurancePolicy
+     * @params response Response returned by the server for a request to replaceDeviceAssurancePolicy
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updateDeviceAssurancePolicy(response) {
+  async replaceDeviceAssurancePolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'DeviceAssurance', '');
@@ -364,6 +364,10 @@ class DeviceAssuranceApiResponseProcessor {
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');

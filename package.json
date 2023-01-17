@@ -1,6 +1,6 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "7.0.0-rc1",
+  "version": "7.0.0-rc.2",
   "description": "Okta API wrapper for Node.js",
   "engines": {
     "node": ">=14.0"
@@ -26,13 +26,14 @@
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.js",
+    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.ts",
     "validate:v2-v3": "node scripts/validate.js ./spec/management.yaml"
   },
   "keywords": [],
   "license": "Apache-2.0",
   "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
+    "@types/node-forge": "^1.3.1",
     "deep-copy": "^1.4.2",
     "form-data": "^4.0.0",
     "https-proxy-agent": "^5.0.0",
@@ -46,6 +47,7 @@
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
     "@faker-js/faker": "^5.5.3",
     "@okta/openapi": "^2.11.1",
     "@openapitools/openapi-generator-cli": "^2.5.1",
@@ -77,8 +79,7 @@
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.11.0",
     "tsd": "^0.18.0",
-    "typescript": "^4.4.4",
-    "@apidevtools/swagger-parser": "^10.1.0"
+    "typescript": "^4.4.4"
   },
   "resolutions": {
     "node-fetch": "^2.6.7",

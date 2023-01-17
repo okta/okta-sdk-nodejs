@@ -20,7 +20,7 @@ const client = new Client({
 describe('Agent Pools API', () => {
   describe('List Agent Pools', () => {
     it('should return a Collection', async () => {
-      const agentPools = await client.agentPoolsApi.getAgentPools();
+      const agentPools = await client.agentPoolsApi.listAgentPools();
       expect(agentPools).to.be.instanceOf(Collection);
       await agentPools.each(ap => {
         expect(ap).to.be.instanceOf(AgentPool);

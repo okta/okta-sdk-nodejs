@@ -100,7 +100,7 @@ describe('Behavior API', () => {
     it('should update rule of type VELOCITY', async () => {
       rule.name += ' (updated)';
       rule.settings.velocityKph = 900;
-      const updatedRule: BehaviorRuleVelocity = await client.behaviorApi.updateBehaviorDetectionRule({
+      const updatedRule: BehaviorRuleVelocity = await client.behaviorApi.replaceBehaviorDetectionRule({
         behaviorId: rule.id,
         rule,
       });

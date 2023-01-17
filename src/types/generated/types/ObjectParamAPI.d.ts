@@ -26,6 +26,7 @@ import { Application } from '../models/Application';
 import { ApplicationFeature } from '../models/ApplicationFeature';
 import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment';
 import { ApplicationLayout } from '../models/ApplicationLayout';
+import { ApplicationLayouts } from '../models/ApplicationLayouts';
 import { AssignRoleRequest } from '../models/AssignRoleRequest';
 import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -35,15 +36,20 @@ import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
 import { Brand } from '../models/Brand';
+import { BrandDomains } from '../models/BrandDomains';
+import { BrandRequest } from '../models/BrandRequest';
+import { BulkDeleteRequestBody } from '../models/BulkDeleteRequestBody';
+import { BulkUpsertRequestBody } from '../models/BulkUpsertRequestBody';
 import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
 import { CapabilitiesObject } from '../models/CapabilitiesObject';
 import { CatalogApplication } from '../models/CatalogApplication';
 import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
+import { CreateBrandRequest } from '../models/CreateBrandRequest';
 import { CreateSessionRequest } from '../models/CreateSessionRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
-import { CustomizablePage } from '../models/CustomizablePage';
+import { Device } from '../models/Device';
 import { DeviceAssurance } from '../models/DeviceAssurance';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
@@ -57,22 +63,32 @@ import { EmailDomainResponse } from '../models/EmailDomainResponse';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
+import { ErrorPage } from '../models/ErrorPage';
 import { EventHook } from '../models/EventHook';
 import { Feature } from '../models/Feature';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { Group } from '../models/Group';
+import { GroupOwner } from '../models/GroupOwner';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { HookKey } from '../models/HookKey';
 import { HostedPage } from '../models/HostedPage';
+import { IamRole } from '../models/IamRole';
+import { IamRoles } from '../models/IamRoles';
 import { IdentityProvider } from '../models/IdentityProvider';
 import { IdentityProviderApplicationUser } from '../models/IdentityProviderApplicationUser';
+import { IdentitySourceSession } from '../models/IdentitySourceSession';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { InlineHook } from '../models/InlineHook';
 import { InlineHookResponse } from '../models/InlineHookResponse';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
+import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { LogEvent } from '../models/LogEvent';
+import { LogStream } from '../models/LogStream';
+import { LogStreamSchema } from '../models/LogStreamSchema';
+import { LogStreamType } from '../models/LogStreamType';
 import { NetworkZone } from '../models/NetworkZone';
 import { OAuth2Claim } from '../models/OAuth2Claim';
 import { OAuth2Client } from '../models/OAuth2Client';
@@ -86,6 +102,10 @@ import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetti
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
+import { PageRoot } from '../models/PageRoot';
+import { PerClientRateLimitSettings } from '../models/PerClientRateLimitSettings';
+import { Permission } from '../models/Permission';
+import { Permissions } from '../models/Permissions';
 import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
@@ -94,7 +114,20 @@ import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
 import { PushProvider } from '../models/PushProvider';
+import { RateLimitAdminNotifications } from '../models/RateLimitAdminNotifications';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
+import { ResourceSet } from '../models/ResourceSet';
+import { ResourceSetBindingAddMembersRequest } from '../models/ResourceSetBindingAddMembersRequest';
+import { ResourceSetBindingCreateRequest } from '../models/ResourceSetBindingCreateRequest';
+import { ResourceSetBindingMember } from '../models/ResourceSetBindingMember';
+import { ResourceSetBindingMembers } from '../models/ResourceSetBindingMembers';
+import { ResourceSetBindingResponse } from '../models/ResourceSetBindingResponse';
+import { ResourceSetBindings } from '../models/ResourceSetBindings';
+import { ResourceSetResourcePatchRequest } from '../models/ResourceSetResourcePatchRequest';
+import { ResourceSetResources } from '../models/ResourceSetResources';
+import { ResourceSets } from '../models/ResourceSets';
+import { RiskEvent } from '../models/RiskEvent';
+import { RiskProvider } from '../models/RiskProvider';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
 import { Session } from '../models/Session';
@@ -108,18 +141,23 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
+import { UserBlock } from '../models/UserBlock';
 import { UserCredentials } from '../models/UserCredentials';
 import { UserFactor } from '../models/UserFactor';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
+import { UserLockoutSettings } from '../models/UserLockoutSettings';
 import { UserNextLogin } from '../models/UserNextLogin';
 import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { VerifyFactorRequest } from '../models/VerifyFactorRequest';
 import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
+import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
+import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export interface AgentPoolsApiActivateAgentPoolsUpdateRequest {
     /**
@@ -177,26 +215,6 @@ export interface AgentPoolsApiDeleteAgentPoolsUpdateRequest {
       */
     updateId: string;
 }
-export interface AgentPoolsApiGetAgentPoolsRequest {
-    /**
-      * Maximum number of AgentPools being returned
-      * @type number
-      * @memberof AgentPoolsApigetAgentPools
-      */
-    limitPerPoolType?: number;
-    /**
-      * Agent type to search for
-      * @type AgentType
-      * @memberof AgentPoolsApigetAgentPools
-      */
-    poolType?: AgentType;
-    /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-      * @type string
-      * @memberof AgentPoolsApigetAgentPools
-      */
-    after?: string;
-}
 export interface AgentPoolsApiGetAgentPoolsUpdateInstanceRequest {
     /**
       * Id of the agent pool for which the settings will apply
@@ -219,17 +237,37 @@ export interface AgentPoolsApiGetAgentPoolsUpdateSettingsRequest {
       */
     poolId: string;
 }
-export interface AgentPoolsApiGetAgentPoolsUpdatesRequest {
+export interface AgentPoolsApiListAgentPoolsRequest {
+    /**
+      * Maximum number of AgentPools being returned
+      * @type number
+      * @memberof AgentPoolsApilistAgentPools
+      */
+    limitPerPoolType?: number;
+    /**
+      * Agent type to search for
+      * @type AgentType
+      * @memberof AgentPoolsApilistAgentPools
+      */
+    poolType?: AgentType;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof AgentPoolsApilistAgentPools
+      */
+    after?: string;
+}
+export interface AgentPoolsApiListAgentPoolsUpdatesRequest {
     /**
       * Id of the agent pool for which the settings will apply
       * @type string
-      * @memberof AgentPoolsApigetAgentPoolsUpdates
+      * @memberof AgentPoolsApilistAgentPoolsUpdates
       */
     poolId: string;
     /**
       * Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       * @type boolean
-      * @memberof AgentPoolsApigetAgentPoolsUpdates
+      * @memberof AgentPoolsApilistAgentPoolsUpdates
       */
     scheduled?: boolean;
 }
@@ -275,20 +313,6 @@ export interface AgentPoolsApiRetryAgentPoolsUpdateRequest {
       */
     updateId: string;
 }
-export interface AgentPoolsApiSetAgentPoolsUpdateSettingsRequest {
-    /**
-      * Id of the agent pool for which the settings will apply
-      * @type string
-      * @memberof AgentPoolsApisetAgentPoolsUpdateSettings
-      */
-    poolId: string;
-    /**
-      *
-      * @type AgentPoolUpdateSetting
-      * @memberof AgentPoolsApisetAgentPoolsUpdateSettings
-      */
-    AgentPoolUpdateSetting: AgentPoolUpdateSetting;
-}
 export interface AgentPoolsApiStopAgentPoolsUpdateRequest {
     /**
       * Id of the agent pool for which the settings will apply
@@ -323,6 +347,20 @@ export interface AgentPoolsApiUpdateAgentPoolsUpdateRequest {
       */
     AgentPoolUpdate: AgentPoolUpdate;
 }
+export interface AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApiupdateAgentPoolsUpdateSettings
+      */
+    poolId: string;
+    /**
+      *
+      * @type AgentPoolUpdateSetting
+      * @memberof AgentPoolsApiupdateAgentPoolsUpdateSettings
+      */
+    AgentPoolUpdateSetting: AgentPoolUpdateSetting;
+}
 export declare class ObjectAgentPoolsApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
@@ -351,29 +389,29 @@ export declare class ObjectAgentPoolsApi {
       */
   deleteAgentPoolsUpdate(param: AgentPoolsApiDeleteAgentPoolsUpdateRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches AgentPools based on request parameters for a given org
-      * List all Agent Pools
-      * @param param the request object
-      */
-  getAgentPools(param?: AgentPoolsApiGetAgentPoolsRequest, options?: Configuration): Promise<Collection<AgentPool>>;
-  /**
-      * Gets Agent pool update from updateId
+      * Retrieves Agent pool update from updateId
       * Retrieve an Agent Pool update by id
       * @param param the request object
       */
   getAgentPoolsUpdateInstance(param: AgentPoolsApiGetAgentPoolsUpdateInstanceRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Gets the current state of the agent pool update instance settings
+      * Retrieves the current state of the agent pool update instance settings
       * Retrieve an Agent Pool update's settings
       * @param param the request object
       */
   getAgentPoolsUpdateSettings(param: AgentPoolsApiGetAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
   /**
-      * Gets List of Agent pool updates
+      * Lists all agent pools with pagination support
+      * List all Agent Pools
+      * @param param the request object
+      */
+  listAgentPools(param?: AgentPoolsApiListAgentPoolsRequest, options?: Configuration): Promise<Collection<AgentPool>>;
+  /**
+      * Lists all agent pool updates
       * List all Agent Pool updates
       * @param param the request object
       */
-  getAgentPoolsUpdates(param: AgentPoolsApiGetAgentPoolsUpdatesRequest, options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
+  listAgentPoolsUpdates(param: AgentPoolsApiListAgentPoolsUpdatesRequest, options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
   /**
       * Pauses running or queued Agent pool update
       * Pause an Agent Pool update
@@ -393,12 +431,6 @@ export declare class ObjectAgentPoolsApi {
       */
   retryAgentPoolsUpdate(param: AgentPoolsApiRetryAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Updates Agent pool update settings
-      * Update an Agent pool update settings
-      * @param param the request object
-      */
-  setAgentPoolsUpdateSettings(param: AgentPoolsApiSetAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
-  /**
       * Stops Agent pool update
       * Stop an Agent Pool update
       * @param param the request object
@@ -410,6 +442,12 @@ export declare class ObjectAgentPoolsApi {
       * @param param the request object
       */
   updateAgentPoolsUpdate(param: AgentPoolsApiUpdateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Updates an agent pool update settings
+      * Update an Agent Pool update settings
+      * @param param the request object
+      */
+  updateAgentPoolsUpdateSettings(param: AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
 }
 import { ApiTokenApiRequestFactory, ApiTokenApiResponseProcessor } from '../apis/ApiTokenApi';
 export interface ApiTokenApiGetApiTokenRequest {
@@ -422,7 +460,7 @@ export interface ApiTokenApiGetApiTokenRequest {
 }
 export interface ApiTokenApiListApiTokensRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @type string
       * @memberof ApiTokenApilistApiTokens
       */
@@ -454,25 +492,25 @@ export declare class ObjectApiTokenApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: ApiTokenApiRequestFactory, responseProcessor?: ApiTokenApiResponseProcessor);
   /**
-      * Get the metadata for an active API token by id.
+      * Retrieves the metadata for an active API token by id
       * Retrieve an API Token's Metadata
       * @param param the request object
       */
   getApiToken(param: ApiTokenApiGetApiTokenRequest, options?: Configuration): Promise<ApiToken>;
   /**
-      * Enumerates the metadata of the active API tokens in your organization.
+      * Lists all the metadata of the active API tokens
       * List all API Token Metadata
       * @param param the request object
       */
   listApiTokens(param?: ApiTokenApiListApiTokensRequest, options?: Configuration): Promise<Collection<ApiToken>>;
   /**
-      * Revoke an API token by id.
+      * Revokes an API token by `apiTokenId`
       * Revoke an API Token
       * @param param the request object
       */
   revokeApiToken(param: ApiTokenApiRevokeApiTokenRequest, options?: Configuration): Promise<void>;
   /**
-      * Revokes the API token provided in the Authorization header.
+      * Revokes the API token provided in the Authorization header
       * Revoke the Current API Token
       * @param param the request object
       */
@@ -494,6 +532,40 @@ export interface ApplicationApiActivateDefaultProvisioningConnectionForApplicati
       * @memberof ApplicationApiactivateDefaultProvisioningConnectionForApplication
       */
     appId: string;
+}
+export interface ApplicationApiAssignApplicationPolicyRequest {
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiassignApplicationPolicy
+      */
+    appId: string;
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiassignApplicationPolicy
+      */
+    policyId: string;
+}
+export interface ApplicationApiAssignGroupToApplicationRequest {
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiassignGroupToApplication
+      */
+    appId: string;
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiassignGroupToApplication
+      */
+    groupId: string;
+    /**
+      *
+      * @type ApplicationGroupAssignment
+      * @memberof ApplicationApiassignGroupToApplication
+      */
+    applicationGroupAssignment?: ApplicationGroupAssignment;
 }
 export interface ApplicationApiAssignUserToApplicationRequest {
     /**
@@ -549,26 +621,6 @@ export interface ApplicationApiCreateApplicationRequest {
       */
     OktaAccessGateway_Agent?: string;
 }
-export interface ApplicationApiCreateApplicationGroupAssignmentRequest {
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApicreateApplicationGroupAssignment
-      */
-    appId: string;
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApicreateApplicationGroupAssignment
-      */
-    groupId: string;
-    /**
-      *
-      * @type ApplicationGroupAssignment
-      * @memberof ApplicationApicreateApplicationGroupAssignment
-      */
-    applicationGroupAssignment?: ApplicationGroupAssignment;
-}
 export interface ApplicationApiDeactivateApplicationRequest {
     /**
       *
@@ -592,40 +644,6 @@ export interface ApplicationApiDeleteApplicationRequest {
       * @memberof ApplicationApideleteApplication
       */
     appId: string;
-}
-export interface ApplicationApiDeleteApplicationGroupAssignmentRequest {
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApideleteApplicationGroupAssignment
-      */
-    appId: string;
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApideleteApplicationGroupAssignment
-      */
-    groupId: string;
-}
-export interface ApplicationApiDeleteApplicationUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApideleteApplicationUser
-      */
-    appId: string;
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApideleteApplicationUser
-      */
-    userId: string;
-    /**
-      *
-      * @type boolean
-      * @memberof ApplicationApideleteApplicationUser
-      */
-    sendEmail?: boolean;
 }
 export interface ApplicationApiGenerateApplicationKeyRequest {
     /**
@@ -1011,6 +1029,20 @@ export interface ApplicationApiPublishCsrFromApplicationRequest {
       */
     body: HttpFile;
 }
+export interface ApplicationApiReplaceApplicationRequest {
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApireplaceApplication
+      */
+    appId: string;
+    /**
+      *
+      * @type Application
+      * @memberof ApplicationApireplaceApplication
+      */
+    application: Application;
+}
 export interface ApplicationApiRevokeCsrFromApplicationRequest {
     /**
       *
@@ -1061,39 +1093,39 @@ export interface ApplicationApiRevokeScopeConsentGrantRequest {
       */
     grantId: string;
 }
-export interface ApplicationApiSetDefaultProvisioningConnectionForApplicationRequest {
+export interface ApplicationApiUnassignApplicationFromGroupRequest {
     /**
       *
       * @type string
-      * @memberof ApplicationApisetDefaultProvisioningConnectionForApplication
+      * @memberof ApplicationApiunassignApplicationFromGroup
       */
     appId: string;
     /**
       *
-      * @type ProvisioningConnectionRequest
-      * @memberof ApplicationApisetDefaultProvisioningConnectionForApplication
+      * @type string
+      * @memberof ApplicationApiunassignApplicationFromGroup
       */
-    ProvisioningConnectionRequest: ProvisioningConnectionRequest;
+    groupId: string;
+}
+export interface ApplicationApiUnassignUserFromApplicationRequest {
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiunassignUserFromApplication
+      */
+    appId: string;
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiunassignUserFromApplication
+      */
+    userId: string;
     /**
       *
       * @type boolean
-      * @memberof ApplicationApisetDefaultProvisioningConnectionForApplication
+      * @memberof ApplicationApiunassignUserFromApplication
       */
-    activate?: boolean;
-}
-export interface ApplicationApiUpdateApplicationRequest {
-    /**
-      *
-      * @type string
-      * @memberof ApplicationApiupdateApplication
-      */
-    appId: string;
-    /**
-      *
-      * @type Application
-      * @memberof ApplicationApiupdateApplication
-      */
-    application: Application;
+    sendEmail?: boolean;
 }
 export interface ApplicationApiUpdateApplicationUserRequest {
     /**
@@ -1114,6 +1146,26 @@ export interface ApplicationApiUpdateApplicationUserRequest {
       * @memberof ApplicationApiupdateApplicationUser
       */
     appUser: AppUser;
+}
+export interface ApplicationApiUpdateDefaultProvisioningConnectionForApplicationRequest {
+    /**
+      *
+      * @type string
+      * @memberof ApplicationApiupdateDefaultProvisioningConnectionForApplication
+      */
+    appId: string;
+    /**
+      *
+      * @type ProvisioningConnectionRequest
+      * @memberof ApplicationApiupdateDefaultProvisioningConnectionForApplication
+      */
+    ProvisioningConnectionRequest: ProvisioningConnectionRequest;
+    /**
+      *
+      * @type boolean
+      * @memberof ApplicationApiupdateDefaultProvisioningConnectionForApplication
+      */
+    activate?: boolean;
 }
 export interface ApplicationApiUpdateFeatureForApplicationRequest {
     /**
@@ -1153,17 +1205,29 @@ export declare class ObjectApplicationApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: ApplicationApiRequestFactory, responseProcessor?: ApplicationApiResponseProcessor);
   /**
-      * Activates an inactive application.
+      * Activates an inactive application
       * Activate an Application
       * @param param the request object
       */
   activateApplication(param: ApplicationApiActivateApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Activates the default Provisioning Connection for an application.
+      * Activates the default Provisioning Connection for an application
       * Activate the default Provisioning Connection
       * @param param the request object
       */
   activateDefaultProvisioningConnectionForApplication(param: ApplicationApiActivateDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns an application to a policy identified by `policyId`. If the application was previously assigned to another policy, this removes that assignment.
+      * Assign an Application to a Policy
+      * @param param the request object
+      */
+  assignApplicationPolicy(param: ApplicationApiAssignApplicationPolicyRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns a group to an application
+      * Assign a Group
+      * @param param the request object
+      */
+  assignGroupToApplication(param: ApplicationApiAssignGroupToApplicationRequest, options?: Configuration): Promise<ApplicationGroupAssignment>;
   /**
       * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
       * Assign a User
@@ -1177,47 +1241,29 @@ export declare class ObjectApplicationApi {
       */
   cloneApplicationKey(param: ApplicationApiCloneApplicationKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Adds a new application to your Okta organization.
+      * Creates a new application to your Okta organization
       * Create an Application
       * @param param the request object
       */
   createApplication(param: ApplicationApiCreateApplicationRequest, options?: Configuration): Promise<Application>;
   /**
-      * Assigns a group to an application
-      * Assign a Group
-      * @param param the request object
-      */
-  createApplicationGroupAssignment(param: ApplicationApiCreateApplicationGroupAssignmentRequest, options?: Configuration): Promise<ApplicationGroupAssignment>;
-  /**
-      * Deactivates an active application.
+      * Deactivates an active application
       * Deactivate an Application
       * @param param the request object
       */
   deactivateApplication(param: ApplicationApiDeactivateApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Deactivates the default Provisioning Connection for an application.
+      * Deactivates the default Provisioning Connection for an application
       * Deactivate the default Provisioning Connection for an Application
       * @param param the request object
       */
   deactivateDefaultProvisioningConnectionForApplication(param: ApplicationApiDeactivateDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes an inactive application.
+      * Deletes an inactive application
       * Delete an Application
       * @param param the request object
       */
   deleteApplication(param: ApplicationApiDeleteApplicationRequest, options?: Configuration): Promise<void>;
-  /**
-      * Removes a group assignment from an application.
-      * Unassign a Group
-      * @param param the request object
-      */
-  deleteApplicationGroupAssignment(param: ApplicationApiDeleteApplicationGroupAssignmentRequest, options?: Configuration): Promise<void>;
-  /**
-      * Removes an assignment for a user from an application.
-      * Unassign a User
-      * @param param the request object
-      */
-  deleteApplicationUser(param: ApplicationApiDeleteApplicationUserRequest, options?: Configuration): Promise<void>;
   /**
       * Generates a new X.509 certificate for an application key credential
       * Generate a Key Credential
@@ -1225,61 +1271,61 @@ export declare class ObjectApplicationApi {
       */
   generateApplicationKey(param: ApplicationApiGenerateApplicationKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Generates a new key pair and returns the Certificate Signing Request for it.
+      * Generates a new key pair and returns the Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param param the request object
       */
   generateCsrForApplication(param: ApplicationApiGenerateCsrForApplicationRequest, options?: Configuration): Promise<Csr>;
   /**
-      * Fetches an application from your Okta organization by `id`.
+      * Retrieves an application from your Okta organization by `id`
       * Retrieve an Application
       * @param param the request object
       */
   getApplication(param: ApplicationApiGetApplicationRequest, options?: Configuration): Promise<Application>;
   /**
-      * Fetches an application group assignment
+      * Retrieves an application group assignment
       * Retrieve an Assigned Group
       * @param param the request object
       */
   getApplicationGroupAssignment(param: ApplicationApiGetApplicationGroupAssignmentRequest, options?: Configuration): Promise<ApplicationGroupAssignment>;
   /**
-      * Gets a specific application key credential by kid
+      * Retrieves a specific application key credential by kid
       * Retrieve a Key Credential
       * @param param the request object
       */
   getApplicationKey(param: ApplicationApiGetApplicationKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Fetches a specific user assignment for application by `id`.
+      * Retrieves a specific user assignment for application by `id`
       * Retrieve an Assigned User
       * @param param the request object
       */
   getApplicationUser(param: ApplicationApiGetApplicationUserRequest, options?: Configuration): Promise<AppUser>;
   /**
-      * Fetches a certificate signing request for the app by `id`.
+      * Retrieves a certificate signing request for the app by `id`
       * Retrieve a Certificate Signing Request
       * @param param the request object
       */
   getCsrForApplication(param: ApplicationApiGetCsrForApplicationRequest, options?: Configuration): Promise<Csr>;
   /**
-      * Get default Provisioning Connection for application
+      * Retrieves the default Provisioning Connection for application
       * Retrieve the default Provisioning Connection
       * @param param the request object
       */
   getDefaultProvisioningConnectionForApplication(param: ApplicationApiGetDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<ProvisioningConnection>;
   /**
-      * Fetches a Feature object for an application.
+      * Retrieves a Feature object for an application
       * Retrieve a Feature
       * @param param the request object
       */
   getFeatureForApplication(param: ApplicationApiGetFeatureForApplicationRequest, options?: Configuration): Promise<ApplicationFeature>;
   /**
-      * Gets a token for the specified application
+      * Retrieves a token for the specified application
       * Retrieve an OAuth 2.0 Token
       * @param param the request object
       */
   getOAuth2TokenForApplication(param: ApplicationApiGetOAuth2TokenForApplicationRequest, options?: Configuration): Promise<OAuth2Token>;
   /**
-      * Fetches a single scope consent grant for the application
+      * Retrieves a single scope consent grant for the application
       * Retrieve a Scope Consent Grant
       * @param param the request object
       */
@@ -1291,37 +1337,37 @@ export declare class ObjectApplicationApi {
       */
   grantConsentToScope(param: ApplicationApiGrantConsentToScopeRequest, options?: Configuration): Promise<OAuth2ScopeConsentGrant>;
   /**
-      * Enumerates group assignments for an application.
+      * Lists all group assignments for an application
       * List all Assigned Groups
       * @param param the request object
       */
   listApplicationGroupAssignments(param: ApplicationApiListApplicationGroupAssignmentsRequest, options?: Configuration): Promise<Collection<ApplicationGroupAssignment>>;
   /**
-      * Enumerates key credentials for an application
+      * Lists all key credentials for an application
       * List all Key Credentials
       * @param param the request object
       */
   listApplicationKeys(param: ApplicationApiListApplicationKeysRequest, options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
-      * Enumerates all assigned [application users](#application-user-model) for an application.
+      * Lists all assigned [application users](#application-user-model) for an application
       * List all Assigned Users
       * @param param the request object
       */
   listApplicationUsers(param: ApplicationApiListApplicationUsersRequest, options?: Configuration): Promise<Collection<AppUser>>;
   /**
-      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+      * Lists all applications with pagination. A subset of apps can be returned that match a supported filter expression or query.
       * List all Applications
       * @param param the request object
       */
   listApplications(param?: ApplicationApiListApplicationsRequest, options?: Configuration): Promise<Collection<Application>>;
   /**
-      * Enumerates Certificate Signing Requests for an application
+      * Lists all Certificate Signing Requests for an application
       * List all Certificate Signing Requests
       * @param param the request object
       */
   listCsrsForApplication(param: ApplicationApiListCsrsForApplicationRequest, options?: Configuration): Promise<Collection<Csr>>;
   /**
-      * List Features for application
+      * Lists all features for an application
       * List all Features
       * @param param the request object
       */
@@ -1339,13 +1385,19 @@ export declare class ObjectApplicationApi {
       */
   listScopeConsentGrants(param: ApplicationApiListScopeConsentGrantsRequest, options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
+      * Publishes a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
       * Publish a Certificate Signing Request
       * @param param the request object
       */
   publishCsrFromApplication(param: ApplicationApiPublishCsrFromApplicationRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Revokes a certificate signing request and deletes the key pair from the application.
+      * Replaces an application
+      * Replace an Application
+      * @param param the request object
+      */
+  replaceApplication(param: ApplicationApiReplaceApplicationRequest, options?: Configuration): Promise<Application>;
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the application
       * Revoke a Certificate Signing Request
       * @param param the request object
       */
@@ -1369,17 +1421,17 @@ export declare class ObjectApplicationApi {
       */
   revokeScopeConsentGrant(param: ApplicationApiRevokeScopeConsentGrantRequest, options?: Configuration): Promise<void>;
   /**
-      * Set default Provisioning Connection for application
-      * Update the default Provisioning Connection
+      * Unassigns a group from an application
+      * Unassign a Group
       * @param param the request object
       */
-  setDefaultProvisioningConnectionForApplication(param: ApplicationApiSetDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<ProvisioningConnection>;
+  unassignApplicationFromGroup(param: ApplicationApiUnassignApplicationFromGroupRequest, options?: Configuration): Promise<void>;
   /**
-      * Updates an application in your organization.
-      * Replace an Application
+      * Unassigns a user from an application
+      * Unassign a User
       * @param param the request object
       */
-  updateApplication(param: ApplicationApiUpdateApplicationRequest, options?: Configuration): Promise<Application>;
+  unassignUserFromApplication(param: ApplicationApiUnassignUserFromApplicationRequest, options?: Configuration): Promise<void>;
   /**
       * Updates a user's profile for an application
       * Update an Application Profile for Assigned User
@@ -1387,17 +1439,50 @@ export declare class ObjectApplicationApi {
       */
   updateApplicationUser(param: ApplicationApiUpdateApplicationUserRequest, options?: Configuration): Promise<AppUser>;
   /**
-      * Updates a Feature object for an application.
+      * Updates the default provisioning connection for application
+      * Update the default Provisioning Connection
+      * @param param the request object
+      */
+  updateDefaultProvisioningConnectionForApplication(param: ApplicationApiUpdateDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<ProvisioningConnection>;
+  /**
+      * Updates a Feature object for an application
       * Update a Feature
       * @param param the request object
       */
   updateFeatureForApplication(param: ApplicationApiUpdateFeatureForApplicationRequest, options?: Configuration): Promise<ApplicationFeature>;
   /**
-      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Uploads a logo for the application. The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
       * Upload a Logo
       * @param param the request object
       */
   uploadApplicationLogo(param: ApplicationApiUploadApplicationLogoRequest, options?: Configuration): Promise<void>;
+}
+import { AttackProtectionApiRequestFactory, AttackProtectionApiResponseProcessor } from '../apis/AttackProtectionApi';
+export interface AttackProtectionApiGetUserLockoutSettingsRequest {
+}
+export interface AttackProtectionApiReplaceUserLockoutSettingsRequest {
+    /**
+      *
+      * @type UserLockoutSettings
+      * @memberof AttackProtectionApireplaceUserLockoutSettings
+      */
+    lockoutSettings: UserLockoutSettings;
+}
+export declare class ObjectAttackProtectionApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AttackProtectionApiRequestFactory, responseProcessor?: AttackProtectionApiResponseProcessor);
+  /**
+      * Retrieves the User Lockout Settings for an org
+      * Retrieve the User Lockout Settings
+      * @param param the request object
+      */
+  getUserLockoutSettings(param?: AttackProtectionApiGetUserLockoutSettingsRequest, options?: Configuration): Promise<Collection<UserLockoutSettings>>;
+  /**
+      * Replaces the User Lockout Settings for an org
+      * Replace the User Lockout Settings
+      * @param param the request object
+      */
+  replaceUserLockoutSettings(param: AttackProtectionApiReplaceUserLockoutSettingsRequest, options?: Configuration): Promise<UserLockoutSettings>;
 }
 import { AuthenticatorApiRequestFactory, AuthenticatorApiResponseProcessor } from '../apis/AuthenticatorApi';
 export interface AuthenticatorApiActivateAuthenticatorRequest {
@@ -1407,6 +1492,20 @@ export interface AuthenticatorApiActivateAuthenticatorRequest {
       * @memberof AuthenticatorApiactivateAuthenticator
       */
     authenticatorId: string;
+}
+export interface AuthenticatorApiCreateAuthenticatorRequest {
+    /**
+      *
+      * @type Authenticator
+      * @memberof AuthenticatorApicreateAuthenticator
+      */
+    authenticator: Authenticator;
+    /**
+      * Whether to execute the activation lifecycle operation when Okta creates the authenticator
+      * @type boolean
+      * @memberof AuthenticatorApicreateAuthenticator
+      */
+    activate?: boolean;
 }
 export interface AuthenticatorApiDeactivateAuthenticatorRequest {
     /**
@@ -1424,19 +1523,27 @@ export interface AuthenticatorApiGetAuthenticatorRequest {
       */
     authenticatorId: string;
 }
+export interface AuthenticatorApiGetWellKnownAppAuthenticatorConfigurationRequest {
+    /**
+      * Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+      * @type string
+      * @memberof AuthenticatorApigetWellKnownAppAuthenticatorConfiguration
+      */
+    oauthClientId: string;
+}
 export interface AuthenticatorApiListAuthenticatorsRequest {
 }
-export interface AuthenticatorApiUpdateAuthenticatorRequest {
+export interface AuthenticatorApiReplaceAuthenticatorRequest {
     /**
       *
       * @type string
-      * @memberof AuthenticatorApiupdateAuthenticator
+      * @memberof AuthenticatorApireplaceAuthenticator
       */
     authenticatorId: string;
     /**
       *
       * @type Authenticator
-      * @memberof AuthenticatorApiupdateAuthenticator
+      * @memberof AuthenticatorApireplaceAuthenticator
       */
     authenticator: Authenticator;
 }
@@ -1444,35 +1551,47 @@ export declare class ObjectAuthenticatorApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AuthenticatorApiRequestFactory, responseProcessor?: AuthenticatorApiResponseProcessor);
   /**
-      * Activates an authenticator by `authenticatorId`.
+      * Activates an authenticator by `authenticatorId`
       * Activate an Authenticator
       * @param param the request object
       */
   activateAuthenticator(param: AuthenticatorApiActivateAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
   /**
-      * Deactivates an authenticator by `authenticatorId`.
+      * Creates an authenticator. You can use this operation as part of the \"Create a custom authenticator\" flow. See the [Custom authenticator integration guide](https://developer.okta.com/docs/guides/authenticators-custom-authenticator/android/main/).
+      * Create an Authenticator
+      * @param param the request object
+      */
+  createAuthenticator(param: AuthenticatorApiCreateAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
+  /**
+      * Deactivates an authenticator by `authenticatorId`
       * Deactivate an Authenticator
       * @param param the request object
       */
   deactivateAuthenticator(param: AuthenticatorApiDeactivateAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
   /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an Authenticator
       * @param param the request object
       */
   getAuthenticator(param: AuthenticatorApiGetAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
   /**
-      * Enumerates authenticators in your organization.
+      * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+      * Retrieve the Well-Known App Authenticator Configuration
+      * @param param the request object
+      */
+  getWellKnownAppAuthenticatorConfiguration(param: AuthenticatorApiGetWellKnownAppAuthenticatorConfigurationRequest, options?: Configuration): Promise<Collection<WellKnownAppAuthenticatorConfiguration>>;
+  /**
+      * Lists all authenticators
       * List all Authenticators
       * @param param the request object
       */
   listAuthenticators(param?: AuthenticatorApiListAuthenticatorsRequest, options?: Configuration): Promise<Collection<Authenticator>>;
   /**
-      * Updates an authenticator
+      * Replaces an authenticator
       * Replace an Authenticator
       * @param param the request object
       */
-  updateAuthenticator(param: AuthenticatorApiUpdateAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
+  replaceAuthenticator(param: AuthenticatorApiReplaceAuthenticatorRequest, options?: Configuration): Promise<Authenticator>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export interface AuthorizationServerApiActivateAuthorizationServerRequest {
@@ -1925,6 +2044,106 @@ export interface AuthorizationServerApiListRefreshTokensForAuthorizationServerAn
       */
     limit?: number;
 }
+export interface AuthorizationServerApiReplaceAuthorizationServerRequest {
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServer
+      */
+    authServerId: string;
+    /**
+      *
+      * @type AuthorizationServer
+      * @memberof AuthorizationServerApireplaceAuthorizationServer
+      */
+    authorizationServer: AuthorizationServer;
+}
+export interface AuthorizationServerApiReplaceAuthorizationServerPolicyRequest {
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicy
+      */
+    authServerId: string;
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicy
+      */
+    policyId: string;
+    /**
+      *
+      * @type AuthorizationServerPolicy
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicy
+      */
+    policy: AuthorizationServerPolicy;
+}
+export interface AuthorizationServerApiReplaceAuthorizationServerPolicyRuleRequest {
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicyRule
+      */
+    policyId: string;
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicyRule
+      */
+    authServerId: string;
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicyRule
+      */
+    ruleId: string;
+    /**
+      *
+      * @type AuthorizationServerPolicyRule
+      * @memberof AuthorizationServerApireplaceAuthorizationServerPolicyRule
+      */
+    policyRule: AuthorizationServerPolicyRule;
+}
+export interface AuthorizationServerApiReplaceOAuth2ClaimRequest {
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceOAuth2Claim
+      */
+    authServerId: string;
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceOAuth2Claim
+      */
+    claimId: string;
+    /**
+      *
+      * @type OAuth2Claim
+      * @memberof AuthorizationServerApireplaceOAuth2Claim
+      */
+    oAuth2Claim: OAuth2Claim;
+}
+export interface AuthorizationServerApiReplaceOAuth2ScopeRequest {
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceOAuth2Scope
+      */
+    authServerId: string;
+    /**
+      *
+      * @type string
+      * @memberof AuthorizationServerApireplaceOAuth2Scope
+      */
+    scopeId: string;
+    /**
+      *
+      * @type OAuth2Scope
+      * @memberof AuthorizationServerApireplaceOAuth2Scope
+      */
+    oAuth2Scope: OAuth2Scope;
+}
 export interface AuthorizationServerApiRevokeRefreshTokenForAuthorizationServerAndClientRequest {
     /**
       *
@@ -1973,337 +2192,237 @@ export interface AuthorizationServerApiRotateAuthorizationServerKeysRequest {
       */
     use: JwkUse;
 }
-export interface AuthorizationServerApiUpdateAuthorizationServerRequest {
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServer
-      */
-    authServerId: string;
-    /**
-      *
-      * @type AuthorizationServer
-      * @memberof AuthorizationServerApiupdateAuthorizationServer
-      */
-    authorizationServer: AuthorizationServer;
-}
-export interface AuthorizationServerApiUpdateAuthorizationServerPolicyRequest {
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicy
-      */
-    authServerId: string;
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicy
-      */
-    policyId: string;
-    /**
-      *
-      * @type AuthorizationServerPolicy
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicy
-      */
-    policy: AuthorizationServerPolicy;
-}
-export interface AuthorizationServerApiUpdateAuthorizationServerPolicyRuleRequest {
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicyRule
-      */
-    policyId: string;
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicyRule
-      */
-    authServerId: string;
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicyRule
-      */
-    ruleId: string;
-    /**
-      *
-      * @type AuthorizationServerPolicyRule
-      * @memberof AuthorizationServerApiupdateAuthorizationServerPolicyRule
-      */
-    policyRule: AuthorizationServerPolicyRule;
-}
-export interface AuthorizationServerApiUpdateOAuth2ClaimRequest {
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateOAuth2Claim
-      */
-    authServerId: string;
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateOAuth2Claim
-      */
-    claimId: string;
-    /**
-      *
-      * @type OAuth2Claim
-      * @memberof AuthorizationServerApiupdateOAuth2Claim
-      */
-    oAuth2Claim: OAuth2Claim;
-}
-export interface AuthorizationServerApiUpdateOAuth2ScopeRequest {
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateOAuth2Scope
-      */
-    authServerId: string;
-    /**
-      *
-      * @type string
-      * @memberof AuthorizationServerApiupdateOAuth2Scope
-      */
-    scopeId: string;
-    /**
-      *
-      * @type OAuth2Scope
-      * @memberof AuthorizationServerApiupdateOAuth2Scope
-      */
-    oAuth2Scope: OAuth2Scope;
-}
 export declare class ObjectAuthorizationServerApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AuthorizationServerApiRequestFactory, responseProcessor?: AuthorizationServerApiResponseProcessor);
   /**
-      * Success
+      * Activates an authorization server
       * Activate an Authorization Server
       * @param param the request object
       */
   activateAuthorizationServer(param: AuthorizationServerApiActivateAuthorizationServerRequest, options?: Configuration): Promise<void>;
   /**
-      * Activate Authorization Server Policy
+      * Activates an authorization server policy
       * Activate a Policy
       * @param param the request object
       */
   activateAuthorizationServerPolicy(param: AuthorizationServerApiActivateAuthorizationServerPolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Activate Authorization Server Policy Rule
+      * Activates an authorization server policy rule
       * Activate a Policy Rule
       * @param param the request object
       */
   activateAuthorizationServerPolicyRule(param: AuthorizationServerApiActivateAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Creates an authorization server
       * Create an Authorization Server
       * @param param the request object
       */
   createAuthorizationServer(param: AuthorizationServerApiCreateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
   /**
-      * Success
+      * Creates a policy
       * Create a Policy
       * @param param the request object
       */
   createAuthorizationServerPolicy(param: AuthorizationServerApiCreateAuthorizationServerPolicyRequest, options?: Configuration): Promise<AuthorizationServerPolicy>;
   /**
-      * Creates a policy rule for the specified Custom Authorization Server and Policy.
+      * Creates a policy rule for the specified Custom Authorization Server and Policy
       * Create a Policy Rule
       * @param param the request object
       */
   createAuthorizationServerPolicyRule(param: AuthorizationServerApiCreateAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<AuthorizationServerPolicyRule>;
   /**
-      * Success
+      * Creates a custom token claim
       * Create a Custom Token Claim
       * @param param the request object
       */
   createOAuth2Claim(param: AuthorizationServerApiCreateOAuth2ClaimRequest, options?: Configuration): Promise<OAuth2Claim>;
   /**
-      * Success
+      * Creates a custom token scope
       * Create a Custom Token Scope
       * @param param the request object
       */
   createOAuth2Scope(param: AuthorizationServerApiCreateOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
   /**
-      * Success
+      * Deactivates an authorization server
       * Deactivate an Authorization Server
       * @param param the request object
       */
   deactivateAuthorizationServer(param: AuthorizationServerApiDeactivateAuthorizationServerRequest, options?: Configuration): Promise<void>;
   /**
-      * Deactivate Authorization Server Policy
+      * Deactivates an authorization server policy
       * Deactivate a Policy
       * @param param the request object
       */
   deactivateAuthorizationServerPolicy(param: AuthorizationServerApiDeactivateAuthorizationServerPolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Deactivate Authorization Server Policy Rule
+      * Deactivates an authorization server policy rule
       * Deactivate a Policy Rule
       * @param param the request object
       */
   deactivateAuthorizationServerPolicyRule(param: AuthorizationServerApiDeactivateAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Deletes an authorization server
       * Delete an Authorization Server
       * @param param the request object
       */
   deleteAuthorizationServer(param: AuthorizationServerApiDeleteAuthorizationServerRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Deletes a policy
       * Delete a Policy
       * @param param the request object
       */
   deleteAuthorizationServerPolicy(param: AuthorizationServerApiDeleteAuthorizationServerPolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
       * Delete a Policy Rule
       * @param param the request object
       */
   deleteAuthorizationServerPolicyRule(param: AuthorizationServerApiDeleteAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Deletes a custom token claim
       * Delete a Custom Token Claim
       * @param param the request object
       */
   deleteOAuth2Claim(param: AuthorizationServerApiDeleteOAuth2ClaimRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Deletes a custom token scope
       * Delete a Custom Token Scope
       * @param param the request object
       */
   deleteOAuth2Scope(param: AuthorizationServerApiDeleteOAuth2ScopeRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Retrieves an authorization server
       * Retrieve an Authorization Server
       * @param param the request object
       */
   getAuthorizationServer(param: AuthorizationServerApiGetAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
   /**
-      * Success
+      * Retrieves a policy
       * Retrieve a Policy
       * @param param the request object
       */
   getAuthorizationServerPolicy(param: AuthorizationServerApiGetAuthorizationServerPolicyRequest, options?: Configuration): Promise<AuthorizationServerPolicy>;
   /**
-      * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+      * Retrieves a policy rule by `ruleId`
       * Retrieve a Policy Rule
       * @param param the request object
       */
   getAuthorizationServerPolicyRule(param: AuthorizationServerApiGetAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<AuthorizationServerPolicyRule>;
   /**
-      * Success
+      * Retrieves a custom token claim
       * Retrieve a Custom Token Claim
       * @param param the request object
       */
   getOAuth2Claim(param: AuthorizationServerApiGetOAuth2ClaimRequest, options?: Configuration): Promise<OAuth2Claim>;
   /**
-      * Success
+      * Retrieves a custom token scope
       * Retrieve a Custom Token Scope
       * @param param the request object
       */
   getOAuth2Scope(param: AuthorizationServerApiGetOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
   /**
-      * Success
+      * Retrieves a refresh token for a client
       * Retrieve a Refresh Token for a Client
       * @param param the request object
       */
   getRefreshTokenForAuthorizationServerAndClient(param: AuthorizationServerApiGetRefreshTokenForAuthorizationServerAndClientRequest, options?: Configuration): Promise<OAuth2RefreshToken>;
   /**
-      * Success
+      * Lists all credential keys
       * List all Credential Keys
       * @param param the request object
       */
   listAuthorizationServerKeys(param: AuthorizationServerApiListAuthorizationServerKeysRequest, options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
-      * Success
+      * Lists all policies
       * List all Policies
       * @param param the request object
       */
   listAuthorizationServerPolicies(param: AuthorizationServerApiListAuthorizationServerPoliciesRequest, options?: Configuration): Promise<Collection<AuthorizationServerPolicy>>;
   /**
-      * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+      * Lists all policy rules for the specified Custom Authorization Server and Policy
       * List all Policy Rules
       * @param param the request object
       */
   listAuthorizationServerPolicyRules(param: AuthorizationServerApiListAuthorizationServerPolicyRulesRequest, options?: Configuration): Promise<Collection<AuthorizationServerPolicyRule>>;
   /**
-      * Success
+      * Lists all authorization servers
       * List all Authorization Servers
       * @param param the request object
       */
   listAuthorizationServers(param?: AuthorizationServerApiListAuthorizationServersRequest, options?: Configuration): Promise<Collection<AuthorizationServer>>;
   /**
-      * Success
+      * Lists all custom token claims
       * List all Custom Token Claims
       * @param param the request object
       */
   listOAuth2Claims(param: AuthorizationServerApiListOAuth2ClaimsRequest, options?: Configuration): Promise<Collection<OAuth2Claim>>;
   /**
-      * Success
+      * Lists all clients
       * List all Clients
       * @param param the request object
       */
   listOAuth2ClientsForAuthorizationServer(param: AuthorizationServerApiListOAuth2ClientsForAuthorizationServerRequest, options?: Configuration): Promise<Collection<OAuth2Client>>;
   /**
-      * Success
+      * Lists all custom token scopes
       * List all Custom Token Scopes
       * @param param the request object
       */
   listOAuth2Scopes(param: AuthorizationServerApiListOAuth2ScopesRequest, options?: Configuration): Promise<Collection<OAuth2Scope>>;
   /**
-      * Success
+      * Lists all refresh tokens for a client
       * List all Refresh Tokens for a Client
       * @param param the request object
       */
   listRefreshTokensForAuthorizationServerAndClient(param: AuthorizationServerApiListRefreshTokensForAuthorizationServerAndClientRequest, options?: Configuration): Promise<Collection<OAuth2RefreshToken>>;
   /**
-      * Success
+      * Replaces an authorization server
+      * Replace an Authorization Server
+      * @param param the request object
+      */
+  replaceAuthorizationServer(param: AuthorizationServerApiReplaceAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
+  /**
+      * Replaces a policy
+      * Replace a Policy
+      * @param param the request object
+      */
+  replaceAuthorizationServerPolicy(param: AuthorizationServerApiReplaceAuthorizationServerPolicyRequest, options?: Configuration): Promise<AuthorizationServerPolicy>;
+  /**
+      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+      * Replace a Policy Rule
+      * @param param the request object
+      */
+  replaceAuthorizationServerPolicyRule(param: AuthorizationServerApiReplaceAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<AuthorizationServerPolicyRule>;
+  /**
+      * Replaces a custom token claim
+      * Replace a Custom Token Claim
+      * @param param the request object
+      */
+  replaceOAuth2Claim(param: AuthorizationServerApiReplaceOAuth2ClaimRequest, options?: Configuration): Promise<OAuth2Claim>;
+  /**
+      * Replaces a custom token scope
+      * Replace a Custom Token Scope
+      * @param param the request object
+      */
+  replaceOAuth2Scope(param: AuthorizationServerApiReplaceOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
+  /**
+      * Revokes a refresh token for a client
       * Revoke a Refresh Token for a Client
       * @param param the request object
       */
   revokeRefreshTokenForAuthorizationServerAndClient(param: AuthorizationServerApiRevokeRefreshTokenForAuthorizationServerAndClientRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Revokes all refresh tokens for a client
       * Revoke all Refresh Tokens for a Client
       * @param param the request object
       */
   revokeRefreshTokensForAuthorizationServerAndClient(param: AuthorizationServerApiRevokeRefreshTokensForAuthorizationServerAndClientRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Rotates all credential keys
       * Rotate all Credential Keys
       * @param param the request object
       */
   rotateAuthorizationServerKeys(param: AuthorizationServerApiRotateAuthorizationServerKeysRequest, options?: Configuration): Promise<Collection<JsonWebKey>>;
-  /**
-      * Success
-      * Replace an Authorization Server
-      * @param param the request object
-      */
-  updateAuthorizationServer(param: AuthorizationServerApiUpdateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
-  /**
-      * Success
-      * Replace a Policy
-      * @param param the request object
-      */
-  updateAuthorizationServerPolicy(param: AuthorizationServerApiUpdateAuthorizationServerPolicyRequest, options?: Configuration): Promise<AuthorizationServerPolicy>;
-  /**
-      * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Replace a Policy Rule
-      * @param param the request object
-      */
-  updateAuthorizationServerPolicyRule(param: AuthorizationServerApiUpdateAuthorizationServerPolicyRuleRequest, options?: Configuration): Promise<AuthorizationServerPolicyRule>;
-  /**
-      * Success
-      * Replace a Custom Token Claim
-      * @param param the request object
-      */
-  updateOAuth2Claim(param: AuthorizationServerApiUpdateOAuth2ClaimRequest, options?: Configuration): Promise<OAuth2Claim>;
-  /**
-      * Success
-      * Replace a Custom Token Scope
-      * @param param the request object
-      */
-  updateOAuth2Scope(param: AuthorizationServerApiUpdateOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
 }
 import { BehaviorApiRequestFactory, BehaviorApiResponseProcessor } from '../apis/BehaviorApi';
 export interface BehaviorApiActivateBehaviorDetectionRuleRequest {
@@ -2348,17 +2467,17 @@ export interface BehaviorApiGetBehaviorDetectionRuleRequest {
 }
 export interface BehaviorApiListBehaviorDetectionRulesRequest {
 }
-export interface BehaviorApiUpdateBehaviorDetectionRuleRequest {
+export interface BehaviorApiReplaceBehaviorDetectionRuleRequest {
     /**
       * id of the Behavior Detection Rule
       * @type string
-      * @memberof BehaviorApiupdateBehaviorDetectionRule
+      * @memberof BehaviorApireplaceBehaviorDetectionRule
       */
     behaviorId: string;
     /**
       *
       * @type BehaviorRule
-      * @memberof BehaviorApiupdateBehaviorDetectionRule
+      * @memberof BehaviorApireplaceBehaviorDetectionRule
       */
     rule: BehaviorRule;
 }
@@ -2366,47 +2485,47 @@ export declare class ObjectBehaviorApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: BehaviorApiRequestFactory, responseProcessor?: BehaviorApiResponseProcessor);
   /**
-      * Activate Behavior Detection Rule
+      * Activates a behavior detection rule
       * Activate a Behavior Detection Rule
       * @param param the request object
       */
   activateBehaviorDetectionRule(param: BehaviorApiActivateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
   /**
-      * Adds a new Behavior Detection Rule to your organization.
+      * Creates a new behavior detection rule
       * Create a Behavior Detection Rule
       * @param param the request object
       */
   createBehaviorDetectionRule(param: BehaviorApiCreateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
   /**
-      * Deactivate Behavior Detection Rule
+      * Deactivates a behavior detection rule
       * Deactivate a Behavior Detection Rule
       * @param param the request object
       */
   deactivateBehaviorDetectionRule(param: BehaviorApiDeactivateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
   /**
-      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a Behavior Detection Rule
       * @param param the request object
       */
   deleteBehaviorDetectionRule(param: BehaviorApiDeleteBehaviorDetectionRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a Behavior Detection Rule
       * @param param the request object
       */
   getBehaviorDetectionRule(param: BehaviorApiGetBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
   /**
-      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * Lists all behavior detection rules with pagination support
       * List all Behavior Detection Rules
       * @param param the request object
       */
   listBehaviorDetectionRules(param?: BehaviorApiListBehaviorDetectionRulesRequest, options?: Configuration): Promise<Collection<BehaviorRule>>;
   /**
-      * Update a Behavior Detection Rule by `behaviorId`.
+      * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a Behavior Detection Rule
       * @param param the request object
       */
-  updateBehaviorDetectionRule(param: BehaviorApiUpdateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
+  replaceBehaviorDetectionRule(param: BehaviorApiReplaceBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
 }
 import { CAPTCHAApiRequestFactory, CAPTCHAApiResponseProcessor } from '../apis/CAPTCHAApi';
 export interface CAPTCHAApiCreateCaptchaInstanceRequest {
@@ -2435,17 +2554,17 @@ export interface CAPTCHAApiGetCaptchaInstanceRequest {
 }
 export interface CAPTCHAApiListCaptchaInstancesRequest {
 }
-export interface CAPTCHAApiPartialUpdateCaptchaInstanceRequest {
+export interface CAPTCHAApiReplaceCaptchaInstanceRequest {
     /**
       * id of the CAPTCHA
       * @type string
-      * @memberof CAPTCHAApipartialUpdateCaptchaInstance
+      * @memberof CAPTCHAApireplaceCaptchaInstance
       */
     captchaId: string;
     /**
       *
       * @type CAPTCHAInstance
-      * @memberof CAPTCHAApipartialUpdateCaptchaInstance
+      * @memberof CAPTCHAApireplaceCaptchaInstance
       */
     instance: CAPTCHAInstance;
 }
@@ -2467,43 +2586,160 @@ export declare class ObjectCAPTCHAApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: CAPTCHAApiRequestFactory, responseProcessor?: CAPTCHAApiResponseProcessor);
   /**
-      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+      * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
       * Create a CAPTCHA instance
       * @param param the request object
       */
   createCaptchaInstance(param: CAPTCHAApiCreateCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
   /**
-      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete a CAPTCHA Instance
       * @param param the request object
       */
   deleteCaptchaInstance(param: CAPTCHAApiDeleteCaptchaInstanceRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a CAPTCHA instance by `captchaId`.
+      * Retrieves a CAPTCHA instance by `captchaId`
       * Retrieve a CAPTCHA Instance
       * @param param the request object
       */
   getCaptchaInstance(param: CAPTCHAApiGetCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
   /**
-      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+      * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
       * List all CAPTCHA instances
       * @param param the request object
       */
   listCaptchaInstances(param?: CAPTCHAApiListCaptchaInstancesRequest, options?: Configuration): Promise<Collection<CAPTCHAInstance>>;
   /**
-      * Partially update a CAPTCHA instance by `captchaId`.
-      * Update a CAPTCHA instance
+      * Replaces a CAPTCHA instance by `captchaId`
+      * Replace a CAPTCHA instance
       * @param param the request object
       */
-  partialUpdateCaptchaInstance(param: CAPTCHAApiPartialUpdateCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
+  replaceCaptchaInstance(param: CAPTCHAApiReplaceCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
   /**
-      * Update a CAPTCHA instance by `captchaId`.
-      * Replace a CAPTCHA instance
+      * Partially updates a CAPTCHA instance by `captchaId`
+      * Update a CAPTCHA instance
       * @param param the request object
       */
   updateCaptchaInstance(param: CAPTCHAApiUpdateCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
 }
+import { CustomDomainApiRequestFactory, CustomDomainApiResponseProcessor } from '../apis/CustomDomainApi';
+export interface CustomDomainApiCreateCustomDomainRequest {
+    /**
+      *
+      * @type Domain
+      * @memberof CustomDomainApicreateCustomDomain
+      */
+    domain: Domain;
+}
+export interface CustomDomainApiDeleteCustomDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof CustomDomainApideleteCustomDomain
+      */
+    domainId: string;
+}
+export interface CustomDomainApiGetCustomDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof CustomDomainApigetCustomDomain
+      */
+    domainId: string;
+}
+export interface CustomDomainApiListCustomDomainsRequest {
+}
+export interface CustomDomainApiReplaceCustomDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof CustomDomainApireplaceCustomDomain
+      */
+    domainId: string;
+    /**
+      *
+      * @type UpdateDomain
+      * @memberof CustomDomainApireplaceCustomDomain
+      */
+    UpdateDomain: UpdateDomain;
+}
+export interface CustomDomainApiUpsertCertificateRequest {
+    /**
+      *
+      * @type string
+      * @memberof CustomDomainApiupsertCertificate
+      */
+    domainId: string;
+    /**
+      *
+      * @type DomainCertificate
+      * @memberof CustomDomainApiupsertCertificate
+      */
+    certificate: DomainCertificate;
+}
+export interface CustomDomainApiVerifyDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof CustomDomainApiverifyDomain
+      */
+    domainId: string;
+}
+export declare class ObjectCustomDomainApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: CustomDomainApiRequestFactory, responseProcessor?: CustomDomainApiResponseProcessor);
+  /**
+      * Creates your Custom Domain
+      * Create a Custom Domain
+      * @param param the request object
+      */
+  createCustomDomain(param: CustomDomainApiCreateCustomDomainRequest, options?: Configuration): Promise<DomainResponse>;
+  /**
+      * Deletes a Custom Domain by `id`
+      * Delete a Custom Domain
+      * @param param the request object
+      */
+  deleteCustomDomain(param: CustomDomainApiDeleteCustomDomainRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a Custom Domain by `id`
+      * Retrieve a Custom Domain
+      * @param param the request object
+      */
+  getCustomDomain(param: CustomDomainApiGetCustomDomainRequest, options?: Configuration): Promise<DomainResponse>;
+  /**
+      * Lists all verified Custom Domains for the org
+      * List all Custom Domains
+      * @param param the request object
+      */
+  listCustomDomains(param?: CustomDomainApiListCustomDomainsRequest, options?: Configuration): Promise<DomainListResponse>;
+  /**
+      * Replaces a Custom Domain by `id`
+      * Replace a Custom Domain's brandId
+      * @param param the request object
+      */
+  replaceCustomDomain(param: CustomDomainApiReplaceCustomDomainRequest, options?: Configuration): Promise<DomainResponse>;
+  /**
+      * Creates or replaces the certificate for the custom domain
+      * Upsert the Certificate
+      * @param param the request object
+      */
+  upsertCertificate(param: CustomDomainApiUpsertCertificateRequest, options?: Configuration): Promise<void>;
+  /**
+      * Verifies the Custom Domain by `id`
+      * Verify a Custom Domain
+      * @param param the request object
+      */
+  verifyDomain(param: CustomDomainApiVerifyDomainRequest, options?: Configuration): Promise<DomainResponse>;
+}
 import { CustomizationApiRequestFactory, CustomizationApiResponseProcessor } from '../apis/CustomizationApi';
+export interface CustomizationApiCreateBrandRequest {
+    /**
+      *
+      * @type CreateBrandRequest
+      * @memberof CustomizationApicreateBrand
+      */
+    CreateBrandRequest?: CreateBrandRequest;
+}
 export interface CustomizationApiCreateEmailCustomizationRequest {
     /**
       * The ID of the brand.
@@ -2538,15 +2774,23 @@ export interface CustomizationApiDeleteAllCustomizationsRequest {
       */
     templateName: string;
 }
+export interface CustomizationApiDeleteBrandRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApideleteBrand
+      */
+    brandId: string;
+}
 export interface CustomizationApiDeleteBrandThemeBackgroundImageRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApideleteBrandThemeBackgroundImage
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApideleteBrandThemeBackgroundImage
       */
@@ -2554,13 +2798,13 @@ export interface CustomizationApiDeleteBrandThemeBackgroundImageRequest {
 }
 export interface CustomizationApiDeleteBrandThemeFaviconRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApideleteBrandThemeFavicon
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApideleteBrandThemeFavicon
       */
@@ -2568,17 +2812,33 @@ export interface CustomizationApiDeleteBrandThemeFaviconRequest {
 }
 export interface CustomizationApiDeleteBrandThemeLogoRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApideleteBrandThemeLogo
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApideleteBrandThemeLogo
       */
     themeId: string;
+}
+export interface CustomizationApiDeleteCustomizedErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApideleteCustomizedErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiDeleteCustomizedSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApideleteCustomizedSignInPage
+      */
+    brandId: string;
 }
 export interface CustomizationApiDeleteEmailCustomizationRequest {
     /**
@@ -2600,9 +2860,25 @@ export interface CustomizationApiDeleteEmailCustomizationRequest {
       */
     customizationId: string;
 }
+export interface CustomizationApiDeletePreviewErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApideletePreviewErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiDeletePreviewSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApideletePreviewSignInPage
+      */
+    brandId: string;
+}
 export interface CustomizationApiGetBrandRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApigetBrand
       */
@@ -2610,13 +2886,13 @@ export interface CustomizationApiGetBrandRequest {
 }
 export interface CustomizationApiGetBrandThemeRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApigetBrandTheme
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApigetBrandTheme
       */
@@ -2641,6 +2917,38 @@ export interface CustomizationApiGetCustomizationPreviewRequest {
       * @memberof CustomizationApigetCustomizationPreview
       */
     customizationId: string;
+}
+export interface CustomizationApiGetCustomizedErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetCustomizedErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiGetCustomizedSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetCustomizedSignInPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiGetDefaultErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetDefaultErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiGetDefaultSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetDefaultSignInPage
+      */
+    brandId: string;
 }
 export interface CustomizationApiGetEmailCustomizationRequest {
     /**
@@ -2736,6 +3044,58 @@ export interface CustomizationApiGetEmailTemplateRequest {
       */
     expand?: Array<'settings' | 'customizationCount'>;
 }
+export interface CustomizationApiGetErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetErrorPage
+      */
+    brandId: string;
+    /**
+      * Specifies additional metadata to be included in the response.
+      * @type Array&lt;&#39;default&#39; | &#39;customized&#39; | &#39;customizedUrl&#39; | &#39;preview&#39; | &#39;previewUrl&#39;&gt;
+      * @memberof CustomizationApigetErrorPage
+      */
+    expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>;
+}
+export interface CustomizationApiGetPreviewErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetPreviewErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiGetPreviewSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetPreviewSignInPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiGetSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetSignInPage
+      */
+    brandId: string;
+    /**
+      * Specifies additional metadata to be included in the response.
+      * @type Array&lt;&#39;default&#39; | &#39;customized&#39; | &#39;customizedUrl&#39; | &#39;preview&#39; | &#39;previewUrl&#39;&gt;
+      * @memberof CustomizationApigetSignInPage
+      */
+    expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>;
+}
+export interface CustomizationApiGetSignOutPageSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetSignOutPageSettings
+      */
+    brandId: string;
+}
 export interface CustomizationApiListAllSignInWidgetVersionsRequest {
     /**
       * The ID of the brand.
@@ -2744,9 +3104,17 @@ export interface CustomizationApiListAllSignInWidgetVersionsRequest {
       */
     brandId: string;
 }
+export interface CustomizationApiListBrandDomainsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApilistBrandDomains
+      */
+    brandId: string;
+}
 export interface CustomizationApiListBrandThemesRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApilistBrandThemes
       */
@@ -2768,7 +3136,7 @@ export interface CustomizationApiListEmailCustomizationsRequest {
       */
     templateName: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @type string
       * @memberof CustomizationApilistEmailCustomizations
       */
@@ -2788,7 +3156,7 @@ export interface CustomizationApiListEmailTemplatesRequest {
       */
     brandId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @type string
       * @memberof CustomizationApilistEmailTemplates
       */
@@ -2806,59 +3174,139 @@ export interface CustomizationApiListEmailTemplatesRequest {
       */
     expand?: Array<'settings' | 'customizationCount'>;
 }
-export interface CustomizationApiPreviewErrorPageRequest {
+export interface CustomizationApiReplaceBrandRequest {
     /**
       * The ID of the brand.
       * @type string
-      * @memberof CustomizationApipreviewErrorPage
+      * @memberof CustomizationApireplaceBrand
       */
     brandId: string;
     /**
       *
-      * @type CustomizablePage
-      * @memberof CustomizationApipreviewErrorPage
+      * @type BrandRequest
+      * @memberof CustomizationApireplaceBrand
       */
-    CustomizablePage: CustomizablePage;
+    brand: BrandRequest;
 }
-export interface CustomizationApiReplaceErrorPageRequest {
+export interface CustomizationApiReplaceBrandThemeRequest {
     /**
       * The ID of the brand.
       * @type string
-      * @memberof CustomizationApireplaceErrorPage
+      * @memberof CustomizationApireplaceBrandTheme
+      */
+    brandId: string;
+    /**
+      * The ID of the theme.
+      * @type string
+      * @memberof CustomizationApireplaceBrandTheme
+      */
+    themeId: string;
+    /**
+      *
+      * @type Theme
+      * @memberof CustomizationApireplaceBrandTheme
+      */
+    theme: Theme;
+}
+export interface CustomizationApiReplaceCustomizedErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceCustomizedErrorPage
       */
     brandId: string;
     /**
       *
-      * @type CustomizablePage
-      * @memberof CustomizationApireplaceErrorPage
+      * @type ErrorPage
+      * @memberof CustomizationApireplaceCustomizedErrorPage
       */
-    CustomizablePage: CustomizablePage;
+    ErrorPage: ErrorPage;
 }
-export interface CustomizationApiReplaceSignInPageRequest {
+export interface CustomizationApiReplaceCustomizedSignInPageRequest {
     /**
       * The ID of the brand.
       * @type string
-      * @memberof CustomizationApireplaceSignInPage
+      * @memberof CustomizationApireplaceCustomizedSignInPage
       */
     brandId: string;
     /**
       *
       * @type SignInPage
-      * @memberof CustomizationApireplaceSignInPage
+      * @memberof CustomizationApireplaceCustomizedSignInPage
       */
     SignInPage: SignInPage;
 }
-export interface CustomizationApiReplaceSignInPagePreviewRequest {
+export interface CustomizationApiReplaceEmailCustomizationRequest {
     /**
       * The ID of the brand.
       * @type string
-      * @memberof CustomizationApireplaceSignInPagePreview
+      * @memberof CustomizationApireplaceEmailCustomization
+      */
+    brandId: string;
+    /**
+      * The name of the email template.
+      * @type string
+      * @memberof CustomizationApireplaceEmailCustomization
+      */
+    templateName: string;
+    /**
+      * The ID of the email customization.
+      * @type string
+      * @memberof CustomizationApireplaceEmailCustomization
+      */
+    customizationId: string;
+    /**
+      * Request
+      * @type EmailCustomization
+      * @memberof CustomizationApireplaceEmailCustomization
+      */
+    instance?: EmailCustomization;
+}
+export interface CustomizationApiReplaceEmailSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceEmailSettings
+      */
+    brandId: string;
+    /**
+      * The name of the email template.
+      * @type string
+      * @memberof CustomizationApireplaceEmailSettings
+      */
+    templateName: string;
+    /**
+      *
+      * @type EmailSettings
+      * @memberof CustomizationApireplaceEmailSettings
+      */
+    EmailSettings?: EmailSettings;
+}
+export interface CustomizationApiReplacePreviewErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplacePreviewErrorPage
+      */
+    brandId: string;
+    /**
+      *
+      * @type ErrorPage
+      * @memberof CustomizationApireplacePreviewErrorPage
+      */
+    ErrorPage: ErrorPage;
+}
+export interface CustomizationApiReplacePreviewSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplacePreviewSignInPage
       */
     brandId: string;
     /**
       *
       * @type SignInPage
-      * @memberof CustomizationApireplaceSignInPagePreview
+      * @memberof CustomizationApireplacePreviewSignInPage
       */
     SignInPage: SignInPage;
 }
@@ -2875,46 +3323,6 @@ export interface CustomizationApiReplaceSignOutPageSettingsRequest {
       * @memberof CustomizationApireplaceSignOutPageSettings
       */
     HostedPage: HostedPage;
-}
-export interface CustomizationApiResetErrorPageRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiresetErrorPage
-      */
-    brandId: string;
-}
-export interface CustomizationApiResetSignInPageRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiresetSignInPage
-      */
-    brandId: string;
-}
-export interface CustomizationApiRetrieveErrorPageRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiretrieveErrorPage
-      */
-    brandId: string;
-}
-export interface CustomizationApiRetrieveSignInPageRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiretrieveSignInPage
-      */
-    brandId: string;
-}
-export interface CustomizationApiRetrieveSignOutPageSettingsRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiretrieveSignOutPageSettings
-      */
-    brandId: string;
 }
 export interface CustomizationApiSendTestEmailRequest {
     /**
@@ -2936,95 +3344,15 @@ export interface CustomizationApiSendTestEmailRequest {
       */
     language?: string;
 }
-export interface CustomizationApiUpdateBrandRequest {
-    /**
-      *
-      * @type string
-      * @memberof CustomizationApiupdateBrand
-      */
-    brandId: string;
-    /**
-      *
-      * @type Brand
-      * @memberof CustomizationApiupdateBrand
-      */
-    brand: Brand;
-}
-export interface CustomizationApiUpdateBrandThemeRequest {
-    /**
-      *
-      * @type string
-      * @memberof CustomizationApiupdateBrandTheme
-      */
-    brandId: string;
-    /**
-      *
-      * @type string
-      * @memberof CustomizationApiupdateBrandTheme
-      */
-    themeId: string;
-    /**
-      *
-      * @type Theme
-      * @memberof CustomizationApiupdateBrandTheme
-      */
-    theme: Theme;
-}
-export interface CustomizationApiUpdateEmailCustomizationRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiupdateEmailCustomization
-      */
-    brandId: string;
-    /**
-      * The name of the email template.
-      * @type string
-      * @memberof CustomizationApiupdateEmailCustomization
-      */
-    templateName: string;
-    /**
-      * The ID of the email customization.
-      * @type string
-      * @memberof CustomizationApiupdateEmailCustomization
-      */
-    customizationId: string;
-    /**
-      * Request
-      * @type EmailCustomization
-      * @memberof CustomizationApiupdateEmailCustomization
-      */
-    instance?: EmailCustomization;
-}
-export interface CustomizationApiUpdateEmailSettingsRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApiupdateEmailSettings
-      */
-    brandId: string;
-    /**
-      * The name of the email template.
-      * @type string
-      * @memberof CustomizationApiupdateEmailSettings
-      */
-    templateName: string;
-    /**
-      *
-      * @type EmailSettings
-      * @memberof CustomizationApiupdateEmailSettings
-      */
-    EmailSettings?: EmailSettings;
-}
 export interface CustomizationApiUploadBrandThemeBackgroundImageRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeBackgroundImage
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeBackgroundImage
       */
@@ -3038,13 +3366,13 @@ export interface CustomizationApiUploadBrandThemeBackgroundImageRequest {
 }
 export interface CustomizationApiUploadBrandThemeFaviconRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeFavicon
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeFavicon
       */
@@ -3058,13 +3386,13 @@ export interface CustomizationApiUploadBrandThemeFaviconRequest {
 }
 export interface CustomizationApiUploadBrandThemeLogoRequest {
     /**
-      *
+      * The ID of the brand.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeLogo
       */
     brandId: string;
     /**
-      *
+      * The ID of the theme.
       * @type string
       * @memberof CustomizationApiuploadBrandThemeLogo
       */
@@ -3080,19 +3408,31 @@ export declare class ObjectCustomizationApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: CustomizationApiRequestFactory, responseProcessor?: CustomizationApiResponseProcessor);
   /**
-      * Creates a new email customization.
+      * Creates new brand in your org
+      * Create a Brand
+      * @param param the request object
+      */
+  createBrand(param?: CustomizationApiCreateBrandRequest, options?: Configuration): Promise<Brand>;
+  /**
+      * Creates a new email customization
       * Create an Email Customization
       * @param param the request object
       */
   createEmailCustomization(param: CustomizationApiCreateEmailCustomizationRequest, options?: Configuration): Promise<EmailCustomization>;
   /**
-      * Deletes all customizations for an email template.
+      * Deletes all customizations for an email template
       * Delete all Email Customizations
       * @param param the request object
       */
   deleteAllCustomizations(param: CustomizationApiDeleteAllCustomizationsRequest, options?: Configuration): Promise<void>;
   /**
-      * Deletes a Theme background image.
+      * Deletes a brand by its unique identifier
+      * Delete a brand
+      * @param param the request object
+      */
+  deleteBrand(param: CustomizationApiDeleteBrandRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a Theme background image
       * Delete the Background Image
       * @param param the request object
       */
@@ -3110,149 +3450,227 @@ export declare class ObjectCustomizationApi {
       */
   deleteBrandThemeLogo(param: CustomizationApiDeleteBrandThemeLogoRequest, options?: Configuration): Promise<void>;
   /**
-      * Deletes an email customization by its unique identifier.
+      * Deletes the customized error page. As a result, the default error page appears in your live environment.
+      * Delete the Customized Error Page
+      * @param param the request object
+      */
+  deleteCustomizedErrorPage(param: CustomizationApiDeleteCustomizedErrorPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+      * Delete the Customized Sign-in Page
+      * @param param the request object
+      */
+  deleteCustomizedSignInPage(param: CustomizationApiDeleteCustomizedSignInPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param param the request object
       */
   deleteEmailCustomization(param: CustomizationApiDeleteEmailCustomizationRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a brand by `brandId`
+      * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Delete the Preview Error Page
+      * @param param the request object
+      */
+  deletePreviewErrorPage(param: CustomizationApiDeletePreviewErrorPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Delete the Preview Sign-in Page
+      * @param param the request object
+      */
+  deletePreviewSignInPage(param: CustomizationApiDeletePreviewSignInPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a brand by `brandId`
       * Retrieve a Brand
       * @param param the request object
       */
   getBrand(param: CustomizationApiGetBrandRequest, options?: Configuration): Promise<Brand>;
   /**
-      * Fetches a theme for a brand
+      * Retrieves a theme for a brand
       * Retrieve a Theme
       * @param param the request object
       */
   getBrandTheme(param: CustomizationApiGetBrandThemeRequest, options?: Configuration): Promise<ThemeResponse>;
   /**
-      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview an Email Customization
+      * Retrieves a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of an Email Customization
       * @param param the request object
       */
   getCustomizationPreview(param: CustomizationApiGetCustomizationPreviewRequest, options?: Configuration): Promise<EmailPreview>;
   /**
-      * Gets an email customization by its unique identifier.
+      * Retrieves the customized error page. The customized error page appears in your live environment.
+      * Retrieve the Customized Error Page
+      * @param param the request object
+      */
+  getCustomizedErrorPage(param: CustomizationApiGetCustomizedErrorPageRequest, options?: Configuration): Promise<ErrorPage>;
+  /**
+      * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
+      * Retrieve the Customized Sign-in Page
+      * @param param the request object
+      */
+  getCustomizedSignInPage(param: CustomizationApiGetCustomizedSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Retrieves the default error page. The default error page appears when no customized error page exists.
+      * Retrieve the Default Error Page
+      * @param param the request object
+      */
+  getDefaultErrorPage(param: CustomizationApiGetDefaultErrorPageRequest, options?: Configuration): Promise<ErrorPage>;
+  /**
+      * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
+      * Retrieve the Default Sign-in Page
+      * @param param the request object
+      */
+  getDefaultSignInPage(param: CustomizationApiGetDefaultSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Retrieves an email customization by its unique identifier
       * Retrieve an Email Customization
       * @param param the request object
       */
   getEmailCustomization(param: CustomizationApiGetEmailCustomizationRequest, options?: Configuration): Promise<EmailCustomization>;
   /**
-      * Gets an email template's default content.
+      * Retrieves an email template's default content
       * Retrieve an Email Template Default Content
       * @param param the request object
       */
   getEmailDefaultContent(param: CustomizationApiGetEmailDefaultContentRequest, options?: Configuration): Promise<EmailDefaultContent>;
   /**
-      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview the Email Template Default Content
+      * Retrieves a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of the Email Template Default Content
       * @param param the request object
       */
   getEmailDefaultPreview(param: CustomizationApiGetEmailDefaultPreviewRequest, options?: Configuration): Promise<EmailPreview>;
   /**
-      * Gets an email template's settings.
+      * Retrieves an email template's settings
       * Retrieve the Email Template Settings
       * @param param the request object
       */
   getEmailSettings(param: CustomizationApiGetEmailSettingsRequest, options?: Configuration): Promise<EmailSettings>;
   /**
-      * Gets the details of an email template by name.
+      * Retrieves the details of an email template by name
       * Retrieve an Email Template
       * @param param the request object
       */
   getEmailTemplate(param: CustomizationApiGetEmailTemplateRequest, options?: Configuration): Promise<EmailTemplate>;
   /**
-      * List all sign-in widget versions.
+      * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Error Page Sub-Resources
+      * @param param the request object
+      */
+  getErrorPage(param: CustomizationApiGetErrorPageRequest, options?: Configuration): Promise<PageRoot>;
+  /**
+      * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Retrieve the Preview Error Page Preview
+      * @param param the request object
+      */
+  getPreviewErrorPage(param: CustomizationApiGetPreviewErrorPageRequest, options?: Configuration): Promise<ErrorPage>;
+  /**
+      * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Retrieve the Preview Sign-in Page Preview
+      * @param param the request object
+      */
+  getPreviewSignInPage(param: CustomizationApiGetPreviewSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Sign-in Page Sub-Resources
+      * @param param the request object
+      */
+  getSignInPage(param: CustomizationApiGetSignInPageRequest, options?: Configuration): Promise<PageRoot>;
+  /**
+      * Retrieves the sign-out page settings
+      * Retrieve the Sign-out Page Settings
+      * @param param the request object
+      */
+  getSignOutPageSettings(param: CustomizationApiGetSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
+  /**
+      * Lists all sign-in widget versions supported by the current org
       * List all Sign-in Widget Versions
       * @param param the request object
       */
   listAllSignInWidgetVersions(param: CustomizationApiListAllSignInWidgetVersionsRequest, options?: Configuration): Promise<Collection<string>>;
   /**
-      * List all the themes in your brand
+      * Lists all domains associated with a brand by `brandId`
+      * List all Domains associated with a Brand
+      * @param param the request object
+      */
+  listBrandDomains(param: CustomizationApiListBrandDomainsRequest, options?: Configuration): Promise<BrandDomains>;
+  /**
+      * Lists all the themes in your brand
       * List all Themes
       * @param param the request object
       */
   listBrandThemes(param: CustomizationApiListBrandThemesRequest, options?: Configuration): Promise<Collection<ThemeResponse>>;
   /**
-      * List all the brands in your org.
+      * Lists all the brands in your org
       * List all Brands
       * @param param the request object
       */
   listBrands(param?: CustomizationApiListBrandsRequest, options?: Configuration): Promise<Collection<Brand>>;
   /**
-      * Lists all customizations of an email template.
+      * Lists all customizations of an email template
       * List all Email Customizations
       * @param param the request object
       */
   listEmailCustomizations(param: CustomizationApiListEmailCustomizationsRequest, options?: Configuration): Promise<Collection<EmailCustomization>>;
   /**
-      * Lists all email templates.
+      * Lists all email templates
       * List all Email Templates
       * @param param the request object
       */
   listEmailTemplates(param: CustomizationApiListEmailTemplatesRequest, options?: Configuration): Promise<Collection<EmailTemplate>>;
   /**
-      * Previews the error page.
-      * Preview the Error Page
+      * Replaces a brand by `brandId`
+      * Replace a Brand
       * @param param the request object
       */
-  previewErrorPage(param: CustomizationApiPreviewErrorPageRequest, options?: Configuration): Promise<string>;
+  replaceBrand(param: CustomizationApiReplaceBrandRequest, options?: Configuration): Promise<Brand>;
   /**
-      * Replaces the error page.
-      * Replace the Error Page
+      * Replaces a theme for a brand
+      * Replace a Theme
       * @param param the request object
       */
-  replaceErrorPage(param: CustomizationApiReplaceErrorPageRequest, options?: Configuration): Promise<CustomizablePage>;
+  replaceBrandTheme(param: CustomizationApiReplaceBrandThemeRequest, options?: Configuration): Promise<ThemeResponse>;
   /**
-      * Replaces the sign-in page.
-      * Replace the Sign-in Page
+      * Replaces the customized error page. The customized error page appears in your live environment.
+      * Replace the Customized Error Page
       * @param param the request object
       */
-  replaceSignInPage(param: CustomizationApiReplaceSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  replaceCustomizedErrorPage(param: CustomizationApiReplaceCustomizedErrorPageRequest, options?: Configuration): Promise<ErrorPage>;
   /**
-      * Replace the sign-in page preview.
-      * Replace the Sign-in Page Preview
+      * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
+      * Replace the Customized Sign-in Page
       * @param param the request object
       */
-  replaceSignInPagePreview(param: CustomizationApiReplaceSignInPagePreviewRequest, options?: Configuration): Promise<void>;
+  replaceCustomizedSignInPage(param: CustomizationApiReplaceCustomizedSignInPageRequest, options?: Configuration): Promise<SignInPage>;
   /**
-      * Replaces the sign-out page settings.
+      * Replaces an existing email customization using the property values provided
+      * Replace an Email Customization
+      * @param param the request object
+      */
+  replaceEmailCustomization(param: CustomizationApiReplaceEmailCustomizationRequest, options?: Configuration): Promise<EmailCustomization>;
+  /**
+      * Replaces an email template's settings
+      * Replace the Email Template Settings
+      * @param param the request object
+      */
+  replaceEmailSettings(param: CustomizationApiReplaceEmailSettingsRequest, options?: Configuration): Promise<void>;
+  /**
+      * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Replace the Preview Error Page
+      * @param param the request object
+      */
+  replacePreviewErrorPage(param: CustomizationApiReplacePreviewErrorPageRequest, options?: Configuration): Promise<ErrorPage>;
+  /**
+      * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Replace the Preview Sign-in Page
+      * @param param the request object
+      */
+  replacePreviewSignInPage(param: CustomizationApiReplacePreviewSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Replaces the sign-out page settings
       * Replace the Sign-out Page Settings
       * @param param the request object
       */
   replaceSignOutPageSettings(param: CustomizationApiReplaceSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
-  /**
-      * Resets the error page.
-      * Reset the Error Page
-      * @param param the request object
-      */
-  resetErrorPage(param: CustomizationApiResetErrorPageRequest, options?: Configuration): Promise<void>;
-  /**
-      * Reset the sign-in page.
-      * Reset the Sign-in Page
-      * @param param the request object
-      */
-  resetSignInPage(param: CustomizationApiResetSignInPageRequest, options?: Configuration): Promise<void>;
-  /**
-      * Retrieves the error page.
-      * Retrieve the Error Page
-      * @param param the request object
-      */
-  retrieveErrorPage(param: CustomizationApiRetrieveErrorPageRequest, options?: Configuration): Promise<CustomizablePage>;
-  /**
-      * Retrieves the sign-in page.
-      * Retrieve the Sign-in Page
-      * @param param the request object
-      */
-  retrieveSignInPage(param: CustomizationApiRetrieveSignInPageRequest, options?: Configuration): Promise<SignInPage>;
-  /**
-      * Retrieves the sign-out page settings.
-      * Retrieve the Sign-out Page Settings
-      * @param param the request object
-      */
-  retrieveSignOutPageSettings(param: CustomizationApiRetrieveSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
@@ -3260,47 +3678,138 @@ export declare class ObjectCustomizationApi {
       */
   sendTestEmail(param: CustomizationApiSendTestEmailRequest, options?: Configuration): Promise<void>;
   /**
-      * Updates a brand by `brandId`
-      * Replace a Brand
-      * @param param the request object
-      */
-  updateBrand(param: CustomizationApiUpdateBrandRequest, options?: Configuration): Promise<Brand>;
-  /**
-      * Updates a theme for a brand
-      * Replace a Theme
-      * @param param the request object
-      */
-  updateBrandTheme(param: CustomizationApiUpdateBrandThemeRequest, options?: Configuration): Promise<ThemeResponse>;
-  /**
-      * Updates an existing email customization using the property values provided.
-      * Replace an Email Customization
-      * @param param the request object
-      */
-  updateEmailCustomization(param: CustomizationApiUpdateEmailCustomizationRequest, options?: Configuration): Promise<EmailCustomization>;
-  /**
-      * Updates an email template's settings.
-      * Replace the Email Template Settings
-      * @param param the request object
-      */
-  updateEmailSettings(param: CustomizationApiUpdateEmailSettingsRequest, options?: Configuration): Promise<void>;
-  /**
-      * Updates the background image for your Theme
+      * Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
       * Upload the Background Image
       * @param param the request object
       */
   uploadBrandThemeBackgroundImage(param: CustomizationApiUploadBrandThemeBackgroundImageRequest, options?: Configuration): Promise<ImageUploadResponse>;
   /**
-      * Updates the favicon for your theme
+      * Uploads and replaces the favicon for the theme
       * Upload the Favicon
       * @param param the request object
       */
   uploadBrandThemeFavicon(param: CustomizationApiUploadBrandThemeFaviconRequest, options?: Configuration): Promise<ImageUploadResponse>;
   /**
-      * Updates the logo for your Theme
+      * Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Logo
       * @param param the request object
       */
   uploadBrandThemeLogo(param: CustomizationApiUploadBrandThemeLogoRequest, options?: Configuration): Promise<ImageUploadResponse>;
+}
+import { DeviceApiRequestFactory, DeviceApiResponseProcessor } from '../apis/DeviceApi';
+export interface DeviceApiActivateDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApiactivateDevice
+      */
+    deviceId: string;
+}
+export interface DeviceApiDeactivateDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApideactivateDevice
+      */
+    deviceId: string;
+}
+export interface DeviceApiDeleteDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApideleteDevice
+      */
+    deviceId: string;
+}
+export interface DeviceApiGetDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApigetDevice
+      */
+    deviceId: string;
+}
+export interface DeviceApiListDevicesRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof DeviceApilistDevices
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return.
+      * @type number
+      * @memberof DeviceApilistDevices
+      */
+    limit?: number;
+    /**
+      * SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties.
+      * @type string
+      * @memberof DeviceApilistDevices
+      */
+    search?: string;
+}
+export interface DeviceApiSuspendDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApisuspendDevice
+      */
+    deviceId: string;
+}
+export interface DeviceApiUnsuspendDeviceRequest {
+    /**
+      * &#x60;id&#x60; of the device
+      * @type string
+      * @memberof DeviceApiunsuspendDevice
+      */
+    deviceId: string;
+}
+export declare class ObjectDeviceApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: DeviceApiRequestFactory, responseProcessor?: DeviceApiResponseProcessor);
+  /**
+      * Activates a device by `deviceId`
+      * Activate a Device
+      * @param param the request object
+      */
+  activateDevice(param: DeviceApiActivateDeviceRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deactivates a device by `deviceId`
+      * Deactivate a Device
+      * @param param the request object
+      */
+  deactivateDevice(param: DeviceApiDeactivateDeviceRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a device by `deviceId`
+      * Delete a Device
+      * @param param the request object
+      */
+  deleteDevice(param: DeviceApiDeleteDeviceRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a device by `deviceId`
+      * Retrieve a Device
+      * @param param the request object
+      */
+  getDevice(param: DeviceApiGetDeviceRequest, options?: Configuration): Promise<Device>;
+  /**
+      * Lists all devices with pagination support.  A subset of Devices can be returned that match a supported search criteria using the `search` query parameter.  Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** Listing devices with `search` should not be used as a part of any critical flows—such as authentication or updates—to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object. <br> Don't use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss. <br> Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation equires [URL encoding](http://en.wikipedia.org/wiki/Percent-encoding). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * List all Devices
+      * @param param the request object
+      */
+  listDevices(param?: DeviceApiListDevicesRequest, options?: Configuration): Promise<Collection<Device>>;
+  /**
+      * Suspends a device by `deviceId`
+      * Suspend a Device
+      * @param param the request object
+      */
+  suspendDevice(param: DeviceApiSuspendDeviceRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unsuspends a device by `deviceId`
+      * Unsuspend a Device
+      * @param param the request object
+      */
+  unsuspendDevice(param: DeviceApiUnsuspendDeviceRequest, options?: Configuration): Promise<void>;
 }
 import { DeviceAssuranceApiRequestFactory, DeviceAssuranceApiResponseProcessor } from '../apis/DeviceAssuranceApi';
 export interface DeviceAssuranceApiCreateDeviceAssurancePolicyRequest {
@@ -3329,17 +3838,17 @@ export interface DeviceAssuranceApiGetDeviceAssurancePolicyRequest {
 }
 export interface DeviceAssuranceApiListDeviceAssurancePoliciesRequest {
 }
-export interface DeviceAssuranceApiUpdateDeviceAssurancePolicyRequest {
+export interface DeviceAssuranceApiReplaceDeviceAssurancePolicyRequest {
     /**
       * Id of the Device Assurance Policy
       * @type string
-      * @memberof DeviceAssuranceApiupdateDeviceAssurancePolicy
+      * @memberof DeviceAssuranceApireplaceDeviceAssurancePolicy
       */
     deviceAssuranceId: string;
     /**
       *
       * @type DeviceAssurance
-      * @memberof DeviceAssuranceApiupdateDeviceAssurancePolicy
+      * @memberof DeviceAssuranceApireplaceDeviceAssurancePolicy
       */
     deviceAssurance: DeviceAssurance;
 }
@@ -3347,124 +3856,35 @@ export declare class ObjectDeviceAssuranceApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: DeviceAssuranceApiRequestFactory, responseProcessor?: DeviceAssuranceApiResponseProcessor);
   /**
-      * Adds a new Device Assurance Policy.
+      * Creates a new Device Assurance Policy
       * Create a Device Assurance Policy
       * @param param the request object
       */
   createDeviceAssurancePolicy(param: DeviceAssuranceApiCreateDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
   /**
-      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
       * Delete a Device Assurance Policy
       * @param param the request object
       */
   deleteDeviceAssurancePolicy(param: DeviceAssuranceApiDeleteDeviceAssurancePolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieves a Device Assurance Policy by `deviceAssuranceId`
       * Retrieve a Device Assurance Policy
       * @param param the request object
       */
   getDeviceAssurancePolicy(param: DeviceAssuranceApiGetDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
   /**
-      * Enumerates Device Assurance Policies in your organization.
+      * Lists all device assurance policies
       * List all Device Assurance Policies
       * @param param the request object
       */
   listDeviceAssurancePolicies(param?: DeviceAssuranceApiListDeviceAssurancePoliciesRequest, options?: Configuration): Promise<Collection<DeviceAssurance>>;
   /**
-      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replaces a Device Assurance Policy by `deviceAssuranceId`
       * Replace a Device Assurance Policy
       * @param param the request object
       */
-  updateDeviceAssurancePolicy(param: DeviceAssuranceApiUpdateDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
-}
-import { DomainApiRequestFactory, DomainApiResponseProcessor } from '../apis/DomainApi';
-export interface DomainApiCreateCertificateRequest {
-    /**
-      *
-      * @type string
-      * @memberof DomainApicreateCertificate
-      */
-    domainId: string;
-    /**
-      *
-      * @type DomainCertificate
-      * @memberof DomainApicreateCertificate
-      */
-    certificate: DomainCertificate;
-}
-export interface DomainApiCreateDomainRequest {
-    /**
-      *
-      * @type Domain
-      * @memberof DomainApicreateDomain
-      */
-    domain: Domain;
-}
-export interface DomainApiDeleteDomainRequest {
-    /**
-      *
-      * @type string
-      * @memberof DomainApideleteDomain
-      */
-    domainId: string;
-}
-export interface DomainApiGetDomainRequest {
-    /**
-      *
-      * @type string
-      * @memberof DomainApigetDomain
-      */
-    domainId: string;
-}
-export interface DomainApiListDomainsRequest {
-}
-export interface DomainApiVerifyDomainRequest {
-    /**
-      *
-      * @type string
-      * @memberof DomainApiverifyDomain
-      */
-    domainId: string;
-}
-export declare class ObjectDomainApi {
-  private api;
-  constructor(configuration: Configuration, requestFactory?: DomainApiRequestFactory, responseProcessor?: DomainApiResponseProcessor);
-  /**
-      * Creates the Certificate for the Domain.
-      * Replace the Certificate
-      * @param param the request object
-      */
-  createCertificate(param: DomainApiCreateCertificateRequest, options?: Configuration): Promise<void>;
-  /**
-      * Creates your domain.
-      * Create a Domain
-      * @param param the request object
-      */
-  createDomain(param: DomainApiCreateDomainRequest, options?: Configuration): Promise<DomainResponse>;
-  /**
-      * Deletes a Domain by `id`.
-      * Delete a Domain
-      * @param param the request object
-      */
-  deleteDomain(param: DomainApiDeleteDomainRequest, options?: Configuration): Promise<void>;
-  /**
-      * Fetches a Domain by `id`.
-      * Retrieve a Domain
-      * @param param the request object
-      */
-  getDomain(param: DomainApiGetDomainRequest, options?: Configuration): Promise<DomainResponse>;
-  /**
-      * List all verified custom Domains for the org.
-      * List all Domains
-      * @param param the request object
-      */
-  listDomains(param?: DomainApiListDomainsRequest, options?: Configuration): Promise<DomainListResponse>;
-  /**
-      * Verifies the Domain by `id`.
-      * Verify a Domain
-      * @param param the request object
-      */
-  verifyDomain(param: DomainApiVerifyDomainRequest, options?: Configuration): Promise<DomainResponse>;
+  replaceDeviceAssurancePolicy(param: DeviceAssuranceApiReplaceDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
 }
 import { EmailDomainApiRequestFactory, EmailDomainApiResponseProcessor } from '../apis/EmailDomainApi';
 export interface EmailDomainApiCreateEmailDomainRequest {
@@ -3501,17 +3921,17 @@ export interface EmailDomainApiListEmailDomainBrandsRequest {
 }
 export interface EmailDomainApiListEmailDomainsRequest {
 }
-export interface EmailDomainApiUpdateEmailDomainRequest {
+export interface EmailDomainApiReplaceEmailDomainRequest {
     /**
       *
       * @type string
-      * @memberof EmailDomainApiupdateEmailDomain
+      * @memberof EmailDomainApireplaceEmailDomain
       */
     emailDomainId: string;
     /**
       *
       * @type UpdateEmailDomain
-      * @memberof EmailDomainApiupdateEmailDomain
+      * @memberof EmailDomainApireplaceEmailDomain
       */
     updateEmailDomain: UpdateEmailDomain;
 }
@@ -3527,44 +3947,44 @@ export declare class ObjectEmailDomainApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: EmailDomainApiRequestFactory, responseProcessor?: EmailDomainApiResponseProcessor);
   /**
-      * Creates a custom email domain.
+      * Creates an Email Domain in your org, along with associated username and sender display name
       * Create an Email Domain
       * @param param the request object
       */
   createEmailDomain(param: EmailDomainApiCreateEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
   /**
-      * Deletes an Email Domain by `emailDomainId`.
+      * Deletes an Email Domain by `emailDomainId`
       * Delete an Email Domain
       * @param param the request object
       */
   deleteEmailDomain(param: EmailDomainApiDeleteEmailDomainRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
       * Retrieve a Email Domain
       * @param param the request object
       */
   getEmailDomain(param: EmailDomainApiGetEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
   /**
-      * List all brands linked to an email domain.
+      * Lists all brands linked to an email domain
       * List all brands linked to an email domain
       * @param param the request object
       */
   listEmailDomainBrands(param: EmailDomainApiListEmailDomainBrandsRequest, options?: Configuration): Promise<Collection<Brand>>;
   /**
-      * List all the email domains in your org.
-      * List all email domains
+      * Lists all the Email Domains in your org, along with associated username and sender display name
+      * List all Email Domains
       * @param param the request object
       */
   listEmailDomains(param?: EmailDomainApiListEmailDomainsRequest, options?: Configuration): Promise<EmailDomainListResponse>;
   /**
-      * Updates an email domain by `emailDomainId`
-      * Update an Email Domain
+      * Replaces associated username and sender display name by `emailDomainId`
+      * Replace an Email Domain
       * @param param the request object
       */
-  updateEmailDomain(param: EmailDomainApiUpdateEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
+  replaceEmailDomain(param: EmailDomainApiReplaceEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
   /**
-      * Verifies the Email Domain by `id`.
-      * Verify Email Domain
+      * Verifies an Email Domain by `emailDomainId`
+      * Verify an Email Domain
       * @param param the request object
       */
   verifyEmailDomain(param: EmailDomainApiVerifyEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
@@ -3612,17 +4032,17 @@ export interface EventHookApiGetEventHookRequest {
 }
 export interface EventHookApiListEventHooksRequest {
 }
-export interface EventHookApiUpdateEventHookRequest {
+export interface EventHookApiReplaceEventHookRequest {
     /**
       *
       * @type string
-      * @memberof EventHookApiupdateEventHook
+      * @memberof EventHookApireplaceEventHook
       */
     eventHookId: string;
     /**
       *
       * @type EventHook
-      * @memberof EventHookApiupdateEventHook
+      * @memberof EventHookApireplaceEventHook
       */
     eventHook: EventHook;
 }
@@ -3638,49 +4058,49 @@ export declare class ObjectEventHookApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: EventHookApiRequestFactory, responseProcessor?: EventHookApiResponseProcessor);
   /**
-      * Success
+      * Activates an event hook
       * Activate an Event Hook
       * @param param the request object
       */
   activateEventHook(param: EventHookApiActivateEventHookRequest, options?: Configuration): Promise<EventHook>;
   /**
-      * Success
+      * Creates an event hook
       * Create an Event Hook
       * @param param the request object
       */
   createEventHook(param: EventHookApiCreateEventHookRequest, options?: Configuration): Promise<EventHook>;
   /**
-      * Success
+      * Deactivates an event hook
       * Deactivate an Event Hook
       * @param param the request object
       */
   deactivateEventHook(param: EventHookApiDeactivateEventHookRequest, options?: Configuration): Promise<EventHook>;
   /**
-      * Success
+      * Deletes an event hook
       * Delete an Event Hook
       * @param param the request object
       */
   deleteEventHook(param: EventHookApiDeleteEventHookRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Retrieves an event hook
       * Retrieve an Event Hook
       * @param param the request object
       */
   getEventHook(param: EventHookApiGetEventHookRequest, options?: Configuration): Promise<EventHook>;
   /**
-      * Success
+      * Lists all event hooks
       * List all Event Hooks
       * @param param the request object
       */
   listEventHooks(param?: EventHookApiListEventHooksRequest, options?: Configuration): Promise<Collection<EventHook>>;
   /**
-      * Success
+      * Replaces an event hook
       * Replace an Event Hook
       * @param param the request object
       */
-  updateEventHook(param: EventHookApiUpdateEventHookRequest, options?: Configuration): Promise<EventHook>;
+  replaceEventHook(param: EventHookApiReplaceEventHookRequest, options?: Configuration): Promise<EventHook>;
   /**
-      * Success
+      * Verifies an event hook
       * Verify an Event Hook
       * @param param the request object
       */
@@ -3737,31 +4157,31 @@ export declare class ObjectFeatureApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: FeatureApiRequestFactory, responseProcessor?: FeatureApiResponseProcessor);
   /**
-      * Success
+      * Retrieves a feature
       * Retrieve a Feature
       * @param param the request object
       */
   getFeature(param: FeatureApiGetFeatureRequest, options?: Configuration): Promise<Feature>;
   /**
-      * Success
+      * Lists all dependencies
       * List all Dependencies
       * @param param the request object
       */
   listFeatureDependencies(param: FeatureApiListFeatureDependenciesRequest, options?: Configuration): Promise<Collection<Feature>>;
   /**
-      * Success
+      * Lists all dependents
       * List all Dependents
       * @param param the request object
       */
   listFeatureDependents(param: FeatureApiListFeatureDependentsRequest, options?: Configuration): Promise<Collection<Feature>>;
   /**
-      * Success
+      * Lists all features
       * List all Features
       * @param param the request object
       */
   listFeatures(param?: FeatureApiListFeaturesRequest, options?: Configuration): Promise<Collection<Feature>>;
   /**
-      * Success
+      * Updates a feature lifecycle
       * Update a Feature Lifecycle
       * @param param the request object
       */
@@ -3776,105 +4196,33 @@ export interface GroupApiActivateGroupRuleRequest {
       */
     ruleId: string;
 }
-export interface GroupApiAddApplicationInstanceTargetToAppAdminRoleGivenToGroupRequest {
+export interface GroupApiAssignGroupOwnerRequest {
     /**
       *
       * @type string
-      * @memberof GroupApiaddApplicationInstanceTargetToAppAdminRoleGivenToGroup
+      * @memberof GroupApiassignGroupOwner
       */
     groupId: string;
     /**
       *
-      * @type string
-      * @memberof GroupApiaddApplicationInstanceTargetToAppAdminRoleGivenToGroup
+      * @type GroupOwner
+      * @memberof GroupApiassignGroupOwner
       */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddApplicationInstanceTargetToAppAdminRoleGivenToGroup
-      */
-    appName: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddApplicationInstanceTargetToAppAdminRoleGivenToGroup
-      */
-    applicationId: string;
+    GroupOwner: GroupOwner;
 }
-export interface GroupApiAddApplicationTargetToAdminRoleGivenToGroupRequest {
+export interface GroupApiAssignUserToGroupRequest {
     /**
       *
       * @type string
-      * @memberof GroupApiaddApplicationTargetToAdminRoleGivenToGroup
+      * @memberof GroupApiassignUserToGroup
       */
     groupId: string;
     /**
       *
       * @type string
-      * @memberof GroupApiaddApplicationTargetToAdminRoleGivenToGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddApplicationTargetToAdminRoleGivenToGroup
-      */
-    appName: string;
-}
-export interface GroupApiAddGroupTargetToGroupAdministratorRoleForGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddGroupTargetToGroupAdministratorRoleForGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddGroupTargetToGroupAdministratorRoleForGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddGroupTargetToGroupAdministratorRoleForGroup
-      */
-    targetGroupId: string;
-}
-export interface GroupApiAddUserToGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddUserToGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiaddUserToGroup
+      * @memberof GroupApiassignUserToGroup
       */
     userId: string;
-}
-export interface GroupApiAssignRoleToGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiassignRoleToGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type AssignRoleRequest
-      * @memberof GroupApiassignRoleToGroup
-      */
-    assignRoleRequest: AssignRoleRequest;
-    /**
-      *
-      * @type boolean
-      * @memberof GroupApiassignRoleToGroup
-      */
-    disableNotifications?: boolean;
 }
 export interface GroupApiCreateGroupRequest {
     /**
@@ -3907,6 +4255,20 @@ export interface GroupApiDeleteGroupRequest {
       * @memberof GroupApideleteGroup
       */
     groupId: string;
+}
+export interface GroupApiDeleteGroupOwnerRequest {
+    /**
+      *
+      * @type string
+      * @memberof GroupApideleteGroupOwner
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof GroupApideleteGroupOwner
+      */
+    ownerId: string;
 }
 export interface GroupApiDeleteGroupRuleRequest {
     /**
@@ -3944,46 +4306,6 @@ export interface GroupApiGetGroupRuleRequest {
       */
     expand?: string;
 }
-export interface GroupApiGetRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApigetRole
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApigetRole
-      */
-    roleId: string;
-}
-export interface GroupApiListApplicationTargetsForApplicationAdministratorRoleForGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistApplicationTargetsForApplicationAdministratorRoleForGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistApplicationTargetsForApplicationAdministratorRoleForGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistApplicationTargetsForApplicationAdministratorRoleForGroup
-      */
-    after?: string;
-    /**
-      *
-      * @type number
-      * @memberof GroupApilistApplicationTargetsForApplicationAdministratorRoleForGroup
-      */
-    limit?: number;
-}
 export interface GroupApiListAssignedApplicationsForGroupRequest {
     /**
       *
@@ -4004,19 +4326,31 @@ export interface GroupApiListAssignedApplicationsForGroupRequest {
       */
     limit?: number;
 }
-export interface GroupApiListGroupAssignedRolesRequest {
+export interface GroupApiListGroupOwnersRequest {
     /**
       *
       * @type string
-      * @memberof GroupApilistGroupAssignedRoles
+      * @memberof GroupApilistGroupOwners
       */
     groupId: string;
     /**
-      *
+      * SCIM Filter expression for group owners. Allows to filter owners by type.
       * @type string
-      * @memberof GroupApilistGroupAssignedRoles
+      * @memberof GroupApilistGroupOwners
       */
-    expand?: string;
+    filter?: string;
+    /**
+      * Specifies the pagination cursor for the next page of owners
+      * @type string
+      * @memberof GroupApilistGroupOwners
+      */
+    after?: string;
+    /**
+      * Specifies the number of owner results in a page
+      * @type number
+      * @memberof GroupApilistGroupOwners
+      */
+    limit?: number;
 }
 export interface GroupApiListGroupRulesRequest {
     /**
@@ -4043,32 +4377,6 @@ export interface GroupApiListGroupRulesRequest {
       * @memberof GroupApilistGroupRules
       */
     expand?: string;
-}
-export interface GroupApiListGroupTargetsForGroupRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistGroupTargetsForGroupRole
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistGroupTargetsForGroupRole
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApilistGroupTargetsForGroupRole
-      */
-    after?: string;
-    /**
-      *
-      * @type number
-      * @memberof GroupApilistGroupTargetsForGroupRole
-      */
-    limit?: number;
 }
 export interface GroupApiListGroupUsersRequest {
     /**
@@ -4127,170 +4435,84 @@ export interface GroupApiListGroupsRequest {
       * @memberof GroupApilistGroups
       */
     search?: string;
+    /**
+      * Specifies field to sort by and can be any single property (for search queries only).
+      * @type string
+      * @memberof GroupApilistGroups
+      */
+    sortBy?: string;
+    /**
+      * Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
+      * @type string
+      * @memberof GroupApilistGroups
+      */
+    sortOrder?: string;
 }
-export interface GroupApiRemoveApplicationTargetFromAdministratorRoleGivenToGroupRequest {
+export interface GroupApiReplaceGroupRequest {
     /**
       *
       * @type string
-      * @memberof GroupApiremoveApplicationTargetFromAdministratorRoleGivenToGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromAdministratorRoleGivenToGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromAdministratorRoleGivenToGroup
-      */
-    appName: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromAdministratorRoleGivenToGroup
-      */
-    applicationId: string;
-}
-export interface GroupApiRemoveApplicationTargetFromApplicationAdministratorRoleGivenToGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromApplicationAdministratorRoleGivenToGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromApplicationAdministratorRoleGivenToGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveApplicationTargetFromApplicationAdministratorRoleGivenToGroup
-      */
-    appName: string;
-}
-export interface GroupApiRemoveGroupTargetFromGroupAdministratorRoleGivenToGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveGroupTargetFromGroupAdministratorRoleGivenToGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveGroupTargetFromGroupAdministratorRoleGivenToGroup
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveGroupTargetFromGroupAdministratorRoleGivenToGroup
-      */
-    targetGroupId: string;
-}
-export interface GroupApiRemoveRoleFromGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveRoleFromGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveRoleFromGroup
-      */
-    roleId: string;
-}
-export interface GroupApiRemoveUserFromGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveUserFromGroup
-      */
-    groupId: string;
-    /**
-      *
-      * @type string
-      * @memberof GroupApiremoveUserFromGroup
-      */
-    userId: string;
-}
-export interface GroupApiUpdateGroupRequest {
-    /**
-      *
-      * @type string
-      * @memberof GroupApiupdateGroup
+      * @memberof GroupApireplaceGroup
       */
     groupId: string;
     /**
       *
       * @type Group
-      * @memberof GroupApiupdateGroup
+      * @memberof GroupApireplaceGroup
       */
     group: Group;
 }
-export interface GroupApiUpdateGroupRuleRequest {
+export interface GroupApiReplaceGroupRuleRequest {
     /**
       *
       * @type string
-      * @memberof GroupApiupdateGroupRule
+      * @memberof GroupApireplaceGroupRule
       */
     ruleId: string;
     /**
       *
       * @type GroupRule
-      * @memberof GroupApiupdateGroupRule
+      * @memberof GroupApireplaceGroupRule
       */
     groupRule: GroupRule;
+}
+export interface GroupApiUnassignUserFromGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof GroupApiunassignUserFromGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof GroupApiunassignUserFromGroup
+      */
+    userId: string;
 }
 export declare class ObjectGroupApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: GroupApiRequestFactory, responseProcessor?: GroupApiResponseProcessor);
   /**
-      * Activates a specific group rule by id from your organization
+      * Activates a specific group rule by `ruleId`
       * Activate a Group Rule
       * @param param the request object
       */
   activateGroupRule(param: GroupApiActivateGroupRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Add App Instance Target to App Administrator Role given to a Group
-      * Assign an Application Instance Target to Application Administrator Role
+      * Assigns a group owner
+      * Assign a Group Owner
       * @param param the request object
       */
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(param: GroupApiAddApplicationInstanceTargetToAppAdminRoleGivenToGroupRequest, options?: Configuration): Promise<void>;
+  assignGroupOwner(param: GroupApiAssignGroupOwnerRequest, options?: Configuration): Promise<GroupOwner>;
   /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param param the request object
-      */
-  addApplicationTargetToAdminRoleGivenToGroup(param: GroupApiAddApplicationTargetToAdminRoleGivenToGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Enumerates group targets for a group role.
-      * Assign a Group Target for Group Role
-      * @param param the request object
-      */
-  addGroupTargetToGroupAdministratorRoleForGroup(param: GroupApiAddGroupTargetToGroupAdministratorRoleForGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Adds a user to a group with 'OKTA_GROUP' type.
+      * Assigns a user to a group with 'OKTA_GROUP' type
       * Assign a User
       * @param param the request object
       */
-  addUserToGroup(param: GroupApiAddUserToGroupRequest, options?: Configuration): Promise<void>;
+  assignUserToGroup(param: GroupApiAssignUserToGroupRequest, options?: Configuration): Promise<void>;
   /**
-      * Assigns a Role to a Group
-      * Assign a Role
-      * @param param the request object
-      */
-  assignRoleToGroup(param: GroupApiAssignRoleToGroupRequest, options?: Configuration): Promise<Role | void>;
-  /**
-      * Adds a new group with `OKTA_GROUP` type to your organization.
+      * Creates a new group with `OKTA_GROUP` type
       * Create a Group
       * @param param the request object
       */
@@ -4302,125 +4524,178 @@ export declare class ObjectGroupApi {
       */
   createGroupRule(param: GroupApiCreateGroupRuleRequest, options?: Configuration): Promise<GroupRule>;
   /**
-      * Deactivates a specific group rule by id from your organization
+      * Deactivates a specific group rule by `ruleId`
       * Deactivate a Group Rule
       * @param param the request object
       */
   deactivateGroupRule(param: GroupApiDeactivateGroupRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes a group with `OKTA_GROUP` type from your organization.
+      * Deletes a group with `OKTA_GROUP` type
       * Delete a Group
       * @param param the request object
       */
   deleteGroup(param: GroupApiDeleteGroupRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes a specific group rule by id from your organization
+      * Deletes a group owner from a specific group
+      * Delete a Group Owner
+      * @param param the request object
+      */
+  deleteGroupOwner(param: GroupApiDeleteGroupOwnerRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a specific group rule by `ruleId`
       * Delete a group Rule
       * @param param the request object
       */
   deleteGroupRule(param: GroupApiDeleteGroupRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a group from your organization.
-      * List all Group Rules
+      * Retrieves a group by `groupId`
+      * Retrieve a Group
       * @param param the request object
       */
   getGroup(param: GroupApiGetGroupRequest, options?: Configuration): Promise<Group>;
   /**
-      * Fetches a specific group rule by id from your organization
+      * Retrieves a specific group rule by `ruleId`
       * Retrieve a Group Rule
       * @param param the request object
       */
   getGroupRule(param: GroupApiGetGroupRuleRequest, options?: Configuration): Promise<GroupRule>;
   /**
-      * Success
-      * Retrieve a Role
-      * @param param the request object
-      */
-  getRole(param: GroupApiGetRoleRequest, options?: Configuration): Promise<Role>;
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for an Application Administrator Role
-      * @param param the request object
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForGroup(param: GroupApiListApplicationTargetsForApplicationAdministratorRoleForGroupRequest, options?: Configuration): Promise<Collection<CatalogApplication>>;
-  /**
-      * Enumerates all applications that are assigned to a group.
+      * Lists all applications that are assigned to a group
       * List all Assigned Applications
       * @param param the request object
       */
   listAssignedApplicationsForGroup(param: GroupApiListAssignedApplicationsForGroupRequest, options?: Configuration): Promise<Collection<Application>>;
   /**
-      * Success
-      * List all Assigned Roles
+      * Lists all owners for a specific group
+      * List all Group Owners
       * @param param the request object
       */
-  listGroupAssignedRoles(param: GroupApiListGroupAssignedRolesRequest, options?: Configuration): Promise<Collection<Role>>;
+  listGroupOwners(param: GroupApiListGroupOwnersRequest, options?: Configuration): Promise<Collection<GroupOwner>>;
   /**
-      * Lists all group rules for your organization.
+      * Lists all group rules
       * List all Group Rules
       * @param param the request object
       */
   listGroupRules(param?: GroupApiListGroupRulesRequest, options?: Configuration): Promise<Collection<GroupRule>>;
   /**
-      * Enumerates group targets for a group role.
-      * List all Group Targets for a Group Role
-      * @param param the request object
-      */
-  listGroupTargetsForGroupRole(param: GroupApiListGroupTargetsForGroupRoleRequest, options?: Configuration): Promise<Collection<Group>>;
-  /**
-      * Enumerates all users that are a member of a group.
+      * Lists all users that are a member of a group
       * List all Member Users
       * @param param the request object
       */
   listGroupUsers(param: GroupApiListGroupUsersRequest, options?: Configuration): Promise<Collection<User>>;
   /**
-      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+      * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param param the request object
       */
   listGroups(param?: GroupApiListGroupsRequest, options?: Configuration): Promise<Collection<Group>>;
   /**
-      * Remove App Instance Target to App Administrator Role given to a Group
-      * Delete an Application Instance Target to Application Administrator Role
-      * @param param the request object
-      */
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(param: GroupApiRemoveApplicationTargetFromAdministratorRoleGivenToGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Success
-      * Delete an Application Target from Application Administrator Role
-      * @param param the request object
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(param: GroupApiRemoveApplicationTargetFromApplicationAdministratorRoleGivenToGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * remove group target for a group role.
-      * Delete a Group Target for Group Role
-      * @param param the request object
-      */
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(param: GroupApiRemoveGroupTargetFromGroupAdministratorRoleGivenToGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Unassigns a Role from a Group
-      * Delete a Role
-      * @param param the request object
-      */
-  removeRoleFromGroup(param: GroupApiRemoveRoleFromGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Removes a user from a group with 'OKTA_GROUP' type.
-      * Unassign a User
-      * @param param the request object
-      */
-  removeUserFromGroup(param: GroupApiRemoveUserFromGroupRequest, options?: Configuration): Promise<void>;
-  /**
-      * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+      * Replaces the profile for a group with `OKTA_GROUP` type
       * Replace a Group
       * @param param the request object
       */
-  updateGroup(param: GroupApiUpdateGroupRequest, options?: Configuration): Promise<Group>;
+  replaceGroup(param: GroupApiReplaceGroupRequest, options?: Configuration): Promise<Group>;
   /**
-      * Updates a group rule. Only `INACTIVE` rules can be updated.
+      * Replaces a group rule. Only `INACTIVE` rules can be updated.
       * Replace a Group Rule
       * @param param the request object
       */
-  updateGroupRule(param: GroupApiUpdateGroupRuleRequest, options?: Configuration): Promise<GroupRule>;
+  replaceGroupRule(param: GroupApiReplaceGroupRuleRequest, options?: Configuration): Promise<GroupRule>;
+  /**
+      * Unassigns a user from a group with 'OKTA_GROUP' type
+      * Unassign a User
+      * @param param the request object
+      */
+  unassignUserFromGroup(param: GroupApiUnassignUserFromGroupRequest, options?: Configuration): Promise<void>;
+}
+import { HookKeyApiRequestFactory, HookKeyApiResponseProcessor } from '../apis/HookKeyApi';
+export interface HookKeyApiCreateHookKeyRequest {
+    /**
+      *
+      * @type KeyRequest
+      * @memberof HookKeyApicreateHookKey
+      */
+    keyRequest: KeyRequest;
+}
+export interface HookKeyApiDeleteHookKeyRequest {
+    /**
+      *
+      * @type string
+      * @memberof HookKeyApideleteHookKey
+      */
+    hookKeyId: string;
+}
+export interface HookKeyApiGetHookKeyRequest {
+    /**
+      *
+      * @type string
+      * @memberof HookKeyApigetHookKey
+      */
+    hookKeyId: string;
+}
+export interface HookKeyApiGetPublicKeyRequest {
+    /**
+      *
+      * @type string
+      * @memberof HookKeyApigetPublicKey
+      */
+    keyId: string;
+}
+export interface HookKeyApiListHookKeysRequest {
+}
+export interface HookKeyApiReplaceHookKeyRequest {
+    /**
+      *
+      * @type string
+      * @memberof HookKeyApireplaceHookKey
+      */
+    hookKeyId: string;
+    /**
+      *
+      * @type KeyRequest
+      * @memberof HookKeyApireplaceHookKey
+      */
+    keyRequest: KeyRequest;
+}
+export declare class ObjectHookKeyApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: HookKeyApiRequestFactory, responseProcessor?: HookKeyApiResponseProcessor);
+  /**
+      * Creates a key
+      * Create a key
+      * @param param the request object
+      */
+  createHookKey(param: HookKeyApiCreateHookKeyRequest, options?: Configuration): Promise<HookKey>;
+  /**
+      * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+      * Delete a key
+      * @param param the request object
+      */
+  deleteHookKey(param: HookKeyApiDeleteHookKeyRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a key by `hookKeyId`
+      * Retrieve a key
+      * @param param the request object
+      */
+  getHookKey(param: HookKeyApiGetHookKeyRequest, options?: Configuration): Promise<HookKey>;
+  /**
+      * Retrieves a public key by `keyId`
+      * Retrieve a public key
+      * @param param the request object
+      */
+  getPublicKey(param: HookKeyApiGetPublicKeyRequest, options?: Configuration): Promise<JsonWebKey>;
+  /**
+      * Lists all keys
+      * List all keys
+      * @param param the request object
+      */
+  listHookKeys(param?: HookKeyApiListHookKeysRequest, options?: Configuration): Promise<Collection<HookKey>>;
+  /**
+      * Replaces a key by `hookKeyId`
+      * Replace a key
+      * @param param the request object
+      */
+  replaceHookKey(param: HookKeyApiReplaceHookKeyRequest, options?: Configuration): Promise<HookKey>;
 }
 import { IdentityProviderApiRequestFactory, IdentityProviderApiResponseProcessor } from '../apis/IdentityProviderApi';
 export interface IdentityProviderApiActivateIdentityProviderRequest {
@@ -4695,6 +4970,20 @@ export interface IdentityProviderApiPublishCsrForIdentityProviderRequest {
       */
     body: HttpFile;
 }
+export interface IdentityProviderApiReplaceIdentityProviderRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentityProviderApireplaceIdentityProvider
+      */
+    idpId: string;
+    /**
+      *
+      * @type IdentityProvider
+      * @memberof IdentityProviderApireplaceIdentityProvider
+      */
+    identityProvider: IdentityProvider;
+}
 export interface IdentityProviderApiRevokeCsrForIdentityProviderRequest {
     /**
       *
@@ -4723,25 +5012,11 @@ export interface IdentityProviderApiUnlinkUserFromIdentityProviderRequest {
       */
     userId: string;
 }
-export interface IdentityProviderApiUpdateIdentityProviderRequest {
-    /**
-      *
-      * @type string
-      * @memberof IdentityProviderApiupdateIdentityProvider
-      */
-    idpId: string;
-    /**
-      *
-      * @type IdentityProvider
-      * @memberof IdentityProviderApiupdateIdentityProvider
-      */
-    identityProvider: IdentityProvider;
-}
 export declare class ObjectIdentityProviderApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: IdentityProviderApiRequestFactory, responseProcessor?: IdentityProviderApiResponseProcessor);
   /**
-      * Activates an inactive IdP.
+      * Activates an inactive IdP
       * Activate an Identity Provider
       * @param param the request object
       */
@@ -4753,37 +5028,37 @@ export declare class ObjectIdentityProviderApi {
       */
   cloneIdentityProviderKey(param: IdentityProviderApiCloneIdentityProviderKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Adds a new IdP to your organization.
+      * Creates a new identity provider integration
       * Create an Identity Provider
       * @param param the request object
       */
   createIdentityProvider(param: IdentityProviderApiCreateIdentityProviderRequest, options?: Configuration): Promise<IdentityProvider>;
   /**
-      * Adds a new X.509 certificate credential to the IdP key store.
+      * Creates a new X.509 certificate credential to the IdP key store.
       * Create an X.509 Certificate Public Key
       * @param param the request object
       */
   createIdentityProviderKey(param: IdentityProviderApiCreateIdentityProviderKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Deactivates an active IdP.
+      * Deactivates an active IdP
       * Deactivate an Identity Provider
       * @param param the request object
       */
   deactivateIdentityProvider(param: IdentityProviderApiDeactivateIdentityProviderRequest, options?: Configuration): Promise<IdentityProvider>;
   /**
-      * Removes an IdP from your organization.
+      * Deletes an identity provider integration by `idpId`
       * Delete an Identity Provider
       * @param param the request object
       */
   deleteIdentityProvider(param: IdentityProviderApiDeleteIdentityProviderRequest, options?: Configuration): Promise<void>;
   /**
-      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
       * Delete a Signing Credential Key
       * @param param the request object
       */
   deleteIdentityProviderKey(param: IdentityProviderApiDeleteIdentityProviderKeyRequest, options?: Configuration): Promise<void>;
   /**
-      * Generates a new key pair and returns a Certificate Signing Request for it.
+      * Generates a new key pair and returns a Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param param the request object
       */
@@ -4795,31 +5070,31 @@ export declare class ObjectIdentityProviderApi {
       */
   generateIdentityProviderSigningKey(param: IdentityProviderApiGenerateIdentityProviderSigningKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Gets a specific Certificate Signing Request model by id
+      * Retrieves a specific Certificate Signing Request model by id
       * Retrieve a Certificate Signing Request
       * @param param the request object
       */
   getCsrForIdentityProvider(param: IdentityProviderApiGetCsrForIdentityProviderRequest, options?: Configuration): Promise<Csr>;
   /**
-      * Fetches an IdP by `id`.
+      * Retrieves an identity provider integration by `idpId`
       * Retrieve an Identity Provider
       * @param param the request object
       */
   getIdentityProvider(param: IdentityProviderApiGetIdentityProviderRequest, options?: Configuration): Promise<IdentityProvider>;
   /**
-      * Fetches a linked IdP user by ID
+      * Retrieves a linked IdP user by ID
       * Retrieve a User
       * @param param the request object
       */
   getIdentityProviderApplicationUser(param: IdentityProviderApiGetIdentityProviderApplicationUserRequest, options?: Configuration): Promise<IdentityProviderApplicationUser>;
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve an Credential Key
       * @param param the request object
       */
   getIdentityProviderKey(param: IdentityProviderApiGetIdentityProviderKeyRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve a Signing Credential Key
       * @param param the request object
       */
@@ -4831,65 +5106,210 @@ export declare class ObjectIdentityProviderApi {
       */
   linkUserToIdentityProvider(param: IdentityProviderApiLinkUserToIdentityProviderRequest, options?: Configuration): Promise<IdentityProviderApplicationUser>;
   /**
-      * Enumerates Certificate Signing Requests for an IdP
+      * Lists all Certificate Signing Requests for an IdP
       * List all Certificate Signing Requests
       * @param param the request object
       */
   listCsrsForIdentityProvider(param: IdentityProviderApiListCsrsForIdentityProviderRequest, options?: Configuration): Promise<Collection<Csr>>;
   /**
-      * Find all the users linked to an identity provider
+      * Lists all users linked to the identity provider
       * List all Users
       * @param param the request object
       */
   listIdentityProviderApplicationUsers(param: IdentityProviderApiListIdentityProviderApplicationUsersRequest, options?: Configuration): Promise<Collection<IdentityProviderApplicationUser>>;
   /**
-      * Enumerates IdP key credentials.
+      * Lists all IdP key credentials
       * List all Credential Keys
       * @param param the request object
       */
   listIdentityProviderKeys(param?: IdentityProviderApiListIdentityProviderKeysRequest, options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
-      * Enumerates signing key credentials for an IdP
+      * Lists all signing key credentials for an IdP
       * List all Signing Credential Keys
       * @param param the request object
       */
   listIdentityProviderSigningKeys(param: IdentityProviderApiListIdentityProviderSigningKeysRequest, options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
-      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+      * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all Identity Providers
       * @param param the request object
       */
   listIdentityProviders(param?: IdentityProviderApiListIdentityProvidersRequest, options?: Configuration): Promise<Collection<IdentityProvider>>;
   /**
-      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+      * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
       * List all Tokens from a OIDC Identity Provider
       * @param param the request object
       */
   listSocialAuthTokens(param: IdentityProviderApiListSocialAuthTokensRequest, options?: Configuration): Promise<Collection<SocialAuthToken>>;
   /**
-      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+      * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
       * Publish a Certificate Signing Request
       * @param param the request object
       */
   publishCsrForIdentityProvider(param: IdentityProviderApiPublishCsrForIdentityProviderRequest, options?: Configuration): Promise<JsonWebKey>;
   /**
-      * Revoke a Certificate Signing Request and delete the key pair from the IdP
+      * Replaces an identity provider integration by `idpId`
+      * Replace an Identity Provider
+      * @param param the request object
+      */
+  replaceIdentityProvider(param: IdentityProviderApiReplaceIdentityProviderRequest, options?: Configuration): Promise<IdentityProvider>;
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the IdP
       * Revoke a Certificate Signing Request
       * @param param the request object
       */
   revokeCsrForIdentityProvider(param: IdentityProviderApiRevokeCsrForIdentityProviderRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes the link between the Okta user and the IdP user.
+      * Unlinks the link between the Okta user and the IdP user
       * Unlink a User from IdP
       * @param param the request object
       */
   unlinkUserFromIdentityProvider(param: IdentityProviderApiUnlinkUserFromIdentityProviderRequest, options?: Configuration): Promise<void>;
+}
+import { IdentitySourceApiRequestFactory, IdentitySourceApiResponseProcessor } from '../apis/IdentitySourceApi';
+export interface IdentitySourceApiCreateIdentitySourceSessionRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApicreateIdentitySourceSession
+      */
+    identitySourceId: string;
+}
+export interface IdentitySourceApiDeleteIdentitySourceSessionRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceSession
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceSession
+      */
+    sessionId: string;
+}
+export interface IdentitySourceApiGetIdentitySourceSessionRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceSession
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceSession
+      */
+    sessionId: string;
+}
+export interface IdentitySourceApiListIdentitySourceSessionsRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApilistIdentitySourceSessions
+      */
+    identitySourceId: string;
+}
+export interface IdentitySourceApiStartImportFromIdentitySourceRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApistartImportFromIdentitySource
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApistartImportFromIdentitySource
+      */
+    sessionId: string;
+}
+export interface IdentitySourceApiUploadIdentitySourceDataForDeleteRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForDelete
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForDelete
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkDeleteRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForDelete
+      */
+    BulkDeleteRequestBody?: BulkDeleteRequestBody;
+}
+export interface IdentitySourceApiUploadIdentitySourceDataForUpsertRequest {
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForUpsert
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForUpsert
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkUpsertRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceDataForUpsert
+      */
+    BulkUpsertRequestBody?: BulkUpsertRequestBody;
+}
+export declare class ObjectIdentitySourceApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: IdentitySourceApiRequestFactory, responseProcessor?: IdentitySourceApiResponseProcessor);
   /**
-      * Updates the configuration for an IdP.
-      * Replace an Identity Provider
+      * Creates an identity source session for the given identity source instance
+      * Create an Identity Source Session
       * @param param the request object
       */
-  updateIdentityProvider(param: IdentityProviderApiUpdateIdentityProviderRequest, options?: Configuration): Promise<IdentityProvider>;
+  createIdentitySourceSession(param: IdentitySourceApiCreateIdentitySourceSessionRequest, options?: Configuration): Promise<Collection<IdentitySourceSession>>;
+  /**
+      * Deletes an identity source session for a given `identitySourceId` and `sessionId`
+      * Delete an Identity Source Session
+      * @param param the request object
+      */
+  deleteIdentitySourceSession(param: IdentitySourceApiDeleteIdentitySourceSessionRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves an identity source session for a given identity source id and session id
+      * Retrieve an Identity Source Session
+      * @param param the request object
+      */
+  getIdentitySourceSession(param: IdentitySourceApiGetIdentitySourceSessionRequest, options?: Configuration): Promise<IdentitySourceSession>;
+  /**
+      * Lists all identity source sessions for the given identity source instance
+      * List all Identity Source Sessions
+      * @param param the request object
+      */
+  listIdentitySourceSessions(param: IdentitySourceApiListIdentitySourceSessionsRequest, options?: Configuration): Promise<Collection<IdentitySourceSession>>;
+  /**
+      * Starts the import from the identity source described by the uploaded bulk operations
+      * Start the import from the Identity Source
+      * @param param the request object
+      */
+  startImportFromIdentitySource(param: IdentitySourceApiStartImportFromIdentitySourceRequest, options?: Configuration): Promise<Collection<IdentitySourceSession>>;
+  /**
+      * Uploads entities that need to be deleted in Okta from the identity source for the given session
+      * Upload the data to be deleted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceDataForDelete(param: IdentitySourceApiUploadIdentitySourceDataForDeleteRequest, options?: Configuration): Promise<void>;
+  /**
+      * Uploads entities that need to be upserted in Okta from the identity source for the given session
+      * Upload the data to be upserted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceDataForUpsert(param: IdentitySourceApiUploadIdentitySourceDataForUpsertRequest, options?: Configuration): Promise<void>;
 }
 import { InlineHookApiRequestFactory, InlineHookApiResponseProcessor } from '../apis/InlineHookApi';
 export interface InlineHookApiActivateInlineHookRequest {
@@ -4954,17 +5374,17 @@ export interface InlineHookApiListInlineHooksRequest {
       */
     type?: string;
 }
-export interface InlineHookApiUpdateInlineHookRequest {
+export interface InlineHookApiReplaceInlineHookRequest {
     /**
       *
       * @type string
-      * @memberof InlineHookApiupdateInlineHook
+      * @memberof InlineHookApireplaceInlineHook
       */
     inlineHookId: string;
     /**
       *
       * @type InlineHook
-      * @memberof InlineHookApiupdateInlineHook
+      * @memberof InlineHookApireplaceInlineHook
       */
     inlineHook: InlineHook;
 }
@@ -4972,60 +5392,60 @@ export declare class ObjectInlineHookApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: InlineHookApiRequestFactory, responseProcessor?: InlineHookApiResponseProcessor);
   /**
-      * Activates the Inline Hook matching the provided id
+      * Activates the inline hook by `inlineHookId`
       * Activate an Inline Hook
       * @param param the request object
       */
   activateInlineHook(param: InlineHookApiActivateInlineHookRequest, options?: Configuration): Promise<InlineHook>;
   /**
-      * Success
+      * Creates an inline hook
       * Create an Inline Hook
       * @param param the request object
       */
   createInlineHook(param: InlineHookApiCreateInlineHookRequest, options?: Configuration): Promise<InlineHook>;
   /**
-      * Deactivates the Inline Hook matching the provided id
+      * Deactivates the inline hook by `inlineHookId`
       * Deactivate an Inline Hook
       * @param param the request object
       */
   deactivateInlineHook(param: InlineHookApiDeactivateInlineHookRequest, options?: Configuration): Promise<InlineHook>;
   /**
-      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+      * Deletes an inline hook by `inlineHookId`. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * Delete an Inline Hook
       * @param param the request object
       */
   deleteInlineHook(param: InlineHookApiDeleteInlineHookRequest, options?: Configuration): Promise<void>;
   /**
-      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+      * Executes the inline hook by `inlineHookId` using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * Execute an Inline Hook
       * @param param the request object
       */
   executeInlineHook(param: InlineHookApiExecuteInlineHookRequest, options?: Configuration): Promise<InlineHookResponse>;
   /**
-      * Gets an inline hook by ID
+      * Retrieves an inline hook by `inlineHookId`
       * Retrieve an Inline Hook
       * @param param the request object
       */
   getInlineHook(param: InlineHookApiGetInlineHookRequest, options?: Configuration): Promise<InlineHook>;
   /**
-      * Success
+      * Lists all inline hooks
       * List all Inline Hooks
       * @param param the request object
       */
   listInlineHooks(param?: InlineHookApiListInlineHooksRequest, options?: Configuration): Promise<Collection<InlineHook>>;
   /**
-      * Updates an inline hook by ID
+      * Replaces an inline hook by `inlineHookId`
       * Replace an Inline Hook
       * @param param the request object
       */
-  updateInlineHook(param: InlineHookApiUpdateInlineHookRequest, options?: Configuration): Promise<InlineHook>;
+  replaceInlineHook(param: InlineHookApiReplaceInlineHookRequest, options?: Configuration): Promise<InlineHook>;
 }
 import { LinkedObjectApiRequestFactory, LinkedObjectApiResponseProcessor } from '../apis/LinkedObjectApi';
-export interface LinkedObjectApiAddLinkedObjectDefinitionRequest {
+export interface LinkedObjectApiCreateLinkedObjectDefinitionRequest {
     /**
       *
       * @type LinkedObject
-      * @memberof LinkedObjectApiaddLinkedObjectDefinition
+      * @memberof LinkedObjectApicreateLinkedObjectDefinition
       */
     linkedObject: LinkedObject;
 }
@@ -5051,29 +5471,150 @@ export declare class ObjectLinkedObjectApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: LinkedObjectApiRequestFactory, responseProcessor?: LinkedObjectApiResponseProcessor);
   /**
-      * Success
+      * Creates a linked object definition
       * Create a Linked Object Definition
       * @param param the request object
       */
-  addLinkedObjectDefinition(param: LinkedObjectApiAddLinkedObjectDefinitionRequest, options?: Configuration): Promise<LinkedObject>;
+  createLinkedObjectDefinition(param: LinkedObjectApiCreateLinkedObjectDefinitionRequest, options?: Configuration): Promise<LinkedObject>;
   /**
-      * Success
+      * Deletes a linked object definition
       * Delete a Linked Object Definition
       * @param param the request object
       */
   deleteLinkedObjectDefinition(param: LinkedObjectApiDeleteLinkedObjectDefinitionRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Retrieves a linked object definition
       * Retrieve a Linked Object Definition
       * @param param the request object
       */
   getLinkedObjectDefinition(param: LinkedObjectApiGetLinkedObjectDefinitionRequest, options?: Configuration): Promise<LinkedObject>;
   /**
-      * Success
+      * Lists all linked object definitions
       * List all Linked Object Definitions
       * @param param the request object
       */
   listLinkedObjectDefinitions(param?: LinkedObjectApiListLinkedObjectDefinitionsRequest, options?: Configuration): Promise<Collection<LinkedObject>>;
+}
+import { LogStreamApiRequestFactory, LogStreamApiResponseProcessor } from '../apis/LogStreamApi';
+export interface LogStreamApiActivateLogStreamRequest {
+    /**
+      * id of the log stream
+      * @type string
+      * @memberof LogStreamApiactivateLogStream
+      */
+    logStreamId: string;
+}
+export interface LogStreamApiCreateLogStreamRequest {
+    /**
+      *
+      * @type LogStream
+      * @memberof LogStreamApicreateLogStream
+      */
+    instance: LogStream;
+}
+export interface LogStreamApiDeactivateLogStreamRequest {
+    /**
+      * id of the log stream
+      * @type string
+      * @memberof LogStreamApideactivateLogStream
+      */
+    logStreamId: string;
+}
+export interface LogStreamApiDeleteLogStreamRequest {
+    /**
+      * id of the log stream
+      * @type string
+      * @memberof LogStreamApideleteLogStream
+      */
+    logStreamId: string;
+}
+export interface LogStreamApiGetLogStreamRequest {
+    /**
+      * id of the log stream
+      * @type string
+      * @memberof LogStreamApigetLogStream
+      */
+    logStreamId: string;
+}
+export interface LogStreamApiListLogStreamsRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof LogStreamApilistLogStreams
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return.
+      * @type number
+      * @memberof LogStreamApilistLogStreams
+      */
+    limit?: number;
+    /**
+      * SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;.
+      * @type string
+      * @memberof LogStreamApilistLogStreams
+      */
+    filter?: string;
+}
+export interface LogStreamApiReplaceLogStreamRequest {
+    /**
+      * id of the log stream
+      * @type string
+      * @memberof LogStreamApireplaceLogStream
+      */
+    logStreamId: string;
+    /**
+      *
+      * @type LogStream
+      * @memberof LogStreamApireplaceLogStream
+      */
+    instance: LogStream;
+}
+export declare class ObjectLogStreamApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: LogStreamApiRequestFactory, responseProcessor?: LogStreamApiResponseProcessor);
+  /**
+      * Activates a log stream by `logStreamId`
+      * Activate a Log Stream
+      * @param param the request object
+      */
+  activateLogStream(param: LogStreamApiActivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  /**
+      * Creates a new log stream
+      * Create a Log Stream
+      * @param param the request object
+      */
+  createLogStream(param: LogStreamApiCreateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  /**
+      * Deactivates a log stream by `logStreamId`
+      * Deactivate a Log Stream
+      * @param param the request object
+      */
+  deactivateLogStream(param: LogStreamApiDeactivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  /**
+      * Deletes a log stream by `logStreamId`
+      * Delete a Log Stream
+      * @param param the request object
+      */
+  deleteLogStream(param: LogStreamApiDeleteLogStreamRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a log stream by `logStreamId`
+      * Retrieve a Log Stream
+      * @param param the request object
+      */
+  getLogStream(param: LogStreamApiGetLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  /**
+      * Lists all log streams. You can request a paginated list or a subset of Log Streams that match a supported filter expression.
+      * List all Log Streams
+      * @param param the request object
+      */
+  listLogStreams(param?: LogStreamApiListLogStreamsRequest, options?: Configuration): Promise<Collection<LogStream>>;
+  /**
+      * Replaces a log stream by `logStreamId`
+      * Replace a Log Stream
+      * @param param the request object
+      */
+  replaceLogStream(param: LogStreamApiReplaceLogStreamRequest, options?: Configuration): Promise<LogStream>;
 }
 import { NetworkZoneApiRequestFactory, NetworkZoneApiResponseProcessor } from '../apis/NetworkZoneApi';
 export interface NetworkZoneApiActivateNetworkZoneRequest {
@@ -5136,17 +5677,17 @@ export interface NetworkZoneApiListNetworkZonesRequest {
       */
     filter?: string;
 }
-export interface NetworkZoneApiUpdateNetworkZoneRequest {
+export interface NetworkZoneApiReplaceNetworkZoneRequest {
     /**
       *
       * @type string
-      * @memberof NetworkZoneApiupdateNetworkZone
+      * @memberof NetworkZoneApireplaceNetworkZone
       */
     zoneId: string;
     /**
       *
       * @type NetworkZone
-      * @memberof NetworkZoneApiupdateNetworkZone
+      * @memberof NetworkZoneApireplaceNetworkZone
       */
     zone: NetworkZone;
 }
@@ -5154,47 +5695,47 @@ export declare class ObjectNetworkZoneApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: NetworkZoneApiRequestFactory, responseProcessor?: NetworkZoneApiResponseProcessor);
   /**
-      * Activate Network Zone
+      * Activates a network zone by `zoneId`
       * Activate a Network Zone
       * @param param the request object
       */
   activateNetworkZone(param: NetworkZoneApiActivateNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
   /**
-      * Adds a new network zone to your Okta organization.
+      * Creates a new network zone. * At least one of either the `gateways` attribute or `proxies` attribute must be defined when creating a Network Zone. * At least one of the following attributes must be defined: `proxyType`, `locations`, or `asns`.
       * Create a Network Zone
       * @param param the request object
       */
   createNetworkZone(param: NetworkZoneApiCreateNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
   /**
-      * Deactivates a network zone.
+      * Deactivates a network zone by `zoneId`
       * Deactivate a Network Zone
       * @param param the request object
       */
   deactivateNetworkZone(param: NetworkZoneApiDeactivateNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
   /**
-      * Removes network zone.
+      * Deletes network zone by `zoneId`
       * Delete a Network Zone
       * @param param the request object
       */
   deleteNetworkZone(param: NetworkZoneApiDeleteNetworkZoneRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a network zone from your Okta organization by `id`.
+      * Retrieves a network zone by `zoneId`
       * Retrieve a Network Zone
       * @param param the request object
       */
   getNetworkZone(param: NetworkZoneApiGetNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
   /**
-      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
+      * Lists all network zones with pagination. A subset of zones can be returned that match a supported filter expression or query.  This operation requires URL encoding. For example, `filter=(id eq \"nzoul0wf9jyb8xwZm0g3\" or id eq \"nzoul1MxmGN18NDQT0g3\")` is encoded as `filter=%28id+eq+%22nzoul0wf9jyb8xwZm0g3%22+or+id+eq+%22nzoul1MxmGN18NDQT0g3%22%29`.  Okta supports filtering on the `id` and `usage` properties. See [Filtering](https://developer.okta.com/docs/reference/core-okta-api/#filter) for more information on the expressions that are used in filtering.
       * List all Network Zones
       * @param param the request object
       */
   listNetworkZones(param?: NetworkZoneApiListNetworkZonesRequest, options?: Configuration): Promise<Collection<NetworkZone>>;
   /**
-      * Updates a network zone in your organization.
+      * Replaces a network zone by `zoneId`. The replaced network zone type must be the same as the existing type. You may replace the usage (`POLICY`, `BLOCKLIST`) of a network zone by updating the `usage` attribute.
       * Replace a Network Zone
       * @param param the request object
       */
-  updateNetworkZone(param: NetworkZoneApiUpdateNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
+  replaceNetworkZone(param: NetworkZoneApiReplaceNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
 }
 import { OrgSettingApiRequestFactory, OrgSettingApiResponseProcessor } from '../apis/OrgSettingApi';
 export interface OrgSettingApiBulkRemoveEmailAddressBouncesRequest {
@@ -5225,61 +5766,63 @@ export interface OrgSettingApiGetOrgPreferencesRequest {
 }
 export interface OrgSettingApiGetOrgSettingsRequest {
 }
-export interface OrgSettingApiGrantOktaSupportRequest {
+export interface OrgSettingApiGetWellknownOrgMetadataRequest {
 }
-export interface OrgSettingApiHideOktaUIFooterRequest {
+export interface OrgSettingApiGrantOktaSupportRequest {
 }
 export interface OrgSettingApiOptInUsersToOktaCommunicationEmailsRequest {
 }
 export interface OrgSettingApiOptOutUsersFromOktaCommunicationEmailsRequest {
 }
-export interface OrgSettingApiPartialUpdateOrgSettingRequest {
-    /**
-      *
-      * @type OrgSetting
-      * @memberof OrgSettingApipartialUpdateOrgSetting
-      */
-    OrgSetting?: OrgSetting;
-}
-export interface OrgSettingApiRevokeOktaSupportRequest {
-}
-export interface OrgSettingApiShowOktaUIFooterRequest {
-}
-export interface OrgSettingApiUpdateOrgContactUserRequest {
+export interface OrgSettingApiReplaceOrgContactUserRequest {
     /**
       *
       * @type string
-      * @memberof OrgSettingApiupdateOrgContactUser
+      * @memberof OrgSettingApireplaceOrgContactUser
       */
     contactType: string;
     /**
       *
       * @type OrgContactUser
-      * @memberof OrgSettingApiupdateOrgContactUser
+      * @memberof OrgSettingApireplaceOrgContactUser
       */
     orgContactUser: OrgContactUser;
 }
-export interface OrgSettingApiUpdateOrgLogoRequest {
-    /**
-      *
-      * @type HttpFile
-      * @memberof OrgSettingApiupdateOrgLogo
-      */
-    file: HttpFile;
-}
-export interface OrgSettingApiUpdateOrgSettingRequest {
+export interface OrgSettingApiReplaceOrgSettingsRequest {
     /**
       *
       * @type OrgSetting
-      * @memberof OrgSettingApiupdateOrgSetting
+      * @memberof OrgSettingApireplaceOrgSettings
       */
     orgSetting: OrgSetting;
+}
+export interface OrgSettingApiRevokeOktaSupportRequest {
+}
+export interface OrgSettingApiUpdateOrgHideOktaUIFooterRequest {
+}
+export interface OrgSettingApiUpdateOrgSettingsRequest {
+    /**
+      *
+      * @type OrgSetting
+      * @memberof OrgSettingApiupdateOrgSettings
+      */
+    OrgSetting?: OrgSetting;
+}
+export interface OrgSettingApiUpdateOrgShowOktaUIFooterRequest {
+}
+export interface OrgSettingApiUploadOrgLogoRequest {
+    /**
+      *
+      * @type HttpFile
+      * @memberof OrgSettingApiuploadOrgLogo
+      */
+    file: HttpFile;
 }
 export declare class ObjectOrgSettingApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: OrgSettingApiRequestFactory, responseProcessor?: OrgSettingApiResponseProcessor);
   /**
-      * A list of email addresses to be removed from the set of email addresses that are bounced.
+      * Removes a list of email addresses to be removed from the set of email addresses that are bounced
       * Remove Emails from Email Provider Bounce List
       * @param param the request object
       */
@@ -5291,101 +5834,107 @@ export declare class ObjectOrgSettingApi {
       */
   extendOktaSupport(param?: OrgSettingApiExtendOktaSupportRequest, options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
-      * Gets Okta Communication Settings of your organization.
-      * Retreive the Okta Communication Settings
+      * Retrieves Okta Communication Settings of your organization
+      * Retrieve the Okta Communication Settings
       * @param param the request object
       */
   getOktaCommunicationSettings(param?: OrgSettingApiGetOktaCommunicationSettingsRequest, options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
-      * Gets Contact Types of your organization.
+      * Retrieves Contact Types of your organization
       * Retrieve the Org Contact Types
       * @param param the request object
       */
   getOrgContactTypes(param?: OrgSettingApiGetOrgContactTypesRequest, options?: Configuration): Promise<Collection<OrgContactTypeObj>>;
   /**
-      * Retrieves the URL of the User associated with the specified Contact Type.
+      * Retrieves the URL of the User associated with the specified Contact Type
       * Retrieve the User of the Contact Type
       * @param param the request object
       */
   getOrgContactUser(param: OrgSettingApiGetOrgContactUserRequest, options?: Configuration): Promise<OrgContactUser>;
   /**
-      * Gets Okta Support Settings of your organization.
+      * Retrieves Okta Support Settings of your organization
       * Retrieve the Okta Support Settings
       * @param param the request object
       */
   getOrgOktaSupportSettings(param?: OrgSettingApiGetOrgOktaSupportSettingsRequest, options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
-      * Gets preferences of your organization.
+      * Retrieves preferences of your organization
       * Retrieve the Org Preferences
       * @param param the request object
       */
   getOrgPreferences(param?: OrgSettingApiGetOrgPreferencesRequest, options?: Configuration): Promise<OrgPreferences>;
   /**
-      * Get settings of your organization.
+      * Retrieves the org settings
       * Retrieve the Org Settings
       * @param param the request object
       */
   getOrgSettings(param?: OrgSettingApiGetOrgSettingsRequest, options?: Configuration): Promise<OrgSetting>;
   /**
-      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+      * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
+      * Retrieve the Well-Known Org Metadata
+      * @param param the request object
+      */
+  getWellknownOrgMetadata(param?: OrgSettingApiGetWellknownOrgMetadataRequest, options?: Configuration): Promise<WellKnownOrgMetadata>;
+  /**
+      * Grants Okta Support temporary access your org as an administrator for eight hours
       * Grant Okta Support Access to your Org
       * @param param the request object
       */
   grantOktaSupport(param?: OrgSettingApiGrantOktaSupportRequest, options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
-      * Hide the Okta UI footer for all end users of your organization.
-      * Update the Preference to Hide the Okta Dashboard Footer
-      * @param param the request object
-      */
-  hideOktaUIFooter(param?: OrgSettingApiHideOktaUIFooterRequest, options?: Configuration): Promise<OrgPreferences>;
-  /**
-      * Opts in all users of this org to Okta Communication emails.
+      * Opts in all users of this org to Okta Communication emails
       * Opt in all Users to Okta Communication emails
       * @param param the request object
       */
   optInUsersToOktaCommunicationEmails(param?: OrgSettingApiOptInUsersToOktaCommunicationEmailsRequest, options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
-      * Opts out all users of this org from Okta Communication emails.
+      * Opts out all users of this org from Okta Communication emails
       * Opt out all Users from Okta Communication emails
       * @param param the request object
       */
   optOutUsersFromOktaCommunicationEmails(param?: OrgSettingApiOptOutUsersFromOktaCommunicationEmailsRequest, options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
-      * Partial update settings of your organization.
-      * Update the Org Settings
+      * Replaces the User associated with the specified Contact Type
+      * Replace the User of the Contact Type
       * @param param the request object
       */
-  partialUpdateOrgSetting(param?: OrgSettingApiPartialUpdateOrgSettingRequest, options?: Configuration): Promise<OrgSetting>;
+  replaceOrgContactUser(param: OrgSettingApiReplaceOrgContactUserRequest, options?: Configuration): Promise<OrgContactUser>;
   /**
-      * Revokes Okta Support access to your organization.
+      * Replaces the settings of your organization
+      * Replace the Org Settings
+      * @param param the request object
+      */
+  replaceOrgSettings(param: OrgSettingApiReplaceOrgSettingsRequest, options?: Configuration): Promise<OrgSetting>;
+  /**
+      * Revokes Okta Support access to your organization
       * Revoke Okta Support Access
       * @param param the request object
       */
   revokeOktaSupport(param?: OrgSettingApiRevokeOktaSupportRequest, options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
-      * Makes the Okta UI footer visible for all end users of your organization.
+      * Updates the preference hide the Okta UI footer for all end users of your organization
+      * Update the Preference to Hide the Okta Dashboard Footer
+      * @param param the request object
+      */
+  updateOrgHideOktaUIFooter(param?: OrgSettingApiUpdateOrgHideOktaUIFooterRequest, options?: Configuration): Promise<OrgPreferences>;
+  /**
+      * Partially updates the org settings depending on provided fields
+      * Update the Org Settings
+      * @param param the request object
+      */
+  updateOrgSettings(param?: OrgSettingApiUpdateOrgSettingsRequest, options?: Configuration): Promise<OrgSetting>;
+  /**
+      * Updates the preference to show the Okta UI footer for all end users of your organization
       * Update the Preference to Show the Okta Dashboard Footer
       * @param param the request object
       */
-  showOktaUIFooter(param?: OrgSettingApiShowOktaUIFooterRequest, options?: Configuration): Promise<OrgPreferences>;
+  updateOrgShowOktaUIFooter(param?: OrgSettingApiUpdateOrgShowOktaUIFooterRequest, options?: Configuration): Promise<OrgPreferences>;
   /**
-      * Updates the User associated with the specified Contact Type.
-      * Replace the User of the Contact Type
-      * @param param the request object
-      */
-  updateOrgContactUser(param: OrgSettingApiUpdateOrgContactUserRequest, options?: Configuration): Promise<OrgContactUser>;
-  /**
-      * Updates the logo for your organization.
+      * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Org Logo
       * @param param the request object
       */
-  updateOrgLogo(param: OrgSettingApiUpdateOrgLogoRequest, options?: Configuration): Promise<void>;
-  /**
-      * Update settings of your organization.
-      * Replace the Org Settings
-      * @param param the request object
-      */
-  updateOrgSetting(param: OrgSettingApiUpdateOrgSettingRequest, options?: Configuration): Promise<OrgSetting>;
+  uploadOrgLogo(param: OrgSettingApiUploadOrgLogoRequest, options?: Configuration): Promise<void>;
 }
 import { PolicyApiRequestFactory, PolicyApiResponseProcessor } from '../apis/PolicyApi';
 export interface PolicyApiActivatePolicyRequest {
@@ -5538,6 +6087,14 @@ export interface PolicyApiListPoliciesRequest {
       */
     expand?: string;
 }
+export interface PolicyApiListPolicyAppsRequest {
+    /**
+      *
+      * @type string
+      * @memberof PolicyApilistPolicyApps
+      */
+    policyId: string;
+}
 export interface PolicyApiListPolicyRulesRequest {
     /**
       *
@@ -5546,37 +6103,37 @@ export interface PolicyApiListPolicyRulesRequest {
       */
     policyId: string;
 }
-export interface PolicyApiUpdatePolicyRequest {
+export interface PolicyApiReplacePolicyRequest {
     /**
       *
       * @type string
-      * @memberof PolicyApiupdatePolicy
+      * @memberof PolicyApireplacePolicy
       */
     policyId: string;
     /**
       *
       * @type Policy
-      * @memberof PolicyApiupdatePolicy
+      * @memberof PolicyApireplacePolicy
       */
     policy: Policy;
 }
-export interface PolicyApiUpdatePolicyRuleRequest {
+export interface PolicyApiReplacePolicyRuleRequest {
     /**
       *
       * @type string
-      * @memberof PolicyApiupdatePolicyRule
+      * @memberof PolicyApireplacePolicyRule
       */
     policyId: string;
     /**
       *
       * @type string
-      * @memberof PolicyApiupdatePolicyRule
+      * @memberof PolicyApireplacePolicyRule
       */
     ruleId: string;
     /**
       *
       * @type PolicyRule
-      * @memberof PolicyApiupdatePolicyRule
+      * @memberof PolicyApireplacePolicyRule
       */
     policyRule: PolicyRule;
 }
@@ -5584,95 +6141,101 @@ export declare class ObjectPolicyApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: PolicyApiRequestFactory, responseProcessor?: PolicyApiResponseProcessor);
   /**
-      * Activates a policy.
+      * Activates a policy
       * Activate a Policy
       * @param param the request object
       */
   activatePolicy(param: PolicyApiActivatePolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Activates a policy rule.
+      * Activates a policy rule
       * Activate a Policy Rule
       * @param param the request object
       */
   activatePolicyRule(param: PolicyApiActivatePolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Clones an existing policy.
+      * Clones an existing policy
       * Clone an existing policy
       * @param param the request object
       */
   clonePolicy(param: PolicyApiClonePolicyRequest, options?: Configuration): Promise<Policy>;
   /**
-      * Creates a policy.
+      * Creates a policy
       * Create a Policy
       * @param param the request object
       */
   createPolicy(param: PolicyApiCreatePolicyRequest, options?: Configuration): Promise<Policy>;
   /**
-      * Creates a policy rule.
+      * Creates a policy rule
       * Create a Policy Rule
       * @param param the request object
       */
   createPolicyRule(param: PolicyApiCreatePolicyRuleRequest, options?: Configuration): Promise<PolicyRule>;
   /**
-      * Deactivates a policy.
+      * Deactivates a policy
       * Deactivate a Policy
       * @param param the request object
       */
   deactivatePolicy(param: PolicyApiDeactivatePolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Deactivates a policy rule.
+      * Deactivates a policy rule
       * Deactivate a Policy Rule
       * @param param the request object
       */
   deactivatePolicyRule(param: PolicyApiDeactivatePolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes a policy.
+      * Deletes a policy
       * Delete a Policy
       * @param param the request object
       */
   deletePolicy(param: PolicyApiDeletePolicyRequest, options?: Configuration): Promise<void>;
   /**
-      * Removes a policy rule.
+      * Deletes a policy rule
       * Delete a Policy Rule
       * @param param the request object
       */
   deletePolicyRule(param: PolicyApiDeletePolicyRuleRequest, options?: Configuration): Promise<void>;
   /**
-      * Gets a policy.
+      * Retrieves a policy
       * Retrieve a Policy
       * @param param the request object
       */
   getPolicy(param: PolicyApiGetPolicyRequest, options?: Configuration): Promise<Policy>;
   /**
-      * Gets a policy rule.
+      * Retrieves a policy rule
       * Retrieve a Policy Rule
       * @param param the request object
       */
   getPolicyRule(param: PolicyApiGetPolicyRuleRequest, options?: Configuration): Promise<PolicyRule>;
   /**
-      * Gets all policies with the specified type.
+      * Lists all policies with the specified type
       * List all Policies
       * @param param the request object
       */
   listPolicies(param: PolicyApiListPoliciesRequest, options?: Configuration): Promise<Collection<Policy>>;
   /**
-      * Enumerates all policy rules.
+      * Lists all applications mapped to a policy identified by `policyId`
+      * List all Applications mapped to a Policy
+      * @param param the request object
+      */
+  listPolicyApps(param: PolicyApiListPolicyAppsRequest, options?: Configuration): Promise<Collection<Application>>;
+  /**
+      * Lists all policy rules
       * List all Policy Rules
       * @param param the request object
       */
   listPolicyRules(param: PolicyApiListPolicyRulesRequest, options?: Configuration): Promise<Collection<PolicyRule>>;
   /**
-      * Updates a policy.
+      * Replaces a policy
       * Replace a Policy
       * @param param the request object
       */
-  updatePolicy(param: PolicyApiUpdatePolicyRequest, options?: Configuration): Promise<Policy>;
+  replacePolicy(param: PolicyApiReplacePolicyRequest, options?: Configuration): Promise<Policy>;
   /**
-      * Updates a policy rule.
+      * Replaces a policy rules
       * Replace a Policy Rule
       * @param param the request object
       */
-  updatePolicyRule(param: PolicyApiUpdatePolicyRuleRequest, options?: Configuration): Promise<PolicyRule>;
+  replacePolicyRule(param: PolicyApiReplacePolicyRuleRequest, options?: Configuration): Promise<PolicyRule>;
 }
 import { PrincipalRateLimitApiRequestFactory, PrincipalRateLimitApiResponseProcessor } from '../apis/PrincipalRateLimitApi';
 export interface PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest {
@@ -5711,17 +6274,17 @@ export interface PrincipalRateLimitApiListPrincipalRateLimitEntitiesRequest {
       */
     limit?: number;
 }
-export interface PrincipalRateLimitApiUpdatePrincipalRateLimitEntityRequest {
+export interface PrincipalRateLimitApiReplacePrincipalRateLimitEntityRequest {
     /**
       * id of the Principal Rate Limit
       * @type string
-      * @memberof PrincipalRateLimitApiupdatePrincipalRateLimitEntity
+      * @memberof PrincipalRateLimitApireplacePrincipalRateLimitEntity
       */
     principalRateLimitId: string;
     /**
       *
       * @type PrincipalRateLimitEntity
-      * @memberof PrincipalRateLimitApiupdatePrincipalRateLimitEntity
+      * @memberof PrincipalRateLimitApireplacePrincipalRateLimitEntity
       */
     entity: PrincipalRateLimitEntity;
 }
@@ -5729,29 +6292,29 @@ export declare class ObjectPrincipalRateLimitApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: PrincipalRateLimitApiRequestFactory, responseProcessor?: PrincipalRateLimitApiResponseProcessor);
   /**
-      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
       * Create a Principal Rate Limit
       * @param param the request object
       */
   createPrincipalRateLimitEntity(param: PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
   /**
-      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
       * Retrieve a Principal Rate Limit
       * @param param the request object
       */
   getPrincipalRateLimitEntity(param: PrincipalRateLimitApiGetPrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
   /**
-      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * Lists all Principal Rate Limit entities considering the provided parameters
       * List all Principal Rate Limits
       * @param param the request object
       */
   listPrincipalRateLimitEntities(param?: PrincipalRateLimitApiListPrincipalRateLimitEntitiesRequest, options?: Configuration): Promise<Collection<PrincipalRateLimitEntity>>;
   /**
-      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Replaces a principal rate limit entity by `principalRateLimitId`
       * Replace a Principal Rate Limit
       * @param param the request object
       */
-  updatePrincipalRateLimitEntity(param: PrincipalRateLimitApiUpdatePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
+  replacePrincipalRateLimitEntity(param: PrincipalRateLimitApiReplacePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
 }
 import { ProfileMappingApiRequestFactory, ProfileMappingApiResponseProcessor } from '../apis/ProfileMappingApi';
 export interface ProfileMappingApiGetProfileMappingRequest {
@@ -5806,19 +6369,19 @@ export declare class ObjectProfileMappingApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: ProfileMappingApiRequestFactory, responseProcessor?: ProfileMappingApiResponseProcessor);
   /**
-      * Fetches a single Profile Mapping referenced by its ID.
+      * Retrieves a single Profile Mapping referenced by its ID
       * Retrieve a Profile Mapping
       * @param param the request object
       */
   getProfileMapping(param: ProfileMappingApiGetProfileMappingRequest, options?: Configuration): Promise<ProfileMapping>;
   /**
-      * Enumerates Profile Mappings in your organization with pagination.
+      * Lists all profile mappings with pagination
       * List all Profile Mappings
       * @param param the request object
       */
   listProfileMappings(param?: ProfileMappingApiListProfileMappingsRequest, options?: Configuration): Promise<Collection<ProfileMapping>>;
   /**
-      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
       * Update a Profile Mapping
       * @param param the request object
       */
@@ -5857,17 +6420,17 @@ export interface PushProviderApiListPushProvidersRequest {
       */
     type?: ProviderType;
 }
-export interface PushProviderApiUpdatePushProviderRequest {
+export interface PushProviderApiReplacePushProviderRequest {
     /**
       * Id of the push provider
       * @type string
-      * @memberof PushProviderApiupdatePushProvider
+      * @memberof PushProviderApireplacePushProvider
       */
     pushProviderId: string;
     /**
       *
       * @type PushProvider
-      * @memberof PushProviderApiupdatePushProvider
+      * @memberof PushProviderApireplacePushProvider
       */
     pushProvider: PushProvider;
 }
@@ -5875,42 +6438,1345 @@ export declare class ObjectPushProviderApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: PushProviderApiRequestFactory, responseProcessor?: PushProviderApiResponseProcessor);
   /**
-      * Adds a new push provider to your organization.
+      * Creates a new push provider
       * Create a Push Provider
       * @param param the request object
       */
   createPushProvider(param: PushProviderApiCreatePushProviderRequest, options?: Configuration): Promise<PushProvider>;
   /**
-      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
       * Delete a Push Provider
       * @param param the request object
       */
   deletePushProvider(param: PushProviderApiDeletePushProviderRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a push provider by `pushProviderId`.
+      * Retrieves a push provider by `pushProviderId`
       * Retrieve a Push Provider
       * @param param the request object
       */
   getPushProvider(param: PushProviderApiGetPushProviderRequest, options?: Configuration): Promise<PushProvider>;
   /**
-      * Enumerates push providers in your organization.
+      * Lists all push providers
       * List all Push Providers
       * @param param the request object
       */
   listPushProviders(param?: PushProviderApiListPushProvidersRequest, options?: Configuration): Promise<Collection<PushProvider>>;
   /**
-      * Updates a push provider by `pushProviderId`.
+      * Replaces a push provider by `pushProviderId`
       * Replace a Push Provider
       * @param param the request object
       */
-  updatePushProvider(param: PushProviderApiUpdatePushProviderRequest, options?: Configuration): Promise<PushProvider>;
+  replacePushProvider(param: PushProviderApiReplacePushProviderRequest, options?: Configuration): Promise<PushProvider>;
 }
-import { SchemaApiRequestFactory, SchemaApiResponseProcessor } from '../apis/SchemaApi';
-export interface SchemaApiGetApplicationLayoutRequest {
+import { RateLimitSettingsApiRequestFactory, RateLimitSettingsApiResponseProcessor } from '../apis/RateLimitSettingsApi';
+export interface RateLimitSettingsApiGetRateLimitSettingsAdminNotificationsRequest {
+}
+export interface RateLimitSettingsApiGetRateLimitSettingsPerClientRequest {
+}
+export interface RateLimitSettingsApiReplaceRateLimitSettingsAdminNotificationsRequest {
+    /**
+      *
+      * @type RateLimitAdminNotifications
+      * @memberof RateLimitSettingsApireplaceRateLimitSettingsAdminNotifications
+      */
+    RateLimitAdminNotifications: RateLimitAdminNotifications;
+}
+export interface RateLimitSettingsApiReplaceRateLimitSettingsPerClientRequest {
+    /**
+      *
+      * @type PerClientRateLimitSettings
+      * @memberof RateLimitSettingsApireplaceRateLimitSettingsPerClient
+      */
+    perClientRateLimitSettings: PerClientRateLimitSettings;
+}
+export declare class ObjectRateLimitSettingsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RateLimitSettingsApiRequestFactory, responseProcessor?: RateLimitSettingsApiResponseProcessor);
+  /**
+      * Retrieves the currently configured Rate Limit Admin Notification Settings
+      * Retrieve the Rate Limit Admin Notification Settings
+      * @param param the request object
+      */
+  getRateLimitSettingsAdminNotifications(param?: RateLimitSettingsApiGetRateLimitSettingsAdminNotificationsRequest, options?: Configuration): Promise<RateLimitAdminNotifications>;
+  /**
+      * Retrieves the currently configured Per-Client Rate Limit Settings
+      * Retrieve the Per-Client Rate Limit Settings
+      * @param param the request object
+      */
+  getRateLimitSettingsPerClient(param?: RateLimitSettingsApiGetRateLimitSettingsPerClientRequest, options?: Configuration): Promise<PerClientRateLimitSettings>;
+  /**
+      * Replaces the Rate Limit Admin Notification Settings and returns the configured properties
+      * Replace the Rate Limit Admin Notification Settings
+      * @param param the request object
+      */
+  replaceRateLimitSettingsAdminNotifications(param: RateLimitSettingsApiReplaceRateLimitSettingsAdminNotificationsRequest, options?: Configuration): Promise<RateLimitAdminNotifications>;
+  /**
+      * Replaces the Per-Client Rate Limit Settings and returns the configured properties
+      * Replace the Per-Client Rate Limit Settings
+      * @param param the request object
+      */
+  replaceRateLimitSettingsPerClient(param: RateLimitSettingsApiReplaceRateLimitSettingsPerClientRequest, options?: Configuration): Promise<PerClientRateLimitSettings>;
+}
+import { ResourceSetApiRequestFactory, ResourceSetApiResponseProcessor } from '../apis/ResourceSetApi';
+export interface ResourceSetApiAddMembersToBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApiaddMembersToBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApiaddMembersToBinding
+      */
+    roleIdOrLabel: string;
+    /**
+      *
+      * @type ResourceSetBindingAddMembersRequest
+      * @memberof ResourceSetApiaddMembersToBinding
+      */
+    instance: ResourceSetBindingAddMembersRequest;
+}
+export interface ResourceSetApiAddResourceSetResourceRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApiaddResourceSetResource
+      */
+    resourceSetId: string;
+    /**
+      *
+      * @type ResourceSetResourcePatchRequest
+      * @memberof ResourceSetApiaddResourceSetResource
+      */
+    instance: ResourceSetResourcePatchRequest;
+}
+export interface ResourceSetApiCreateResourceSetRequest {
+    /**
+      *
+      * @type ResourceSet
+      * @memberof ResourceSetApicreateResourceSet
+      */
+    instance: ResourceSet;
+}
+export interface ResourceSetApiCreateResourceSetBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApicreateResourceSetBinding
+      */
+    resourceSetId: string;
+    /**
+      *
+      * @type ResourceSetBindingCreateRequest
+      * @memberof ResourceSetApicreateResourceSetBinding
+      */
+    instance: ResourceSetBindingCreateRequest;
+}
+export interface ResourceSetApiDeleteBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApideleteBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApideleteBinding
+      */
+    roleIdOrLabel: string;
+}
+export interface ResourceSetApiDeleteResourceSetRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApideleteResourceSet
+      */
+    resourceSetId: string;
+}
+export interface ResourceSetApiDeleteResourceSetResourceRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApideleteResourceSetResource
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; of a resource
+      * @type string
+      * @memberof ResourceSetApideleteResourceSetResource
+      */
+    resourceId: string;
+}
+export interface ResourceSetApiGetBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApigetBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApigetBinding
+      */
+    roleIdOrLabel: string;
+}
+export interface ResourceSetApiGetMemberOfBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApigetMemberOfBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApigetMemberOfBinding
+      */
+    roleIdOrLabel: string;
+    /**
+      * &#x60;id&#x60; of a member
+      * @type string
+      * @memberof ResourceSetApigetMemberOfBinding
+      */
+    memberId: string;
+}
+export interface ResourceSetApiGetResourceSetRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApigetResourceSet
+      */
+    resourceSetId: string;
+}
+export interface ResourceSetApiListBindingsRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApilistBindings
+      */
+    resourceSetId: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof ResourceSetApilistBindings
+      */
+    after?: string;
+}
+export interface ResourceSetApiListMembersOfBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApilistMembersOfBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApilistMembersOfBinding
+      */
+    roleIdOrLabel: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof ResourceSetApilistMembersOfBinding
+      */
+    after?: string;
+}
+export interface ResourceSetApiListResourceSetResourcesRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApilistResourceSetResources
+      */
+    resourceSetId: string;
+}
+export interface ResourceSetApiListResourceSetsRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof ResourceSetApilistResourceSets
+      */
+    after?: string;
+}
+export interface ResourceSetApiReplaceResourceSetRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApireplaceResourceSet
+      */
+    resourceSetId: string;
+    /**
+      *
+      * @type ResourceSet
+      * @memberof ResourceSetApireplaceResourceSet
+      */
+    instance: ResourceSet;
+}
+export interface ResourceSetApiUnassignMemberFromBindingRequest {
+    /**
+      * &#x60;id&#x60; of a resource set
+      * @type string
+      * @memberof ResourceSetApiunassignMemberFromBinding
+      */
+    resourceSetId: string;
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof ResourceSetApiunassignMemberFromBinding
+      */
+    roleIdOrLabel: string;
+    /**
+      * &#x60;id&#x60; of a member
+      * @type string
+      * @memberof ResourceSetApiunassignMemberFromBinding
+      */
+    memberId: string;
+}
+export declare class ObjectResourceSetApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: ResourceSetApiRequestFactory, responseProcessor?: ResourceSetApiResponseProcessor);
+  /**
+      * Adds more members to a resource set binding
+      * Add more Members to a binding
+      * @param param the request object
+      */
+  addMembersToBinding(param: ResourceSetApiAddMembersToBindingRequest, options?: Configuration): Promise<ResourceSetBindingResponse>;
+  /**
+      * Adds more resources to a resource set
+      * Add more Resource to a resource set
+      * @param param the request object
+      */
+  addResourceSetResource(param: ResourceSetApiAddResourceSetResourceRequest, options?: Configuration): Promise<ResourceSet>;
+  /**
+      * Creates a new resource set
+      * Create a Resource Set
+      * @param param the request object
+      */
+  createResourceSet(param: ResourceSetApiCreateResourceSetRequest, options?: Configuration): Promise<ResourceSet>;
+  /**
+      * Creates a new resource set binding
+      * Create a Resource Set Binding
+      * @param param the request object
+      */
+  createResourceSetBinding(param: ResourceSetApiCreateResourceSetBindingRequest, options?: Configuration): Promise<ResourceSetBindingResponse>;
+  /**
+      * Deletes a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Delete a Binding
+      * @param param the request object
+      */
+  deleteBinding(param: ResourceSetApiDeleteBindingRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a role by `resourceSetId`
+      * Delete a Resource Set
+      * @param param the request object
+      */
+  deleteResourceSet(param: ResourceSetApiDeleteResourceSetRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a resource identified by `resourceId` from a resource set
+      * Delete a Resource from a resource set
+      * @param param the request object
+      */
+  deleteResourceSetResource(param: ResourceSetApiDeleteResourceSetResourceRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Retrieve a Binding
+      * @param param the request object
+      */
+  getBinding(param: ResourceSetApiGetBindingRequest, options?: Configuration): Promise<ResourceSetBindingResponse>;
+  /**
+      * Retrieves a member identified by `memberId` for a binding
+      * Retrieve a Member of a binding
+      * @param param the request object
+      */
+  getMemberOfBinding(param: ResourceSetApiGetMemberOfBindingRequest, options?: Configuration): Promise<ResourceSetBindingMember>;
+  /**
+      * Retrieves a resource set by `resourceSetId`
+      * Retrieve a Resource Set
+      * @param param the request object
+      */
+  getResourceSet(param: ResourceSetApiGetResourceSetRequest, options?: Configuration): Promise<ResourceSet>;
+  /**
+      * Lists all resource set bindings with pagination support
+      * List all Bindings
+      * @param param the request object
+      */
+  listBindings(param: ResourceSetApiListBindingsRequest, options?: Configuration): Promise<ResourceSetBindings>;
+  /**
+      * Lists all members of a resource set binding with pagination support
+      * List all Members of a binding
+      * @param param the request object
+      */
+  listMembersOfBinding(param: ResourceSetApiListMembersOfBindingRequest, options?: Configuration): Promise<ResourceSetBindingMembers>;
+  /**
+      * Lists all resources that make up the resource set
+      * List all Resources of a resource set
+      * @param param the request object
+      */
+  listResourceSetResources(param: ResourceSetApiListResourceSetResourcesRequest, options?: Configuration): Promise<ResourceSetResources>;
+  /**
+      * Lists all resource sets with pagination support
+      * List all Resource Sets
+      * @param param the request object
+      */
+  listResourceSets(param?: ResourceSetApiListResourceSetsRequest, options?: Configuration): Promise<ResourceSets>;
+  /**
+      * Replaces a resource set by `resourceSetId`
+      * Replace a Resource Set
+      * @param param the request object
+      */
+  replaceResourceSet(param: ResourceSetApiReplaceResourceSetRequest, options?: Configuration): Promise<ResourceSet>;
+  /**
+      * Unassigns a member identified by `memberId` from a binding
+      * Unassign a Member from a binding
+      * @param param the request object
+      */
+  unassignMemberFromBinding(param: ResourceSetApiUnassignMemberFromBindingRequest, options?: Configuration): Promise<void>;
+}
+import { RiskEventApiRequestFactory, RiskEventApiResponseProcessor } from '../apis/RiskEventApi';
+export interface RiskEventApiSendRiskEventsRequest {
+    /**
+      *
+      * @type Array&lt;RiskEvent&gt;
+      * @memberof RiskEventApisendRiskEvents
+      */
+    instance: Array<RiskEvent>;
+}
+export declare class ObjectRiskEventApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RiskEventApiRequestFactory, responseProcessor?: RiskEventApiResponseProcessor);
+  /**
+      * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
+      * Send multiple Risk Events
+      * @param param the request object
+      */
+  sendRiskEvents(param: RiskEventApiSendRiskEventsRequest, options?: Configuration): Promise<void>;
+}
+import { RiskProviderApiRequestFactory, RiskProviderApiResponseProcessor } from '../apis/RiskProviderApi';
+export interface RiskProviderApiCreateRiskProviderRequest {
+    /**
+      *
+      * @type RiskProvider
+      * @memberof RiskProviderApicreateRiskProvider
+      */
+    instance: RiskProvider;
+}
+export interface RiskProviderApiDeleteRiskProviderRequest {
+    /**
+      * &#x60;id&#x60; of the Risk Provider object
+      * @type string
+      * @memberof RiskProviderApideleteRiskProvider
+      */
+    riskProviderId: string;
+}
+export interface RiskProviderApiGetRiskProviderRequest {
+    /**
+      * &#x60;id&#x60; of the Risk Provider object
+      * @type string
+      * @memberof RiskProviderApigetRiskProvider
+      */
+    riskProviderId: string;
+}
+export interface RiskProviderApiListRiskProvidersRequest {
+}
+export interface RiskProviderApiReplaceRiskProviderRequest {
+    /**
+      * &#x60;id&#x60; of the Risk Provider object
+      * @type string
+      * @memberof RiskProviderApireplaceRiskProvider
+      */
+    riskProviderId: string;
+    /**
+      *
+      * @type RiskProvider
+      * @memberof RiskProviderApireplaceRiskProvider
+      */
+    instance: RiskProvider;
+}
+export declare class ObjectRiskProviderApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RiskProviderApiRequestFactory, responseProcessor?: RiskProviderApiResponseProcessor);
+  /**
+      * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
+      * Create a Risk Provider
+      * @param param the request object
+      */
+  createRiskProvider(param: RiskProviderApiCreateRiskProviderRequest, options?: Configuration): Promise<RiskProvider>;
+  /**
+      * Deletes a Risk Provider object by its ID
+      * Delete a Risk Provider
+      * @param param the request object
+      */
+  deleteRiskProvider(param: RiskProviderApiDeleteRiskProviderRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a Risk Provider object by ID
+      * Retrieve a Risk Provider
+      * @param param the request object
+      */
+  getRiskProvider(param: RiskProviderApiGetRiskProviderRequest, options?: Configuration): Promise<RiskProvider>;
+  /**
+      * Lists all Risk Provider objects
+      * List all Risk Providers
+      * @param param the request object
+      */
+  listRiskProviders(param?: RiskProviderApiListRiskProvidersRequest, options?: Configuration): Promise<Collection<RiskProvider>>;
+  /**
+      * Replaces the properties for a given Risk Provider object ID
+      * Replace a Risk Provider
+      * @param param the request object
+      */
+  replaceRiskProvider(param: RiskProviderApiReplaceRiskProviderRequest, options?: Configuration): Promise<RiskProvider>;
+}
+import { RoleApiRequestFactory, RoleApiResponseProcessor } from '../apis/RoleApi';
+export interface RoleApiCreateRoleRequest {
+    /**
+      *
+      * @type IamRole
+      * @memberof RoleApicreateRole
+      */
+    instance: IamRole;
+}
+export interface RoleApiCreateRolePermissionRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApicreateRolePermission
+      */
+    roleIdOrLabel: string;
+    /**
+      * An okta permission type
+      * @type string
+      * @memberof RoleApicreateRolePermission
+      */
+    permissionType: string;
+}
+export interface RoleApiDeleteRoleRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApideleteRole
+      */
+    roleIdOrLabel: string;
+}
+export interface RoleApiDeleteRolePermissionRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApideleteRolePermission
+      */
+    roleIdOrLabel: string;
+    /**
+      * An okta permission type
+      * @type string
+      * @memberof RoleApideleteRolePermission
+      */
+    permissionType: string;
+}
+export interface RoleApiGetRoleRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApigetRole
+      */
+    roleIdOrLabel: string;
+}
+export interface RoleApiGetRolePermissionRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApigetRolePermission
+      */
+    roleIdOrLabel: string;
+    /**
+      * An okta permission type
+      * @type string
+      * @memberof RoleApigetRolePermission
+      */
+    permissionType: string;
+}
+export interface RoleApiListRolePermissionsRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApilistRolePermissions
+      */
+    roleIdOrLabel: string;
+}
+export interface RoleApiListRolesRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @type string
+      * @memberof RoleApilistRoles
+      */
+    after?: string;
+}
+export interface RoleApiReplaceRoleRequest {
+    /**
+      * &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @type string
+      * @memberof RoleApireplaceRole
+      */
+    roleIdOrLabel: string;
+    /**
+      *
+      * @type IamRole
+      * @memberof RoleApireplaceRole
+      */
+    instance: IamRole;
+}
+export declare class ObjectRoleApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RoleApiRequestFactory, responseProcessor?: RoleApiResponseProcessor);
+  /**
+      * Creates a new role
+      * Create a Role
+      * @param param the request object
+      */
+  createRole(param: RoleApiCreateRoleRequest, options?: Configuration): Promise<IamRole>;
+  /**
+      * Creates a permission specified by `permissionType` to the role
+      * Create a Permission
+      * @param param the request object
+      */
+  createRolePermission(param: RoleApiCreateRolePermissionRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a role by `roleIdOrLabel`
+      * Delete a Role
+      * @param param the request object
+      */
+  deleteRole(param: RoleApiDeleteRoleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a permission from a role by `permissionType`
+      * Delete a Permission
+      * @param param the request object
+      */
+  deleteRolePermission(param: RoleApiDeleteRolePermissionRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a role by `roleIdOrLabel`
+      * Retrieve a Role
+      * @param param the request object
+      */
+  getRole(param: RoleApiGetRoleRequest, options?: Configuration): Promise<IamRole>;
+  /**
+      * Retrieves a permission by `permissionType`
+      * Retrieve a Permission
+      * @param param the request object
+      */
+  getRolePermission(param: RoleApiGetRolePermissionRequest, options?: Configuration): Promise<Permission>;
+  /**
+      * Lists all permissions of the role by `roleIdOrLabel`
+      * List all Permissions
+      * @param param the request object
+      */
+  listRolePermissions(param: RoleApiListRolePermissionsRequest, options?: Configuration): Promise<Permissions>;
+  /**
+      * Lists all roles with pagination support
+      * List all Roles
+      * @param param the request object
+      */
+  listRoles(param?: RoleApiListRolesRequest, options?: Configuration): Promise<IamRoles>;
+  /**
+      * Replaces a role by `roleIdOrLabel`
+      * Replace a Role
+      * @param param the request object
+      */
+  replaceRole(param: RoleApiReplaceRoleRequest, options?: Configuration): Promise<IamRole>;
+}
+import { RoleAssignmentApiRequestFactory, RoleAssignmentApiResponseProcessor } from '../apis/RoleAssignmentApi';
+export interface RoleAssignmentApiAssignRoleToGroupRequest {
     /**
       *
       * @type string
-      * @memberof SchemaApigetApplicationLayout
+      * @memberof RoleAssignmentApiassignRoleToGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type AssignRoleRequest
+      * @memberof RoleAssignmentApiassignRoleToGroup
+      */
+    assignRoleRequest: AssignRoleRequest;
+    /**
+      * Setting this to &#x60;true&#x60; grants the group third-party admin status
+      * @type boolean
+      * @memberof RoleAssignmentApiassignRoleToGroup
+      */
+    disableNotifications?: boolean;
+}
+export interface RoleAssignmentApiAssignRoleToUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApiassignRoleToUser
+      */
+    userId: string;
+    /**
+      *
+      * @type AssignRoleRequest
+      * @memberof RoleAssignmentApiassignRoleToUser
+      */
+    assignRoleRequest: AssignRoleRequest;
+    /**
+      * Setting this to &#x60;true&#x60; grants the user third-party admin status
+      * @type boolean
+      * @memberof RoleAssignmentApiassignRoleToUser
+      */
+    disableNotifications?: boolean;
+}
+export interface RoleAssignmentApiGetGroupAssignedRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApigetGroupAssignedRole
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApigetGroupAssignedRole
+      */
+    roleId: string;
+}
+export interface RoleAssignmentApiGetUserAssignedRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApigetUserAssignedRole
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApigetUserAssignedRole
+      */
+    roleId: string;
+}
+export interface RoleAssignmentApiListAssignedRolesForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApilistAssignedRolesForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApilistAssignedRolesForUser
+      */
+    expand?: string;
+}
+export interface RoleAssignmentApiListGroupAssignedRolesRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApilistGroupAssignedRoles
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApilistGroupAssignedRoles
+      */
+    expand?: string;
+}
+export interface RoleAssignmentApiUnassignRoleFromGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApiunassignRoleFromGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApiunassignRoleFromGroup
+      */
+    roleId: string;
+}
+export interface RoleAssignmentApiUnassignRoleFromUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApiunassignRoleFromUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleAssignmentApiunassignRoleFromUser
+      */
+    roleId: string;
+}
+export declare class ObjectRoleAssignmentApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RoleAssignmentApiRequestFactory, responseProcessor?: RoleAssignmentApiResponseProcessor);
+  /**
+      * Assigns a role to a group
+      * Assign a Role to a Group
+      * @param param the request object
+      */
+  assignRoleToGroup(param: RoleAssignmentApiAssignRoleToGroupRequest, options?: Configuration): Promise<Role | void>;
+  /**
+      * Assigns a role to a user identified by `userId`
+      * Assign a Role to a User
+      * @param param the request object
+      */
+  assignRoleToUser(param: RoleAssignmentApiAssignRoleToUserRequest, options?: Configuration): Promise<Role>;
+  /**
+      * Retrieves a role identified by `roleId` assigned to group identified by `groupId`
+      * Retrieve a Role assigned to Group
+      * @param param the request object
+      */
+  getGroupAssignedRole(param: RoleAssignmentApiGetGroupAssignedRoleRequest, options?: Configuration): Promise<Role>;
+  /**
+      * Retrieves a role identified by `roleId` assigned to a user identified by `userId`
+      * Retrieve a Role assigned to a User
+      * @param param the request object
+      */
+  getUserAssignedRole(param: RoleAssignmentApiGetUserAssignedRoleRequest, options?: Configuration): Promise<Role>;
+  /**
+      * Lists all roles assigned to a user identified by `userId`
+      * List all Roles assigned to a User
+      * @param param the request object
+      */
+  listAssignedRolesForUser(param: RoleAssignmentApiListAssignedRolesForUserRequest, options?: Configuration): Promise<Collection<Role>>;
+  /**
+      * Lists all assigned roles of group identified by `groupId`
+      * List all Assigned Roles of Group
+      * @param param the request object
+      */
+  listGroupAssignedRoles(param: RoleAssignmentApiListGroupAssignedRolesRequest, options?: Configuration): Promise<Collection<Role>>;
+  /**
+      * Unassigns a role identified by `roleId` assigned to group identified by `groupId`
+      * Unassign a Role from a Group
+      * @param param the request object
+      */
+  unassignRoleFromGroup(param: RoleAssignmentApiUnassignRoleFromGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns a role identified by `roleId` from a user identified by `userId`
+      * Unassign a Role from a User
+      * @param param the request object
+      */
+  unassignRoleFromUser(param: RoleAssignmentApiUnassignRoleFromUserRequest, options?: Configuration): Promise<void>;
+}
+import { RoleTargetApiRequestFactory, RoleTargetApiResponseProcessor } from '../apis/RoleTargetApi';
+export interface RoleTargetApiAssignAllAppsAsTargetToRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAllAppsAsTargetToRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAllAppsAsTargetToRoleForUser
+      */
+    roleId: string;
+}
+export interface RoleTargetApiAssignAppInstanceTargetToAppAdminRoleForGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    appName: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    applicationId: string;
+}
+export interface RoleTargetApiAssignAppInstanceTargetToAppAdminRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForUser
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForUser
+      */
+    appName: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppInstanceTargetToAppAdminRoleForUser
+      */
+    applicationId: string;
+}
+export interface RoleTargetApiAssignAppTargetToAdminRoleForGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForGroup
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForGroup
+      */
+    appName: string;
+}
+export interface RoleTargetApiAssignAppTargetToAdminRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForUser
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignAppTargetToAdminRoleForUser
+      */
+    appName: string;
+}
+export interface RoleTargetApiAssignGroupTargetToGroupAdminRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToGroupAdminRole
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToGroupAdminRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToGroupAdminRole
+      */
+    targetGroupId: string;
+}
+export interface RoleTargetApiAssignGroupTargetToUserRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToUserRole
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToUserRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiassignGroupTargetToUserRole
+      */
+    groupId: string;
+}
+export interface RoleTargetApiListApplicationTargetsForApplicationAdministratorRoleForGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForGroup
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForGroup
+      */
+    after?: string;
+    /**
+      *
+      * @type number
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForGroup
+      */
+    limit?: number;
+}
+export interface RoleTargetApiListApplicationTargetsForApplicationAdministratorRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForUser
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForUser
+      */
+    after?: string;
+    /**
+      *
+      * @type number
+      * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForUser
+      */
+    limit?: number;
+}
+export interface RoleTargetApiListGroupTargetsForGroupRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForGroupRole
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForGroupRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForGroupRole
+      */
+    after?: string;
+    /**
+      *
+      * @type number
+      * @memberof RoleTargetApilistGroupTargetsForGroupRole
+      */
+    limit?: number;
+}
+export interface RoleTargetApiListGroupTargetsForRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForRole
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApilistGroupTargetsForRole
+      */
+    after?: string;
+    /**
+      *
+      * @type number
+      * @memberof RoleTargetApilistGroupTargetsForRole
+      */
+    limit?: number;
+}
+export interface RoleTargetApiUnassignAppInstanceTargetFromAdminRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetFromAdminRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetFromAdminRoleForUser
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetFromAdminRoleForUser
+      */
+    appName: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetFromAdminRoleForUser
+      */
+    applicationId: string;
+}
+export interface RoleTargetApiUnassignAppInstanceTargetToAppAdminRoleForGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    appName: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppInstanceTargetToAppAdminRoleForGroup
+      */
+    applicationId: string;
+}
+export interface RoleTargetApiUnassignAppTargetFromAppAdminRoleForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetFromAppAdminRoleForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetFromAppAdminRoleForUser
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetFromAppAdminRoleForUser
+      */
+    appName: string;
+}
+export interface RoleTargetApiUnassignAppTargetToAdminRoleForGroupRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetToAdminRoleForGroup
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetToAdminRoleForGroup
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignAppTargetToAdminRoleForGroup
+      */
+    appName: string;
+}
+export interface RoleTargetApiUnassignGroupTargetFromGroupAdminRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromGroupAdminRole
+      */
+    groupId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromGroupAdminRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromGroupAdminRole
+      */
+    targetGroupId: string;
+}
+export interface RoleTargetApiUnassignGroupTargetFromUserAdminRoleRequest {
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromUserAdminRole
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromUserAdminRole
+      */
+    roleId: string;
+    /**
+      *
+      * @type string
+      * @memberof RoleTargetApiunassignGroupTargetFromUserAdminRole
+      */
+    groupId: string;
+}
+export declare class ObjectRoleTargetApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: RoleTargetApiRequestFactory, responseProcessor?: RoleTargetApiResponseProcessor);
+  /**
+      * Assigns all Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * @param param the request object
+      */
+  assignAllAppsAsTargetToRoleForUser(param: RoleTargetApiAssignAllAppsAsTargetToRoleForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
+      * @param param the request object
+      */
+  assignAppInstanceTargetToAppAdminRoleForGroup(param: RoleTargetApiAssignAppInstanceTargetToAppAdminRoleForGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns anapplication instance target to appplication administrator role
+      * Assign an Application Instance Target to an Application Administrator Role
+      * @param param the request object
+      */
+  assignAppInstanceTargetToAppAdminRoleForUser(param: RoleTargetApiAssignAppInstanceTargetToAppAdminRoleForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param param the request object
+      */
+  assignAppTargetToAdminRoleForGroup(param: RoleTargetApiAssignAppTargetToAdminRoleForGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param param the request object
+      */
+  assignAppTargetToAdminRoleForUser(param: RoleTargetApiAssignAppTargetToAdminRoleForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns a group target to a group role
+      * Assign a Group Target to a Group Role
+      * @param param the request object
+      */
+  assignGroupTargetToGroupAdminRole(param: RoleTargetApiAssignGroupTargetToGroupAdminRoleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Assigns a Group Target to Role
+      * Assign a Group Target to Role
+      * @param param the request object
+      */
+  assignGroupTargetToUserRole(param: RoleTargetApiAssignGroupTargetToUserRoleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for an Application Administrator Role
+      * @param param the request object
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForGroup(param: RoleTargetApiListApplicationTargetsForApplicationAdministratorRoleForGroupRequest, options?: Configuration): Promise<Collection<CatalogApplication>>;
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for Application Administrator Role
+      * @param param the request object
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForUser(param: RoleTargetApiListApplicationTargetsForApplicationAdministratorRoleForUserRequest, options?: Configuration): Promise<Collection<CatalogApplication>>;
+  /**
+      * Lists all group targets for a group role
+      * List all Group Targets for a Group Role
+      * @param param the request object
+      */
+  listGroupTargetsForGroupRole(param: RoleTargetApiListGroupTargetsForGroupRoleRequest, options?: Configuration): Promise<Collection<Group>>;
+  /**
+      * Lists all group targets for role
+      * List all Group Targets for Role
+      * @param param the request object
+      */
+  listGroupTargetsForRole(param: RoleTargetApiListGroupTargetsForRoleRequest, options?: Configuration): Promise<Collection<Group>>;
+  /**
+      * Unassigns an application instance target from an application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param param the request object
+      */
+  unassignAppInstanceTargetFromAdminRoleForUser(param: RoleTargetApiUnassignAppInstanceTargetFromAdminRoleForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns an application instance target from application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param param the request object
+      */
+  unassignAppInstanceTargetToAppAdminRoleForGroup(param: RoleTargetApiUnassignAppInstanceTargetToAppAdminRoleForGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from an Application Administrator Role
+      * @param param the request object
+      */
+  unassignAppTargetFromAppAdminRoleForUser(param: RoleTargetApiUnassignAppTargetFromAppAdminRoleForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from Application Administrator Role
+      * @param param the request object
+      */
+  unassignAppTargetToAdminRoleForGroup(param: RoleTargetApiUnassignAppTargetToAdminRoleForGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns a group target from a group role
+      * Unassign a Group Target from a Group Role
+      * @param param the request object
+      */
+  unassignGroupTargetFromGroupAdminRole(param: RoleTargetApiUnassignGroupTargetFromGroupAdminRoleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Unassigns a Group Target from Role
+      * Unassign a Group Target from Role
+      * @param param the request object
+      */
+  unassignGroupTargetFromUserAdminRole(param: RoleTargetApiUnassignGroupTargetFromUserAdminRoleRequest, options?: Configuration): Promise<void>;
+}
+import { SchemaApiRequestFactory, SchemaApiResponseProcessor } from '../apis/SchemaApi';
+export interface SchemaApiGetAppUISchemaRequest {
+    /**
+      *
+      * @type string
+      * @memberof SchemaApigetAppUISchema
+      */
+    appName: string;
+    /**
+      *
+      * @type string
+      * @memberof SchemaApigetAppUISchema
+      */
+    section: string;
+    /**
+      *
+      * @type string
+      * @memberof SchemaApigetAppUISchema
+      */
+    operation: string;
+}
+export interface SchemaApiGetAppUISchemaLinksRequest {
+    /**
+      *
+      * @type string
+      * @memberof SchemaApigetAppUISchemaLinks
       */
     appName: string;
 }
@@ -5924,6 +7790,14 @@ export interface SchemaApiGetApplicationUserSchemaRequest {
 }
 export interface SchemaApiGetGroupSchemaRequest {
 }
+export interface SchemaApiGetLogStreamSchemaRequest {
+    /**
+      *
+      * @type LogStreamType
+      * @memberof SchemaApigetLogStreamSchema
+      */
+    logStreamType: LogStreamType;
+}
 export interface SchemaApiGetUserSchemaRequest {
     /**
       *
@@ -5931,6 +7805,8 @@ export interface SchemaApiGetUserSchemaRequest {
       * @memberof SchemaApigetUserSchema
       */
     schemaId: string;
+}
+export interface SchemaApiListLogStreamSchemasRequest {
 }
 export interface SchemaApiUpdateApplicationUserProfileRequest {
     /**
@@ -5972,43 +7848,61 @@ export declare class ObjectSchemaApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SchemaApiRequestFactory, responseProcessor?: SchemaApiResponseProcessor);
   /**
-      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
-      * Retrieve the UI Layout for an Application
+      * Retrieves the UI schema for an Application given `appName`, `section` and `operation`
+      * Retrieve the UI schema for a section
       * @param param the request object
       */
-  getApplicationLayout(param: SchemaApiGetApplicationLayoutRequest, options?: Configuration): Promise<ApplicationLayout>;
+  getAppUISchema(param: SchemaApiGetAppUISchemaRequest, options?: Configuration): Promise<ApplicationLayout>;
   /**
-      * Fetches the Schema for an App User
+      * Retrieves the links for UI schemas for an Application given `appName`
+      * Retrieve the links for UI schemas for an Application
+      * @param param the request object
+      */
+  getAppUISchemaLinks(param: SchemaApiGetAppUISchemaLinksRequest, options?: Configuration): Promise<ApplicationLayouts>;
+  /**
+      * Retrieves the Schema for an App User
       * Retrieve the default Application User Schema for an Application
       * @param param the request object
       */
   getApplicationUserSchema(param: SchemaApiGetApplicationUserSchemaRequest, options?: Configuration): Promise<UserSchema>;
   /**
-      * Fetches the group schema
+      * Retrieves the group schema
       * Retrieve the default Group Schema
       * @param param the request object
       */
   getGroupSchema(param?: SchemaApiGetGroupSchemaRequest, options?: Configuration): Promise<GroupSchema>;
   /**
-      * Fetches the schema for a Schema Id.
+      * Retrieves the schema for a Log Stream type. The `logStreamType` element in the URL specifies the Log Stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+      * Retrieve the Log Stream Schema for the schema type
+      * @param param the request object
+      */
+  getLogStreamSchema(param: SchemaApiGetLogStreamSchemaRequest, options?: Configuration): Promise<LogStreamSchema>;
+  /**
+      * Retrieves the schema for a Schema Id
       * Retrieve a User Schema
       * @param param the request object
       */
   getUserSchema(param: SchemaApiGetUserSchemaRequest, options?: Configuration): Promise<UserSchema>;
   /**
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Lists the schema for all log stream types visible for this org
+      * List the Log Stream Schemas
+      * @param param the request object
+      */
+  listLogStreamSchemas(param?: SchemaApiListLogStreamSchemasRequest, options?: Configuration): Promise<Collection<LogStreamSchema>>;
+  /**
+      * Partially updates on the User Profile properties of the Application User Schema
       * Update the default Application User Schema for an Application
       * @param param the request object
       */
   updateApplicationUserProfile(param: SchemaApiUpdateApplicationUserProfileRequest, options?: Configuration): Promise<UserSchema>;
   /**
-      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Updates the default group schema. This updates, adds, or removes one or more custom Group Profile properties in the schema.
       * Update the default Group Schema
       * @param param the request object
       */
   updateGroupSchema(param?: SchemaApiUpdateGroupSchemaRequest, options?: Configuration): Promise<GroupSchema>;
   /**
-      * Partial updates on the User Profile properties of the user schema.
+      * Partially updates on the User Profile properties of the user schema
       * Update a User Schema
       * @param param the request object
       */
@@ -6023,17 +7917,9 @@ export interface SessionApiCreateSessionRequest {
       */
     createSessionRequest: CreateSessionRequest;
 }
-export interface SessionApiEndSessionRequest {
-    /**
-      *
-      * @type string
-      * @memberof SessionApiendSession
-      */
-    sessionId: string;
-}
 export interface SessionApiGetSessionRequest {
     /**
-      *
+      * &#x60;id&#x60; of a valid Session
       * @type string
       * @memberof SessionApigetSession
       */
@@ -6041,9 +7927,17 @@ export interface SessionApiGetSessionRequest {
 }
 export interface SessionApiRefreshSessionRequest {
     /**
-      *
+      * &#x60;id&#x60; of a valid Session
       * @type string
       * @memberof SessionApirefreshSession
+      */
+    sessionId: string;
+}
+export interface SessionApiRevokeSessionRequest {
+    /**
+      * &#x60;id&#x60; of a valid Session
+      * @type string
+      * @memberof SessionApirevokeSession
       */
     sessionId: string;
 }
@@ -6051,59 +7945,31 @@ export declare class ObjectSessionApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SessionApiRequestFactory, responseProcessor?: SessionApiResponseProcessor);
   /**
-      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create a Session with Session Token
+      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Create a Session with session token
       * @param param the request object
       */
   createSession(param: SessionApiCreateSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * End a session.
-      * Delete a Session
-      * @param param the request object
-      */
-  endSession(param: SessionApiEndSessionRequest, options?: Configuration): Promise<void>;
-  /**
-      * Get details about a session.
+      * Retrieves information about the Session specified by the given session ID
       * Retrieve a Session
       * @param param the request object
       */
   getSession(param: SessionApiGetSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Refresh a session.
+      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
       * Refresh a Session
       * @param param the request object
       */
   refreshSession(param: SessionApiRefreshSessionRequest, options?: Configuration): Promise<Session>;
+  /**
+      * Revokes the specified Session
+      * Revoke a Session
+      * @param param the request object
+      */
+  revokeSession(param: SessionApiRevokeSessionRequest, options?: Configuration): Promise<void>;
 }
 import { SubscriptionApiRequestFactory, SubscriptionApiResponseProcessor } from '../apis/SubscriptionApi';
-export interface SubscriptionApiGetRoleSubscriptionByNotificationTypeRequest {
-    /**
-      *
-      * @type string
-      * @memberof SubscriptionApigetRoleSubscriptionByNotificationType
-      */
-    roleTypeOrRoleId: string;
-    /**
-      *
-      * @type string
-      * @memberof SubscriptionApigetRoleSubscriptionByNotificationType
-      */
-    notificationType: string;
-}
-export interface SubscriptionApiGetUserSubscriptionByNotificationTypeRequest {
-    /**
-      *
-      * @type string
-      * @memberof SubscriptionApigetUserSubscriptionByNotificationType
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof SubscriptionApigetUserSubscriptionByNotificationType
-      */
-    notificationType: string;
-}
 export interface SubscriptionApiListRoleSubscriptionsRequest {
     /**
       *
@@ -6112,6 +7978,20 @@ export interface SubscriptionApiListRoleSubscriptionsRequest {
       */
     roleTypeOrRoleId: string;
 }
+export interface SubscriptionApiListRoleSubscriptionsByNotificationTypeRequest {
+    /**
+      *
+      * @type string
+      * @memberof SubscriptionApilistRoleSubscriptionsByNotificationType
+      */
+    roleTypeOrRoleId: string;
+    /**
+      *
+      * @type string
+      * @memberof SubscriptionApilistRoleSubscriptionsByNotificationType
+      */
+    notificationType: string;
+}
 export interface SubscriptionApiListUserSubscriptionsRequest {
     /**
       *
@@ -6119,6 +7999,20 @@ export interface SubscriptionApiListUserSubscriptionsRequest {
       * @memberof SubscriptionApilistUserSubscriptions
       */
     userId: string;
+}
+export interface SubscriptionApiListUserSubscriptionsByNotificationTypeRequest {
+    /**
+      *
+      * @type string
+      * @memberof SubscriptionApilistUserSubscriptionsByNotificationType
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof SubscriptionApilistUserSubscriptionsByNotificationType
+      */
+    notificationType: string;
 }
 export interface SubscriptionApiSubscribeRoleSubscriptionByNotificationTypeRequest {
     /**
@@ -6180,31 +8074,31 @@ export declare class ObjectSubscriptionApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SubscriptionApiRequestFactory, responseProcessor?: SubscriptionApiResponseProcessor);
   /**
-      * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * List all Subscriptions of a Custom Role with a specific notification type
-      * @param param the request object
-      */
-  getRoleSubscriptionByNotificationType(param: SubscriptionApiGetRoleSubscriptionByNotificationTypeRequest, options?: Configuration): Promise<Subscription>;
-  /**
-      * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List all Subscriptions by type
-      * @param param the request object
-      */
-  getUserSubscriptionByNotificationType(param: SubscriptionApiGetUserSubscriptionByNotificationTypeRequest, options?: Configuration): Promise<Subscription>;
-  /**
-      * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+      * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
       * List all Subscriptions of a Custom Role
       * @param param the request object
       */
   listRoleSubscriptions(param: SubscriptionApiListRoleSubscriptionsRequest, options?: Configuration): Promise<Collection<Subscription>>;
   /**
-      * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
+      * List all Subscriptions of a Custom Role with a specific notification type
+      * @param param the request object
+      */
+  listRoleSubscriptionsByNotificationType(param: SubscriptionApiListRoleSubscriptionsByNotificationTypeRequest, options?: Configuration): Promise<Subscription>;
+  /**
+      * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
       * List all Subscriptions
       * @param param the request object
       */
   listUserSubscriptions(param: SubscriptionApiListUserSubscriptionsRequest, options?: Configuration): Promise<Collection<Subscription>>;
   /**
-      * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * List all Subscriptions by type
+      * @param param the request object
+      */
+  listUserSubscriptionsByNotificationType(param: SubscriptionApiListUserSubscriptionsByNotificationTypeRequest, options?: Configuration): Promise<Subscription>;
+  /**
+      * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Subscribe a Custom Role to a specific notification type
       * @param param the request object
       */
@@ -6216,7 +8110,7 @@ export declare class ObjectSubscriptionApi {
       */
   subscribeUserSubscriptionByNotificationType(param: SubscriptionApiSubscribeUserSubscriptionByNotificationTypeRequest, options?: Configuration): Promise<void>;
   /**
-      * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Unsubscribe a Custom Role from a specific notification type
       * @param param the request object
       */
@@ -6229,47 +8123,47 @@ export declare class ObjectSubscriptionApi {
   unsubscribeUserSubscriptionByNotificationType(param: SubscriptionApiUnsubscribeUserSubscriptionByNotificationTypeRequest, options?: Configuration): Promise<void>;
 }
 import { SystemLogApiRequestFactory, SystemLogApiResponseProcessor } from '../apis/SystemLogApi';
-export interface SystemLogApiGetLogsRequest {
+export interface SystemLogApiListLogEventsRequest {
     /**
       *
       * @type Date
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     since?: Date;
     /**
       *
       * @type Date
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     until?: Date;
     /**
       *
       * @type string
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     filter?: string;
     /**
       *
       * @type string
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     q?: string;
     /**
       *
       * @type number
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     limit?: number;
     /**
       *
       * @type string
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     sortOrder?: string;
     /**
       *
       * @type string
-      * @memberof SystemLogApigetLogs
+      * @memberof SystemLogApilistLogEvents
       */
     after?: string;
 }
@@ -6277,11 +8171,11 @@ export declare class ObjectSystemLogApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SystemLogApiRequestFactory, responseProcessor?: SystemLogApiResponseProcessor);
   /**
-      * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+      * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
       * List all System Log Events
       * @param param the request object
       */
-  getLogs(param?: SystemLogApiGetLogsRequest, options?: Configuration): Promise<Collection<LogEvent>>;
+  listLogEvents(param?: SystemLogApiListLogEventsRequest, options?: Configuration): Promise<Collection<LogEvent>>;
 }
 import { TemplateApiRequestFactory, TemplateApiResponseProcessor } from '../apis/TemplateApi';
 export interface TemplateApiCreateSmsTemplateRequest {
@@ -6316,17 +8210,17 @@ export interface TemplateApiListSmsTemplatesRequest {
       */
     templateType?: SmsTemplateType;
 }
-export interface TemplateApiPartialUpdateSmsTemplateRequest {
+export interface TemplateApiReplaceSmsTemplateRequest {
     /**
       *
       * @type string
-      * @memberof TemplateApipartialUpdateSmsTemplate
+      * @memberof TemplateApireplaceSmsTemplate
       */
     templateId: string;
     /**
       *
       * @type SmsTemplate
-      * @memberof TemplateApipartialUpdateSmsTemplate
+      * @memberof TemplateApireplaceSmsTemplate
       */
     smsTemplate: SmsTemplate;
 }
@@ -6348,38 +8242,38 @@ export declare class ObjectTemplateApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: TemplateApiRequestFactory, responseProcessor?: TemplateApiResponseProcessor);
   /**
-      * Adds a new custom SMS template to your organization.
+      * Creates a new custom SMS template
       * Create an SMS Template
       * @param param the request object
       */
   createSmsTemplate(param: TemplateApiCreateSmsTemplateRequest, options?: Configuration): Promise<SmsTemplate>;
   /**
-      * Removes an SMS template.
+      * Deletes an SMS template
       * Delete an SMS Template
       * @param param the request object
       */
   deleteSmsTemplate(param: TemplateApiDeleteSmsTemplateRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a specific template by `id`
+      * Retrieves a specific template by `id`
       * Retrieve an SMS Template
       * @param param the request object
       */
   getSmsTemplate(param: TemplateApiGetSmsTemplateRequest, options?: Configuration): Promise<SmsTemplate>;
   /**
-      * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
       * List all SMS Templates
       * @param param the request object
       */
   listSmsTemplates(param?: TemplateApiListSmsTemplatesRequest, options?: Configuration): Promise<Collection<SmsTemplate>>;
   /**
-      * Updates only some of the SMS template properties:
-      * Update an SMS Template
+      * Replaces the SMS template
+      * Replace an SMS Template
       * @param param the request object
       */
-  partialUpdateSmsTemplate(param: TemplateApiPartialUpdateSmsTemplateRequest, options?: Configuration): Promise<SmsTemplate>;
+  replaceSmsTemplate(param: TemplateApiReplaceSmsTemplateRequest, options?: Configuration): Promise<SmsTemplate>;
   /**
-      * Updates the SMS template.
-      * Replace an SMS Template
+      * Updates an SMS template
+      * Update an SMS Template
       * @param param the request object
       */
   updateSmsTemplate(param: TemplateApiUpdateSmsTemplateRequest, options?: Configuration): Promise<SmsTemplate>;
@@ -6399,7 +8293,7 @@ export declare class ObjectThreatInsightApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: ThreatInsightApiRequestFactory, responseProcessor?: ThreatInsightApiResponseProcessor);
   /**
-      * Gets current ThreatInsight configuration
+      * Retrieves current ThreatInsight configuration
       * Retrieve the ThreatInsight Configuration
       * @param param the request object
       */
@@ -6412,83 +8306,83 @@ export declare class ObjectThreatInsightApi {
   updateConfiguration(param: ThreatInsightApiUpdateConfigurationRequest, options?: Configuration): Promise<ThreatInsightConfiguration>;
 }
 import { TrustedOriginApiRequestFactory, TrustedOriginApiResponseProcessor } from '../apis/TrustedOriginApi';
-export interface TrustedOriginApiActivateOriginRequest {
+export interface TrustedOriginApiActivateTrustedOriginRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApiactivateOrigin
+      * @memberof TrustedOriginApiactivateTrustedOrigin
       */
     trustedOriginId: string;
 }
-export interface TrustedOriginApiCreateOriginRequest {
+export interface TrustedOriginApiCreateTrustedOriginRequest {
     /**
       *
       * @type TrustedOrigin
-      * @memberof TrustedOriginApicreateOrigin
+      * @memberof TrustedOriginApicreateTrustedOrigin
       */
     trustedOrigin: TrustedOrigin;
 }
-export interface TrustedOriginApiDeactivateOriginRequest {
+export interface TrustedOriginApiDeactivateTrustedOriginRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApideactivateOrigin
+      * @memberof TrustedOriginApideactivateTrustedOrigin
       */
     trustedOriginId: string;
 }
-export interface TrustedOriginApiDeleteOriginRequest {
+export interface TrustedOriginApiDeleteTrustedOriginRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApideleteOrigin
+      * @memberof TrustedOriginApideleteTrustedOrigin
       */
     trustedOriginId: string;
 }
-export interface TrustedOriginApiGetOriginRequest {
+export interface TrustedOriginApiGetTrustedOriginRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApigetOrigin
+      * @memberof TrustedOriginApigetTrustedOrigin
       */
     trustedOriginId: string;
 }
-export interface TrustedOriginApiListOriginsRequest {
+export interface TrustedOriginApiListTrustedOriginsRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApilistOrigins
+      * @memberof TrustedOriginApilistTrustedOrigins
       */
     q?: string;
     /**
       *
       * @type string
-      * @memberof TrustedOriginApilistOrigins
+      * @memberof TrustedOriginApilistTrustedOrigins
       */
     filter?: string;
     /**
       *
       * @type string
-      * @memberof TrustedOriginApilistOrigins
+      * @memberof TrustedOriginApilistTrustedOrigins
       */
     after?: string;
     /**
       *
       * @type number
-      * @memberof TrustedOriginApilistOrigins
+      * @memberof TrustedOriginApilistTrustedOrigins
       */
     limit?: number;
 }
-export interface TrustedOriginApiUpdateOriginRequest {
+export interface TrustedOriginApiReplaceTrustedOriginRequest {
     /**
       *
       * @type string
-      * @memberof TrustedOriginApiupdateOrigin
+      * @memberof TrustedOriginApireplaceTrustedOrigin
       */
     trustedOriginId: string;
     /**
       *
       * @type TrustedOrigin
-      * @memberof TrustedOriginApiupdateOrigin
+      * @memberof TrustedOriginApireplaceTrustedOrigin
       */
     trustedOrigin: TrustedOrigin;
 }
@@ -6496,47 +8390,47 @@ export declare class ObjectTrustedOriginApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: TrustedOriginApiRequestFactory, responseProcessor?: TrustedOriginApiResponseProcessor);
   /**
-      * Success
+      * Activates a trusted origin
       * Activate a Trusted Origin
       * @param param the request object
       */
-  activateOrigin(param: TrustedOriginApiActivateOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
+  activateTrustedOrigin(param: TrustedOriginApiActivateTrustedOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
   /**
-      * Success
+      * Creates a trusted origin
       * Create a Trusted Origin
       * @param param the request object
       */
-  createOrigin(param: TrustedOriginApiCreateOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
+  createTrustedOrigin(param: TrustedOriginApiCreateTrustedOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
   /**
-      * Success
+      * Deactivates a trusted origin
       * Deactivate a Trusted Origin
       * @param param the request object
       */
-  deactivateOrigin(param: TrustedOriginApiDeactivateOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
+  deactivateTrustedOrigin(param: TrustedOriginApiDeactivateTrustedOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
   /**
-      * Success
+      * Deletes a trusted origin
       * Delete a Trusted Origin
       * @param param the request object
       */
-  deleteOrigin(param: TrustedOriginApiDeleteOriginRequest, options?: Configuration): Promise<void>;
+  deleteTrustedOrigin(param: TrustedOriginApiDeleteTrustedOriginRequest, options?: Configuration): Promise<void>;
   /**
-      * Success
+      * Retrieves a trusted origin
       * Retrieve a Trusted Origin
       * @param param the request object
       */
-  getOrigin(param: TrustedOriginApiGetOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
+  getTrustedOrigin(param: TrustedOriginApiGetTrustedOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
   /**
-      * Success
+      * Lists all trusted origins
       * List all Trusted Origins
       * @param param the request object
       */
-  listOrigins(param?: TrustedOriginApiListOriginsRequest, options?: Configuration): Promise<Collection<TrustedOrigin>>;
+  listTrustedOrigins(param?: TrustedOriginApiListTrustedOriginsRequest, options?: Configuration): Promise<Collection<TrustedOrigin>>;
   /**
-      * Success
+      * Replaces a trusted origin
       * Replace a Trusted Origin
       * @param param the request object
       */
-  updateOrigin(param: TrustedOriginApiUpdateOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
+  replaceTrustedOrigin(param: TrustedOriginApiReplaceTrustedOriginRequest, options?: Configuration): Promise<TrustedOrigin>;
 }
 import { UserApiRequestFactory, UserApiResponseProcessor } from '../apis/UserApi';
 export interface UserApiActivateUserRequest {
@@ -6552,106 +8446,6 @@ export interface UserApiActivateUserRequest {
       * @memberof UserApiactivateUser
       */
     sendEmail: boolean;
-}
-export interface UserApiAddAllAppsAsTargetToRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddAllAppsAsTargetToRole
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddAllAppsAsTargetToRole
-      */
-    roleId: string;
-}
-export interface UserApiAddApplicationTargetToAdminRoleForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAdminRoleForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAdminRoleForUser
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAdminRoleForUser
-      */
-    appName: string;
-}
-export interface UserApiAddApplicationTargetToAppAdminRoleForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAppAdminRoleForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAppAdminRoleForUser
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAppAdminRoleForUser
-      */
-    appName: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddApplicationTargetToAppAdminRoleForUser
-      */
-    applicationId: string;
-}
-export interface UserApiAddGroupTargetToRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddGroupTargetToRole
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddGroupTargetToRole
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiaddGroupTargetToRole
-      */
-    groupId: string;
-}
-export interface UserApiAssignRoleToUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiassignRoleToUser
-      */
-    userId: string;
-    /**
-      *
-      * @type AssignRoleRequest
-      * @memberof UserApiassignRoleToUser
-      */
-    assignRoleRequest: AssignRoleRequest;
-    /**
-      *
-      * @type boolean
-      * @memberof UserApiassignRoleToUser
-      */
-    disableNotifications?: boolean;
 }
 export interface UserApiChangePasswordRequest {
     /**
@@ -6687,20 +8481,6 @@ export interface UserApiChangeRecoveryQuestionRequest {
       */
     userCredentials: UserCredentials;
 }
-export interface UserApiClearUserSessionsRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiclearUserSessions
-      */
-    userId: string;
-    /**
-      * Revoke issued OpenID Connect and OAuth refresh and access tokens
-      * @type boolean
-      * @memberof UserApiclearUserSessions
-      */
-    oauthTokens?: boolean;
-}
 export interface UserApiCreateUserRequest {
     /**
       *
@@ -6727,20 +8507,6 @@ export interface UserApiCreateUserRequest {
       */
     nextLogin?: UserNextLogin;
 }
-export interface UserApiDeactivateOrDeleteUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApideactivateOrDeleteUser
-      */
-    userId: string;
-    /**
-      *
-      * @type boolean
-      * @memberof UserApideactivateOrDeleteUser
-      */
-    sendEmail?: boolean;
-}
 export interface UserApiDeactivateUserRequest {
     /**
       *
@@ -6752,6 +8518,34 @@ export interface UserApiDeactivateUserRequest {
       *
       * @type boolean
       * @memberof UserApideactivateUser
+      */
+    sendEmail?: boolean;
+}
+export interface UserApiDeleteLinkedObjectForUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof UserApideleteLinkedObjectForUser
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof UserApideleteLinkedObjectForUser
+      */
+    relationshipName: string;
+}
+export interface UserApiDeleteUserRequest {
+    /**
+      *
+      * @type string
+      * @memberof UserApideleteUser
+      */
+    userId: string;
+    /**
+      *
+      * @type boolean
+      * @memberof UserApideleteUser
       */
     sendEmail?: boolean;
 }
@@ -6770,6 +8564,12 @@ export interface UserApiExpirePasswordAndGetTemporaryPasswordRequest {
       * @memberof UserApiexpirePasswordAndGetTemporaryPassword
       */
     userId: string;
+    /**
+      * When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
+      * @type boolean
+      * @memberof UserApiexpirePasswordAndGetTemporaryPassword
+      */
+    revokeSessions?: boolean;
 }
 export interface UserApiForgotPasswordRequest {
     /**
@@ -6805,31 +8605,25 @@ export interface UserApiForgotPasswordSetNewPasswordRequest {
       */
     sendEmail?: boolean;
 }
-export interface UserApiGetLinkedObjectsForUserRequest {
+export interface UserApiGenerateResetPasswordTokenRequest {
     /**
       *
       * @type string
-      * @memberof UserApigetLinkedObjectsForUser
+      * @memberof UserApigenerateResetPasswordToken
       */
     userId: string;
     /**
       *
-      * @type string
-      * @memberof UserApigetLinkedObjectsForUser
+      * @type boolean
+      * @memberof UserApigenerateResetPasswordToken
       */
-    relationshipName: string;
+    sendEmail: boolean;
     /**
-      *
-      * @type string
-      * @memberof UserApigetLinkedObjectsForUser
+      * When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
+      * @type boolean
+      * @memberof UserApigenerateResetPasswordToken
       */
-    after?: string;
-    /**
-      *
-      * @type number
-      * @memberof UserApigetLinkedObjectsForUser
-      */
-    limit?: number;
+    revokeSessions?: boolean;
 }
 export interface UserApiGetRefreshTokenForUserAndClientRequest {
     /**
@@ -6876,6 +8670,12 @@ export interface UserApiGetUserRequest {
       * @memberof UserApigetUser
       */
     userId: string;
+    /**
+      * Specifies additional metadata to include in the response. Possible value: &#x60;blocks&#x60;
+      * @type string
+      * @memberof UserApigetUser
+      */
+    expand?: string;
 }
 export interface UserApiGetUserGrantRequest {
     /**
@@ -6897,20 +8697,6 @@ export interface UserApiGetUserGrantRequest {
       */
     expand?: string;
 }
-export interface UserApiGetUserRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApigetUserRole
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApigetUserRole
-      */
-    roleId: string;
-}
 export interface UserApiListAppLinksRequest {
     /**
       *
@@ -6918,46 +8704,6 @@ export interface UserApiListAppLinksRequest {
       * @memberof UserApilistAppLinks
       */
     userId: string;
-}
-export interface UserApiListApplicationTargetsForApplicationAdministratorRoleForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApilistApplicationTargetsForApplicationAdministratorRoleForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApilistApplicationTargetsForApplicationAdministratorRoleForUser
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApilistApplicationTargetsForApplicationAdministratorRoleForUser
-      */
-    after?: string;
-    /**
-      *
-      * @type number
-      * @memberof UserApilistApplicationTargetsForApplicationAdministratorRoleForUser
-      */
-    limit?: number;
-}
-export interface UserApiListAssignedRolesForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApilistAssignedRolesForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApilistAssignedRolesForUser
-      */
-    expand?: string;
 }
 export interface UserApiListGrantsForUserAndClientRequest {
     /**
@@ -6991,29 +8737,29 @@ export interface UserApiListGrantsForUserAndClientRequest {
       */
     limit?: number;
 }
-export interface UserApiListGroupTargetsForRoleRequest {
+export interface UserApiListLinkedObjectsForUserRequest {
     /**
       *
       * @type string
-      * @memberof UserApilistGroupTargetsForRole
+      * @memberof UserApilistLinkedObjectsForUser
       */
     userId: string;
     /**
       *
       * @type string
-      * @memberof UserApilistGroupTargetsForRole
+      * @memberof UserApilistLinkedObjectsForUser
       */
-    roleId: string;
+    relationshipName: string;
     /**
       *
       * @type string
-      * @memberof UserApilistGroupTargetsForRole
+      * @memberof UserApilistLinkedObjectsForUser
       */
     after?: string;
     /**
       *
       * @type number
-      * @memberof UserApilistGroupTargetsForRole
+      * @memberof UserApilistLinkedObjectsForUser
       */
     limit?: number;
 }
@@ -7048,6 +8794,14 @@ export interface UserApiListRefreshTokensForUserAndClientRequest {
       * @memberof UserApilistRefreshTokensForUserAndClient
       */
     limit?: number;
+}
+export interface UserApiListUserBlocksRequest {
+    /**
+      *
+      * @type string
+      * @memberof UserApilistUserBlocks
+      */
+    userId: string;
 }
 export interface UserApiListUserClientsRequest {
     /**
@@ -7113,7 +8867,7 @@ export interface UserApiListUsersRequest {
       */
     q?: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @type string
       * @memberof UserApilistUsers
       */
@@ -7131,7 +8885,7 @@ export interface UserApiListUsersRequest {
       */
     filter?: string;
     /**
-      * Searches for users with a supported filtering  expression for most properties
+      * Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance.
       * @type string
       * @memberof UserApilistUsers
       */
@@ -7149,26 +8903,6 @@ export interface UserApiListUsersRequest {
       */
     sortOrder?: string;
 }
-export interface UserApiPartialUpdateUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApipartialUpdateUser
-      */
-    userId: string;
-    /**
-      *
-      * @type UpdateUserRequest
-      * @memberof UserApipartialUpdateUser
-      */
-    user: UpdateUserRequest;
-    /**
-      *
-      * @type boolean
-      * @memberof UserApipartialUpdateUser
-      */
-    strict?: boolean;
-}
 export interface UserApiReactivateUserRequest {
     /**
       *
@@ -7183,99 +8917,25 @@ export interface UserApiReactivateUserRequest {
       */
     sendEmail?: boolean;
 }
-export interface UserApiRemoveApplicationTargetFromAdministratorRoleForUserRequest {
+export interface UserApiReplaceUserRequest {
     /**
       *
       * @type string
-      * @memberof UserApiremoveApplicationTargetFromAdministratorRoleForUser
+      * @memberof UserApireplaceUser
       */
     userId: string;
     /**
       *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromAdministratorRoleForUser
+      * @type UpdateUserRequest
+      * @memberof UserApireplaceUser
       */
-    roleId: string;
+    user: UpdateUserRequest;
     /**
       *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromAdministratorRoleForUser
+      * @type boolean
+      * @memberof UserApireplaceUser
       */
-    appName: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromAdministratorRoleForUser
-      */
-    applicationId: string;
-}
-export interface UserApiRemoveApplicationTargetFromApplicationAdministratorRoleForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromApplicationAdministratorRoleForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromApplicationAdministratorRoleForUser
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveApplicationTargetFromApplicationAdministratorRoleForUser
-      */
-    appName: string;
-}
-export interface UserApiRemoveGroupTargetFromRoleRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveGroupTargetFromRole
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveGroupTargetFromRole
-      */
-    roleId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveGroupTargetFromRole
-      */
-    groupId: string;
-}
-export interface UserApiRemoveLinkedObjectForUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveLinkedObjectForUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveLinkedObjectForUser
-      */
-    relationshipName: string;
-}
-export interface UserApiRemoveRoleFromUserRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveRoleFromUser
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserApiremoveRoleFromUser
-      */
-    roleId: string;
+    strict?: boolean;
 }
 export interface UserApiResetFactorsRequest {
     /**
@@ -7284,20 +8944,6 @@ export interface UserApiResetFactorsRequest {
       * @memberof UserApiresetFactors
       */
     userId: string;
-}
-export interface UserApiResetPasswordRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserApiresetPassword
-      */
-    userId: string;
-    /**
-      *
-      * @type boolean
-      * @memberof UserApiresetPassword
-      */
-    sendEmail: boolean;
 }
 export interface UserApiRevokeGrantsForUserAndClientRequest {
     /**
@@ -7369,6 +9015,20 @@ export interface UserApiRevokeUserGrantsRequest {
       */
     userId: string;
 }
+export interface UserApiRevokeUserSessionsRequest {
+    /**
+      *
+      * @type string
+      * @memberof UserApirevokeUserSessions
+      */
+    userId: string;
+    /**
+      * Revoke issued OpenID Connect and OAuth refresh and access tokens
+      * @type boolean
+      * @memberof UserApirevokeUserSessions
+      */
+    oauthTokens?: boolean;
+}
 export interface UserApiSetLinkedObjectForUserRequest {
     /**
       *
@@ -7437,41 +9097,11 @@ export declare class ObjectUserApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: UserApiRequestFactory, responseProcessor?: UserApiResponseProcessor);
   /**
-      * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+      * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Activate a User
       * @param param the request object
       */
   activateUser(param: UserApiActivateUserRequest, options?: Configuration): Promise<UserActivationToken>;
-  /**
-      * Assign all Apps as Target to Role
-      * Assign all Apps as Target to Role
-      * @param param the request object
-      */
-  addAllAppsAsTargetToRole(param: UserApiAddAllAppsAsTargetToRoleRequest, options?: Configuration): Promise<void>;
-  /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param param the request object
-      */
-  addApplicationTargetToAdminRoleForUser(param: UserApiAddApplicationTargetToAdminRoleForUserRequest, options?: Configuration): Promise<void>;
-  /**
-      * Add App Instance Target to App Administrator Role given to a User
-      * Assign an Application Instance Target to an Application Administrator Role
-      * @param param the request object
-      */
-  addApplicationTargetToAppAdminRoleForUser(param: UserApiAddApplicationTargetToAppAdminRoleForUserRequest, options?: Configuration): Promise<void>;
-  /**
-      * Assign a Group Target to Role
-      * Assign a Group Target to Role
-      * @param param the request object
-      */
-  addGroupTargetToRole(param: UserApiAddGroupTargetToRoleRequest, options?: Configuration): Promise<void>;
-  /**
-      * Assigns a role to a user.
-      * Assign a Role
-      * @param param the request object
-      */
-  assignRoleToUser(param: UserApiAssignRoleToUserRequest, options?: Configuration): Promise<Role>;
   /**
       * Changes a user's password by validating the user's current password. This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid password credential
       * Change Password
@@ -7485,23 +9115,11 @@ export declare class ObjectUserApi {
       */
   changeRecoveryQuestion(param: UserApiChangeRecoveryQuestionRequest, options?: Configuration): Promise<UserCredentials>;
   /**
-      * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Delete all User Sessions
-      * @param param the request object
-      */
-  clearUserSessions(param: UserApiClearUserSessionsRequest, options?: Configuration): Promise<void>;
-  /**
-      * Creates a new user in your Okta organization with or without credentials.
+      * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Create a User
       * @param param the request object
       */
   createUser(param: UserApiCreateUserRequest, options?: Configuration): Promise<User>;
-  /**
-      * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete a User
-      * @param param the request object
-      */
-  deactivateOrDeleteUser(param: UserApiDeactivateOrDeleteUserRequest, options?: Configuration): Promise<void>;
   /**
       * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
       * Deactivate a User
@@ -7509,77 +9127,71 @@ export declare class ObjectUserApi {
       */
   deactivateUser(param: UserApiDeactivateUserRequest, options?: Configuration): Promise<void>;
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+      * Deletes linked objects for a user, relationshipName can be ONLY a primary relationship name
+      * Delete a Linked Object
+      * @param param the request object
+      */
+  deleteLinkedObjectForUser(param: UserApiDeleteLinkedObjectForUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a user permanently. This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**. Calling this on an `ACTIVE` user will transition the user to `DEPROVISIONED`.
+      * Delete a User
+      * @param param the request object
+      */
+  deleteUser(param: UserApiDeleteUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login
       * Expire Password
       * @param param the request object
       */
   expirePassword(param: UserApiExpirePasswordRequest, options?: Configuration): Promise<User>;
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response.
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
       * Expire Password and Set Temporary Password
       * @param param the request object
       */
   expirePasswordAndGetTemporaryPassword(param: UserApiExpirePasswordAndGetTemporaryPasswordRequest, options?: Configuration): Promise<TempPassword>;
   /**
-      * Initiate forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
+      * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
       * Initiate Forgot Password
       * @param param the request object
       */
   forgotPassword(param: UserApiForgotPasswordRequest, options?: Configuration): Promise<ForgotPasswordResponse>;
   /**
-      * Resets the user's password to the specified password if the provided answer to the recovery question is correct.
+      * Resets the user's password to the specified password if the provided answer to the recovery question is correct
       * Reset Password with Recovery Question
       * @param param the request object
       */
   forgotPasswordSetNewPassword(param: UserApiForgotPasswordSetNewPasswordRequest, options?: Configuration): Promise<UserCredentials>;
   /**
-      * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * List all Linked Objects
+      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
+      * Generate a Reset Password Token
       * @param param the request object
       */
-  getLinkedObjectsForUser(param: UserApiGetLinkedObjectsForUserRequest, options?: Configuration): Promise<Collection<any>>;
+  generateResetPasswordToken(param: UserApiGenerateResetPasswordTokenRequest, options?: Configuration): Promise<ResetPasswordToken>;
   /**
-      * Gets a refresh token issued for the specified User and Client.
+      * Retrieves a refresh token issued for the specified User and Client
       * Retrieve a Refresh Token for a Client
       * @param param the request object
       */
   getRefreshTokenForUserAndClient(param: UserApiGetRefreshTokenForUserAndClientRequest, options?: Configuration): Promise<OAuth2RefreshToken>;
   /**
-      * Fetches a user from your Okta organization.
+      * Retrieves a user from your Okta organization
       * Retrieve a User
       * @param param the request object
       */
   getUser(param: UserApiGetUserRequest, options?: Configuration): Promise<User>;
   /**
-      * Gets a grant for the specified user
+      * Retrieves a grant for the specified user
       * Retrieve a User Grant
       * @param param the request object
       */
   getUserGrant(param: UserApiGetUserGrantRequest, options?: Configuration): Promise<OAuth2ScopeConsentGrant>;
   /**
-      * Gets role that is assigned to user.
-      * Retrieve a Role
-      * @param param the request object
-      */
-  getUserRole(param: UserApiGetUserRoleRequest, options?: Configuration): Promise<Role>;
-  /**
-      * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
+      * Lists all appLinks for all direct or indirect (via group membership) assigned applications
       * List all Assigned Application Links
       * @param param the request object
       */
   listAppLinks(param: UserApiListAppLinksRequest, options?: Configuration): Promise<Collection<AppLink>>;
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for Application Administrator Role
-      * @param param the request object
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForUser(param: UserApiListApplicationTargetsForApplicationAdministratorRoleForUserRequest, options?: Configuration): Promise<Collection<CatalogApplication>>;
-  /**
-      * Lists all roles assigned to a user.
-      * List all Assigned Roles
-      * @param param the request object
-      */
-  listAssignedRolesForUser(param: UserApiListAssignedRolesForUserRequest, options?: Configuration): Promise<Collection<Role>>;
   /**
       * Lists all grants for a specified user and client
       * List all Grants for a Client
@@ -7587,19 +9199,25 @@ export declare class ObjectUserApi {
       */
   listGrantsForUserAndClient(param: UserApiListGrantsForUserAndClientRequest, options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Success
-      * List all Group Targets for Role
+      * Lists all linked objects for a user, relationshipName can be a primary or associated relationship name
+      * List all Linked Objects
       * @param param the request object
       */
-  listGroupTargetsForRole(param: UserApiListGroupTargetsForRoleRequest, options?: Configuration): Promise<Collection<Group>>;
+  listLinkedObjectsForUser(param: UserApiListLinkedObjectsForUserRequest, options?: Configuration): Promise<Collection<any>>;
   /**
-      * Lists all refresh tokens issued for the specified User and Client.
+      * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client
       * @param param the request object
       */
   listRefreshTokensForUserAndClient(param: UserApiListRefreshTokensForUserAndClientRequest, options?: Configuration): Promise<Collection<OAuth2RefreshToken>>;
   /**
-      * Lists all client resources for which the specified user has grants or tokens.
+      * Lists information about how the user is blocked from accessing their account
+      * List all User Blocks
+      * @param param the request object
+      */
+  listUserBlocks(param: UserApiListUserBlocksRequest, options?: Configuration): Promise<Collection<UserBlock>>;
+  /**
+      * Lists all client resources for which the specified user has grants or tokens
       * List all Clients
       * @param param the request object
       */
@@ -7611,29 +9229,23 @@ export declare class ObjectUserApi {
       */
   listUserGrants(param: UserApiListUserGrantsRequest, options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Fetches the groups of which the user is a member.
+      * Lists all groups of which the user is a member
       * List all Groups
       * @param param the request object
       */
   listUserGroups(param: UserApiListUserGroupsRequest, options?: Configuration): Promise<Collection<Group>>;
   /**
-      * Lists the IdPs associated with the user.
+      * Lists the IdPs associated with the user
       * List all Identity Providers
       * @param param the request object
       */
   listUserIdentityProviders(param: UserApiListUserIdentityProvidersRequest, options?: Configuration): Promise<Collection<IdentityProvider>>;
   /**
-      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
+      * Lists all users that do not have a status of 'DEPROVISIONED' (by default), up to the maximum (200 for most orgs), with pagination.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
       * @param param the request object
       */
   listUsers(param?: UserApiListUsersRequest, options?: Configuration): Promise<Collection<User>>;
-  /**
-      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Update a User
-      * @param param the request object
-      */
-  partialUpdateUser(param: UserApiPartialUpdateUserRequest, options?: Configuration): Promise<User>;
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
       * Reactivate a User
@@ -7641,47 +9253,17 @@ export declare class ObjectUserApi {
       */
   reactivateUser(param: UserApiReactivateUserRequest, options?: Configuration): Promise<UserActivationToken>;
   /**
-      * Remove App Instance Target to App Administrator Role given to a User
-      * Unassign an Application Instance Target to Application Administrator Role
+      * Replaces a user's profile and/or credentials using strict-update semantics
+      * Replace a User
       * @param param the request object
       */
-  removeApplicationTargetFromAdministratorRoleForUser(param: UserApiRemoveApplicationTargetFromAdministratorRoleForUserRequest, options?: Configuration): Promise<void>;
+  replaceUser(param: UserApiReplaceUserRequest, options?: Configuration): Promise<User>;
   /**
-      * Success
-      * Unassign an Application Target from Application Administrator Role
-      * @param param the request object
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(param: UserApiRemoveApplicationTargetFromApplicationAdministratorRoleForUserRequest, options?: Configuration): Promise<void>;
-  /**
-      * Unassign a Group Target from Role
-      * Unassign a Group Target from Role
-      * @param param the request object
-      */
-  removeGroupTargetFromRole(param: UserApiRemoveGroupTargetFromRoleRequest, options?: Configuration): Promise<void>;
-  /**
-      * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Delete a Linked Object
-      * @param param the request object
-      */
-  removeLinkedObjectForUser(param: UserApiRemoveLinkedObjectForUserRequest, options?: Configuration): Promise<void>;
-  /**
-      * Unassigns a role from a user.
-      * Delete a Role
-      * @param param the request object
-      */
-  removeRoleFromUser(param: UserApiRemoveRoleFromUserRequest, options?: Configuration): Promise<void>;
-  /**
-      * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
+      * Resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
       * Reset all Factors
       * @param param the request object
       */
   resetFactors(param: UserApiResetFactorsRequest, options?: Configuration): Promise<void>;
-  /**
-      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
-      * Reset Password
-      * @param param the request object
-      */
-  resetPassword(param: UserApiResetPasswordRequest, options?: Configuration): Promise<ResetPasswordToken>;
   /**
       * Revokes all grants for the specified user and client
       * Revoke all Grants for a Client
@@ -7689,13 +9271,13 @@ export declare class ObjectUserApi {
       */
   revokeGrantsForUserAndClient(param: UserApiRevokeGrantsForUserAndClientRequest, options?: Configuration): Promise<void>;
   /**
-      * Revokes the specified refresh token.
+      * Revokes the specified refresh token
       * Revoke a Token for a Client
       * @param param the request object
       */
   revokeTokenForUserAndClient(param: UserApiRevokeTokenForUserAndClientRequest, options?: Configuration): Promise<void>;
   /**
-      * Revokes all refresh tokens issued for the specified User and Client.
+      * Revokes all refresh tokens issued for the specified User and Client
       * Revoke all Refresh Tokens for a Client
       * @param param the request object
       */
@@ -7713,7 +9295,13 @@ export declare class ObjectUserApi {
       */
   revokeUserGrants(param: UserApiRevokeUserGrantsRequest, options?: Configuration): Promise<void>;
   /**
-      * Sets a linked object for two users.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+      * Revoke all User Sessions
+      * @param param the request object
+      */
+  revokeUserSessions(param: UserApiRevokeUserSessionsRequest, options?: Configuration): Promise<void>;
+  /**
+      * Creates a linked object for two users
       * Create a Linked Object for two User
       * @param param the request object
       */
@@ -7725,7 +9313,7 @@ export declare class ObjectUserApi {
       */
   suspendUser(param: UserApiSuspendUserRequest, options?: Configuration): Promise<void>;
   /**
-      * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
+      * Unlocks a user with a `LOCKED_OUT` status or unlocks a user with an `ACTIVE` status that is blocked from unknown devices. Unlocked users have an `ACTIVE` status and can sign in with their current password.
       * Unlock a User
       * @param param the request object
       */
@@ -7737,8 +9325,8 @@ export declare class ObjectUserApi {
       */
   unsuspendUser(param: UserApiUnsuspendUserRequest, options?: Configuration): Promise<void>;
   /**
-      * Update a user's profile and/or credentials using strict-update semantics.
-      * Replace a User
+      * Updates a user partially determined by the request parameters
+      * Update a User
       * @param param the request object
       */
   updateUser(param: UserApiUpdateUserRequest, options?: Configuration): Promise<User>;
@@ -7763,26 +9351,6 @@ export interface UserFactorApiActivateFactorRequest {
       * @memberof UserFactorApiactivateFactor
       */
     body?: ActivateFactorRequest;
-}
-export interface UserFactorApiDeleteFactorRequest {
-    /**
-      *
-      * @type string
-      * @memberof UserFactorApideleteFactor
-      */
-    userId: string;
-    /**
-      *
-      * @type string
-      * @memberof UserFactorApideleteFactor
-      */
-    factorId: string;
-    /**
-      *
-      * @type boolean
-      * @memberof UserFactorApideleteFactor
-      */
-    removeEnrollmentRecovery?: boolean;
 }
 export interface UserFactorApiEnrollFactorRequest {
     /**
@@ -7880,6 +9448,26 @@ export interface UserFactorApiListSupportedSecurityQuestionsRequest {
       */
     userId: string;
 }
+export interface UserFactorApiUnenrollFactorRequest {
+    /**
+      *
+      * @type string
+      * @memberof UserFactorApiunenrollFactor
+      */
+    userId: string;
+    /**
+      *
+      * @type string
+      * @memberof UserFactorApiunenrollFactor
+      */
+    factorId: string;
+    /**
+      *
+      * @type boolean
+      * @memberof UserFactorApiunenrollFactor
+      */
+    removeEnrollmentRecovery?: boolean;
+}
 export interface UserFactorApiVerifyFactorRequest {
     /**
       *
@@ -7934,53 +9522,53 @@ export declare class ObjectUserFactorApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: UserFactorApiRequestFactory, responseProcessor?: UserFactorApiResponseProcessor);
   /**
-      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+      * Activates a factor. The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
       * Activate a Factor
       * @param param the request object
       */
   activateFactor(param: UserFactorApiActivateFactorRequest, options?: Configuration): Promise<UserFactor>;
   /**
-      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete a Factor
-      * @param param the request object
-      */
-  deleteFactor(param: UserFactorApiDeleteFactorRequest, options?: Configuration): Promise<void>;
-  /**
-      * Enrolls a user with a supported factor.
+      * Enrolls a user with a supported factor
       * Enroll a Factor
       * @param param the request object
       */
   enrollFactor(param: UserFactorApiEnrollFactorRequest, options?: Configuration): Promise<UserFactor>;
   /**
-      * Fetches a factor for the specified user
+      * Retrieves a factor for the specified user
       * Retrieve a Factor
       * @param param the request object
       */
   getFactor(param: UserFactorApiGetFactorRequest, options?: Configuration): Promise<UserFactor>;
   /**
-      * Polls factors verification transaction for status.
+      * Retrieves the factors verification transaction status
       * Retrieve a Factor Transaction Status
       * @param param the request object
       */
   getFactorTransactionStatus(param: UserFactorApiGetFactorTransactionStatusRequest, options?: Configuration): Promise<VerifyUserFactorResponse>;
   /**
-      * Enumerates all the enrolled factors for the specified user
+      * Lists all the enrolled factors for the specified user
       * List all Factors
       * @param param the request object
       */
   listFactors(param: UserFactorApiListFactorsRequest, options?: Configuration): Promise<Collection<UserFactor>>;
   /**
-      * Enumerates all the supported factors that can be enrolled for the specified user
+      * Lists all the supported factors that can be enrolled for the specified user
       * List all Supported Factors
       * @param param the request object
       */
   listSupportedFactors(param: UserFactorApiListSupportedFactorsRequest, options?: Configuration): Promise<Collection<UserFactor>>;
   /**
-      * Enumerates all available security questions for a user's `question` factor
+      * Lists all available security questions for a user's `question` factor
       * List all Supported Security Questions
       * @param param the request object
       */
   listSupportedSecurityQuestions(param: UserFactorApiListSupportedSecurityQuestionsRequest, options?: Configuration): Promise<Collection<SecurityQuestion>>;
+  /**
+      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor
+      * Unenroll a Factor
+      * @param param the request object
+      */
+  unenrollFactor(param: UserFactorApiUnenrollFactorRequest, options?: Configuration): Promise<void>;
   /**
       * Verifies an OTP for a `token` or `token:hardware` factor
       * Verify an MFA Factor
@@ -8059,19 +9647,19 @@ export declare class ObjectUserTypeApi {
       */
   deleteUserType(param: UserTypeApiDeleteUserTypeRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+      * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * Retrieve a User Type
       * @param param the request object
       */
   getUserType(param: UserTypeApiGetUserTypeRequest, options?: Configuration): Promise<UserType>;
   /**
-      * Fetches all User Types in your org
+      * Lists all User Types in your org
       * List all User Types
       * @param param the request object
       */
   listUserTypes(param?: UserTypeApiListUserTypesRequest, options?: Configuration): Promise<Collection<UserType>>;
   /**
-      * Replace an existing User Type
+      * Replaces an existing user type
       * Replace a User Type
       * @param param the request object
       */

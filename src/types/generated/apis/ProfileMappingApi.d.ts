@@ -20,13 +20,13 @@ import { ProfileMapping } from '../models/ProfileMapping';
  */
 export declare class ProfileMappingApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Fetches a single Profile Mapping referenced by its ID.
+     * Retrieves a single Profile Mapping referenced by its ID
      * Retrieve a Profile Mapping
      * @param mappingId
      */
   getProfileMapping(mappingId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates Profile Mappings in your organization with pagination.
+     * Lists all profile mappings with pagination
      * List all Profile Mappings
      * @param after
      * @param limit
@@ -35,7 +35,7 @@ export declare class ProfileMappingApiRequestFactory extends BaseAPIRequestFacto
      */
   listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+     * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
      * Update a Profile Mapping
      * @param mappingId
      * @param profileMapping

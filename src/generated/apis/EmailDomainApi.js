@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Creates a custom email domain.
+     * Creates an Email Domain in your org, along with associated username and sender display name
      * Create an Email Domain
      * @param emailDomain
      */
@@ -50,12 +50,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes an Email Domain by `emailDomainId`.
+     * Deletes an Email Domain by `emailDomainId`
      * Delete an Email Domain
      * @param emailDomainId
      */
@@ -86,12 +86,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches an Email Domain by `emailDomainId`.
+     * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
      * Retrieve a Email Domain
      * @param emailDomainId
      */
@@ -122,12 +122,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * List all brands linked to an email domain.
+     * Lists all brands linked to an email domain
      * List all brands linked to an email domain
      * @param emailDomainId
      */
@@ -158,12 +158,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -174,8 +174,8 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * List all the email domains in your org.
-     * List all email domains
+     * Lists all the Email Domains in your org, along with associated username and sender display name
+     * List all Email Domains
      */
   async listEmailDomains(_options) {
     let _config = _options || this.configuration;
@@ -186,12 +186,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -202,20 +202,20 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates an email domain by `emailDomainId`
-     * Update an Email Domain
+     * Replaces associated username and sender display name by `emailDomainId`
+     * Replace an Email Domain
      * @param emailDomainId
      * @param updateEmailDomain
      */
-  async updateEmailDomain(emailDomainId, updateEmailDomain, _options) {
+  async replaceEmailDomain(emailDomainId, updateEmailDomain, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'emailDomainId' is not null or undefined
     if (emailDomainId === null || emailDomainId === undefined) {
-      throw new baseapi_1.RequiredError('EmailDomainApi', 'updateEmailDomain', 'emailDomainId');
+      throw new baseapi_1.RequiredError('EmailDomainApi', 'replaceEmailDomain', 'emailDomainId');
     }
     // verify required parameter 'updateEmailDomain' is not null or undefined
     if (updateEmailDomain === null || updateEmailDomain === undefined) {
-      throw new baseapi_1.RequiredError('EmailDomainApi', 'updateEmailDomain', 'updateEmailDomain');
+      throw new baseapi_1.RequiredError('EmailDomainApi', 'replaceEmailDomain', 'updateEmailDomain');
     }
     // Path Params
     const path = '/api/v1/email-domains/{emailDomainId}';
@@ -235,12 +235,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -251,8 +251,8 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Verifies the Email Domain by `id`.
-     * Verify Email Domain
+     * Verifies an Email Domain by `emailDomainId`
+     * Verify an Email Domain
      * @param emailDomainId
      */
   async verifyEmailDomain(emailDomainId, _options) {
@@ -271,12 +271,12 @@ class EmailDomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -448,10 +448,10 @@ class EmailDomainApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateEmailDomain
+     * @params response Response returned by the server for a request to replaceEmailDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updateEmailDomain(response) {
+  async replaceEmailDomain(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'EmailDomainResponse', '');
