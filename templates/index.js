@@ -69,17 +69,17 @@ js.process = ({spec, operations, models, handlebars}) => {
     context: {models}
   });
 
-  templates.push({
-    src: 'generated-client.d.ts.hbs',
-    dest: 'src/types/generated-client.d.ts',
-    context: {operations, spec}
-  });
+  // templates.push({
+  //   src: 'generated-client.d.ts.hbs',
+  //   dest: 'src/types/generated-client.d.ts',
+  //   context: {operations, spec}
+  // });
 
-  templates.push({
-    src: 'generated-client.js.hbs',
-    dest: 'src/generated-client.js',
-    context: {operations, spec}
-  });
+  // templates.push({
+  //   src: 'generated-client.js.hbs',
+  //   dest: 'src/generated-client.js',
+  //   context: {operations, spec}
+  // });
 
   // Add helpers
 

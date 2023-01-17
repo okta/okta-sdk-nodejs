@@ -47,6 +47,3 @@ rm `find ./src -name "*.d.ts" -not -path "./src/types/*"`
 node ./utils/maintain-banners.js
 node ./node_modules/eslint/bin/eslint.js . --fix
 
-# remove obsolete generated-client
-rm ./src/generated-client.*
-rm ./src/types/generated-client.*

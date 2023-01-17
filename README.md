@@ -12,9 +12,9 @@
 * [Getting started](#getting-started)
 * [Usage guide](#usage-guide)
 * [Configuration reference](#configuration-reference)
-* [Building the SDK](#building-the-sdk)
 * [TypeScript usage](#typescript-usage)
-
+* [Migrating between versions](#migrating-between-versions)
+* [Building the SDK](#building-the-sdk)
 * [Contributing](#contributing)
 
 This repository contains the Okta management SDK for Node.js. This SDK can be used in your server-side code to interact with the Okta management API and:
@@ -45,6 +45,7 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 4.x | :x: Retired |
 | 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
 | 6.x | :heavy_check_mark: Stable ([migration guide](#from-5x-to-60)) |
+| 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
@@ -138,7 +139,7 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
 
 #### Create a User
 
-The [Users: Create User] API can be used to create users.  The most basic type of user is one that has an email address and a password to login with, and can be created with the `client.createUser()` method:
+The [Users: Create User] API can be used to create users.  The most basic type of user is one that has an email address and a password to login with, and can be created with the `client.userApi.createUser({ body })` method:
 
 ```javascript
 const newUser = {
@@ -155,47 +156,42 @@ const newUser = {
   }
 };
 
-client.userApi.createUser(newUser)
-.then(user => {
-  console.log('Created user', user);
-});
+const user = await client.userApi.createUser({ body: newUser });
+console.log('Created user', user);
 ```
 
 #### Get a User
 
-The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.getUser(:id|:login)`:
+The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ userId: :id|:login })`:
 
 ```javascript
-client.userApi.getUser('ausmvdt5xg8wRVI1d0g3')
-.then(user => {
-  console.log(user);
-});
+let user;
+user = await client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' });
+console.log(user);
 
-client.userApi.getUser('foo@bar.com')
-.then(user => {
-  console.log(user);
-});
+user = await client.userApi.getUser({ userId: 'foo@bar.com' });
+console.log(user);
 ```
 
 #### Update a User
 
-Once you have a user instance, you can modify it and then call the `update()` method to persist those changes to the API.  This uses the [Users: Update User] API:
+Once you have a user instance, you can modify it and then call the `client.userApi.updateUser({ userId, user })` method to persist those changes to the API.  This uses the [Users: Update User] API:
 
 ```javascript
 user.profile.nickName = 'rob';
-user.update()
-.then(() => console.log('User nickname change has been saved'));
+await client.userApi.updateUser({
+  userId: user.id,
+  user: user
+});
 ```
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete()` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser({ userId })` and `client.userApi.deleteUser({ userId })` operations:
 
 ```javascript
-user.deactivate()
-.then(() => console.log('User has been deactivated'))
-.then(() => user.delete())
-.then(() => console.log('User has been deleted'));
+await client.userApi.deactivateUser({ userId: user.id });
+await client.userApi.deleteUser({ userId: user.id });
 ```
 
 #### List All Org Users
@@ -203,13 +199,11 @@ user.deactivate()
 The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collection](#collection).
 
 ```javascript
-client.listUsers()
-.then(orgUsersCollection => {
-  orgUsersCollection.each(user => {
-    console.log(user);
-  });
-})
-.then(() => console.log('All users have been listed'));
+const collection = await client.userApi.listUsers();
+await collection.each(user => {
+  console.log(user);
+});
+console.log('All users have been listed');
 ```
 
 You can also use async iterators.
@@ -228,33 +222,27 @@ For more information about this API see [Users: Get User].
 The [Users: List Users] API provides three ways to search for users, `q`, `filter`, or `search`, and all of these approaches can be achieved by passing them as query parameters to the `client.userApi.listUsers()` method.  The library will URL-encode the values for you.
 
 ```javascript
-client.userApi.listUsers({
+let collection;
+collection = await client.userApi.listUsers({
   q: 'Robert'
-})
-.then(collection => {
-  collection.each(user => {
-    console.log('User matches query: ', user);
-  });
+});
+await collection.each(user => {
+  console.log('User matches query: ', user);
 });
 
 
-client.userApi.listUsers({
+collection = await client.userApi.listUsers({
   search: 'profile.nickName eq "abc 1234"'
-})
-.then(collection => {
-  collection.each(user => {
-    console.log('User matches search:', user);
-  });
+});
+await collection.each(user => {
+  console.log('User matches query: ', user);
 });
 
-
-client.userApi.listUsers({
+collection = await client.userApi.listUsers({
   filter: 'lastUpdated gt "2017-06-05T23:00:00.000Z"'
-})
-.then(collection => {
-  collection.each(user => {
-    console.log('User matches filter:', user);
-  });
+});
+await collection.each(user => {
+  console.log('User matches query: ', user);
 });
 ```
 
@@ -262,7 +250,7 @@ client.userApi.listUsers({
 
 #### Create a Group
 
-The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.createGroup(:newGroup)`:
+The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.createGroup({ group })`:
 
 ```javascript
 const newGroup = {
@@ -271,19 +259,17 @@ const newGroup = {
   }
 };
 
-client.groupApi.createGroup(newGroup)
-.then(group => {
-  console.log('Created group', group);
-});
+const group = await client.groupApi.createGroup({ group: newGroup });
+console.log('Created group', group);
 ```
 
 #### Assign a User to a Group
 
-With a user and group instance, you can use the `addUserToGroup(:groupId, :clientId)` method to add the user to the known group:
+With a user and group instance, you can use the `client.groupApi.assignUserToGroup({groupId, userId})` method to add the user to the known group:
 
 ```javascript
-client.groupApi.addUserToGroup(group.id, user.id)
-.then(() => console.log('User has been added to group'));
+await client.groupApi.assignUserToGroup({ groupId: group.id, userId: user.id });
+console.log('User has been added to group');
 ```
 
 ### Applications
@@ -307,10 +293,8 @@ const application = {
   }
 };
 
-client.applicationApi.createApplication(application)
-.then(application => {
-  console.log('Created application:', application);
-});
+const createdApplication = await client.applicationApi.createApplication({ application });
+console.log('Created application:', createdApplication);
 ```
 
 #### Assign a User to an Application
@@ -318,12 +302,13 @@ client.applicationApi.createApplication(application)
 To assign a user to an application, you must know the ID of the application and the user:
 
 ```javascript
-client.applicationApi.assignUserToApplication(createdApplication.id, {
-  id: createdUser.id
-})
-.then(appUser => {
-  console.log('Assigned user to app, app user instance:' appUser);
+const appUser = await client.applicationApi.assignUserToApplication({
+  appId: createdApplication.id,
+  appUser: {
+    id: createdUser.id
+  }
 });
+console.log('Assigned user to app, app user instance:', appUser);
 ```
 
 An App User is created, which is a new user instance that is specific to this application.  An App User allows you define an application-specific profile for that user.  For more information please see [Applications: User Operations] and [Applications: Application User Profile].
@@ -333,7 +318,12 @@ An App User is created, which is a new user instance that is specific to this ap
 To assign a group to an application, you must know the ID of the application and the group:
 
 ```javascript
-client.applicationApi.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+const assignment = await client.applicationApi.assignGroupToApplication({
+  appId: createdApplication.id, 
+  groupId: createdGroup.id, 
+  applicationGroupAssignment: {}
+});
+console.log('Assignment:', assignment);
 ```
 
 ### Sessions
@@ -343,12 +333,12 @@ client.applicationApi.createApplicationGroupAssignment(createdApplication.id, cr
 This is a rarely used method. See [Sessions: Create Session with Session Token] for the common ways to create a session. To use this method, you must have a sessionToken:
 
 ```javascript
-client.sessionApi.createSession({
-  sessionToken: 'your session token'
-})
-.then(session => {
-  console.log('Session details:' session);
+const session = await client.sessionApi.createSession({
+  createSessionRequest: {
+    sessionToken: 'your session token'
+  }
 });
+console.log('Session details:', session);
 ```
 
 #### Get a Session
@@ -356,10 +346,10 @@ client.sessionApi.createSession({
 To retrieve details about a session, you must know the ID of the session:
 
 ```javascript
-client.sessionApi.getSession(session.id)
-.then(session => {
-  console.log('Session details:' session);
+session = await client.sessionApi.getSession({
+  sessionId: session.id
 });
+console.log('Session details:', session);
 ```
 
 These details include when and how the user authenticated and the session expiration. For more information see [Sessions: Session Properties] and [Sessions: Session Operations].
@@ -369,10 +359,10 @@ These details include when and how the user authenticated and the session expira
 To refresh a session before it expires, you must know the ID of the session:
 
 ```javascript
-client.sessionApi.refreshSession(session.id)
-.then(session => {
-  console.log('Refreshed session expiration:', session.expiresAt);
+const refreshedSession = await client.sessionApi.refreshSession({
+  sessionId: currentSession.id
 });
+console.log('Refreshed session expiration:', refreshedSession.expiresAt);
 ```
 
 #### End a Session
@@ -380,10 +370,10 @@ client.sessionApi.refreshSession(session.id)
 To end a session, you must know the ID of the session:
 
 ```javascript
-client.sessionApi.endSession(session.id)
-.then(() => {
-  console.log('Session ended');
+await client.sessionApi.revokeSession({
+  sessionId: session.id
 });
+console.log('Session ended');
 ```
 
 #### End all Sessions for a User
@@ -391,10 +381,10 @@ client.sessionApi.endSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.sessionApi.clearUserSessions(user.id)
-.then(() => {
-  console.log('All user sessions have ended');
+await client.userApi.revokeUserSessions({
+  userId: user.id
 });
+console.log('All user sessions have ended');
 ```
 
 ### System Log
@@ -404,7 +394,9 @@ client.sessionApi.clearUserSessions(user.id)
 To query logs, first get a collection and specify your query filter:
 
 ```javascript
-const collection = await client.systemLogApi.getLogs({ since: '2018-01-25T00:00:00Z' });
+const collection = await client.systemLogApi.listLogEvents({
+  since: new Date('2018-01-25T00:00:00Z') 
+});
 ```
 
 Please refer to the [System Log API] Documentation for a full query reference.
@@ -414,7 +406,9 @@ If you wish to paginate the entire result set until there are no more records, s
 If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribeconfig):
 
 ```javascript
-const collection = await client.systemLogApi.getLogs({ since: '2018-01-24T23:00:00Z' });
+const collection = await client.systemLogApi.listLogEvents({
+  since: new Date('2018-01-24T23:00:00Z')
+});
 
 const subscription = collection.subscribe({
   interval: 5000, // Time in ms before fetching new logs when all existing logs are read
@@ -475,16 +469,12 @@ Allows you to visit every item in the collection, while optionally doing work at
 If no value is returned, `each()` will continue to the next item:
 
 ```javascript
-client.userApi.listUsers()
-.then(collection => {
-  collection.each(user => {
-    console.log(user);
-    logUserToRemoteSystem(user);
-  });
-})
-.then(() => {
-  console.log('All users have been visited');
+const collection = await client.userApi.listUsers();
+await collection.each(user => {
+  console.log(user);
+  logUserToRemoteSystem(user);
 });
+console.log('All users have been visited');
 ```
 
 ##### Serial Asynchronous Work
@@ -492,15 +482,12 @@ client.userApi.listUsers()
 Returning a promise will pause the iterator until the promise is resolved:
 
 ```javascript
-client.userApi.listUsers()
-.then(collection => {
-  collection.each(user => {
-    return new Promise((resolve, reject) => {
-      // do work, then resolve or reject the promise
-    });
+const collection = await client.userApi.listUsers();
+await collection.each(user => {
+  return new Promise((resolve, reject) => {
+    // do work, then resolve or reject the promise
   });
 });
-
 ```
 
 ##### Ending Iteration
@@ -508,42 +495,32 @@ client.userApi.listUsers()
 Returning `false` will end iteration:
 
 ```javascript
-client.userApi.listUsers()
-.then(collection => {
-  collection.each(user => {
-    console.log(user);
-    return false;
-  });
-})
-.then(() => {
-  console.log('Only one user was visited');
+const collection = await client.userApi.listUsers();
+await collection.each(user => {
+  console.log(user);
+  return false;
 });
+console.log('Only one user was visited');
 ```
 
 Returning `false` in a promise will also end iteration:
 
 ```javascript
-client.userApi.listUsers()
-.then(collection => {
-  collection.each(user => {
-    console.log(user);
-    return Promise.resolve(false);
-  });
-})
-.then(() => {
-  console.log('Only one user was visited');
+const collection = await client.userApi.listUsers();
+await collection.each(user => {
+  console.log(user);
+  return Promise.resolve(false);
 });
+console.log('Only one user was visited');
 ```
 
 Rejecting a promise will end iteration with an error:
 
 ```javascript
-return client.userApi.listUsers()
-.then(collection => {
-  collection.each(user => {
-    console.log(user);
-    return Promise.reject('foo error');
-  })
+const collection = await client.userApi.listUsers();
+collection.each(user => {
+  console.log(user);
+  return Promise.reject('foo error');
 })
 .catch(err => {
   console.log(err); // 'foo error'
@@ -873,19 +850,15 @@ const client = new okta.Client({
 ### 4.5.x
 
 ```typescript
-
 import { Client } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-
 const client = new Client({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
-
 const logEvents = client.getLogs({
   since: '2021-03-11'
 });
-
 const actors: Set<string> = new Set();
 logEvents.each((entry: LogEvent) => {
   actors.add(entry.actor.displayName);
@@ -899,12 +872,10 @@ Providing request body parameters:
 import { Application, ApplicationOptions } from '@okta/okta-sdk-nodejs/src/types/models/Application';
 import { Client } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-
 const client = new Client({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
-
 const bookmarkAppOptions: ApplicationOptions = {
   "name": "bookmark",
   "label": "Sample Bookmark App",
@@ -916,8 +887,7 @@ const bookmarkAppOptions: ApplicationOptions = {
     }
   }
 };
-
-client.applicationApi.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
+client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
   console.log(createdApp);
 });
 ```
@@ -932,31 +902,55 @@ import { Client, LogEvent } from '@okta/okta-sdk-nodejs';
 
 ### 5.1.0
 
-`client.applicationApi.createApplication` and `client.applicationApi.getApplication` methods can be parameterized with application type:
+`client.createApplication` and `client.getApplication` methods can be parameterized with application type:
 
 ```typescript
-const oidcApp: OpenIdConnectApplication = client.applicationApi.getApplication<OpenIdConnectApplication>(appId);
+const oidcApp: OpenIdConnectApplication = client.getApplication<OpenIdConnectApplication>(appId);
 ```
 or
 ```typescript
-const oidcApp: OpenIdConnectApplication = client.applicationApi.getApplication(appId);
+const oidcApp: OpenIdConnectApplication = client.getApplication(appId);
 ```
 
 ```typescript
 const applicationOptions: ApplicationOptions = {
   name: 'bookmark',
-    label: 'Bookmark app',
-    signOnMode: 'BOOKMARK',
-    settings: {
-      app: {
-        requestIntegration: false,
-        url: 'https://example.com/bookmark.htm'
-      }
+  label: 'Bookmark app',
+  signOnMode: 'BOOKMARK',
+  settings: {
+    app: {
+      requestIntegration: false,
+      url: 'https://example.com/bookmark.htm'
     }
-  };
+  }
 };
+const application: BookmarkApplication = client.createApplication(applicationOptions);
+```
 
-const application: BookmarkApplication = client.applicationApi.createApplication(applicationOptions);
+### 7.x.x
+
+API methods should be called from corresponding API object of `client`. 
+Params should be passed as a single object. 
+
+See [migration guide](#from-6x-to-70)
+
+```typescript
+const application: BookmarkApplication = {
+  name: 'bookmark',
+  label: 'Bookmark app',
+  signOnMode: 'BOOKMARK',
+  settings: {
+    app: {
+      requestIntegration: false,
+      url: 'https://example.com/bookmark.htm'
+    }
+  }
+};
+const createdApplication: BookmarkApplication = await client.applicationApi.createApplication({
+  application
+});
+
+const oidcApp: OpenIdConnectApplication = await client.applicationApi.getApplication({ appId });
 ```
 
 ## Known Issues
@@ -987,6 +981,16 @@ const client: Client = new Client({
  - Models no longer have CRUD methods
  - Methods which return `Collection` become async
  - Enums are replaced with union types
+
+```diff
+- await client.getUser('ausmvdt5xg8wRVI1d0g3')
++ await client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' })
+```
+
+```diff
+- await user.deactivate()
++ await client.userApi.deactivateUser({ userId: user.id })
+```
 
 ### From 5.x to 6.0
 
@@ -1039,13 +1043,9 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 
 ## Building the SDK
 
-Run `yarn build` from repository root.
-
-### Building with openapi-generator
- - Obtain OASv3 combined spec and place it under `spec` dir
- - run `yarn build:openapi`
- - update `templates/helpers/operation-v3.js` with APIs and their methods that need to be included into v2 client
- - run `yarn build`
+- Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml`) and place it under `spec` dir
+- run `yarn build:openapi`
+- run `yarn build`
 
 ## Contributing
 
