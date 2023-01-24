@@ -203,7 +203,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     ], payloadData);
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(payloadData, 'any', ''), contentType);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(payloadData, 'InlineHookPayload', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods

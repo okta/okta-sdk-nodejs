@@ -80,6 +80,7 @@ import { IdentityProviderApplicationUser } from '../models/IdentityProviderAppli
 import { IdentitySourceSession } from '../models/IdentitySourceSession';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { InlineHook } from '../models/InlineHook';
+import { InlineHookPayload } from '../models/InlineHookPayload';
 import { InlineHookResponse } from '../models/InlineHookResponse';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
@@ -126,6 +127,7 @@ import { ResourceSetBindings } from '../models/ResourceSetBindings';
 import { ResourceSetResourcePatchRequest } from '../models/ResourceSetResourcePatchRequest';
 import { ResourceSetResources } from '../models/ResourceSetResources';
 import { ResourceSets } from '../models/ResourceSets';
+import { ResponseLinks } from '../models/ResponseLinks';
 import { RiskEvent } from '../models/RiskEvent';
 import { RiskProvider } from '../models/RiskProvider';
 import { Role } from '../models/Role';
@@ -2098,7 +2100,7 @@ export declare class PromiseInlineHookApi {
       * @param inlineHookId
       * @param payloadData
       */
-  executeInlineHook(inlineHookId: string, payloadData: any, _options?: Configuration): Promise<InlineHookResponse>;
+  executeInlineHook(inlineHookId: string, payloadData: InlineHookPayload, _options?: Configuration): Promise<InlineHookResponse>;
   /**
       * Retrieves an inline hook by `inlineHookId`
       * Retrieve an Inline Hook
@@ -3449,7 +3451,7 @@ export declare class PromiseUserApi {
       * @param after
       * @param limit
       */
-  listLinkedObjectsForUser(userId: string, relationshipName: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<any>>;
+  listLinkedObjectsForUser(userId: string, relationshipName: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<ResponseLinks>>;
   /**
       * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client

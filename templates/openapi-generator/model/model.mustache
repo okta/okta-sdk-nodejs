@@ -5,6 +5,11 @@
 import { {{classname}} } from './{{filename}}{{extensionForDeno}}';
 {{/tsImports}}
 import { HttpFile } from '../http/http{{extensionForDeno}}';
+{{#vendorExtensions}}
+{{#x-okta-extensible}}
+import { CustomAttributeValue } from '../../custom-attributes{{extensionForDeno}}';
+{{/x-okta-extensible}}
+{{/vendorExtensions}}
 
 {{#description}}
 /**
@@ -21,6 +26,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 {{/description}}
   '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}};
 {{/vars}}
+
+{{#vendorExtensions}}
+{{#x-okta-extensible}}
+  [key: string]: CustomAttributeValue | CustomAttributeValue[] | undefined;
+{{/x-okta-extensible}}
+{{/vendorExtensions}}
 
   {{#discriminator}}
   static readonly discriminator: string | undefined = '{{discriminatorName}}';
@@ -41,6 +52,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     {{/-last}}
     {{/vars}}
   ];
+
+{{#vendorExtensions}}
+{{#x-okta-extensible}}
+  static readonly isExtensible = true;
+{{/x-okta-extensible}}
+{{/vendorExtensions}}
 
   static getAttributeTypeMap() {
     {{#parent}}

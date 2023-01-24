@@ -17,9 +17,16 @@ const client = new Client({
 
 describe('User API Tests', () => {
   it('should get user by ID & Login', async () => {
+    // Okta user should have custom attribute `age` (type `number`) added in admin dashboard
+    // Doc: https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-add-custom-user-attributes.htm
+    // Check here: https://javascript-idx-sdk-admin.okta.com/admin/universaldirectory#
+
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile('user-get'),
+      profile: {
+        ...utils.getMockProfile('user-get'),
+        age: 33
+      },
       credentials: {
         password: { value: 'Abcd1234#@' }
       }
@@ -43,6 +50,7 @@ describe('User API Tests', () => {
       userId: createdUser.profile.login
     });
     utils.validateUser(userByLogin, createdUser);
+    expect(userByLogin.profile.age).to.equal(newUser.profile.age);
 
     // 4. Delete the user
     await utils.deleteUser(createdUser, client);

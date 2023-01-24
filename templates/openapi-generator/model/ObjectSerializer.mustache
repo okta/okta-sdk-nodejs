@@ -66,6 +66,7 @@ let typeMap: {[index: string]: any} = {
   'SAML_2_0': SamlApplication,
   'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication,
   'WS_FEDERATION': WsFederationApplication,
+
   'call': CallUserFactor,
   'email': EmailUserFactor,
   'hotp': CustomHotpUserFactor,
@@ -79,6 +80,7 @@ let typeMap: {[index: string]: any} = {
   'u2f': U2fUserFactor,
   'web': WebUserFactor,
   'webauthn': WebAuthnUserFactor,
+
   'ACCESS_POLICY': AccessPolicy,
   'IDP_DISCOVERY': IdentityProviderPolicy,
   'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy,
@@ -91,11 +93,13 @@ let typeMap: {[index: string]: any} = {
   'PolicyRule_PASSWORD': PasswordPolicyRule,
   'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule,
   'PolicyRule_SIGN_ON': OktaSignOnPolicyRule,
+  'PolicyRule_RESOURCE_ACCESS': AuthorizationServerPolicyRule,
 
   'BehaviorRule_ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice,
   'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation,
   'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP,
   'BehaviorRule_VELOCITY': BehaviorRuleVelocity,
+  
   'APNS': APNSPushProvider,
   'FCM': FCMPushProvider,
 
@@ -208,6 +212,13 @@ export class ObjectSerializer {
           let attributeType = attributeTypes[index];
           instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
         }
+        if (typeMap[type].isExtensible) {
+          for (let key in data) {
+            if (!attributeTypes[key]) {
+              instance[key] = ObjectSerializer.serialize(data[key], 'any', '');
+            }
+          }
+        }
         return instance;
       }
   }
@@ -243,6 +254,13 @@ export class ObjectSerializer {
       for (let index in attributeTypes) {
         let attributeType = attributeTypes[index];
         instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+      }
+      if (typeMap[type].isExtensible) {
+        for (let key in data) {
+          if (!attributeTypes[key]) {
+            instance[key] = ObjectSerializer.deserialize(data[key], 'any', '');
+          }
+        }
       }
       return instance;
     }

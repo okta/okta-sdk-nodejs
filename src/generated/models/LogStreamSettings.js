@@ -24,15 +24,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
-class InlineHookPayload {
+exports.LogStreamSettings = void 0;
+class LogStreamSettings {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return InlineHookPayload.attributeTypeMap;
+    return LogStreamSettings.attributeTypeMap;
   }
 }
-exports.InlineHookPayload = InlineHookPayload;
-InlineHookPayload.discriminator = undefined;
-InlineHookPayload.attributeTypeMap = [];
-InlineHookPayload.isExtensible = true;
+exports.LogStreamSettings = LogStreamSettings;
+LogStreamSettings.discriminator = undefined;
+LogStreamSettings.attributeTypeMap = [];

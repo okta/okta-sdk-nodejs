@@ -48,3 +48,4 @@ GroupProfile.attributeTypeMap = [
     'format': ''
   }
 ];
+GroupProfile.isExtensible = true;
