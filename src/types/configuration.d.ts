@@ -22,8 +22,9 @@ export declare interface V2Configuration {
   scopes?: string[],
   requestExecutor?: RequestExecutor,
   authorizationMode?: string,
-  privateKey?: string | Record<string, unknown>
+  privateKey?: string | Record<string, unknown>,
+  keyId?: string,
   cacheStore?: CacheStorage,
-  cacheMiddleware?: typeof defaultCacheMiddleware | unknown
+  cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
   defaultCacheMiddlewareResponseBufferSize?: number,
 }
