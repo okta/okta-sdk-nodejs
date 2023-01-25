@@ -61,7 +61,7 @@ describe('User linked object API', () => {
   });
 
   describe('Get linked object value', () => {
-    let links;
+    let links: Collection<ResponseLinks>;
     beforeEach(async () => {
       await client.userApi.setLinkedObjectForUser({
         associatedUserId: associateUser.id,
@@ -77,9 +77,9 @@ describe('User linked object API', () => {
       });
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
-        // OKTA-512349: ResponseLinks has empty schema
         expect(link).to.be.instanceOf(ResponseLinks);
-        expect(link._links.self.href).contains(primaryUser.id);
+        // OKTA-512349: ResponseLinks has empty schema
+        expect(link['_links'].self.href).contains(primaryUser.id);
       });
     });
 
@@ -91,7 +91,7 @@ describe('User linked object API', () => {
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
         expect(link).to.be.instanceOf(ResponseLinks);
-        expect(link._links.self.href).contains(associateUser.id);
+        expect(link['_links'].self.href).contains(associateUser.id);
       });
     });
   });

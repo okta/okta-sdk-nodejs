@@ -2039,9 +2039,9 @@ class ObjectSerializer {
                 let attributeType = attributeTypes[index];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
             }
-            if (typeMap[type].isExtensible) {
+            if (typeMap[type].isExtensible || !attributeTypes.length) {
                 for (let key in data) {
-                    if (!attributeTypes[key]) {
+                    if (!attributeTypes.find(({ name }) => name === key)) {
                         instance[key] = ObjectSerializer.serialize(data[key], 'any', '');
                     }
                 }
@@ -2084,9 +2084,9 @@ class ObjectSerializer {
                 let attributeType = attributeTypes[index];
                 instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
             }
-            if (typeMap[type].isExtensible) {
+            if (typeMap[type].isExtensible || !attributeTypes.length) {
                 for (let key in data) {
-                    if (!attributeTypes[key]) {
+                    if (!attributeTypes.find(({ baseName }) => baseName === key)) {
                         instance[key] = ObjectSerializer.deserialize(data[key], 'any', '');
                     }
                 }

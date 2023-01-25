@@ -22,22 +22,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CustomAttributeValue } from '../../custom-attributes';
 export declare class ResponseLinks {
-    [key: string]: CustomAttributeValue | CustomAttributeValue[] | undefined;
-    static readonly discriminator: string | undefined;
-    static readonly attributeTypeMap: Array<{
+  static readonly discriminator: string | undefined;
+  static readonly attributeTypeMap: Array<{
         name: string;
         baseName: string;
         type: string;
         format: string;
     }>;
-    static readonly isExtensible = true;
-    static getAttributeTypeMap(): {
+  static getAttributeTypeMap(): {
         name: string;
         baseName: string;
         type: string;
         format: string;
     }[];
-    constructor();
+  constructor();
 }

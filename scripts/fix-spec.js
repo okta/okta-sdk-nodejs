@@ -11,8 +11,6 @@ function patchSpec3(spec3) {
   ];
   const schemasToForceExtensible = [
     'UserProfile',
-    // Workaround to parse `_links` from response. `_links` should be present in model!
-    'ResponseLinks',
   ];
 
   const typeMap = [];
