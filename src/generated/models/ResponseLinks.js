@@ -35,3 +35,4 @@ class ResponseLinks {
 exports.ResponseLinks = ResponseLinks;
 ResponseLinks.discriminator = undefined;
 ResponseLinks.attributeTypeMap = [];
+ResponseLinks.isExtensible = true;

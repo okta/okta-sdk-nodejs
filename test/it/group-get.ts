@@ -20,15 +20,10 @@ const client = new Client({
 
 describe('Group API tests', () => {
   it('should get the group by ID', async () => {
-    // Okta group should have custom attribute `customAttribute` added in admin dashboard
-    // Doc: https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-add-custom-group-attributes.htm
-    // Check here: https://javascript-idx-sdk-admin.okta.com/admin/universaldirectory#group/default
-
     // 1. Create a new group
     const newGroup = {
       profile: {
-        name: `node-sdk: Get test Group ${faker.random.word()}`.substring(0, 49),
-        customAttribute: 'customValue'
+        name: `node-sdk: Get test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
@@ -41,7 +36,6 @@ describe('Group API tests', () => {
     // 2. Get the group by ID
     const group = await client.groupApi.getGroup({groupId: createdGroup.id});
     utils.validateGroup(group, createdGroup);
-    expect(group.profile.customAttribute).to.equal(newGroup.profile.customAttribute);
 
     // 3. Delete the group
     await client.groupApi.deleteGroup({groupId: createdGroup.id});

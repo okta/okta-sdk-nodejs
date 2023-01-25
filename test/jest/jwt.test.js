@@ -33,11 +33,13 @@ describe('JWT', () => {
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res));
     });
+    // eslint-disable-next-line jest/expect-expect
     it('accepts EC JWKs', () => {
       const privateKey = EC_JWK;
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res, 'EC'));
     });
+    // eslint-disable-next-line jest/expect-expect
     it('accepts EC PEM', () => {
       const privateKey = EC_PEM;
       return JWT.getPemAndJwk(privateKey)

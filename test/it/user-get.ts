@@ -18,8 +18,7 @@ const client = new Client({
 describe('User API Tests', () => {
   it('should get user by ID & Login', async () => {
     // Okta user should have custom attribute `age` (type `number`) added in admin dashboard
-    // Doc: https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-add-custom-user-attributes.htm
-    // Check here: https://javascript-idx-sdk-admin.okta.com/admin/universaldirectory#
+    // https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-add-custom-user-attributes.htm
 
     // 1. Create a user
     const newUser = {
