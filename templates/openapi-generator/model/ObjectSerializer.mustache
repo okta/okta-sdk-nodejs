@@ -57,50 +57,7 @@ let typeMap: {[index: string]: any} = {
           {{/isEnum}}
       {{/model}}
   {{/models}}
-  'AUTO_LOGIN': AutoLoginApplication,
-  'BASIC_AUTH': BasicAuthApplication,
-  'BOOKMARK': BookmarkApplication,
-  'BROWSER_PLUGIN': BrowserPluginApplication,
-  'OPENID_CONNECT': OpenIdConnectApplication,
-  'SAML_1_1': SamlApplication,
-  'SAML_2_0': SamlApplication,
-  'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication,
-  'WS_FEDERATION': WsFederationApplication,
-  'call': CallUserFactor,
-  'email': EmailUserFactor,
-  'hotp': CustomHotpUserFactor,
-  'push': PushUserFactor,
-  'question': SecurityQuestionUserFactor,
-  'sms': SmsUserFactor,
-  'token': TokenUserFactor,
-  'token:hardware': HardwareUserFactor,
-  'token:hotp': CustomHotpUserFactor,
-  'token:software:totp': TotpUserFactor,
-  'u2f': U2fUserFactor,
-  'web': WebUserFactor,
-  'webauthn': WebAuthnUserFactor,
-  'ACCESS_POLICY': AccessPolicy,
-  'IDP_DISCOVERY': IdentityProviderPolicy,
-  'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy,
-  'OKTA_SIGN_ON': OktaSignOnPolicy,
-  'PASSWORD': PasswordPolicy,
-  'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy,
-  'MFA_ENROLL': MultifactorEnrollmentPolicy,
-
-  'PolicyRule_ACCESS_POLICY': AccessPolicyRule,
-  'PolicyRule_PASSWORD': PasswordPolicyRule,
-  'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule,
-  'PolicyRule_SIGN_ON': OktaSignOnPolicyRule,
-
-  'BehaviorRule_ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice,
-  'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation,
-  'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP,
-  'BehaviorRule_VELOCITY': BehaviorRuleVelocity,
-  'APNS': APNSPushProvider,
-  'FCM': FCMPushProvider,
-
-  'InlineHookChannel_HTTP': InlineHookChannelHttp,
-  'InlineHookChannel_OAUTH': InlineHookChannelOAuth,
+  {{> model/typeMap}}
 }
 
 export class ObjectSerializer {
@@ -208,6 +165,13 @@ export class ObjectSerializer {
           let attributeType = attributeTypes[index];
           instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
         }
+        if (typeMap[type].isExtensible || !attributeTypes.length) {
+          for (let key in data) {
+            if (!attributeTypes.find(({name}: any) => name === key)) {
+              instance[key] = ObjectSerializer.serialize(data[key], 'any', '');
+            }
+          }
+        }
         return instance;
       }
   }
@@ -243,6 +207,13 @@ export class ObjectSerializer {
       for (let index in attributeTypes) {
         let attributeType = attributeTypes[index];
         instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+      }
+      if (typeMap[type].isExtensible || !attributeTypes.length) {
+        for (let key in data) {
+          if (!attributeTypes.find(({baseName}: any) => baseName === key)) {
+            instance[key] = ObjectSerializer.deserialize(data[key], 'any', '');
+          }
+        }
       }
       return instance;
     }

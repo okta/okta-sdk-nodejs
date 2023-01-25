@@ -11,7 +11,6 @@
  */
 
 
-'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -23,16 +22,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
-class InlineHookPayload {
-  constructor() {
-  }
-  static getAttributeTypeMap() {
-    return InlineHookPayload.attributeTypeMap;
-  }
+import { CustomAttributeValue } from '../../custom-attributes';
+export declare class SmsTemplateTranslations {
+    [key: string]: CustomAttributeValue | CustomAttributeValue[] | undefined;
+    static readonly discriminator: string | undefined;
+    static readonly attributeTypeMap: Array<{
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }>;
+    static readonly isExtensible = true;
+    static getAttributeTypeMap(): {
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }[];
+    constructor();
 }
-exports.InlineHookPayload = InlineHookPayload;
-InlineHookPayload.discriminator = undefined;
-InlineHookPayload.attributeTypeMap = [];
-InlineHookPayload.isExtensible = true;

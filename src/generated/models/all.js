@@ -33,7 +33,6 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ResponseLinks = exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
 __exportStar(require('./APNSConfiguration'), exports);
 __exportStar(require('./APNSPushProvider'), exports);
 __exportStar(require('./AccessPolicy'), exports);
@@ -126,6 +125,7 @@ __exportStar(require('./BehaviorRule'), exports);
 __exportStar(require('./BehaviorRuleAnomalousDevice'), exports);
 __exportStar(require('./BehaviorRuleAnomalousIP'), exports);
 __exportStar(require('./BehaviorRuleAnomalousLocation'), exports);
+__exportStar(require('./BehaviorRuleSettings'), exports);
 __exportStar(require('./BehaviorRuleSettingsAnomalousDevice'), exports);
 __exportStar(require('./BehaviorRuleSettingsAnomalousIP'), exports);
 __exportStar(require('./BehaviorRuleSettingsAnomalousLocation'), exports);
@@ -318,6 +318,7 @@ __exportStar(require('./InlineHookOAuthBasicConfig'), exports);
 __exportStar(require('./InlineHookOAuthChannelConfig'), exports);
 __exportStar(require('./InlineHookOAuthClientSecretConfig'), exports);
 __exportStar(require('./InlineHookOAuthPrivateKeyJwtConfig'), exports);
+__exportStar(require('./InlineHookPayload'), exports);
 __exportStar(require('./InlineHookResponse'), exports);
 __exportStar(require('./InlineHookResponseCommandValue'), exports);
 __exportStar(require('./InlineHookResponseCommands'), exports);
@@ -358,6 +359,7 @@ __exportStar(require('./LogStream'), exports);
 __exportStar(require('./LogStreamAws'), exports);
 __exportStar(require('./LogStreamLinks'), exports);
 __exportStar(require('./LogStreamSchema'), exports);
+__exportStar(require('./LogStreamSettings'), exports);
 __exportStar(require('./LogStreamSettingsAws'), exports);
 __exportStar(require('./LogStreamSettingsSplunk'), exports);
 __exportStar(require('./LogStreamSplunk'), exports);
@@ -570,6 +572,7 @@ __exportStar(require('./ResourceSetResourcePatchRequest'), exports);
 __exportStar(require('./ResourceSetResources'), exports);
 __exportStar(require('./ResourceSetResourcesLinks'), exports);
 __exportStar(require('./ResourceSets'), exports);
+__exportStar(require('./ResponseLinks'), exports);
 __exportStar(require('./RiskEvent'), exports);
 __exportStar(require('./RiskEventSubject'), exports);
 __exportStar(require('./RiskEventSubjectRiskLevel'), exports);
@@ -608,6 +611,7 @@ __exportStar(require('./SignInPageTouchPointVariant'), exports);
 __exportStar(require('./SignOnInlineHook'), exports);
 __exportStar(require('./SingleLogout'), exports);
 __exportStar(require('./SmsTemplate'), exports);
+__exportStar(require('./SmsTemplateTranslations'), exports);
 __exportStar(require('./SmsTemplateType'), exports);
 __exportStar(require('./SmsUserFactor'), exports);
 __exportStar(require('./SmsUserFactorProfile'), exports);
@@ -695,16 +699,3 @@ __exportStar(require('./WellKnownOrgMetadataSettings'), exports);
 __exportStar(require('./WsFederationApplication'), exports);
 __exportStar(require('./WsFederationApplicationSettings'), exports);
 __exportStar(require('./WsFederationApplicationSettingsApplication'), exports);
-// InlineHookPayload and ApplicationSettingsAppliation are not generated as it does not have properties set in the spec
-class InlineHookPayload {
-}
-exports.InlineHookPayload = InlineHookPayload;
-
-class ApplicationSettingsApplication {
-}
-exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
-
-class ResponseLinks {
-}
-exports.ResponseLinks = ResponseLinks;
-

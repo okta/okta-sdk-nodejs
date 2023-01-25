@@ -24,15 +24,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
-class InlineHookPayload {
+exports.SmsTemplateTranslations = void 0;
+class SmsTemplateTranslations {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return InlineHookPayload.attributeTypeMap;
+    return SmsTemplateTranslations.attributeTypeMap;
   }
 }
-exports.InlineHookPayload = InlineHookPayload;
-InlineHookPayload.discriminator = undefined;
-InlineHookPayload.attributeTypeMap = [];
-InlineHookPayload.isExtensible = true;
+exports.SmsTemplateTranslations = SmsTemplateTranslations;
+SmsTemplateTranslations.discriminator = undefined;
+SmsTemplateTranslations.attributeTypeMap = [];
+SmsTemplateTranslations.isExtensible = true;

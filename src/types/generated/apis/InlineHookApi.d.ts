@@ -15,6 +15,7 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { InlineHook } from '../models/InlineHook';
+import { InlineHookPayload } from '../models/InlineHookPayload';
 import { InlineHookResponse } from '../models/InlineHookResponse';
 /**
  * no description
@@ -50,7 +51,7 @@ export declare class InlineHookApiRequestFactory extends BaseAPIRequestFactory {
      * @param inlineHookId
      * @param payloadData
      */
-  executeInlineHook(inlineHookId: string, payloadData: any, _options?: Configuration): Promise<RequestContext>;
+  executeInlineHook(inlineHookId: string, payloadData: InlineHookPayload, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves an inline hook by `inlineHookId`
      * Retrieve an Inline Hook

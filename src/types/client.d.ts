@@ -59,6 +59,7 @@ export declare class Client {
   clientId: string;
   scopes: string[];
   privateKey: string;
+  keyId: string;
   oauth: OAuth;
   http: Http;
 

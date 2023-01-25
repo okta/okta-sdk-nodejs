@@ -108,6 +108,7 @@ class Client {
       this.clientId = parsedConfig.client.clientId;
       this.scopes = parsedConfig.client.scopes.split(' ');
       this.privateKey = parsedConfig.client.privateKey;
+      this.keyId = parsedConfig.client.keyId;
       this.oauth = new OAuth(this);
     }
 

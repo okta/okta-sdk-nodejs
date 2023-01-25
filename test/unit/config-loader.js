@@ -23,7 +23,8 @@ describe('ConfigLoader', () => {
         token: '',
         clientId: '',
         scopes: '',
-        privateKey: ''
+        privateKey: '',
+        keyId: '',
       }
     });
   });
@@ -52,7 +53,8 @@ describe('ConfigLoader', () => {
           token: '',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       });
       sinon.assert.calledOnce(loader.applyEnvVars);
@@ -76,7 +78,8 @@ describe('ConfigLoader', () => {
           authorizationMode: 'PrivateKey',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       });
       sinon.assert.calledOnce(loader.applyEnvVars);
@@ -99,7 +102,8 @@ describe('ConfigLoader', () => {
           token: '',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       });
       sinon.assert.calledOnce(loader.applyEnvVars);
@@ -129,7 +133,8 @@ describe('ConfigLoader', () => {
           authorizationMode: '',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       });
       assert.equal(loader.config.client.orgUrl, 'barbaz');
@@ -145,7 +150,8 @@ describe('ConfigLoader', () => {
           authorizationMode: 'SSWS',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       };
       const b = {
@@ -161,7 +167,8 @@ describe('ConfigLoader', () => {
           authorizationMode: 'PrivateKey',
           clientId: '',
           scopes: '',
-          privateKey: ''
+          privateKey: '',
+          keyId: '',
         }
       };
       var loader = new ConfigLoader();
@@ -188,7 +195,7 @@ describe('ConfigLoader', () => {
       };
       const a = {
         client: {
-          privateKey
+          privateKey,
         }
       };
       var loader = new ConfigLoader();

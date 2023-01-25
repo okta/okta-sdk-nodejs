@@ -80,6 +80,7 @@ import { IdentityProviderApplicationUser } from '../models/IdentityProviderAppli
 import { IdentitySourceSession } from '../models/IdentitySourceSession';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { InlineHook } from '../models/InlineHook';
+import { InlineHookPayload } from '../models/InlineHookPayload';
 import { InlineHookResponse } from '../models/InlineHookResponse';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
@@ -126,6 +127,7 @@ import { ResourceSetBindings } from '../models/ResourceSetBindings';
 import { ResourceSetResourcePatchRequest } from '../models/ResourceSetResourcePatchRequest';
 import { ResourceSetResources } from '../models/ResourceSetResources';
 import { ResourceSets } from '../models/ResourceSets';
+import { ResponseLinks } from '../models/ResponseLinks';
 import { RiskEvent } from '../models/RiskEvent';
 import { RiskProvider } from '../models/RiskProvider';
 import { Role } from '../models/Role';
@@ -5353,10 +5355,10 @@ export interface InlineHookApiExecuteInlineHookRequest {
     inlineHookId: string;
     /**
       *
-      * @type any
+      * @type InlineHookPayload
       * @memberof InlineHookApiexecuteInlineHook
       */
-    payloadData: any;
+    payloadData: InlineHookPayload;
 }
 export interface InlineHookApiGetInlineHookRequest {
     /**
@@ -9203,7 +9205,7 @@ export declare class ObjectUserApi {
       * List all Linked Objects
       * @param param the request object
       */
-  listLinkedObjectsForUser(param: UserApiListLinkedObjectsForUserRequest, options?: Configuration): Promise<Collection<any>>;
+  listLinkedObjectsForUser(param: UserApiListLinkedObjectsForUserRequest, options?: Configuration): Promise<Collection<ResponseLinks>>;
   /**
       * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client

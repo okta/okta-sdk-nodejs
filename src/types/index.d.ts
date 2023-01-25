@@ -18,3 +18,4 @@ export * from './request-executor';
 export * from './default-request-executor';
 export * from './collection';
 export * from './generated';
+export * from './memory-store';

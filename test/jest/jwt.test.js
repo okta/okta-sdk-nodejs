@@ -2,13 +2,18 @@ const nJwt = require('njwt');
 const Rasha = require('rasha');
 const JWT = require('../../src/jwt');
 const { advanceTo } = require('jest-date-mock');
-const { PEM, INVALID_PEM, JWK, INVALID_JWK } = require('../constants');
+const { PEM, EC_PEM, INVALID_PEM, JWK, EC_JWK, UNKWNOWN_KEY_TYPE_JWK, INVALID_RSA_JWK } = require('../constants');
 
 describe('JWT', () => {
   describe('getPemAndJwk', () => {
-    function validateResult(res) {
-      expect(res.pem).toBe(PEM);
-      expect(res.jwk).toEqual(JWK);
+    function validateResult(res, keyType) {
+      if (keyType === 'EC') {
+        expect(res.pem).toBe(EC_PEM);
+        expect(res.jwk).toEqual(EC_JWK);
+      } else {
+        expect(res.pem).toBe(PEM);
+        expect(res.jwk).toEqual(JWK);
+      }
     }
     // eslint-disable-next-line jest/expect-expect
     it('can produce a JWK from a PEM', () => {
@@ -28,13 +33,29 @@ describe('JWT', () => {
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res));
     });
+    // eslint-disable-next-line jest/expect-expect
+    it('accepts EC JWKs', () => {
+      const privateKey = EC_JWK;
+      return JWT.getPemAndJwk(privateKey)
+        .then(res => validateResult(res, 'EC'));
+    });
+    // eslint-disable-next-line jest/expect-expect
+    it('accepts EC PEM', () => {
+      const privateKey = EC_PEM;
+      return JWT.getPemAndJwk(privateKey)
+        .then(res => validateResult(res, 'EC'));
+    });
     it('Throws if invalid PEM is passed', () => {
       const privateKey = INVALID_PEM;
       return expect(JWT.getPemAndJwk(privateKey)).rejects.toThrow('not an RSA PKCS#8 public or private key (wrong format)');
     });
+    it('Throws if JWK with unknown key type is passed', () => {
+      const privateKey = JSON.stringify(UNKWNOWN_KEY_TYPE_JWK);
+      return expect(JWT.getPemAndJwk(privateKey)).rejects.toThrow('Key type OKP is not supported.');
+    });
     it('Throws if invalid JWK is passed', () => {
-      const privateKey = JSON.stringify(INVALID_JWK);
-      return expect(JWT.getPemAndJwk(privateKey)).rejects.toThrow('options.jwk.kty must be \'RSA\' for RSA keys');
+      const privateKey = JSON.stringify(INVALID_RSA_JWK);
+      return expect(JWT.getPemAndJwk(privateKey)).rejects.toThrow('The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined');
     });
   });
   describe('makeJwt', () => {

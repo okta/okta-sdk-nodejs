@@ -222,3 +222,4 @@ UserProfile.attributeTypeMap = [
     'format': ''
   }
 ];
+UserProfile.isExtensible = true;

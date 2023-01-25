@@ -29,7 +29,8 @@ class ConfigLoader {
         token: '',
         clientId: '',
         scopes: '',
-        privateKey: ''
+        privateKey: '',
+        keyId: '',
       }
     };
   }

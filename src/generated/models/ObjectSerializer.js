@@ -116,6 +116,7 @@ __exportStar(require("./BehaviorRule"), exports);
 __exportStar(require("./BehaviorRuleAnomalousDevice"), exports);
 __exportStar(require("./BehaviorRuleAnomalousIP"), exports);
 __exportStar(require("./BehaviorRuleAnomalousLocation"), exports);
+__exportStar(require("./BehaviorRuleSettings"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousDevice"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousIP"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousLocation"), exports);
@@ -308,6 +309,7 @@ __exportStar(require("./InlineHookOAuthBasicConfig"), exports);
 __exportStar(require("./InlineHookOAuthChannelConfig"), exports);
 __exportStar(require("./InlineHookOAuthClientSecretConfig"), exports);
 __exportStar(require("./InlineHookOAuthPrivateKeyJwtConfig"), exports);
+__exportStar(require("./InlineHookPayload"), exports);
 __exportStar(require("./InlineHookResponse"), exports);
 __exportStar(require("./InlineHookResponseCommandValue"), exports);
 __exportStar(require("./InlineHookResponseCommands"), exports);
@@ -348,6 +350,7 @@ __exportStar(require("./LogStream"), exports);
 __exportStar(require("./LogStreamAws"), exports);
 __exportStar(require("./LogStreamLinks"), exports);
 __exportStar(require("./LogStreamSchema"), exports);
+__exportStar(require("./LogStreamSettings"), exports);
 __exportStar(require("./LogStreamSettingsAws"), exports);
 __exportStar(require("./LogStreamSettingsSplunk"), exports);
 __exportStar(require("./LogStreamSplunk"), exports);
@@ -560,6 +563,7 @@ __exportStar(require("./ResourceSetResourcePatchRequest"), exports);
 __exportStar(require("./ResourceSetResources"), exports);
 __exportStar(require("./ResourceSetResourcesLinks"), exports);
 __exportStar(require("./ResourceSets"), exports);
+__exportStar(require("./ResponseLinks"), exports);
 __exportStar(require("./RiskEvent"), exports);
 __exportStar(require("./RiskEventSubject"), exports);
 __exportStar(require("./RiskEventSubjectRiskLevel"), exports);
@@ -598,6 +602,7 @@ __exportStar(require("./SignInPageTouchPointVariant"), exports);
 __exportStar(require("./SignOnInlineHook"), exports);
 __exportStar(require("./SingleLogout"), exports);
 __exportStar(require("./SmsTemplate"), exports);
+__exportStar(require("./SmsTemplateTranslations"), exports);
 __exportStar(require("./SmsTemplateType"), exports);
 __exportStar(require("./SmsUserFactor"), exports);
 __exportStar(require("./SmsUserFactorProfile"), exports);
@@ -762,6 +767,7 @@ const BehaviorRule_1 = require("./BehaviorRule");
 const BehaviorRuleAnomalousDevice_1 = require("./BehaviorRuleAnomalousDevice");
 const BehaviorRuleAnomalousIP_1 = require("./BehaviorRuleAnomalousIP");
 const BehaviorRuleAnomalousLocation_1 = require("./BehaviorRuleAnomalousLocation");
+const BehaviorRuleSettings_1 = require("./BehaviorRuleSettings");
 const BehaviorRuleSettingsAnomalousDevice_1 = require("./BehaviorRuleSettingsAnomalousDevice");
 const BehaviorRuleSettingsAnomalousIP_1 = require("./BehaviorRuleSettingsAnomalousIP");
 const BehaviorRuleSettingsAnomalousLocation_1 = require("./BehaviorRuleSettingsAnomalousLocation");
@@ -909,6 +915,7 @@ const InlineHookOAuthBasicConfig_1 = require("./InlineHookOAuthBasicConfig");
 const InlineHookOAuthChannelConfig_1 = require("./InlineHookOAuthChannelConfig");
 const InlineHookOAuthClientSecretConfig_1 = require("./InlineHookOAuthClientSecretConfig");
 const InlineHookOAuthPrivateKeyJwtConfig_1 = require("./InlineHookOAuthPrivateKeyJwtConfig");
+const InlineHookPayload_1 = require("./InlineHookPayload");
 const InlineHookResponse_1 = require("./InlineHookResponse");
 const InlineHookResponseCommandValue_1 = require("./InlineHookResponseCommandValue");
 const InlineHookResponseCommands_1 = require("./InlineHookResponseCommands");
@@ -937,6 +944,7 @@ const LogStream_1 = require("./LogStream");
 const LogStreamAws_1 = require("./LogStreamAws");
 const LogStreamLinks_1 = require("./LogStreamLinks");
 const LogStreamSchema_1 = require("./LogStreamSchema");
+const LogStreamSettings_1 = require("./LogStreamSettings");
 const LogStreamSettingsAws_1 = require("./LogStreamSettingsAws");
 const LogStreamSettingsSplunk_1 = require("./LogStreamSettingsSplunk");
 const LogStreamSplunk_1 = require("./LogStreamSplunk");
@@ -1089,6 +1097,7 @@ const ResourceSetResourcePatchRequest_1 = require("./ResourceSetResourcePatchReq
 const ResourceSetResources_1 = require("./ResourceSetResources");
 const ResourceSetResourcesLinks_1 = require("./ResourceSetResourcesLinks");
 const ResourceSets_1 = require("./ResourceSets");
+const ResponseLinks_1 = require("./ResponseLinks");
 const RiskEvent_1 = require("./RiskEvent");
 const RiskEventSubject_1 = require("./RiskEventSubject");
 const RiskPolicyRuleCondition_1 = require("./RiskPolicyRuleCondition");
@@ -1116,6 +1125,7 @@ const SignInPageAllOfWidgetCustomizations_1 = require("./SignInPageAllOfWidgetCu
 const SignOnInlineHook_1 = require("./SignOnInlineHook");
 const SingleLogout_1 = require("./SingleLogout");
 const SmsTemplate_1 = require("./SmsTemplate");
+const SmsTemplateTranslations_1 = require("./SmsTemplateTranslations");
 const SmsUserFactor_1 = require("./SmsUserFactor");
 const SmsUserFactorProfile_1 = require("./SmsUserFactorProfile");
 const SocialAuthToken_1 = require("./SocialAuthToken");
@@ -1451,6 +1461,7 @@ let typeMap = {
     'BehaviorRuleAnomalousDevice': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
     'BehaviorRuleAnomalousIP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     'BehaviorRuleAnomalousLocation': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
+    'BehaviorRuleSettings': BehaviorRuleSettings_1.BehaviorRuleSettings,
     'BehaviorRuleSettingsAnomalousDevice': BehaviorRuleSettingsAnomalousDevice_1.BehaviorRuleSettingsAnomalousDevice,
     'BehaviorRuleSettingsAnomalousIP': BehaviorRuleSettingsAnomalousIP_1.BehaviorRuleSettingsAnomalousIP,
     'BehaviorRuleSettingsAnomalousLocation': BehaviorRuleSettingsAnomalousLocation_1.BehaviorRuleSettingsAnomalousLocation,
@@ -1598,6 +1609,7 @@ let typeMap = {
     'InlineHookOAuthChannelConfig': InlineHookOAuthChannelConfig_1.InlineHookOAuthChannelConfig,
     'InlineHookOAuthClientSecretConfig': InlineHookOAuthClientSecretConfig_1.InlineHookOAuthClientSecretConfig,
     'InlineHookOAuthPrivateKeyJwtConfig': InlineHookOAuthPrivateKeyJwtConfig_1.InlineHookOAuthPrivateKeyJwtConfig,
+    'InlineHookPayload': InlineHookPayload_1.InlineHookPayload,
     'InlineHookResponse': InlineHookResponse_1.InlineHookResponse,
     'InlineHookResponseCommandValue': InlineHookResponseCommandValue_1.InlineHookResponseCommandValue,
     'InlineHookResponseCommands': InlineHookResponseCommands_1.InlineHookResponseCommands,
@@ -1626,6 +1638,7 @@ let typeMap = {
     'LogStreamAws': LogStreamAws_1.LogStreamAws,
     'LogStreamLinks': LogStreamLinks_1.LogStreamLinks,
     'LogStreamSchema': LogStreamSchema_1.LogStreamSchema,
+    'LogStreamSettings': LogStreamSettings_1.LogStreamSettings,
     'LogStreamSettingsAws': LogStreamSettingsAws_1.LogStreamSettingsAws,
     'LogStreamSettingsSplunk': LogStreamSettingsSplunk_1.LogStreamSettingsSplunk,
     'LogStreamSplunk': LogStreamSplunk_1.LogStreamSplunk,
@@ -1778,6 +1791,7 @@ let typeMap = {
     'ResourceSetResources': ResourceSetResources_1.ResourceSetResources,
     'ResourceSetResourcesLinks': ResourceSetResourcesLinks_1.ResourceSetResourcesLinks,
     'ResourceSets': ResourceSets_1.ResourceSets,
+    'ResponseLinks': ResponseLinks_1.ResponseLinks,
     'RiskEvent': RiskEvent_1.RiskEvent,
     'RiskEventSubject': RiskEventSubject_1.RiskEventSubject,
     'RiskPolicyRuleCondition': RiskPolicyRuleCondition_1.RiskPolicyRuleCondition,
@@ -1805,6 +1819,7 @@ let typeMap = {
     'SignOnInlineHook': SignOnInlineHook_1.SignOnInlineHook,
     'SingleLogout': SingleLogout_1.SingleLogout,
     'SmsTemplate': SmsTemplate_1.SmsTemplate,
+    'SmsTemplateTranslations': SmsTemplateTranslations_1.SmsTemplateTranslations,
     'SmsUserFactor': SmsUserFactor_1.SmsUserFactor,
     'SmsUserFactorProfile': SmsUserFactorProfile_1.SmsUserFactorProfile,
     'SocialAuthToken': SocialAuthToken_1.SocialAuthToken,
@@ -1888,9 +1903,32 @@ let typeMap = {
     'SAML_2_0': SamlApplication_1.SamlApplication,
     'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
     'WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
+    'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
+    'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
+    'BehaviorRule_ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
+    'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
+    'InlineHookChannel_HTTP': InlineHookChannelHttp_1.InlineHookChannelHttp,
+    'InlineHookChannel_OAUTH': InlineHookChannelOAuth_1.InlineHookChannelOAuth,
+    'client_secret_post': InlineHookOAuthClientSecretConfig_1.InlineHookOAuthClientSecretConfig,
+    'private_key_jwt': InlineHookOAuthPrivateKeyJwtConfig_1.InlineHookOAuthPrivateKeyJwtConfig,
+    'aws_eventbridge': LogStreamAws_1.LogStreamAws,
+    'splunk_cloud_logstreaming': LogStreamSplunk_1.LogStreamSplunk,
+    'ACCESS_POLICY': AccessPolicy_1.AccessPolicy,
+    'IDP_DISCOVERY': IdentityProviderPolicy_1.IdentityProviderPolicy,
+    'MFA_ENROLL': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
+    'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy_1.AuthorizationServerPolicy,
+    'OKTA_SIGN_ON': OktaSignOnPolicy_1.OktaSignOnPolicy,
+    'PASSWORD': PasswordPolicy_1.PasswordPolicy,
+    'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
+    'PolicyRule_ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
+    'PolicyRule_PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
+    'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
+    'PolicyRule_RESOURCE_ACCESS': AuthorizationServerPolicyRule_1.AuthorizationServerPolicyRule,
+    'PolicyRule_SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
+    'APNS': APNSPushProvider_1.APNSPushProvider,
+    'FCM': FCMPushProvider_1.FCMPushProvider,
     'call': CallUserFactor_1.CallUserFactor,
     'email': EmailUserFactor_1.EmailUserFactor,
-    'hotp': CustomHotpUserFactor_1.CustomHotpUserFactor,
     'push': PushUserFactor_1.PushUserFactor,
     'question': SecurityQuestionUserFactor_1.SecurityQuestionUserFactor,
     'sms': SmsUserFactor_1.SmsUserFactor,
@@ -1901,25 +1939,7 @@ let typeMap = {
     'u2f': U2fUserFactor_1.U2fUserFactor,
     'web': WebUserFactor_1.WebUserFactor,
     'webauthn': WebAuthnUserFactor_1.WebAuthnUserFactor,
-    'ACCESS_POLICY': AccessPolicy_1.AccessPolicy,
-    'IDP_DISCOVERY': IdentityProviderPolicy_1.IdentityProviderPolicy,
-    'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy_1.AuthorizationServerPolicy,
-    'OKTA_SIGN_ON': OktaSignOnPolicy_1.OktaSignOnPolicy,
-    'PASSWORD': PasswordPolicy_1.PasswordPolicy,
-    'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
-    'MFA_ENROLL': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
-    'PolicyRule_ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
-    'PolicyRule_PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
-    'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
-    'PolicyRule_SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
-    'BehaviorRule_ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
-    'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
-    'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
-    'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
-    'APNS': APNSPushProvider_1.APNSPushProvider,
-    'FCM': FCMPushProvider_1.FCMPushProvider,
-    'InlineHookChannel_HTTP': InlineHookChannelHttp_1.InlineHookChannelHttp,
-    'InlineHookChannel_OAUTH': InlineHookChannelOAuth_1.InlineHookChannelOAuth,
+    'hotp': CustomHotpUserFactor_1.CustomHotpUserFactor,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
@@ -2019,6 +2039,13 @@ class ObjectSerializer {
                 let attributeType = attributeTypes[index];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
             }
+            if (typeMap[type].isExtensible || !attributeTypes.length) {
+                for (let key in data) {
+                    if (!attributeTypes.find(({ name }) => name === key)) {
+                        instance[key] = ObjectSerializer.serialize(data[key], 'any', '');
+                    }
+                }
+            }
             return instance;
         }
     }
@@ -2056,6 +2083,13 @@ class ObjectSerializer {
             for (let index in attributeTypes) {
                 let attributeType = attributeTypes[index];
                 instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+            }
+            if (typeMap[type].isExtensible || !attributeTypes.length) {
+                for (let key in data) {
+                    if (!attributeTypes.find(({ baseName }) => baseName === key)) {
+                        instance[key] = ObjectSerializer.deserialize(data[key], 'any', '');
+                    }
+                }
             }
             return instance;
         }

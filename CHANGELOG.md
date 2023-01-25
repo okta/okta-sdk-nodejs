@@ -6,7 +6,18 @@
 
 - [#]() Uses openapi-generator for creating SDK.
 
+# 6.6.0
+
+### Bug Fixes
+
+- [#360](https://github.com/okta/okta-sdk-nodejs/pull/360) Fixes path and type signature issues for MemoryStore.
+- [#365](https://github.com/okta/okta-sdk-nodejs/pull/365) Adds support for custom attributes in UserProfile and GroupProfile
+
 # 6.5.0
+
+### Features
+
+- [#329](https://github.com/okta/okta-sdk-nodejs/pull/329) Supports EC private keys for OAuth2 service applications
 
 ### Other 
 

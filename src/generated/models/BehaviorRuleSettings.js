@@ -24,15 +24,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
-class InlineHookPayload {
+exports.BehaviorRuleSettings = void 0;
+class BehaviorRuleSettings {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return InlineHookPayload.attributeTypeMap;
+    return BehaviorRuleSettings.attributeTypeMap;
   }
 }
-exports.InlineHookPayload = InlineHookPayload;
-InlineHookPayload.discriminator = undefined;
-InlineHookPayload.attributeTypeMap = [];
-InlineHookPayload.isExtensible = true;
+exports.BehaviorRuleSettings = BehaviorRuleSettings;
+BehaviorRuleSettings.discriminator = undefined;
+BehaviorRuleSettings.attributeTypeMap = [];

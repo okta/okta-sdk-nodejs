@@ -11,7 +11,6 @@
  */
 
 
-'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -23,16 +22,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
-class InlineHookPayload {
-  constructor() {
-  }
-  static getAttributeTypeMap() {
-    return InlineHookPayload.attributeTypeMap;
-  }
+export declare class LogStreamSettings {
+  static readonly discriminator: string | undefined;
+  static readonly attributeTypeMap: Array<{
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }>;
+  static getAttributeTypeMap(): {
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }[];
+  constructor();
 }
-exports.InlineHookPayload = InlineHookPayload;
-InlineHookPayload.discriminator = undefined;
-InlineHookPayload.attributeTypeMap = [];
-InlineHookPayload.isExtensible = true;

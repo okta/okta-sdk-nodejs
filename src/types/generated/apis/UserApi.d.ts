@@ -24,6 +24,7 @@ import { OAuth2Client } from '../models/OAuth2Client';
 import { OAuth2RefreshToken } from '../models/OAuth2RefreshToken';
 import { OAuth2ScopeConsentGrant } from '../models/OAuth2ScopeConsentGrant';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
+import { ResponseLinks } from '../models/ResponseLinks';
 import { TempPassword } from '../models/TempPassword';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
@@ -472,7 +473,7 @@ export declare class UserApiResponseProcessor {
      * @params response Response returned by the server for a request to listLinkedObjectsForUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listLinkedObjectsForUser(response: ResponseContext): Promise<Array<any>>;
+  listLinkedObjectsForUser(response: ResponseContext): Promise<Array<ResponseLinks>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

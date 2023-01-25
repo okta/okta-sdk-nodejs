@@ -68,7 +68,7 @@ SmsTemplate.attributeTypeMap = [
   {
     'name': 'translations',
     'baseName': 'translations',
-    'type': 'any',
+    'type': 'SmsTemplateTranslations',
     'format': ''
   },
   {

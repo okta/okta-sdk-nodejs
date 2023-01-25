@@ -11,20 +11,8 @@
  */
 
 
-import { CacheStorage } from './memory-store.d';
-import { defaultCacheMiddleware } from './default-cache-middleware';
-import { RequestExecutor } from './request-executor';
+type CustomAttributeValue = boolean | number | string;
 
-export declare interface V2Configuration {
-  orgUrl?: string,
-  token?: string,
-  clientId?: string,
-  scopes?: string[],
-  requestExecutor?: RequestExecutor,
-  authorizationMode?: string,
-  privateKey?: string | Record<string, unknown>,
-  keyId?: string,
-  cacheStore?: CacheStorage,
-  cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
-  defaultCacheMiddlewareResponseBufferSize?: number,
-}
+export {
+  CustomAttributeValue
+};

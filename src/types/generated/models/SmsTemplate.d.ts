@@ -22,6 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SmsTemplateTranslations } from './../models/SmsTemplateTranslations';
 import { SmsTemplateType } from './../models/SmsTemplateType';
 export declare class SmsTemplate {
   'created'?: Date;
@@ -29,7 +30,7 @@ export declare class SmsTemplate {
   'lastUpdated'?: Date;
   'name'?: string;
   'template'?: string;
-  'translations'?: any;
+  'translations'?: SmsTemplateTranslations;
   'type'?: SmsTemplateType;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
