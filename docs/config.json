@@ -1,14 +1,5 @@
 {
   "source": {
     "exclude": ["src/models/index.js", "src/index.js"]
-  },
-  "templates": {
-    "systemName": "Okta API wrapper for Node.js",
-    "includeDate": false,
-    "theme": "paper",
-    "linenums": true
-  },
-  "opts": {
-    "template": "../node_modules/ink-docstrap/template"
   }
 }
