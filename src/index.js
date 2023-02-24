@@ -15,6 +15,7 @@ const RequestExecutor = require('./request-executor');
 const { DefaultRequestExecutor } = require('./default-request-executor');
 const { Collection } = require('./collection');
 const MemoryStore = require('./memory-store');
+const OktaApiError = require('./api-error');
 
 module.exports = Object.assign(
   {}, {
@@ -23,6 +24,7 @@ module.exports = Object.assign(
     DefaultRequestExecutor,
     Collection,
     MemoryStore,
+    OktaApiError,
   },
   require('./generated'),
 );

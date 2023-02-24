@@ -12,13 +12,17 @@
  */
 import { Headers } from 'node-fetch';
 
+export interface ErrorCause {
+  errorSummary: string;
+}
+
 export declare class OktaApiError extends Error {
   constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
   name: string;
   status: number;
   errorCode: string | number;
   errorSummary: string;
-  errorCauses: string;
+  errorCauses?: ErrorCause[];
   errorLink: string;
   errorId: string;
   url: string;
