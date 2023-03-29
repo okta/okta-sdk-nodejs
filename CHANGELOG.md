@@ -4,7 +4,7 @@
 
 ### Other
 
-- [#]() Uses openapi-generator for creating SDK.
+- [#373](https://github.com/okta/okta-sdk-nodejs/pull/373) Uses openapi-generator for creating SDK.
 
 # 6.6.0
 

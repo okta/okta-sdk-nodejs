@@ -982,6 +982,7 @@ const client: Client = new Client({
  - Models no longer have CRUD methods
  - Methods which return `Collection` become async
  - Enums are replaced with union types
+ - Model properties are optional
 
 ```diff
 - await client.getUser('ausmvdt5xg8wRVI1d0g3')
