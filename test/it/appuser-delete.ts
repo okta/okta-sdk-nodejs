@@ -24,7 +24,7 @@ describe('AppUser.delete()', () => {
     const user = {
       profile: utils.getMockProfile('appuser-delete'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

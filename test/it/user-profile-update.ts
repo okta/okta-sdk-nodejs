@@ -20,7 +20,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-profile-update'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

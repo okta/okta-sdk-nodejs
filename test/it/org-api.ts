@@ -35,7 +35,7 @@ describe('Org API', () => {
       const newUser = {
         profile: utils.getMockProfile('org-api-update-contact-user'),
         credentials: {
-          password: { value: 'Abcd1234' }
+          password: { value: 'Abcd1234#@' }
         }
       };
 
@@ -45,7 +45,7 @@ describe('Org API', () => {
       const createdUser = await client.createUser({
         profile: utils.getMockProfile('org-api-update-contact-user'),
         credentials: {
-          password: { value: 'Abcd1234' }
+          password: { value: 'Abcd1234#@' }
         }
       }, {activate: true});
 

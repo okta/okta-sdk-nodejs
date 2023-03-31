@@ -22,7 +22,7 @@ describe('Group-Rule API tests', () => {
     const newUser = {
       profile: utils.getMockProfile('group-rule-operations'),
       credentials: {
-        password: {value: 'Abcd1234'}
+        password: {value: 'Abcd1234#@'}
       }
     };
 

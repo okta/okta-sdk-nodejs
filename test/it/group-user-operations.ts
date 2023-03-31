@@ -23,7 +23,7 @@ describe('Group-Member API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('group-user-operations'),
       credentials: {
-        password: {value: 'Abcd1234'}
+        password: {value: 'Abcd1234#@'}
       }
     };
 
