@@ -24,7 +24,7 @@ describe('Sessions API', () => {
     const newUser = {
       profile: utils.getMockProfile('session-get'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
     // Cleanup the user if user exists
@@ -43,7 +43,7 @@ describe('Sessions API', () => {
     }
 
     // 1 - create session
-    const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
+    const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
     const session = await client.createSession({
       sessionToken: transaction.sessionToken
     });

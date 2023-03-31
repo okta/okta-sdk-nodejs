@@ -22,7 +22,7 @@ describe('User Role API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-group-target-role'),
       credentials: {
-        password: {value: 'Abcd1234'}
+        password: {value: 'Abcd1234#@'}
       }
     };
 

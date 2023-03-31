@@ -19,7 +19,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-get-reset-password-url'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

@@ -20,7 +20,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-change-recovery-question'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 
@@ -33,7 +33,7 @@ describe('User API Tests', () => {
 
     // 2. Change the recovery question
     let userCredentials = {
-      password: { value: 'Abcd1234' },
+      password: { value: 'Abcd1234#@' },
       recovery_question: {
         question: 'How many roads must a man walk down?',
         answer: 'forty two'

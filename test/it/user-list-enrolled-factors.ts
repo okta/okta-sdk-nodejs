@@ -33,7 +33,7 @@ describe('User API tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-list-enrolled-factors'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
     // Cleanup the user if user exists

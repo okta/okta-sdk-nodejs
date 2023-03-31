@@ -20,7 +20,7 @@ xdescribe('Subscription API', () => {
   const userOptions = {
     profile: utils.getMockProfile('subscription-user'),
     credentials: {
-      password: { value: 'Abcd1234' }
+      password: { value: 'Abcd1234#@' }
     }
   };
 

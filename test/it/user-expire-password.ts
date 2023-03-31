@@ -20,7 +20,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-expire-password'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 
@@ -47,7 +47,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-expire-temp-password'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

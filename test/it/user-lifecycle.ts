@@ -17,7 +17,7 @@ const client = new okta.Client({
 const newUser = {
   profile: utils.getMockProfile('mock-user'),
   credentials: {
-    password: { value: 'Abcd1234' }
+    password: { value: 'Abcd1234#@' }
   }
 };
 
