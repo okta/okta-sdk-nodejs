@@ -33,9 +33,14 @@ async function cleanInlineHooks() {
 async function cleanAuthorizationServers() {
   await (await client.authorizationServerApi.listAuthorizationServers()).each(
     async authorizationServer => {
-      await client.authorizationServerApi.deleteAuthorizationServer({
-        authServerId: authorizationServer.id!
-      });
+      const canDelete = authorizationServer.name !== 'default';
+      if (canDelete) {
+        await client.authorizationServerApi.deleteAuthorizationServer({
+          authServerId: authorizationServer.id!
+        });
+      } else {
+        console.log(`Skipped authorization server to remove ${authorizationServer.name}`);
+      }
     }
   );
 }
