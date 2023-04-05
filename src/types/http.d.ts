@@ -16,21 +16,26 @@ import { RequestExecutor } from './request-executor';
 import { CacheStorage } from './memory-store';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { RequestOptions } from './request-options';
+import { HttpLibrary, RequestContext, ResponseContext } from './generated/http/http';
+import { Observable } from './generated/rxjsStub';
 
-interface RequestContext {
+
+interface OktaRequestContext {
   isCollection?: boolean,
   resources?: string[],
 }
 
-export declare class Http {
+export declare class Http implements HttpLibrary {
   static errorFilter(response: Response): Promise<Response>;
   constructor(httpConfig: {
     requestExecutor: RequestExecutor,
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
+    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56,
+    defaultCacheMiddlewareResponseBufferSize?: number,
   });
+  send(request: RequestContext): Observable<ResponseContext>;
   defaultHeaders: Record<string, unknown>;
   requestExecutor: RequestExecutor;
   cacheStore: CacheStorage;
@@ -38,7 +43,7 @@ export declare class Http {
   agent: any; // https://github.com/TooTallNate/node-agent-base/issues/56
   oauth: OAuth;
   prepareRequest(request: RequestOptions): Promise<RequestOptions>;
-  http(uri: string, request?: RequestOptions, context?: {
+  http(uri: string, request?: RequestOptions | RequestContext, context?: {
       isCollection: boolean,
       resources: string[],
   }): Promise<Response>;
@@ -46,10 +51,10 @@ export declare class Http {
       isCollection: boolean,
       resources: string[],
   }): Promise<Response>;
-  json(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
-  getJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
-  post(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-  postJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-  putJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-  put(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
+  json(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Record<string, unknown>>;
+  getJson(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Record<string, unknown>>;
+  post(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Response>;
+  postJson(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Response>;
+  putJson(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Response>;
+  put(uri: string, request?: RequestOptions, context?: OktaRequestContext): Promise<Response>;
 }

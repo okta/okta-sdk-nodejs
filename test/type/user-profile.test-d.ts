@@ -1,10 +1,8 @@
 import { expectType } from 'tsd';
 
-import { Client } from '../../src/types/client';
 import { CustomAttributeValue } from '../../src/types/custom-attributes';
-import { UserProfile } from './../../src/types/models/UserProfile.d';
+import { UserProfile } from './../../src/types/generated/models/UserProfile';
 
-const client = new Client();
-const userProfile = new UserProfile({}, client);
-expectType<CustomAttributeValue | CustomAttributeValue[]>(userProfile.customAttribute);
-expectType<string>(userProfile.costCenter);
+const userProfile = new UserProfile();
+expectType<CustomAttributeValue | CustomAttributeValue[] | undefined>(userProfile.customAttribute);
+expectType<string | undefined>(userProfile.costCenter);

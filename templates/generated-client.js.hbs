@@ -1,12 +1,6 @@
 {{!-- The template file is not auto-generated - this banner is to be included into destination files --}}
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-const qs = require('querystring');
-
-const Collection = require('./collection');
-const models = require('./models');
-const factories = require('./factories');
-const ModelFactory = require('./model-factory');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -25,6 +19,54 @@ class GeneratedApiClient {
       return Promise.reject(new Error('OKTA API {{../operationId}} parameter {{this}} is required.'));
     }
     {{/each}}
+  {{#if (isV3Api operationId)}}
+  {{#if (useObjectParameters)}}
+    const params = {};
+    {{#each pathParams}}
+    params.{{name}} = {{name}};
+    {{/each}}
+    {{#each (getBodyParams this)}}
+    params.{{name}} = {{name}};
+    {{/each}}
+    {{#if queryParams.length}}
+    if (queryParameters) {
+    {{#each queryParams}}
+      params.{{name}} = queryParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    {{#if headerParams.length}}
+    if (headerParameters) {
+    {{#each headerParams}}
+      params.{{name}} = headerParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}(params);
+  {{else}}
+    {{#if queryParams.length}}
+    {{#each queryParams}}
+    let {{name}};
+    {{/each}}
+    if (queryParameters) {
+    {{#each queryParams}}
+      {{name}} = queryParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    {{#if headerParams.length}}
+    {{#each headerParams}}
+    let {{name}};
+    {{/each}}
+    if (headerParameters) {
+    {{#each headerParams}}
+      {{name}} = headerParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}({{operationArgumentBuilder this 'v3'}});
+  {{/if}}
+  {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}
     const queryString = qs.stringify(queryParameters || {});
@@ -34,12 +76,12 @@ class GeneratedApiClient {
 
     {{#if isArray}}
     return new Collection(
-      this,
+      this.http,
       url,
       {{#if responseModelRequiresResolution}}
-      new factories.{{responseModel}}(),
+      new factories.{{responseModel}}(this),
       {{else}}
-      new ModelFactory(models.{{responseModel}}),
+      new ModelFactory(models.{{responseModel}}, this),
       {{/if}}
       {{#if bodyModel}}
       {
@@ -80,7 +122,7 @@ class GeneratedApiClient {
     ){{#if (shouldResolveJson this)}}.then(res => res.json()){{/if}};
     {{#if responseModel}}
     {{#if responseModelRequiresResolution}}
-    return request.then(jsonRes => new factories.{{responseModel}}().createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.{{responseModel}}(this).createInstance(jsonRes));
     {{else}}
     return request.then(jsonRes => new models.{{responseModel}}(jsonRes, this));
     {{/if}}
@@ -88,6 +130,7 @@ class GeneratedApiClient {
     return request;
     {{/if}}
     {{/if}}
+  {{/if}}
   }
 
 {{/each}}

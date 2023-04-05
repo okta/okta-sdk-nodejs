@@ -10,30 +10,47 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { ParameterizedOperationsClient } from './parameterized-operations-client';
 import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
-import { defaultCacheMiddleware } from './default-cache-middleware';
-import { CacheStorage } from './memory-store';
-
-
-export declare class Client extends ParameterizedOperationsClient {
-  constructor(config?: {
-    orgUrl?: string,
-    token?: string,
-    clientId?: string,
-    scopes?: string[],
-    requestExecutor?: RequestExecutor,
-    authorizationMode?: string,
-    privateKey?: string | Record<string, unknown>
-    keyId?: string;
-    cacheStore?: CacheStorage,
-    cacheMiddleware?: typeof defaultCacheMiddleware | unknown
-    defaultCacheMiddlewareResponseBufferSize?: number,
-    userAgent?: string,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
-  });
+import { V2Configuration } from './configuration';
+import {
+  AuthenticatorApi,
+  SchemaApi,
+  UserTypeApi,
+  InlineHookApi,
+  ProfileMappingApi,
+  LinkedObjectApi,
+  SystemLogApi,
+  FeatureApi,
+  GroupApi,
+  EventHookApi,
+  NetworkZoneApi,
+  ThreatInsightApi,
+  OrgSettingApi,
+  ApplicationApi,
+  AuthorizationServerApi,
+  CustomizationApi,
+  TrustedOriginApi,
+  UserFactorApi,
+  UserApi,
+  IdentityProviderApi,
+  SessionApi,
+  TemplateApi,
+  PolicyApi,
+  SubscriptionApi,
+  AgentPoolsApi,
+  ApiTokenApi,
+  BehaviorApi,
+  PrincipalRateLimitApi,
+  PushProviderApi,
+  DeviceAssuranceApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  CustomDomainApi,
+} from './generated';
+export declare class Client {
+  constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
   authorizationMode: string;
@@ -45,4 +62,38 @@ export declare class Client extends ParameterizedOperationsClient {
   keyId: string;
   oauth: OAuth;
   http: Http;
+
+  userTypeApi: UserTypeApi;
+  authenticatorApi: AuthenticatorApi;
+  schemaApi: SchemaApi;
+  inlineHookApi: InlineHookApi;
+  profileMappingApi: ProfileMappingApi;
+  linkedObjectApi: LinkedObjectApi;
+  systemLogApi: SystemLogApi;
+  featureApi: FeatureApi;
+  groupApi: GroupApi;
+  eventHookApi: EventHookApi;
+  networkZoneApi: NetworkZoneApi;
+  threatInsightApi: ThreatInsightApi;
+  orgSettingApi: OrgSettingApi;
+  applicationApi: ApplicationApi;
+  authorizationServerApi: AuthorizationServerApi;
+  customizationApi: CustomizationApi;
+  trustedOriginApi: TrustedOriginApi;
+  userFactorApi: UserFactorApi;
+  userApi: UserApi;
+  identityProviderApi: IdentityProviderApi;
+  sessionApi: SessionApi;
+  templateApi: TemplateApi;
+  policyApi: PolicyApi;
+  agentPoolsApi: AgentPoolsApi;
+  apiTokenApi: ApiTokenApi;
+  behaviorApi: BehaviorApi;
+  principalRateLimitApi: PrincipalRateLimitApi;
+  subscriptionApi: SubscriptionApi;
+  pushProviderApi: PushProviderApi;
+  deviceAssuranceApi: DeviceAssuranceApi;
+  roleAssignmentApi: RoleAssignmentApi;
+  roleTargetApi: RoleTargetApi;
+  customDomainApi: CustomDomainApi;
 }

@@ -1,9 +1,9 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "6.7.0",
+  "version": "7.0.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
-    "node": ">=12.0"
+    "node": ">=14.0"
   },
   "files": [
     "src/",
@@ -15,6 +15,7 @@
     "banners": "./utils/maintain-banners.js",
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
+    "build:openapi": "openapi-generator-cli generate -i ./spec/management.yaml -g typescript -o ./src/generated  -c templates/swagger-codegen-config.json -t templates/openapi-generator && ./scripts/emitV3Types.sh",
     "eslint": "eslint .",
     "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
@@ -22,15 +23,17 @@
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
     "test:integration:ssws": "TEST_TYPE=it OKTA_CLIENT_AUTHORIZATIONMODE=SSWS  mocha test/it/*.ts",
     "test:integration:oauth": "TEST_TYPE=it OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey  mocha test/it/user-get.ts",
-    "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
-    "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.*",
+    "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
+    "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.js"
+    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.ts",
+    "validate:v2-v3": "node scripts/validate.js ./spec/management.yaml"
   },
   "keywords": [],
   "license": "Apache-2.0",
   "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
+    "@types/node-forge": "^1.3.1",
     "deep-copy": "^1.4.2",
     "eckles": "^1.4.1",
     "form-data": "^4.0.0",
@@ -41,13 +44,17 @@
     "node-fetch": "^2.6.7",
     "parse-link-header": "^2.0.0",
     "rasha": "^1.2.5",
-    "safe-flat": "^2.0.2"
+    "safe-flat": "^2.0.2",
+    "url-parse": "^1.5.10"
   },
   "devDependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
     "@faker-js/faker": "^5.5.3",
     "@okta/openapi": "^2.11.1",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
+    "@types/node": "^17.0.34",
     "@types/node-fetch": "^2.5.8",
     "@types/rasha": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
@@ -60,10 +67,12 @@
     "jest": "^27.3.1",
     "jest-date-mock": "^1.0.8",
     "jest-junit": "^13.0.0",
+    "js-yaml": "^4.1.0",
     "jsdoc": "^4.0.1",
-    "mocha": "^9.1.3",
+    "mocha": "^9.2.2",
     "mocha-junit-reporter": "^2.0.2",
     "mocha-multi-reporters": "^1.5.1",
+    "node-forge": "^1.3.1",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "sinon": "^12.0.1",

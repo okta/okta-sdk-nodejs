@@ -1,19 +1,30 @@
-function formatMethodSignature(methodName, args, returnType) {
-  return `${methodName}(${formatArguments(args)}): ${formatParameterizedReturnType(returnType)};`;
+const { isV3Api, getV3ReturnType } = require('./operation-v3');
+
+function formatMethodSignature(methodName, args, returnType, options = { tagV3Methods: false }) {
+  return `${methodName}(${formatArguments(args, options)}): ${formatParameterizedReturnType(methodName, returnType, options.tagV3Methods)};`;
 }
 
-function formatParameterizedReturnType({genericType, genericParameterType}) {
-  return `${genericType}<${genericParameterType}>`;
+function formatParameterizedReturnType(methodName, {genericType, genericParameterType}, tagV3Methods) {
+  let returnType = getV3ReturnType(methodName) && tagV3Methods ? getV3ReturnType(methodName) : genericParameterType;
+  let versionedReturnType = `${genericType}<${returnType}>`;
+  if (tagV3Methods && isV3Api(methodName) && returnType !== 'void') {
+    versionedReturnType = `${genericType}<v3.${returnType}>`;
+    if (genericType === 'Collection') {
+      versionedReturnType = `Promise<${versionedReturnType}>`;
+    }
+  }
+  return versionedReturnType;
 }
 
-function formatArguments(args) {
+function formatArguments(args, options) {
   const typedArgs = [];
-  for (let [argName, {type, isRequired}] of args) {
+  for (let [argName, {type, isRequired, namespace}] of args) {
     let argument = `${argName}${isRequired ? '' : '?'}`;
     if (Array.isArray(type)) {
       argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      argument = `${argument}: ${type}`;
+      const hasNamespace = options.tagV3Methods && namespace && !isPrimitiveType(type);
+      argument = `${argument}: ${hasNamespace ? `${namespace}.${type}` : type}`;
     }
     typedArgs.push(argument);
   }
@@ -58,6 +69,8 @@ function formatImportStatements(importTypes, {
       importStatements.push('import { ReadStream } from \'fs\';');
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
+    } else if (type === 'void') {
+      // no - op
     } else {
       const importSource = type.replace(sourceFileSuffixToTrim, '');
       importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
@@ -76,6 +89,10 @@ function convertSwaggerToTSType(swaggerType, collectionElementType) {
     password: 'string',
     object: 'Record<string, unknown>'
   }[swaggerType] || swaggerType;
+}
+
+function isPrimitiveType(type) {
+  return ['boolean', 'string', 'number'].includes(type);
 }
 
 module.exports = {

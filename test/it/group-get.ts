@@ -3,13 +3,15 @@ import faker = require('@faker-js/faker');
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { Client } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-get`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -28,20 +30,20 @@ describe('Group API tests', () => {
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.createGroup(newGroup);
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Get the group by ID
-    const group = await client.getGroup(createdGroup.id);
+    const group = await client.groupApi.getGroup({groupId: createdGroup.id});
     utils.validateGroup(group, createdGroup);
 
     // 3. Delete the group
-    await client.deleteGroup(createdGroup.id);
+    await client.groupApi.deleteGroup({groupId: createdGroup.id});
 
     // 4. Verify group was deleted
     let err;
     try {
-      await client.getGroup(createdGroup.id);
+      await client.groupApi.getGroup({groupId: createdGroup.id});
     } catch (e) {
       err = e;
     } finally {

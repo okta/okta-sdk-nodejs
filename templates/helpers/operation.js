@@ -3,6 +3,8 @@ const {
   formatImportStatements,
   formatMethodSignature,
 } = require('./typescript-formatter');
+const { isV3Api, getV3ArgumentsOverride } = require('./operation-v3');
+
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 
@@ -59,8 +61,8 @@ const NO_OPTIONS_TYPE_MODELS = [
   'OpenIdConnectApplication'
 ];
 
-const getBodyModelName = operation => {
-  const { bodyModel, parameters } = operation;
+const getBodyModelName = (operation, useOverride, toCamelCase = false) => {
+  const { bodyModel, parameters, operationId } = operation;
   let bodyModelName = bodyModel;
   if (bodyModel === 'string') {
     const bodyParam = parameters.find(param => param.in === 'body');
@@ -68,37 +70,85 @@ const getBodyModelName = operation => {
       bodyModelName = bodyParam.name;
     }
   }
+  if (toCamelCase) {
+    bodyModelName = _.camelCase(bodyModelName);
+  }
+  if (useOverride) {
+    const v3ParamOverride = getV3ArgumentsOverride(bodyModelName, operationId);
+    if (v3ParamOverride) {
+      bodyModelName = v3ParamOverride[0];
+    }
+  }
   return bodyModelName;
 };
 
-const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
+const getBodyModelType = (operation, useOverride) => {
+  const { bodyModel, operationId } = operation;
+  let bodyModelName = bodyModel, bodyModelType = bodyModel;
+  if (useOverride) {
+    const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName), operationId);
+    if (v3ParamOverride) {
+      bodyModelType = v3ParamOverride[1];
+    }
+  }
+  return bodyModelType;
+};
 
-const getOperationArgument = operation => {
-  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+const getBodyModelNameInCamelCase = (operation, useOverride) => getBodyModelName(operation, useOverride, true);
 
-  const requiredArgs = pathParams.reduce((acc, curr) => {
+const getOperationArgument = (operation, apiVersion, useOverride) => {
+  const { bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
+  const optionalArgs = [];
+  const requiredArgs = [];
+
+  const requiredBodyArgs = [];
+  const optionalBodyArgs = [];
+
+  const pathParamArgs = pathParams.reduce((acc, curr) => {
     acc.push(curr.name);
     return acc;
   }, []);
-  const optionalArgs = [];
 
   if ((method === 'post' || method === 'put') && bodyModel) {
-    const bodyModelName = getBodyModelNameInCamelCase(operation);
+    const bodyModelName = getBodyModelNameInCamelCase(operation, useOverride);
     if (bodyModelName) {
       if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
-        requiredArgs.push(bodyModelName);
+        requiredBodyArgs.push(bodyModelName);
       } else {
-        optionalArgs.push(bodyModelName);
+        optionalBodyArgs.push(bodyModelName);
       }
     }
   }
 
+  requiredArgs.push(...pathParamArgs);
+  requiredArgs.push(...requiredBodyArgs);
+  if (apiVersion !== 'v3') {
+    // v3 optional body param goes after query and header parameters
+    optionalArgs.push(...optionalBodyArgs);
+  }
+
   if (queryParams.length) {
-    if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
-      requiredArgs.push('queryParameters');
-    } else {
-      optionalArgs.push('queryParameters');
+    let qp = ['queryParameters'];
+    if (apiVersion === 'v3') {
+      qp = queryParams.map(({name}) => name);
     }
+    if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
+      requiredArgs.push(...qp);
+    } else {
+      optionalArgs.push(...qp);
+    }
+  }
+
+  if (headerParams.length) {
+    let hp = ['headerParameters'];
+    if (apiVersion === 'v3') {
+      hp = headerParams.map(({name}) => name);
+    }
+    optionalArgs.push(...hp);
+  }
+
+  if (apiVersion === 'v3') {
+    optionalArgs.push(...optionalBodyArgs);
   }
 
   if (formData.length) {
@@ -113,16 +163,41 @@ const getOperationArgument = operation => {
   return [requiredArgs, optionalArgs];
 };
 
+const getBodyParams = (operation) => {
+  const { bodyModel, method, formData } = operation;
+  const allArgs = [];
+
+  if ((method === 'post' || method === 'put') && bodyModel) {
+    const bodyModelName = getBodyModelNameInCamelCase(operation, true);
+    if (bodyModelName) {
+      allArgs.push({
+        name: bodyModelName
+      });
+    }
+  }
+
+  if (formData.length) {
+    const formDataParameter = formData[0].name;
+    if (formDataParameter) {
+      allArgs.push({
+        name: formDataParameter
+      });
+    }
+  }
+
+  return allArgs;
+};
+
 const hasRequiredParameterInRequestMedia = (parameters, requestMedia) =>
   parameters.find(({in: paramMedia, required}) => paramMedia === requestMedia && required);
 
-const operationArgumentBuilder = (operation) => {
-  const [requiredArgs, optionalArgs] = getOperationArgument(operation);
+const operationArgumentBuilder = (operation, apiVersion) => {
+  const [requiredArgs, optionalArgs] = getOperationArgument(operation, apiVersion, isV3Api(operation.operationId));
   return requiredArgs.concat(optionalArgs).join(', ');
 };
 
-const getRequiredOperationParams = operation => {
-  return getOperationArgument(operation).shift();
+const getRequiredOperationParams = (operation) => {
+  return getOperationArgument(operation, null, isV3Api(operation.operationId)).shift();
 };
 
 const getHttpMethod = ({
@@ -191,6 +266,7 @@ const shouldResolveJson = (operation) => {
 };
 
 const jsdocBuilder = (operation) => {
+  const useOverride = isV3Api(operation.operationId);
   const lines = ['*'];
 
   if (operation.pathParams.length) {
@@ -200,7 +276,7 @@ const jsdocBuilder = (operation) => {
   }
 
   if (!operation.isArray && operation.bodyModel) {
-    lines.push(`   * @param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
+    lines.push(`   * @param {${getBodyModelType(operation, useOverride)}} ${getBodyModelNameInCamelCase(operation, useOverride)}`);
   }
 
   if (operation.queryParams.length) {
@@ -234,8 +310,8 @@ const jsdocBuilder = (operation) => {
 };
 
 const typeScriptOperationSignatureBuilder = operation => {
-  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return formatMethodSignature(operation.operationId, args, returnType);
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation, { tagV3Methods: true});
+  return formatMethodSignature(operation.operationId, args, returnType, { tagV3Methods: true });
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
@@ -245,10 +321,14 @@ const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
-    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    const [args, returnType] = getOperationArgumentsAndReturnType(operation, { tagV3Methods: true });
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
-    return acc.concat(importableTypes);
+    if (!isV3Api(operation.operationId)) {
+      return acc.concat(importableTypes);
+    } else {
+      return acc;
+    }
   }, []);
 
   const uniqueImportTypes = new Set([...operationsImportTypes]);
@@ -309,8 +389,8 @@ const typeScriptModelImportBuilder = model => {
   }, model.modelName);
 };
 
-const getOperationArgumentsAndReturnType = operation => {
-  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods: false }) => {
+  const { operationId, bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -324,10 +404,23 @@ const getOperationArgumentsAndReturnType = operation => {
     const bodyParamName = getBodyModelName(operation);
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
-        operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
-      args.set(_.camelCase(bodyParamName), {
+        operation.bodyModel : isV3Api(operationId) && options.tagV3Methods ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
+      let bodyParamNameCamelCase = _.camelCase(bodyParamName);
+      const v3ParamOverride = getV3ArgumentsOverride(bodyParamNameCamelCase, operationId);
+
+      let type = modelPropertiesType;
+      let namespace = '';
+      if (isV3Api(operationId) && options.tagV3Methods) {
+        namespace = 'v3';
+        if (v3ParamOverride) {
+          bodyParamNameCamelCase = v3ParamOverride[0];
+          type = v3ParamOverride[1];
+        }
+      }
+      args.set(bodyParamNameCamelCase, {
         isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
-        type: modelPropertiesType,
+        type: type,
+        namespace,
       });
     }
   }
@@ -339,6 +432,13 @@ const getOperationArgumentsAndReturnType = operation => {
     });
   }
 
+  if (headerParams.length) {
+    args.set('headerParameters', {
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
+      type: headerParams,
+    });
+  }
+
   if (formData.length) {
     args.set(formData[0].name, {
       isRequired: hasRequiredParameterInRequestMedia(parameters, 'formData'),
@@ -347,7 +447,7 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   let genericType = 'Promise';
-  let genericParameterType = 'Response';
+  let genericParameterType = isV3Api(operationId) && options.tagV3Methods ? 'void' : 'Response';
   if (operation.responseModel) {
     genericParameterType = operation.responseModel;
     if (operation.isArray) {
@@ -378,7 +478,7 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
-const convertTypeObjectsToTypeNames = (args, returnType) => {
+const convertTypeObjectsToTypeNames = (args, returnType,) => {
   const argTypes = Array.from(args.values()).map(arg => arg.type);
   return [...argTypes, returnType.genericType, returnType.genericParameterType];
 };
@@ -449,4 +549,6 @@ module.exports = {
   shouldGenerateOptionsType,
   getRestrictedProperties,
   containsRestrictedProperties,
+  hasRequiredParameterInRequestMedia,
+  getBodyParams,
 };

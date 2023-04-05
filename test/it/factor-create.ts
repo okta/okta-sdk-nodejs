@@ -1,13 +1,13 @@
 import utils = require('../utils');
 import {
+  CallUserFactor,
   Client,
   DefaultRequestExecutor,
-  CallUserFactor,
+  Policy,
   PushUserFactor,
   SecurityQuestionUserFactor,
   SmsUserFactor,
   UserFactor,
-  Policy
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -41,10 +41,10 @@ describe('Factors API', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
 
     const authenticatorPolicies: Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -64,7 +64,7 @@ describe('Factors API', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   after(async () => {
@@ -72,32 +72,32 @@ describe('Factors API', () => {
   });
 
   it('should allow me to create a Call factor', async () => {
-    const factor = {
+    const factor: CallUserFactor = {
       factorType: 'call',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('call');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(CallUserFactor);
   });
 
   it('should allow me to create a Push factor', async () => {
-    const factor = {
+    const factor: PushUserFactor = {
       factorType: 'push',
       provider: 'OKTA'
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('push');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(PushUserFactor);
   });
 
   it('should allow me to create a Security Question factor', async () => {
-    const factor = {
+    const factor: SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -105,23 +105,28 @@ describe('Factors API', () => {
         answer: 'pizza'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('question');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(SecurityQuestionUserFactor);
   });
 
   it('should allow me to create a SMS factor', async () => {
-    const factor = {
+    const factor: SmsUserFactor = {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
-    expect(createdFactor.factorType).to.equal('sms');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(SmsUserFactor);
+    try {
+      const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
+      expect(createdFactor.factorType).to.equal('sms');
+      expect(createdFactor).to.be.instanceof(UserFactor);
+      expect(createdFactor).to.be.instanceof(SmsUserFactor);
+    } catch (e) {
+      expect(e.status).to.equal(429);
+      expect(e.message).to.contain('Your free tier organization has reached the limit of sms requests');
+    }
   });
 });

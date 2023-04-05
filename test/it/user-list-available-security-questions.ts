@@ -1,23 +1,23 @@
 import { expect } from 'chai';
-import models = require('../../src/models');
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, CreateUserRequest, DefaultRequestExecutor, SecurityQuestion } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-available-security-questions`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should allow the user\'s available security questions to be listed', async () => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('user-list-available-security-questions'),
       credentials: {
         password: { value: 'Abcd1234#@' }
@@ -25,12 +25,14 @@ describe('User API Tests', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    const createdUser = await client.createUser(newUser);
+    const createdUser = await client.userApi.createUser({body: newUser});
 
     const questions = [];
-    await createdUser.listSupportedSecurityQuestions().each(factor => questions.push(factor));
+    await (await client.userFactorApi.listSupportedSecurityQuestions({
+      userId: createdUser.id
+    })).each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
-    questions.forEach(factor => expect(factor).to.be.instanceof(models.SecurityQuestion));
-    return await utils.deleteUser(createdUser);
+    questions.forEach(factor => expect(factor).to.be.instanceof(SecurityQuestion));
+    return await utils.deleteUser(createdUser, client);
   });
 });

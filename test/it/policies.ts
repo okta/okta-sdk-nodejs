@@ -2,9 +2,15 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  OktaSignOnPolicy, OktaSignOnPolicyRule, PasswordPolicy } from '@okta/okta-sdk-nodejs';
+  OktaSignOnPolicy,
+  OktaSignOnPolicyRule,
+  OktaSignOnPolicyRuleActions,
+  OktaSignOnPolicyRuleSignonActions,
+  PasswordPolicy,
+} from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -21,15 +27,14 @@ const client = new Client({
 describe('Policy Scenarios', () => {
 
   it('can create a sign on policy', async () => {
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: CreateSignOnPolicy ${faker.random.word()}`.substring(0, 49), // policy name length is limited to 50 characters
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
-    await client.deletePolicy(createdPolicy.id);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy).to.not.be.undefined;
     expect(createdPolicy.name).to.equal(policy.name);
@@ -39,16 +44,15 @@ describe('Policy Scenarios', () => {
   });
 
   it('can get a policy', async () => {
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: GetPolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
-    await client.deletePolicy(createdPolicy.id);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy).to.not.be.undefined;
     expect(retrievedPolicy.name).to.equal(policy.name);
@@ -61,18 +65,18 @@ describe('Policy Scenarios', () => {
     // 1. Create a new group
     const newGroup = {
       profile: {
-        name: `Get Test Group ${faker.random.word()}`.substring(0, 49)
+        name: `node-sdk: Get Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.createGroup(newGroup);
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Set Up Policy JSON
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: PolicyWithConditions ${faker.random.word()}`.substring(0, 49),
@@ -87,9 +91,9 @@ describe('Policy Scenarios', () => {
         }
       }
     };
-    const createdPolicy = await client.createPolicy(policy);
-    await client.deletePolicy(createdPolicy.id);
-    await client.deleteGroup(createdGroup.id);
+    const createdPolicy: OktaSignOnPolicy = await client.policyApi.createPolicy({policy});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
+    await client.groupApi.deleteGroup({groupId: createdGroup.id});
 
     expect(createdPolicy).to.not.be.undefined;
     expect(createdPolicy.name).to.equal(policy.name);
@@ -102,7 +106,7 @@ describe('Policy Scenarios', () => {
 
   it('can get policy by type', async () => {
     const policy1Name = `node-sdk: PoliciesByType ${faker.random.word()}`.substring(0, 49);
-    const policy1 = {
+    const policy1: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: policy1Name,
@@ -110,21 +114,19 @@ describe('Policy Scenarios', () => {
     };
 
     const policy2Name = `node-sdk: Password PoliciesByType ${faker.random.word()}`.substring(0, 49);
-    const policy2 = {
+    const policy2: PasswordPolicy = {
       type: 'PASSWORD',
       status: 'ACTIVE',
       name: policy2Name,
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy1 = new OktaSignOnPolicy(policy1, client);
-    const createdPolicy1 = await client.createPolicy(oktaSignOnPolicy1);
+    const createdPolicy1 = await client.policyApi.createPolicy({ policy: policy1 });
 
-    const oktaSignOnPolicy2 = new PasswordPolicy(policy2, client);
-    const createdPolicy2 = await client.createPolicy(oktaSignOnPolicy2);
+    const createdPolicy2 = await client.policyApi.createPolicy({ policy: policy2 });
 
     let signonCount = 0;
-    await client.listPolicies({type: 'OKTA_SIGN_ON'}).each(policy => {
+    await (await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
       if (policy.name === policy1Name) {
         expect(policy.name).to.equal(createdPolicy1.name);
         expect(policy.type).to.equal(createdPolicy1.type);
@@ -136,7 +138,7 @@ describe('Policy Scenarios', () => {
     expect(signonCount).to.be.equal(1);
 
     let passwordCount = 0;
-    await client.listPolicies({type: 'PASSWORD'}).each(policy => {
+    await (await client.policyApi.listPolicies({type: 'PASSWORD'})).each(policy => {
       if (policy.name === policy2Name) {
         expect(policy.name).to.equal(createdPolicy2.name);
         expect(policy.type).to.equal(createdPolicy2.type);
@@ -147,28 +149,27 @@ describe('Policy Scenarios', () => {
     });
     expect(passwordCount).to.be.equal(1);
 
-    await client.deletePolicy(createdPolicy1.id);
-    await client.deletePolicy(createdPolicy2.id);
+    await client.policyApi.deletePolicy({ policyId: createdPolicy1.id });
+    await client.policyApi.deletePolicy({ policyId: createdPolicy2.id });
   });
 
   it('can delete a policy', async () => {
-    const policyobj = {
+    const policyobj: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: DeletePolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policyobj, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
+    const createdPolicy = await client.policyApi.createPolicy({ policy: policyobj });
+    const retrievedPolicy = await client.policyApi.getPolicy({ policyId: createdPolicy.id });
     expect(retrievedPolicy).to.not.be.undefined;
 
-    const response = await retrievedPolicy.delete();
+    const response = await client.policyApi.deletePolicy({ policyId: retrievedPolicy.id });
 
-    expect(response.status).to.equal(204);
+    expect(response).to.be.undefined;
     let policy;
     try {
-      policy = await client.getPolicy(createdPolicy.id);
+      policy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
     } catch (e) {
       expect(e.status).to.equal(404);
     }
@@ -178,85 +179,86 @@ describe('Policy Scenarios', () => {
 
   it('can update a policy', async () => {
     const policyName = `node-sdk: UpdatePolicy ${faker.random.word()}`.substring(0, 49);
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: policyName,
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
 
     createdPolicy.name = `node-sdk: Updated ${faker.random.word()}`.substring(0, 49);
 
-    await createdPolicy.update();
+    await client.policyApi.replacePolicy({
+      policyId: createdPolicy.id,
+      policy: createdPolicy
+    });
 
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
-    await client.deletePolicy(createdPolicy.id);
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy.name).to.contains(createdPolicy.name);
   });
 
   it('can deactivate and activate a policy', async () => {
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: ActivatePolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
-    let createdPolicy = await client.createPolicy(oktaSignOnPolicy);
+    let createdPolicy = await client.policyApi.createPolicy({policy});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
-    await createdPolicy.deactivate();
-    createdPolicy = await client.getPolicy(createdPolicy.id);
+    await client.policyApi.deactivatePolicy({ policyId: createdPolicy.id });
+    createdPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy.status).to.be.equal('INACTIVE');
 
-    await createdPolicy.activate();
-    createdPolicy = await client.getPolicy(createdPolicy.id);
+    await client.policyApi.activatePolicy({ policyId: createdPolicy.id });
+    createdPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
-    await createdPolicy.delete();
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
   });
 
   it('can create policy with rule', async () => {
-    const policy = {
+    const policy: OktaSignOnPolicy = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
       name: `node-sdk: PolicyWithRule ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
-
-    const policyRuleActionSignOn = {
+    const createdPolicy = await client.policyApi.createPolicy({policy});
+    const policyRuleActionSignOn: OktaSignOnPolicyRuleSignonActions = {
       access: 'DENY',
       requireFactor: false
     };
-    const policyRuleAction = {
+    const policyRuleAction: OktaSignOnPolicyRuleActions = {
       signon: policyRuleActionSignOn
     };
 
     const policyRuleName = `node-sdk: PolicyRule ${faker.random.word()}`.substring(0, 49);
-    const policyRule = {
+    const policyRule: OktaSignOnPolicyRule = {
       name: policyRuleName,
       type: 'SIGN_ON',
       actions: policyRuleAction
     };
 
-    const createdPolicyRule = await createdPolicy.createRule(policyRule);
-    const createdSignOnPolicyRule = createdPolicyRule as OktaSignOnPolicyRule;
+    const createdPolicyRule: OktaSignOnPolicyRule = await client.policyApi.createPolicyRule({
+      policyId: createdPolicy.id,
+      policyRule
+    });
 
-    expect(createdSignOnPolicyRule).to.not.be.undefined;
-    expect(createdSignOnPolicyRule.name).to.equal(policyRuleName);
+    expect(createdPolicyRule).to.not.be.undefined;
+    expect(createdPolicyRule.name).to.equal(policyRuleName);
 
-    await createdPolicy.delete();
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
   });
 
 });

@@ -3,9 +3,13 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  Policy } from '@okta/okta-sdk-nodejs';
+  Policy,
+  AccessPolicy,
+  Group
+} from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -19,73 +23,77 @@ const client = new Client({
 });
 
 describe('Policy Crud API', () => {
-  let group;
-  let mockPolicy;
+  let group: Group;
+  let mockPolicy: AccessPolicy;
   beforeEach(async () => {
-    group = await client.createGroup(getMockGroup());
+    group = await client.groupApi.createGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
   });
   afterEach(async () => {
-    await group.delete();
+    await client.groupApi.deleteGroup({groupId: group.id});
   });
 
   describe('List policies', () => {
-    let policy;
+    let policy: Policy;
     beforeEach(async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({
+        policy: mockPolicy
+      });
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.policyApi.deletePolicy({policyId: policy.id});
     });
 
     it('should return a Collection', async () => {
-      const policies = await client.listPolicies({ type: 'OKTA_SIGN_ON' });
+      const policies = await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'});
       expect(policies).to.be.instanceOf(Collection);
     });
 
     it('should resolve Policy in collection', async () => {
-      await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
+      await (await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
         expect(policy).to.be.instanceOf(Policy);
       });
     });
 
     it('should return a collection of policies by type', async () => {
-      await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
+      await (await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
         expect(policy.type).to.equal('OKTA_SIGN_ON');
       });
     });
   });
 
   describe('Create policy', () => {
-    let policy;
+    let policy: Policy;
     afterEach(async () => {
-      await policy.delete();
+      await client.policyApi.deletePolicy({policyId: policy.id});
     });
 
     it('should return correct model', async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({
+        policy: mockPolicy
+      });
       expect(policy).to.be.instanceOf(Policy);
     });
 
     it('should return correct data with id assigned', async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({ policy: mockPolicy });
       expect(policy).to.have.property('id');
       expect(policy.name).to.equal(mockPolicy.name);
     });
   });
 
   describe('Get policy', () => {
-    let policy;
+    let policy: Policy;
     beforeEach(async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({ policy: mockPolicy });
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.policyApi.deletePolicy({policyId: policy.id});
     });
 
     it('should get Policy by id', async () => {
-      const policyFromGet = await client.getPolicy(policy.id);
+      const policyFromGet = await client.policyApi.getPolicy({policyId: policy.id});
       expect(policyFromGet).to.be.instanceOf(Policy);
       expect(policyFromGet.name).to.equal(mockPolicy.name);
     });
@@ -94,16 +102,16 @@ describe('Policy Crud API', () => {
   describe('Update policy', () => {
     let policy: Policy;
     beforeEach(async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({ policy: mockPolicy });
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.policyApi.deletePolicy({policyId: policy.id});
     });
 
     it('should update name for policy', async () => {
       const mockName = 'Mock update policy';
       policy.name = mockName;
-      const updatedPolicy = await policy.update();
+      const updatedPolicy = await client.policyApi.replacePolicy({policyId: policy.id, policy});
       expect(updatedPolicy.id).to.equal(policy.id);
       expect(updatedPolicy.name).to.equal(mockName);
     });
@@ -112,13 +120,13 @@ describe('Policy Crud API', () => {
   describe('Delete policy', () => {
     let policy: Policy;
     beforeEach(async () => {
-      policy = await client.createPolicy(mockPolicy);
+      policy = await client.policyApi.createPolicy({ policy: mockPolicy });
     });
 
     it('should not get policy after deletion', async () => {
-      await policy.delete();
+      await client.policyApi.deletePolicy({policyId: policy.id});
       try {
-        await client.getPolicy(policy.id);
+        await client.policyApi.getPolicy({policyId: policy.id});
       } catch (e) {
         expect(e.status).to.equal(404);
       }

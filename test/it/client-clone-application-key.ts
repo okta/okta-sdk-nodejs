@@ -1,9 +1,11 @@
 import { expect } from 'chai';
 
 import {
+  ApplicationSignOnMode,
   Client,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  JsonWebKey,
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -26,8 +28,8 @@ describe.skip('client.cloneApplicationKey()', () => {
 
     const application2 = {
       name: 'bookmark',
-      label: 'my bookmark app 2',
-      signOnMode: 'BOOKMARK',
+      label: 'node-sdk: my bookmark app 2',
+      signOnMode: 'BOOKMARK' as ApplicationSignOnMode,
       settings: {
         app: {
           requestIntegration: false,
@@ -42,25 +44,25 @@ describe.skip('client.cloneApplicationKey()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.removeAppByLabel(client, application2.label);
-      createdApplication = await client.createApplication(application);
-      createdApplication2 = await client.createApplication(application2);
-      const generatedKey = await client.generateApplicationKey(createdApplication.id, {
+      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication2 = await client.applicationApi.createApplication({application: application2});
+      const generatedKey = await client.applicationApi.generateApplicationKey({appId: createdApplication.id,
         validityYears: 2
       });
 
-      const clonedKey = await client.cloneApplicationKey(createdApplication.id, generatedKey.kid, {
+      const clonedKey = await client.applicationApi.cloneApplicationKey({appId: createdApplication.id, keyId: generatedKey.kid,
         targetAid: createdApplication2.id
       });
       expect(clonedKey).to.be.instanceof(JsonWebKey);
       expect(clonedKey.kid).to.equal(generatedKey.kid);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
       if (createdApplication2) {
-        await createdApplication2.deactivate();
-        await createdApplication2.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication2.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication2.id});
       }
     }
   });

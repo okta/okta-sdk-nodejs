@@ -3,13 +3,15 @@ import speakeasy = require('speakeasy');
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { Client } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/factor-activate`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -34,10 +36,10 @@ describe('Factors API', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
 
     const authenticatorPolicies: okta.Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -51,7 +53,7 @@ describe('Factors API', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   after(async () => {
@@ -59,11 +61,11 @@ describe('Factors API', () => {
   });
 
   it('should allow me to activate a TOTP factor', async () => {
-    const factor = {
+    const factor: okta.UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.status).to.be.equal('PENDING_ACTIVATION');
     const embedded = createdFactor._embedded as Record<string, unknown>;
     const activation = embedded.activation as Record<string, unknown>;
@@ -71,7 +73,7 @@ describe('Factors API', () => {
       secret: activation.sharedSecret,
       encoding: 'base32'
     });
-    const updatedFactor = await createdFactor.activate(createdUser.id, { passCode });
+    const updatedFactor = await client.userFactorApi.activateFactor({userId: createdUser.id, factorId: createdFactor.id, body: { passCode }});
     expect(updatedFactor.status).to.equal('ACTIVE');
   });
 });

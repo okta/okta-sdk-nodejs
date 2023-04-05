@@ -10,14 +10,19 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+const Client = require('./client');
+const RequestExecutor = require('./request-executor');
+const { DefaultRequestExecutor } = require('./default-request-executor');
+const { Collection } = require('./collection');
+const MemoryStore = require('./memory-store');
 
 module.exports = Object.assign(
   {}, {
-    Client: require('./client'),
-    RequestExecutor: require('./request-executor'),
-    DefaultRequestExecutor: require('./default-request-executor'),
-    Collection: require('./collection'),
-    MemoryStore: require('./memory-store'),
+    Client,
+    RequestExecutor,
+    DefaultRequestExecutor,
+    Collection,
+    MemoryStore,
   },
-  require('./models')
+  require('./generated'),
 );

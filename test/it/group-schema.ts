@@ -2,9 +2,7 @@
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 
-import {
-  Client,
-} from '@okta/okta-sdk-nodejs';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
@@ -14,12 +12,12 @@ const client = new Client({
 describe('Group Schema API', () => {
   it('allows fetching and updating group schema', async () => {
     const customAttributeName = faker.random.word();
-    let groupSchema = await client.getGroupSchema();
+    let groupSchema = await client.schemaApi.getGroupSchema();
     expect(Object.keys(groupSchema.definitions)).to.include('base');
     expect(Object.keys(groupSchema.definitions)).to.include('custom');
     expect(Object.keys(groupSchema.definitions.custom.properties)).to.be.empty;
 
-    groupSchema = await client.updateGroupSchema({
+    groupSchema = await client.schemaApi.updateGroupSchema({ GroupSchema: {
       definitions: {custom: {
         id: '#custom',
         type: 'object',
@@ -32,10 +30,10 @@ describe('Group Schema API', () => {
           },
         }
       }}
-    });
+    }});
     expect(Object.keys(groupSchema.definitions.custom.properties)).to.contain(customAttributeName);
 
-    groupSchema = await client.updateGroupSchema({
+    groupSchema = await client.schemaApi.updateGroupSchema({GroupSchema: {
       definitions: {custom: {
         id: '#custom',
         type: 'object',
@@ -43,7 +41,7 @@ describe('Group Schema API', () => {
           [customAttributeName]: null
         }
       }}
-    });
+    }});
 
     expect(Object.keys(groupSchema.definitions.custom.properties)).to.be.empty;
   });

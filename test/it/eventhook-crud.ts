@@ -3,8 +3,10 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  EventHook } from '@okta/okta-sdk-nodejs';
+  EventHook,
+} from '@okta/okta-sdk-nodejs';
 import getMockEventHook = require('./mocks/eventhook');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -21,13 +23,13 @@ describe('Event Hook Crud API', () => {
   describe('Create Event hook', () => {
     let eventHook;
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+      await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
     });
 
     it('should return correct model', async () => {
       const mockEventHook = getMockEventHook();
-      eventHook = await client.createEventHook(mockEventHook);
+      eventHook = await client.eventHookApi.createEventHook({eventHook: mockEventHook});
       expect(eventHook).to.be.instanceOf(EventHook);
       expect(eventHook.id).to.be.exist;
       expect(eventHook.name).to.be.equal(mockEventHook.name);
@@ -37,15 +39,15 @@ describe('Event Hook Crud API', () => {
   describe('List Event Hooks', () => {
     let eventHook;
     beforeEach(async () => {
-      eventHook = await client.createEventHook(getMockEventHook());
+      eventHook = await client.eventHookApi.createEventHook({eventHook: getMockEventHook()});
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+      await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
     });
 
     it('should return a collection of EventHooks', async () => {
-      const collection = await client.listEventHooks();
+      const collection = await client.eventHookApi.listEventHooks();
       expect(collection).to.be.instanceOf(Collection);
       let ehFound = false;
       await collection.each(eh => {
@@ -62,15 +64,15 @@ describe('Event Hook Crud API', () => {
   describe('Get EventHook', () => {
     let eventHook;
     beforeEach(async () => {
-      eventHook = await client.createEventHook(getMockEventHook());
+      eventHook = await client.eventHookApi.createEventHook({eventHook: getMockEventHook()});
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+      await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
     });
 
     it('should get EventHook by id', async () => {
-      const eventHookFromGet = await client.getEventHook(eventHook.id);
+      const eventHookFromGet = await client.eventHookApi.getEventHook({eventHookId: eventHook.id});
       expect(eventHookFromGet).to.be.instanceOf(EventHook);
       expect(eventHookFromGet.name).to.equal(eventHook.name);
     });
@@ -79,17 +81,17 @@ describe('Event Hook Crud API', () => {
   describe('Update EventHook', () => {
     let eventHook;
     beforeEach(async () => {
-      eventHook = await client.createEventHook(getMockEventHook());
+      eventHook = await client.eventHookApi.createEventHook({eventHook: getMockEventHook()});
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+      await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
     });
 
     it('should update name for created eventHook', async () => {
       const mockName = 'Mock update event hook';
       eventHook.name = mockName;
-      const updatedEventHook = await eventHook.update();
+      const updatedEventHook = await client.eventHookApi.replaceEventHook({eventHookId: eventHook.id, eventHook});
       expect(updatedEventHook.id).to.equal(eventHook.id);
       expect(updatedEventHook.name).to.equal(mockName);
     });
@@ -98,15 +100,15 @@ describe('Event Hook Crud API', () => {
   describe('Delete EventHook', () => {
     let eventHook;
     beforeEach(async () => {
-      eventHook = await client.createEventHook(getMockEventHook());
+      eventHook = await client.eventHookApi.createEventHook({eventHook: getMockEventHook()});
     });
 
     it('should not get eventHook after deletion', async () => {
-      await eventHook.deactivate();
-      const res = await eventHook.delete();
-      expect(res.status).to.equal(204);
+      await client.eventHookApi.deactivateEventHook({eventHookId: eventHook.id});
+      const res = await client.eventHookApi.deleteEventHook({eventHookId: eventHook.id});
+      expect(res).to.be.undefined;
       try {
-        await client.getEventHook(eventHook.id);
+        await client.eventHookApi.getEventHook({eventHookId: eventHook.id});
       } catch (e) {
         expect(e.status).to.equal(404);
       }

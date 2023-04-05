@@ -1,9 +1,12 @@
 import { expect } from 'chai';
 
 import {
+  Application,
+  AppUser,
   Client,
   DefaultRequestExecutor,
-  AppUser } from '@okta/okta-sdk-nodejs';
+  User,
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -31,30 +34,33 @@ describe('client.assignUserToApplication()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
-      createdApplication = await client.createApplication(application);
-      createdUser = await client.createUser(user);
-      createdAppUser = await client.assignUserToApplication(createdApplication.id, {
-        id: createdUser.id
+      createdApplication = await client.applicationApi.createApplication({application});
+      createdUser = await client.userApi.createUser({body: user});
+      createdAppUser = await client.applicationApi.assignUserToApplication({
+        appId: createdApplication.id,
+        appUser: {
+          id: createdUser.id
+        }
       });
       expect(createdAppUser).to.be.instanceof(AppUser);
       expect(createdAppUser._links.user.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });

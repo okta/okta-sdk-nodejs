@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
+import { BookmarkApplication, Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +9,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-delete`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Application.delete()', () => {
@@ -21,24 +21,19 @@ describe('Application.delete()', () => {
   it('should allow me to delete the application', async () => {
     const application = utils.getBookmarkApplication();
 
-    let createdApplication;
+    let createdApplication: BookmarkApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
-      await createdApplication.deactivate()
-        .then(response => {
-          expect(response.status).to.equal(200);
-        });
-      await createdApplication.delete()
-        .then(response => {
-          expect(response.status).to.equal(204);
-          createdApplication = null;
-        });
+      createdApplication = await client.applicationApi.createApplication({application});
+      await client.applicationApi.deactivateApplication({ appId: createdApplication.id });
+      const response = await client.applicationApi.deleteApplication({ appId: createdApplication.id });
+      createdApplication = null;
+      expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id });
+        await client.applicationApi.deleteApplication({ appId: createdApplication.id });
       }
     }
   });

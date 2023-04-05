@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
+import { Client, DefaultRequestExecutor, JsonWebKey } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +9,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-generate-key`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe.skip('Application.generateApplicationKey()', () => {
@@ -25,15 +25,15 @@ describe.skip('Application.generateApplicationKey()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       const applicationKey = await createdApplication.generateApplicationKey({
         validityYears: 2
       });
-      expect(applicationKey).to.be.instanceof(okta.JsonWebKey);
+      expect(applicationKey).to.be.instanceof(JsonWebKey);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

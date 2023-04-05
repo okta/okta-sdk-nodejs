@@ -1,10 +1,13 @@
 import { expect } from 'chai';
 import {
+  AuthorizationServer,
   Client,
   Collection,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  JsonWebKey,
+} from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -18,17 +21,17 @@ const client = new Client({
 });
 
 describe('Authorization Server Credential API', () => {
-  let authServer;
+  let authServer: AuthorizationServer;
   before(async () => {
-    authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
+    authServer = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});
   });
   after(async () => {
-    await authServer.delete();
+    await client.authorizationServerApi.deleteAuthorizationServer({authServerId: authServer.id});
   });
 
   describe('Get Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
-      const collection = await authServer.listKeys();
+      const collection = await client.authorizationServerApi.listAuthorizationServerKeys({authServerId: authServer.id});
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
         expect(key).to.be.instanceOf(JsonWebKey);
@@ -38,7 +41,7 @@ describe('Authorization Server Credential API', () => {
 
   describe('Rotate Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
-      const collection = await authServer.rotateKeys({ use: 'sig' });
+      const collection = await client.authorizationServerApi.rotateAuthorizationServerKeys({authServerId: authServer.id, use: { use: 'sig' }});
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
         expect(key).to.be.instanceOf(JsonWebKey);

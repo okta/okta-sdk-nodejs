@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  JsonWebKey
+  JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
@@ -34,17 +34,17 @@ describe('client.getApplicationKey()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
-      const applicationKeys = await client.listApplicationKeys(createdApplication.id);
+      createdApplication = await client.applicationApi.createApplication({application});
+      const applicationKeys = await client.applicationApi.listApplicationKeys({appId: createdApplication.id});
       await applicationKeys.each(async (key) => {
-        const fetchedKey = await client.getApplicationKey(createdApplication.id, key.kid);
+        const fetchedKey = await client.applicationApi.getApplicationKey({appId: createdApplication.id, keyId: key.kid});
         expect(fetchedKey).to.be.instanceof(JsonWebKey);
         expect(fetchedKey.kid).to.equal(key.kid);
       });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

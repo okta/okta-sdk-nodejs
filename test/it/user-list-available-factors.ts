@@ -1,24 +1,24 @@
 import { expect } from 'chai';
-import models = require('../../src/models');
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, UserFactor } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-available-factors`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   beforeEach(async () => {
-    const authenticatorPolicies: okta.Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    const authenticatorPolicies: Policy[] = [];
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -35,7 +35,7 @@ describe('User API Tests', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
   it('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
@@ -46,14 +46,16 @@ describe('User API Tests', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    const createdUser = await client.createUser(newUser);
+    const createdUser = await client.userApi.createUser({body: newUser});
 
     const factors = [];
-    await createdUser.listSupportedFactors().each(factor => factors.push(factor));
+    await (await client.userFactorApi.listSupportedFactors({
+      userId: createdUser.id
+    })).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
-      expect(factor).to.be.instanceof(models.UserFactor)
+      expect(factor).to.be.instanceof(UserFactor)
     );
-    return await utils.deleteUser(createdUser);
+    return await utils.deleteUser(createdUser, client);
   });
 });

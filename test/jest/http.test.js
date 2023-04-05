@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-conditional-expect */
-const Http = require('../../src/http');
+const { Http } = require('../../src/http');
 const MemoryStore = require('../../src/memory-store');
 const defaultCacheMiddleware = require('../../src/default-cache-middleware');
 const OktaApiError = require('../../src/api-error');
@@ -423,7 +423,6 @@ describe('Http class', () => {
           expect(http.cacheMiddleware).toHaveBeenCalledWith({
             resources: ['a', 'b'],
             isCollection: true,
-            uri: 'http://fakey.local',
             cacheStore: expect.any(Object),
             req: {
               headers: {},

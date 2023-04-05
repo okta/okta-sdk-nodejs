@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +9,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-list-keys`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Application.getApplicationKey() / Application.listKeys()', () => {
@@ -30,16 +30,16 @@ describe('Application.getApplicationKey() / Application.listKeys()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
-      const applicationKeys = await createdApplication.listKeys(createdApplication.id);
+      createdApplication = await client.applicationApi.createApplication({application});
+      const applicationKeys = await client.applicationApi.listApplicationKeys({appId: createdApplication.id});
       await applicationKeys.each(async (key) => {
-        const fetchedKey = await createdApplication.getApplicationKey(key.kid);
+        const fetchedKey = await client.applicationApi.getApplicationKey({appId: createdApplication.id, keyId: key.kid});
         expect(fetchedKey.kid).to.equal(key.kid);
       });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

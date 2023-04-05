@@ -2,13 +2,15 @@ import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
+import { Client } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/update-group`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -16,7 +18,8 @@ const client = new okta.Client({
 });
 
 describe('Group API tests', () => {
-  it('should update a group', async () => {
+  let group;
+  beforeEach(async () => {
     // 1. Create a new group
     const newGroup = {
       profile: {
@@ -24,20 +27,20 @@ describe('Group API tests', () => {
       }
     };
 
-    // Cleanup the group if it exists
-    await utils.cleanup(client, null, newGroup);
+    group = await client.groupApi.createGroup({group: newGroup});
+    utils.validateGroup(group, newGroup);
+  });
 
-    const createdGroup = await client.createGroup(newGroup);
-    utils.validateGroup(createdGroup, newGroup);
+  afterEach(async () => {
+    await client.groupApi.deleteGroup({groupId: group.id});
+  });
 
-    // 2. Update the group name and description
-    createdGroup.profile.name = 'Update Test Group - Updated';
-    createdGroup.profile.description = 'Description updated';
+  it('should update a group', async () => {
+    group.profile.name = 'Update Test Group - Updated';
+    group.profile.description = 'Description updated';
 
-    const updatedGroup = await createdGroup.update();
-    utils.validateGroup(updatedGroup, createdGroup);
-
-    // 3. Delete the group
-    await utils.cleanup(client, null, createdGroup);
+    // const updatedGroup = await group.update();
+    const updatedGroup = await client.groupApi.replaceGroup({groupId: group.id, group});
+    utils.validateGroup(updatedGroup, group);
   });
 });

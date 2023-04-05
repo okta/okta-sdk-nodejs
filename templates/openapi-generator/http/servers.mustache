@@ -1,0 +1,77 @@
+import { RequestContext, HttpMethodEnum as HttpMethod } from './http/http{{extensionForDeno}}';
+
+export interface BaseServerConfiguration {
+    makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<{ [key: string]: string }>): RequestContext;
+}
+
+/**
+ *
+ * Represents the configuration of a server including its
+ * url template and variable configuration based on the url.
+ *
+ */
+export class ServerConfiguration<T extends { [key: string]: string }> implements BaseServerConfiguration {
+    public constructor(private url: string, private variableConfiguration: T) {}
+
+    /**
+     * Sets the value of the variables of this server.
+     *
+     * @param variableConfiguration a partial variable configuration for the variables contained in the url
+     */
+    public setVariables(variableConfiguration: Partial<T>) {
+        Object.assign(this.variableConfiguration, variableConfiguration);
+    }
+
+    public getConfiguration(): T {
+        return this.variableConfiguration
+    }
+
+    private getUrl(): string {
+        let replacedUrl = this.url;
+        for (const key in this.variableConfiguration) {
+            var re = new RegExp('{' + key + '}','g');
+            replacedUrl = replacedUrl.replace(re, this.variableConfiguration[key]);
+        }
+        return replacedUrl
+    }
+
+    private getEndpointUrl(endpoint: string, vars?: Partial<T>): string {
+        const endpointWithVars = endpoint.replace(/{(\w+)}/g, (match, key) => vars?.[key] || match);
+        return this.getUrl() + endpointWithVars;
+    }
+
+    private getAffectedResources(path: string, vars?: Partial<T>): string[] {
+        const resources = [];
+        let pl = path.length;
+        while (pl--) {
+        if (path[pl] === '}') {
+            const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) => vars?.[key] || match);
+            resources.push(this.getUrl() + resourcePath);
+        }
+        }
+        return resources;
+    }
+
+    /**
+     * Creates a new request context for this server using the base url and the endpoint 
+     * with variables replaced with their respective values.
+     * Sets affected resources.
+     *
+     * @param endpoint the endpoint to be queried on the server
+     * @param httpMethod httpMethod to be used
+     * @param vars variables in endpoint to be replaced
+     *
+     */
+    public makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<T>): RequestContext {
+        const ctx = new RequestContext(this.getEndpointUrl(endpoint, vars), httpMethod);
+        const affectedResources = this.getAffectedResources(endpoint, vars);
+        ctx.setAffectedResources(affectedResources);
+        return ctx;
+    }
+}
+
+{{#servers}}
+export const server{{-index}} = new ServerConfiguration<{ {{#variables}} '{{name}}': {{#enumValues}}'{{.}}'{{^-last}} | {{/-last}}{{/enumValues}}{{^enumValues}}string{{/enumValues}}{{^-last}},{{/-last}} {{/variables}} }>('{{url}}', { {{#variables}} '{{name}}': '{{defaultValue}}' {{^-last}},{{/-last}}{{/variables}} })
+{{/servers}}
+
+export const servers = [{{#servers}}server{{-index}}{{^-last}}, {{/-last}}{{/servers}}];

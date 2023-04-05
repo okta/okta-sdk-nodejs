@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +9,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-deactivate-application`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.deactivateApplication()', () => {
@@ -25,14 +25,14 @@ describe('client.deactivateApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
-      await client.deactivateApplication(createdApplication.id);
-      const fetchedApplication = await client.getApplication(createdApplication.id);
+      createdApplication = await client.applicationApi.createApplication({application});
+      await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+      const fetchedApplication = await client.applicationApi.getApplication({appId: createdApplication.id});
       expect(fetchedApplication.status).to.equal('INACTIVE');
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

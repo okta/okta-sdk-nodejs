@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
+import { Application, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,14 +9,15 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-delete-user`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
-describe('AppUser.delete()', () => {
+// no deleteApplicationUser method in v3
+xdescribe('AppUser.delete()', () => {
 
   it('should allow me to delete the app user', async () => {
     const application = utils.getBookmarkApplication();
@@ -28,32 +29,33 @@ describe('AppUser.delete()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
-      createdApplication = await client.createApplication(application);
-      createdUser = await client.createUser(user);
-      createdAppUser = await createdApplication.assignUserToApplication({
-        id: createdUser.id
+      createdApplication = await client.applicationApi.createApplication({application});
+      createdUser = await client.userApi.createUser({body: user});
+      createdAppUser = await client.applicationApi.assignUserToApplication({
+        appId: createdApplication.id,
+        appUser: {
+          id: createdUser.id
+        }
       });
-      await createdAppUser.delete(createdApplication.id)
-        .then(response => {
-          expect(response.status).to.equal(204);
-        });
+      const response = await client.userApi.deleteUser({userId: createdAppUser.id});
+      expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });

@@ -44,10 +44,15 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
   if (ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
     cacheCheck = ctx.cacheStore.get(ctx.req.url)
-      .then(body => {
-        if (body) {
+      .then(cachedValue => {
+        if (cachedValue) {
           cacheHit = true;
+          const [body, headersStr] = cachedValue.split('\0');
+          const headers = headersStr && JSON.parse(headersStr) || {};
+          const headersMap = new Map(Object.entries(headers));
+          headers.forEach = headersMap.forEach.bind(headersMap);
           ctx.res = {
+            headers,
             status: 200,
             text() {
               return Promise.resolve(body);
@@ -70,16 +75,23 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
         return;
       }
       if (ctx.req.method.toLowerCase() === 'get') {
+        const headers = {};
+        ctx.res.headers?.forEach?.((value, name) => {
+          headers[name] = value;
+        });
+        const headersStr = Object.keys(headers).length ? JSON.stringify(headers) : '';
+
         const customResponseBufferSize = ctx.defaultCacheMiddlewareResponseBufferSize;
         const clonedResponse = customResponseBufferSize ?
           cloneNodeFetchResponse(ctx.res, customResponseBufferSize) : ctx.res.clone();
         // store response in cache
         return clonedResponse.text()
           .then(text => {
+            const valueToCache = text + (headersStr ? '\0' + headersStr : '');
             try {
               const selfHref = _.get(JSON.parse(text), '_links.self.href');
               if (selfHref) {
-                ctx.cacheStore.set(selfHref, text);
+                ctx.cacheStore.set(selfHref, valueToCache);
               }
             } catch (e) {
               // TODO: add custom logger

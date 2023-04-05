@@ -3,9 +3,6 @@ import { expect } from 'chai';
 import {
   Application,
   ApplicationCredentialsOAuthClient,
-  ApplicationSettings,
-  ApplicationSettingsApplication,
-  ApplicationOptions,
   AutoLoginApplication,
   AutoLoginApplicationSettingsSignOn,
   BasicApplicationSettings,
@@ -18,27 +15,22 @@ import {
   Client,
   DefaultRequestExecutor,
   OAuthApplicationCredentials,
-  OAuthGrantType,
-  OAuthResponseType,
   OpenIdConnectApplication,
   OpenIdConnectApplicationSettings,
   OpenIdConnectApplicationSettingsClient,
   SamlApplication,
   SamlApplicationSettings,
   SamlApplicationSettingsSignOn,
-  SamlAttributeStatement,
   SecurePasswordStoreApplication,
   SecurePasswordStoreApplicationSettings,
   SecurePasswordStoreApplicationSettingsApplication,
-  SwaApplication,
   SwaApplicationSettings,
   SwaApplicationSettingsApplication,
-  SwaThreeFieldApplication,
-  SwaThreeFieldApplicationSettings,
-  SwaThreeFieldApplicationSettingsApplication,
   WsFederationApplication,
   WsFederationApplicationSettings,
-  WsFederationApplicationSettingsApplication} from '@okta/okta-sdk-nodejs';
+  WsFederationApplicationSettingsApplication,
+} from '@okta/okta-sdk-nodejs';
+
 import utils = require('../utils');
 import faker = require('@faker-js/faker');
 
@@ -58,7 +50,7 @@ const client = new Client({
 describe('client.createApplication()', () => {
 
   it('should allow me to create a bookmark application', async () => {
-    const application: ApplicationOptions = {
+    const application: BookmarkApplication = {
       name: 'bookmark',
       label: `node-sdk: Bookmark ${faker.random.words()}`.substring(0, 99),
       signOnMode: 'BOOKMARK',
@@ -73,28 +65,28 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BookmarkApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(BookmarkApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app).to.be.instanceof(BookmarkApplicationSettingsApplication);
       expect(createdApplication.settings.app.requestIntegration).to.equal(application.settings.app.requestIntegration);
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   it('should allow me to create a basic authentication application', async () => {
-    const application: ApplicationOptions = {
+    const application: BasicAuthApplication = {
       name: 'template_basic_auth',
       label: `node-sdk: Sample Basic Auth App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BASIC_AUTH',
@@ -109,28 +101,28 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BasicAuthApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(BasicApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app).to.be.instanceof(BasicApplicationSettingsApplication);
       expect(createdApplication.settings.app.authURL).to.equal(application.settings.app.authURL);
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   it('should allow me to create a SWA plugin application', async () => {
-    const application: ApplicationOptions = {
+    const application: BrowserPluginApplication = {
       name: 'template_swa',
       label: `node-sdk: Sample Plugin App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -144,20 +136,19 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication: SwaApplication;
+    let createdApplication: BrowserPluginApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
-      expect(createdApplication).to.be.instanceof(SwaApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(SwaApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app).to.be.instanceof(SwaApplicationSettingsApplication);
       expect(createdApplication.settings.app.buttonField).to.equal(application.settings.app.buttonField);
       expect(createdApplication.settings.app.passwordField).to.equal(application.settings.app.passwordField);
@@ -165,14 +156,14 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   it('should allow me to create a 3-field SWA plugin application', async () => {
-    const application: ApplicationOptions = {
+    const application: BrowserPluginApplication = {
       name: 'template_swa3field',
       label: `node-sdk: Sample Plugin App 3-field - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -188,21 +179,18 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication: SwaThreeFieldApplication;
+    let createdApplication: BrowserPluginApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
-      expect(createdApplication).to.be.instanceof(SwaThreeFieldApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
-      expect(createdApplication.settings).to.be.instanceof(SwaThreeFieldApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
-      expect(createdApplication.settings.app).to.be.instanceof(SwaThreeFieldApplicationSettingsApplication);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app.buttonSelector).to.equal(application.settings.app.buttonSelector);
       expect(createdApplication.settings.app.passwordSelector).to.equal(application.settings.app.passwordSelector);
       expect(createdApplication.settings.app.userNameSelector).to.equal(application.settings.app.userNameSelector);
@@ -211,14 +199,14 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.targetURL).to.equal(application.settings.app.targetURL);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   it('should allow me to create a SWA no-plugin application', async () => {
-    const application: ApplicationOptions = {
+    const application: SecurePasswordStoreApplication = {
       name: 'template_sps',
       label: `node-sdk: Example SWA App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'SECURE_PASSWORD_STORE',
@@ -241,15 +229,15 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SecurePasswordStoreApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(SecurePasswordStoreApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app).to.be.instanceof(SecurePasswordStoreApplicationSettingsApplication);
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
       expect(createdApplication.settings.app.passwordField).to.equal(application.settings.app.passwordField);
@@ -262,8 +250,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.optionalField3Value).to.equal(application.settings.app.optionalField3Value);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -274,8 +262,8 @@ describe('client.createApplication()', () => {
       return;
     }
 
-    const application: ApplicationOptions = {
-      label: `Example Custom SWA App - ${faker.random.word()}`,
+    const application: AutoLoginApplication = {
+      label: `node-sdk: Example Custom SWA App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -297,20 +285,20 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(AutoLoginApplication);
       expect(createdApplication.name).to.contain('examplecustomswaapp');
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings.signOn).to.be.instanceof(AutoLoginApplicationSettingsSignOn);
       expect(createdApplication.settings.signOn.redirectUrl).to.equal(application.settings.signOn.redirectUrl);
       expect(createdApplication.settings.signOn.loginUrl).to.equal(application.settings.signOn.loginUrl);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -321,8 +309,8 @@ describe('client.createApplication()', () => {
       return;
     }
 
-    const application: ApplicationOptions = {
-      label: `Example Custom SAML 2.0 App - ${faker.random.word()}`,
+    const application: SamlApplication = {
+      label: `node-sdk: Example Custom SAML 2.0 App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -342,7 +330,9 @@ describe('client.createApplication()', () => {
               namespace: 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
               values: [
                 'Value'
-              ]
+              ],
+              filterType: undefined,
+              filterValue: undefined
             }
           ],
           audience: 'asdqwe123',
@@ -368,18 +358,17 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SamlApplication);
       expect(createdApplication.name).to.contain('examplecustomsaml20app');
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(SamlApplicationSettings);
       expect(createdApplication.settings.signOn).to.be.instanceof(SamlApplicationSettingsSignOn);
       expect(createdApplication.settings.signOn.assertionSigned).to.equal(application.settings.signOn.assertionSigned);
-      const attributeStatements = application.settings.signOn.attributeStatements.map(attributeStatement => new SamlAttributeStatement(attributeStatement, client));
-      expect(createdApplication.settings.signOn.attributeStatements).to.deep.equal(attributeStatements);
+      expect(createdApplication.settings.signOn.attributeStatements).to.deep.equal(application.settings.signOn.attributeStatements);
       expect(createdApplication.settings.signOn.audience).to.equal(application.settings.signOn.audience);
       expect(createdApplication.settings.signOn.authnContextClassRef).to.equal(application.settings.signOn.authnContextClassRef);
       expect(createdApplication.settings.signOn.defaultRelayState).to.equal(null);
@@ -398,15 +387,15 @@ describe('client.createApplication()', () => {
 
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   // Test disabled as it fails on bacon/dev environment (https://oktainc.atlassian.net/browse/OKTA-179297)
   it.skip('should allow me to create a custom WS-Fed application', async () => {
-    const application: ApplicationOptions = {
+    const application: WsFederationApplication = {
       name: 'template_wsfed',
       label: `node-sdk: Sample WS-Fed App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'WS_FEDERATION',
@@ -432,14 +421,14 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(WsFederationApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(WsFederationApplicationSettings);
-      expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
+      // expect(createdApplication.settings.app).to.be.instanceof(ApplicationSettingsApplication);
       expect(createdApplication.settings.app).to.be.instanceof(WsFederationApplicationSettingsApplication);
       expect(createdApplication.settings.app.attributeStatements).to.equal(application.settings.app.attributeStatements);
       expect(createdApplication.settings.app.audienceRestriction).to.equal(application.settings.app.audienceRestriction);
@@ -455,14 +444,14 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.wReplyURL).to.equal(application.settings.app.wReplyURL);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
 
   it('should allow me to create a OIDC client application', async () => {
-    const application: ApplicationOptions = {
+    const application: OpenIdConnectApplication = {
       name: 'oidc_client',
       label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'OPENID_CONNECT',
@@ -477,8 +466,8 @@ describe('client.createApplication()', () => {
           application_type: 'native',
           client_uri: 'https://example.com/client',
           grant_types: [
-            OAuthGrantType.IMPLICIT,
-            OAuthGrantType.AUTHORIZATION_CODE
+            'implicit',
+            'authorization_code'
           ],
           logo_uri: 'https://example.com/assets/images/logo-new.png',
           redirect_uris: [
@@ -486,9 +475,9 @@ describe('client.createApplication()', () => {
             'myapp://callback'
           ],
           response_types: [
-            OAuthResponseType.TOKEN,
-            OAuthResponseType.ID_TOKEN,
-            OAuthResponseType.CODE
+            'token',
+            'id_token',
+            'code'
           ]
         }
       }
@@ -498,7 +487,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(OpenIdConnectApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -509,7 +498,7 @@ describe('client.createApplication()', () => {
       expect(createdApplication.credentials.oauthClient.client_id).to.not.be.null;
       expect(createdApplication.credentials.oauthClient.client_secret).to.not.be.undefined;
       expect(createdApplication.credentials.oauthClient.token_endpoint_auth_method).to.equal(application.credentials.oauthClient.token_endpoint_auth_method);
-      expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
+      // expect(createdApplication.settings).to.be.instanceof(ApplicationSettings);
       expect(createdApplication.settings).to.be.instanceof(OpenIdConnectApplicationSettings);
       expect(createdApplication.settings.oauthClient).to.be.instanceof(OpenIdConnectApplicationSettingsClient);
       expect(createdApplication.settings.oauthClient.application_type).to.equal(application.settings.oauthClient.application_type);
@@ -519,8 +508,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(application.settings.oauthClient.response_types);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

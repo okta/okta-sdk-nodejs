@@ -1,0 +1,28 @@
+{
+  "additionalProperties": {
+    "supportsES6": true,
+    "withSeparateModelsAndApi": true,
+    "modelPropertyNaming": "original",
+    "platform": "node",
+    "enumPropertyNaming": "original",
+    "useObjectParameters": true,
+    "generateAliasAsModel": true
+  },
+  "moduleName": "okta",
+  "projectName": "@okta/okta-sdk-nodejs",
+  "generateModelDocumentation": true,
+  "generateModels": true,
+  "templateDir" : "./",
+  "files": {
+    "README.mustache": {
+      "folder": "/",
+      "destinationFilename": "README.md",
+      "templateType": "SupportingFiles"
+    },
+    "model_doc.mustache": {
+      "destinationFilename": ".md",
+      "templateType": "ModelDocs"
+    }
+  }
+
+}

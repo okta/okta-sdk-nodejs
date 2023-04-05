@@ -12,13 +12,14 @@
 
 class ModelFactory {
 
-  constructor(Ctor) {
+  constructor(Ctor, client) {
     this.Ctor = Ctor;
+    this.client = client;
   }
 
-  createInstance(resource, client) {
-    return new this.Ctor(resource, client);
+  createInstance(resource) {
+    return new this.Ctor(resource, this.client);
   }
 }
 
-module.exports = ModelFactory;
+module.exports.ModelFactory = ModelFactory;

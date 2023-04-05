@@ -1,12 +1,14 @@
 import utils = require('../utils');
 import {
+  CallUserFactor,
   Client,
   DefaultRequestExecutor,
+  Policy,
   SecurityQuestionUserFactor,
-  SmsUserFactor,
-  Policy
+  User
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -27,7 +29,7 @@ const client = new Client({
  */
 
 describe('User API tests', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Create a user
     const newUser = {
@@ -38,10 +40,10 @@ describe('User API tests', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
 
     const authenticatorPolicies: Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -58,7 +60,7 @@ describe('User API tests', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   after(async () => {
@@ -66,14 +68,15 @@ describe('User API tests', () => {
   });
 
   it('should allow me to list a user\'s enrolled factors', async () => {
-    const smsFactor = {
-      factorType: 'sms',
+    // using Call factor as there appears to be an org limit for SMS factor enrollments
+    const callFactor: CallUserFactor = {
+      factorType: 'call',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const securityQuestionFactor = {
+    const securityQuestionFactor: SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -81,12 +84,20 @@ describe('User API tests', () => {
         answer: 'pizza'
       }
     };
-    await client.enrollFactor(createdUser.id, smsFactor);
-    await client.enrollFactor(createdUser.id, securityQuestionFactor);
-    const collection = await createdUser.listFactors();
+    await client.userFactorApi.enrollFactor({
+      userId: createdUser.id,
+      body: callFactor
+    });
+    await client.userFactorApi.enrollFactor({
+      userId: createdUser.id,
+      body: securityQuestionFactor
+    });
+    const collection = await client.userFactorApi.listFactors({
+      userId: createdUser.id
+    });
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(SmsUserFactor);
+    expect(factors[1]).to.be.instanceof(CallUserFactor);
     expect(factors[0]).to.be.instanceof(SecurityQuestionUserFactor);
   });
 });

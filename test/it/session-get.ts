@@ -2,8 +2,10 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  Session } from '@okta/okta-sdk-nodejs';
+  Session,
+} from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -29,7 +31,7 @@ describe('Sessions API', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
   });
 
   after(async () => {
@@ -44,12 +46,16 @@ describe('Sessions API', () => {
 
     // 1 - create session
     const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-    const session = await client.createSession({
-      sessionToken: transaction.sessionToken
+    const session = await client.sessionApi.createSession({
+      createSessionRequest: {
+        sessionToken: transaction.sessionToken
+      }
     });
 
     // 2 - retrieve session
-    const sess = await client.getSession(session.id);
+    const sess = await client.sessionApi.getSession({
+      sessionId: session.id
+    });
 
     expect(sess).to.be.instanceOf(Session);
   });

@@ -1,24 +1,31 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-get`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should get user by ID & Login', async () => {
+    // Okta user should have custom attribute `age` (type `number`) added in admin dashboard
+    // https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-add-custom-user-attributes.htm
+
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile('user-get'),
+      profile: {
+        ...utils.getMockProfile('user-get'),
+        age: 33
+      },
       credentials: {
         password: { value: 'Abcd1234#@' }
       }
@@ -28,24 +35,31 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : false };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
     utils.validateUser(createdUser, newUser);
 
     // 2. Get the user by user ID
-    const userByID = await client.getUser(createdUser.id);
+    const userByID = await client.userApi.getUser({
+      userId: createdUser.id
+    });
     utils.validateUser(userByID, createdUser);
 
     // 3. Get the user by user login
-    const userByLogin = await client.getUser(createdUser.profile.login);
+    const userByLogin = await client.userApi.getUser({
+      userId: createdUser.profile.login
+    });
     utils.validateUser(userByLogin, createdUser);
+    expect(userByLogin.profile.age).to.equal(newUser.profile.age);
 
     // 4. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.deleteUser(createdUser, client);
 
     // 5. Verify user was deleted
     let err;
     try {
-      await client.getUser(createdUser.profile.login);
+      await client.userApi.getUser({
+        userId: createdUser.profile.login
+      });
     } catch (e) {
       err = e;
     } finally {

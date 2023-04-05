@@ -1,10 +1,13 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 
 import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  User} from '@okta/okta-sdk-nodejs';
+  User,
+  CreateUserRequest
+} from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -20,11 +23,11 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-describe('client.list-users()', () => {
-  let _user;
+describe('client.userApi.listUsers()', () => {
+  let _user: User;
 
   before(async () => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('client-list-users-1'),
       credentials: {
         password: {value: 'Abcd1234#@'}
@@ -37,15 +40,15 @@ describe('client.list-users()', () => {
     // Add an unmapped property to the user profile
     newUser.profile.nickName = 'Nicky';
 
-    _user = await client.createUser(newUser);
+    _user = await client.userApi.createUser({body: newUser});
   });
 
   after(async () => {
     await utils.cleanup(client, _user);
   });
 
-  it('should return a collection', () => {
-    expect(client.listUsers()).to.be.an.instanceof(Collection);
+  it('should return a collection', async () => {
+    expect(await client.userApi.listUsers()).to.be.an.instanceof(Collection);
   });
 
   it('should allow me to perform search queries', async () => {
@@ -55,7 +58,7 @@ describe('client.list-users()', () => {
 
     await utils.delay(2000);
     const queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
-    await client.listUsers(queryParameters).each(user => {
+    await (await client.userApi.listUsers(queryParameters)).each(user => {
       // If tests run in parallel (for different node versions on travis), it might match a different user without this check
       if (user.id === _user.id) {
         foundUser = user;
@@ -70,25 +73,109 @@ describe('client.list-users()', () => {
   });
 });
 
-describe('client.listUsers().each()', () => {
+describe('client.listUsers({ })', () => {
+  const users = [];
+
+  const createUser = async (name) => {
+    const newUser: CreateUserRequest = {
+      profile: {
+        ...utils.getMockProfile(name),
+        lastName: 'okta-sdk-nodejs-users-filter',
+      },
+      credentials: {
+        password: {value: 'Abcd1234#@'}
+      }
+    };
+    await utils.cleanup(client, newUser);
+    const createdUser = await client.userApi.createUser({body: newUser});
+    return createdUser;
+  };
+
+  before(async () => {
+    const stagedUser = await createUser('client-list-users-staged');
+    await client.userApi.deactivateUser({userId: stagedUser.id});
+    users.push(stagedUser);
+    users.push(await createUser('client-list-users'));
+    users.push(await createUser('client-list-users-filtered-1'));
+    users.push(await createUser('client-list-users-filtered-2'));
+    // The search indexing is not instant, so give it some time to settle
+    await utils.delay(5000);
+  });
+
+  after(async () => {
+    await utils.cleanup(client, users);
+  });
+
+  it('should filter users with filter and paginate results', async () => {
+    const queryParameters = {
+      filter: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
+      limit: 2
+    };
+    const collection = await client.userApi.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
+    const filtered = new Set();
+    await collection.each(user => {
+      expect(user).to.be.an.instanceof(User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
+
+  it('should filter users with search and paginate results', async () => {
+    const queryParameters = {
+      search: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
+      limit: 2
+    };
+    const collection = await client.userApi.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
+    const filtered = new Set();
+    await collection.each(user => {
+      expect(user).to.be.an.instanceof(User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
+
+  it('should search users with q', async () => {
+    const queryParameters = {
+      q: 'client-list-users-filtered'
+    };
+    const filtered = new Set();
+    await (await client.userApi.listUsers(queryParameters)).each(user => {
+      expect(user).to.be.an.instanceof(User);
+      expect(user.profile.firstName).to.match(new RegExp('client-list-users-filtered'));
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(2);
+  });
+});
+
+describe('client.userApi.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
-    await client.listUsers().each(user => {
+    await (await client.userApi.listUsers()).each(user => {
       expect(user).to.be.an.instanceof(User);
     });
   });
 
   it('should allow me to abort iteration synchronously', async () => {
     let localCount = 0;
-    await client.listUsers().each(() => {
+    await (await client.userApi.listUsers()).each(() => {
       localCount++;
       return false;
     });
     expect(localCount).to.equal(1);
   });
 
-  it('should allow me to abort iteration asynchronously, using a promise', () => {
+  it('should allow me to abort iteration asynchronously, using a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
+    return (await client.userApi.listUsers()).each(() => {
       localCount++;
       return new Promise((resolve) => {
         setTimeout(resolve.bind(null, false), 1000);
@@ -99,9 +186,9 @@ describe('client.listUsers().each()', () => {
       });
   });
 
-  it('should stop iteration if the iterator rejects a promise', () => {
+  it('should stop iteration if the iterator rejects a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
+    return (await client.userApi.listUsers()).each(() => {
       localCount++;
       return new Promise((resolve, reject) => {
         setTimeout(reject.bind(null, 'foo error'), 1000);
@@ -113,11 +200,11 @@ describe('client.listUsers().each()', () => {
   });
 });
 
-describe('client.listUsers().next()', () => {
-  let _user;
+describe('client.userApi.listUsers().next()', () => {
+  let _user: User;
 
   before(async () => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('client-list-users-2'),
       credentials: {
         password: {value: 'Abcd1234#@'}
@@ -130,22 +217,23 @@ describe('client.listUsers().next()', () => {
     // Add an unmapped property to the user profile
     newUser.profile.nickName = 'Nicky';
 
-    _user = await client.createUser(newUser);
+    _user = await client.userApi.createUser({body: newUser});
   });
 
   after(async () => {
     await utils.cleanup(client, _user);
   });
 
-  it('should return User models', () => {
-    return client.listUsers().next()
+  it('should return User models', async () => {
+    const collection = await client.userApi.listUsers();
+    return collection.next()
       .then(result => {
         expect(result.value).to.be.an.instanceof(User);
       });
   });
 
-  it('should allow me to visit every user', () => {
-    const collection = client.listUsers();
+  it('should allow me to visit every user', async () => {
+    const collection = await client.userApi.listUsers();
     let localCount = 0;
     function iter(result) {
       localCount++;

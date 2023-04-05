@@ -28,15 +28,15 @@ describe.skip('client.generateApplicationKey()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
-      const applicationKey = await client.generateApplicationKey(createdApplication.id, {
+      createdApplication = await client.applicationApi.createApplication({application});
+      const applicationKey = await client.applicationApi.generateApplicationKey({appId: createdApplication.id,
         validityYears: 2
       });
       expect(applicationKey).to.be.instanceof(JsonWebKey);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
