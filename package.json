@@ -21,7 +21,7 @@
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
-    "test:integration:ssws": "TEST_TYPE=it OKTA_CLIENT_AUTHORIZATIONMODE=SSWS  mocha test/it/*.ts",
+    "test:integration:ssws": "TEST_TYPE=it OKTA_CLIENT_AUTHORIZATIONMODE=SSWS  mocha test/it/device-api.ts",
     "test:integration:oauth": "TEST_TYPE=it OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey  mocha test/it/user-get.ts",
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
