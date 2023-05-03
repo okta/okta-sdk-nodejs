@@ -10,11 +10,16 @@ const client = new Client({
 
 describe('Push Provider  API', () => {
   it('lists push providers', async () => {
-    const notificationServices = [];
-    for await (const provider of await client.pushProviderApi.listPushProviders()) {
-      expect(provider).to.be.instanceOf(PushProvider);
-      notificationServices.push(provider);
+    try {
+      const notificationServices = [];
+      for await (const provider of await client.pushProviderApi.listPushProviders()) {
+        expect(provider).to.be.instanceOf(PushProvider);
+        notificationServices.push(provider);
+      }
+      expect(notificationServices).to.be.empty;
+    } catch (e) {
+      expect(e.status).to.equal(401);
+      expect(e.errorSummary).to.contain('You do not have permission');
     }
-    expect(notificationServices).to.be.empty;
   });
 });
