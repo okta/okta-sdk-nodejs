@@ -14,7 +14,7 @@ async function getFirstDevice() {
   });
   const { value: device } = await collection.next(); // access the first item of the collect
   return device;
-};
+}
 
 describe('Device API', () => {
   it('lists existing devices', async () => {
@@ -57,7 +57,7 @@ describe('Device API', () => {
       });
       expect(testDevice.status).to.equal('ACTIVE');
     }
-    
+
     // suspend
     if (testDevice.status === 'ACTIVE') {
       await client.deviceApi.suspendDevice({
