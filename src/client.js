@@ -53,6 +53,7 @@ const {
   RoleTargetApi,
   RoleAssignmentApi,
   CustomDomainApi,
+  DeviceApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -162,6 +163,7 @@ class Client {
     this.roleTargetApi = new RoleTargetApi(configuration);
     this.roleAssignmentApi = new RoleAssignmentApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
+    this.deviceApi = new DeviceApi(configuration);
   }
 }
 
