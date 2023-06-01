@@ -1,4 +1,5 @@
 [<img src="https://aws1.discourse-cdn.com/standard14/uploads/oktadev/original/1X/0c6402653dfb70edc661d4976a43a46f33e5e919.png" align="right" width="256px"/>](https://devforum.okta.com/)
+
 [![npm](https://img.shields.io/npm/v/@okta/okta-sdk-nodejs)](https://www.npmjs.com/package/@okta/okta-sdk-nodejs)
 [![Support](https://img.shields.io/badge/support-Developer%20Forum-blue.svg)][devforum]
 [![API Reference](https://img.shields.io/badge/docs-reference-lightgrey.svg)][nodejsdocs]
