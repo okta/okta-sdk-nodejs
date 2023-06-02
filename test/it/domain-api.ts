@@ -16,8 +16,7 @@ const client = new Client({
 
 
 describe('Domains API', () => {
-
-  afterEach(async () => {
+  const deleteCustomDomains = async () => {
     const list = await client.customDomainApi.listCustomDomains();
     list.domains.forEach(async (domain) => {
       await client.customDomainApi.deleteCustomDomain({
@@ -25,7 +24,12 @@ describe('Domains API', () => {
       });
     });
     await utils.delay(3000);
-  });
+  };
+
+  // clear out custom domains before attempting any tests in case
+  // afterEach hook failed to run in a previous run due to test abort/timeout
+  beforeAll(deleteCustomDomains);
+  afterEach(deleteCustomDomains);
 
   it('can create, list and get domains by id', async function () {
     try {
