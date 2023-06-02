@@ -28,7 +28,7 @@ describe('Domains API', () => {
 
   // clear out custom domains before attempting any tests in case
   // afterEach hook failed to run in a previous run due to test abort/timeout
-  beforeAll(deleteCustomDomains);
+  before(deleteCustomDomains);
   afterEach(deleteCustomDomains);
 
   it('can create, list and get domains by id', async function () {
