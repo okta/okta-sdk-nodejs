@@ -17,12 +17,27 @@ const client = new Client({
 
 describe('Domains API', () => {
   const deleteCustomDomains = async () => {
-    const list = await client.customDomainApi.listCustomDomains();
-    list.domains.forEach(async (domain) => {
-      await client.customDomainApi.deleteCustomDomain({
-        domainId: domain.id
-      });
+    const domains = await client.customDomainApi.listCustomDomains();
+    for (const domain of domains.domains) {
+      const canDelete = domain.certificateSourceType === 'MANUAL';
+      if (canDelete) {
+        await client.customDomainApi.deleteCustomDomain({
+          domainId: domain.id
+        });
+      }
+    }
+
+    const brands = await client.customizationApi.listBrands();
+    const brandIdsToDelete = [];
+    await brands.each(brand => {
+      if (brand.name.match(/^.+\.example\.com$/)) {
+        brandIdsToDelete.push(brand.id);
+      }
     });
+    for (const brandId of brandIdsToDelete) {
+      await client.customizationApi.deleteBrand({ brandId });
+    }
+
     await utils.delay(3000);
   };
 
@@ -42,7 +57,9 @@ describe('Domains API', () => {
       expect(createdDomain.dnsRecords.length).to.be.greaterThanOrEqual(1);
 
       const domainsList = await client.customDomainApi.listCustomDomains();
-      expect(domainsList.domains.length).to.equal(1);
+      const customDomains = domainsList.domains
+        .filter(domain => domain.certificateSourceType === 'MANUAL');
+      expect(customDomains.length).to.equal(1);
 
       const fetchedDomain = await client.customDomainApi.getCustomDomain({
         domainId: createdDomain.id
