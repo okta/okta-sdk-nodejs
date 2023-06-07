@@ -30,6 +30,31 @@ async function cleanInlineHooks() {
   });
 }
 
+async function cleanDomains() {
+  const domains = await client.customDomainApi.listCustomDomains();
+  for (const domain of domains.domains!) {
+    const canDelete = domain.certificateSourceType === 'MANUAL';
+    if (canDelete) {
+      await client.customDomainApi.deleteCustomDomain({
+        domainId: domain.id!
+      });
+    } else {
+      console.log(`Skipped domain to remove ${domain.domain}`);
+    }
+  }
+
+  const brands = await client.customizationApi.listBrands();
+  const brandIdsToDelete: string[] = [];
+  await brands.each(brand => {
+    if (brand?.name?.match(/^.+\.example\.com$/)) {
+      brandIdsToDelete.push(brand.id!);
+    }
+  });
+  for (const brandId of brandIdsToDelete) {
+    await client.customizationApi.deleteBrand({ brandId });
+  }
+}
+
 async function cleanAuthorizationServers() {
   await (await client.authorizationServerApi.listAuthorizationServers()).each(
     async authorizationServer => {
@@ -186,6 +211,7 @@ describe('Clean', () => {
     await cleanTestGroupRules();
     await cleanTestGroups();
     await cleanApplications();
+    await cleanDomains();
     await cleanInlineHooks();
     await cleanTestPolicies();
     await cleanTestIdps();
