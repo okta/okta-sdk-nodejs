@@ -138,8 +138,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     if (paramMatcher.test(path)) {
       const matches = path.match(paramMatcher);
       for (let match of matches) {
-        const param = match.slice(1);
-        path = path.replace(match, `\${${param}`);
+        const param = match.slice(1, match.length - 1);
+        path = path.replace(match, `\${encodeURIComponent(${param})}`);
       }
     }
     return new handlebars.SafeString(path);
