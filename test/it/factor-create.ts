@@ -82,7 +82,7 @@ describe('Factors API', () => {
       expect(createdFactor.factorType).to.equal('push');
       expect(createdFactor.provider).to.equal('YUBICO');
       expect(createdFactor).to.be.instanceof(PushUserFactor);
-    } catch(e) {
+    } catch (e) {
       expect(e instanceof OktaApiError);
       expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
     }
@@ -93,10 +93,11 @@ describe('Factors API', () => {
     try {
       const factor: PushUserFactor = {
         factorType: 'push',
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         provider: 'UNSUPPORTED_PROVIDER' as any
       };
       await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
-    } catch(e) {
+    } catch (e) {
       err = e;
     }
     expect(err).not.to.be.undefined;
@@ -116,7 +117,7 @@ describe('Factors API', () => {
       expect(createdFactor.factorType).to.equal('call');
       expect(createdFactor).to.be.instanceof(UserFactor);
       expect(createdFactor).to.be.instanceof(CallUserFactor);
-    } catch(e) {
+    } catch (e) {
       expect(e instanceof OktaApiError);
       expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
     }
