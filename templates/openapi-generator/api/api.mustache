@@ -39,7 +39,7 @@ export class {{classname}}RequestFactory extends BaseAPIRequestFactory {
      * {{&summary}}
      {{/summary}}
      {{#allParams}}
-     * @param {{paramName}} {{&description}}
+     * @param {{paramName}} {{description}}
      {{/allParams}}
      */
     public async {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}_options?: Configuration): Promise<RequestContext> {
@@ -214,7 +214,7 @@ export class {{classname}}ResponseProcessor {
             return body;
             {{/is2xx}}
             {{^is2xx}}
-            throw new ApiException<{{{dataType}}}>({{code}}, '{{&message}}', body, response.headers);
+            throw new ApiException<{{{dataType}}}>({{code}}, '{{message}}', body, response.headers);
             {{/is2xx}}
             {{/dataType}}
             {{^dataType}}
@@ -222,7 +222,7 @@ export class {{classname}}ResponseProcessor {
             return;
             {{/is2xx}}
             {{^is2xx}}
-            throw new ApiException<undefined>(response.httpStatusCode, '{{&message}}', undefined, response.headers);
+            throw new ApiException<undefined>(response.httpStatusCode, '{{message}}', undefined, response.headers);
             {{/is2xx}}
             {{/dataType}}
         }

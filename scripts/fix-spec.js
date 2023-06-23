@@ -20,9 +20,6 @@ function patchSpec3(spec3) {
 
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
-    if (schema.additionalProperties === true) {
-      schema.additionalProperties = {};
-    }
     if (schema.type === 'object' && !schema.properties) {
       schema.additionalProperties = {};
       emptySchemas.push(schemaKey);
