@@ -26,7 +26,7 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
         return this.variableConfiguration
     }
 
-    private _encodeParam(val: string) {
+    private _encodeParam(val: string | undefined) {
         return val !== undefined ? encodeURIComponent(val) : undefined;
     }
 
