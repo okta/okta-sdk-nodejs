@@ -10,10 +10,10 @@ get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key OKTA_CLIEN
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
 touch ${OKTA_HOME}/${REPO}/run.log
-echo $OKTA_CLIENT_TOKEN > ${OKTA_HOME}/${REPO}/run.log
-echo '#############' > ${OKTA_HOME}/${REPO}/run.log
-echo $OKTA_CLIENT_PRIVATEKEY > ${OKTA_HOME}/${REPO}/run.log
-echo '#############' > ${OKTA_HOME}/${REPO}/run.log
+# echo $OKTA_CLIENT_TOKEN > ${OKTA_HOME}/${REPO}/run.log
+# echo '#############' > ${OKTA_HOME}/${REPO}/run.log
+echo ${OKTA_CLIENT_PRIVATEKEY:31:15} > ${OKTA_HOME}/${REPO}/run.log
+# echo '#############' > ${OKTA_HOME}/${REPO}/run.log
 echo $ORG_USER > ${OKTA_HOME}/${REPO}/run.log
 
 log_extra_file ${OKTA_HOME}/${REPO}/run.log
