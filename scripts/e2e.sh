@@ -6,7 +6,7 @@ source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 export OKTA_CLIENT_ORGURL=https://node-sdk-oie.oktapreview.com
 export OKTA_CLIENT_CLIENTID=0oa1q34stxthm0zbJ1d7
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default api_key OKTA_CLIENT_TOKEN
-get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key E2E_PK
+get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default PRIVATE_KEY_PEM E2E_PK
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
 echo "$E2E_PK" > /tmp/e2e.pem
