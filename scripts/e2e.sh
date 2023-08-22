@@ -18,7 +18,7 @@ echo $pem
 
 echo $HEADER > /tmp/e2e.pem
 echo "$pem" | tr " " "\n" >> /tmp/e2e.pem
-echo "\n$FOOTER" >> /tmp/e2e.pem
+echo "$FOOTER" >> /tmp/e2e.pem
 export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
 
 export TEST_SUITE_TYPE="junit"
