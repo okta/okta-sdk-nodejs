@@ -9,7 +9,7 @@ get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default api_key OKTA_CLIENT_TO
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default PRIVATE_KEY_PEM E2E_PK
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
-echo "$E2E_PK" > /tmp/e2e.pem
+echo "Searching for foo 0 $E2E_PK" > /tmp/e2e.pem
 export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
 
 export TEST_SUITE_TYPE="junit"
