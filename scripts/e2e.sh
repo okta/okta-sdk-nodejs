@@ -13,7 +13,7 @@ HEADER="-----BEGIN RSA PRIVATE KEY-----"
 FOOTER="-----END RSA PRIVATE KEY-----"
 
 pem=$(echo ${E2E_PK:31})
-pem=$(echo "${pem%${FOOTER}*}")
+pem=$(echo "${pem% ${FOOTER}}")
 echo $pem
 
 echo $HEADER > /tmp/e2e.pem
