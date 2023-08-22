@@ -10,10 +10,7 @@ get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key E2E_PK
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
 echo "$E2E_PK" | tr -cd ' \t' | wc -c
-
-if [[ "$E2E_PK" =~ ^-----BEGIN RSA PRIVATE KEY-----.* ]]; then
-  echo "probably good"
-fi
+echo ${E2E_PK:5:21}
 
 echo "Searching for foo 0 $E2E_PK" > /tmp/e2e.pem
 export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
