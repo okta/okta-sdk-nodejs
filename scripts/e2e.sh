@@ -6,17 +6,11 @@ source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 export OKTA_CLIENT_ORGURL=https://node-sdk-oie.oktapreview.com
 export OKTA_CLIENT_CLIENTID=0oa1q34stxthm0zbJ1d7
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default api_key OKTA_CLIENT_TOKEN
-get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key OKTA_CLIENT_PRIVATEKEY
+get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key E2E_PK
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
-touch ${OKTA_HOME}/${REPO}/run.log
-# echo $OKTA_CLIENT_TOKEN > ${OKTA_HOME}/${REPO}/run.log
-# echo '#############' > ${OKTA_HOME}/${REPO}/run.log
-echo ${OKTA_CLIENT_PRIVATEKEY:31:15} > ${OKTA_HOME}/${REPO}/run.log
-# echo '#############' > ${OKTA_HOME}/${REPO}/run.log
-echo $ORG_USER > ${OKTA_HOME}/${REPO}/run.log
-
-log_extra_file ${OKTA_HOME}/${REPO}/run.log
+echo "$E2E_PK" > /tmp/e2e.pem
+export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
 
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
