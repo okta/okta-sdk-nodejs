@@ -10,14 +10,15 @@ get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default private_key E2E_PK
 get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 
 HEADER="-----BEGIN RSA PRIVATE KEY-----"
-FOOTER="\n-----END RSA PRIVATE KEY-----"
+FOOTER="-----END RSA PRIVATE KEY-----"
 
 pem=$(echo ${E2E_PK:31})
 pem=$(echo "${pem%${FOOTER}*}")
+echo $pem
 
 echo $HEADER > /tmp/e2e.pem
 echo "$pem" | tr " " "\n" >> /tmp/e2e.pem
-echo $FOOTER >> /tmp/e2e.pem
+echo "\n$FOOTER" >> /tmp/e2e.pem
 export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
 
 export TEST_SUITE_TYPE="junit"
