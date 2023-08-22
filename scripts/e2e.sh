@@ -12,13 +12,14 @@ get_vault_secret_key repo_gh-okta-okta-sdk-nodejs/default username ORG_USER
 HEADER="-----BEGIN RSA PRIVATE KEY-----"
 FOOTER="-----END RSA PRIVATE KEY-----"
 
-pem=$(echo ${E2E_PK:31})
-pem=$(echo "${pem% ${FOOTER}}")
-echo $pem
-
-echo $HEADER > /tmp/e2e.pem
-echo "$pem" | tr " " "\n" >> /tmp/e2e.pem
-echo "$FOOTER" >> /tmp/e2e.pem
+# NOTE: storing pem as secret results in newline characters becoming spaces, which
+# causes the pem to be malformed when used by tests. Below solves this issue
+pem=$(echo ${E2E_PK:31})                            # remove -----BEGIN prefix
+pem=$(echo "${pem% ${FOOTER}}")                     # remove -----END suffix
+# BEGIN / END need to be removed so all remaining spaces can be converted to newlines
+echo $HEADER > /tmp/e2e.pem                         # appends BEGIN header to tmp file
+echo "$pem" | tr " " "\n" >> /tmp/e2e.pem           # appends pem with spaces converted to newlines
+echo "$FOOTER" >> /tmp/e2e.pem                      # appends END footer to tmp file
 export OKTA_CLIENT_PRIVATEKEY=$(cat /tmp/e2e.pem)
 
 export TEST_SUITE_TYPE="junit"
