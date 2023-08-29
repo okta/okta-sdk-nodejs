@@ -35,12 +35,14 @@ describe('Device API', () => {
 
   it('manage status of device', async () => {
     let testDevice = await getFirstDevice();
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     // deactivate
     if (testDevice.status === 'ACTIVE') {
       await client.deviceApi.deactivateDevice({
         deviceId: testDevice.id
       });
+      await sleep(1000);
       testDevice = await client.deviceApi.getDevice({
         deviceId: testDevice.id
       });
@@ -52,6 +54,7 @@ describe('Device API', () => {
       await client.deviceApi.activateDevice({
         deviceId: testDevice.id
       });
+      await sleep(1000);
       testDevice = await client.deviceApi.getDevice({
         deviceId: testDevice.id
       });
@@ -63,6 +66,7 @@ describe('Device API', () => {
       await client.deviceApi.suspendDevice({
         deviceId: testDevice.id
       });
+      await sleep(1000);
       testDevice = await client.deviceApi.getDevice({
         deviceId: testDevice.id
       });
@@ -74,6 +78,7 @@ describe('Device API', () => {
       await client.deviceApi.unsuspendDevice({
         deviceId: testDevice.id
       });
+      await sleep(1000);
       testDevice = await client.deviceApi.getDevice({
         deviceId: testDevice.id
       });
