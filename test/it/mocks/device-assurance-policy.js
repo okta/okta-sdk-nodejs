@@ -5,7 +5,7 @@ module.exports = () => ({
 
   "platform": "IOS",
   "osVersion": {
-    "minimum": "15.0.0.0"
+    "minimum": "15"
   },
   "screenLockType": {
     "include":["PASSCODE", "BIOMETRIC"]
