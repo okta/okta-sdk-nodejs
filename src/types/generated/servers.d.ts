@@ -36,6 +36,7 @@ export declare class ServerConfiguration<T extends {
      */
   setVariables(variableConfiguration: Partial<T>): void;
   getConfiguration(): T;
+  private _encodeParam;
   private getUrl;
   private getEndpointUrl;
   private getAffectedResources;

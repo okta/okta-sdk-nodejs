@@ -8,6 +8,7 @@ import {
   SecurityQuestionUserFactor,
   SmsUserFactor,
   UserFactor,
+  OktaApiError,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -71,18 +72,55 @@ describe('Factors API', () => {
     return utils.cleanup(client, createdUser);
   });
 
+  it('should not allow me to create a factor that is not enabled in the Org', async () => {
+    try {
+      const factor: PushUserFactor = {
+        factorType: 'push',
+        provider: 'YUBICO'
+      };
+      const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
+      expect(createdFactor.factorType).to.equal('push');
+      expect(createdFactor.provider).to.equal('YUBICO');
+      expect(createdFactor).to.be.instanceof(PushUserFactor);
+    } catch (e) {
+      expect(e instanceof OktaApiError);
+      expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
+    }
+  });
+
+  it('should not allow me to create an invalid factor', async () => {
+    let err: OktaApiError;
+    try {
+      const factor: PushUserFactor = {
+        factorType: 'push',
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        provider: 'UNSUPPORTED_PROVIDER' as any
+      };
+      await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
+    } catch (e) {
+      err = e;
+    }
+    expect(err).not.to.be.undefined;
+    expect(err.errorCauses?.[0]?.errorSummary).to.equal('Invalid Provider.');
+  });
+
   it('should allow me to create a Call factor', async () => {
-    const factor: CallUserFactor = {
-      factorType: 'call',
-      provider: 'OKTA',
-      profile: {
-        phoneNumber: '162 840 01133‬'
-      }
-    };
-    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
-    expect(createdFactor.factorType).to.equal('call');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(CallUserFactor);
+    try {
+      const factor: CallUserFactor = {
+        factorType: 'call',
+        provider: 'OKTA',
+        profile: {
+          phoneNumber: '162 840 01133‬'
+        }
+      };
+      const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
+      expect(createdFactor.factorType).to.equal('call');
+      expect(createdFactor).to.be.instanceof(UserFactor);
+      expect(createdFactor).to.be.instanceof(CallUserFactor);
+    } catch (e) {
+      expect(e instanceof OktaApiError);
+      expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
+    }
   });
 
   it('should allow me to create a Push factor', async () => {
