@@ -1,11 +1,21 @@
 # Okta Node SDK Changelog
 
+# 7.1.0
+
+### Features
+
+- [#389](https://github.com/okta/okta-sdk-nodejs/pull/389) Added Device API
+
+### Bug Fixes
+
+- [#397](https://github.com/okta/okta-sdk-nodejs/pull/397) Fixes type for errorCauses in OktaApiError
+
+
 # 7.0.1
 
 ### Bug Fixes
 
 - [#395](https://github.com/okta/okta-sdk-nodejs/pull/395) fix: Encode special characters in path parameters
-- [#397](https://github.com/okta/okta-sdk-nodejs/pull/397) Fixes type for errorCauses in OktaApiError
 
 # 7.0.0
 
