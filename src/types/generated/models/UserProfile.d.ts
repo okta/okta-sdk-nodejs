@@ -43,6 +43,7 @@ export declare class UserProfile {
   'login'?: string;
   'manager'?: string;
   'managerId'?: string;
+  'manageremail'?: string;
   'middleName'?: string;
   'mobilePhone'?: string;
   'nickName'?: string;
