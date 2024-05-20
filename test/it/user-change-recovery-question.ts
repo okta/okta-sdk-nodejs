@@ -50,7 +50,7 @@ describe('User API Tests', () => {
 
     // 3. Update the user password through updated recovery question
     userCredentials = {
-      password: { value: '1234Abcd' },
+      password: { value: '1234Abcd#@$' },
       recovery_question: { question: 'How many engineers it takes to...', answer: 'forty two' }
     };
 
