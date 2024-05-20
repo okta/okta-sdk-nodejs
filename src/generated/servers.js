@@ -48,9 +48,6 @@ class ServerConfiguration {
     }
     return replacedUrl;
   }
-  _encodeParam(val) {
-    return val !== undefined ? encodeURIComponent(val) : undefined;
-  }
   getEndpointUrl(endpoint, vars) {
     const endpointWithVars = endpoint.replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
     return this.getUrl() + endpointWithVars;
