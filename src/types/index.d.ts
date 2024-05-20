@@ -13,6 +13,7 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
+export * from './api-error';
 export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';

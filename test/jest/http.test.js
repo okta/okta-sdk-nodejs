@@ -262,7 +262,16 @@ describe('Http class', () => {
         const http = new Http({ requestExecutor, cacheMiddleware });
         response.status = 401;
         const errorObj = {
-          errorCode: 'a fake error'
+          errorCode: 'a fake error',
+          errorSummary: 'Fake Summary',
+          errorCauses: [
+            {
+              errorSummary: 'Fake Cause 1'
+            },
+            {
+              errorSummary: 'Fake Cause 2'
+            }
+          ]
         };
         response.text = jest.fn().mockReturnValue(Promise.resolve(JSON.stringify(errorObj)));
         return http.http('http://fakey.local')
@@ -272,13 +281,20 @@ describe('Http class', () => {
               name: 'OktaApiError',
               status: 401,
               errorCode: 'a fake error',
-              errorSummary: '',
-              errorCauses: undefined,
+              errorSummary: 'Fake Summary',
+              errorCauses: [
+                {
+                  errorSummary: 'Fake Cause 1'
+                },
+                {
+                  errorSummary: 'Fake Cause 2'
+                }
+              ],
               errorLink: undefined,
               errorId: undefined,
               url: 'http://fakey.local',
               headers: { fakeHeaders: true },
-              message: 'Okta HTTP 401 a fake error '
+              message: 'Okta HTTP 401 a fake error Fake Summary. Fake Cause 1. Fake Cause 2'
             });
           });
       });

@@ -70,6 +70,30 @@ async function cleanAuthorizationServers() {
   );
 }
 
+async function cleanNetworkZones() {
+  await (await client.networkZoneApi.listNetworkZones()).each(
+    async networkZone => {
+      const canDelete = networkZone.name?.startsWith('node-sdk: ');
+      if (canDelete) {
+        try {
+          if (networkZone.status === 'ACTIVE') {
+            await client.networkZoneApi.deactivateNetworkZone({
+              zoneId: networkZone.id!,
+            });
+          }
+          await client.networkZoneApi.deleteNetworkZone({
+            zoneId: networkZone.id!,
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        console.log(`Skipped network zone to remove ${networkZone.name}`);
+      }
+    }
+  );
+}
+
 async function cleanApplications() {
   await (await client.applicationApi.listApplications()).each(async application => {
     const canDelete = ![
@@ -206,6 +230,7 @@ async function cleanEmailCustomizations() {
 
 describe('Clean', () => {
   it('all test resources', async () => {
+    await cleanNetworkZones();
     await cleanAuthorizationServers();
     await cleanTestUsers();
     await cleanTestGroupRules();

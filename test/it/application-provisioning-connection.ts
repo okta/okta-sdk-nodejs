@@ -46,7 +46,7 @@ describe('Application API: provisioning connection for application', () => {
       expect(response).to.be.undefined;
     } catch (err) {
       expect(err.status).to.equal(400);
-      expect(err.message).to.contain('Api validation failed: credential. Verification failed: Invalid URL. Not authorized.');
+      expect(err.message).to.contain('Api validation failed: credential.');
     }
 
     const response = await client.applicationApi.deactivateDefaultProvisioningConnectionForApplication({

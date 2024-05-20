@@ -37,6 +37,9 @@ class ServerConfiguration {
   getConfiguration() {
     return this.variableConfiguration;
   }
+  _encodeParam(val) {
+    return val !== undefined ? encodeURIComponent(val) : undefined;
+  }
   getUrl() {
     let replacedUrl = this.url;
     for (const key in this.variableConfiguration) {
@@ -49,9 +52,7 @@ class ServerConfiguration {
     return val !== undefined ? encodeURIComponent(val) : undefined;
   }
   getEndpointUrl(endpoint, vars) {
-    const endpointWithVars = endpoint.replace(/{(\w+)}/g, (match, key) =>
-      this._encodeParam(vars?.[key]) || match
-    );
+    const endpointWithVars = endpoint.replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
     return this.getUrl() + endpointWithVars;
   }
   getAffectedResources(path, vars) {
@@ -59,9 +60,7 @@ class ServerConfiguration {
     let pl = path.length;
     while (pl--) {
       if (path[pl] === '}') {
-        const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) =>
-          this._encodeParam(vars?.[key]) || match
-        );
+        const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
         resources.push(this.getUrl() + resourcePath);
       }
     }
