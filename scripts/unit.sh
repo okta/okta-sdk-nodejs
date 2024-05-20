@@ -6,8 +6,9 @@ source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 
 export OKTA_CLIENT_ORGURL=https://node-sdk.okta.com
 export OKTA_CLIENT_CLIENTID=0oa1jnkiuz6FCTchz4x7
-get_vault_secret_key devex/okta-sdk-nodejs-vars api_key OKTA_CLIENT_TOKEN
-get_vault_secret_key devex/okta-sdk-nodejs-vars private_key OKTA_CLIENT_PRIVATEKEY
+get_terminus_secret "/" api_key OKTA_CLIENT_TOKEN
+get_terminus_secret "/" private_key OKTA_CLIENT_PRIVATEKEY
+get_terminus_secret "/" username ORG_USER
 
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
