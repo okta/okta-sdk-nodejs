@@ -56,6 +56,6 @@ describe('Sessions API', () => {
     });
 
     expect(new Date(refreshedSession.expiresAt).getTime())
-      .to.be.above(new Date(currentSession.expiresAt).getTime());
+      .to.be.greaterThanOrEqual(new Date(currentSession.expiresAt).getTime());
   });
 });

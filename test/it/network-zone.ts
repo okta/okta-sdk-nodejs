@@ -23,7 +23,7 @@ const buildBlockedNetworkZone = (): NetworkZone => {
   return {
     type: 'IP',
     id: null,
-    name: 'newBlockedNetworkZone',
+    name: 'node-sdk: newBlockedNetworkZone',
     status: 'ACTIVE',
     created: null,
     lastUpdated: null,
@@ -41,7 +41,7 @@ const buildNetworkZone = (): NetworkZone => {
   return {
     type: 'IP',
     id: null,
-    name: 'newNetworkZone',
+    name: 'node-sdk: newNetworkZone',
     status: 'ACTIVE',
     created: null,
     lastUpdated: null,
@@ -77,6 +77,9 @@ describe('Network Zone CRUD', () => {
   });
 
   afterEach(async () => {
+    await client.networkZoneApi.deactivateNetworkZone({
+      zoneId: networkZone.id
+    });
     await client.networkZoneApi.deleteNetworkZone({
       zoneId: networkZone.id
     });
@@ -136,6 +139,7 @@ describe('List Network Zones', () => {
 
   after(async () => {
     for (const networkZone of networkZones) {
+      await client.networkZoneApi.deactivateNetworkZone({ zoneId: networkZone.id });
       await client.networkZoneApi.deleteNetworkZone({ zoneId: networkZone.id });
     }
   });
