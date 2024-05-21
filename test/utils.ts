@@ -211,6 +211,24 @@ async function removeAppByLabel(client: Client, label: string) {
   });
 }
 
+async function activateSecurityQuestion(client: Client) {
+  const authenticators = await client.authenticatorApi.listAuthenticators();  // returns Collection<Authenticator>
+  await authenticators.each(async (item) => {
+    if (item.type === 'security_question') {
+      if (item.status !== 'ACTIVE') {
+        const sqAuthenticator = await client.authenticatorApi.activateAuthenticator({
+          authenticatorId: item.id
+        });
+        expect(sqAuthenticator).to.include({
+          type: 'security_question',
+          name: 'Security Question',
+          status: 'ACTIVE'
+        });
+      }
+    }
+  });
+}
+
 function getMockProfile(testName: string) {
   return {
     firstName: testName,
@@ -377,6 +395,7 @@ export {
   cleanupGroup,
   cleanup,
   removeAppByLabel,
+  activateSecurityQuestion,
   getMockProfile,
   getBookmarkApplication,
   getOrg2OrgApplicationOptions,
