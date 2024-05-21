@@ -33,7 +33,10 @@ const client = new Client({
 describe('Factors API', () => {
   let createdUser;
   before(async () => {
-    // 1. Create a user
+    // 1. Ensure Security Question is active
+    await utils.activateSecurityQuestion(client);
+
+    // 2. Create a user
     const newUser = {
       profile: utils.getMockProfile('factor-create'),
       credentials: {

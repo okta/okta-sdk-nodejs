@@ -16,6 +16,11 @@ const client = new Client({
 });
 
 describe('Authenticators API tests', () => {
+  before(async () => {
+    // Ensure Security Question is active
+    await utils.activateSecurityQuestion(client);
+  });
+
   // do not run these tests in a non-OIE context
   beforeEach(async function () {
     const isOIEOrg = await utils.verifyOrgIsOIE(client);

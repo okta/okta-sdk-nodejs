@@ -16,6 +16,11 @@ const client = new Client({
 });
 
 describe('User API Tests', () => {
+  before(async () => {
+    // Ensure Security Question is active
+    await utils.activateSecurityQuestion(client);
+  });
+
   beforeEach(async () => {
     const authenticatorPolicies: Policy[] = [];
     for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
