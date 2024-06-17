@@ -1,6 +1,6 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "Okta API wrapper for Node.js",
   "engines": {
     "node": ">=14.0"
@@ -40,7 +40,7 @@
     "https-proxy-agent": "^5.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.20",
-    "njwt": "^1.0.0",
+    "njwt": "^2.0.1",
     "node-fetch": "^2.6.7",
     "parse-link-header": "^2.0.0",
     "rasha": "^1.2.5",
