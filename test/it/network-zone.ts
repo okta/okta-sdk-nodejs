@@ -22,7 +22,7 @@ describe('Network Zone API', () => {
     networkZone = await client.createNetworkZone({
       type: 'IP',
       id: null,
-      name: 'newNetworkZone',
+      name: 'node-sdk: newNetworkZone',
       status: 'ACTIVE',
       created: null,
       lastUpdated: null,
@@ -50,6 +50,7 @@ describe('Network Zone API', () => {
   });
 
   afterEach(async () => {
+    await client.deactivateNetworkZone(networkZone.id);
     await client.deleteNetworkZone(networkZone.id);
   });
 

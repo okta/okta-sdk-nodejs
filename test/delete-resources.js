@@ -31,6 +31,30 @@ function cleanAuthorizationServers() {
   );
 }
 
+async function cleanNetworkZones() {
+  await (await client.listNetworkZones()).each(
+    async networkZone => {
+      const canDelete = networkZone.name?.startsWith('node-sdk: ');
+      if (canDelete) {
+        try {
+          if (networkZone.status === 'ACTIVE') {
+            await client.deactivateNetworkZone({
+              zoneId: networkZone.id,
+            });
+          }
+          await client.deleteNetworkZone({
+            zoneId: networkZone.id,
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        console.log(`Skipped network zone to remove ${networkZone.name}`);
+      }
+    }
+  );
+}
+
 function cleanApplications() {
   client.listApplications().each(application =>{
     (application.label === 'Node SDK Service App' || application.label === 'Bacon Service Client') ?
@@ -73,6 +97,7 @@ function cleanTestGroups() {
 }
 
 describe('Clean all test resources', () => {
+  cleanNetworkZones();
 
   cleanAuthorizationServers();
 

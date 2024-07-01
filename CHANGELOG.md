@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 6.6.1
+
+### Fixes
+
+- [#420](https://github.com/okta/okta-sdk-nodejs/pull/420) fix: upgrades `njwt` version to `2.0.1` to pull in [CVE-2024-34273](https://www.cve.org/CVERecord?id=CVE-2024-34273) resolution
+
 # 6.6.0
 
 ### Bug Fixes
