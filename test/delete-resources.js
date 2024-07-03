@@ -15,39 +15,68 @@ const client = new okta.Client({
 });
 
 async function cleanInlineHooks() {
-  const collection = await client.listInlineHooks();
-  collection.each(async (inlineHook) => {
+  const collection = client.listInlineHooks();
+  await collection.each(async (inlineHook) => {
 
     await inlineHook.deactivate();
     await inlineHook.delete();
   });
 }
 
-function cleanAuthorizationServers() {
-  client.listAuthorizationServers().each(
-    authorizationServer => {
-      authorizationServer.delete();
+async function cleanDomains() {
+  const domains = (await client.listDomains()).domains;
+  for (const domain of domains) {
+    if (domain.certificateSourceType === 'MANUAL') {
+      await client.deleteDomain(domain.id);
+    }
+  }
+}
+
+async function cleanAuthorizationServers() {
+  await client.listAuthorizationServers().each(
+    async (authorizationServer) => {
+      await authorizationServer.delete();
     }
   );
 }
 
-function cleanApplications() {
-  client.listApplications().each(application =>{
+async function cleanNetworkZones() {
+  await client.listNetworkZones().each(
+    async networkZone => {
+      const canDelete = networkZone.name?.startsWith('node-sdk: ');
+      if (canDelete) {
+        try {
+          if (networkZone.status === 'ACTIVE') {
+            await client.deactivateNetworkZone(networkZone.id);
+          }
+          await client.deleteNetworkZone(networkZone.id);
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        console.log(`Skipped network zone to remove ${networkZone.name}`);
+      }
+    }
+  );
+}
+
+async function cleanApplications() {
+  await client.listApplications().each(async (application) =>{
     (application.label === 'Node SDK Service App' || application.label === 'Bacon Service Client') ?
       console.log(`Skipped application to remove ${application.label}`) :
-      utils.removeAppByLabel(client, application.label);
+      await utils.removeAppByLabel(client, application.label);
   });
 }
 
-function cleanTestUsers() {
-  client.listUsers().each(user => {
+async function cleanTestUsers() {
+  await client.listUsers().each(async (user) => {
     (user.profile.email.endsWith('okta.com')) ?
       console.log(`Skipped user to remove ${user.profile.email}`) :
-      utils.deleteUser(user);
+      await utils.deleteUser(user);
   });
 }
 
-function cleanTestGroups() {
+async function cleanTestGroups() {
   const url = `${client.baseUrl}/api/v1/groups`;
   const request = {
     method: 'get',
@@ -73,15 +102,19 @@ function cleanTestGroups() {
 }
 
 describe('Clean all test resources', () => {
+  it('cleans resources', async () => {
+    await cleanNetworkZones();
+ 
+    await cleanAuthorizationServers();
+ 
+    await cleanTestUsers();
+ 
+    await cleanTestGroups();
+ 
+    await cleanApplications();
 
-  cleanAuthorizationServers();
-
-  cleanTestUsers();
-
-  cleanTestGroups();
-
-  cleanApplications();
-
-  cleanInlineHooks();
-
+    await cleanDomains();
+ 
+    await cleanInlineHooks();
+  });
 });

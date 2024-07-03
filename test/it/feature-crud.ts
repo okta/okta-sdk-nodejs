@@ -19,7 +19,9 @@ const client = new Client({
 const getFirstNonBetaFeature = async () => {
   let firstFeatureInList;
   await client.listFeatures().each((feature) => {
-    if (feature.stage.value !== 'BETA') {
+    // Note: Trying to enable feature 'Enforce MFA For Admin Console' will fail with error:
+    // Api validation failed: ENFORCE_MFA_FOR_ADMIN_APPS. Cannot enable the feature: To satisfy 2FA assurance, the current admin must have enough enrolled authenticators, and the enrolled authenticators cannot be disabled in authenticator enrollment policy.
+    if (feature.stage.value !== 'BETA' && !feature.name.includes('Enforce MFA')) {
       firstFeatureInList = feature;
       return false;
     }
