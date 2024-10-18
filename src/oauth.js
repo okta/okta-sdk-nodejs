@@ -13,6 +13,7 @@
 
 const { makeJwt } = require('./jwt');
 const Http = require('./http');
+const { base64urlEncode } = require('njwt');
 
 function formatParams(obj) {
   var str = [];
@@ -42,6 +43,33 @@ class OAuth {
   getAccessToken() {
     if (this.accessToken) {
       return Promise.resolve(this.accessToken);
+    }
+
+    if (this.client.authorizationMode === 'ClientSecret') {
+      const base64Creds = base64urlEncode(`${this.client.clientId}:${this.client.clientSecret}`);
+      const params = formatParams({
+        grant_type: 'client_credentials',
+        scope: this.client.scopes.join(' ')
+      });
+      return this.client.requestExecutor.fetch({
+        url: `${this.client.baseUrl}/oauth2/default/v1/token`,
+        method: 'POST',
+        body: params,
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Basic ${base64Creds}`,
+          'cache-control': 'no-cache',
+          'content-type': 'application/x-www-form-urlencoded'
+        }
+      })
+        .then(Http.errorFilter)
+        .then(res => {
+          return res.json();
+        })
+        .then(accessToken => {
+          this.accessToken = accessToken;
+          return this.accessToken;
+        });
     }
 
     const endpoint = '/oauth2/v1/token';

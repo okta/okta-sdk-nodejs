@@ -81,7 +81,7 @@ class Client {
       errors.push('Okta Org URL not provided');
     }
 
-    if (!parsedConfig.client.token && parsedConfig.client.authorizationMode !== 'PrivateKey') {
+    if (!parsedConfig.client.token && parsedConfig.client.authorizationMode === 'SSWS') {
       errors.push('Okta API token not provided');
     }
 
@@ -94,6 +94,16 @@ class Client {
       }
       if (!parsedConfig.client.privateKey) {
         errors.push('Private Key not provided');
+      }
+    } else if (parsedConfig.client.authorizationMode === 'ClientSecret') {
+      if (!parsedConfig.client.clientId) {
+        errors.push('Okta Client ID not provided');
+      }
+      if (!parsedConfig.client.scopes) {
+        errors.push('Scopes not provided');
+      }
+      if (!parsedConfig.client.clientSecret) {
+        errors.push('Okta Client Secret not provided');
       }
     } else if (parsedConfig.client.authorizationMode !== 'SSWS') {
       errors.push('Unknown Authorization Mode');
@@ -110,6 +120,11 @@ class Client {
       this.scopes = parsedConfig.client.scopes.split(' ');
       this.privateKey = parsedConfig.client.privateKey;
       this.keyId = parsedConfig.client.keyId;
+      this.oauth = new OAuth(this);
+    } else if (this.authorizationMode === 'ClientSecret') {
+      this.clientId = parsedConfig.client.clientId;
+      this.scopes = parsedConfig.client.scopes.split(' ');
+      this.clientSecret = parsedConfig.client.clientSecret;
       this.oauth = new OAuth(this);
     }
 

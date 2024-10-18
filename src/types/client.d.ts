@@ -58,6 +58,7 @@ export declare class Client {
   baseUrl: string;
   apiToken: string;
   clientId: string;
+  clientSecret: string;
   scopes: string[];
   privateKey: string;
   keyId: string;

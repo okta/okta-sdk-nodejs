@@ -102,6 +102,15 @@ const client = new okta.Client({
   keyId: 'kidValue'
 });
 ```
+```js
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/',
+  authorizationMode: 'ClientSecret',
+  clientId: '{oauth application ID}',
+  clientSecret: '{oauth application Secret}',
+  scopes: ['okta.users.manage']
+});
+```
 
 The `privateKey` can be passed in the following ways:
 - As a JSON encoded string of a JWK object
