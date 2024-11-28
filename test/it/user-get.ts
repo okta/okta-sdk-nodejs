@@ -12,6 +12,8 @@ const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
+  clientId: process.env.OKTA_CLIENT_ID,
+  clientSecret: process.env.OKTA_CLIENT_SECRET,
   requestExecutor: new DefaultRequestExecutor()
 });
 

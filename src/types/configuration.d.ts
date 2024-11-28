@@ -19,6 +19,7 @@ export declare interface V2Configuration {
   orgUrl?: string,
   token?: string,
   clientId?: string,
+  clientSecret?: string,
   scopes?: string[],
   requestExecutor?: RequestExecutor,
   authorizationMode?: string,

@@ -28,6 +28,7 @@ class ConfigLoader {
         orgUrl: '',
         token: '',
         clientId: '',
+        clientSecret: '',
         scopes: '',
         privateKey: '',
         keyId: '',
