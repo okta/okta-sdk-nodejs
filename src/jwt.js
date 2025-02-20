@@ -93,7 +93,27 @@ function makeJwt(client, endpoint) {
     });
 }
 
+function makeDPoPwt(client, method, endpoint) {
+  const now = Math.floor(new Date().getTime() / 1000); // seconds since epoch
+
+  const claims = {
+    htm: method,
+    htu: `${client.baseUrl}${endpoint}`,
+    iat: now,
+    jti: Math.random().toString(36).substring(7) + now.toString(),
+  };
+
+  return getPemAndJwk(client.privateKey).then((res) => {
+    const { pem, jwk } = res;
+    const alg = jwk.alg;
+    let jwt = nJwt.create(claims, pem, alg);
+    // JWT object is returned. It needs to be compacted with jwt.compact() before it can be used
+    return jwt;
+  });
+}
+
 module.exports = {
+  makeDPoPwt: makeDPoPwt,
   makeJwt: makeJwt,
   getPemAndJwk: getPemAndJwk
 };

@@ -70,6 +70,7 @@ class Http {
       return Promise.resolve();
     }
 
+    // TODO: give DPoP header
     return this.oauth.getAccessToken()
       .then(accessToken => {
         request.headers.Authorization = `Bearer ${accessToken.access_token}`;

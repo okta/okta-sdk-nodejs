@@ -79,6 +79,10 @@ class OAuth {
     return makeJwt(this.client, endpoint)
       .then(jwt => jwt.compact());
   }
+
+  getDPoPJwt(endpoint, method) {
+    return makeDPoPwt(this.client, method, endpoint).then((jwt) => jwt.compact());
+  }
 }
 
 module.exports.OAuth = OAuth;
