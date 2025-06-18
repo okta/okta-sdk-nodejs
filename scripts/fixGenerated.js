@@ -1,5 +1,6 @@
-import { replaceInFile } from 'replace-in-file';
+import { replaceInFileSync } from 'replace-in-file';
 import fs from 'fs';
+import path from 'path';
 import yaml from 'js-yaml';
 
 const getSpec3Meta = (spec3) => {
@@ -42,11 +43,14 @@ const removeIncorrectDiscriminators = async (spec3Meta) => {
 const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
   const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, "gm");
   let result = {};
-  await replaceInFile({
+  replaceInFileSync({
     files: 'src/generated/models/*.ts',
     from: regex,
-    to: (match, grpSpaces, grpLine, grpValue, _fileLength, fileContents, fileName) => {
-      let [_, className, baseClassName] = fileContents.match(/class (\w+) extends (\w+)/m) || [];
+    to: (match, grpSpaces, grpLine, grpValue, _fileLength, fileContents, pathName) => {
+      const fileName = path.basename(pathName, path.extname(pathName));
+      let [_, className, parentClassName] = fileContents.match(/class (\w+) extends (\w+)/m) || [];
+      className = className || fileName;
+      let baseClassName = parentClassName;
       let mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
       while (!mapping && baseClassName) {
         const baseClassContents = fs.readFileSync('src/generated/models/' + baseClassName + '.ts', { encoding: 'utf8' });
@@ -58,19 +62,13 @@ const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
         }
       }
       const foundKey = Object.keys(mapping || {}).find(k => mapping[k] === className);
-      result[fileName] = {
-        discriminatorName,
-        from: grpValue,
-        to: foundKey,
-      };
+      result[fileName] = [grpValue, foundKey];
       if (foundKey) {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
       }
-      if (!baseClassName) {
-        //return match; // as-is
-        return grpSpaces + '// ' + grpLine;
+      if (parentClassName) {
+        console.warn(`Can't detect key for descriminator "${discriminatorName}" for ${fileName}`);
       }
-      console.warn(`Can't detect key for descriminator "${discriminatorName}" for class ${className} (base ${baseClassName})`);
       return grpSpaces + '// ' + grpLine;
       // return match; // as-is
     }
@@ -87,7 +85,7 @@ async function main() {
 
     // remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
     const removeIncorrectDiscriminatorsResult = await removeIncorrectDiscriminators(spec3Meta);
-    console.log('Remove incorrect descriminators result =', removeIncorrectDiscriminatorsResult);
+    console.log('Fix/remove incorrect descriminators result =', removeIncorrectDiscriminatorsResult);
 
 
   } catch (error) {
