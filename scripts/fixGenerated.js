@@ -30,20 +30,22 @@ const getSpec3Meta = (spec3) => {
   };
 };
 
-const removeIncorrectDiscriminators = async (spec3Meta) => {
+const removeIncorrectDiscriminators = (spec3Meta) => {
   const decsriminatorNames = Object.keys(spec3Meta.discriminators);
   const totalRes = {};
   for (const decsriminatorName of decsriminatorNames) {
-    const res = await removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
-    totalRes[decsriminatorName] = res;
+    const res = removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
+    if (Object.keys(res).length) {
+      totalRes[decsriminatorName] = res;
+    }
   }
   return totalRes;
 };
 
-const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
+const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
   const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, "gm");
   let result = {};
-  replaceInFileSync({
+  const _res = replaceInFileSync({
     files: 'src/generated/models/*.ts',
     from: regex,
     to: (match, grpSpaces, grpLine, grpValue, _fileLength, fileContents, pathName) => {
@@ -76,6 +78,28 @@ const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
   return result;
 };
 
+const fixRespondAsync = () => {
+  const res = replaceInFileSync({
+    files: 'src/generated/**/*.ts',
+    from: '\'\'respond-async\'\'',
+    to: '\'respond-async\'',
+  });
+  return res
+    .filter(result => result.hasChanged)
+    .map(result => result.file);
+};
+
+const fixUri = () => {
+  const res = replaceInFileSync({
+    files: 'src/generated/**/*.ts',
+    from: ': URI;',
+    to: ': string;',
+  });
+  return res
+    .filter(result => result.hasChanged)
+    .map(result => result.file);
+};
+
 async function main() {
   try {
     const yamlFile = 'spec/management.yaml';  
@@ -84,9 +108,16 @@ async function main() {
     const spec3Meta = getSpec3Meta(spec3);
 
     // remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
-    const removeIncorrectDiscriminatorsResult = await removeIncorrectDiscriminators(spec3Meta);
+    const removeIncorrectDiscriminatorsResult = removeIncorrectDiscriminators(spec3Meta);
     console.log('Fix/remove incorrect descriminators result =', removeIncorrectDiscriminatorsResult);
 
+    // fix '' with '
+    const fixRespondAsyncResult = fixRespondAsync();
+    console.log('Fix \'respond-async\' =', fixRespondAsyncResult);
+
+    // replace URI property type with string
+    const fixUriResult = fixUri();
+    console.log('Fix URI =', fixUriResult);
 
   } catch (error) {
     console.error('Error occurred:', error);

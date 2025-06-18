@@ -1,12 +1,6 @@
 # copy static typings into location next to generated TS modules so tsc can resolve them
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 
-# replace URI property type with string
-sed -i '' 's/: URI;/: string;/g' ./src/generated/models/*.ts
-
-# replace ''respond-async'' with 'respond-async'
-sed -i '' "s/''respond-async''/'respond-async'/g" ./src/generated/**/*.ts
-
 # fix missing/incorrect imports
 sed -i '' "s/import { AppUserProfileRequestPayload } from '.\/..\/models\/AppUserProfileRequestPayload';/import { AppUserCredentials } from '.\/..\/models\/AppUserCredentials';\nimport { AppUserProfile } from '.\/..\/models\/AppUserProfile';/g" ./src/generated/**/*.ts
 
