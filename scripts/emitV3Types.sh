@@ -1,15 +1,15 @@
 # copy static typings into location next to generated TS modules so tsc can resolve them
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 
-# remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
-echo "\033[33mWarning: Application, Factor, Policy, PushProvider model hierarchies discriminator setting is ignored as it is not generated correctly\033[0m"
-sed -i '' '/this.factorType =/d' ./src/generated/models/*.ts
-sed -i '' '/this.signOnMode =/d' ./src/generated/models/*.ts
-sed -i '' '/this.type =/d' ./src/generated/models/*.ts
-sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
-
 # replace URI property type with string
 sed -i '' 's/: URI;/: string;/g' ./src/generated/models/*.ts
+
+# replace ''respond-async'' with 'respond-async'
+sed -i '' "s/''respond-async''/'respond-async'/g" ./src/generated/**/*.ts
+
+# fix missing/incorrect imports
+sed -i '' "s/import { AppUserProfileRequestPayload } from '.\/..\/models\/AppUserProfileRequestPayload';/import { AppUserCredentials } from '.\/..\/models\/AppUserCredentials';\nimport { AppUserProfile } from '.\/..\/models\/AppUserProfile';/g" ./src/generated/**/*.ts
+
 
 # remove erroneous imports
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts

@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const fs = require('fs');
-const yaml = require('js-yaml');
+import _ from 'lodash';
+import fs from 'fs';
+import yaml from 'js-yaml';
 
 
 function patchSpec3(spec3) {
