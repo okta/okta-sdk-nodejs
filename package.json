@@ -16,7 +16,7 @@
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
     "build:openapi": "yarn build:cleanGenerated && yarn build:fixSpec && yarn build:generate && yarn build:fixGenerated && yarn build:emitTypes",
-    "build:generate": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator --skip-validate-spec",
+    "build:generate": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator",
     "build:fixSpec": "node scripts/fixSpec.js",
     "build:fixGenerated": "node scripts/fixGenerated.js",
     "build:emitTypes": "./scripts/emitV3Types.sh",
