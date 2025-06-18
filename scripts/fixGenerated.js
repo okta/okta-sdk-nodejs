@@ -41,28 +41,33 @@ const removeIncorrectDiscriminators = async (spec3Meta) => {
 
 const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
   const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, "gm");
-  const result = await replaceInFile({
+  let result = {};
+  await replaceInFile({
     files: 'src/generated/models/*.ts',
     from: regex,
-    to: (match, grpSpaces, grpLine, _grpValue, _fileLength, fileContents, _fileName) => {
+    to: (match, grpSpaces, grpLine, grpValue, _fileLength, fileContents, fileName) => {
       let [_, className, baseClassName] = fileContents.match(/class (\w+) extends (\w+)/m) || [];
       let mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
-      while (!mapping) {
-        let baseClassContents = fs.readFileSync('src/generated/models/' + baseClassName + '.ts', { encoding: 'utf8' });
-        if (baseClassContents) {
-          [_, _, baseClassName] = baseClassContents.match(/class (\w+) extends (\w+)/m) || [];
-          if (baseClassName) {
-            mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
-          } else {
-            mapping = {};
-          }
+      while (!mapping && baseClassName) {
+        const baseClassContents = fs.readFileSync('src/generated/models/' + baseClassName + '.ts', { encoding: 'utf8' });
+        [_, _, baseClassName] = baseClassContents.match(/class (\w+) extends (\w+)/m) || [];
+        if (baseClassName) {
+          mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
+        } else {
+          break; // it's base class in hierarchy
         }
       }
       const foundKey = Object.keys(mapping || {}).find(k => mapping[k] === className);
+      result[fileName] = {
+        discriminatorName,
+        from: grpValue,
+        to: foundKey,
+      };
       if (foundKey) {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
       }
       if (!baseClassName) {
+        //return match; // as-is
         return grpSpaces + '// ' + grpLine;
       }
       console.warn(`Can't detect key for descriminator "${discriminatorName}" for class ${className} (base ${baseClassName})`);
@@ -70,9 +75,7 @@ const removeIncorrectDiscriminator = async (discriminatorName, spec3Meta) => {
       // return match; // as-is
     }
   });
-  return result
-    .filter(result => result.hasChanged)
-    .map(result => result.file);
+  return result;
 };
 
 async function main() {
