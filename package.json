@@ -58,7 +58,6 @@
     "@apidevtools/swagger-parser": "^10.1.0",
     "@faker-js/faker": "^5.5.3",
     "@okta/openapi": "^2.11.1",
-    "@openapitools/openapi-generator-cli": "^2.20.2",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
     "@types/node": "^17.0.34",
