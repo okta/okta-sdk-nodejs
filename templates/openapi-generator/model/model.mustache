@@ -17,10 +17,6 @@ import { CustomAttributeValue } from '../../custom-attributes{{extensionForDeno}
 */
 {{/description}}
 {{^isEnum}}
-{{#oneOf}}
-{{#-first}}{{>model/modelOneOf}}{{/-first}}
-{{/oneOf}}
-{{^oneOf}}
 export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 {{#vars}}
 {{#description}}
@@ -28,7 +24,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
   * {{{.}}}
   */
 {{/description}}
-  '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
+  '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}};
 {{/vars}}
 
 {{#vendorExtensions}}
@@ -43,21 +39,6 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
   {{^discriminator}}
   static readonly discriminator: string | undefined = undefined;
   {{/discriminator}}
-  {{#hasDiscriminatorWithNonEmptyMapping}}
-
-  static {{#parent}}override {{/parent}}readonly mapping: {[index: string]: string} | undefined = {
-  {{#discriminator.mappedModels}}
-      "{{mappingName}}": "{{modelName}}",
-  {{/discriminator.mappedModels}}
-  };
-  {{/hasDiscriminatorWithNonEmptyMapping}}
-  {{^hasDiscriminatorWithNonEmptyMapping}}
-  {{#comment}}
-
-  {{! TODO: do we need/use this? }}
-  static {{#parent}}override {{/parent}}readonly mapping: {[index: string]: string} | undefined = undefined;
-  {{/comment}}
-  {{/hasDiscriminatorWithNonEmptyMapping}}
 
   {{^isArray}}
   static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
@@ -108,34 +89,13 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 {{#vars}}
 {{#isEnum}}
 export type {{classname}}{{enumName}} ={{#allowableValues}}{{#values}} '{{.}}' {{^-last}}|{{/-last}}{{/values}}{{/allowableValues}};
-{{#comment}}
-{{! new version of enums, see https://github.com/OpenAPITools/openapi-generator/blob/8d8e3ddf16f2e79c24faf50fb3436b8f545d852f/modules/openapi-generator/src/main/resources/typescript/model/model.mustache#L89 }}
-export enum {{classname}}{{enumName}} {
-    {{#allowableValues}}
-    {{#enumVars}}
-    {{name}} = {{{value}}}{{^-last}},{{/-last}}
-    {{/enumVars}}
-    {{/allowableValues}}
-}
-{{/comment}}
 {{/isEnum}}
 {{/vars}}
 
 {{/hasEnums}}
-{{/oneOf}}
 {{/isEnum}}
 {{#isEnum}}
 export type {{classname}} ={{#allowableValues}}{{#values}} '{{.}}' {{^-last}}|{{/-last}}{{/values}}{{/allowableValues}};
-{{#comment}}
-{{! new version of enums, see https://github.com/OpenAPITools/openapi-generator/blob/8d8e3ddf16f2e79c24faf50fb3436b8f545d852f/modules/openapi-generator/src/main/resources/typescript/model/model.mustache#L89 }}
-export enum {{classname}} {
-    {{#allowableValues}}
-    {{#enumVars}}
-    {{name}} = {{{value}}}{{^-last}},{{/-last}}
-    {{/enumVars}}
-    {{/allowableValues}}
-}
-{{/comment}}
 {{/isEnum}}
 {{/model}}
 {{/models}}
