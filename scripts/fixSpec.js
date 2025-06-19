@@ -22,11 +22,12 @@ function patchSpec3(spec3) {
 
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
-    if (schema.type === 'object' && !schema.properties) {
+    if (schema.type === 'object' && !schema.properties && !schema.additionalProperties) {
       schema.additionalProperties = {};
       emptySchemas.push(schemaKey);
     }
     if (schema.additionalProperties === true) {
+      // fix for openapi-generator v6
       schema.additionalProperties = {};
     }
     if (schema['x-okta-extensible']) {
@@ -45,7 +46,8 @@ function patchSpec3(spec3) {
             propName,
           });
 
-          // Fixes
+          // Manual fixes
+          // TODO: check again, prepare PR for okta-oas3
           if (schemaKey === 'CreateIamRoleRequest' && propName === 'permissions') {
             prop.items = {
               '$ref': '#/components/schemas/Permission'
@@ -82,6 +84,7 @@ function patchSpec3(spec3) {
         }
 
         if (prop.additionalProperties === true) {
+          // fix for openapi-generator v6
           prop.additionalProperties = {};
         }
 
