@@ -161,8 +161,8 @@ function patchSpec3(spec3) {
       if (mapping) {
         const map = Object.keys(mapping).reduce((acc, key) => {
           let refSchemaKey = mapping[key].replace(/^#\/components\/schemas\/(.+)/, '$1');
-          // use camel case to fix issues with orgBillingContactType, orgTechnicalContactType
-          refSchemaKey = _.camelCase(refSchemaKey);
+          // fix issues with orgBillingContactType, orgTechnicalContactType
+          refSchemaKey = _.upperFirst(refSchemaKey);
           return {...acc, [key]: refSchemaKey};
         }, {});
         const hasNameConflicts = typeMap.filter(([k]) => !!map[k]).length > 0;
