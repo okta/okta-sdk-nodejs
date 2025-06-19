@@ -139,8 +139,9 @@ async function main() {
   fs.writeFileSync(yamlFixedFile, yamlFixedStr);
   console.log(`Fixed file ${yamlFixedFile}`);
 
+  // TODO: remove
   const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
-    addPrefix ? `  '${schemaKey}_${k}': ${v},` : `  '${k}': ${v},`
+    addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
   ).join('\n');
   fs.writeFileSync(typeMapMustache, typeMapStr);
   console.log(`Fixed file ${typeMapMustache}`);
