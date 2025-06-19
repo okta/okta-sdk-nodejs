@@ -63,7 +63,8 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
           break; // it's base class in hierarchy
         }
       }
-      const foundKey = Object.keys(mapping || {}).find(k => mapping[k] === className);
+      const fundKeys = Object.keys(mapping || {}).filter(k => mapping[k] === className);
+      const foundKey = fundKeys.length === 1 ? fundKeys[0] : undefined;
       result[fileName] = [grpValue, foundKey];
       if (foundKey) {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
