@@ -23,7 +23,6 @@
     "build:emitTypes": "./scripts/emitV3Types.sh",
     "build:cleanGenerated": "rm -rf ./src/generated && rm -rf ./src/types/generated",
     "build:restoreGenerated": "yarn build:cleanGenerated && git checkout ./src/generated && git checkout ./src/types/generated",
-    "build:tsc": "tsc --project ./src/generated/tsconfig.json",
     "eslint": "eslint .",
     "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
