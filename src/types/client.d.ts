@@ -27,10 +27,10 @@ import {
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  OrgSettingApi,
+  // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
-  CustomizationApi,
+  // CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
   UserApi,
@@ -45,8 +45,8 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  RoleAssignmentApi,
-  RoleTargetApi,
+  // RoleAssignmentApi,
+  // RoleTargetApi,
   CustomDomainApi,
   DeviceApi,
 } from './generated';
@@ -76,10 +76,10 @@ export declare class Client {
   eventHookApi: EventHookApi;
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
-  orgSettingApi: OrgSettingApi;
+  // orgSettingApi: OrgSettingApi;
   applicationApi: ApplicationApi;
   authorizationServerApi: AuthorizationServerApi;
-  customizationApi: CustomizationApi;
+  // customizationApi: CustomizationApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
   userApi: UserApi;
@@ -94,8 +94,8 @@ export declare class Client {
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
   deviceAssuranceApi: DeviceAssuranceApi;
-  roleAssignmentApi: RoleAssignmentApi;
-  roleTargetApi: RoleTargetApi;
+  // roleAssignmentApi: RoleAssignmentApi;
+  // roleTargetApi: RoleTargetApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
 

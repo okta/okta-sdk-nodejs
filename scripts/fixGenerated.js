@@ -33,7 +33,11 @@ const getSpec3Meta = (spec3) => {
 };
 
 const removeIncorrectDiscriminators = (spec3Meta) => {
-  const decsriminatorNames = Object.keys(spec3Meta.discriminators);
+  const decsriminatorNames = [
+    ...Object.keys(spec3Meta.discriminators),
+    // for JsonWebKey1
+    'kty'
+  ];
   const totalRes = {};
   for (const decsriminatorName of decsriminatorNames) {
     const res = removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
