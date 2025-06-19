@@ -104,6 +104,34 @@ const removeAllOf = () => {
   const renamedFiles = {};
   const removedFiles = [];
 
+  // Find files with "AllOf" in the name
+  const allOfFiles = globby.sync([
+    path.join('src/generated', '**/*AllOf*.ts'),
+    path.join('src/generated', '**/*AllOf*.md'),
+  ]);
+
+  // Rename files having "AllOf" in the middle
+  // Remove files ending with "AllOf"
+  for (const filePath of allOfFiles) {
+    const fileName = path.basename(filePath, path.extname(filePath));
+    let newFileName = allOfClasses[fileName];
+    if (!newFileName && regexAllOfInsideFileName.test(fileName)) {
+      const [_, grp1, grp2] = regexAllOfInsideFileName.exec(fileName);
+      newFileName = grp1 + grp2;
+      allOfClasses[fileName] = newFileName;
+    }
+
+    if (newFileName) {
+      const newFileFullName = newFileName + path.extname(filePath);
+      const newFilePath = path.join(path.dirname(filePath), newFileFullName);
+      fs.renameSync(filePath, newFilePath);
+      renamedFiles[filePath] = newFileName;
+    } else if (regexAllOfFileName.test(fileName)) {
+      fs.unlinkSync(filePath);
+      removedFiles.push(filePath);
+    }
+  }
+
   // Remove occurrences of classes ending with "AllOf"
   const resRemove = replaceInFileSync({
     files: [
@@ -128,32 +156,6 @@ const removeAllOf = () => {
       return grp1 + grp2;
     },
   });
-
-  const allOfFiles = globby.sync([
-    path.join('src/generated', '**/*AllOf*.ts'),
-    path.join('src/generated', '**/*AllOf*.md'),
-  ]);
-
-  // Rename files having "AllOf" in the middle
-  // Remove files ending with "AllOf"
-  for (const filePath of allOfFiles) {
-    const fileName = path.basename(filePath, path.extname(filePath));
-    let newFileName = allOfClasses[fileName];
-    if (!newFileName && regexAllOfInsideFileName.test(fileName)) {
-      const [_, grp1, grp2] = regexAllOfInsideFileName.exec(fileName);
-      newFileName = grp1 + grp2;
-    }
-
-    if (newFileName) {
-      const newFileFullName = newFileName + path.extname(filePath);
-      const newFilePath = path.join(path.dirname(filePath), newFileFullName);
-      fs.renameSync(filePath, newFilePath);
-      renamedFiles[filePath] = newFileName;
-    } else if (regexAllOfFileName.test(fileName)) {
-      fs.unlinkSync(filePath);
-      removedFiles.push(filePath);
-    }
-  }
 
   // result
   let changedFiles = [...resRemove, ...resReplace]
