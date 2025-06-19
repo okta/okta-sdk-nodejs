@@ -192,7 +192,7 @@ async function main() {
 
     // remove *AllOf
     const removeAllOfResult = removeAllOf();
-    console.log('Remove *AllOf =', removeAllOfResult);
+    console.log('Remove *AllOf = ' + JSON.stringify(removeAllOfResult, null, 4));
 
   } catch (error) {
     console.error('Error occurred:', error);
