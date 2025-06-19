@@ -93,10 +93,10 @@ const fixRespondAsync = () => {
 };
 
 const removeAllOf = () => {
-  const regexExport = new RegExp("\\s*export \\* from '[^']+/\\w+AllOf';?", 'gm');
-  const regexImport = new RegExp("\\s*import {\\s*\\w+(\\s*,\\s*\\w+)*\\s*} from '[^']+/\\w+AllOf';?", 'gm');
-  const regexTypeMap = new RegExp("\\s*'\\w+AllOf':\\s+\\w+AllOf,", 'gm');
-  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)", 'gm');
+  const regexExport = new RegExp("\\s*export \\* from '[^']+/\\w+AllOf';?", 'g');
+  const regexImport = new RegExp("\\s*import {\\s*\\w+(\\s*,\\s*\\w+)*\\s*} from '[^']+/\\w+AllOf';?", 'g');
+  const regexTypeMap = new RegExp("\\s*'\\w+AllOf':\\s+\\w+AllOf,", 'g');
+  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)", 'g');
   const regexAllOfInsideFileName = new RegExp("^(\\w+)AllOf(\\w+)$", '');
   const regexAllOfFileName = new RegExp("^(\\w+)AllOf$", '');
 
@@ -106,8 +106,8 @@ const removeAllOf = () => {
 
   // Find files with "AllOf" in the name
   const allOfFiles = globby.sync([
-    path.join('src/generated', '**/*AllOf*.ts'),
-    path.join('src/generated', '**/*AllOf*.md'),
+    'src/generated/**/*AllOf*.ts',
+    'src/generated/**/*AllOf*.md',
   ]);
 
   // Rename files having "AllOf" in the middle
@@ -136,7 +136,7 @@ const removeAllOf = () => {
   const resRemove = replaceInFileSync({
     files: [
       'src/generated/**/*.ts',
-      'src/generated/**/*.md'
+      'src/generated/**/*.md',
     ],
     from: [regexExport, regexImport, regexTypeMap],
     to: '',
@@ -146,7 +146,7 @@ const removeAllOf = () => {
   const resReplace = replaceInFileSync({
     files: [
       'src/generated/**/*.ts',
-      'src/generated/**/*.md'
+      'src/generated/**/*.md',
     ],
     from: regexAllOfInsideClass,
     to: (match, grp1, grp2, _fileLength, fileContents, pathName) => {
