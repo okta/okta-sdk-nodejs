@@ -104,6 +104,7 @@ const removeAllOf = () => {
   const renamedFiles = {};
   const removedFiles = [];
 
+  // Remove occurrences of classes ending with "AllOf"
   const resRemove = replaceInFileSync({
     files: [
       'src/generated/**/*.ts',
@@ -113,6 +114,7 @@ const removeAllOf = () => {
     to: '',
   });
 
+  // Rename occurrences of classes having "AllOf" in the middle
   const resReplace = replaceInFileSync({
     files: [
       'src/generated/**/*.ts',
@@ -132,6 +134,8 @@ const removeAllOf = () => {
     path.join('src/generated', '**/*AllOf*.md'),
   ]);
 
+  // Rename files having "AllOf" in the middle
+  // Remove files ending with "AllOf"
   for (const filePath of allOfFiles) {
     const fileName = path.basename(filePath, path.extname(filePath));
     let newFileName = allOfClasses[fileName];
@@ -139,6 +143,7 @@ const removeAllOf = () => {
       const [_, grp1, grp2] = regexAllOfInsideFileName.exec(fileName);
       newFileName = grp1 + grp2;
     }
+
     if (newFileName) {
       const newFileFullName = newFileName + path.extname(filePath);
       const newFilePath = path.join(path.dirname(filePath), newFileFullName);
@@ -150,6 +155,7 @@ const removeAllOf = () => {
     }
   }
 
+  // result
   let changedFiles = [...resRemove, ...resReplace]
     .filter(result => result.hasChanged)
     .map(result => result.file);
