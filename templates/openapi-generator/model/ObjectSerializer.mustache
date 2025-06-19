@@ -84,10 +84,11 @@ export class ObjectSerializer {
       } else {
         if (data[discriminatorProperty]) {
           var discriminatorType = data[discriminatorProperty];
-          var prefixedDiscriminatorType = `${expectedType}_${discriminatorType}`;
-          var discriminatedType = typeMap[prefixedDiscriminatorType] || typeMap[discriminatorType];
-          if(discriminatedType){
-            return discriminatedType.discriminator ? ObjectSerializer.findCorrectType(data, discriminatorType, discriminatedType.discriminator) : typeMap[prefixedDiscriminatorType] ? prefixedDiscriminatorType : discriminatorType ; // use the type given in the discriminator
+          const prefixedTypeDiscriminatorType = `__${expectedType}__${discriminatorType}`;
+          const prefixedDiscriminatorType = `__${discriminatorType}`;
+          const manuallyDiscriminatedType = typeMap[prefixedTypeDiscriminatorType] || typeMap[prefixedDiscriminatorType];
+          if(manuallyDiscriminatedType){
+            return manuallyDiscriminatedType.discriminator ? ObjectSerializer.findCorrectType(data, discriminatorType, manuallyDiscriminatedType.discriminator) : typeMap[prefixedTypeDiscriminatorType] ? prefixedTypeDiscriminatorType : prefixedDiscriminatorType ; // use the type given in the discriminator
           } else {
             return expectedType; // discriminator did not map to a type
           }
