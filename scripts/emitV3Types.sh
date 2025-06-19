@@ -8,8 +8,8 @@ rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/type
 # remove *AllOf imports
 # sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
 # sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
-find . -name '*AllOfLinks.ts' -exec bash -c ' mv $0 ${0//AllOfLinks/Links}' {} \;
-sed -i '' 's/AllOfLinks/Links/g' ./src/generated/**/*.ts
+# find . -name '*AllOfLinks.ts' -exec bash -c ' mv $0 ${0//AllOfLinks/Links}' {} \;
+# sed -i '' 's/AllOfLinks/Links/g' ./src/generated/**/*.ts
 
 # ignoredFiles=()
 

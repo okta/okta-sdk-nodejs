@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import yaml from 'js-yaml';
+import { merge } from 'lodash';
 
 
 function patchSpec3(spec3) {
@@ -21,6 +22,7 @@ function patchSpec3(spec3) {
   const badDateTimeProps = [];
   const fixedAdditionalPropertiesTrue = [];
   const manualFixes = [];
+  const ffAmends = [];
 
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
@@ -38,6 +40,12 @@ function patchSpec3(spec3) {
     } else if (schemasToForceExtensible.includes(schemaKey)) {
       schema['x-okta-extensible'] = true;
       forcedExtensibleSchemas.push(schemaKey);
+    }
+
+    // x-okta-feature-flag-amends
+    if (schema.discriminator?.['x-okta-feature-flag-amends']) {
+      schema.discriminator = merge(schema.discriminator, schema.discriminator['x-okta-feature-flag-amends']);
+      ffAmends.push({ schemaKey });
     }
 
     if (schema.properties) {
@@ -135,6 +143,7 @@ function patchSpec3(spec3) {
     badDateTimeProps,
     fixedAdditionalPropertiesTrue,
     manualFixes,
+    ffAmends,
   };
 }
 
@@ -148,7 +157,7 @@ async function main() {
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes, ffAmends
   } = patchSpec3(spec3);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
@@ -157,6 +166,7 @@ async function main() {
   console.log(`Properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Manual fixes: ${manualFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1
