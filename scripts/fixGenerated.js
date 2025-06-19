@@ -1,7 +1,9 @@
 import { replaceInFileSync } from 'replace-in-file';
 import fs from 'fs';
 import path from 'path';
+import globby from 'globby';
 import yaml from 'js-yaml';
+
 
 const getSpec3Meta = (spec3) => {
   const discriminators = {};
@@ -90,17 +92,75 @@ const fixRespondAsync = () => {
     .map(result => result.file);
 };
 
-const fixUri = () => {
-  const res = replaceInFileSync({
-    files: 'src/generated/**/*.ts',
-    from: ': URI;',
-    to: ': string;',
+const removeAllOf = () => {
+  const regexExport = new RegExp("\\s*export \\* from '[^']+/\\w+AllOf';?", 'gm');
+  const regexImport = new RegExp("\\s*import {\\s*\\w+(\\s*,\\s*\\w+)*\\s*} from '[^']+/\\w+AllOf';?", 'gm');
+  const regexTypeMap = new RegExp("\\s*'\\w+AllOf':\\s+\\w+AllOf,", 'gm');
+  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)", 'gm');
+  const regexAllOfInsideFileName = new RegExp("^(\\w+)AllOf(\\w+)$", '');
+  const regexAllOfFileName = new RegExp("^(\\w+)AllOf$", '');
+
+  const allOfClasses = {};
+  const renamedFiles = {};
+  const removedFiles = [];
+
+  const resRemove = replaceInFileSync({
+    files: [
+      'src/generated/**/*.ts',
+      'src/generated/**/*.md'
+    ],
+    from: [regexExport, regexImport, regexTypeMap],
+    to: '',
   });
-  return res
+
+  const resReplace = replaceInFileSync({
+    files: [
+      'src/generated/**/*.ts',
+      'src/generated/**/*.md'
+    ],
+    from: regexAllOfInsideClass,
+    to: (match, grp1, grp2, _fileLength, fileContents, pathName) => {
+      if (!allOfClasses[match]) {
+        allOfClasses[match] = grp1 + grp2;
+      }
+      return grp1 + grp2;
+    },
+  });
+
+  const allOfFiles = globby.sync([
+    path.join('src/generated', '**/*AllOf*.ts'),
+    path.join('src/generated', '**/*AllOf*.md'),
+  ]);
+
+  for (const filePath of allOfFiles) {
+    const fileName = path.basename(filePath, path.extname(filePath));
+    let newFileName = allOfClasses[fileName];
+    if (!newFileName && regexAllOfInsideFileName.test(fileName)) {
+      const [_, grp1, grp2] = regexAllOfInsideFileName.exec(fileName);
+      newFileName = grp1 + grp2;
+    }
+    if (newFileName) {
+      const newFileFullName = newFileName + path.extname(filePath);
+      const newFilePath = path.join(path.dirname(filePath), newFileFullName);
+      fs.renameSync(filePath, newFilePath);
+      renamedFiles[filePath] = newFileName;
+    } else if (regexAllOfFileName.test(fileName)) {
+      fs.unlinkSync(filePath);
+      removedFiles.push(filePath);
+    }
+  }
+
+  let changedFiles = [...resRemove, ...resReplace]
     .filter(result => result.hasChanged)
     .map(result => result.file);
-};
+  changedFiles = [...new Set(changedFiles)];
 
+  return {
+    changedFiles,
+    renamedFiles,
+    removedFiles,
+  };
+};
 
 async function main() {
   try {
@@ -117,9 +177,9 @@ async function main() {
     const fixRespondAsyncResult = fixRespondAsync();
     console.log('Fix \'respond-async\' =', fixRespondAsyncResult);
 
-    // replace URI property type with string
-    const fixUriResult = fixUri();
-    console.log('Fix URI =', fixUriResult);
+    // remove *AllOf
+    const removeAllOfResult = removeAllOf();
+    console.log('Remove *AllOf =', removeAllOfResult);
 
   } catch (error) {
     console.error('Error occurred:', error);

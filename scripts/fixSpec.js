@@ -17,8 +17,10 @@ function patchSpec3(spec3) {
   const emptySchemas = [];
   const extensibleSchemas = [];
   const forcedExtensibleSchemas = [];
-  const missingItems = [];
-  const badDateTimeValues = [];
+  const arrayPropsWithoutItems = [];
+  const badDateTimeProps = [];
+  const fixedAdditionalPropertiesTrue = [];
+  const manualFixes = [];
 
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
@@ -28,6 +30,7 @@ function patchSpec3(spec3) {
     }
     if (schema.additionalProperties === true) {
       // fix for openapi-generator v6
+      fixedAdditionalPropertiesTrue.push({ schemaKey });
       schema.additionalProperties = {};
     }
     if (schema['x-okta-extensible']) {
@@ -41,10 +44,7 @@ function patchSpec3(spec3) {
       for (let propName in schema.properties) {
         const prop = schema.properties[propName];
         if (prop.type === 'array' && !prop.items) {
-          missingItems.push({
-            schemaKey,
-            propName,
-          });
+          arrayPropsWithoutItems.push({ schemaKey, propName });
 
           // Manual fixes
           // TODO: check again, prepare PR for okta-oas3
@@ -77,27 +77,36 @@ function patchSpec3(spec3) {
 
         if (prop.format === 'date-time' && prop.default === 'Assigned') {
           delete prop.default;
-          badDateTimeValues.push({
-            schemaKey,
-            propName,
-          });
+          badDateTimeProps.push({ schemaKey, propName });
         }
 
         if (prop.additionalProperties === true) {
           // fix for openapi-generator v6
+          fixedAdditionalPropertiesTrue.push({ schemaKey, propName });
           prop.additionalProperties = {};
         }
 
         // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
-        if (schemaKey === 'UserSchemaAttribute' && propName === 'default') {
-          if (prop.oneOf) {
-            prop.oneOf.forEach((v, i) => {
-              if (v.type === 'array' && !v.items) {
-                prop.oneOf[i].items = { type: 'string' };;
-              }
-            });
+        if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
+          let fixed = false;
+          prop.oneOf.forEach((v, i) => {
+            if (v.type === 'array' && !v.items) {
+              prop.oneOf[i].items = { type: 'string' };
+              fixed = true;
+            }
+          });
+          if (fixed) {
+            manualFixes.push({ schemaKey, propName });
           }
         }
+
+        // // Special fix of `allOf` not being an array in UserSchemaPropertiesProfile for openapi-generator v6
+        // if (schemaKey === 'UserSchemaPropertiesProfile' && propName === 'allOf' && prop.type === 'array' && prop.items) {
+        //   const items = Array.isArray(prop.items) ? prop.items : [prop.items];
+        //   const newProp = items;
+        //   schema.properties[propName] = newProp;
+        //   manualFixes.push({ schemaKey, propName });
+        // }
       }
     }
 
@@ -122,8 +131,10 @@ function patchSpec3(spec3) {
     emptySchemas,
     extensibleSchemas,
     forcedExtensibleSchemas,
-    missingItems,
-    badDateTimeValues,
+    arrayPropsWithoutItems,
+    badDateTimeProps,
+    fixedAdditionalPropertiesTrue,
+    manualFixes,
   };
 }
 
@@ -136,12 +147,16 @@ async function main() {
   const yamlStrFixed = yamlStr.replaceAll('../oauth/dist/oauth.yaml', 'oauth.yaml');
   const spec3 = yaml.load(yamlStrFixed);
 
-  const { typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, missingItems, badDateTimeValues } = patchSpec3(spec3);
+  const {
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes
+  } = patchSpec3(spec3);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);
-  console.log(`Properties without items: ${missingItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
-  console.log(`Properties with bad date-time default value: ${badDateTimeValues.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log(`Properties without items: ${arrayPropsWithoutItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log(`Properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Manual fixes: ${manualFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1

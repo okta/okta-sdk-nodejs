@@ -2,23 +2,23 @@
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 
 # remove erroneous imports
-sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
-sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
+# sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
+# sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
 
 # remove *AllOf imports
-sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
-sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
+# sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
+# sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
 find . -name '*AllOfLinks.ts' -exec bash -c ' mv $0 ${0//AllOfLinks/Links}' {} \;
 sed -i '' 's/AllOfLinks/Links/g' ./src/generated/**/*.ts
 
-ignoredFiles=()
+# ignoredFiles=()
 
 tsc --project ./src/generated/tsconfig.json
  
 # undo changes in files from ingorelist
-for i in ${!ignoredFiles[@]}; do
-  echo `git checkout ./src/generated/models/${ignoredFiles[$i]}.js`
-done
+# for i in ${!ignoredFiles[@]}; do
+#   echo `git checkout ./src/generated/models/${ignoredFiles[$i]}.js`
+# done
 
 # copy generated typings to src/types
 rsync -r --include='*.d.ts' --exclude="*.js" --exclude="*.ts" --exclude="*.md" --exclude="*.json" --exclude ".openapi-generator*" -- src/generated/ src/types/generated
