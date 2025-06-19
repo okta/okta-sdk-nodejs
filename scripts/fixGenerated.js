@@ -96,8 +96,8 @@ const removeAllOf = () => {
   const regexExport = new RegExp("\\s*export \\* from '[^']+/\\w+AllOf';?", 'g');
   const regexImport = new RegExp("\\s*import {\\s*\\w+(\\s*,\\s*\\w+)*\\s*} from '[^']+/\\w+AllOf';?", 'g');
   const regexTypeMap = new RegExp("\\s*'\\w+AllOf':\\s+\\w+AllOf,", 'g');
-  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)", 'g');
-  const regexAllOfInsideFileName = new RegExp("^(\\w+)AllOf(\\w+)$", '');
+  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)(?<!AllOf)(?=\\W|$)", 'g');
+  const regexAllOfInsideFileName = new RegExp("^(\\w+)AllOf(\\w+)(?<!AllOf)$", '');
   const regexAllOfFileName = new RegExp("^(\\w+)AllOf$", '');
 
   const allOfClasses = {};
@@ -116,8 +116,8 @@ const removeAllOf = () => {
     const fileName = path.basename(filePath, path.extname(filePath));
     let newFileName = allOfClasses[fileName];
     if (!newFileName && regexAllOfInsideFileName.test(fileName)) {
-      const [_, grp1, grp2] = regexAllOfInsideFileName.exec(fileName);
-      newFileName = grp1 + grp2;
+      // there can be multiple occurrences of "AllOf" in class
+      newFileName = fileName.replaceAll(/AllOf/g, '');;
       allOfClasses[fileName] = newFileName;
     }
 
@@ -151,9 +151,10 @@ const removeAllOf = () => {
     from: regexAllOfInsideClass,
     to: (match, grp1, grp2, _fileLength, fileContents, pathName) => {
       if (!allOfClasses[match]) {
-        allOfClasses[match] = grp1 + grp2;
+        // there can be multiple occurrences of "AllOf" in class
+        allOfClasses[match] = match.replaceAll(/AllOf/g, '');
       }
-      return grp1 + grp2;
+      return allOfClasses[match];
     },
   });
 
