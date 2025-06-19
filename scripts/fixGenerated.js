@@ -101,9 +101,6 @@ const fixUri = () => {
     .map(result => result.file);
 };
 
-// const fixIncorrectImports = () => {
-
-// };
 
 async function main() {
   try {
@@ -123,10 +120,6 @@ async function main() {
     // replace URI property type with string
     const fixUriResult = fixUri();
     console.log('Fix URI =', fixUriResult);
-
-    // fix incorrect imports
-    // const fixIncorrectImportsResult = fixIncorrectImports();
-    // console.log('Fix incorrect imports =', fixIncorrectImportsResult);
 
   } catch (error) {
     console.error('Error occurred:', error);

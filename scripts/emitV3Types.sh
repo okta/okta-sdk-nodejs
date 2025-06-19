@@ -1,10 +1,6 @@
 # copy static typings into location next to generated TS modules so tsc can resolve them
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 
-# fix missing/incorrect imports
-sed -i '' "s/import { AppUserProfileRequestPayload } from '.\/..\/models\/AppUserProfileRequestPayload';/import { AppUserCredentials } from '.\/..\/models\/AppUserCredentials';\nimport { AppUserProfile } from '.\/..\/models\/AppUserProfile';/g" ./src/generated/**/*.ts
-
-
 # remove erroneous imports
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
 sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
