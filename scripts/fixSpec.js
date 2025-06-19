@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import fs from 'fs';
 import yaml from 'js-yaml';
-import { merge } from 'lodash';
 
 
 function patchSpec3(spec3) {
@@ -24,8 +23,21 @@ function patchSpec3(spec3) {
   const manualFixes = [];
   const ffAmends = [];
 
+  const ffAmendsMerge = (obj, onSuccess) => {
+    if (obj?.['x-okta-feature-flag-amends']) {
+      const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
+      _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
+        if (Array.isArray(objValue)) {
+          return [...new Set(objValue.concat(srcValue))];
+        }
+      });
+      onSuccess();
+    }
+  };
+
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
+
     if (schema.type === 'object' && !schema.properties && !schema.additionalProperties) {
       schema.additionalProperties = {};
       emptySchemas.push(schemaKey);
@@ -43,9 +55,26 @@ function patchSpec3(spec3) {
     }
 
     // x-okta-feature-flag-amends
-    if (schema.discriminator?.['x-okta-feature-flag-amends']) {
-      schema.discriminator = merge(schema.discriminator, schema.discriminator['x-okta-feature-flag-amends']);
+    ffAmendsMerge(schema, () => {
       ffAmends.push({ schemaKey });
+    });
+    
+    if (schema.oneOf) {
+      schema.oneOf.forEach((one, i) => {
+        // x-okta-feature-flag-amends
+        ffAmendsMerge(one, () => {
+          ffAmends.push({ schemaKey, propName: `oneOf[${i}]` });
+        });
+      });
+    }
+
+    if (schema.allOf) {
+      schema.allOf.forEach((one, i) => {
+        // x-okta-feature-flag-amends
+        ffAmendsMerge(one, () => {
+          ffAmends.push({ schemaKey, propName: `allOf[${i}]` });
+        });
+      });
     }
 
     if (schema.properties) {
@@ -97,8 +126,8 @@ function patchSpec3(spec3) {
         // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
         if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
           let fixed = false;
-          prop.oneOf.forEach((v, i) => {
-            if (v.type === 'array' && !v.items) {
+          prop.oneOf.forEach((one, i) => {
+            if (one.type === 'array' && !one.items) {
               prop.oneOf[i].items = { type: 'string' };
               fixed = true;
             }
@@ -107,6 +136,10 @@ function patchSpec3(spec3) {
             manualFixes.push({ schemaKey, propName });
           }
         }
+
+        ffAmendsMerge(prop, () => {
+          ffAmends.push({ schemaKey, propName });
+        });
 
         // // Special fix of `allOf` not being an array in UserSchemaPropertiesProfile for openapi-generator v6
         // if (schemaKey === 'UserSchemaPropertiesProfile' && propName === 'allOf' && prop.type === 'array' && prop.items) {
@@ -119,6 +152,11 @@ function patchSpec3(spec3) {
     }
 
     if (schema.discriminator) {
+      // x-okta-feature-flag-amends
+      ffAmendsMerge(schema.discriminator, () => {
+        ffAmends.push({ schemaKey, propName: "discriminator" });
+      });
+
       const { mapping } = schema.discriminator;
       if (mapping) {
         const map = Object.keys(mapping).reduce((acc, key) => {
