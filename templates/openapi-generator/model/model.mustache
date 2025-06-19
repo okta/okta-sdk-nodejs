@@ -44,6 +44,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
   static readonly discriminator: string | undefined = undefined;
   {{/discriminator}}
   {{#hasDiscriminatorWithNonEmptyMapping}}
+
   static {{#parent}}override {{/parent}}readonly mapping: {[index: string]: string} | undefined = {
   {{#discriminator.mappedModels}}
       "{{mappingName}}": "{{modelName}}",
@@ -52,6 +53,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
   {{/hasDiscriminatorWithNonEmptyMapping}}
   {{^hasDiscriminatorWithNonEmptyMapping}}
   {{#comment}}
+
   {{! TODO: do we need/use this? }}
   static {{#parent}}override {{/parent}}readonly mapping: {[index: string]: string} | undefined = undefined;
   {{/comment}}
