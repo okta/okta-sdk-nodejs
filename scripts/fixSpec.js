@@ -151,6 +151,15 @@ function patchSpec3(spec3) {
       }
     }
 
+    // Special fix for UserFactorPushTransactionSuccess which will not be generated without a fix
+    if (schemaKey === 'UserFactorPushTransactionSuccess' && schema['$ref']) {
+      schema['allOf'] = [
+        { ... schema }
+      ];
+      delete schema['$ref'];
+      manualFixes.push({ schemaKey });
+    }
+
     if (schema.discriminator) {
       // x-okta-feature-flag-amends
       ffAmendsMerge(schema.discriminator, () => {
