@@ -26,6 +26,9 @@ function patchSpec3(spec3) {
       schema.additionalProperties = {};
       emptySchemas.push(schemaKey);
     }
+    if (schema.additionalProperties === true) {
+      schema.additionalProperties = {};
+    }
     if (schema['x-okta-extensible']) {
       extensibleSchemas.push(schemaKey);
     } else if (schemasToForceExtensible.includes(schemaKey)) {
@@ -76,6 +79,10 @@ function patchSpec3(spec3) {
             schemaKey,
             propName,
           });
+        }
+
+        if (prop.additionalProperties === true) {
+          prop.additionalProperties = {};
         }
 
         // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
