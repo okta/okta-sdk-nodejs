@@ -10,15 +10,17 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const os = require('os');
-const packageJson = require('../package.json');
+const os = require("os");
+const packageJson = require("../package.json");
 
-const { ConfigLoader } = require('./config-loader');
-const { DefaultRequestExecutor } = require('./default-request-executor');
-const { Http } = require('./http');
-const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
-const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
-const { OAuth } = require('./oauth');
+const { ConfigLoader } = require("./config-loader");
+const { DefaultRequestExecutor } = require("./default-request-executor");
+const { Http } = require("./http");
+const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${
+  process.versions.node
+} ${os.platform()}/${os.release()}`;
+const repoUrl = "https://github.com/okta/okta-sdk-nodejs";
+const { OAuth } = require("./oauth");
 const {
   AuthenticatorApi,
   SchemaApi,
@@ -54,10 +56,9 @@ const {
   RoleAssignmentApi,
   CustomDomainApi,
   DeviceApi,
-} = require('./generated');
-const { createConfiguration } = require('./generated/configuration');
-const { ServerConfiguration } = require('./generated/servers');
-
+} = require("./generated");
+const { createConfiguration } = require("./generated/configuration");
+const { ServerConfiguration } = require("./generated/servers");
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -71,60 +72,80 @@ class Client {
     const clientConfig = Object.assign({}, config);
     configLoader.applyDefaults();
     configLoader.apply({
-      client: clientConfig || {}
+      client: clientConfig || {},
     });
 
     const parsedConfig = configLoader.config;
-    this.requestExecutor = clientConfig.requestExecutor || new DefaultRequestExecutor();
+    this.requestExecutor =
+      clientConfig.requestExecutor || new DefaultRequestExecutor();
     const errors = [];
     if (!parsedConfig.client.orgUrl) {
-      errors.push('Okta Org URL not provided');
+      errors.push("Okta Org URL not provided");
     }
 
-    if (!parsedConfig.client.token && parsedConfig.client.authorizationMode !== 'PrivateKey') {
-      errors.push('Okta API token not provided');
+    if (
+      !parsedConfig.client.token &&
+      parsedConfig.client.authorizationMode === "SSWS"
+    ) {
+      errors.push("Okta API token not provided");
     }
 
-    if (parsedConfig.client.authorizationMode === 'PrivateKey') {
+    if (parsedConfig.client.authorizationMode === "PrivateKey") {
       if (!parsedConfig.client.clientId) {
-        errors.push('Okta Client ID not provided');
+        errors.push("Okta Client ID not provided");
       }
       if (!parsedConfig.client.scopes) {
-        errors.push('Scopes not provided');
+        errors.push("Scopes not provided");
       }
       if (!parsedConfig.client.privateKey) {
-        errors.push('Private Key not provided');
+        errors.push("Private Key not provided");
       }
-    } else if (parsedConfig.client.authorizationMode !== 'SSWS') {
-      errors.push('Unknown Authorization Mode');
+    } else if (parsedConfig.client.authorizationMode === "AccessToken") {
+      if (!parsedConfig.client.token) {
+        errors.push("Okta Access Token not provided");
+      }
+    } else if (parsedConfig.client.authorizationMode !== "SSWS") {
+      errors.push("Unknown Authorization Mode");
     }
     if (errors.length) {
-      throw new Error(`Found ${errors.length} errors:\n${errors.join('\n')}\nSee ${repoUrl} for usage.`);
+      throw new Error(
+        `Found ${errors.length} errors:\n${errors.join(
+          "\n"
+        )}\nSee ${repoUrl} for usage.`
+      );
     }
     this.authorizationMode = parsedConfig.client.authorizationMode;
-    this.baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, '');
+    this.baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, "");
     this.apiToken = parsedConfig.client.token;
 
-    if (this.authorizationMode === 'PrivateKey') {
+    if (this.authorizationMode === "PrivateKey") {
       this.clientId = parsedConfig.client.clientId;
-      this.scopes = parsedConfig.client.scopes.split(' ');
+      this.scopes = parsedConfig.client.scopes.split(" ");
       this.privateKey = parsedConfig.client.privateKey;
       this.keyId = parsedConfig.client.keyId;
       this.oauth = new OAuth(this);
+    } else if (this.authorizationMode === "AccessToken") {
+      this.accessToken = parsedConfig.client.token;
     }
 
     this.http = new Http({
       httpsProxy: clientConfig.httpsProxy,
       cacheStore: clientConfig.cacheStore,
       cacheMiddleware: clientConfig.cacheMiddleware,
-      defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
+      defaultCacheMiddlewareResponseBufferSize:
+        clientConfig.defaultCacheMiddlewareResponseBufferSize,
       requestExecutor: this.requestExecutor,
-      oauth: this.oauth
+      oauth: this.oauth,
     });
-    if (this.authorizationMode === 'SSWS') {
+    if (this.authorizationMode === "SSWS") {
       this.http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
     }
-    this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+    if (this.authorizationMode === "AccessToken") {
+      this.http.defaultHeaders.Authorization = `Bearer ${this.accessToken}`;
+    }
+    this.http.defaultHeaders["User-Agent"] = parsedConfig.client.userAgent
+      ? parsedConfig.client.userAgent + " " + DEFAULT_USER_AGENT
+      : DEFAULT_USER_AGENT;
 
     const configuration = createConfiguration({
       baseServer: new ServerConfiguration(parsedConfig.client.orgUrl),
