@@ -104,7 +104,10 @@ class Client {
       if (!parsedConfig.client.token) {
         errors.push("Okta Access Token not provided");
       }
-    } else if (parsedConfig.client.authorizationMode !== "SSWS") {
+    } else if (
+      parsedConfig.client.authorizationMode !== "SSWS" &&
+      parsedConfig.client.authorizationMode !== "AccessToken"
+    ) {
       errors.push("Unknown Authorization Mode");
     }
     if (errors.length) {
