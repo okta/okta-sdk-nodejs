@@ -108,7 +108,9 @@ class Client {
       parsedConfig.client.authorizationMode !== "SSWS" &&
       parsedConfig.client.authorizationMode !== "AccessToken"
     ) {
-      errors.push("Unknown Authorization Mode");
+      errors.push(
+        `Unknown Authorization Mode: ${parsedConfig.client.authorizationMode}`
+      );
     }
     if (errors.length) {
       throw new Error(
