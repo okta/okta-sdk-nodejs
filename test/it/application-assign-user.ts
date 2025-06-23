@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { BookmarkApplication, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
+import { BookmarkApplication, Application, ApiClient, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-assign-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -27,7 +27,7 @@ describe('Application.assignUserToApplication()', () => {
       }
     };
 
-    let createdApplication: BookmarkApplication;
+    let createdApplication: Application;
     let createdUser: User;
     let createdAppUser: AppUser;
 
@@ -37,7 +37,7 @@ describe('Application.assignUserToApplication()', () => {
       createdApplication = await client.applicationApi.createApplication({ application });
       expect(createdApplication).to.be.instanceOf(BookmarkApplication);
       createdUser = await client.userApi.createUser({body: user});
-      createdAppUser = await client.applicationApi.assignUserToApplication({
+      createdAppUser = await client.applicationUsersApi.assignUserToApplication({
         appId: createdApplication.id,
         appUser: {
           id: createdUser.id

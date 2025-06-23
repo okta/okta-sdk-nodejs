@@ -1,12 +1,12 @@
 import {
-  Client,
+  ApiClient,
   User, Group, Role,
   UserApiListUsersRequest,
   GroupApiListGroupsRequest,
   RoleType,
   Csr,
   BookmarkApplication,
-  SamlApplication,
+  Org2OrgApplication,
   OpenIdConnectApplication
 } from '@okta/okta-sdk-nodejs';
 import * as forge from 'node-forge';
@@ -34,7 +34,7 @@ interface AuthTransaction {
   sessionToken?: string;
 };
 
-function authenticateUser(client: Client, userName: string, password: string) {
+function authenticateUser(client: ApiClient, userName: string, password: string) {
   const data = {
     username: userName,
     password: password,
@@ -53,7 +53,7 @@ function validateGroup(group: Group, expectedGroup: Group) {
   expect(group.type).to.equal('OKTA_GROUP');
 }
 
-async function isUserInGroup(client: Client, groupUser: User, group: Group) {
+async function isUserInGroup(client: ApiClient, groupUser: User, group: Group) {
   let userPresent = false;
   const collection = await client.groupApi.listGroupUsers({
     groupId: group.id
@@ -67,7 +67,7 @@ async function isUserInGroup(client: Client, groupUser: User, group: Group) {
   return userPresent;
 }
 
-async function waitTillUserInGroup(client: Client, user: User, group: Group, condition: boolean) {
+async function waitTillUserInGroup(client: ApiClient, user: User, group: Group, condition: boolean) {
   let userInGroup = await isUserInGroup(client, user, group);
   let timeOut = 0;
   while (userInGroup !== condition) {
@@ -85,16 +85,16 @@ async function waitTillUserInGroup(client: Client, user: User, group: Group, con
   return userInGroup;
 }
 
-async function deleteUser(user: User, client: Client) {
-  await client.userApi.deactivateUser({
-    userId: user.id
+async function deleteUser(user: User, client: ApiClient) {
+  await client.userLifecycleApi.deactivateUser({
+    id: user.id
   });
   await client.userApi.deleteUser({
-    userId: user.id
+    id: user.id
   });
 }
 
-async function isUserPresent(client: Client, expectedUser: User, queryParameters: UserApiListUsersRequest) {
+async function isUserPresent(client: ApiClient, expectedUser: User, queryParameters: UserApiListUsersRequest) {
   let userPresent = false;
   const collection = await client.userApi.listUsers(queryParameters);
   await collection.each(user => {
@@ -107,7 +107,7 @@ async function isUserPresent(client: Client, expectedUser: User, queryParameters
   return userPresent;
 }
 
-async function isGroupPresent(client: Client, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
+async function isGroupPresent(client: ApiClient, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
   let groupPresent = false;
   const collection = await client.groupApi.listGroups(queryParameters);
   await collection.each(async group => {
@@ -120,9 +120,9 @@ async function isGroupPresent(client: Client, expectedGroup: Group, queryParamet
   return groupPresent;
 }
 
-async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) {
+async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClient) {
   let hasRole = false;
-  await (await client.roleAssignmentApi.listAssignedRolesForUser({
+  await (await client.roleAssignmentAUserApi.listAssignedRolesForUser({
     userId: user.id
   })).each(role => {
     expect(role).to.be.an.instanceof(Role);
@@ -134,11 +134,11 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) 
   return hasRole;
 }
 
-async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: Client) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: ApiClient) {
   let groupTargetPresent = false;
-  const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
+  const groupTargets = await client.roleBTargetAdminApi.listGroupTargetsForRole({
     userId: user.id, 
-    roleId: role.id
+    roleAssignmentId: role.id
   });
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
@@ -149,27 +149,27 @@ async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, cl
   return groupTargetPresent;
 }
 
-async function cleanupUser(client: Client, user: User) {
+async function cleanupUser(client: ApiClient, user: User) {
   if (!user.profile.login) {
     return;
   }
 
   try {
     const existingUser = await client.userApi.getUser({
-      userId: user.profile.login
+      id: user.profile.login
     });
-    await client.userApi.deactivateUser({
-      userId: existingUser.id
+    await client.userLifecycleApi.deactivateUser({
+      id: existingUser.id
     });
     await client.userApi.deleteUser({
-      userId: existingUser.id
+      id: existingUser.id
     });
   } catch (err) {
     // expect(err.message).to.contain('Okta HTTP 404');
   }
 }
 
-async function cleanupGroup(client: Client, expectedGroup: Group) {
+async function cleanupGroup(client: ApiClient, expectedGroup: Group) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
   await (await client.groupApi.listGroups(queryParameters)).each(async (group) => {
     expect(group).to.be.an.instanceof(Group);
@@ -185,7 +185,7 @@ async function cleanupGroup(client: Client, expectedGroup: Group) {
   });
 }
 
-async function cleanup(client: Client, users: User[]|User = null, groups: Group[]|Group = null) {
+async function cleanup(client: ApiClient, users: User[]|User = null, groups: Group[]|Group = null) {
   // Cleanup the entities only if user is running a real OKTA server
   if (process.env.OKTA_USE_MOCK) {
     return;
@@ -202,7 +202,7 @@ async function cleanup(client: Client, users: User[]|User = null, groups: Group[
   }
 }
 
-async function removeAppByLabel(client: Client, label: string) {
+async function removeAppByLabel(client: ApiClient, label: string) {
   return (await client.applicationApi.listApplications()).each(async (application) => {
     if (application.label === label) {
       await client.applicationApi.deactivateApplication({appId: application.id});
@@ -211,7 +211,7 @@ async function removeAppByLabel(client: Client, label: string) {
   });
 }
 
-async function activateSecurityQuestion(client: Client) {
+async function activateSecurityQuestion(client: ApiClient) {
   const authenticators = await client.authenticatorApi.listAuthenticators();  // returns Collection<Authenticator>
   await authenticators.each(async (item) => {
     if (item.type === 'security_question') {
@@ -286,7 +286,7 @@ function getBookmarkApplication(): BookmarkApplication {
   };
 }
 
-function getOrg2OrgApplicationOptions(): SamlApplication {
+function getOrg2OrgApplicationOptions(): Org2OrgApplication {
   return {
     name: 'okta_org2org',
     label: 'node-sdk: Sample Okta Org2Org App',
@@ -301,7 +301,7 @@ function getOrg2OrgApplicationOptions(): SamlApplication {
   };
 }
 
-async function verifyOrgIsOIE(client: Client) {
+async function verifyOrgIsOIE(client: ApiClient) {
   const url = `${client.baseUrl}/.well-known/okta-organization`;
   const request = {
     method: 'get'

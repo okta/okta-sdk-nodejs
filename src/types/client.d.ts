@@ -49,8 +49,13 @@ import {
   // RoleTargetApi,
   CustomDomainApi,
   DeviceApi,
+  ApplicationUsersApi,
+  UserLifecycleApi,
+  RoleAssignmentAUserApi,
+  RoleBTargetAdminApi,
+  ApplicationSSOCredentialKeyApi,
 } from './generated';
-export declare class Client {
+export declare class ApiClient {
   constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
@@ -98,5 +103,9 @@ export declare class Client {
   // roleTargetApi: RoleTargetApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
-
+  applicationUsersApi: ApplicationUsersApi;
+  userLifecycleApi: UserLifecycleApi;
+  roleAssignmentAUserApi: RoleAssignmentAUserApi;
+  roleBTargetAdminApi: RoleBTargetAdminApi;
+  applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
 }

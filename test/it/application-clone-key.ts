@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor, JsonWebKey } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor, JsonWebKey } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-clone-key`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -30,12 +30,12 @@ describe.skip('Application.cloneApplicationKey()', () => {
       await utils.removeAppByLabel(client, application2.label);
       createdApplication = await client.applicationApi.createApplication({application});
       createdApplication2 = await client.applicationApi.createApplication({application: application2});
-      const generatedKey = await client.applicationApi.generateApplicationKey({
+      const generatedKey = await client.applicationSSOCredentialKeyApi.generateApplicationKey({
         appId: createdApplication.id,
         validityYears: 2
       });
 
-      const clonedKey = await client.applicationApi.cloneApplicationKey({
+      const clonedKey = await client.applicationSSOCredentialKeyApi.cloneApplicationKey({
         appId: createdApplication.id,
         keyId: generatedKey.kid,
         targetAid: createdApplication2.id

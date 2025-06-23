@@ -91,7 +91,7 @@ describe('User role API', () => {
     });
 
     it('should return a Collection of roles', async () => {
-      const roles = await client.roleAssignmentApi.listAssignedRolesForUser({
+      const roles = await client.roleAssignmentAUserApi.listAssignedRolesForUser({
         userId: user.id
       });
       expect(roles).to.be.instanceOf(Collection);

@@ -32,10 +32,10 @@ const {
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  OrgSettingApi,
+  // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
-  CustomizationApi,
+  // CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
   UserApi,
@@ -50,10 +50,15 @@ const {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  RoleTargetApi,
-  RoleAssignmentApi,
+  // RoleTargetApi,
+  // RoleAssignmentApi,
   CustomDomainApi,
   DeviceApi,
+  ApplicationUsersApi,
+  UserLifecycleApi,
+  RoleAssignmentAUserApi,
+  RoleBTargetAdminApi,
+  ApplicationSSOCredentialKeyApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -62,10 +67,10 @@ const { ServerConfiguration } = require('./generated/servers');
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
  *
- * @class Client
+ * @class ApiClient
  * @extends {GeneratedApiClient}
  */
-class Client {
+class ApiClient {
   constructor(config) {
     const configLoader = new ConfigLoader();
     const clientConfig = Object.assign({}, config);
@@ -142,10 +147,10 @@ class Client {
     this.eventHookApi = new EventHookApi(configuration);
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
-    this.orgSettingApi = new OrgSettingApi(configuration);
+    // this.orgSettingApi = new OrgSettingApi(configuration);
     this.applicationApi = new ApplicationApi(configuration);
     this.authorizationServerApi = new AuthorizationServerApi(configuration);
-    this.customizationApi = new CustomizationApi(configuration);
+    // this.customizationApi = new CustomizationApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
     this.userApi = new UserApi(configuration);
@@ -160,11 +165,16 @@ class Client {
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
-    this.roleTargetApi = new RoleTargetApi(configuration);
-    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
+    // this.roleTargetApi = new RoleTargetApi(configuration);
+    // this.roleAssignmentApi = new RoleAssignmentApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
+    this.applicationUsersApi = new ApplicationUsersApi(configuration);
+    this.userLifecycleApi = new UserLifecycleApi(configuration);
+    this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
+    this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
+    this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
   }
 }
 
-module.exports = Client;
+module.exports = ApiClient;

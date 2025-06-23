@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Client = require('./client');
+const ApiClient = require('./client');
 const RequestExecutor = require('./request-executor');
 const { DefaultRequestExecutor } = require('./default-request-executor');
 const { Collection } = require('./collection');
@@ -19,7 +19,7 @@ const OktaApiError = require('./api-error');
 
 module.exports = Object.assign(
   {}, {
-    Client,
+    ApiClient,
     RequestExecutor,
     DefaultRequestExecutor,
     Collection,

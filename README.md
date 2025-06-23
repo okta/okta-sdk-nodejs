@@ -163,14 +163,14 @@ console.log('Created user', user);
 
 #### Get a User
 
-The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ userId: :id|:login })`:
+The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ id: :id|:login })`:
 
 ```javascript
 let user;
-user = await client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' });
+user = await client.userApi.getUser({ id: 'ausmvdt5xg8wRVI1d0g3' });
 console.log(user);
 
-user = await client.userApi.getUser({ userId: 'foo@bar.com' });
+user = await client.userApi.getUser({ id: 'foo@bar.com' });
 console.log(user);
 ```
 
@@ -188,11 +188,11 @@ await client.userApi.updateUser({
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser({ userId })` and `client.userApi.deleteUser({ userId })` operations:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userLifecycleApi.deactivateUser(({ id })` and `client.userApi.deleteUser({ id })` operations:
 
 ```javascript
-await client.userApi.deactivateUser({ userId: user.id });
-await client.userApi.deleteUser({ userId: user.id });
+await client.userLifecycleApi.deactivateUser({ id: user.id });
+await client.userApi.deleteUser({ id: user.id });
 ```
 
 #### List All Org Users
@@ -851,9 +851,9 @@ const client = new okta.Client({
 ### 4.5.x
 
 ```typescript
-import { Client } from '@okta/okta-sdk-nodejs'
+import { ApiClient } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-const client = new Client({
+const client = new ApiClient({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
@@ -871,9 +871,9 @@ logEvents.each((entry: LogEvent) => {
 Providing request body parameters:
 ```typescript
 import { Application, ApplicationOptions } from '@okta/okta-sdk-nodejs/src/types/models/Application';
-import { Client } from '@okta/okta-sdk-nodejs'
+import { ApiClient } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-const client = new Client({
+const client = new ApiClient({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
@@ -961,7 +961,7 @@ The recommended solution is to provide custom cache middleware implementation.
 Alternatively, users can pass custom `highWaterMark` parameter to `node-fetch` by specifying parameter `defaultCacheMiddlewareResponseBufferSize` in the Client config:
 
 ```
-const client: Client = new Client({
+const client: ApiClient = new ApiClient({
   orgUrl: 'https://orgname.okta.com',
   token: 'apiToken',
   defaultCacheMiddlewareResponseBufferSize: sizeInBytes
@@ -972,6 +972,40 @@ const client: Client = new Client({
 > Note: this workaround should be used with caution as it relies on `node-fetch`'s internal detail which can change its implementation.
 
 ## Migrating between versions
+
+### From 7.0 to 7.1
+
+#### API changes
+
+```diff
+
+- await client.userApi.deactivateUser({ userId: user.id })
++ await client.userLifecycleApi.deactivateUser({ id: user.id })
+
+- await client.userApi.getUser({ userId: user.id })
++ await client.userApi.getUser({ id: user.id })
+
+- await client.userApi.deleteUser({ userId: user.id })
++ await client.userApi.deleteUser({ id: user.id })
+
+- await client.roleAssignmentApi.listAssignedRolesForUser({ userId })
++ await client.roleAssignmentAUserApi.listAssignedRolesForUser({ userId })
+
+- await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
++ await client.roleBTargetAdminApi.listGroupTargetsForRole({ userId, roleAssignmentId })
+
+- import { Client } from '@okta/okta-sdk-nodejs'
++ import { ApiClient } from '@okta/okta-sdk-nodejs'
+- const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
++ const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
+
+- await client.applicationApi.generateApplicationKey({ appId, validityYears });
++ await client.applicationSSOCredentialKeyApi.generateApplicationKey({ appId, validityYears });
+
+- await client.applicationApi.cloneApplicationKey({ appId, keyId, targetAid });
++ await client.applicationSSOCredentialKeyApi.cloneApplicationKey({ appId, keyId, targetAid });
+
+```
 
 ### From 6.x to 7.0
 

@@ -45,7 +45,7 @@ describe('User API Tests', () => {
     expect(new Date(profileUpdateUser.lastUpdated)).to.be.gt(new Date(createdUser.lastUpdated));
 
     const updatedUser = await client.userApi.getUser({
-      userId: createdUser.id
+      id: createdUser.id
     });
     expect(updatedUser.profile.nickName).to.equal('Batman');
 

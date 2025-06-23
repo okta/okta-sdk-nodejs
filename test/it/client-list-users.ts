@@ -93,7 +93,7 @@ describe('client.listUsers({ })', () => {
 
   before(async () => {
     const stagedUser = await createUser('client-list-users-staged');
-    await client.userApi.deactivateUser({userId: stagedUser.id});
+    await client.userLifecycleApi.deactivateUser({id: stagedUser.id});
     users.push(stagedUser);
     users.push(await createUser('client-list-users'));
     users.push(await createUser('client-list-users-filtered-1'));
