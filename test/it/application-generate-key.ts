@@ -26,7 +26,7 @@ describe.skip('Application.generateApplicationKey()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.applicationApi.createApplication({application});
-      const applicationKey = await client.applicationSSOCredentialKeyApi.generateApplicationKey({
+      const applicationKey = await client.applicationApi.generateApplicationKey({
         appId: createdApplication.id,
         validityYears: 2
       });

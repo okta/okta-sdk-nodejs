@@ -30,12 +30,12 @@ describe.skip('Application.cloneApplicationKey()', () => {
       await utils.removeAppByLabel(client, application2.label);
       createdApplication = await client.applicationApi.createApplication({application});
       createdApplication2 = await client.applicationApi.createApplication({application: application2});
-      const generatedKey = await client.applicationSSOCredentialKeyApi.generateApplicationKey({
+      const generatedKey = await client.applicationApi.generateApplicationKey({
         appId: createdApplication.id,
         validityYears: 2
       });
 
-      const clonedKey = await client.applicationSSOCredentialKeyApi.cloneApplicationKey({
+      const clonedKey = await client.applicationApi.cloneApplicationKey({
         appId: createdApplication.id,
         keyId: generatedKey.kid,
         targetAid: createdApplication2.id

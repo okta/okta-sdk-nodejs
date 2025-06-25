@@ -387,7 +387,7 @@ export class ObjectSerializer {
     for (const predicate of supportedMimeTypePredicatesWithPriority) {
         for (const mediaType of normalMediaTypes) {
             if (mediaType != null && predicate(mediaType)) {
-                if (isCertMediaType(selectedMediaType)) {
+                if (isCertMediaType(mediaType)) {
                   selectedMediaType = ObjectSerializer.getPreferredMediaTypeForCert(body);
                 } else {
                   selectedMediaType = mediaType;

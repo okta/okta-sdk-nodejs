@@ -1020,6 +1020,9 @@ const client: ApiClient = new ApiClient({
 - await client.groupApi.createGroup({group});
 + await client.groupApi.addGroup({group});
 
+- await client.schemaApi.updateApplicationUserProfile({ appInstanceId, body });
++ await client.schemaApi.updateApplicationUserProfile({ appId, body });
+
 ```
 
 ### From 6.x to 7.0

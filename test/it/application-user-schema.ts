@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, BookmarkApplication, UserSchema, DefaultRequestExecutor, MemoryStore } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Application, UserSchema, DefaultRequestExecutor, MemoryStore } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-user-schema`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.schemas.read', 'okta.schemas.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -20,7 +20,7 @@ const client = new Client({
 
 describe('App User Schema', () => {
   const applicationOptions = utils.getOIDCApplication();
-  let createdApplication: BookmarkApplication;
+  let createdApplication: Application;
 
   beforeEach(async () => {
     createdApplication = await client.applicationApi.createApplication({
@@ -34,18 +34,18 @@ describe('App User Schema', () => {
 
   it('gets UserSchema for application', async () => {
     const userSchema: UserSchema = await client.schemaApi.getApplicationUserSchema({
-      appInstanceId: createdApplication.id
+      appId: createdApplication.id
     });
     expect(userSchema.definitions).is.not.null;
   });
 
   it('adds property to application\'s UserSchema', async () => {
     const userSchema = await client.schemaApi.getApplicationUserSchema({
-      appInstanceId: createdApplication.id
+      appId: createdApplication.id
     });
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id,
+      appId: createdApplication.id,
       body: getMockSchemaProperty()
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
@@ -54,13 +54,13 @@ describe('App User Schema', () => {
   it('updates application\'s UserSchema', async () => {
     const mockSchemaProperty: UserSchema = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id,
+      appId: createdApplication.id,
       body: mockSchemaProperty
     });
     let customProperty = updatedSchema.definitions.custom.properties.twitterUserName as Record<string, string>;
     expect(customProperty.title).to.equal('Twitter username');
     updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id,
+      appId: createdApplication.id,
       body: {
         ...mockSchemaProperty,
         definitions: {
@@ -83,12 +83,12 @@ describe('App User Schema', () => {
   it('removes custom user type UserSchema property', async () => {
     const mockSchemaProperty = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id,
+      appId: createdApplication.id,
       body: mockSchemaProperty
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.contain('twitterUserName');
     updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id,
+      appId: createdApplication.id,
       body: {
         ...mockSchemaProperty,
         definitions: {

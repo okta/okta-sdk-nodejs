@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Client, Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-token`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

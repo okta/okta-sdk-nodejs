@@ -65,6 +65,7 @@ const {
   ApplicationGroupsApi,
   GroupRuleApi,
   ApplicationGrantsApi,
+  ApplicationTokensApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -80,6 +81,9 @@ const apiConsolidationRules = {
       ApplicationUsersApi,
       ApplicationGroupsApi,
       ApplicationConnectionsApi,
+      ApplicationTokensApi,
+      ApplicationGrantsApi,
+      ApplicationSSOCredentialKeyApi,
     ]
   }
 };

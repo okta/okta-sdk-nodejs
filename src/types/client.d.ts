@@ -60,6 +60,7 @@ import {
   ApplicationGroupsApi,
   GroupRuleApi,
   ApplicationGrantsApi,
+  ApplicationTokensApi,
 } from './generated';
 
 // Generate consolidated api classes types
@@ -68,7 +69,10 @@ import {
 export declare interface ConsolidatedApplicationApi extends Pick<ApplicationApi, keyof ApplicationApi>,
   Pick<ApplicationGroupsApi, keyof ApplicationGroupsApi>,
   Pick<ApplicationUsersApi, keyof ApplicationUsersApi>,
-  Pick<ApplicationConnectionsApi, keyof ApplicationConnectionsApi> {
+  Pick<ApplicationConnectionsApi, keyof ApplicationConnectionsApi>,
+  Pick<ApplicationGrantsApi, keyof ApplicationGrantsApi>,
+  Pick<ApplicationTokensApi, keyof ApplicationTokensApi>,
+  Pick<ApplicationSSOCredentialKeyApi, keyof ApplicationSSOCredentialKeyApi> {
 }
 
 export declare class ApiClient {
@@ -130,4 +134,5 @@ export declare class ApiClient {
   applicationGroupsApi: ApplicationGroupsApi;
   groupRuleApi: GroupRuleApi;
   applicationGrantsApi: ApplicationGrantsApi;
+  applicationTokensApi: ApplicationTokensApi;
 }
