@@ -999,15 +999,6 @@ const client: ApiClient = new ApiClient({
 - await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
 + await client.roleBTargetAdminApi.listGroupTargetsForRole({ userId, roleAssignmentId })
 
-- await client.applicationApi.generateApplicationKey({ appId, validityYears });
-+ await client.applicationSSOCredentialKeyApi.generateApplicationKey({ appId, validityYears });
-
-- await client.applicationApi.cloneApplicationKey({ appId, keyId, targetAid });
-+ await client.applicationSSOCredentialKeyApi.cloneApplicationKey({ appId, keyId, targetAid });
-
-- await client.applicationApi.generateCsrForApplication({appId: app.id, metadata: mockCsr})
-+ await client.applicationSSOCredentialKeyApi.generateCsrForApplication({appId: app.id, metadata: mockCsr})
-
 - await client.applicationApi.listFeaturesForApplication({appId});
 + await client.applicationFeaturesApi.listFeaturesForApplication({appId});
 
