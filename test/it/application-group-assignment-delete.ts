@@ -36,8 +36,8 @@ describe('ApplicationGroupAssignment.delete(:appId)', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.applicationApi.createApplication({application});
       createdGroup = await client.groupApi.addGroup({group});
-      await client.applicationGroupsApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id});
-      const response = await client.applicationGroupsApi.unassignApplicationFromGroup({appId: createdApplication.id, groupId: createdGroup.id});
+      await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id});
+      const response = await client.applicationApi.unassignApplicationFromGroup({appId: createdApplication.id, groupId: createdGroup.id});
       expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {

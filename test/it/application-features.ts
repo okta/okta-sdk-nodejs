@@ -32,19 +32,19 @@ describe('Application API: applicaton features', () => {
   // application features tests require provisioning connection to be enabled
   xit('lists application features', async () => {
     const features: ApplicationFeature[] = [];
-    for await (const feature of (await client.applicationFeaturesApi.listFeaturesForApplication({appId: application.id}))) {
+    for await (const feature of (await client.applicationApi.listFeaturesForApplication({appId: application.id}))) {
       features.push(feature);
     }
     expect(features.length).to.be.greaterThanOrEqual(1);
   });
 
   xit('gets application feature', async () => {
-    const feature = await client.applicationFeaturesApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
+    const feature = await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
     expect(feature.name).to.equal('USER_PROVISIONING');
   });
 
   xit('updates application feature', async () => {
-    let feature = await client.applicationFeaturesApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
+    let feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
       updateFeatureForApplicationRequest: {
         update: {
           lifecycleDeactivate: {
@@ -56,7 +56,7 @@ describe('Application API: applicaton features', () => {
       }
     });
     expect(feature.status).to.equal('DISABLED');
-    feature = await client.applicationFeaturesApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
+    feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
       updateFeatureForApplicationRequest: {
         update: {
           lifecycleDeactivate: {
@@ -72,7 +72,7 @@ describe('Application API: applicaton features', () => {
 
   it('provides method for uploading application logo', async () => {
     const file = utils.getMockImage('logo.png');
-    const response = await client.applicationLogosApi.uploadApplicationLogo({
+    const response = await client.applicationApi.uploadApplicationLogo({
       appId: application.id,
       file: {
         data: file,

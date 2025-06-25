@@ -84,6 +84,8 @@ const apiConsolidationRules = {
       ApplicationTokensApi,
       ApplicationGrantsApi,
       ApplicationSSOCredentialKeyApi,
+      ApplicationFeaturesApi,
+      ApplicationLogosApi,
     ]
   }
 };
@@ -217,13 +219,13 @@ class ApiClient {
     this.userLifecycleApi = new UserLifecycleApi(configuration);
     this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
     this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
-    this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
-    this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
-    this.applicationLogosApi = new ApplicationLogosApi(configuration);
-    this.applicationConnectionsApi = new ApplicationConnectionsApi(configuration);
-    this.applicationGroupsApi = new ApplicationGroupsApi(configuration);
+    // this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
+    // this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
+    // this.applicationLogosApi = new ApplicationLogosApi(configuration);
+    // this.applicationConnectionsApi = new ApplicationConnectionsApi(configuration);
+    // this.applicationGroupsApi = new ApplicationGroupsApi(configuration);
+    // this.applicationGrantsApi = new ApplicationGrantsApi(configuration);
     this.groupRuleApi = new GroupRuleApi(configuration);
-    this.applicationGrantsApi = new ApplicationGrantsApi(configuration);
   }
 }
 

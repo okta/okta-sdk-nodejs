@@ -61,7 +61,7 @@ describe('Application API: provisioning connection for application', () => {
 
   it('provides method for creating provisioning connection for application', async () => {
     try {
-      await client.applicationConnectionsApi.updateDefaultProvisioningConnectionForApplication({
+      await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
         updateDefaultProvisioningConnectionForApplicationRequest: {
           // todo: oneof

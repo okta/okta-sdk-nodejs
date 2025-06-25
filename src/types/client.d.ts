@@ -72,7 +72,9 @@ export declare interface ConsolidatedApplicationApi extends Pick<ApplicationApi,
   Pick<ApplicationConnectionsApi, keyof ApplicationConnectionsApi>,
   Pick<ApplicationGrantsApi, keyof ApplicationGrantsApi>,
   Pick<ApplicationTokensApi, keyof ApplicationTokensApi>,
-  Pick<ApplicationSSOCredentialKeyApi, keyof ApplicationSSOCredentialKeyApi> {
+  Pick<ApplicationSSOCredentialKeyApi, keyof ApplicationSSOCredentialKeyApi>,
+  Pick<ApplicationFeaturesApi, keyof ApplicationFeaturesApi>,
+  Pick<ApplicationLogosApi, keyof ApplicationLogosApi> {
 }
 
 export declare class ApiClient {
@@ -127,12 +129,12 @@ export declare class ApiClient {
   userLifecycleApi: UserLifecycleApi;
   roleAssignmentAUserApi: RoleAssignmentAUserApi;
   roleBTargetAdminApi: RoleBTargetAdminApi;
-  applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
-  applicationFeaturesApi: ApplicationFeaturesApi;
-  applicationLogosApi: ApplicationLogosApi;
-  applicationConnectionsApi: ApplicationConnectionsApi;
-  applicationGroupsApi: ApplicationGroupsApi;
+  // applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
+  // applicationFeaturesApi: ApplicationFeaturesApi;
+  // applicationLogosApi: ApplicationLogosApi;
+  // applicationConnectionsApi: ApplicationConnectionsApi;
+  // applicationGroupsApi: ApplicationGroupsApi;
+  // applicationGrantsApi: ApplicationGrantsApi;
+  // applicationTokensApi: ApplicationTokensApi;
   groupRuleApi: GroupRuleApi;
-  applicationGrantsApi: ApplicationGrantsApi;
-  applicationTokensApi: ApplicationTokensApi;
 }

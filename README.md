@@ -999,14 +999,8 @@ const client: ApiClient = new ApiClient({
 - await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
 + await client.roleBTargetAdminApi.listGroupTargetsForRole({ userId, roleAssignmentId })
 
-- await client.applicationApi.listFeaturesForApplication({appId});
-+ await client.applicationFeaturesApi.listFeaturesForApplication({appId});
-
 - await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
-+ await client.applicationFeaturesApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'})
-
-- await client.applicationFeaturesApi.uploadApplicationLogo({ appId, file })
-+ await client.applicationLogosApi.uploadApplicationLogo({ appId, file })
++ await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'})
 
 - await client.groupApi.createGroup({group});
 + await client.groupApi.addGroup({group});
