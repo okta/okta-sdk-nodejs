@@ -21,6 +21,7 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
   const badDateTimeProps = [];
   const fixedAdditionalPropertiesTrue = [];
   const manualFixes = [];
+  const manualPathsFixes = [];
   const ffAmends = [];
 
   const ffAmendsMerge = (obj, onSuccess) => {
@@ -34,6 +35,29 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
       onSuccess();
     }
   };
+
+  for (const httpPath in spec3.paths) {
+    for (const httpMethod in spec3.paths[httpPath]) {
+      if (!['parameters'].includes(httpMethod)) {
+        const endpoint = spec3.paths[httpPath][httpMethod];
+        for (const responseCode in endpoint.responses) {
+          const response = endpoint.responses[responseCode];
+          if (response?.content) {
+            for (const mimeType in response?.content) {
+              const typedContent = response.content[mimeType];
+              if (typedContent?.schema) {
+                const schema = typedContent.schema;
+                if (schema['$ref'] && schema.type === 'object') {
+                  delete schema.type;
+                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   for (const schemaKey in spec3.components.schemas) {
     const schema = spec3.components.schemas[schemaKey];
@@ -141,6 +165,11 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
           ffAmends.push({ schemaKey, propName });
         });
 
+        if (prop['$ref'] && prop['type'] === 'object') {
+          manualFixes.push({ schemaKey, propName });
+          delete prop['type'];
+        }
+
         // // Special fix of `allOf` not being an array in UserSchemaPropertiesProfile for openapi-generator v6
         // if (schemaKey === 'UserSchemaPropertiesProfile' && propName === 'allOf' && prop.type === 'array' && prop.items) {
         //   const items = Array.isArray(prop.items) ? prop.items : [prop.items];
@@ -192,6 +221,7 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
     badDateTimeProps,
     fixedAdditionalPropertiesTrue,
     manualFixes,
+    manualPathsFixes,
     ffAmends,
   };
 }
@@ -212,7 +242,7 @@ async function main() {
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes, ffAmends
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes, manualPathsFixes, ffAmends
   } = patchSpec3(spec3, openApiGeneratorVersion);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
@@ -220,7 +250,8 @@ async function main() {
   console.log(`Properties without items: ${arrayPropsWithoutItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log(`Manual fixes: ${manualFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Manual schema fixes: ${manualFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log('Manual paths fixes:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
 
   const yamlFixedStr = yaml.dump(spec3, {
