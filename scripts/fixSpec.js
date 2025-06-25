@@ -1,3 +1,4 @@
+// @ts-ignore
 import _ from 'lodash';
 import fs from 'fs';
 import yaml from 'js-yaml';
