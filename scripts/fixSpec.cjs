@@ -1,10 +1,11 @@
-// @ts-ignore
-import _ from 'lodash';
-import fs from 'fs';
-import yaml from 'js-yaml';
+/* eslint-disable quotes */
+
+const _ = require('lodash');
+const fs = require('fs');
+const yaml = require('js-yaml');
 
 
-function patchSpec3(spec3, openApiGeneratorVersion) {
+function patchSpec3(spec3) {
   const schemasToForcePrefix = [
     'BehaviorRule',
     'PolicyRule',
@@ -44,13 +45,13 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
         if (endpoint?.requestBody?.content) {
           for (const contentType in endpoint.requestBody.content) {
             const typedContent = endpoint.requestBody.content[contentType];
-              if (typedContent?.schema) {
-                const schema = typedContent.schema;
-                if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
-                  delete schema.type;
-                  manualPathsFixes.push({ httpMethod, httpPath, contentType, key: schema });
-                }
+            if (typedContent?.schema) {
+              const schema = typedContent.schema;
+              if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
+                delete schema.type;
+                manualPathsFixes.push({ httpMethod, httpPath, contentType, key: schema });
               }
+            }
           }
         }
         for (const responseCode in endpoint.responses) {
@@ -99,7 +100,7 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
     ffAmendsMerge(schema, () => {
       ffAmends.push({ schemaKey });
     });
-    
+
     if (schema.oneOf) {
       schema.oneOf.forEach((one, i) => {
         // x-okta-feature-flag-amends
@@ -240,7 +241,7 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
     if (schema.discriminator) {
       // x-okta-feature-flag-amends
       ffAmendsMerge(schema.discriminator, () => {
-        ffAmends.push({ schemaKey, propName: "discriminator" });
+        ffAmends.push({ schemaKey, propName: 'discriminator' });
       });
 
       const { mapping } = schema.discriminator;
@@ -286,7 +287,7 @@ async function main() {
     // to prevent warn in console
     // [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
     .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
-    .replace(/^    Error:$/m, '    ModelError:');
+    .replace(/^[ ]{4}Error:$/m, '    ModelError:');
   const spec3 = yaml.load(yamlStrFixed);
 
   const {

@@ -1,10 +1,11 @@
-// @ts-ignore
-import { replaceInFileSync } from 'replace-in-file';
-import fs from 'fs';
-import path from 'path';
-import globby from 'globby';
-import yaml from 'js-yaml';
+/* eslint-disable quotes */
 
+const fs = require('fs');
+const path = require('path');
+const globby = require('globby');
+const yaml = require('js-yaml');
+
+let replaceInFileSync; // to be imported from ESM 'replace-in-file'
 
 const getSpec3Meta = (spec3) => {
   const discriminators = {};
@@ -33,24 +34,8 @@ const getSpec3Meta = (spec3) => {
   };
 };
 
-const removeIncorrectDiscriminators = (spec3Meta) => {
-  const decsriminatorNames = [
-    ...Object.keys(spec3Meta.discriminators),
-    // for JsonWebKey1
-    'kty'
-  ];
-  const totalRes = {};
-  for (const decsriminatorName of decsriminatorNames) {
-    const res = removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
-    if (Object.keys(res).length) {
-      totalRes[decsriminatorName] = res;
-    }
-  }
-  return totalRes;
-};
-
 const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
-  const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, "gm");
+  const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, 'gm');
   let result = {};
   const _res = replaceInFileSync({
     files: 'src/generated/models/*.ts',
@@ -86,6 +71,22 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
   return result;
 };
 
+const removeIncorrectDiscriminators = (spec3Meta) => {
+  const decsriminatorNames = [
+    ...Object.keys(spec3Meta.discriminators),
+    // for JsonWebKey1
+    'kty'
+  ];
+  const totalRes = {};
+  for (const decsriminatorName of decsriminatorNames) {
+    const res = removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
+    if (Object.keys(res).length) {
+      totalRes[decsriminatorName] = res;
+    }
+  }
+  return totalRes;
+};
+
 const fixRespondAsync = () => {
   const res = replaceInFileSync({
     files: 'src/generated/**/*.ts',
@@ -98,12 +99,15 @@ const fixRespondAsync = () => {
 };
 
 const removeAllOf = () => {
+  // eslint-disable-next-line quotes
   const regexExport = new RegExp("\\s*export \\* from '[^']+/\\w+AllOf';?", 'g');
+  // eslint-disable-next-line quotes
   const regexImport = new RegExp("\\s*import {\\s*\\w+(\\s*,\\s*\\w+)*\\s*} from '[^']+/\\w+AllOf';?", 'g');
+  // eslint-disable-next-line quotes
   const regexTypeMap = new RegExp("\\s*'\\w+AllOf':\\s+\\w+AllOf,", 'g');
-  const regexAllOfInsideClass = new RegExp("(\\w+)AllOf(\\w+)(?<!AllOf)(?=\\W|$)", 'g');
-  const regexAllOfInsideFileName = new RegExp("^(\\w+)AllOf(\\w+)(?<!AllOf)$", '');
-  const regexAllOfFileName = new RegExp("^(\\w+)AllOf$", '');
+  const regexAllOfInsideClass = new RegExp('(\\w+)AllOf(\\w+)(?<!AllOf)(?=\\W|$)', 'g');
+  const regexAllOfInsideFileName = new RegExp('^(\\w+)AllOf(\\w+)(?<!AllOf)$', '');
+  const regexAllOfFileName = new RegExp('^(\\w+)AllOf$', '');
 
   const allOfClasses = {};
   const renamedFiles = {};
@@ -122,7 +126,7 @@ const removeAllOf = () => {
     let newFileName = allOfClasses[fileName];
     if (!newFileName && regexAllOfInsideFileName.test(fileName)) {
       // there can be multiple occurrences of "AllOf" in class
-      newFileName = fileName.replaceAll(/AllOf/g, '');;
+      newFileName = fileName.replaceAll(/AllOf/g, '');
       allOfClasses[fileName] = newFileName;
     }
 
@@ -154,7 +158,8 @@ const removeAllOf = () => {
       'src/generated/**/*.md',
     ],
     from: regexAllOfInsideClass,
-    to: (match, grp1, grp2, _fileLength, fileContents, pathName) => {
+    // eslint-disable-next-line no-unused-vars
+    to: (match, _grp1, _grp2, _fileLength, fileContents, pathName) => {
       if (!allOfClasses[match]) {
         // there can be multiple occurrences of "AllOf" in class
         allOfClasses[match] = match.replaceAll(/AllOf/g, '');
@@ -178,8 +183,9 @@ const removeAllOf = () => {
 
 async function main() {
   try {
-    const openApiGeneratorVersion = process.argv[2] || '6';
-    const yamlFile = 'spec/management.yaml';  
+    ({ replaceInFileSync } = await import('replace-in-file'));
+    // const openApiGeneratorVersion = process.argv[2] || '6';
+    const yamlFile = 'spec/management.yaml';
     const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
     const spec3 = yaml.load(yamlStr);
     const spec3Meta = getSpec3Meta(spec3);
