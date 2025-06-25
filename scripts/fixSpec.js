@@ -3,7 +3,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 
 
-function patchSpec3(spec3) {
+function patchSpec3(spec3, openApiGeneratorVersion) {
   const schemasToForcePrefix = [
     'BehaviorRule',
     'PolicyRule',
@@ -197,9 +197,10 @@ function patchSpec3(spec3) {
 }
 
 async function main() {
-  const yamlFile = process.argv[2] || 'spec/management.yaml';
-  const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
-  const typeMapMustache = 'templates/openapi-generator/model/typeMap.mustache';
+  const openApiGeneratorVersion = process.argv[2] || '6';
+  const yamlFile = process.argv[3] || 'spec/management.yaml';
+  const yamlFixedFile = process.argv[4] || 'spec/management.yaml';
+  const typeMapMustache = 'templates/openapi-generator' + (openApiGeneratorVersion === '7' ? '-7' : '') + '/model/typeMap.mustache';
 
   const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
   const yamlStrFixed = yamlStr.replaceAll('../oauth/dist/oauth.yaml', 'oauth.yaml');
@@ -207,7 +208,7 @@ async function main() {
 
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes, ffAmends
-  } = patchSpec3(spec3);
+  } = patchSpec3(spec3, openApiGeneratorVersion);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);
