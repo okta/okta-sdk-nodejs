@@ -161,7 +161,10 @@ export class ObjectSerializer {
         type = this.findCorrectType(data, type);
 
         // get the map for the correct type.
-        let attributeTypes = typeMap[type].getAttributeTypeMap();
+        let attributeTypes = typeMap[type].getAttributeTypeMap?.();
+        if (!attributeTypes) {
+            return data;
+        }
         let instance: {[index: string]: any} = {};
         for (let index in attributeTypes) {
           let attributeType = attributeTypes[index];
@@ -206,7 +209,10 @@ export class ObjectSerializer {
         return data;
       }
       let instance = new typeMap[type]();
-      let attributeTypes = typeMap[type].getAttributeTypeMap();
+      let attributeTypes = typeMap[type].getAttributeTypeMap?.();
+      if (!attributeTypes) {
+          return data;
+      }
       for (let index in attributeTypes) {
         let attributeType = attributeTypes[index];
         instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
