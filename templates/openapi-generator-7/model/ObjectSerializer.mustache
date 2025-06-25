@@ -101,7 +101,7 @@ const isCertMediaType = (mediaType?: string): boolean => {
     'application/pkix-cert',
     'application/x-pem-file'
   ];
-  return mediaType && certMediaTypes.includes(mediaType);
+  return !!mediaType && certMediaTypes.includes(mediaType);
 };
 
 // Defining a list of mime-types in the order of prioritization for handling.

@@ -248,7 +248,7 @@ export class ObjectSerializer {
       'application/pkix-cert',
       'application/x-pem-file'
     ];
-    return mediaType && certMediaTypes.includes(mediaType);
+    return !!mediaType && certMediaTypes.includes(mediaType);
   }
 
   public static getPreferredMediaTypeForCert(body?: any): string | undefined {
