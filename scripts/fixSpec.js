@@ -41,6 +41,18 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
     for (const httpMethod in spec3.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
+        if (endpoint?.requestBody?.content) {
+          for (const contentType in endpoint.requestBody.content) {
+            const typedContent = endpoint.requestBody.content[contentType];
+              if (typedContent?.schema) {
+                const schema = typedContent.schema;
+                if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
+                  delete schema.type;
+                  manualPathsFixes.push({ httpMethod, httpPath, contentType, key: schema });
+                }
+              }
+          }
+        }
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -48,7 +60,11 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 const schema = typedContent.schema;
-                if (schema['$ref'] && schema.type === 'object') {
+                if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
+                  delete schema.type;
+                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                }
+                if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
@@ -61,7 +77,7 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
   }
 
   for (const schemaKey in spec3.components.schemas) {
-    const schema = spec3.components.schemas[schemaKey];
+    let schema = spec3.components.schemas[schemaKey];
 
     if (schema.type === 'object' && !schema.properties && !schema.additionalProperties) {
       schema.additionalProperties = {};
@@ -100,6 +116,38 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
           ffAmends.push({ schemaKey, propName: `allOf[${i}]` });
         });
       });
+    }
+
+    if (schema.allOf && Object.keys(schema).length > 1) {
+      const otherPropsKeys = Object.keys(schema).filter(k => k !== 'allOf');
+      const otherProps = Object.fromEntries(otherPropsKeys.map(k => [k, schema[k]]));
+      if (schemaKey === 'ByDurationExpiry') {
+        schema.allOf.push(otherProps);
+        for (const k of otherPropsKeys) {
+          delete schema[k];
+        }
+        manualFixes.push({ schemaKey, propName: 'allOf' });
+      }
+      //TODO: other schemas ?
+    }
+
+    if (schema.allOf && Object.keys(schema).length === 1 && schema.allOf.length === 1) {
+      const one = schema.allOf[0];
+      const isOneRef = one?.['$ref'] && Object.keys(one).length === 1;
+      if (!isOneRef) {
+        schema = one;
+        spec3.components.schemas[schemaKey] = schema;
+        manualFixes.push({ schemaKey, propName: 'allOf' });
+      }
+    }
+
+    // Special fix for UserFactorPushTransactionSuccess which will not be generated without a fix
+    if (schemaKey === 'UserFactorPushTransactionSuccess' && schema['$ref']) {
+      schema['allOf'] = [
+        { ... schema }
+      ];
+      delete schema['$ref'];
+      manualFixes.push({ schemaKey });
     }
 
     if (schema.properties) {
@@ -181,15 +229,6 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
       }
     }
 
-    // Special fix for UserFactorPushTransactionSuccess which will not be generated without a fix
-    if (schemaKey === 'UserFactorPushTransactionSuccess' && schema['$ref']) {
-      schema['allOf'] = [
-        { ... schema }
-      ];
-      delete schema['$ref'];
-      manualFixes.push({ schemaKey });
-    }
-
     if (schema.discriminator) {
       // x-okta-feature-flag-amends
       ffAmendsMerge(schema.discriminator, () => {
@@ -261,7 +300,7 @@ async function main() {
   fs.writeFileSync(yamlFixedFile, yamlFixedStr);
   console.log(`Fixed file ${yamlFixedFile}`);
 
-  // TODO: remove
+  // TODO: remove?
   const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
     addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
   ).join('\n');
