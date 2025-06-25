@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { BookmarkApplication, Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Application, ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-delete`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -21,7 +21,7 @@ describe('Application.delete()', () => {
   it('should allow me to delete the application', async () => {
     const application = utils.getBookmarkApplication();
 
-    let createdApplication: BookmarkApplication;
+    let createdApplication: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);

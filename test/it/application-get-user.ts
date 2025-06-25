@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor, User, AppUser, Application } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor, User, AppUser, Application } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -37,13 +37,13 @@ describe('Application.getApplicationUser()', () => {
       await utils.cleanup(client, user);
       createdApplication = await client.applicationApi.createApplication({application});
       createdUser = await client.userApi.createUser({body: user});
-      createdAppUser = await client.applicationApi.assignUserToApplication({
+      createdAppUser = await client.applicationUsersApi.assignUserToApplication({
         appId: createdApplication.id,
         appUser: {
           id: createdUser.id
         }
       });
-      const appUser = await client.applicationApi.getApplicationUser({
+      const appUser = await client.applicationUsersApi.getApplicationUser({
         appId: createdApplication.id,
         userId: createdAppUser.id
       });

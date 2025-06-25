@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, SamlApplication } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Application, SamlApplication } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-provisioning-connection`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });
@@ -19,7 +19,7 @@ describe('Application API: provisioning connection for application', () => {
 
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({
-      application: utils.getOrg2OrgApplicationOptions()
+      application: utils.getOrg2OrgApplicationOptions() as Application
     });
   });
 
@@ -61,9 +61,10 @@ describe('Application API: provisioning connection for application', () => {
 
   it('provides method for creating provisioning connection for application', async () => {
     try {
-      await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
+      await client.applicationConnectionsApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
-        ProvisioningConnectionRequest: {
+        updateDefaultProvisioningConnectionForApplicationRequest: {
+          // todo: oneof
           profile: {
             authScheme: 'TOKEN',
             token: 'testToken'

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Application, ApplicationFeature, Client } from '@okta/okta-sdk-nodejs';
+import { Application, ApplicationFeature, ApiClient } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-features`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });
@@ -18,7 +18,6 @@ describe('Application API: applicaton features', () => {
   let application;
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({
-      //TODO: Org2OrgApplication
       application: utils.getOrg2OrgApplicationOptions() as Application
     });
   });
@@ -33,43 +32,47 @@ describe('Application API: applicaton features', () => {
   // application features tests require provisioning connection to be enabled
   xit('lists application features', async () => {
     const features: ApplicationFeature[] = [];
-    for await (const feature of (await client.applicationApi.listFeaturesForApplication({appId: application.id}))) {
+    for await (const feature of (await client.applicationFeaturesApi.listFeaturesForApplication({appId: application.id}))) {
       features.push(feature);
     }
     expect(features.length).to.be.greaterThanOrEqual(1);
   });
 
   xit('gets application feature', async () => {
-    const feature = await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'});
+    const feature = await client.applicationFeaturesApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
     expect(feature.name).to.equal('USER_PROVISIONING');
   });
 
   xit('updates application feature', async () => {
-    let feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
-      CapabilitiesObject: {
+    let feature = await client.applicationFeaturesApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
+      updateFeatureForApplicationRequest: {
         update: {
           lifecycleDeactivate: {
             status: 'DISABLED'
           }
-        }
+        },
+        importRules: {},
+        importSettings: {}
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('DISABLED');
-    feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
-      CapabilitiesObject: {
+    expect(feature.status).to.equal('DISABLED');
+    feature = await client.applicationFeaturesApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
+      updateFeatureForApplicationRequest: {
         update: {
           lifecycleDeactivate: {
             status: 'ENABLED'
           }
-        }
+        },
+        importRules: {},
+        importSettings: {}
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('ENABLED');
+    expect(feature.status).to.equal('ENABLED');
   });
 
   it('provides method for uploading application logo', async () => {
     const file = utils.getMockImage('logo.png');
-    const response = await client.applicationApi.uploadApplicationLogo({
+    const response = await client.applicationLogosApi.uploadApplicationLogo({
       appId: application.id,
       file: {
         data: file,

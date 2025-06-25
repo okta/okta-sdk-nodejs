@@ -303,7 +303,7 @@ console.log('Created application:', createdApplication);
 To assign a user to an application, you must know the ID of the application and the user:
 
 ```javascript
-const appUser = await client.applicationApi.assignUserToApplication({
+const appUser = await client.applicationUsersApi.assignUserToApplication({
   appId: createdApplication.id,
   appUser: {
     id: createdUser.id
@@ -979,6 +979,11 @@ const client: ApiClient = new ApiClient({
 
 ```diff
 
+- import { Client } from '@okta/okta-sdk-nodejs'
++ import { ApiClient } from '@okta/okta-sdk-nodejs'
+- const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
++ const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
+
 - await client.userApi.deactivateUser({ userId: user.id })
 + await client.userLifecycleApi.deactivateUser({ id: user.id })
 
@@ -994,16 +999,26 @@ const client: ApiClient = new ApiClient({
 - await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
 + await client.roleBTargetAdminApi.listGroupTargetsForRole({ userId, roleAssignmentId })
 
-- import { Client } from '@okta/okta-sdk-nodejs'
-+ import { ApiClient } from '@okta/okta-sdk-nodejs'
-- const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
-+ const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
-
 - await client.applicationApi.generateApplicationKey({ appId, validityYears });
 + await client.applicationSSOCredentialKeyApi.generateApplicationKey({ appId, validityYears });
 
 - await client.applicationApi.cloneApplicationKey({ appId, keyId, targetAid });
 + await client.applicationSSOCredentialKeyApi.cloneApplicationKey({ appId, keyId, targetAid });
+
+- await client.applicationApi.generateCsrForApplication({appId: app.id, metadata: mockCsr})
++ await client.applicationSSOCredentialKeyApi.generateCsrForApplication({appId: app.id, metadata: mockCsr})
+
+- await client.applicationApi.listFeaturesForApplication({appId});
++ await client.applicationFeaturesApi.listFeaturesForApplication({appId});
+
+- await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
++ await client.applicationFeaturesApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'})
+
+- await client.applicationFeaturesApi.uploadApplicationLogo({ appId, file })
++ await client.applicationLogosApi.uploadApplicationLogo({ appId, file })
+
+- await client.groupApi.createGroup({group});
++ await client.groupApi.addGroup({group});
 
 ```
 

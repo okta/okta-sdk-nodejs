@@ -59,10 +59,50 @@ const {
   RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
   ApplicationSSOCredentialKeyApi,
+  ApplicationFeaturesApi,
+  ApplicationLogosApi,
+  ApplicationConnectionsApi,
+  ApplicationGroupsApi,
+  GroupRuleApi,
+  ApplicationGrantsApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
 
+// Rules to generate consolidated api classes
+const apiConsolidationRules = {
+  // TODO: method renames, eg. createGroup -> addGroup for GroupApi
+  // TODO: applicationConnectionsApi.updateDefaultProvisioningConnectionForApplication has param rename:
+  //       ProvisioningConnectionRequest -> updateDefaultProvisioningConnectionForApplicationRequest
+  ApplicationApi: {
+    apis: [
+      ApplicationApi,
+      ApplicationUsersApi,
+      ApplicationGroupsApi,
+      ApplicationConnectionsApi,
+    ]
+  }
+};
+
+// Generate consolidated api classes
+const consolidatedApis = {};
+for (const consolidatedClassName in apiConsolidationRules) {
+  const rule = apiConsolidationRules[consolidatedClassName];
+  const {apis} = rule;
+  consolidatedApis[consolidatedClassName] = class {
+    constructor() {
+      for (const ApiClass of apis) {
+        this[ApiClass.name] = new ApiClass(...arguments);
+        const apiMethodNames = Object.getOwnPropertyNames(Object.getPrototypeOf(this[ApiClass.name]));
+        for (const apiMethodName of apiMethodNames) {
+          if (apiMethodName !== 'constructor') {
+            this[apiMethodName] = this[ApiClass.name][apiMethodName].bind(this[ApiClass.name]);
+          }
+        }
+      }
+    }
+  };
+}
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -148,7 +188,7 @@ class ApiClient {
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
     // this.orgSettingApi = new OrgSettingApi(configuration);
-    this.applicationApi = new ApplicationApi(configuration);
+    this.applicationApi = new consolidatedApis['ApplicationApi'](configuration);
     this.authorizationServerApi = new AuthorizationServerApi(configuration);
     // this.customizationApi = new CustomizationApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
@@ -174,6 +214,12 @@ class ApiClient {
     this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
     this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
     this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
+    this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
+    this.applicationLogosApi = new ApplicationLogosApi(configuration);
+    this.applicationConnectionsApi = new ApplicationConnectionsApi(configuration);
+    this.applicationGroupsApi = new ApplicationGroupsApi(configuration);
+    this.groupRuleApi = new GroupRuleApi(configuration);
+    this.applicationGrantsApi = new ApplicationGrantsApi(configuration);
   }
 }
 

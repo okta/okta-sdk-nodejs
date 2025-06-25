@@ -54,7 +54,23 @@ import {
   RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
   ApplicationSSOCredentialKeyApi,
+  ApplicationFeaturesApi,
+  ApplicationLogosApi,
+  ApplicationConnectionsApi,
+  ApplicationGroupsApi,
+  GroupRuleApi,
+  ApplicationGrantsApi,
 } from './generated';
+
+// Generate consolidated api classes types
+//TODO create helper
+// TODO: method renames, eg. createGroup -> addGroup for GroupApi
+export declare interface ConsolidatedApplicationApi extends Pick<ApplicationApi, keyof ApplicationApi>,
+  Pick<ApplicationGroupsApi, keyof ApplicationGroupsApi>,
+  Pick<ApplicationUsersApi, keyof ApplicationUsersApi>,
+  Pick<ApplicationConnectionsApi, keyof ApplicationConnectionsApi> {
+}
+
 export declare class ApiClient {
   constructor(config?: V2Configuration);
 
@@ -82,7 +98,7 @@ export declare class ApiClient {
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
   // orgSettingApi: OrgSettingApi;
-  applicationApi: ApplicationApi;
+  applicationApi: ConsolidatedApplicationApi;
   authorizationServerApi: AuthorizationServerApi;
   // customizationApi: CustomizationApi;
   trustedOriginApi: TrustedOriginApi;
@@ -108,4 +124,10 @@ export declare class ApiClient {
   roleAssignmentAUserApi: RoleAssignmentAUserApi;
   roleBTargetAdminApi: RoleBTargetAdminApi;
   applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
+  applicationFeaturesApi: ApplicationFeaturesApi;
+  applicationLogosApi: ApplicationLogosApi;
+  applicationConnectionsApi: ApplicationConnectionsApi;
+  applicationGroupsApi: ApplicationGroupsApi;
+  groupRuleApi: GroupRuleApi;
+  applicationGrantsApi: ApplicationGrantsApi;
 }
