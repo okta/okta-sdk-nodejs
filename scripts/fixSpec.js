@@ -207,8 +207,8 @@ async function main() {
     .replaceAll('../oauth/dist/oauth.yaml', 'oauth.yaml')
     // to prevent warn in console
     // [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-    // .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
-    // .replace(/^    Error:$/m, '    ModelError:');
+    .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
+    .replace(/^    Error:$/m, '    ModelError:');
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
