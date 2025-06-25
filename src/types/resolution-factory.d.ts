@@ -11,11 +11,11 @@
  */
 
 import { Resource } from './resource';
-import { Client } from './client';
+import { ApiClient } from './client';
 
 
 export declare class ModelResolutionFactory {
   getMapping(): Record<string, typeof Resource>;
   getResolutionProperty(): string;
-  createInstance(resource: Record<string, unknown>, client: Client): Resource;
+  createInstance(resource: Record<string, unknown>, client: ApiClient): Resource;
 }

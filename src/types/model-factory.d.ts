@@ -10,12 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { Client } from './client';
+import { ApiClient } from './client';
 import { Resource } from './resource';
 
 export declare class ModelFactory {
   constructor(Ctor: typeof Resource);
 
   Ctor: typeof Resource;
-  createInstance(resource: Record<string, unknown>, client: Client): Resource;
+  createInstance(resource: Record<string, unknown>, client: ApiClient): Resource;
 }

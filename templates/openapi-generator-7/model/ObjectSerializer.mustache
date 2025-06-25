@@ -95,7 +95,7 @@ const isJsonLikeMimeType = mimeTypePredicateFactory((descriptor) => descriptor.t
 const isOctetStreamMimeType = mimeTypeSimplePredicateFactory('application', 'octet-stream');
 const isFormUrlencodedMimeType = mimeTypeSimplePredicateFactory('application', 'x-www-form-urlencoded');
 
-const isCertMediaType = (mediaType: string): boolean => {
+const isCertMediaType = (mediaType?: string): boolean => {
   const certMediaTypes = [
     'application/x-x509-ca-cert',
     'application/pkix-cert',
@@ -165,6 +165,7 @@ export class ObjectSerializer {
     }
   }
 
+  // @ts-ignore any
   public static serialize(data: any, type: string, format: string) {
       if (data == undefined) {
         return data;
@@ -258,6 +259,7 @@ export class ObjectSerializer {
       }
   }
 
+  // @ts-ignore any
   public static deserialize(data: any, type: string, format: string) {
     // polymorphism may change the actual type.
     type = ObjectSerializer.findCorrectType(data, type);

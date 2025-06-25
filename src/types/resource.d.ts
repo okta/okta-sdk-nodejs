@@ -10,8 +10,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { Client } from './client';
+import { ApiClient } from './client';
 
 export declare class Resource {
-  constructor(resourceJson: Record<string, unknown>, client: Client);
+  constructor(resourceJson: Record<string, unknown>, client: ApiClient);
 }

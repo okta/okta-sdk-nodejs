@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { Client } from './client';
+import { ApiClient } from './client';
 
 export interface TokenEndpointResponse {
   access_token: string,
@@ -20,9 +20,9 @@ export interface TokenEndpointResponse {
 }
 
 export declare class OAuth {
-  constructor(client: Client);
+  constructor(client: ApiClient);
 
-  client: Client;
+  client: ApiClient;
   accessToken: TokenEndpointResponse;
   getAccessToken(): Promise<TokenEndpointResponse>;
   clearCachedAccessToken(): void;
