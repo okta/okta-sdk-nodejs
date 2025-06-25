@@ -18,7 +18,7 @@
     "build:openapi": "yarn build:cleanGenerated && yarn build:fixSpec 6 && yarn build:generate && yarn build:fixGenerated 6 && yarn build:emitTypes",
     "build:openapi-7": "yarn build:cleanGenerated && yarn build:fixSpec 7 && yarn build:generate-7 && yarn build:fixGenerated 7 && yarn build:emitTypes",
     "build:generate": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v6.6.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator",
-    "build:generate-7": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator-7",
+    "build:generate-7": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v7.13.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator-7",
     "build:fixSpec": "node scripts/fixSpec.js",
     "build:fixGenerated": "node scripts/fixGenerated.js",
     "build:emitTypes": "./scripts/emitV3Types.sh",
