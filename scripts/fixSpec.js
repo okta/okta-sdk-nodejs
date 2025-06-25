@@ -134,9 +134,17 @@ function patchSpec3(spec3, openApiGeneratorVersion) {
     if (schema.allOf && Object.keys(schema).length === 1 && schema.allOf.length === 1) {
       const one = schema.allOf[0];
       const isOneRef = one?.['$ref'] && Object.keys(one).length === 1;
+      const refSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
+      const refSchema = refSchemaKey ? spec3.components.schemas[refSchemaKey] : undefined;
       if (!isOneRef) {
         schema = one;
         spec3.components.schemas[schemaKey] = schema;
+        manualFixes.push({ schemaKey, propName: 'allOf' });
+      } else if (schemaKey === 'ByDateTimeExpiry') {
+        // Special fix for ByDateTimeExpiry
+        schema.allOf.push({
+          description: refSchema.description,
+        });
         manualFixes.push({ schemaKey, propName: 'allOf' });
       }
     }
