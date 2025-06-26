@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { ApiClient } from '@okta/okta-sdk-nodejs';
+import { ApiClient, AuthenticatorKeyEmail } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -23,24 +23,44 @@ describe('Authenticators API tests', () => {
   });
 
   it('should update Authenticator', async () => {
-    const { value: authenticator} = await (await client.authenticatorApi.listAuthenticators()).next();
-
-    let updatedAuthenticator = await client.authenticatorApi.replaceAuthenticator({authenticatorId: authenticator.id,
-      authenticator: {
-        name: authenticator.name,
-        settings: {
-          allowedFor: 'any'
-        }
+    const authenticators = await client.authenticatorApi.listAuthenticators();
+    let authenticator: AuthenticatorKeyEmail;
+    await authenticators.each(a => {
+      if (a.type === 'email') {
+        authenticator = a;
       }
     });
-    expect(updatedAuthenticator.settings.allowedFor).to.equal('any');
-    updatedAuthenticator = await client.authenticatorApi.replaceAuthenticator({ authenticatorId: authenticator.id,
+
+    // change `name`
+    let updatedAuthenticator: AuthenticatorKeyEmail = await client.authenticatorApi.replaceAuthenticator({authenticatorId: authenticator.id,
       authenticator: {
-        name: authenticator.name,
-        settings: {
-          allowedFor: 'recovery'
-        }
+        name: `${authenticator.name}1`,
       }
+    });
+    updatedAuthenticator = await client.authenticatorApi.getAuthenticator({ authenticatorId: authenticator.id });
+    expect(updatedAuthenticator.name).to.equal(`${authenticator.name}1`);
+
+    // change `allowedFor` - should be requested with correct class instance instead of object
+    let updateAuthenticatorData = new AuthenticatorKeyEmail();
+    updateAuthenticatorData.name = authenticator.name;
+    updateAuthenticatorData.settings = {
+      allowedFor: 'any'
+    };
+    updatedAuthenticator = await client.authenticatorApi.replaceAuthenticator({
+      authenticatorId: authenticator.id,
+      authenticator: updateAuthenticatorData
+    });
+    expect(updatedAuthenticator.settings.allowedFor).to.equal('any');
+
+    // revert `allowedFor`
+    updateAuthenticatorData = new AuthenticatorKeyEmail();
+    updateAuthenticatorData.name = authenticator.name;
+    updateAuthenticatorData.settings = {
+      allowedFor: 'recovery'
+    };
+    updatedAuthenticator = await client.authenticatorApi.replaceAuthenticator({
+      authenticatorId: authenticator.id,
+      authenticator: updateAuthenticatorData
     });
     expect(updatedAuthenticator.settings.allowedFor).to.equal('recovery');
   });
