@@ -61,6 +61,11 @@ function patchSpec3(spec3) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
+                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list') && endpoint.operationId.endsWith('s')
+                  && httpMethod === 'get' && responseCode === '200';
+                const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
+                const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
@@ -69,16 +74,14 @@ function patchSpec3(spec3) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
-                // Special fix for /api/v1/policies - should return array
-                if (httpPath === '/api/v1/policies' && httpMethod === 'get' && responseCode === '200') {
-                  if (schema['$ref'] === '#/components/schemas/Policy') {
-                    schema = {
-                      type: 'array',
-                      items: schema
-                    };
-                    typedContent.schema = schema;
-                    manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
-                  }
+                // Special fix for /api/v1/policies - should return array (Policies, not Policy)
+                if (httpPath === '/api/v1/policies' && isListEndpoint && refSchemaKey === 'Policy') {
+                  schema = {
+                    type: 'array',
+                    items: schema
+                  };
+                  typedContent.schema = schema;
+                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
               }
             }
