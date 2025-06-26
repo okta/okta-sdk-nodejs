@@ -44,7 +44,6 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  // RoleAssignmentApi,
   // RoleTargetApi,
   CustomDomainApi,
   DeviceApi,
@@ -52,7 +51,6 @@ import {
   UserLifecycleApi,
   RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
-  GroupRuleApi,
   ApplicationSSOCredentialKeyApi,
   ApplicationFeaturesApi,
   ApplicationLogosApi,
@@ -67,6 +65,8 @@ import {
   AuthorizationServerRulesApi,
   BrandsApi,
   ThemesApi,
+  RoleAssignmentBGroupApi,
+  GroupRuleApi,
 } from './generated';
 
 
@@ -96,6 +96,13 @@ export declare interface CustomizationApi extends NonConstructor<BrandsApi>,
   NonConstructor<ThemesApi> {
 }
 
+export declare interface RoleAssignmentApi extends NonConstructor<RoleAssignmentBGroupApi> {
+}
+
+export declare interface ConsolidatedGroupApi extends NonConstructor<GroupApi>,
+  NonConstructor<GroupRuleApi> {
+}
+
 export declare class ApiClient {
   constructor(config?: V2Configuration);
 
@@ -114,6 +121,8 @@ export declare class ApiClient {
   applicationApi: ConsolidatedApplicationApi;
   authorizationServerApi: ConsolidatedAuthorizationServerApi;
   customizationApi: CustomizationApi;
+  roleAssignmentApi: RoleAssignmentApi;
+  groupApi: ConsolidatedGroupApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -123,7 +132,6 @@ export declare class ApiClient {
   linkedObjectApi: LinkedObjectApi;
   systemLogApi: SystemLogApi;
   featureApi: FeatureApi;
-  groupApi: GroupApi;
   eventHookApi: EventHookApi;
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
@@ -150,7 +158,6 @@ export declare class ApiClient {
   userLifecycleApi: UserLifecycleApi;
   roleAssignmentAUserApi: RoleAssignmentAUserApi;
   roleBTargetAdminApi: RoleBTargetAdminApi;
-  groupRuleApi: GroupRuleApi;
 
   // applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
   // applicationFeaturesApi: ApplicationFeaturesApi;
@@ -166,4 +173,5 @@ export declare class ApiClient {
   // authorizationServerRulesApi: AuthorizationServerRulesApi;
   // brandsApi: BrandsApi;
   // themesApi: ThemesApi;
+  // groupRuleApi: GroupRuleApi;
 }

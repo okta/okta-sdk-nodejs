@@ -3,7 +3,7 @@ import faker = require('@faker-js/faker');
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { ApiClient } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-get`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -30,7 +30,7 @@ describe('Group API tests', () => {
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.addGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Get the group by ID

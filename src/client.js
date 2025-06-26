@@ -62,7 +62,6 @@ const {
   ApplicationLogosApi,
   ApplicationConnectionsApi,
   ApplicationGroupsApi,
-  GroupRuleApi,
   ApplicationGrantsApi,
   ApplicationTokensApi,
   AuthorizationServerScopesApi,
@@ -72,6 +71,8 @@ const {
   AuthorizationServerRulesApi,
   BrandsApi,
   ThemesApi,
+  RoleAssignmentBGroupApi,
+  GroupRuleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -109,7 +110,18 @@ const apiConsolidationRules = {
       BrandsApi,
       ThemesApi,
     ]
-  }
+  },
+  RoleAssignmentApi: {
+    apis: [
+      RoleAssignmentBGroupApi,
+    ]
+  },
+  GroupApi: {
+    apis: [
+      GroupApi,
+      GroupRuleApi,
+    ]
+  },
 };
 
 // Generate consolidated api classes
@@ -208,6 +220,8 @@ class ApiClient {
     this.applicationApi = new consolidatedApis['ApplicationApi'](configuration);
     this.authorizationServerApi = new consolidatedApis['AuthorizationServerApi'](configuration);
     this.customizationApi = new consolidatedApis['CustomizationApi'](configuration);
+    this.roleAssignmentApi = new consolidatedApis['RoleAssignmentApi'](configuration);
+    this.groupApi = new consolidatedApis['GroupApi'](configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -217,7 +231,6 @@ class ApiClient {
     this.linkedObjectApi = new LinkedObjectApi(configuration);
     this.systemLogApi = new SystemLogApi(configuration);
     this.featureApi = new FeatureApi(configuration);
-    this.groupApi = new GroupApi(configuration);
     this.eventHookApi = new EventHookApi(configuration);
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
@@ -237,13 +250,11 @@ class ApiClient {
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
     // this.roleTargetApi = new RoleTargetApi(configuration);
-    // this.roleAssignmentApi = new RoleAssignmentApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
     this.userLifecycleApi = new UserLifecycleApi(configuration);
     this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
     this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
-    this.groupRuleApi = new GroupRuleApi(configuration);
 
     // this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
     // this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
@@ -260,6 +271,7 @@ class ApiClient {
     // this.authorizationServerRulesApi = new AuthorizationServerRulesApi(configuration);
     // this.brandsApi = new BrandsApi(configuration);
     // this.themesApi = new ThemesApi(configuration);
+    // this.groupRuleApi = new GroupRuleApi(configuration);
 
   }
 }

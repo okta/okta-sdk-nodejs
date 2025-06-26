@@ -3,7 +3,7 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { ApiClient } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-user-operations`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.groups.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -39,11 +39,11 @@ describe('Group-Member API Tests', () => {
 
     const queryParameters = { activate : false };
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.addGroup({group: newGroup});
 
-    // 2. Add user to the group and validate user present in group
+    // 2. Add user to the group and validate user present in group (can be delayed!)
     await client.groupApi.assignUserToGroup({groupId: createdGroup.id, userId: createdUser.id});
-    let userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
+    let userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, true);
     expect(userInGroup).to.equal(true);
 
     // 3. Remove user from group and validate user removed
