@@ -1,18 +1,18 @@
 import { expect } from 'chai';
 import {
-  Client, DeviceAssurance, DeviceAssuranceScreenLockType,
+  ApiClient, DeviceAssurance, DeviceAssuranceIOSPlatform, DeviceAssuranceAndroidPlatformScreenLockType,
 } from '@okta/okta-sdk-nodejs';
 
 import getMockAssurancePolicy = require('./mocks/device-assurance-policy');
 
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });
 
 describe('Device Assurance API', () => {
-  let deviceAssurancePolicy;
+  let deviceAssurancePolicy: DeviceAssuranceIOSPlatform;
   beforeEach(async () => {
     deviceAssurancePolicy = await client.deviceAssuranceApi.createDeviceAssurancePolicy({
       deviceAssurance: getMockAssurancePolicy()
@@ -33,17 +33,17 @@ describe('Device Assurance API', () => {
   });
 
   it('get device assurance policy by id', async () => {
-    const retrievedPolicy = await client.deviceAssuranceApi.getDeviceAssurancePolicy({
+    const retrievedPolicy: DeviceAssuranceIOSPlatform = await client.deviceAssuranceApi.getDeviceAssurancePolicy({
       deviceAssuranceId: deviceAssurancePolicy.id
     });
     expect(retrievedPolicy.id).to.equal(deviceAssurancePolicy.id);
-    expect(retrievedPolicy.screenLockType).to.be.instanceOf(DeviceAssuranceScreenLockType);
+    expect(retrievedPolicy.screenLockType).to.be.instanceOf(DeviceAssuranceAndroidPlatformScreenLockType);
   });
 
   it('updates device assurance policy', async () => {
     const mockPolicy = getMockAssurancePolicy();
     mockPolicy.osVersion.minimum = '14.0.0';
-    const updatedPolicy = await client.deviceAssuranceApi.replaceDeviceAssurancePolicy({
+    const updatedPolicy: DeviceAssuranceIOSPlatform = await client.deviceAssuranceApi.replaceDeviceAssurancePolicy({
       deviceAssuranceId: deviceAssurancePolicy.id,
       deviceAssurance: mockPolicy
     });
