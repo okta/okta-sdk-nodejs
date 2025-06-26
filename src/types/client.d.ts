@@ -30,7 +30,6 @@ import {
   // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
-  // CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
   UserApi,
@@ -66,6 +65,8 @@ import {
   AuthorizationServerKeysApi,
   AuthorizationServerPoliciesApi,
   AuthorizationServerRulesApi,
+  BrandsApi,
+  ThemesApi,
 } from './generated';
 
 
@@ -91,6 +92,10 @@ export declare interface ConsolidatedAuthorizationServerApi extends NonConstruct
   NonConstructor<AuthorizationServerRulesApi> {
 }
 
+export declare interface CustomizationApi extends NonConstructor<BrandsApi>,
+  NonConstructor<ThemesApi> {
+}
+
 export declare class ApiClient {
   constructor(config?: V2Configuration);
 
@@ -108,6 +113,7 @@ export declare class ApiClient {
   // consolidated apis
   applicationApi: ConsolidatedApplicationApi;
   authorizationServerApi: ConsolidatedAuthorizationServerApi;
+  customizationApi: CustomizationApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -122,7 +128,6 @@ export declare class ApiClient {
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
   // orgSettingApi: OrgSettingApi;
-  // customizationApi: CustomizationApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
   userApi: UserApi;
@@ -159,4 +164,6 @@ export declare class ApiClient {
   // authorizationServerKeysApi: AuthorizationServerKeysApi;
   // authorizationServerPoliciesApi: AuthorizationServerPoliciesApi;
   // authorizationServerRulesApi: AuthorizationServerRulesApi;
+  // brandsApi: BrandsApi;
+  // themesApi: ThemesApi;
 }

@@ -35,7 +35,6 @@ const {
   // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
-  // CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
   UserApi,
@@ -71,6 +70,8 @@ const {
   AuthorizationServerKeysApi,
   AuthorizationServerPoliciesApi,
   AuthorizationServerRulesApi,
+  BrandsApi,
+  ThemesApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -103,6 +104,12 @@ const apiConsolidationRules = {
       AuthorizationServerRulesApi,
     ]
   },
+  CustomizationApi: {
+    apis: [
+      BrandsApi,
+      ThemesApi,
+    ]
+  }
 };
 
 // Generate consolidated api classes
@@ -200,6 +207,7 @@ class ApiClient {
     // consolidated apis
     this.applicationApi = new consolidatedApis['ApplicationApi'](configuration);
     this.authorizationServerApi = new consolidatedApis['AuthorizationServerApi'](configuration);
+    this.customizationApi = new consolidatedApis['CustomizationApi'](configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -214,7 +222,6 @@ class ApiClient {
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
     // this.orgSettingApi = new OrgSettingApi(configuration);
-    // this.customizationApi = new CustomizationApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
     this.userApi = new UserApi(configuration);
@@ -251,6 +258,8 @@ class ApiClient {
     // this.authorizationServerKeysApi = new AuthorizationServerKeysApi(configuration);
     // this.authorizationServerPoliciesApi = new AuthorizationServerPoliciesApi(configuration);
     // this.authorizationServerRulesApi = new AuthorizationServerRulesApi(configuration);
+    // this.brandsApi = new BrandsApi(configuration);
+    // this.themesApi = new ThemesApi(configuration);
 
   }
 }
