@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {
   AuthorizationServer,
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   OAuth2Claim,
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-claim`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

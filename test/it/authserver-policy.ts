@@ -3,9 +3,10 @@ import {
   AuthorizationServer,
   AuthorizationServerPolicy,
   AuthorizationServerPolicyRule,
+  AuthorizationServerPolicyRuleRequest,
   AuthorizationServerPolicyRuleActions,
   AuthorizationServerPolicyRuleConditions,
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   TokenAuthorizationServerPolicyRuleAction
@@ -20,7 +21,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-policy`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -83,7 +84,7 @@ describe('Authorization Server Policies API', () => {
       expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(5);
 
       policyRuleFromGet.actions.token.accessTokenLifetimeMinutes = 360;
-      const updatedPolicyRule = await client.authorizationServerApi.replaceAuthorizationServerPolicyRule({policyId: policy.id, authServerId: authServer.id, ruleId: policyRuleFromGet.id, policyRule: policyRuleFromGet});
+      const updatedPolicyRule = await client.authorizationServerApi.replaceAuthorizationServerPolicyRule({policyId: policy.id, authServerId: authServer.id, ruleId: policyRuleFromGet.id, policyRule: policyRuleFromGet as AuthorizationServerPolicyRuleRequest});
       policyRuleFromGet = await client.authorizationServerApi.getAuthorizationServerPolicyRule({policyId: policyFromGet.id, authServerId: authServer.id, ruleId: policyRule.id});
       expect(updatedPolicyRule.actions.token.accessTokenLifetimeMinutes).to.equal(360);
       expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(360);
@@ -107,7 +108,7 @@ describe('Authorization Server Policies API', () => {
   });
 
   describe('List all policies', () => {
-    let policy;
+    let policy: AuthorizationServerPolicy;
     beforeEach(async () => {
       policy = await client.authorizationServerApi.createAuthorizationServerPolicy({authServerId: authServer.id, policy:getMockPolicy()});
     });
@@ -129,7 +130,7 @@ describe('Authorization Server Policies API', () => {
 
 
   describe('Create a Policy', () => {
-    let policy;
+    let policy: AuthorizationServerPolicy;
     afterEach(async () => {
       await client.authorizationServerApi.deleteAuthorizationServerPolicy({authServerId: authServer.id, policyId: policy.id});
     });
@@ -143,7 +144,7 @@ describe('Authorization Server Policies API', () => {
   });
 
   describe('Get a policy', () => {
-    let policy;
+    let policy: AuthorizationServerPolicy;
     beforeEach(async () => {
       policy = await client.authorizationServerApi.createAuthorizationServerPolicy({authServerId: authServer.id, policy:getMockPolicy()});
     });
@@ -159,7 +160,7 @@ describe('Authorization Server Policies API', () => {
   });
 
   describe('Update policy', () => {
-    let policy;
+    let policy: AuthorizationServerPolicy;
     beforeEach(async () => {
       policy = await client.authorizationServerApi.createAuthorizationServerPolicy({authServerId: authServer.id, policy:getMockPolicy()});
     });
@@ -177,7 +178,7 @@ describe('Authorization Server Policies API', () => {
   });
 
   describe('Delete policy', () => {
-    let policy;
+    let policy: AuthorizationServerPolicy;
     beforeEach(async () => {
       policy = await client.authorizationServerApi.createAuthorizationServerPolicy({authServerId: authServer.id, policy:getMockPolicy()});
     });

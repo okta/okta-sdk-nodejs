@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import {
   AuthorizationServer,
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
-  JsonWebKey,
+  AuthorizationServerJsonWebKey as JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-credential`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

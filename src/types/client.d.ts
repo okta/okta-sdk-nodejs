@@ -53,28 +53,42 @@ import {
   UserLifecycleApi,
   RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
+  GroupRuleApi,
   ApplicationSSOCredentialKeyApi,
   ApplicationFeaturesApi,
   ApplicationLogosApi,
   ApplicationConnectionsApi,
   ApplicationGroupsApi,
-  GroupRuleApi,
   ApplicationGrantsApi,
   ApplicationTokensApi,
+  AuthorizationServerScopesApi,
+  AuthorizationServerClaimsApi,
+  AuthorizationServerKeysApi,
+  AuthorizationServerPoliciesApi,
+  AuthorizationServerRulesApi,
 } from './generated';
 
+
 // Generate consolidated api classes types
-//TODO create helper
 // TODO: method renames, eg. createGroup -> addGroup for GroupApi
-export declare interface ConsolidatedApplicationApi extends Pick<ApplicationApi, keyof ApplicationApi>,
-  Pick<ApplicationGroupsApi, keyof ApplicationGroupsApi>,
-  Pick<ApplicationUsersApi, keyof ApplicationUsersApi>,
-  Pick<ApplicationConnectionsApi, keyof ApplicationConnectionsApi>,
-  Pick<ApplicationGrantsApi, keyof ApplicationGrantsApi>,
-  Pick<ApplicationTokensApi, keyof ApplicationTokensApi>,
-  Pick<ApplicationSSOCredentialKeyApi, keyof ApplicationSSOCredentialKeyApi>,
-  Pick<ApplicationFeaturesApi, keyof ApplicationFeaturesApi>,
-  Pick<ApplicationLogosApi, keyof ApplicationLogosApi> {
+type NonConstructor<T> = Pick<T, keyof T>;
+export declare interface ConsolidatedApplicationApi extends NonConstructor<ApplicationApi>,
+  NonConstructor<ApplicationGroupsApi>,
+  NonConstructor<ApplicationUsersApi>,
+  NonConstructor<ApplicationConnectionsApi>,
+  NonConstructor<ApplicationGrantsApi>,
+  NonConstructor<ApplicationTokensApi>,
+  NonConstructor<ApplicationSSOCredentialKeyApi>,
+  NonConstructor<ApplicationFeaturesApi>,
+  NonConstructor<ApplicationLogosApi> {
+}
+
+export declare interface ConsolidatedAuthorizationServerApi extends NonConstructor<AuthorizationServerApi>,
+  NonConstructor<AuthorizationServerScopesApi>,
+  NonConstructor<AuthorizationServerClaimsApi>,
+  NonConstructor<AuthorizationServerKeysApi>,
+  NonConstructor<AuthorizationServerPoliciesApi>,
+  NonConstructor<AuthorizationServerRulesApi> {
 }
 
 export declare class ApiClient {
@@ -91,6 +105,10 @@ export declare class ApiClient {
   oauth: OAuth;
   http: Http;
 
+  // consolidated apis
+  applicationApi: ConsolidatedApplicationApi;
+  authorizationServerApi: ConsolidatedAuthorizationServerApi;
+
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
   schemaApi: SchemaApi;
@@ -104,8 +122,6 @@ export declare class ApiClient {
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
   // orgSettingApi: OrgSettingApi;
-  applicationApi: ConsolidatedApplicationApi;
-  authorizationServerApi: AuthorizationServerApi;
   // customizationApi: CustomizationApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
@@ -129,6 +145,8 @@ export declare class ApiClient {
   userLifecycleApi: UserLifecycleApi;
   roleAssignmentAUserApi: RoleAssignmentAUserApi;
   roleBTargetAdminApi: RoleBTargetAdminApi;
+  groupRuleApi: GroupRuleApi;
+
   // applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
   // applicationFeaturesApi: ApplicationFeaturesApi;
   // applicationLogosApi: ApplicationLogosApi;
@@ -136,5 +154,9 @@ export declare class ApiClient {
   // applicationGroupsApi: ApplicationGroupsApi;
   // applicationGrantsApi: ApplicationGrantsApi;
   // applicationTokensApi: ApplicationTokensApi;
-  groupRuleApi: GroupRuleApi;
+  // authorizationServerScopesApi: AuthorizationServerScopesApi;
+  // authorizationServerClaimsApi: AuthorizationServerClaimsApi;
+  // authorizationServerKeysApi: AuthorizationServerKeysApi;
+  // authorizationServerPoliciesApi: AuthorizationServerPoliciesApi;
+  // authorizationServerRulesApi: AuthorizationServerRulesApi;
 }
