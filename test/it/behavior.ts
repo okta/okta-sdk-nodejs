@@ -3,9 +3,12 @@ import { spy } from 'sinon';
 import {
   BehaviorRule,
   BehaviorRuleVelocity,
+  BehaviorRuleAnomalousDevice,
   ApiClient,
   Collection,
   DefaultRequestExecutor,
+  BehaviorRuleAnomalousIP,
+  BehaviorRuleAnomalousLocation,
 } from '@okta/okta-sdk-nodejs';
 import getMockBehaviorRule = require('./mocks/behavior-rule.js');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -23,7 +26,7 @@ const client = new ApiClient({
 
 describe('Behavior API', () => {
   describe('Create', () => {
-    let rule;
+    let rule: BehaviorRule;
     afterEach(async () => {
       if (rule) {
         await client.behaviorApi.deleteBehaviorDetectionRule({
@@ -33,53 +36,57 @@ describe('Behavior API', () => {
     });
 
     it('should create rule of type ANOMALOUS_DEVICE', async () => {
-      const mockRule = getMockBehaviorRule('ANOMALOUS_DEVICE');
+      const mockRule: BehaviorRuleAnomalousDevice = getMockBehaviorRule('ANOMALOUS_DEVICE');
       rule = await client.behaviorApi.createBehaviorDetectionRule({
         rule: mockRule,
       });
-      expect(rule).to.be.instanceOf(BehaviorRule);
-      expect(rule).to.have.property('id');
-      expect(rule.name).to.equal(mockRule.name);
-      expect(rule.settings.maxEventsUsedForEvaluation).to.equal(mockRule.settings.maxEventsUsedForEvaluation);
+      const createdRule: BehaviorRuleAnomalousDevice = rule;
+      expect(createdRule).to.be.instanceOf(BehaviorRule);
+      expect(createdRule).to.have.property('id');
+      expect(createdRule.name).to.equal(mockRule.name);
+      expect(createdRule.settings.maxEventsUsedForEvaluation).to.equal(mockRule.settings.maxEventsUsedForEvaluation);
     });
 
     it('should create rule of type ANOMALOUS_IP', async () => {
-      const mockRule = getMockBehaviorRule('ANOMALOUS_IP');
+      const mockRule: BehaviorRuleAnomalousIP = getMockBehaviorRule('ANOMALOUS_IP');
       rule = await client.behaviorApi.createBehaviorDetectionRule({
         rule: mockRule,
       });
-      expect(rule).to.be.instanceOf(BehaviorRule);
-      expect(rule).to.have.property('id');
-      expect(rule.name).to.equal(mockRule.name);
-      expect(rule.settings.maxEventsUsedForEvaluation).to.equal(mockRule.settings.maxEventsUsedForEvaluation);
+      const createdRule: BehaviorRuleAnomalousIP = rule;
+      expect(createdRule).to.be.instanceOf(BehaviorRule);
+      expect(createdRule).to.have.property('id');
+      expect(createdRule.name).to.equal(mockRule.name);
+      expect(createdRule.settings.maxEventsUsedForEvaluation).to.equal(mockRule.settings.maxEventsUsedForEvaluation);
     });
 
     it('should create rule of type ANOMALOUS_LOCATION', async () => {
-      const mockRule = getMockBehaviorRule('ANOMALOUS_LOCATION');
+      const mockRule: BehaviorRuleAnomalousLocation = getMockBehaviorRule('ANOMALOUS_LOCATION');
       rule = await client.behaviorApi.createBehaviorDetectionRule({
         rule: mockRule,
       });
-      expect(rule).to.be.instanceOf(BehaviorRule);
-      expect(rule).to.have.property('id');
-      expect(rule.name).to.equal(mockRule.name);
-      expect(rule.settings.granularity).to.equal(mockRule.settings.granularity);
-      expect(rule.settings.radiusKilometers).to.equal(mockRule.settings.radiusKilometers);
+      const createdRule: BehaviorRuleAnomalousLocation = rule;
+      expect(createdRule).to.be.instanceOf(BehaviorRule);
+      expect(createdRule).to.have.property('id');
+      expect(createdRule.name).to.equal(mockRule.name);
+      expect(createdRule.settings.granularity).to.equal(mockRule.settings.granularity);
+      expect(createdRule.settings.radiusKilometers).to.equal(mockRule.settings.radiusKilometers);
     });
 
     it('should create rule of type VELOCITY', async () => {
-      const mockRule = getMockBehaviorRule('VELOCITY');
+      const mockRule: BehaviorRuleVelocity = getMockBehaviorRule('VELOCITY');
+      const createdRule: BehaviorRuleVelocity = rule;
       rule = await client.behaviorApi.createBehaviorDetectionRule({
         rule: mockRule,
       });
-      expect(rule).to.be.instanceOf(BehaviorRule);
-      expect(rule).to.have.property('id');
-      expect(rule.name).to.equal(mockRule.name);
-      expect(rule.settings.velocityKph).to.equal(mockRule.settings.velocityKph);
+      expect(createdRule).to.be.instanceOf(BehaviorRule);
+      expect(createdRule).to.have.property('id');
+      expect(createdRule.name).to.equal(mockRule.name);
+      expect(createdRule.settings.velocityKph).to.equal(mockRule.settings.velocityKph);
     });
   });
 
   describe('Update', () => {
-    const mockRule = getMockBehaviorRule('VELOCITY');
+    const mockRule: BehaviorRuleVelocity = getMockBehaviorRule('VELOCITY');
     let rule: BehaviorRuleVelocity;
     beforeEach(async () => {
       rule = await client.behaviorApi.createBehaviorDetectionRule({
@@ -124,7 +131,7 @@ describe('Behavior API', () => {
   });
 
   describe('Get', () => {
-    const mockRule = getMockBehaviorRule('VELOCITY');
+    const mockRule: BehaviorRuleVelocity = getMockBehaviorRule('VELOCITY');
     let rule: BehaviorRuleVelocity;
     beforeEach(async () => {
       rule = await client.behaviorApi.createBehaviorDetectionRule({
@@ -150,7 +157,7 @@ describe('Behavior API', () => {
   });
 
   describe('Delete', () => {
-    const mockRule = getMockBehaviorRule('VELOCITY');
+    const mockRule: BehaviorRuleVelocity = getMockBehaviorRule('VELOCITY');
     let rule: BehaviorRuleVelocity;
     beforeEach(async () => {
       rule = await client.behaviorApi.createBehaviorDetectionRule({

@@ -4,6 +4,7 @@ import forge = require('node-forge');
 import getMockApplication = require('./mocks/application-oidc');
 import {
   ApiClient,
+  Application,
   Collection,
   Csr,
   DefaultRequestExecutor,
@@ -25,7 +26,7 @@ const client = new ApiClient({
 });
 
 describe('Application CSR API', () => {
-  let app;
+  let app: Application;
   let csr, keys;
 
   before(async () => {

@@ -64,7 +64,6 @@ describe('Application API: provisioning connection for application', () => {
       await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
         updateDefaultProvisioningConnectionForApplicationRequest: {
-          // todo: oneof
           profile: {
             authScheme: 'TOKEN',
             token: 'testToken'

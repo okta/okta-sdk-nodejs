@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { ApiClient, DefaultRequestExecutor, JsonWebKey } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor, JsonWebKey, Application } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -22,8 +22,8 @@ describe.skip('Application.cloneApplicationKey()', () => {
     const application = utils.getBookmarkApplication();
     const application2 = utils.getBookmarkApplication();
 
-    let createdApplication;
-    let createdApplication2;
+    let createdApplication: Application;
+    let createdApplication2: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);

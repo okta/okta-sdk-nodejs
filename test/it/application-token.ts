@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ApiClient, Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Collection, DefaultRequestExecutor, Application } from '@okta/okta-sdk-nodejs';
 import getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -17,7 +17,7 @@ const client = new ApiClient({
 // As there is no way to create oauth2 token in test env
 // Only test if list and revoke tokens endpoints get triggered and proper response get returned
 describe('Application OAuth2 token API', () => {
-  let application;
+  let application: Application;
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({application: getMockApplication()});
   });

@@ -46,7 +46,7 @@ describe('App User Schema', () => {
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
       appId: createdApplication.id,
-      body: getMockSchemaProperty()
+      body: getMockSchemaProperty() as UserSchema
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
   });
@@ -81,7 +81,7 @@ describe('App User Schema', () => {
   });
 
   it('removes custom user type UserSchema property', async () => {
-    const mockSchemaProperty = getMockSchemaProperty();
+    const mockSchemaProperty: UserSchema = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
       appId: createdApplication.id,
       body: mockSchemaProperty

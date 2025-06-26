@@ -15,7 +15,7 @@ const client = new ApiClient({
 });
 
 describe('Application API: applicaton features', () => {
-  let application;
+  let application: Application;
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({
       application: utils.getOrg2OrgApplicationOptions() as Application

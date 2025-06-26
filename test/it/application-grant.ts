@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import {
   ApiClient,
+  Application,
   Collection,
   DefaultRequestExecutor,
   OAuth2ScopeConsentGrant,
@@ -21,8 +22,8 @@ const client = new ApiClient({
 });
 
 describe('Application OAuth2 grant API', () => {
-  let application;
-  let grant;
+  let application: Application;
+  let grant: OAuth2ScopeConsentGrant;
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({application: getMockApplication()});
   });
