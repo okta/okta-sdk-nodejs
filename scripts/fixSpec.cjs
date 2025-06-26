@@ -22,7 +22,7 @@ function patchSpec3(spec3) {
   const arrayPropsWithoutItems = [];
   const badDateTimeProps = [];
   const fixedAdditionalPropertiesTrue = [];
-  const manualFixes = [];
+  const manualSchemaFixes = [];
   const manualPathsFixes = [];
   const ffAmends = [];
 
@@ -60,7 +60,7 @@ function patchSpec3(spec3) {
             for (const mimeType in response?.content) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
-                const schema = typedContent.schema;
+                let schema = typedContent.schema;
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
@@ -68,6 +68,17 @@ function patchSpec3(spec3) {
                 if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                }
+                // Special fix for /api/v1/policies - should return array
+                if (httpPath === '/api/v1/policies' && httpMethod === 'get' && responseCode === '200') {
+                  if (schema['$ref'] === '#/components/schemas/Policy') {
+                    schema = {
+                      type: 'array',
+                      items: schema
+                    };
+                    typedContent.schema = schema;
+                    manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                  }
                 }
               }
             }
@@ -89,6 +100,8 @@ function patchSpec3(spec3) {
       fixedAdditionalPropertiesTrue.push({ schemaKey });
       schema.additionalProperties = {};
     }
+
+    // x-okta-extensible
     if (schema['x-okta-extensible']) {
       extensibleSchemas.push(schemaKey);
     } else if (schemasToForceExtensible.includes(schemaKey)) {
@@ -127,7 +140,7 @@ function patchSpec3(spec3) {
         for (const k of otherPropsKeys) {
           delete schema[k];
         }
-        manualFixes.push({ schemaKey, propName: 'allOf' });
+        manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       }
       //TODO: other schemas ?
     }
@@ -140,13 +153,13 @@ function patchSpec3(spec3) {
       if (!isOneRef) {
         schema = one;
         spec3.components.schemas[schemaKey] = schema;
-        manualFixes.push({ schemaKey, propName: 'allOf' });
+        manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       } else if (schemaKey === 'ByDateTimeExpiry') {
         // Special fix for ByDateTimeExpiry
         schema.allOf.push({
           description: refSchema.description,
         });
-        manualFixes.push({ schemaKey, propName: 'allOf' });
+        manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       }
     }
 
@@ -156,7 +169,7 @@ function patchSpec3(spec3) {
         { ... schema }
       ];
       delete schema['$ref'];
-      manualFixes.push({ schemaKey });
+      manualSchemaFixes.push({ schemaKey });
     }
 
     if (schema.properties) {
@@ -215,16 +228,17 @@ function patchSpec3(spec3) {
             }
           });
           if (fixed) {
-            manualFixes.push({ schemaKey, propName });
+            manualSchemaFixes.push({ schemaKey, propName });
           }
         }
 
+        // x-okta-feature-flag-amends
         ffAmendsMerge(prop, () => {
           ffAmends.push({ schemaKey, propName });
         });
 
         if (prop['$ref'] && prop['type'] === 'object') {
-          manualFixes.push({ schemaKey, propName });
+          manualSchemaFixes.push({ schemaKey, propName });
           delete prop['type'];
         }
 
@@ -233,7 +247,7 @@ function patchSpec3(spec3) {
         //   const items = Array.isArray(prop.items) ? prop.items : [prop.items];
         //   const newProp = items;
         //   schema.properties[propName] = newProp;
-        //   manualFixes.push({ schemaKey, propName });
+        //   manualSchemaFixes.push({ schemaKey, propName });
         // }
       }
     }
@@ -269,7 +283,7 @@ function patchSpec3(spec3) {
     arrayPropsWithoutItems,
     badDateTimeProps,
     fixedAdditionalPropertiesTrue,
-    manualFixes,
+    manualSchemaFixes,
     manualPathsFixes,
     ffAmends,
   };
@@ -291,7 +305,7 @@ async function main() {
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualFixes, manualPathsFixes, ffAmends
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends
   } = patchSpec3(spec3, openApiGeneratorVersion);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
@@ -299,7 +313,7 @@ async function main() {
   console.log(`Properties without items: ${arrayPropsWithoutItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log(`Manual schema fixes: ${manualFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Manual schema fixes: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manual paths fixes:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
 
