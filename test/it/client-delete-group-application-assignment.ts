@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-delete-application-group-assignment`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -35,7 +35,7 @@ describe('client.deleteApplicationGroupAssignment()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, null, group);
       createdApplication = await client.applicationApi.createApplication({application});
-      createdGroup = await client.groupApi.createGroup({group});
+      createdGroup = await client.groupApi.addGroup({group});
       await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id, applicationGroupAssignment: {}});
       const resp = await client.applicationApi.unassignApplicationFromGroup({appId: createdApplication.id, groupId: createdGroup.id});
       expect(resp).to.be.undefined;

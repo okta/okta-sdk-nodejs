@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 
 import {
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  JsonWebKey
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -12,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-generate-application-key`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

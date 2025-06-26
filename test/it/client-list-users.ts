@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   User,
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/list-users`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -74,7 +74,7 @@ describe('client.userApi.listUsers()', () => {
 });
 
 describe('client.listUsers({ })', () => {
-  const users = [];
+  const users: User[] = [];
 
   const createUser = async (name) => {
     const newUser: CreateUserRequest = {

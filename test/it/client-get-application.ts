@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import {
   BookmarkApplication,
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
@@ -13,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -30,7 +30,7 @@ describe('client.getApplication()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.applicationApi.createApplication({application});
-      const fetchedApplication: BookmarkApplication = await client.applicationApi.getApplication({appId: createdApplication.id});
+      const fetchedApplication = await client.applicationApi.getApplication({appId: createdApplication.id}) as BookmarkApplication;
       expect(fetchedApplication.id).to.equal(createdApplication.id);
       expect(fetchedApplication).to.be.instanceof(BookmarkApplication);
     } finally {

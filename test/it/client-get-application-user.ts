@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Application,
   AppUser,
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   User,
 } from '@okta/okta-sdk-nodejs';
@@ -15,7 +15,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-list-users`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -52,7 +52,7 @@ describe('client.getApplicationUser()', () => {
       const fetchedAppUser = await client.applicationApi.getApplicationUser({appId: createdApplication.id, userId: createdAppUser.id});
       expect(fetchedAppUser).to.be.instanceof(AppUser);
       expect(fetchedAppUser.id).to.equal(createdAppUser.id);
-      const userLink = fetchedAppUser._links.user as Record<string, string>;
+      const userLink = fetchedAppUser._links.user;
       expect(userLink.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   LogEvent,
 } from '@okta/okta-sdk-nodejs';
@@ -12,7 +12,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.logs.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -24,8 +24,8 @@ describe('client.systemLogApi.listLogEvents()', () => {
   it('should search with q and paginate results', async () => {
     const max = 10, limit = 5;
     const collection = await client.systemLogApi.listLogEvents({
-      since: new Date('2018-01-26T00:00:00Z'),
-      until: new Date('2038-01-26T00:00:00Z'),
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
       q: 'user',
       sortOrder: 'DESCENDING',
       limit
@@ -46,8 +46,8 @@ describe('client.systemLogApi.listLogEvents()', () => {
   it('should filter with filter and paginate results', async () => {
     const max = 10, limit = 5;
     const collection = await client.systemLogApi.listLogEvents({
-      since: new Date('2018-01-26T00:00:00Z'),
-      until: new Date('2038-01-26T00:00:00Z'),
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
       filter: 'severity eq "INFO"',
       sortOrder: 'DESCENDING',
       limit
@@ -66,7 +66,7 @@ describe('client.systemLogApi.listLogEvents()', () => {
   });
 
   it('should allow me to poll the collection but stop when needed', async () => {
-    const collection = await client.systemLogApi.listLogEvents({ since: new Date('2018-01-26T00:00:00Z')});
+    const collection = await client.systemLogApi.listLogEvents({ since: '2018-01-26T00:00:00Z'});
     let iteratorCalledTimes = 0;
     await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({
@@ -87,7 +87,7 @@ describe('client.systemLogApi.listLogEvents()', () => {
   });
 
   it('should allow the iterator to return a Promise', async () => {
-    const collection = await client.systemLogApi.listLogEvents({ since: new Date('2018-01-26T00:00:00Z')});
+    const collection = await client.systemLogApi.listLogEvents({ since: '2018-01-26T00:00:00Z'});
     let iteratorCalledTimes = 0;
     await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({

@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import {
   Application,
   AppUser,
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   User,
 } from '@okta/okta-sdk-nodejs';
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-list-users`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -52,7 +52,7 @@ describe('client.listApplicationUsers()', () => {
       });
       await (await client.applicationApi.listApplicationUsers({appId: createdApplication.id})).each(async (appUser) => {
         expect(appUser).to.be.instanceof(AppUser);
-        const userLink = appUser._links.user as Record<string, string>;
+        const userLink = appUser._links.user;
         expect(userLink.href).to.contain(createdUser.id);
       });
     } finally {

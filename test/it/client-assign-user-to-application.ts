@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Application,
   AppUser,
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   User,
 } from '@okta/okta-sdk-nodejs';
@@ -15,7 +15,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-assign-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

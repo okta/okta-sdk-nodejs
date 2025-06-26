@@ -5,7 +5,7 @@ import {
   Application,
   BasicAuthApplication,
   BookmarkApplication,
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-list-applications`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

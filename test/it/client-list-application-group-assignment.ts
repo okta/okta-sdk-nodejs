@@ -5,7 +5,7 @@ import faker = require('@faker-js/faker');
 import {
   Application,
   ApplicationGroupAssignment,
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-list-application-group-assignments`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -41,13 +41,13 @@ describe('client.listApplicationGroupAssignments()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, null, group);
       createdApplication = await client.applicationApi.createApplication({application});
-      createdGroup = await client.groupApi.createGroup({group});
+      createdGroup = await client.groupApi.addGroup({group});
       await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id, applicationGroupAssignment: {}});
       await (await client.applicationApi.listApplicationGroupAssignments({appId: createdApplication.id})).each(async (assignment) => {
         // there should be only one assignment
         expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
-        const appLink = assignment._links.app as Record<string, string>;
-        const groupLink = assignment._links.group as Record<string, string>;
+        const appLink = assignment._links.app;
+        const groupLink = assignment._links.group;
         expect(appLink.href).to.contain(createdApplication.id);
         expect(groupLink.href).to.contain(createdGroup.id);
       });
@@ -75,7 +75,7 @@ describe('client.listApplicationGroupAssignments({ })', () => {
         name
       }
     };
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.addGroup({group: newGroup});
     return createdGroup;
   };
 
