@@ -1,4 +1,4 @@
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authenticators-get`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.authenticators.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
