@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   LinkedObject,
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-linked-object`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -51,8 +51,8 @@ describe('User linked object API', () => {
 
   describe('Set linked object value for primary', () => {
     it('should return status 204', async () => {
-      const res = await client.userApi.setLinkedObjectForUser({
-        associatedUserId: associateUser.id,
+      const res = await client.userApi.assignLinkedObjectValueForPrimary({
+        userIdOrLogin: associateUser.id,
         primaryRelationshipName: linkedObject.primary.name,
         primaryUserId: primaryUser.id,
       });
@@ -63,8 +63,8 @@ describe('User linked object API', () => {
   describe('Get linked object value', () => {
     let links: Collection<ResponseLinks>;
     beforeEach(async () => {
-      await client.userApi.setLinkedObjectForUser({
-        associatedUserId: associateUser.id,
+      await client.userApi.assignLinkedObjectValueForPrimary({
+        userIdOrLogin: associateUser.id,
         primaryRelationshipName: linkedObject.primary.name,
         primaryUserId: primaryUser.id,
       });
@@ -72,7 +72,7 @@ describe('User linked object API', () => {
 
     it('should return primary linked object value', async () => {
       links = await client.userApi.listLinkedObjectsForUser({
-        userId: associateUser.id,
+        userIdOrLogin: associateUser.id,
         relationshipName: linkedObject.primary.name,
       });
       expect(links).to.be.instanceOf(Collection);
@@ -85,7 +85,7 @@ describe('User linked object API', () => {
 
     it('should return associate linked object value', async () => {
       links = await client.userApi.listLinkedObjectsForUser({
-        userId: primaryUser.id,
+        userIdOrLogin: primaryUser.id,
         relationshipName: linkedObject.primary.name,
       });
       expect(links).to.be.instanceOf(Collection);
@@ -98,8 +98,8 @@ describe('User linked object API', () => {
 
   describe('Delete linked object value', () => {
     beforeEach(async () => {
-      await client.userApi.setLinkedObjectForUser({
-        associatedUserId: associateUser.id,
+      await client.userApi.assignLinkedObjectValueForPrimary({
+        userIdOrLogin: associateUser.id,
         primaryRelationshipName: linkedObject.primary.name,
         primaryUserId: primaryUser.id,
       });
@@ -107,7 +107,7 @@ describe('User linked object API', () => {
 
     it('should return 204 after deleting linked object', async () => {
       const res = await client.userApi.deleteLinkedObjectForUser({
-        userId: associateUser.id,
+        userIdOrLogin: associateUser.id,
         relationshipName: linkedObject.primary.name
       });
       expect(res).to.be.undefined;

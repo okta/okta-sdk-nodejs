@@ -1,14 +1,14 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { ApiClient } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-get-reset-password-url`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -35,8 +35,8 @@ describe('User API Tests', () => {
     // 2. Get the reset password link
     const sendEmail = false;
     // TODO: receiving 403: invalid session
-    const link = await client.userApi.generateResetPasswordToken({
-      userId: createdUser.id,
+    const link = await client.userApi.resetPassword({
+      id: createdUser.id,
       sendEmail
     });
     expect(link.resetPasswordUrl).to.not.be.null;

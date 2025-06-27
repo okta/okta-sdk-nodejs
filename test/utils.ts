@@ -1,6 +1,6 @@
 import {
   ApiClient,
-  User, Group, Role,
+  User, Group, Role, StandardRole, CustomRole,
   UserApiListUsersRequest,
   GroupApiListGroupsRequest,
   RoleType,
@@ -135,7 +135,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClien
   return hasRole;
 }
 
-async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: ApiClient) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | StandardRole | CustomRole, client: ApiClient) {
   let groupTargetPresent = false;
   const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 

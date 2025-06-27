@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   IdentityProvider,
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-idp`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -58,7 +58,7 @@ describe('User idp API', () => {
 
     it('should return a Collection and resolve IdentityProvider in collection', async () => {
       const idps = await client.userApi.listUserIdentityProviders({
-        userId: user.id
+        id: user.id
       });
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idpFromCollection => {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { Client, CreateUserRequest, DefaultRequestExecutor, SecurityQuestion } from '@okta/okta-sdk-nodejs';
+import { ApiClient, CreateUserRequest, DefaultRequestExecutor, UserFactorSecurityQuestion } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-available-security-questions`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -32,7 +32,7 @@ describe('User API Tests', () => {
       userId: createdUser.id
     })).each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
-    questions.forEach(factor => expect(factor).to.be.instanceof(SecurityQuestion));
+    questions.forEach(factor => expect(factor).to.be.instanceof(UserFactorSecurityQuestion));
     return await utils.deleteUser(createdUser, client);
   });
 });

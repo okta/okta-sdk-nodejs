@@ -2,12 +2,13 @@ import { expect } from 'chai';
 import {
   BookmarkApplication,
   CatalogApplication,
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   Group,
   Role,
-  User
+  User,
+  StandardRole
 } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -19,7 +20,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-role`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -38,11 +39,11 @@ describe('User role API', () => {
   });
 
   describe('Role assignment', () => {
-    let role: Role;
+    let role: StandardRole;
     afterEach(async () => {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
     });
 
@@ -58,7 +59,7 @@ describe('User role API', () => {
   });
 
   describe('Role unassignment', () => {
-    let role: Role;
+    let role: StandardRole;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -69,14 +70,14 @@ describe('User role API', () => {
     it('should unassign role from user', async () => {
       const res = await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
       expect(res).to.be.undefined;
     });
   });
 
   describe('List user assigned roles', () => {
-    let role: Role;
+    let role: StandardRole;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -86,7 +87,7 @@ describe('User role API', () => {
     afterEach(async () => {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
     });
 
@@ -103,7 +104,7 @@ describe('User role API', () => {
   });
 
   describe('App targets for admin role', () => {
-    let role: Role;
+    let role: StandardRole;
     let application: BookmarkApplication;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
@@ -113,14 +114,14 @@ describe('User role API', () => {
       const mockApplication = utils.getBookmarkApplication();
       application = await client.applicationApi.createApplication({
         application: mockApplication
-      });
+      }) as BookmarkApplication;
     });
     afterEach(async () => {
       await client.applicationApi.deactivateApplication({appId: application.id});
       await client.applicationApi.deleteApplication({appId: application.id});
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
     });
 
@@ -128,7 +129,7 @@ describe('User role API', () => {
       it('should add app target to admin user', async () => {
         const res = await client.roleTargetApi.assignAppTargetToAdminRoleForUser({
           userId: user.id,
-          roleId: role.id,
+          roleAssignmentId: role.id,
           appName: application.name
         });
         expect(res).to.be.undefined;
@@ -139,7 +140,7 @@ describe('User role API', () => {
       beforeEach(async () => {
         await client.roleTargetApi.assignAppTargetToAdminRoleForUser({
           userId: user.id,
-          roleId: role.id,
+          roleAssignmentId: role.id,
           appName: application.name
         });
       });
@@ -147,7 +148,7 @@ describe('User role API', () => {
       it('should return a Collection of CatalogApplications', async () => {
         const apps = await client.roleTargetApi.listApplicationTargetsForApplicationAdministratorRoleForUser({
           userId: user.id,
-          roleId: role.id
+          roleAssignmentId: role.id
         });
         expect(apps).to.be.instanceOf(Collection);
         await apps.each(app => {
@@ -159,19 +160,19 @@ describe('User role API', () => {
   });
 
   describe('Group targets for admin role', () => {
-    let role: Role;
+    let role: StandardRole;
     let group: Group;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
         assignRoleRequest: { type: 'USER_ADMIN' }
       });
-      group = await client.groupApi.createGroup({group: getMockGroup()});
+      group = await client.groupApi.addGroup({group: getMockGroup()});
     });
     afterEach(async () => {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
       await client.groupApi.deleteGroup({groupId: group.id});
     });
@@ -180,7 +181,7 @@ describe('User role API', () => {
       it('should add group target to admin user', async () => {
         const res = await client.roleTargetApi.assignGroupTargetToUserRole({
           userId: user.id,
-          roleId: role.id,
+          roleAssignmentId: role.id,
           groupId: group.id,
         });
         expect(res).to.be.undefined;
@@ -191,7 +192,7 @@ describe('User role API', () => {
       beforeEach(async () => {
         await client.roleTargetApi.assignGroupTargetToUserRole({
           userId: user.id,
-          roleId: role.id,
+          roleAssignmentId: role.id,
           groupId: group.id,
         });
       });
@@ -199,7 +200,7 @@ describe('User role API', () => {
       it('should return a Collection of Groups', async () => {
         const groups = await client.roleTargetApi.listApplicationTargetsForApplicationAdministratorRoleForUser({
           userId: user.id,
-          roleId: role.id,
+          roleAssignmentId: role.id,
         });
         expect(groups).to.be.instanceOf(Collection);
         await groups.each(groupFromCollection => {

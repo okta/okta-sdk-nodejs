@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor, AssignRoleRequest } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor, AssignRoleRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-role-assign`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.users.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -47,7 +47,7 @@ describe('User Role API Tests', () => {
     if (role) {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: createdUser.id,
-        roleId: role.id
+        roleAssignmentId: role.id
       });
     }
 

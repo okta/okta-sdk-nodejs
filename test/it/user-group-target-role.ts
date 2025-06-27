@@ -3,11 +3,13 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import utils = require('../utils');
 import {
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   AssignRoleRequest,
   CreateUserRequest,
-  Group
+  Group,
+  StandardRole,
+  AddGroupRequest
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -16,7 +18,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-group-target-role`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.users.manage', 'okta.groups.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -43,7 +45,7 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, newUser, newGroup);
     const queryParameters = { activate : true };
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.addGroup({group: newGroup as AddGroupRequest});
 
     // 2. Assign USER_ADMIN role to the user
     const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
@@ -55,7 +57,7 @@ describe('User Role API Tests', () => {
     // 3. Add Group Target to User Admin Role
     await client.roleTargetApi.assignGroupTargetToUserRole({
       userId: createdUser.id,
-      roleId: role.id,
+      roleAssignmentId: role.id,
       groupId: createdGroup.id,
     });
 
@@ -74,16 +76,16 @@ describe('User Role API Tests', () => {
 
     await utils.cleanup(client, null, group);
 
-    const adminGroup = await client.groupApi.createGroup({group});
+    const adminGroup = await client.groupApi.addGroup({group});
     await client.roleTargetApi.assignGroupTargetToUserRole({
       userId: createdUser.id,
-      roleId: role.id,
+      roleAssignmentId: role.id,
       groupId: adminGroup.id,
     });
 
     await client.roleTargetApi.unassignGroupTargetFromUserAdminRole({
       userId: createdUser.id,
-      roleId: role.id,
+      roleAssignmentId: role.id,
       groupId: createdGroup.id,
     });
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role, client);

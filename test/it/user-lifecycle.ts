@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-lifecycle`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -42,7 +42,7 @@ describe('User lifecycle API', () => {
 
     it('should activate a user', async () => {
       await client.userApi.activateUser({
-        userId: createdUser.id,
+        id: createdUser.id,
         sendEmail: false
       });
       const queryParameters = { filter: 'status eq "ACTIVE"' };
@@ -63,7 +63,7 @@ describe('User lifecycle API', () => {
     it('should expire a users password', async () => {
       // TODO: receiving 403: Invalid Session
       const user = await client.userApi.expirePassword({
-        userId: createdUser.id
+        id: createdUser.id
       });
       expect(user.status).to.equal('PASSWORD_EXPIRED');
     });
@@ -80,7 +80,7 @@ describe('User lifecycle API', () => {
 
     it('should suspend/unsuspend a user', async () => {
       await client.userApi.suspendUser({
-        userId: createdUser.id
+        id: createdUser.id
       });
 
       let queryParameters = { filter: 'status eq "SUSPENDED"' };
@@ -88,7 +88,7 @@ describe('User lifecycle API', () => {
       expect(userPresent).to.equal(true);
 
       await client.userApi.unsuspendUser({
-        userId: createdUser.id
+        id: createdUser.id
       });
       queryParameters = { filter: 'status eq "ACTIVE"' };
       userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
@@ -109,7 +109,7 @@ describe('User lifecycle API', () => {
     it('should return errorCode E0000032 for unlocked user', async () => {
       try {
         await client.userApi.unlockUser({
-          userId: createdUser.id
+          id: createdUser.id
         });
       } catch (e) {
         expect(e.status).to.be.equal(403);
@@ -129,7 +129,7 @@ describe('User lifecycle API', () => {
 
     it('should get response with status 200', async () => {
       const response = await client.userApi.resetFactors({
-        userId: createdUser.id
+        id: createdUser.id
       });
       expect(response).to.be.undefined;
     });

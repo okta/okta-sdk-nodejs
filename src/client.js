@@ -70,7 +70,6 @@ const {
   RoleAssignmentAUserApi,
   RoleAssignmentBGroupApi,
   GroupRuleApi,
-  IdentityProviderUsersApi,
   IdentityProviderKeysApi,
   IdentityProviderSigningKeysApi,
   OrgSettingGeneralApi,
@@ -80,6 +79,11 @@ const {
   OrgSettingSupportApi,
   UserSessionsApi,
   CustomTemplatesApi,
+  UserResourcesApi,
+  UserCredApi,
+  UserGrantApi,
+  IdentityProviderUsersApi,
+  UserLinkedObjectApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -149,6 +153,11 @@ const apiConsolidationRules = {
       UserApi,
       UserLifecycleApi,
       UserSessionsApi,
+      UserResourcesApi,
+      UserCredApi,
+      UserGrantApi,
+      IdentityProviderUsersApi,
+      UserLinkedObjectApi,
     ]
   },
   OrgSettingApi: {
@@ -320,6 +329,10 @@ class ApiClient {
     // this.orgSettingSupportApi = new OrgSettingSupportApi(configuration);
     // this.userSessionsApi = new UserSessionsApi(configuration);
     // this.customTemplatesApi = new CustomTemplatesApi(configuration);
+    // this.userResourcesApi = new UserResourcesApi(configuration);
+    // this.userCredApi = new UserCredApi(configuration);
+    // this.userGrantApi = new UserGrantApi(configuration);
+    // this.userLinkedObjectApi = new UserLinkedObjectApi(configuration);
   }
 }
 

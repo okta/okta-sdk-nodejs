@@ -1023,6 +1023,9 @@ const client: ApiClient = new ApiClient({
 - await client.subscriptionApi.listRoleSubscriptions({ roleTypeOrRoleId });
 + await client.subscriptionApi.listSubscriptionsRole({ roleRef });
 
+- await client.userApi.unlockUser({ userId });
++ await client.userApi.unlockUser({ id });
+
 ```
 
 ### From 6.x to 7.0

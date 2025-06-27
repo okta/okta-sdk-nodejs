@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   DefaultRequestExecutor,
   UserType,
-  Client
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 
 import getMockUserType = require('./mocks/user-type');
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-schema`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -28,7 +28,7 @@ describe('User Schema API', () => {
     userType = await client.userTypeApi.createUserType({
       userType: getMockUserType()
     });
-    const schemaLink = (userType._links.schema as Record<string, string>).href;
+    const schemaLink = (userType._links.schema).href;
     schemaId = schemaLink.replace(orgUrl, '').split('/').pop();
   });
   afterEach(async () => {

@@ -75,6 +75,10 @@ import {
   OrgSettingCommunicationApi,
   OrgSettingSupportApi,
   CustomTemplatesApi,
+  UserResourcesApi,
+  UserCredApi,
+  UserGrantApi,
+  UserLinkedObjectApi,
 } from './generated';
 
 
@@ -121,7 +125,12 @@ export declare interface ConsolidatedIdentityProviderApi extends NonConstructor<
 
 export declare interface ConsolidatedUserApi extends NonConstructor<UserApi>,
   NonConstructor<UserLifecycleApi>,
-  NonConstructor<UserSessionsApi> {
+  NonConstructor<UserSessionsApi>,
+  NonConstructor<UserResourcesApi>,
+  NonConstructor<UserCredApi>,
+  NonConstructor<UserGrantApi>,
+  NonConstructor<IdentityProviderUsersApi>,
+  NonConstructor<UserLinkedObjectApi> {
 }
 
 export declare interface RoleTargetApi extends NonConstructor<RoleBTargetAdminApi> {
@@ -215,4 +224,8 @@ export declare class ApiClient {
   // orgSettingSupportApi: OrgSettingSupportApi;
   // userSessionsApi: UserSessionsApi;
   // customTemplatesApi: CustomTemplatesApi;
+  // userResourcesApi: UserResourcesApi;
+  // userCredApi: UserCredApi;
+  // userGrantApi: UserGrantApi;
+  // userLinkedObjectApi: UserLinkedObjectApi;
 }
