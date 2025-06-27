@@ -62,7 +62,7 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
       }
       if (parentClassName) {
-        console.warn(`Can't detect key for descriminator "${discriminatorName}" for ${fileName}`);
+        console.warn(`! Can't detect key for descriminator "${discriminatorName}" for ${fileName}`);
       }
       return grpSpaces + '// ' + grpLine;
       // return match; // as-is

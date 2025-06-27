@@ -245,6 +245,16 @@ function patchSpec3(spec3) {
           delete prop['type'];
         }
 
+        const isInlineModel = prop['type'] === 'object' && !!prop['properties']
+          || !!prop['allOf'] && prop['allOf'].length > 1;
+        if (isInlineModel) {
+          const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
+          if (spec3.components.schemas[inlineClassName]) {
+            console.warn('! Found possible naming collision between ', inlineClassName, ' and ', {schemaKey, propName});
+            console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
+          }
+        }
+
         // // Special fix of `allOf` not being an array in UserSchemaPropertiesProfile for openapi-generator v6
         // if (schemaKey === 'UserSchemaPropertiesProfile' && propName === 'allOf' && prop.type === 'array' && prop.items) {
         //   const items = Array.isArray(prop.items) ? prop.items : [prop.items];
