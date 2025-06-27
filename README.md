@@ -1020,6 +1020,9 @@ const client: ApiClient = new ApiClient({
 - await client.orgSettingApi.updateOrgHideOktaUIFooter();
 + await client.orgSettingApi.setOrgHideOktaUIFooter();
 
+- await client.subscriptionApi.listRoleSubscriptions({ roleTypeOrRoleId });
++ await client.subscriptionApi.listSubscriptionsRole({ roleRef });
+
 ```
 
 ### From 6.x to 7.0

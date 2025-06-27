@@ -4,9 +4,9 @@ import {
   DefaultRequestExecutor,
   EmailDefaultContent,
   EmailPreview,
-  EmailTemplate,
+  EmailTemplateResponse,
   EmailCustomization,
-  Client
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -15,7 +15,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/template-email`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -28,7 +28,7 @@ async function getBrandId() {
 
 describe('Email Template API', () => {
   let brandId: string;
-  let template: EmailTemplate;
+  let template: EmailTemplateResponse;
   beforeEach(async () => {
     brandId = await getBrandId();
     const item = await (await client.customizationApi.listEmailTemplates({
@@ -45,7 +45,7 @@ describe('Email Template API', () => {
       expect(templates).to.be.instanceOf(Collection);
       let counter = 0;
       await templates.each(template => {
-        expect(template).to.be.instanceOf(EmailTemplate);
+        expect(template).to.be.instanceOf(EmailTemplateResponse);
         counter++;
       });
       expect(counter).to.be.greaterThan(1);

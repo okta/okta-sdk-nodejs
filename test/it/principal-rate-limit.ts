@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   PrincipalRateLimitEntity,
@@ -13,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/principal-rate-limit`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

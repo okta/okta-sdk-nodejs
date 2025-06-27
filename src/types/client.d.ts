@@ -47,6 +47,7 @@ import {
   DeviceApi,
   ApplicationUsersApi,
   UserLifecycleApi,
+  UserSessionsApi,
   RoleBTargetAdminApi,
   ApplicationSSOCredentialKeyApi,
   ApplicationFeaturesApi,
@@ -73,6 +74,7 @@ import {
   OrgSettingCustomizationApi,
   OrgSettingCommunicationApi,
   OrgSettingSupportApi,
+  CustomTemplatesApi,
 } from './generated';
 
 
@@ -99,7 +101,8 @@ export declare interface ConsolidatedAuthorizationServerApi extends NonConstruct
 }
 
 export declare interface CustomizationApi extends NonConstructor<BrandsApi>,
-  NonConstructor<ThemesApi> {
+  NonConstructor<ThemesApi>,
+  NonConstructor<CustomTemplatesApi> {
 }
 
 export declare interface RoleAssignmentApi extends NonConstructor<RoleAssignmentBGroupApi>,
@@ -117,7 +120,8 @@ export declare interface ConsolidatedIdentityProviderApi extends NonConstructor<
 }
 
 export declare interface ConsolidatedUserApi extends NonConstructor<UserApi>,
-  NonConstructor<UserLifecycleApi> {
+  NonConstructor<UserLifecycleApi>,
+  NonConstructor<UserSessionsApi> {
 }
 
 export declare interface RoleTargetApi extends NonConstructor<RoleBTargetAdminApi> {
@@ -209,4 +213,6 @@ export declare class ApiClient {
   // orgSettingCustomizationApi: OrgSettingCustomizationApi;
   // orgSettingCommunicationApi: OrgSettingCommunicationApi;
   // orgSettingSupportApi: OrgSettingSupportApi;
+  // userSessionsApi: UserSessionsApi;
+  // customTemplatesApi: CustomTemplatesApi;
 }

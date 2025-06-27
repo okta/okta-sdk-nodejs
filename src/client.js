@@ -78,6 +78,8 @@ const {
   OrgSettingCustomizationApi,
   OrgSettingCommunicationApi,
   OrgSettingSupportApi,
+  UserSessionsApi,
+  CustomTemplatesApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -114,6 +116,7 @@ const apiConsolidationRules = {
     apis: [
       BrandsApi,
       ThemesApi,
+      CustomTemplatesApi,
     ]
   },
   RoleAssignmentApi: {
@@ -145,6 +148,7 @@ const apiConsolidationRules = {
     apis: [
       UserApi,
       UserLifecycleApi,
+      UserSessionsApi,
     ]
   },
   OrgSettingApi: {
@@ -314,6 +318,8 @@ class ApiClient {
     // this.orgSettingCustomizationApi = new OrgSettingCustomizationApi(configuration);
     // this.orgSettingCommunicationApi = new OrgSettingCommunicationApi(configuration);
     // this.orgSettingSupportApi = new OrgSettingSupportApi(configuration);
+    // this.userSessionsApi = new UserSessionsApi(configuration);
+    // this.customTemplatesApi = new CustomTemplatesApi(configuration);
   }
 }
 

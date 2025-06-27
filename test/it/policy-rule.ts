@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {
-  AccessPolicy,
-  Client,
+  OktaSignOnPolicy,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   OktaSignOnPolicyRule,
@@ -19,7 +19,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-rule`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -27,10 +27,10 @@ const client = new Client({
 
 describe('Policy Rule API', () => {
   let group: Group;
-  let mockPolicy: AccessPolicy;
+  let mockPolicy: OktaSignOnPolicy;
   let policy: Policy;
   beforeEach(async () => {
-    group = await client.groupApi.createGroup({group: getMockGroup()});
+    group = await client.groupApi.addGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
     policy = await client.policyApi.createPolicy({

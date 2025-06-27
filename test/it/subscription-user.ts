@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Subscription, Client, User } from '@okta/okta-sdk-nodejs';
+import { Subscription, ApiClient, User } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const orgUser = process.env.ORG_USER;
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/subsctiption-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });
@@ -29,7 +29,7 @@ describe('Subscription API', () => {
 
   it('provides method for listing user\'s notification subscriptions', async () => {
     const subscriptions: Subscription[] = [];
-    const list = await client.subscriptionApi.listUserSubscriptions({ userId: user.id });
+    const list = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
     for await (const subscription of list) {
       subscriptions.push(subscription);
     }
@@ -37,33 +37,45 @@ describe('Subscription API', () => {
   });
 
   it('provides method for fetching notification subscription for given user and notification type', async () => {
-    const subscription = await client.subscriptionApi.listUserSubscriptionsByNotificationType({
+    await client.subscriptionApi.subscribeByNotificationTypeUser({
       userId: user.id,
-      notificationType: 'OKTA_ISSUE',
+      notificationType: 'OKTA_UPDATE',
     });
-    expect(subscription.notificationType).to.equal('OKTA_ISSUE');
+    const subscriptions = await client.subscriptionApi.listSubscriptionsUser({
+      userId: user.id,
+    });
+    let subscription: Subscription;
+    await subscriptions.each(s => {
+      if (s.notificationType === 'OKTA_UPDATE') {
+        subscription = s;
+      }
+    });
+    expect(subscription.notificationType).to.equal('OKTA_UPDATE');
   });
 
   it('provides methods for subscribing/unsubscribing to/from notification subscribtion for given user role and notfication type', async () => {
-    let response = await client.subscriptionApi.unsubscribeUserSubscriptionByNotificationType({
+    let subscription: Subscription;
+    await client.subscriptionApi.unsubscribeByNotificationTypeUser({
       userId: user.id,
-      notificationType: 'OKTA_ISSUE'
+      notificationType: 'OKTA_UPDATE'
     });
-    expect(response).to.be.undefined;
-    let subscription = await client.subscriptionApi.listUserSubscriptionsByNotificationType({
-      userId: user.id,
-      notificationType: 'OKTA_ISSUE'
+    let subscriptions = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
+    await subscriptions.each(s => {
+      if (s.notificationType === 'OKTA_UPDATE') {
+        subscription = s;
+      }
     });
     expect(subscription.status).to.equal('unsubscribed');
 
-    response = await client.subscriptionApi.subscribeUserSubscriptionByNotificationType({
+    await client.subscriptionApi.subscribeByNotificationTypeUser({
       userId: user.id,
-      notificationType: 'OKTA_ISSUE'
+      notificationType: 'OKTA_UPDATE'
     });
-    expect(response).to.be.undefined;
-    subscription = await client.subscriptionApi.listUserSubscriptionsByNotificationType({
-      userId: user.id,
-      notificationType: 'OKTA_ISSUE'
+    subscriptions = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
+    await subscriptions.each(s => {
+      if (s.notificationType === 'OKTA_UPDATE') {
+        subscription = s;
+      }
     });
     expect(subscription.status).to.equal('subscribed');
   });

@@ -5,7 +5,7 @@ import {
   DefaultRequestExecutor,
   TrustedOrigin,
   TrustedOriginScope,
-  Client
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 import getMockTrustedOrigin = require('./mocks/trusted-origin');
 import faker = require('@faker-js/faker');
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/trusted-origin`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

@@ -4,7 +4,7 @@ import {
   Collection,
   DefaultRequestExecutor,
   UserType,
-  Client
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 import getMockUserType = require('./mocks/user-type');
 
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/type-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
