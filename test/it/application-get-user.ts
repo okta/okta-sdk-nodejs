@@ -37,13 +37,13 @@ describe('Application.getApplicationUser()', () => {
       await utils.cleanup(client, user);
       createdApplication = await client.applicationApi.createApplication({application});
       createdUser = await client.userApi.createUser({body: user});
-      createdAppUser = await client.applicationUsersApi.assignUserToApplication({
+      createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id,
         appUser: {
           id: createdUser.id
         }
       });
-      const appUser = await client.applicationUsersApi.getApplicationUser({
+      const appUser = await client.applicationApi.getApplicationUser({
         appId: createdApplication.id,
         userId: createdAppUser.id
       });

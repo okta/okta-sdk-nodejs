@@ -49,13 +49,10 @@ const {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  // RoleTargetApi,
-  // RoleAssignmentApi,
   CustomDomainApi,
   DeviceApi,
   ApplicationUsersApi,
   UserLifecycleApi,
-  RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
   ApplicationSSOCredentialKeyApi,
   ApplicationFeaturesApi,
@@ -71,8 +68,12 @@ const {
   AuthorizationServerRulesApi,
   BrandsApi,
   ThemesApi,
+  RoleAssignmentAUserApi,
   RoleAssignmentBGroupApi,
   GroupRuleApi,
+  IdentityProviderUsersApi,
+  IdentityProviderKeysApi,
+  IdentityProviderSigningKeysApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -113,7 +114,13 @@ const apiConsolidationRules = {
   },
   RoleAssignmentApi: {
     apis: [
+      RoleAssignmentAUserApi,
       RoleAssignmentBGroupApi,
+    ]
+  },
+  RoleTargetApi: {
+    apis: [
+      RoleBTargetAdminApi,
     ]
   },
   GroupApi: {
@@ -122,6 +129,20 @@ const apiConsolidationRules = {
       GroupRuleApi,
     ]
   },
+  IdentityProviderApi: {
+    apis: [
+      IdentityProviderApi,
+      IdentityProviderUsersApi,
+      IdentityProviderKeysApi,
+      IdentityProviderSigningKeysApi,
+    ]
+  },
+  UserApi: {
+    apis: [
+      UserApi,
+      UserLifecycleApi,
+    ]
+  }
 };
 
 // Generate consolidated api classes
@@ -221,7 +242,10 @@ class ApiClient {
     this.authorizationServerApi = new consolidatedApis['AuthorizationServerApi'](configuration);
     this.customizationApi = new consolidatedApis['CustomizationApi'](configuration);
     this.roleAssignmentApi = new consolidatedApis['RoleAssignmentApi'](configuration);
+    this.roleTargetApi = new consolidatedApis['RoleTargetApi'](configuration);
     this.groupApi = new consolidatedApis['GroupApi'](configuration);
+    this.identityProviderApi = new consolidatedApis['IdentityProviderApi'](configuration);
+    this.userApi = new consolidatedApis['UserApi'](configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -237,8 +261,6 @@ class ApiClient {
     // this.orgSettingApi = new OrgSettingApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
-    this.userApi = new UserApi(configuration);
-    this.identityProviderApi = new IdentityProviderApi(configuration);
     this.sessionApi = new SessionApi(configuration);
     this.templateApi = new TemplateApi(configuration);
     this.policyApi = new PolicyApi(configuration);
@@ -249,12 +271,8 @@ class ApiClient {
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
-    // this.roleTargetApi = new RoleTargetApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
-    this.userLifecycleApi = new UserLifecycleApi(configuration);
-    this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
-    this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
 
     // this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
     // this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
@@ -272,7 +290,12 @@ class ApiClient {
     // this.brandsApi = new BrandsApi(configuration);
     // this.themesApi = new ThemesApi(configuration);
     // this.groupRuleApi = new GroupRuleApi(configuration);
-
+    // this.identityProviderUsersApi = new IdentityProviderUsersApi(configuration);
+    // this.identityProviderKeysApi = new IdentityProviderKeysApi(configuration);
+    // this.identityProviderSigningKeysApi = new IdentityProviderSigningKeysApi(configuration);
+    // this.userLifecycleApi = new UserLifecycleApi(configuration);
+    // this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
+    // this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
   }
 }
 

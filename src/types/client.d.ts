@@ -44,12 +44,10 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  // RoleTargetApi,
   CustomDomainApi,
   DeviceApi,
   ApplicationUsersApi,
   UserLifecycleApi,
-  RoleAssignmentAUserApi,
   RoleBTargetAdminApi,
   ApplicationSSOCredentialKeyApi,
   ApplicationFeaturesApi,
@@ -65,8 +63,12 @@ import {
   AuthorizationServerRulesApi,
   BrandsApi,
   ThemesApi,
+  RoleAssignmentAUserApi,
   RoleAssignmentBGroupApi,
   GroupRuleApi,
+  IdentityProviderUsersApi,
+  IdentityProviderKeysApi,
+  IdentityProviderSigningKeysApi,
 } from './generated';
 
 
@@ -96,11 +98,25 @@ export declare interface CustomizationApi extends NonConstructor<BrandsApi>,
   NonConstructor<ThemesApi> {
 }
 
-export declare interface RoleAssignmentApi extends NonConstructor<RoleAssignmentBGroupApi> {
+export declare interface RoleAssignmentApi extends NonConstructor<RoleAssignmentBGroupApi>,
+  NonConstructor<RoleAssignmentAUserApi> {
 }
 
 export declare interface ConsolidatedGroupApi extends NonConstructor<GroupApi>,
   NonConstructor<GroupRuleApi> {
+}
+
+export declare interface ConsolidatedIdentityProviderApi extends NonConstructor<IdentityProviderApi>,
+  NonConstructor<IdentityProviderUsersApi>,
+  NonConstructor<IdentityProviderKeysApi>,
+  NonConstructor<IdentityProviderSigningKeysApi> {
+}
+
+export declare interface ConsolidatedUserApi extends NonConstructor<UserApi>,
+  NonConstructor<UserLifecycleApi> {
+}
+
+export declare interface RoleTargetApi extends NonConstructor<RoleBTargetAdminApi> {
 }
 
 export declare class ApiClient {
@@ -122,7 +138,10 @@ export declare class ApiClient {
   authorizationServerApi: ConsolidatedAuthorizationServerApi;
   customizationApi: CustomizationApi;
   roleAssignmentApi: RoleAssignmentApi;
+  roleTargetApi: RoleTargetApi;
   groupApi: ConsolidatedGroupApi;
+  identityProviderApi: ConsolidatedIdentityProviderApi;
+  userApi: ConsolidatedUserApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -138,8 +157,6 @@ export declare class ApiClient {
   // orgSettingApi: OrgSettingApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
-  userApi: UserApi;
-  identityProviderApi: IdentityProviderApi;
   sessionApi: SessionApi;
   templateApi: TemplateApi;
   policyApi: PolicyApi;
@@ -150,15 +167,10 @@ export declare class ApiClient {
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
   deviceAssuranceApi: DeviceAssuranceApi;
-  // roleAssignmentApi: RoleAssignmentApi;
-  // roleTargetApi: RoleTargetApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
-  applicationUsersApi: ApplicationUsersApi;
-  userLifecycleApi: UserLifecycleApi;
-  roleAssignmentAUserApi: RoleAssignmentAUserApi;
-  roleBTargetAdminApi: RoleBTargetAdminApi;
 
+  // applicationUsersApi: ApplicationUsersApi;
   // applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
   // applicationFeaturesApi: ApplicationFeaturesApi;
   // applicationLogosApi: ApplicationLogosApi;
@@ -174,4 +186,10 @@ export declare class ApiClient {
   // brandsApi: BrandsApi;
   // themesApi: ThemesApi;
   // groupRuleApi: GroupRuleApi;
+  // identityProviderUsersApi: IdentityProviderUsersApi,
+  // identityProviderKeysApi: IdentityProviderKeysApi,
+  // identityProviderSigningKeysApi: IdentityProviderSigningKeysApi,
+  // userLifecycleApi: UserLifecycleApi;
+  // roleAssignmentAUserApi: RoleAssignmentAUserApi;
+  // roleBTargetAdminApi: RoleBTargetAdminApi;
 }

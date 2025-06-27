@@ -5,6 +5,7 @@ import {
   GroupApiListGroupsRequest,
   RoleType,
   Csr,
+  IdPCsr,
   BookmarkApplication,
   Org2OrgApplication,
   OpenIdConnectApplication
@@ -86,7 +87,7 @@ async function waitTillUserInGroup(client: ApiClient, user: User, group: Group, 
 }
 
 async function deleteUser(user: User, client: ApiClient) {
-  await client.userLifecycleApi.deactivateUser({
+  await client.userApi.deactivateUser({
     id: user.id
   });
   await client.userApi.deleteUser({
@@ -122,7 +123,7 @@ async function isGroupPresent(client: ApiClient, expectedGroup: Group, queryPara
 
 async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClient) {
   let hasRole = false;
-  await (await client.roleAssignmentAUserApi.listAssignedRolesForUser({
+  await (await client.roleAssignmentApi.listAssignedRolesForUser({
     userId: user.id
   })).each(role => {
     expect(role).to.be.an.instanceof(Role);
@@ -136,7 +137,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClien
 
 async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: ApiClient) {
   let groupTargetPresent = false;
-  const groupTargets = await client.roleBTargetAdminApi.listGroupTargetsForRole({
+  const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 
     roleAssignmentId: role.id
   });
@@ -158,7 +159,7 @@ async function cleanupUser(client: ApiClient, user: User) {
     const existingUser = await client.userApi.getUser({
       id: user.profile.login
     });
-    await client.userLifecycleApi.deactivateUser({
+    await client.userApi.deactivateUser({
       id: existingUser.id
     });
     await client.userApi.deleteUser({
@@ -339,13 +340,13 @@ function bigintToBase64(bi: forge.jsbn.BigInteger) {
   );
 }
 
-function parseCsr(csr: Csr): forge.pki.CertificateRequest {
+function parseCsr(csr: Csr | IdPCsr): forge.pki.CertificateRequest {
   const csrDer = forge.util.decode64(csr.csr);
   const csrAsn1 = forge.asn1.fromDer(csrDer);
   return forge.pki.certificationRequestFromAsn1(csrAsn1) as forge.pki.CertificateRequest;
 }
 
-function createCertFromCsr(csr: Csr, keys: forge.pki.KeyPair) {
+function createCertFromCsr(csr: Csr | IdPCsr, keys: forge.pki.KeyPair) {
   const csrF = parseCsr(csr);
   const certF = forge.pki.createCertificate();
   certF.publicKey = csrF.publicKey;
@@ -371,7 +372,7 @@ function certToBase64(certF: forge.pki.Certificate) {
   return forge.util.encode64(certToDer(certF));
 }
 
-function csrToN(csr: Csr) {
+function csrToN(csr: Csr | IdPCsr) {
   return bigintToBase64((parseCsr(csr).publicKey as forge.pki.rsa.PublicKey).n);
 }
 

@@ -37,7 +37,7 @@ describe('Application.assignUserToApplication()', () => {
       createdApplication = await client.applicationApi.createApplication({ application });
       expect(createdApplication).to.be.instanceOf(BookmarkApplication);
       createdUser = await client.userApi.createUser({body: user});
-      createdAppUser = await client.applicationUsersApi.assignUserToApplication({
+      createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id,
         appUser: {
           id: createdUser.id

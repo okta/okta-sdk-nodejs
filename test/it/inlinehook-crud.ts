@@ -1,10 +1,12 @@
 import { expect } from 'chai';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   InlineHook,
-  InlineHookChannelHttp
+  InlineHookChannelHttp,
+  InlineHookChannelHttpCreate,
+  InlineHookCreate,
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
@@ -15,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-crud`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -30,8 +32,8 @@ describe('Inline Hook Crud API', () => {
     });
 
     it('should return correct model', async () => {
-      const mockInlineHook = getMockInlineHook();
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: mockInlineHook});
+      const mockInlineHook: InlineHookCreate = getMockInlineHook();
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: mockInlineHook});
       expect(inlineHook.id).to.be.exist;
       expect(inlineHook.name).to.be.equal(mockInlineHook.name);
     });
@@ -40,7 +42,7 @@ describe('Inline Hook Crud API', () => {
   describe('List Inline Hooks', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -62,7 +64,7 @@ describe('Inline Hook Crud API', () => {
   describe('Get InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -78,7 +80,7 @@ describe('Inline Hook Crud API', () => {
   describe('Update InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -87,8 +89,8 @@ describe('Inline Hook Crud API', () => {
 
     it('should update name for created inlineHook', async () => {
       inlineHook.name = `node-sdk: Mock inline hook updated ${faker.random.word()}`.substring(0, 49);
-      (inlineHook.channel as InlineHookChannelHttp).config.headers[0].value = 'my-header-value-updated';
-      (inlineHook.channel as InlineHookChannelHttp).config.authScheme.value = 'my-shared-secret-updated';
+      (inlineHook.channel as InlineHookChannelHttpCreate).config.headers[0].value = 'my-header-value-updated';
+      (inlineHook.channel as InlineHookChannelHttpCreate).config.authScheme.value = 'my-shared-secret-updated';
       const updatedInlineHook = await client.inlineHookApi.replaceInlineHook({inlineHookId: inlineHook.id, inlineHook});
       expect(updatedInlineHook.id).to.equal(inlineHook.id);
       expect(updatedInlineHook.name).to.equal(inlineHook.name);
@@ -99,7 +101,7 @@ describe('Inline Hook Crud API', () => {
   describe('Delete InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
     });
 
     it('should not get inlineHook after deletion', async () => {

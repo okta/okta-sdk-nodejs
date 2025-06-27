@@ -188,10 +188,10 @@ await client.userApi.updateUser({
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userLifecycleApi.deactivateUser(({ id })` and `client.userApi.deleteUser({ id })` operations:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser(({ id })` and `client.userApi.deleteUser({ id })` operations:
 
 ```javascript
-await client.userLifecycleApi.deactivateUser({ id: user.id });
+await client.userApi.deactivateUser({ id: user.id });
 await client.userApi.deleteUser({ id: user.id });
 ```
 
@@ -303,7 +303,7 @@ console.log('Created application:', createdApplication);
 To assign a user to an application, you must know the ID of the application and the user:
 
 ```javascript
-const appUser = await client.applicationUsersApi.assignUserToApplication({
+const appUser = await client.applicationApi.assignUserToApplication({
   appId: createdApplication.id,
   appUser: {
     id: createdUser.id
@@ -985,7 +985,7 @@ const client: ApiClient = new ApiClient({
 + const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
 
 - await client.userApi.deactivateUser({ userId: user.id })
-+ await client.userLifecycleApi.deactivateUser({ id: user.id })
++ await client.userApi.deactivateUser({ id: user.id })
 
 - await client.userApi.getUser({ userId: user.id })
 + await client.userApi.getUser({ id: user.id })
@@ -993,20 +993,23 @@ const client: ApiClient = new ApiClient({
 - await client.userApi.deleteUser({ userId: user.id })
 + await client.userApi.deleteUser({ id: user.id })
 
-- await client.roleAssignmentApi.listAssignedRolesForUser({ userId })
-+ await client.roleAssignmentAUserApi.listAssignedRolesForUser({ userId })
-
 - await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
-+ await client.roleBTargetAdminApi.listGroupTargetsForRole({ userId, roleAssignmentId })
++ await client.roleTargetApi.listGroupTargetsForRole({ userId, roleAssignmentId })
 
-- await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
-+ await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'})
+- await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'});
++ await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'})
 
 - await client.groupApi.createGroup({group});
 + await client.groupApi.addGroup({group});
 
 - await client.schemaApi.updateApplicationUserProfile({ appInstanceId, body });
 + await client.schemaApi.updateApplicationUserProfile({ appId, body });
+
+- await client.identityProviderApi.getIdentityProviderKey({keyId: key.kid});
++ await client.identityProviderApi.getIdentityProviderKey({kid: key.kid});
+
+- await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
++ await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
 
 ```
 

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
-import { Client, IdentityProvider, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, IdentityProvider, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-lifecycle`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

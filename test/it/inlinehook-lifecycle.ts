@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockInlineHook = require('./mocks/inlinehook');
-import { Client } from '@okta/okta-sdk-nodejs';
+import { ApiClient } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-lifecycle`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -18,7 +18,7 @@ const client = new Client({
 describe('Inline Hook Lifecycle API', () => {
   let inlineHook;
   beforeEach(async () => {
-    inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
+    inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
   });
 
   afterEach(async () => {

@@ -116,7 +116,7 @@ describe('client.listApplicationUsers({ })', () => {
 
   after(async () => {
     for (const appUser of appUsers) {
-      await client.userLifecycleApi.deactivateUser({id: appUser.id});
+      await client.userApi.deactivateUser({id: appUser.id});
       await client.userApi.deleteUser({id: appUser.id});
     }
 

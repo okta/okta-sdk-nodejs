@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   Policy,
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-crud`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -26,7 +26,7 @@ describe('Policy Crud API', () => {
   let group: Group;
   let mockPolicy: AccessPolicy;
   beforeEach(async () => {
-    group = await client.groupApi.createGroup({group: getMockGroup()});
+    group = await client.groupApi.addGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
   });

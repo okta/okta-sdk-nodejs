@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import {
-  Client,
+  ApiClient,
   DefaultRequestExecutor,
   OktaSignOnPolicy,
   OktaSignOnPolicyRule,
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policies`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.policies.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -72,7 +72,7 @@ describe('Policy Scenarios', () => {
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.addGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Set Up Policy JSON

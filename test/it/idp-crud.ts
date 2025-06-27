@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  Client,
+  ApiClient,
   Collection,
   DefaultRequestExecutor,
   IdentityProvider,
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-crud`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

@@ -5,7 +5,7 @@ import {
   IdentityProvider,
   IdentityProviderApplicationUser,
   User,
-  Client
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
