@@ -1011,6 +1011,15 @@ const client: ApiClient = new ApiClient({
 - await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
 + await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
 
+- await client.orgSettingApi.updateOrgSettings({ OrgSetting })
++ await client.orgSettingApi.updateOrgSettings({ orgSetting })
+
+- await client.orgSettingApi.getOrgContactTypes()
++ await client.orgSettingApi.listOrgContactTypes()
+
+- await client.orgSettingApi.updateOrgHideOktaUIFooter();
++ await client.orgSettingApi.setOrgHideOktaUIFooter();
+
 ```
 
 ### From 6.x to 7.0

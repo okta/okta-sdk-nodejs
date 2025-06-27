@@ -27,7 +27,6 @@ import {
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
   TrustedOriginApi,
@@ -69,6 +68,11 @@ import {
   IdentityProviderUsersApi,
   IdentityProviderKeysApi,
   IdentityProviderSigningKeysApi,
+  OrgSettingGeneralApi,
+  OrgSettingContactApi,
+  OrgSettingCustomizationApi,
+  OrgSettingCommunicationApi,
+  OrgSettingSupportApi,
 } from './generated';
 
 
@@ -119,6 +123,14 @@ export declare interface ConsolidatedUserApi extends NonConstructor<UserApi>,
 export declare interface RoleTargetApi extends NonConstructor<RoleBTargetAdminApi> {
 }
 
+export declare interface OrgSettingApi extends NonConstructor<OrgSettingGeneralApi>,
+  NonConstructor<OrgSettingContactApi>,
+  NonConstructor<OrgSettingCustomizationApi>,
+  NonConstructor<OrgSettingCommunicationApi>,
+  NonConstructor<OrgSettingSupportApi> {
+}
+
+
 export declare class ApiClient {
   constructor(config?: V2Configuration);
 
@@ -142,6 +154,7 @@ export declare class ApiClient {
   groupApi: ConsolidatedGroupApi;
   identityProviderApi: ConsolidatedIdentityProviderApi;
   userApi: ConsolidatedUserApi;
+  orgSettingApi: OrgSettingApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -154,7 +167,6 @@ export declare class ApiClient {
   eventHookApi: EventHookApi;
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
-  // orgSettingApi: OrgSettingApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
   sessionApi: SessionApi;
@@ -192,4 +204,9 @@ export declare class ApiClient {
   // userLifecycleApi: UserLifecycleApi;
   // roleAssignmentAUserApi: RoleAssignmentAUserApi;
   // roleBTargetAdminApi: RoleBTargetAdminApi;
+  // orgSettingGeneralApi: OrgSettingGeneralApi;
+  // orgSettingContactApi: OrgSettingContactApi;
+  // orgSettingCustomizationApi: OrgSettingCustomizationApi;
+  // orgSettingCommunicationApi: OrgSettingCommunicationApi;
+  // orgSettingSupportApi: OrgSettingSupportApi;
 }

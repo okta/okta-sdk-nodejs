@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # copy static typings into location next to generated TS modules so tsc can resolve them
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 

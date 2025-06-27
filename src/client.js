@@ -32,7 +32,6 @@ const {
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  // OrgSettingApi,
   ApplicationApi,
   AuthorizationServerApi,
   TrustedOriginApi,
@@ -74,6 +73,11 @@ const {
   IdentityProviderUsersApi,
   IdentityProviderKeysApi,
   IdentityProviderSigningKeysApi,
+  OrgSettingGeneralApi,
+  OrgSettingContactApi,
+  OrgSettingCustomizationApi,
+  OrgSettingCommunicationApi,
+  OrgSettingSupportApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -142,7 +146,16 @@ const apiConsolidationRules = {
       UserApi,
       UserLifecycleApi,
     ]
-  }
+  },
+  OrgSettingApi: {
+    apis: [
+      OrgSettingGeneralApi,
+      OrgSettingContactApi,
+      OrgSettingCustomizationApi,
+      OrgSettingCommunicationApi,
+      OrgSettingSupportApi,
+    ]
+  },
 };
 
 // Generate consolidated api classes
@@ -246,6 +259,7 @@ class ApiClient {
     this.groupApi = new consolidatedApis['GroupApi'](configuration);
     this.identityProviderApi = new consolidatedApis['IdentityProviderApi'](configuration);
     this.userApi = new consolidatedApis['UserApi'](configuration);
+    this.orgSettingApi = new consolidatedApis['OrgSettingApi'](configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -258,7 +272,6 @@ class ApiClient {
     this.eventHookApi = new EventHookApi(configuration);
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
-    // this.orgSettingApi = new OrgSettingApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
     this.sessionApi = new SessionApi(configuration);
@@ -296,6 +309,11 @@ class ApiClient {
     // this.userLifecycleApi = new UserLifecycleApi(configuration);
     // this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
     // this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
+    // this.orgSettingGeneralApi = new OrgSettingGeneralApi(configuration);
+    // this.orgSettingContactApi = new OrgSettingContactApi(configuration);
+    // this.orgSettingCustomizationApi = new OrgSettingCustomizationApi(configuration);
+    // this.orgSettingCommunicationApi = new OrgSettingCommunicationApi(configuration);
+    // this.orgSettingSupportApi = new OrgSettingSupportApi(configuration);
   }
 }
 

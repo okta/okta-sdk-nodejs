@@ -3,7 +3,8 @@ import { spy } from 'sinon';
 import {
   DefaultRequestExecutor,
   NetworkZone,
-  Client
+  IPNetworkZone,
+  ApiClient
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 
@@ -13,13 +14,13 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 
-const client = new Client({
+const client = new ApiClient({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
 });
 
-const buildBlockedNetworkZone = (): NetworkZone => {
+const buildBlockedNetworkZone = (): IPNetworkZone => {
   return {
     type: 'IP',
     id: null,
@@ -37,7 +38,7 @@ const buildBlockedNetworkZone = (): NetworkZone => {
   };
 };
 
-const buildNetworkZone = (): NetworkZone => {
+const buildNetworkZone = (): IPNetworkZone => {
   return {
     type: 'IP',
     id: null,
