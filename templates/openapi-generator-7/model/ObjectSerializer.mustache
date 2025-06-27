@@ -151,6 +151,8 @@ export class ObjectSerializer {
           const manuallyDiscriminatedType = typeMap[prefixedTypeDiscriminatorType] || typeMap[prefixedDiscriminatorType];
           if (mapping != undefined && mapping[discriminatorType]) {
               return mapping[discriminatorType]; // use the type given in the discriminator
+          } else if (mapping != undefined && mapping['*']) {
+              return mapping['*']; // use the type given in the star discriminator
           } else if (typeMap[discriminatorType]) {
               return discriminatorType;
           } else if (manuallyDiscriminatedType) {

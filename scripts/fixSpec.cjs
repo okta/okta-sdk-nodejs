@@ -4,6 +4,42 @@ const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+const customDiscriminatorsForEndpointsResponses = [
+  {
+    propertyName: 'type',
+    mapping: {
+      'CUSTOM': '#/components/schemas/CustomRole',
+      '*': '#/components/schemas/StandardRole'
+    }
+  },
+  {
+    propertyName: 'type',
+    mapping: {
+      'CUSTOM': '#/components/schemas/CustomRoleAssignmentSchema',
+      '*': '#/components/schemas/StandardRoleAssignmentSchema'
+    }
+  }
+];
+
+const addCustomDiscriminatorToResponse = (schema) => {
+  if (schema['type'] === 'array' && schema['items']['oneOf']?.length > 1) {
+    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+      const oneOfRefSchemas = Object.values(discriminator.mapping);
+      if (schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length) {
+        schema['items'].discriminator = {...discriminator, mapping: {...discriminator.mapping}};
+        return true;
+      }
+    }
+  } else if (schema['oneOf']?.length > 1) {
+    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+      const oneOfRefSchemas = Object.values(discriminator.mapping);
+      if (schema['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length) {
+        schema.discriminator = {...discriminator, mapping: {...discriminator.mapping}};
+        return true;
+      }
+    }
+  }
+};
 
 function patchSpec3(spec3) {
   const schemasToForcePrefix = [
@@ -25,6 +61,7 @@ function patchSpec3(spec3) {
   const manualSchemaFixes = [];
   const manualPathsFixes = [];
   const ffAmends = [];
+  const customDescriminatorsForEndpoints = [];
 
   const ffAmendsMerge = (obj, onSuccess) => {
     if (obj?.['x-okta-feature-flag-amends']) {
@@ -74,6 +111,13 @@ function patchSpec3(spec3) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
+
+                // Special fix to add discriminators
+                const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
+                if (maybeAddedCustomDiscriminator) {
+                  customDescriminatorsForEndpoints.push({ httpMethod, httpPath });
+                }
+
                 // Special fix for /api/v1/policies - should return array (Policies, not Policy)
                 if (httpPath === '/api/v1/policies' && isListEndpoint && refSchemaKey === 'Policy') {
                   schema = {
@@ -299,6 +343,7 @@ function patchSpec3(spec3) {
     manualSchemaFixes,
     manualPathsFixes,
     ffAmends,
+    customDescriminatorsForEndpoints,
   };
 }
 
@@ -318,7 +363,7 @@ async function main() {
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
   } = patchSpec3(spec3, openApiGeneratorVersion);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
@@ -329,6 +374,7 @@ async function main() {
   console.log(`Manual schema fixes: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manual paths fixes:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1

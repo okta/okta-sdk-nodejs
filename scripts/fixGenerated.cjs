@@ -62,7 +62,7 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
       }
       if (parentClassName) {
-        console.warn(`! Can't detect key for descriminator "${discriminatorName}" for ${fileName}`);
+        console.warn(`! Can't detect key for discriminator "${discriminatorName}" for ${fileName}`);
       }
       return grpSpaces + '// ' + grpLine;
       // return match; // as-is
@@ -192,7 +192,7 @@ async function main() {
 
     // remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
     const removeIncorrectDiscriminatorsResult = removeIncorrectDiscriminators(spec3Meta);
-    console.log('Fix/remove incorrect descriminators result =', removeIncorrectDiscriminatorsResult);
+    console.log('Fix/remove incorrect discriminators result =', removeIncorrectDiscriminatorsResult);
 
     // fix '' with '
     const fixRespondAsyncResult = fixRespondAsync();

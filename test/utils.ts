@@ -126,7 +126,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClien
   await (await client.roleAssignmentApi.listAssignedRolesForUser({
     userId: user.id
   })).each(role => {
-    expect(role).to.be.an.instanceof(Role);
+    expect(role instanceof Role || role instanceof StandardRole || role instanceof CustomRole).to.be.true;
     if (role.type === roleType) {
       hasRole = true;
       return false;
