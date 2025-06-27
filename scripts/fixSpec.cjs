@@ -12,13 +12,6 @@ const customDiscriminatorsForEndpointsResponses = [
       '*': '#/components/schemas/StandardRole'
     }
   },
-  {
-    propertyName: 'type',
-    mapping: {
-      'CUSTOM': '#/components/schemas/CustomRoleAssignmentSchema',
-      '*': '#/components/schemas/StandardRoleAssignmentSchema'
-    }
-  }
 ];
 
 const addCustomDiscriminatorToResponse = (schema) => {
