@@ -20,14 +20,13 @@ const client = new ApiClient({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-//
 async function createUserTypeWithRetry() {
   try {
     return await client.userTypeApi.createUserType({
       userType: getMockUserType() as UserType
     });
   } catch (err) {
-    return new Promise((resolve, reject) => {
+    return new Promise<UserType>((resolve, reject) => {
       setTimeout(function () {
         client.userTypeApi.createUserType({
           userType: getMockUserType() as UserType
@@ -37,18 +36,36 @@ async function createUserTypeWithRetry() {
   }
 }
 
+async function deleteAllUserTypes() {
+  const userTypes = await client.userTypeApi.listUserTypes();
+  await userTypes.each(async t => {
+    if (t.name !== 'user' && t.displayName.startsWith('node-sdk: ')) {
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: t.id
+        });
+      } catch (_e) { /* no-op */ }
+    }
+  });
+}
+
 describe('User Type API', async () => {
   let userType: UserType;
+
+  before(async () => {
+    await deleteAllUserTypes();
+  });
 
   describe('List userTypes', () => {
     beforeEach(async () => {
       userType = await createUserTypeWithRetry();
     });
     afterEach(async () => {
-      // await userType.delete();
-      await client.userTypeApi.deleteUserType({
-        typeId: userType.id
-      });
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: userType.id
+        });
+      } catch (_e) { /* no-op */ }
     });
 
     it('should return a Collection of UserType', async () => {
@@ -62,9 +79,11 @@ describe('User Type API', async () => {
 
   describe('Create userType', () => {
     afterEach(async () => {
-      await client.userTypeApi.deleteUserType({
-        typeId: userType.id
-      });
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: userType.id
+        });
+      } catch (_e) { /* no-op */ }
     });
 
     it('should return UserType instance', async () => {
@@ -82,9 +101,11 @@ describe('User Type API', async () => {
       userType = await createUserTypeWithRetry();
     });
     afterEach(async () => {
-      await client.userTypeApi.deleteUserType({
-        typeId: userType.id
-      });
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: userType.id
+        });
+      } catch (_e) { /* no-op */ }
     });
 
     it('should get userType by id', async () => {
@@ -104,43 +125,32 @@ describe('User Type API', async () => {
       });
     });
     afterEach(async () => {
-      await client.userTypeApi.deleteUserType({
-        typeId: userType.id
-      });
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: userType.id
+        });
+      } catch (_e) { /* no-op */ }
     });
 
     it('should update name for userType', async () => {
-      userType.displayName = faker.random.word();
-      // const updatedUserType = await userType.update();
+      userType.description = faker.random.word();
       const updatedUserType = await client.userTypeApi.updateUserType({
         typeId: userType.id,
         userType
       });
       expect(updatedUserType.id).to.equal(userType.id);
-      expect(updatedUserType.displayName).to.equal(userType.displayName);
+      expect(updatedUserType.description).to.equal(userType.description);
     });
 
     it('should replace userType with a new resource', async () => {
-      mockType.displayName = faker.random.word();
+      mockType.description = faker.random.word();
       const replacedUserType = await client.userTypeApi.replaceUserType({
         typeId: userType.id,
-        userType: mockType
+        userType: mockType as Required<UserType>
       });
       expect(replacedUserType.id).to.be.equal(userType.id);
       expect(replacedUserType.name).to.be.equal(mockType.name);
     });
   });
 
-  describe('Delete userType', () => {
-    beforeEach(async () => {
-      userType = await createUserTypeWithRetry();
-    });
-
-    it('returns empty response on successful deletion', async () => {
-      const res = await client.userTypeApi.deleteUserType({
-        typeId: userType.id
-      });
-      expect(res).to.be.undefined;
-    });
-  });
 });

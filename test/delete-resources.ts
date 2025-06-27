@@ -1,6 +1,6 @@
 
 import {
-  Client,
+  ApiClient,
   DefaultRequestExecutor
 } from '..';
 import * as utils from './utils';
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new Client({
+const client = new ApiClient({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -151,9 +151,9 @@ async function cleanTestGroupRules() {
     if (canDelete) {
       try {
         if (rule.status !== 'INVALID') {
-          await client.groupApi.deactivateGroupRule({ruleId: rule.id!});
+          await client.groupApi.deactivateGroupRule({groupRuleId: rule.id!});
         }
-        await client.groupApi.deleteGroupRule({ruleId: rule.id!});
+        await client.groupApi.deleteGroupRule({groupRuleId: rule.id!});
       } catch (err) {
         console.error(err);
       }
@@ -227,6 +227,24 @@ async function cleanEmailCustomizations() {
   });
 }
 
+async function cleanUserTypes() {
+  const userTypes = await client.userTypeApi.listUserTypes();
+  await userTypes.each(async t => {
+    const canDelete = t.displayName.startsWith('node-sdk: ');
+    if (canDelete) {
+      try {
+        await client.userTypeApi.deleteUserType({
+          typeId: t.id!
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped user type to remove ${t.displayName}`);
+    }
+  });
+}
+
 
 describe('Clean', () => {
   it('all test resources', async () => {
@@ -241,5 +259,6 @@ describe('Clean', () => {
     await cleanTestPolicies();
     await cleanTestIdps();
     await cleanEmailCustomizations();
+    await cleanUserTypes();
   });
 });

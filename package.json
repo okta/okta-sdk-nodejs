@@ -35,7 +35,7 @@
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.ts",
+    "aftertest": "source .env &> /dev/null && TEST_TYPE=clean mocha test/delete-resources.ts",
     "validate:v2-v3": "node scripts/validate.js ./spec/management.yaml"
   },
   "keywords": [],
