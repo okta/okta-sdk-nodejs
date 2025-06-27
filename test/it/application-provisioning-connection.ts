@@ -59,7 +59,7 @@ describe('Application API: provisioning connection for application', () => {
     expect(provisioningConnection.status).to.equal('DISABLED');
   });
 
-  it('provides method for creating provisioning connection for application', async () => {
+  it('provides token method for creating provisioning connection for application', async () => {
     try {
       await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
@@ -67,6 +67,23 @@ describe('Application API: provisioning connection for application', () => {
           profile: {
             authScheme: 'TOKEN',
             token: 'testToken'
+          }
+        }
+      });
+    } catch (err) {
+      expect(err.status).to.equal(400);
+      expect(err.message).to.contain('Api validation failed: credential. Verification failed: Invalid URL. Not authorized.');
+    }
+  });
+
+  it('provides oauth2 method for creating provisioning connection for application', async () => {
+    try {
+      await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
+        appId: application.id,
+        updateDefaultProvisioningConnectionForApplicationRequest: {
+          profile: {
+            authScheme: 'OAUTH2',
+            clientId: 'testClientId'
           }
         }
       });
