@@ -52,7 +52,7 @@ describe('User role API', () => {
         userId: user.id,
         assignRoleRequest: { type: 'APP_ADMIN' }
       });
-      expect(role).to.be.instanceOf(Role);
+      expect(role).to.be.instanceOf(StandardRole);
       expect(role.id).to.be.exist;
       expect(role.type).to.equal('APP_ADMIN');
     });
@@ -97,7 +97,7 @@ describe('User role API', () => {
       });
       expect(roles).to.be.instanceOf(Collection);
       await roles.each(roleFromCollection => {
-        expect(roleFromCollection).to.be.instanceOf(Role);
+        expect(roleFromCollection).to.be.instanceOf(StandardRole);
         expect(roleFromCollection.id).to.be.equal(role.id);
       });
     });

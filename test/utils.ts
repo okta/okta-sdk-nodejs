@@ -1,6 +1,7 @@
 import {
   ApiClient,
   User, Group, Role, StandardRole, CustomRole,
+  UserGetSingleton,
   UserApiListUsersRequest,
   GroupApiListGroupsRequest,
   RoleType,
@@ -23,8 +24,8 @@ function delay(t) {
   });
 }
 
-function validateUser(user: User, expectedUser: User) {
-  expect(user).to.be.an.instanceof(User);
+function validateUser(user: User | UserGetSingleton, expectedUser: User) {
+  expect(user instanceof User || user instanceof UserGetSingleton).to.be.true;
   expect(user.profile.firstName).to.equal(expectedUser.profile.firstName);
   expect(user.profile.lastName).to.equal(expectedUser.profile.lastName);
   expect(user.profile.email).to.equal(expectedUser.profile.email);

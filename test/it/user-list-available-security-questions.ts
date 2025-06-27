@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { ApiClient, CreateUserRequest, DefaultRequestExecutor, UserFactorSecurityQuestion } from '@okta/okta-sdk-nodejs';
+import { ApiClient, CreateUserRequest, DefaultRequestExecutor, UserFactorSecurityQuestionProfile } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -32,7 +32,7 @@ describe('User API Tests', () => {
       userId: createdUser.id
     })).each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
-    questions.forEach(factor => expect(factor).to.be.instanceof(UserFactorSecurityQuestion));
+    questions.forEach(factor => expect(factor).to.be.instanceof(UserFactorSecurityQuestionProfile));
     return await utils.deleteUser(createdUser, client);
   });
 });
