@@ -74,10 +74,10 @@ describe('Behavior API', () => {
 
     it('should create rule of type VELOCITY', async () => {
       const mockRule: BehaviorRuleVelocity = getMockBehaviorRule('VELOCITY');
-      const createdRule: BehaviorRuleVelocity = rule;
       rule = await client.behaviorApi.createBehaviorDetectionRule({
         rule: mockRule,
       });
+      const createdRule: BehaviorRuleVelocity = rule;
       expect(createdRule).to.be.instanceOf(BehaviorRule);
       expect(createdRule).to.have.property('id');
       expect(createdRule.name).to.equal(mockRule.name);

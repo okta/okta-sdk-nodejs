@@ -145,6 +145,26 @@ async function cleanTestGroups() {
   });
 }
 
+async function cleanTrustedOrigins() {
+  await (await client.trustedOriginApi.listTrustedOrigins()).each(async (origin) => {
+    const canDelete = origin.name!.startsWith('node-sdk:');
+    if (canDelete) {
+      try {
+        await client.trustedOriginApi.deactivateTrustedOrigin({
+          trustedOriginId: origin.id!
+        });
+        await client.trustedOriginApi.deleteTrustedOrigin({
+          trustedOriginId: origin.id!
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped trusted origin to remove ${origin.name}`);
+    }
+  });
+}
+
 async function cleanTestGroupRules() {
   await (await client.groupApi.listGroupRules()).each(async (rule) => {
     const canDelete = rule.name!.startsWith('node-sdk:');
@@ -253,6 +273,7 @@ describe('Clean', () => {
     await cleanTestUsers();
     await cleanTestGroupRules();
     await cleanTestGroups();
+    await cleanTrustedOrigins();
     await cleanApplications();
     await cleanDomains();
     await cleanInlineHooks();
