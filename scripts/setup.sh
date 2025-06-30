@@ -14,7 +14,7 @@ export PATH="${PATH}:$(yarn global bin)"
 
 # Revert the cache-min setting, since the internal cache does not apply to
 # these repos (and causes problems in lookups)
-npm config set cache-min 10
+#npm config set cache-min 10
 
 cd ${OKTA_HOME}/${REPO}
 
@@ -34,8 +34,8 @@ OKTA_REGISTRY=${ARTIFACTORY_URL}/api/npm/npm-okta-all
 #sed -i "s#${YARN_REGISTRY}#${OKTA_REGISTRY}#g" yarn.lock
 
 # Override registry configs to point to the public registry since this repository is public
-npm config set registry ${YARN_REGISTRY}
-npm config set @okta:registry ${YARN_REGISTRY}
+# npm config set registry ${YARN_REGISTRY}
+# npm config set @okta:registry ${YARN_REGISTRY}
 
 if ! yarn install --frozen-lockfile; then
   echo "yarn install failed! Exiting..."
@@ -43,4 +43,4 @@ if ! yarn install --frozen-lockfile; then
 fi
 
 # Revert the original change
-sed -i "s#${OKTA_REGISTRY}#${YARN_REGISTRY}#" yarn.lock
+#sed -i "s#${OKTA_REGISTRY}#${YARN_REGISTRY}#" yarn.lock
