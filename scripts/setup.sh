@@ -5,7 +5,7 @@ export PATH="${PATH}:$(yarn global bin)"
 
 # Install required node version
 export NVM_DIR="/root/.nvm"
-setup_service node v14.18.1 &> /dev/null
+setup_service node v18.19.0 &> /dev/null
 
 # Revert the cache-min setting, since the internal cache does not apply to
 # these repos (and causes problems in lookups)
