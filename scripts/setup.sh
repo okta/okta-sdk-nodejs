@@ -23,10 +23,14 @@ cd ${OKTA_HOME}/${REPO}
 #  - https://github.com/yarnpkg/yarn/issues/3330
 
 YARN_REGISTRY=https://registry.yarnpkg.com
-OKTA_REGISTRY=${ARTIFACTORY_URL}/api/npm/npm-okta-master
+OKTA_REGISTRY=${ARTIFACTORY_URL}/api/npm/npm-okta-all
 
 # Replace yarn artifactory with Okta's
-sed -i "s#${YARN_REGISTRY}#${OKTA_REGISTRY}#g" yarn.lock
+#sed -i "s#${YARN_REGISTRY}#${OKTA_REGISTRY}#g" yarn.lock
+
+# Override registry configs to point to the public registry since this repository is public
+npm config set registry ${YARN_REGISTRY}
+npm config set @okta:registry ${YARN_REGISTRY}
 
 if ! yarn install --frozen-lockfile; then
   echo "yarn install failed! Exiting..."
