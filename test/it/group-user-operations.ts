@@ -48,7 +48,7 @@ describe('Group-Member API Tests', () => {
 
     // 3. Remove user from group and validate user removed
     await client.groupApi.unassignUserFromGroup({groupId: createdGroup.id, userId: createdUser.id});
-    userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
+    userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
     // 4. Delete the group and user
