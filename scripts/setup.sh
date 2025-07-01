@@ -12,10 +12,6 @@ fi
 # Add yarn to the $PATH so npm cli commands do not fail
 export PATH="${PATH}:$(yarn global bin)"
 
-# Revert the cache-min setting, since the internal cache does not apply to
-# these repos (and causes problems in lookups)
-npm config set cache-min 10
-
 cd ${OKTA_HOME}/${REPO}
 
 if ! yarn install --frozen-lockfile; then
