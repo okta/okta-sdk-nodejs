@@ -87,6 +87,19 @@ const removeIncorrectDiscriminators = (spec3Meta) => {
   return totalRes;
 };
 
+const fixEscapings = () => {
+  const res = replaceInFileSync({
+    files: 'src/generated/**/*.ts',
+    from: /^.*throw new ApiException.*'.*&#39;.*'.*$/mg,
+    to: (match) => {
+      return match.replaceAll('&#39;', '\'');
+    },
+  });
+  return res
+    .filter(result => result.hasChanged)
+    .map(result => result.file);
+};
+
 const fixRespondAsync = () => {
   const res = replaceInFileSync({
     files: 'src/generated/**/*.ts',
@@ -201,6 +214,10 @@ async function main() {
     // remove *AllOf
     const removeAllOfResult = removeAllOf();
     console.log('Remove *AllOf = ' + JSON.stringify(removeAllOfResult, null, 4));
+
+    // fix some unnecessary html escapings like &#39; for '
+    const fixEscapingsResult = fixEscapings();
+    console.log('Fix escapings =', fixEscapingsResult);
 
   } catch (error) {
     console.error('Error occurred:', error);
