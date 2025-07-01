@@ -1,4 +1,4 @@
-const { DefaultRequestExecutor, Client } = require('../../src');
+const { DefaultRequestExecutor, ApiClient } = require('../../src');
 const { ConfigLoader } = require('../../src/config-loader');
 
 describe('okta.Client', () => {
@@ -8,7 +8,7 @@ describe('okta.Client', () => {
     });
     it('aggregates multiple errors into a single exception', () => {
       const fn = function () {
-        return new Client();
+        return new ApiClient();
       };
       const expectedErrors = [
         'Okta Org URL not provided',
@@ -23,13 +23,13 @@ describe('okta.Client', () => {
     });
     it('throws if no orgUrl', () => {
       const fn = function () {
-        return new Client();
+        return new ApiClient();
       };
       expect(fn).toThrowError('Okta Org URL not provided');
     });
     it('throws if no token', () => {
       const fn = function () {
-        return new Client({
+        return new ApiClient({
           orgUrl: 'https://fakey.local'
         });
       };
@@ -37,7 +37,7 @@ describe('okta.Client', () => {
     });
     it('throws if unknown authorizationMode', () => {
       const fn = function () {
-        return new Client({
+        return new ApiClient({
           orgUrl: 'https://fakey.local',
           token: 'abc',
           authorizationMode: 'unknown'
@@ -48,7 +48,7 @@ describe('okta.Client', () => {
     describe('authorizationMode: PrivateKey', () => {
       it('throws if no clientId', () => {
         const fn = function () {
-          return new Client({
+          return new ApiClient({
             orgUrl: 'https://fakey.local',
             token: 'abc',
             authorizationMode: 'PrivateKey'
@@ -58,7 +58,7 @@ describe('okta.Client', () => {
       });
       it('throws if no scopes', () => {
         const fn = function () {
-          return new Client({
+          return new ApiClient({
             orgUrl: 'https://fakey.local',
             token: 'abc',
             authorizationMode: 'PrivateKey',
@@ -69,7 +69,7 @@ describe('okta.Client', () => {
       });
       it('throws if no privateKey', () => {
         const fn = function () {
-          return new Client({
+          return new ApiClient({
             orgUrl: 'https://fakey.local',
             token: 'abc',
             authorizationMode: 'PrivateKey',
@@ -80,7 +80,7 @@ describe('okta.Client', () => {
         expect(fn).toThrowError('Private Key not provided');
       });
       it('Constructs an OAuth client and passes it to http', () => {
-        const client = new Client({
+        const client = new ApiClient({
           orgUrl: 'https://fakey.local',
           token: 'abc',
           authorizationMode: 'PrivateKey',
@@ -95,7 +95,7 @@ describe('okta.Client', () => {
     });
     describe('authorizationMode: SSWS', () => {
       it('sets the Authorization header on the http object', () => {
-        const client = new Client({
+        const client = new ApiClient({
           orgUrl: 'https://fakey.local',
           token: 'fake-token',
           authorizationMode: 'SSWS',
@@ -106,11 +106,11 @@ describe('okta.Client', () => {
   });
 
   it('should use the DefaultRequestExecutor by default', () => {
-    const client = new Client();
+    const client = new ApiClient();
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);
   });
   it('should let me pass an alternate request executor', () => {
-    const client = new Client({
+    const client = new ApiClient({
       requestExecutor: new DefaultRequestExecutor()
     });
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);

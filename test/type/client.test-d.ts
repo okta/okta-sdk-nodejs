@@ -1,13 +1,13 @@
 import { expectError, expectType } from 'tsd';
-import { Client } from '../../src/types/client';
+import { ApiClient } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
 import { Application } from '../../src/types/generated/models/Application';
 import { BookmarkApplication } from '../../src/types/generated/models/BookmarkApplication';
 
-const client = new Client();
+const client = new ApiClient();
 (async function () {
   // mandatory query parameters
-  expectError(await client.policyApi.listPolicies());
+  expectError(await client.policyApi.listPolicies({ type: 'PASSWORD' }));
 
   // Client methods return either Promise or Collection
   expectType<Promise<void>>(client.policyApi.deletePolicy({policyId: 'policyId'}));

@@ -5,12 +5,12 @@ import { Collection } from '../../src/types/collection';
 import { Http } from '../../src/types/http';
 import { RequestExecutor } from '../../src/types/request-executor';
 import { OAuth } from '../../src/types/oauth';
-import { Client } from '../../src/types/client';
+import { ApiClient } from '../../src/types/client';
 
 const collection = new Collection<Resource>(
   new Http({
     requestExecutor: new RequestExecutor(),
-    oauth: new OAuth(new Client()),
+    oauth: new OAuth(new ApiClient()),
   }),
   'https://foo',
   new ModelFactory(Resource)

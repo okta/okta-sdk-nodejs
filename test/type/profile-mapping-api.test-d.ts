@@ -1,10 +1,10 @@
 import { expectType } from 'tsd';
-import { Client } from '../../src/types/client';
+import { ApiClient } from '../../src/types/client';
 import type { ProfileMappingProperty } from '../../src/types/generated/models/ProfileMappingProperty';
 import type { ProfileMapping } from '../../src/types/generated/models/ProfileMapping';
 
 
-const client = new Client();
+const client = new ApiClient();
 (async function () {
   const collection = await client.profileMappingApi.listProfileMappings();
   const { value: mapping } = await collection.next();

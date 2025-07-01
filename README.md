@@ -35,7 +35,7 @@ You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodej
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
 
-✔️: The current stable major version series is: 6.x.x
+✔️: The current stable major version series is: 7.x.x
 
 | Version | Status                    |
 | ------- | ------------------------- |
@@ -43,8 +43,8 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 2.x | :x: Retired |
 | 3.x | :x: Retired |
 | 4.x | :x: Retired |
-| 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
-| 6.x | :heavy_check_mark: Stable ([migration guide](#from-5x-to-60)) |
+| 5.x | :x: Retired |
+| 6.x | :x: Retired |
 | 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
 
 The latest release can always be found on the [releases page][github-releases].
@@ -73,7 +73,7 @@ We also include an opt-in [default request executor](#default-request-executor) 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
@@ -93,7 +93,7 @@ This SDK supports this feature only for service-to-service applications. Please 
 When using this approach you won't need an API Token because the SDK will request an access token for you. In order to use OAuth 2.0, construct a client instance by passing the following parameters:
 
 ```js
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   authorizationMode: 'PrivateKey',
   clientId: '{oauth application ID}',
@@ -434,7 +434,7 @@ Not every API endpoint is represented by a method in this library. You can call 
 const okta = require('@okta/okta-sdk-nodejs');
 
 // Assumes configuration is loaded via yaml or environment variables
-const client = new okta.Client();
+const client = new okta.ApiClient();
 
 // https://developer.okta.com/docs/reference/api/apps/#preview-saml-metadata-for-application
 const applicationId = '{your custom SAML app id}';
@@ -561,7 +561,7 @@ There are several ways to provide configuration to the client constructor.  When
 1. Environment variables
 1. Properties passed to the client constructor
 
-As such, you can create a client without passing a configuration option, e.g. `new okta.Client()`, so long as you have provided the configuration in one of the other locations.
+As such, you can create a client without passing a configuration option, e.g. `new okta.ApiClient()`, so long as you have provided the configuration in one of the other locations.
 
 If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
 
@@ -595,7 +595,7 @@ To prevent this behavior, and instead remove expired values from memory proactiv
 const okta = require('@okta/okta-sdk-nodejs');
 const MemoryStore = okta.MemoryStore;
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
@@ -630,7 +630,7 @@ The default caching middleware caches any resource that has a `self` link, and i
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: null
@@ -648,7 +648,7 @@ async function customMiddleware(ctx, next) {
   // do something after the response
 }
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: customMiddleware
@@ -735,7 +735,7 @@ const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
   requestTimeout: 0 // Specify in milliseconds if needed
 })
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.okta.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: customDefaultRequestExecutor
@@ -765,7 +765,7 @@ See [RequestExecutor] for the class code.
 The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
 
 ```javascript
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: new okta.RequestExecutor()
@@ -775,7 +775,7 @@ const client = new okta.Client({
 The base executor also emits `request` and `response` events, these can be useful for debugging and request logging:
 
 ```javascript
-const client = new okta.Client({
+const client = new okta.ApiClient({
   // uses the base executor by default
 });
 
@@ -810,7 +810,7 @@ class DefaultExecutorWithLogging extends okta.DefaultRequestExecutor {
   }
 }
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   requestExecutor: new DefaultExecutorWithLogging()
 })
 ```
@@ -821,7 +821,7 @@ If you need to use a proxy, you can configure it with `httpsProxy` property.
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   httpsProxy: 'http://proxy.example.net:8080/'
@@ -839,7 +839,7 @@ If you need to specify a User-Agent for the client requests, you can configure i
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   userAgent: 'example/1.0'

@@ -19,7 +19,7 @@ All usage of this SDK begins with the creation of a client, the client handles t
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.Client({
+const client = new okta.ApiClient({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
@@ -231,7 +231,7 @@ There are several ways to provide configuration to the client constructor.  When
 1. Environment variables
 1. Properties passed to the client constructor
 
-As such, you can create a client without passing a configuration option, e.g. `new okta.Client()`, so long as you have provided the configuration in one of the other locations.
+As such, you can create a client without passing a configuration option, e.g. `new okta.ApiClient()`, so long as you have provided the configuration in one of the other locations.
 
 If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
 

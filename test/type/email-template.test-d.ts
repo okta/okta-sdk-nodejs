@@ -1,9 +1,9 @@
 import { expectType } from 'tsd';
-import { Client } from '../../src/types/client';
+import { ApiClient } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
 import { EmailTemplate } from '../../src/types/generated/models/EmailTemplate';
 
-const client = new Client();
+const client = new ApiClient();
 (async function () {
   // listEmailTemplates
   expectType<Collection<EmailTemplate>>(await client.customizationApi.listEmailTemplates({brandId: 'brand-id'}));
