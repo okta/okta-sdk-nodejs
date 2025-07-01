@@ -2,17 +2,17 @@
 
 ### Code Generation
 
-Some of this SDK is auto-generated from our API Spec, defined as an Open API JSON Schema file.  Files that are auto-generated have a banner at the top which indicate this.  As such, modifying the SDK may require you to edit one of the templates in the `templates/` directory.
+Some of this SDK is auto-generated from our API Spec, defined as an Open API Schema file.  Files that are auto-generated have a banner at the top which indicate this.  As such, modifying the SDK may require you to edit one of the templates in the `templates/` directory.
 
 To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 
 ```sh
-yarn build
+yarn build:openapi
 ```
 
 If there are modifications to the auto-generated files, please include those changes in your pull request.
 
-The JSON schema is brought in through the `@okta/openapi` dependency, so please ensure that you are using the version indicated by package.json in this library.
+Please put the latest version of Okta Open API spec into `spec/management.yaml`
 
 ### Running The Tests
 

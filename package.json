@@ -13,11 +13,10 @@
   "types": "src/types/index.d.ts",
   "scripts": {
     "banners": "./utils/maintain-banners.js",
-    "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
-    "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
     "build:openapi": "yarn build:cleanGenerated && yarn build:fixSpec 7 && yarn build:generate && yarn build:fixGenerated 7 && yarn build:emitTypes",
     "build:generate": "docker run --rm -v \"${PWD}:/local\" -e JAVA_OPTS=\"-Dlog.level=warn\" openapitools/openapi-generator-cli:v7.13.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator-7 --model-name-mappings User_type=UserTypeInline",
-    "build:validate": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v7.13.0 validate -i /local/spec/management.yaml",
+    "build:validateSpec": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v7.13.0 validate -i /local/spec/management.yaml",
+    "build:validateGenerated": "node scripts/validateGenerated.cjs",
     "build:fixSpec": "node scripts/fixSpec.cjs",
     "build:fixGenerated": "node scripts/fixGenerated.cjs",
     "build:emitTypes": "./scripts/emitV3Types.sh",
@@ -33,8 +32,7 @@
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "source .env &> /dev/null && TEST_TYPE=clean mocha test/delete-resources.ts",
-    "validate:v2-v3": "node scripts/validate.js ./spec/management.yaml"
+    "aftertest": "source .env &> /dev/null && TEST_TYPE=clean mocha test/delete-resources.ts"
   },
   "keywords": [],
   "license": "Apache-2.0",
@@ -55,9 +53,7 @@
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@apidevtools/swagger-parser": "^10.1.0",
     "@faker-js/faker": "^5.5.3",
-    "@okta/openapi": "^2.11.1",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
     "@types/node": "^17.0.34",
