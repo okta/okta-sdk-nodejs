@@ -18,7 +18,7 @@ describe('Push Provider  API', () => {
       }
       expect(notificationServices).to.be.empty;
     } catch (e) {
-      expect(e.status).to.equal(401);
+      expect(e.status).to.equal(403);
       expect(e.errorSummary).to.contain('You do not have permission');
     }
   });

@@ -87,6 +87,24 @@ async function waitTillUserInGroup(client: ApiClient, user: User, group: Group, 
   return userInGroup;
 }
 
+async function waitTill(condition: () => Promise<boolean>): Promise<boolean> {
+  let currentConditionResult = false;
+  let timeOut = 0;
+  while (!currentConditionResult) {
+    currentConditionResult = await condition();
+    if (currentConditionResult) {
+      return true;
+    }
+
+    await delay(1000);
+    timeOut++;
+    if (timeOut === 30) {
+      break;
+    }
+  }
+  return false;
+}
+
 async function deleteUser(user: User, client: ApiClient) {
   await client.userApi.deactivateUser({
     id: user.id
@@ -388,6 +406,7 @@ export {
   validateGroup,
   isUserInGroup,
   waitTillUserInGroup,
+  waitTill,
   deleteUser,
   isUserPresent,
   isGroupPresent,
@@ -410,5 +429,4 @@ export {
   certToBase64,
   certToPem,
   csrToN,
-  //getV2Client,
 };

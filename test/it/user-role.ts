@@ -6,7 +6,6 @@ import {
   Collection,
   DefaultRequestExecutor,
   Group,
-  Role,
   User,
   StandardRole
 } from '@okta/okta-sdk-nodejs';

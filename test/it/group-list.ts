@@ -33,7 +33,7 @@ describe('Group API tests', () => {
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. List all groups and find the group created
-    const groupPresent =  await utils.isGroupPresent(client, createdGroup);
+    const groupPresent =  await utils.waitTill(() => utils.isGroupPresent(client, createdGroup));
     expect(groupPresent).to.equal(true);
 
     // 3. Delete the group

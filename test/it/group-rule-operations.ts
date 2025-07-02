@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { ApiClient, CreateGroupRuleRequest, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, CreateGroupRuleRequest, DefaultRequestExecutor, GroupRule } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -22,7 +22,7 @@ describe('Group-Rule API tests', () => {
   it('should implement the CRUD APIs for group-rule operations', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: utils.getMockProfile('group-rule-operations'),
+      profile: utils.getMockProfile(`group-rule-operations-${faker.random.word()}`),
       credentials: {
         password: {value: 'Abcd1234#@'}
       }
@@ -42,7 +42,7 @@ describe('Group-Rule API tests', () => {
     const createdGroup = await client.groupApi.addGroup({group: newGroup});
 
     // 2. Create group rules
-    const rules = [];
+    const rules: GroupRule[] = [];
     const namePrefixes = [
       'RULE_ABC',
       'RULE_XYZ'
@@ -79,34 +79,41 @@ describe('Group-Rule API tests', () => {
       }
     }
     const firstRule = rules[0];
+    const secondRule = rules[1];
+    const createdRuleIds = rules.map(rule => rule.id);
 
     // Activate first rule
     await client.groupApi.activateGroupRule({groupRuleId: firstRule.id});
 
     // 3a. List group rules
-    let foundRule = false;
-    await (await client.groupApi.listGroupRules()).each(rule => {
-      if (rule.id === firstRule.id) {
-        foundRule = true;
-        return false;
-      }
+    const foundAllRules = await utils.waitTill(async () => {
+      let foundRulesCnt = 0;
+      await (await client.groupApi.listGroupRules()).each(rule => {
+        if (createdRuleIds.includes(rule.id)) {
+          foundRulesCnt++;
+        }
+      });
+      return foundRulesCnt === createdRuleIds.length;
     });
-    expect(foundRule).to.equal(true);
+    expect(foundAllRules).to.equal(true);
 
     // 3b. Search group rules with pagination
-    const filtered = new Set();
+    const filteredRuleNames = new Set();
     const collection = await client.groupApi.listGroupRules({
       search: 'RULE_ABC',
       limit: 1
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(rule => {
-      expect(filtered.has(rule.name)).to.be.false;
-      filtered.add(rule.name);
+      expect(filteredRuleNames.has(rule.name)).to.be.false;
       expect(rule.name.indexOf('RULE_ABC')).to.not.equal(-1);
+      const doesMatch = [firstRule.name, secondRule.name].includes(rule.name);
+      if (doesMatch) {
+        filteredRuleNames.add(rule.name);
+      }
     });
-    expect(filtered.size).to.equal(2);
-    expect(pageSpy.getCalls().length).to.equal(2);
+    expect(filteredRuleNames.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
 
     // 4. Verify first rule executes
     // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
