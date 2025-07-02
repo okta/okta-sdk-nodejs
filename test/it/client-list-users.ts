@@ -41,6 +41,10 @@ describe('client.userApi.listUsers()', () => {
     newUser.profile.nickName = 'Nicky';
 
     _user = await client.userApi.createUser({body: newUser});
+
+    // The search indexing is not instant, so give it some time to settle
+    await utils.delay(2000);
+    await utils.waitTill(() => utils.isUserPresentByLogin(client, _user));
   });
 
   after(async () => {
@@ -54,9 +58,6 @@ describe('client.userApi.listUsers()', () => {
   it('should allow me to perform search queries', async () => {
     let foundUser;
     let foundUserCount = 0;
-    // The search indexing is not instant, so give it some time to settle
-
-    await utils.delay(2000);
     const queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
     await (await client.userApi.listUsers(queryParameters)).each(user => {
       // If tests run in parallel (for different node versions on travis), it might match a different user without this check
@@ -100,6 +101,9 @@ describe('client.listUsers({ })', () => {
     users.push(await createUser('client-list-users-filtered-2'));
     // The search indexing is not instant, so give it some time to settle
     await utils.delay(5000);
+    for (const user of users) {
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, user));
+    }
   });
 
   after(async () => {

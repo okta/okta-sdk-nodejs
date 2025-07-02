@@ -127,6 +127,19 @@ async function isUserPresent(client: ApiClient, expectedUser: User, queryParamet
   return userPresent;
 }
 
+async function isUserPresentByLogin(client: ApiClient, expectedUser: User) {
+  let userPresent = false;
+  const collection = await client.userApi.listUsers({ search: `profile.login eq "${expectedUser.profile.login}"` });
+  await collection.each(user => {
+    expect(user).to.be.an.instanceof(User);
+    if (user.profile.login === expectedUser.profile.login) {
+      userPresent = true;
+      return false;
+    }
+  });
+  return userPresent;
+}
+
 async function isGroupPresent(client: ApiClient, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
   let groupPresent = false;
   const collection = await client.groupApi.listGroups(queryParameters);
@@ -409,6 +422,7 @@ export {
   waitTill,
   deleteUser,
   isUserPresent,
+  isUserPresentByLogin,
   isGroupPresent,
   doesUserHaveRole,
   isGroupTargetPresent,

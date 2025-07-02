@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import faker = require('@faker-js/faker');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -16,7 +17,7 @@ const client = new ApiClient({
 });
 
 const newUser = {
-  profile: utils.getMockProfile('mock-user'),
+  profile: utils.getMockProfile(`mock-user-${faker.random.word()}`),
   credentials: {
     password: { value: 'Abcd1234#@' }
   }
@@ -38,6 +39,7 @@ describe('User lifecycle API', () => {
         activate : false
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     it('should activate a user', async () => {
@@ -46,7 +48,7 @@ describe('User lifecycle API', () => {
         sendEmail: false
       });
       const queryParameters = { filter: 'status eq "ACTIVE"' };
-      const userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
+      const userPresent = await utils.waitTill(() => utils.isUserPresent(client, createdUser, queryParameters));
       expect(userPresent).to.equal(true);
     });
   });
@@ -58,6 +60,7 @@ describe('User lifecycle API', () => {
         activate : true
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     it('should expire a users password', async () => {
@@ -76,6 +79,7 @@ describe('User lifecycle API', () => {
         activate: true
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     it('should suspend/unsuspend a user', async () => {
@@ -84,14 +88,14 @@ describe('User lifecycle API', () => {
       });
 
       let queryParameters = { filter: 'status eq "SUSPENDED"' };
-      let userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
+      let userPresent = await utils.waitTill(() => utils.isUserPresent(client, createdUser, queryParameters));
       expect(userPresent).to.equal(true);
 
       await client.userApi.unsuspendUser({
         id: createdUser.id
       });
       queryParameters = { filter: 'status eq "ACTIVE"' };
-      userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
+      userPresent = await utils.waitTill(() => utils.isUserPresent(client, createdUser, queryParameters));
       expect(userPresent).to.equal(true);
     });
   });
@@ -103,6 +107,7 @@ describe('User lifecycle API', () => {
         activate: true
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     // As it's not easy to mock lock user, we test on error response to make sure correct endpoint is called.
@@ -125,6 +130,7 @@ describe('User lifecycle API', () => {
         activate: true
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     it('should get response with status 200', async () => {
@@ -142,6 +148,7 @@ describe('User lifecycle API', () => {
         activate: true
       });
       utils.validateUser(createdUser, newUser);
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, createdUser));
     });
 
     it('should get response with status 204', async () => {
