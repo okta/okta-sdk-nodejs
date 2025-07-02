@@ -9,8 +9,8 @@ get_terminus_secret "/" api_key OKTA_CLIENT_TOKEN
 get_terminus_secret "/" private_key E2E_PK
 get_terminus_secret "/" username ORG_USER
 
-HEADER="-----BEGIN RSA PRIVATE KEY-----"
-FOOTER="-----END RSA PRIVATE KEY-----"
+HEADER="-----BEGIN PRIVATE KEY-----"
+FOOTER="-----END PRIVATE KEY-----"
 
 # NOTE: storing pem as secret results in newline characters becoming spaces, which
 # causes the pem to be malformed when used by tests. Below solves this issue
