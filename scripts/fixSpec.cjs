@@ -4,6 +4,85 @@ const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+// For backward compatibility with 7.0 group some APIs (identified by `tags` in spec)
+const apiConsolidation = {
+  Application: {
+    apis: [
+      'Application',
+      'ApplicationUsers',
+      'ApplicationGroups',
+      'ApplicationConnections',
+      'ApplicationTokens',
+      'ApplicationGrants',
+      'ApplicationSSOCredentialKey',
+      'ApplicationFeatures',
+      'ApplicationLogos',
+    ]
+  },
+  AuthorizationServer: {
+    apis: [
+      'AuthorizationServer',
+      'AuthorizationServerScopes',
+      'AuthorizationServerClaims',
+      'AuthorizationServerKeys',
+      'AuthorizationServerPolicies',
+      'AuthorizationServerRules',
+    ]
+  },
+  Customization: {
+    apis: [
+      'Brands',
+      'Themes',
+      'CustomTemplates',
+    ]
+  },
+  RoleAssignment: {
+    apis: [
+      'RoleAssignmentAUser',
+      'RoleAssignmentBGroup',
+    ]
+  },
+  RoleTarget: {
+    apis: [
+      'RoleBTargetAdmin',
+    ]
+  },
+  Group: {
+    apis: [
+      'Group',
+      'GroupRule',
+    ]
+  },
+  IdentityProvider: {
+    apis: [
+      'IdentityProvider',
+      'IdentityProviderUsers',
+      'IdentityProviderKeys',
+      'IdentityProviderSigningKeys',
+    ]
+  },
+  User: {
+    apis: [
+      'User',
+      'UserLifecycle',
+      'UserSessions',
+      'UserResources',
+      'UserCred',
+      'UserGrant',
+      'IdentityProviderUsers',
+      'UserLinkedObject',
+    ]
+  },
+  OrgSetting: {
+    apis: [
+      'OrgSettingGeneral',
+      'OrgSettingContact',
+      'OrgSettingCustomization',
+      'OrgSettingCommunication',
+      'OrgSettingSupport',
+    ]
+  },
+};
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
@@ -80,11 +159,28 @@ function patchSpec3(spec3) {
   const manualPathsFixes = [];
   const ffAmends = [];
   const customDescriminatorsForEndpoints = [];
+  const apiTagChanges = {};
 
   for (const httpPath in spec3.paths) {
     for (const httpMethod in spec3.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
+        // API consilidation
+        if (endpoint.tags) {
+          endpoint.tags = endpoint.tags.map(tag => {
+            for (const groupApiName in apiConsolidation) {
+              if (apiConsolidation[groupApiName].apis.includes(tag) && groupApiName !== tag) {
+                apiTagChanges[tag] = groupApiName;
+                return groupApiName;
+              }
+            }
+            return tag;
+          });
+          if (endpoint.tags.length > 1) {
+            console.warn(`Endpoint ${httpMethod} ${httpPath} has > 1 tags:`, endpoint.tags);
+          }
+        }
+        // Modify request
         if (endpoint?.requestBody?.content) {
           for (const contentType in endpoint.requestBody.content) {
             const typedContent = endpoint.requestBody.content[contentType];
@@ -97,6 +193,7 @@ function patchSpec3(spec3) {
             }
           }
         }
+        // Modify response
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -342,6 +439,7 @@ function patchSpec3(spec3) {
     manualPathsFixes,
     ffAmends,
     customDescriminatorsForEndpoints,
+    apiTagChanges,
   };
 }
 
@@ -361,7 +459,7 @@ async function main() {
 
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
-    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
+    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges
   } = patchSpec3(spec3);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
@@ -373,6 +471,7 @@ async function main() {
   console.log('Manual paths fixes:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
+  console.log('API tag changes: ', apiTagChanges);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1

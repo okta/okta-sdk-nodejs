@@ -84,15 +84,71 @@ const {
   UserGrantApi,
   IdentityProviderUsersApi,
   UserLinkedObjectApi,
+
+  // new apis
+  // TODO: use, add integration tests
+  // ApiServiceIntegrationsApi,
+  // ApplicationCWOConnectionsApi,
+  // ApplicationExpressConfigurationApi,
+  // ApplicationPoliciesApi,
+  // ApplicationSSOApi,
+  // ApplicationSSOCredentialOAuth2ClientAuthApi,
+  // ApplicationSSOFederatedClaimsApi,
+  // AttackProtectionApi,
+  // AuthorizationServerAssocApi,
+  // AuthorizationServerClientsApi,
+  // CAPTCHAApi,
+  // CustomPagesApi,
+  // DeviceAccessApi,
+  // DeviceIntegrationsApi,
+  // DevicePostureCheckApi,
+  // DirectoriesIntegrationApi,
+  // DisasterRecoveryApi,
+  // EmailCustomizationApi,
+  // EmailDomainApi,
+  // EmailServerApi,
+  // GovernanceBundleApi,
+  // GroupOwnerApi,
+  // HookKeyApi,
+  // IdentitySourceApi,
+  // LogStreamApi,
+  // OktaApplicationSettingsApi,
+  // OktaPersonalSettingsApi,
+  // OrgCreatorApi,
+  // OrgSettingAdminApi,
+  // OrgSettingMetadataApi,
+  // PrivilegedResourceApi,
+  // RateLimitSettingsApi,
+  // RealmApi,
+  // RealmAssignmentApi,
+  // RiskEventApi,
+  // RiskProviderApi,
+  // RoleAssignmentClientApi,
+  // RoleBTargetBGroupApi,
+  // RoleBTargetClientApi,
+  // RoleCResourceSetApi,
+  // RoleCResourceSetResourceApi,
+  // RoleDResourceSetBindingApi,
+  // RoleDResourceSetBindingMemberApi,
+  // RoleECustomApi,
+  // RoleECustomPermissionApi,
+  // SSFReceiverApi,
+  // SSFSecurityEventTokenApi,
+  // SSFTransmitterApi,
+  // ServiceAccountApi,
+  // UISchemaApi,
+  // UserClassificationApi,
+  // UserOAuthApi,
+  // UserRiskApi,
+  // WebAuthnPreregistrationApi,
+  // YourOinIntegrationsApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
 
 // Rules to generate consolidated api classes
 const apiConsolidationRules = {
-  // TODO: method renames, eg. createGroup -> addGroup for GroupApi
-  // TODO: applicationConnectionsApi.updateDefaultProvisioningConnectionForApplication has param rename:
-  //       ProvisioningConnectionRequest -> updateDefaultProvisioningConnectionForApplicationRequest
+  // TODO: method renames (eg. createGroup -> addGroup for GroupApi) for backward compatibility ?
   ApplicationApi: {
     apis: [
       ApplicationApi,
