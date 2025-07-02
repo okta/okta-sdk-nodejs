@@ -12,7 +12,7 @@
  */
 import { Headers } from 'node-fetch';
 
-export interface ErrorCause {
+export interface OktaApiErrorCause {
   errorSummary: string;
 }
 
@@ -22,7 +22,7 @@ export declare class OktaApiError extends Error {
   status: number;
   errorCode: string | number;
   errorSummary: string;
-  errorCauses?: ErrorCause[];
+  errorCauses?: OktaApiErrorCause[];
   errorLink: string;
   errorId: string;
   url: string;
