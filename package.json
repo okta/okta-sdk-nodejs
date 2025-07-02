@@ -14,7 +14,7 @@
   "scripts": {
     "banners": "./utils/maintain-banners.js",
     "build": "yarn build:cleanGenerated && yarn build:fixSpec && yarn build:generate && yarn build:fixGenerated && yarn build:emitTypes",
-    "build:generate": "docker run --rm -v \"${PWD}:/local\" -e JAVA_OPTS=\"-Dlog.level=warn\" openapitools/openapi-generator-cli:v7.13.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator-7 --model-name-mappings User_type=UserTypeInline",
+    "build:generate": "docker run --rm -v \"${PWD}:/local\" -e JAVA_OPTS=\"-Dlog.level=warn\" openapitools/openapi-generator-cli:v7.13.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator --model-name-mappings User_type=UserTypeInline",
     "build:validateSpec": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v7.13.0 validate -i /local/spec/management.yaml",
     "build:validateGenerated": "node scripts/validateGenerated.cjs",
     "build:fixSpec": "node scripts/fixSpec.cjs",

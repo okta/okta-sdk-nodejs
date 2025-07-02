@@ -103,7 +103,7 @@ const fixEscapings = () => {
 const fixRespondAsync = () => {
   const res = replaceInFileSync({
     files: 'src/generated/**/*.ts',
-    from: '\'\'respond-async\'\'',
+    from: /''respond-async''/g,
     to: '\'respond-async\'',
   });
   return res

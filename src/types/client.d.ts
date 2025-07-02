@@ -23,16 +23,11 @@ import {
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
-  GroupApi,
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  ApplicationApi,
-  AuthorizationServerApi,
   TrustedOriginApi,
   UserFactorApi,
-  UserApi,
-  IdentityProviderApi,
   SessionApi,
   TemplateApi,
   PolicyApi,
@@ -45,104 +40,18 @@ import {
   DeviceAssuranceApi,
   CustomDomainApi,
   DeviceApi,
-  ApplicationUsersApi,
-  UserLifecycleApi,
-  UserSessionsApi,
-  RoleBTargetAdminApi,
-  ApplicationSSOCredentialKeyApi,
-  ApplicationFeaturesApi,
-  ApplicationLogosApi,
-  ApplicationConnectionsApi,
-  ApplicationGroupsApi,
-  ApplicationGrantsApi,
-  ApplicationTokensApi,
-  AuthorizationServerScopesApi,
-  AuthorizationServerClaimsApi,
-  AuthorizationServerKeysApi,
-  AuthorizationServerPoliciesApi,
-  AuthorizationServerRulesApi,
-  BrandsApi,
-  ThemesApi,
-  RoleAssignmentAUserApi,
-  RoleAssignmentBGroupApi,
-  GroupRuleApi,
-  IdentityProviderUsersApi,
-  IdentityProviderKeysApi,
-  IdentityProviderSigningKeysApi,
-  OrgSettingGeneralApi,
-  OrgSettingContactApi,
-  OrgSettingCustomizationApi,
-  OrgSettingCommunicationApi,
-  OrgSettingSupportApi,
-  CustomTemplatesApi,
-  UserResourcesApi,
-  UserCredApi,
-  UserGrantApi,
-  UserLinkedObjectApi,
+
+  // consolidated apis
+  CustomizationApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  OrgSettingApi,
+  ApplicationApi,
+  AuthorizationServerApi,
+  GroupApi,
+  UserApi,
+  IdentityProviderApi,
 } from './generated';
-
-
-// Generate consolidated api classes types
-// TODO: method renames, eg. createGroup -> addGroup for GroupApi
-type NonConstructor<T> = Pick<T, keyof T>;
-export declare interface ConsolidatedApplicationApi extends NonConstructor<ApplicationApi>,
-  NonConstructor<ApplicationGroupsApi>,
-  NonConstructor<ApplicationUsersApi>,
-  NonConstructor<ApplicationConnectionsApi>,
-  NonConstructor<ApplicationGrantsApi>,
-  NonConstructor<ApplicationTokensApi>,
-  NonConstructor<ApplicationSSOCredentialKeyApi>,
-  NonConstructor<ApplicationFeaturesApi>,
-  NonConstructor<ApplicationLogosApi> {
-}
-
-export declare interface ConsolidatedAuthorizationServerApi extends NonConstructor<AuthorizationServerApi>,
-  NonConstructor<AuthorizationServerScopesApi>,
-  NonConstructor<AuthorizationServerClaimsApi>,
-  NonConstructor<AuthorizationServerKeysApi>,
-  NonConstructor<AuthorizationServerPoliciesApi>,
-  NonConstructor<AuthorizationServerRulesApi> {
-}
-
-export declare interface CustomizationApi extends NonConstructor<BrandsApi>,
-  NonConstructor<ThemesApi>,
-  NonConstructor<CustomTemplatesApi> {
-}
-
-export declare interface RoleAssignmentApi extends NonConstructor<RoleAssignmentBGroupApi>,
-  NonConstructor<RoleAssignmentAUserApi> {
-}
-
-export declare interface ConsolidatedGroupApi extends NonConstructor<GroupApi>,
-  NonConstructor<GroupRuleApi> {
-}
-
-export declare interface ConsolidatedIdentityProviderApi extends NonConstructor<IdentityProviderApi>,
-  NonConstructor<IdentityProviderUsersApi>,
-  NonConstructor<IdentityProviderKeysApi>,
-  NonConstructor<IdentityProviderSigningKeysApi> {
-}
-
-export declare interface ConsolidatedUserApi extends NonConstructor<UserApi>,
-  NonConstructor<UserLifecycleApi>,
-  NonConstructor<UserSessionsApi>,
-  NonConstructor<UserResourcesApi>,
-  NonConstructor<UserCredApi>,
-  NonConstructor<UserGrantApi>,
-  NonConstructor<IdentityProviderUsersApi>,
-  NonConstructor<UserLinkedObjectApi> {
-}
-
-export declare interface RoleTargetApi extends NonConstructor<RoleBTargetAdminApi> {
-}
-
-export declare interface OrgSettingApi extends NonConstructor<OrgSettingGeneralApi>,
-  NonConstructor<OrgSettingContactApi>,
-  NonConstructor<OrgSettingCustomizationApi>,
-  NonConstructor<OrgSettingCommunicationApi>,
-  NonConstructor<OrgSettingSupportApi> {
-}
-
 
 export declare class ApiClient {
   constructor(config?: V2Configuration);
@@ -159,14 +68,14 @@ export declare class ApiClient {
   http: Http;
 
   // consolidated apis
-  applicationApi: ConsolidatedApplicationApi;
-  authorizationServerApi: ConsolidatedAuthorizationServerApi;
+  applicationApi: ApplicationApi;
+  authorizationServerApi: AuthorizationServerApi;
   customizationApi: CustomizationApi;
   roleAssignmentApi: RoleAssignmentApi;
   roleTargetApi: RoleTargetApi;
-  groupApi: ConsolidatedGroupApi;
-  identityProviderApi: ConsolidatedIdentityProviderApi;
-  userApi: ConsolidatedUserApi;
+  groupApi: GroupApi;
+  identityProviderApi: IdentityProviderApi;
+  userApi: UserApi;
   orgSettingApi: OrgSettingApi;
 
   userTypeApi: UserTypeApi;
@@ -194,38 +103,4 @@ export declare class ApiClient {
   deviceAssuranceApi: DeviceAssuranceApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
-
-  // applicationUsersApi: ApplicationUsersApi;
-  // applicationSSOCredentialKeyApi: ApplicationSSOCredentialKeyApi;
-  // applicationFeaturesApi: ApplicationFeaturesApi;
-  // applicationLogosApi: ApplicationLogosApi;
-  // applicationConnectionsApi: ApplicationConnectionsApi;
-  // applicationGroupsApi: ApplicationGroupsApi;
-  // applicationGrantsApi: ApplicationGrantsApi;
-  // applicationTokensApi: ApplicationTokensApi;
-  // authorizationServerScopesApi: AuthorizationServerScopesApi;
-  // authorizationServerClaimsApi: AuthorizationServerClaimsApi;
-  // authorizationServerKeysApi: AuthorizationServerKeysApi;
-  // authorizationServerPoliciesApi: AuthorizationServerPoliciesApi;
-  // authorizationServerRulesApi: AuthorizationServerRulesApi;
-  // brandsApi: BrandsApi;
-  // themesApi: ThemesApi;
-  // groupRuleApi: GroupRuleApi;
-  // identityProviderUsersApi: IdentityProviderUsersApi,
-  // identityProviderKeysApi: IdentityProviderKeysApi,
-  // identityProviderSigningKeysApi: IdentityProviderSigningKeysApi,
-  // userLifecycleApi: UserLifecycleApi;
-  // roleAssignmentAUserApi: RoleAssignmentAUserApi;
-  // roleBTargetAdminApi: RoleBTargetAdminApi;
-  // orgSettingGeneralApi: OrgSettingGeneralApi;
-  // orgSettingContactApi: OrgSettingContactApi;
-  // orgSettingCustomizationApi: OrgSettingCustomizationApi;
-  // orgSettingCommunicationApi: OrgSettingCommunicationApi;
-  // orgSettingSupportApi: OrgSettingSupportApi;
-  // userSessionsApi: UserSessionsApi;
-  // customTemplatesApi: CustomTemplatesApi;
-  // userResourcesApi: UserResourcesApi;
-  // userCredApi: UserCredApi;
-  // userGrantApi: UserGrantApi;
-  // userLinkedObjectApi: UserLinkedObjectApi;
 }

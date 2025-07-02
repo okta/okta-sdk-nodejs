@@ -28,16 +28,11 @@ const {
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
-  GroupApi,
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  ApplicationApi,
-  AuthorizationServerApi,
   TrustedOriginApi,
   UserFactorApi,
-  UserApi,
-  IdentityProviderApi,
   SessionApi,
   TemplateApi,
   PolicyApi,
@@ -50,202 +45,20 @@ const {
   DeviceAssuranceApi,
   CustomDomainApi,
   DeviceApi,
-  ApplicationUsersApi,
-  UserLifecycleApi,
-  RoleBTargetAdminApi,
-  ApplicationSSOCredentialKeyApi,
-  ApplicationFeaturesApi,
-  ApplicationLogosApi,
-  ApplicationConnectionsApi,
-  ApplicationGroupsApi,
-  ApplicationGrantsApi,
-  ApplicationTokensApi,
-  AuthorizationServerScopesApi,
-  AuthorizationServerClaimsApi,
-  AuthorizationServerKeysApi,
-  AuthorizationServerPoliciesApi,
-  AuthorizationServerRulesApi,
-  BrandsApi,
-  ThemesApi,
-  RoleAssignmentAUserApi,
-  RoleAssignmentBGroupApi,
-  GroupRuleApi,
-  IdentityProviderKeysApi,
-  IdentityProviderSigningKeysApi,
-  OrgSettingGeneralApi,
-  OrgSettingContactApi,
-  OrgSettingCustomizationApi,
-  OrgSettingCommunicationApi,
-  OrgSettingSupportApi,
-  UserSessionsApi,
-  CustomTemplatesApi,
-  UserResourcesApi,
-  UserCredApi,
-  UserGrantApi,
-  IdentityProviderUsersApi,
-  UserLinkedObjectApi,
 
-  // new apis
-  // TODO: use, add integration tests
-  // ApiServiceIntegrationsApi,
-  // ApplicationCWOConnectionsApi,
-  // ApplicationExpressConfigurationApi,
-  // ApplicationPoliciesApi,
-  // ApplicationSSOApi,
-  // ApplicationSSOCredentialOAuth2ClientAuthApi,
-  // ApplicationSSOFederatedClaimsApi,
-  // AttackProtectionApi,
-  // AuthorizationServerAssocApi,
-  // AuthorizationServerClientsApi,
-  // CAPTCHAApi,
-  // CustomPagesApi,
-  // DeviceAccessApi,
-  // DeviceIntegrationsApi,
-  // DevicePostureCheckApi,
-  // DirectoriesIntegrationApi,
-  // DisasterRecoveryApi,
-  // EmailCustomizationApi,
-  // EmailDomainApi,
-  // EmailServerApi,
-  // GovernanceBundleApi,
-  // GroupOwnerApi,
-  // HookKeyApi,
-  // IdentitySourceApi,
-  // LogStreamApi,
-  // OktaApplicationSettingsApi,
-  // OktaPersonalSettingsApi,
-  // OrgCreatorApi,
-  // OrgSettingAdminApi,
-  // OrgSettingMetadataApi,
-  // PrivilegedResourceApi,
-  // RateLimitSettingsApi,
-  // RealmApi,
-  // RealmAssignmentApi,
-  // RiskEventApi,
-  // RiskProviderApi,
-  // RoleAssignmentClientApi,
-  // RoleBTargetBGroupApi,
-  // RoleBTargetClientApi,
-  // RoleCResourceSetApi,
-  // RoleCResourceSetResourceApi,
-  // RoleDResourceSetBindingApi,
-  // RoleDResourceSetBindingMemberApi,
-  // RoleECustomApi,
-  // RoleECustomPermissionApi,
-  // SSFReceiverApi,
-  // SSFSecurityEventTokenApi,
-  // SSFTransmitterApi,
-  // ServiceAccountApi,
-  // UISchemaApi,
-  // UserClassificationApi,
-  // UserOAuthApi,
-  // UserRiskApi,
-  // WebAuthnPreregistrationApi,
-  // YourOinIntegrationsApi,
+  // consolidated apis
+  CustomizationApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  OrgSettingApi,
+  GroupApi,
+  ApplicationApi,
+  AuthorizationServerApi,
+  IdentityProviderApi,
+  UserApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
-
-// Rules to generate consolidated api classes
-const apiConsolidationRules = {
-  // TODO: method renames (eg. createGroup -> addGroup for GroupApi) for backward compatibility ?
-  ApplicationApi: {
-    apis: [
-      ApplicationApi,
-      ApplicationUsersApi,
-      ApplicationGroupsApi,
-      ApplicationConnectionsApi,
-      ApplicationTokensApi,
-      ApplicationGrantsApi,
-      ApplicationSSOCredentialKeyApi,
-      ApplicationFeaturesApi,
-      ApplicationLogosApi,
-    ]
-  },
-  AuthorizationServerApi: {
-    apis: [
-      AuthorizationServerApi,
-      AuthorizationServerScopesApi,
-      AuthorizationServerClaimsApi,
-      AuthorizationServerKeysApi,
-      AuthorizationServerPoliciesApi,
-      AuthorizationServerRulesApi,
-    ]
-  },
-  CustomizationApi: {
-    apis: [
-      BrandsApi,
-      ThemesApi,
-      CustomTemplatesApi,
-    ]
-  },
-  RoleAssignmentApi: {
-    apis: [
-      RoleAssignmentAUserApi,
-      RoleAssignmentBGroupApi,
-    ]
-  },
-  RoleTargetApi: {
-    apis: [
-      RoleBTargetAdminApi,
-    ]
-  },
-  GroupApi: {
-    apis: [
-      GroupApi,
-      GroupRuleApi,
-    ]
-  },
-  IdentityProviderApi: {
-    apis: [
-      IdentityProviderApi,
-      IdentityProviderUsersApi,
-      IdentityProviderKeysApi,
-      IdentityProviderSigningKeysApi,
-    ]
-  },
-  UserApi: {
-    apis: [
-      UserApi,
-      UserLifecycleApi,
-      UserSessionsApi,
-      UserResourcesApi,
-      UserCredApi,
-      UserGrantApi,
-      IdentityProviderUsersApi,
-      UserLinkedObjectApi,
-    ]
-  },
-  OrgSettingApi: {
-    apis: [
-      OrgSettingGeneralApi,
-      OrgSettingContactApi,
-      OrgSettingCustomizationApi,
-      OrgSettingCommunicationApi,
-      OrgSettingSupportApi,
-    ]
-  },
-};
-
-// Generate consolidated api classes
-const consolidatedApis = {};
-for (const consolidatedClassName in apiConsolidationRules) {
-  const rule = apiConsolidationRules[consolidatedClassName];
-  const {apis} = rule;
-  consolidatedApis[consolidatedClassName] = class {
-    constructor() {
-      for (const ApiClass of apis) {
-        this[ApiClass.name] = new ApiClass(...arguments);
-        const apiMethodNames = Object.getOwnPropertyNames(Object.getPrototypeOf(this[ApiClass.name]));
-        for (const apiMethodName of apiMethodNames) {
-          if (apiMethodName !== 'constructor') {
-            this[apiMethodName] = this[ApiClass.name][apiMethodName].bind(this[ApiClass.name]);
-          }
-        }
-      }
-    }
-  };
-}
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -320,15 +133,15 @@ class ApiClient {
     });
 
     // consolidated apis
-    this.applicationApi = new consolidatedApis['ApplicationApi'](configuration);
-    this.authorizationServerApi = new consolidatedApis['AuthorizationServerApi'](configuration);
-    this.customizationApi = new consolidatedApis['CustomizationApi'](configuration);
-    this.roleAssignmentApi = new consolidatedApis['RoleAssignmentApi'](configuration);
-    this.roleTargetApi = new consolidatedApis['RoleTargetApi'](configuration);
-    this.groupApi = new consolidatedApis['GroupApi'](configuration);
-    this.identityProviderApi = new consolidatedApis['IdentityProviderApi'](configuration);
-    this.userApi = new consolidatedApis['UserApi'](configuration);
-    this.orgSettingApi = new consolidatedApis['OrgSettingApi'](configuration);
+    this.applicationApi = new ApplicationApi(configuration);
+    this.authorizationServerApi = new AuthorizationServerApi(configuration);
+    this.customizationApi = new CustomizationApi(configuration);
+    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
+    this.roleTargetApi = new RoleTargetApi(configuration);
+    this.groupApi = new GroupApi(configuration);
+    this.identityProviderApi = new IdentityProviderApi(configuration);
+    this.userApi = new UserApi(configuration);
+    this.orgSettingApi = new OrgSettingApi(configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -355,40 +168,6 @@ class ApiClient {
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
-
-    // this.applicationSSOCredentialKeyApi = new ApplicationSSOCredentialKeyApi(configuration);
-    // this.applicationFeaturesApi = new ApplicationFeaturesApi(configuration);
-    // this.applicationLogosApi = new ApplicationLogosApi(configuration);
-    // this.applicationConnectionsApi = new ApplicationConnectionsApi(configuration);
-    // this.applicationGroupsApi = new ApplicationGroupsApi(configuration);
-    // this.applicationGrantsApi = new ApplicationGrantsApi(configuration);
-    // this.applicationUsersApi = new ApplicationUsersApi(configuration);
-    // this.applicationTokensApi = new ApplicationTokensApi(configuration);
-    // this.authorizationServerScopesApi = new AuthorizationServerScopesApi(configuration);
-    // this.authorizationServerClaimsApi = new AuthorizationServerClaimsApi(configuration);
-    // this.authorizationServerKeysApi = new AuthorizationServerKeysApi(configuration);
-    // this.authorizationServerPoliciesApi = new AuthorizationServerPoliciesApi(configuration);
-    // this.authorizationServerRulesApi = new AuthorizationServerRulesApi(configuration);
-    // this.brandsApi = new BrandsApi(configuration);
-    // this.themesApi = new ThemesApi(configuration);
-    // this.groupRuleApi = new GroupRuleApi(configuration);
-    // this.identityProviderUsersApi = new IdentityProviderUsersApi(configuration);
-    // this.identityProviderKeysApi = new IdentityProviderKeysApi(configuration);
-    // this.identityProviderSigningKeysApi = new IdentityProviderSigningKeysApi(configuration);
-    // this.userLifecycleApi = new UserLifecycleApi(configuration);
-    // this.roleAssignmentAUserApi = new RoleAssignmentAUserApi(configuration);
-    // this.roleBTargetAdminApi = new RoleBTargetAdminApi(configuration);
-    // this.orgSettingGeneralApi = new OrgSettingGeneralApi(configuration);
-    // this.orgSettingContactApi = new OrgSettingContactApi(configuration);
-    // this.orgSettingCustomizationApi = new OrgSettingCustomizationApi(configuration);
-    // this.orgSettingCommunicationApi = new OrgSettingCommunicationApi(configuration);
-    // this.orgSettingSupportApi = new OrgSettingSupportApi(configuration);
-    // this.userSessionsApi = new UserSessionsApi(configuration);
-    // this.customTemplatesApi = new CustomTemplatesApi(configuration);
-    // this.userResourcesApi = new UserResourcesApi(configuration);
-    // this.userCredApi = new UserCredApi(configuration);
-    // this.userGrantApi = new UserGrantApi(configuration);
-    // this.userLinkedObjectApi = new UserLinkedObjectApi(configuration);
   }
 }
 
