@@ -7,7 +7,7 @@ Some of this SDK is auto-generated from our API Spec, defined as an Open API Sch
 To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 
 ```sh
-yarn build:openapi
+yarn build
 ```
 
 If there are modifications to the auto-generated files, please include those changes in your pull request.
