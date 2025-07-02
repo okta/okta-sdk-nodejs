@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { ApiClient, Application, UserSchema, DefaultRequestExecutor, MemoryStore } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Application, UserSchema, DefaultRequestExecutor, MemoryStore, UserSchemaPropertiesProfileItem } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -43,6 +43,8 @@ describe('App User Schema', () => {
     const userSchema = await client.schemaApi.getApplicationUserSchema({
       appId: createdApplication.id
     });
+    expect(userSchema.properties.profile.allOf).to.be.an('array').that.is.not.empty;
+    expect(userSchema.properties.profile.allOf.find(item => item.ref === '#/definitions/base')).to.be.an.instanceOf(UserSchemaPropertiesProfileItem);
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
       appId: createdApplication.id,

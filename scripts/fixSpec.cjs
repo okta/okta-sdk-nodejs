@@ -304,14 +304,6 @@ function patchSpec3(spec3) {
             console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
           }
         }
-
-        // // Special fix of `allOf` not being an array in UserSchemaPropertiesProfile for openapi-generator v6
-        // if (schemaKey === 'UserSchemaPropertiesProfile' && propName === 'allOf' && prop.type === 'array' && prop.items) {
-        //   const items = Array.isArray(prop.items) ? prop.items : [prop.items];
-        //   const newProp = items;
-        //   schema.properties[propName] = newProp;
-        //   manualSchemaFixes.push({ schemaKey, propName });
-        // }
       }
     }
 
@@ -368,7 +360,8 @@ async function main() {
   const spec3 = yaml.load(yamlStrFixed);
 
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
+    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
+    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
   } = patchSpec3(spec3);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
