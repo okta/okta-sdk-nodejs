@@ -7,6 +7,7 @@ export OKTA_CLIENT_ORGURL=https://node-sdk-oie.oktapreview.com
 export OKTA_CLIENT_CLIENTID=0oa1q34stxthm0zbJ1d7
 get_terminus_secret "/" api_key OKTA_CLIENT_TOKEN
 get_terminus_secret "/" private_key E2E_PK
+export OKTA_CLIENT_KEYID="vcwwhGUkVJbyKt3hu9DqKneDgjBD-IOQ-LLNNrtsCGg" # public key
 get_terminus_secret "/" username ORG_USER
 
 HEADER="-----BEGIN PRIVATE KEY-----"
