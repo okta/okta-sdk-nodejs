@@ -15,7 +15,7 @@ FOOTER="-----END PRIVATE KEY-----"
 
 # NOTE: storing pem as secret results in newline characters becoming spaces, which
 # causes the pem to be malformed when used by tests. Below solves this issue
-pem=$(echo ${E2E_PK:31})                            # remove -----BEGIN prefix
+pem=$(echo ${E2E_PK:27})                            # remove -----BEGIN prefix
 pem=$(echo "${pem% ${FOOTER}}")                     # remove -----END suffix
 # BEGIN / END need to be removed so all remaining spaces can be converted to newlines
 echo $HEADER > /tmp/e2e.pem                         # appends BEGIN header to tmp file
