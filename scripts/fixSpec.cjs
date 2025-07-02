@@ -4,45 +4,70 @@ const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
-const customDiscriminatorsForEndpointsResponses = [
-  {
-    propertyName: 'type',
-    mapping: {
-      'CUSTOM': '#/components/schemas/CustomRole',
-      '*': '#/components/schemas/StandardRole'
-    }
-  },
-];
 
+// Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
+  const customDiscriminatorsForEndpointsResponses = [
+    {
+      propertyName: 'type',
+      mapping: {
+        'CUSTOM': '#/components/schemas/CustomRole',
+        '*': '#/components/schemas/StandardRole'
+      }
+    },
+  ];
+
   if (schema['type'] === 'array' && schema['items']['oneOf']?.length > 1) {
     for (const discriminator of customDiscriminatorsForEndpointsResponses) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
-      if (schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length) {
+      const shouldHaveDiscriminator = schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
+      const alreadtyHasDiscriminator = !!schema['items'].discriminator;
+      if (shouldHaveDiscriminator && !alreadtyHasDiscriminator) {
         schema['items'].discriminator = {...discriminator, mapping: {...discriminator.mapping}};
-        return true;
+        return discriminator;
       }
     }
   } else if (schema['oneOf']?.length > 1) {
     for (const discriminator of customDiscriminatorsForEndpointsResponses) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
-      if (schema['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length) {
+      const shouldHaveDiscriminator = schema['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
+      const alreadtyHasDiscriminator = !!schema.discriminator;
+      if (shouldHaveDiscriminator && !alreadtyHasDiscriminator) {
         schema.discriminator = {...discriminator, mapping: {...discriminator.mapping}};
-        return true;
+        return discriminator;
       }
     }
   }
+  return undefined;
 };
 
 function patchSpec3(spec3) {
-  const schemasToForcePrefix = [
+  // Schemas to add `x-okta-extensible`
+  const schemasToForceExtensible = [
+    'UserProfile',
+  ];
+
+  // See file `typeMap.mustache` which contains type mappings based on discriminator values.
+  // For simplicity most of keys in mappings are simple, but you can choose classes to add its name as a prefix
+  //  to be more explicit and prevent possible naming collision issues.
+  const schemasToForceDiscriminatorPrefixInTypeMap = [
     'BehaviorRule',
     'PolicyRule',
     'InlineHookChannel',
   ];
-  const schemasToForceExtensible = [
-    'UserProfile',
-  ];
+
+  // Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
+  const ffAmendsMerge = (obj, onSuccess) => {
+    if (obj?.['x-okta-feature-flag-amends']) {
+      const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
+      _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
+        if (Array.isArray(objValue)) {
+          return [...new Set(objValue.concat(srcValue))];
+        }
+      });
+      onSuccess();
+    }
+  };
 
   const typeMap = [];
   const emptySchemas = [];
@@ -55,18 +80,6 @@ function patchSpec3(spec3) {
   const manualPathsFixes = [];
   const ffAmends = [];
   const customDescriminatorsForEndpoints = [];
-
-  const ffAmendsMerge = (obj, onSuccess) => {
-    if (obj?.['x-okta-feature-flag-amends']) {
-      const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
-      _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
-        if (Array.isArray(objValue)) {
-          return [...new Set(objValue.concat(srcValue))];
-        }
-      });
-      onSuccess();
-    }
-  };
 
   for (const httpPath in spec3.paths) {
     for (const httpMethod in spec3.paths[httpPath]) {
@@ -108,7 +121,7 @@ function patchSpec3(spec3) {
                 // Special fix to add discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customDescriminatorsForEndpoints.push({ httpMethod, httpPath });
+                  customDescriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
                 // Special fix for /api/v1/policies - should return array (Policies, not Policy)
@@ -172,6 +185,7 @@ function patchSpec3(spec3) {
       });
     }
 
+    // Special fix for ByDurationExpiry
     if (schema.allOf && Object.keys(schema).length > 1) {
       const otherPropsKeys = Object.keys(schema).filter(k => k !== 'allOf');
       const otherProps = Object.fromEntries(otherPropsKeys.map(k => [k, schema[k]]));
@@ -182,7 +196,6 @@ function patchSpec3(spec3) {
         }
         manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       }
-      //TODO: other schemas ?
     }
 
     if (schema.allOf && Object.keys(schema).length === 1 && schema.allOf.length === 1) {
@@ -216,8 +229,6 @@ function patchSpec3(spec3) {
       for (let propName in schema.properties) {
         const prop = schema.properties[propName];
         if (prop.type === 'array' && !prop.items) {
-          arrayPropsWithoutItems.push({ schemaKey, propName });
-
           // Manual fixes
           // TODO: check again, prepare PR for okta-oas3
           if (schemaKey === 'CreateIamRoleRequest' && propName === 'permissions') {
@@ -243,8 +254,10 @@ function patchSpec3(spec3) {
               '$ref': '#/components/schemas/InlineHookResponseCommands'
             };
           } else {
-            console.warn(`Can't resolve item type for array ${schemaKey}.${propName}`);
+            console.warn(`! Can't resolve item type for array ${schemaKey}.${propName}`);
           }
+
+          arrayPropsWithoutItems.push({ schemaKey, propName, fixed: !!prop.items });
         }
 
         if (prop.format === 'date-time' && prop.default === 'Assigned') {
@@ -287,7 +300,7 @@ function patchSpec3(spec3) {
         if (isInlineModel) {
           const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
           if (spec3.components.schemas[inlineClassName]) {
-            console.warn('! Found possible naming collision between ', inlineClassName, ' and ', {schemaKey, propName});
+            console.warn('! Found possible naming collision between ', {schemaKey: inlineClassName}, ' and ', {schemaKey, propName});
             console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
           }
         }
@@ -317,7 +330,7 @@ function patchSpec3(spec3) {
           return {...acc, [key]: refSchemaKey};
         }, {});
         const hasNameConflicts = typeMap.filter(([k]) => !!map[k]).length > 0;
-        const addPrefix = hasNameConflicts || schemasToForcePrefix.includes(schemaKey);
+        const addPrefix = hasNameConflicts || schemasToForceDiscriminatorPrefixInTypeMap.includes(schemaKey);
         for (const [k, v] of Object.entries(map)) {
           typeMap.push([k, v, schemaKey, addPrefix]);
         }
@@ -359,10 +372,10 @@ async function main() {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
   } = patchSpec3(spec3, openApiGeneratorVersion);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
-  console.log(`Found extensible schemas: ${extensibleSchemas.join(', ')}`);
+  console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);
   console.log(`Properties without items: ${arrayPropsWithoutItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
-  console.log(`Properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log(`Fixed properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Manual schema fixes: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manual paths fixes:', manualPathsFixes);
@@ -376,6 +389,9 @@ async function main() {
   console.log(`Fixed file ${yamlFixedFile}`);
 
   // TODO: remove?
+  // Previously we had to use type mappings manually added in typeMap.mustache
+  // But now classes can have `discriminator` and `mapping` static properties (eg. see model `generated/models/Policy.js`)
+  // If it now resolves previous issues then typeMap file and corresponding code should be removed
   const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
     addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
   ).join('\n');
