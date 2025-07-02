@@ -354,10 +354,9 @@ function patchSpec3(spec3) {
 }
 
 async function main() {
-  const openApiGeneratorVersion = process.argv[2] || '6';
-  const yamlFile = process.argv[3] || 'spec/management.yaml';
-  const yamlFixedFile = process.argv[4] || 'spec/management.yaml';
-  const typeMapMustache = 'templates/openapi-generator' + (openApiGeneratorVersion === '7' ? '-7' : '') + '/model/typeMap.mustache';
+  const yamlFile = process.argv[2] || 'spec/management.yaml';
+  const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
+  const typeMapMustache = 'templates/openapi-generator/model/typeMap.mustache';
 
   const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
   const yamlStrFixed = yamlStr
@@ -370,7 +369,7 @@ async function main() {
 
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps, fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints
-  } = patchSpec3(spec3, openApiGeneratorVersion);
+  } = patchSpec3(spec3);
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);

@@ -197,7 +197,6 @@ const removeAllOf = () => {
 async function main() {
   try {
     ({ replaceInFileSync } = await import('replace-in-file'));
-    // const openApiGeneratorVersion = process.argv[2] || '6';
     const yamlFile = 'spec/management.yaml';
     const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
     const spec3 = yaml.load(yamlStr);
