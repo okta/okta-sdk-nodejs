@@ -82,7 +82,7 @@ const client = new okta.ApiClient({
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
 All interactions with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
- list of methods please refer to the JsDoc page for the [Client].
+ list of methods please refer to the JsDoc page for the [ApiClient].
 
 ### OAuth 2.0 Authentication
 
@@ -176,12 +176,12 @@ console.log(user);
 
 #### Update a User
 
-Once you have a user instance, you can modify it and then call the `client.userApi.updateUser({ userId, user })` method to persist those changes to the API.  This uses the [Users: Update User] API:
+Once you have a user instance, you can modify it and then call the `client.userApi.updateUser({ id, user })` method to persist those changes to the API.  This uses the [Users: Update User] API:
 
 ```javascript
 user.profile.nickName = 'rob';
 await client.userApi.updateUser({
-  userId: user.id,
+  id: user.id,
   user: user
 });
 ```
@@ -984,6 +984,9 @@ const client: ApiClient = new ApiClient({
 - const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
 + const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
 
+- await client.userApi.updateUser({ userId, user });
++ await client.userApi.updateUser({ id, user });
+
 - await client.userApi.deactivateUser({ userId: user.id })
 + await client.userApi.deactivateUser({ id: user.id })
 
@@ -1116,7 +1119,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
-[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
+[ApiClient]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch

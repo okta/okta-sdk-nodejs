@@ -1,7 +1,7 @@
 const { DefaultRequestExecutor, ApiClient } = require('../../src');
 const { ConfigLoader } = require('../../src/config-loader');
 
-describe('okta.Client', () => {
+describe('okta.ApiClient', () => {
   describe('constructor', () => {
     beforeEach(() => {
       jest.spyOn(ConfigLoader.prototype, 'applyDefaults').mockReturnValue(null);
@@ -106,11 +106,18 @@ describe('okta.Client', () => {
   });
 
   it('should use the DefaultRequestExecutor by default', () => {
-    const client = new ApiClient();
+    const client = new ApiClient({
+      orgUrl: 'https://fakey.local',
+      token: 'fake-token',
+      authorizationMode: 'SSWS',
+    });
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);
   });
   it('should let me pass an alternate request executor', () => {
     const client = new ApiClient({
+      orgUrl: 'https://fakey.local',
+      token: 'fake-token',
+      authorizationMode: 'SSWS',
       requestExecutor: new DefaultRequestExecutor()
     });
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);
