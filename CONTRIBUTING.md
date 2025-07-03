@@ -22,6 +22,8 @@ yarn build:validateGenerated
 
 If there are new APIs added to the spec and missing in current client, please add it to `src/client.js` and `src/types/client.d.ts` and add corresponding integration tests in `test/it`.
 
+Also this util can show breaking and possibly breaking changes like API class / method renames, paramater renames, changes to return type.
+
 ### Running The Tests
 
 By default the test harness will execute an integration test against a live Okta Org.  As such the following environment variables must be required for the test process to use:

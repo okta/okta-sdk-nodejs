@@ -116,7 +116,7 @@ function parseGeneratedClient() {
 
               let bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p) && !headerParams.includes(p));
               if (apiMeta.httpMethod && apiMeta.httpMethod !== 'get' && bodyParams.length > 1) {
-                console.warn(`! Detected multiple body params for ${className}.${methodName} in generated client:`, bodyParams);
+                console.warn(`Detected multiple body params for ${className}.${methodName} in generated client:`, bodyParams);
               }
               if (!bodyParams.length) {
                 bodyParams = undefined;
@@ -262,48 +262,51 @@ const getSpec3Meta = () => {
           for (const responseCode in endpoint.responses) {
             const response = endpoint.responses[responseCode];
             if (response?.content) {
-              for (const contentType in response?.content) {
-                const typedContent = response.content[contentType];
-                if (responseCode.startsWith('2') && typedContent?.schema) {
-                  // 2xx response schema
-                  let schema = typedContent.schema;
-                  let refSchemaKey;
-                  let isArray = schema['type'] === 'array';
-                  if (isArray) {
-                    schema = schema['items'];
-                  }
-                  if (schema['$ref']) {
-                    refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
-                  }
-                  if (refSchemaKey) {
-                    returnType = isArray ? `Array<${refSchemaKey}>` : refSchemaKey;
-                  }
-                  if (!returnType && schema['oneOf']) {
-                    // examples: getGroupAssignedRole, listGroupAssignedRoles, executeInlineHook, getSsfStreams
-                    returnType = schema['oneOf'].map(t => {
-                      let isArray = t['type'] === 'array';
-                      let tRefSchemaKey;
-                      if (isArray) {
-                        t = t['items'];
-                      }
-                      if (t['$ref']) {
-                        tRefSchemaKey = t['$ref'].replace('#/components/schemas/', '');
-                      }
-                      if (tRefSchemaKey) {
-                        return isArray ? `Array<${tRefSchemaKey}>` : tRefSchemaKey;
-                      }
-                    }).join('|');
+              const contentTypes = Object.keys(response?.content);
+              let contentType = contentTypes?.[0];
+              if (contentTypes.length > 1 && contentType.includes('application/json')) {
+                contentType = 'application/json';
+              }
+              const typedContent = response.content[contentType];
+              if (responseCode.startsWith('2') && typedContent?.schema) {
+                // 2xx response schema
+                let schema = typedContent.schema;
+                let refSchemaKey;
+                let isArray = schema['type'] === 'array';
+                if (isArray) {
+                  schema = schema['items'];
+                }
+                if (schema['$ref']) {
+                  refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+                }
+                if (refSchemaKey) {
+                  returnType = isArray ? `Array<${refSchemaKey}>` : refSchemaKey;
+                }
+                if (!returnType && schema['oneOf']) {
+                  // examples: getGroupAssignedRole, listGroupAssignedRoles, executeInlineHook, getSsfStreams
+                  returnType = schema['oneOf'].map(t => {
+                    let isArray = t['type'] === 'array';
+                    let tRefSchemaKey;
                     if (isArray) {
-                      returnType = `Array<${returnType}>`;
+                      t = t['items'];
                     }
+                    if (t['$ref']) {
+                      tRefSchemaKey = t['$ref'].replace('#/components/schemas/', '');
+                    }
+                    if (tRefSchemaKey) {
+                      return isArray ? `Array<${tRefSchemaKey}>` : tRefSchemaKey;
+                    }
+                  }).join('|');
+                  if (isArray) {
+                    returnType = `Array<${returnType}>`;
                   }
-                  if (!returnType && schema['type'] === 'string') {
-                    // example: previewSAMLmetadataForApplication, listAllSignInWidgetVersions
-                    returnType = isArray ? `Array<${schema['type']}>` : schema['type'];
-                  }
-                  if (!returnType) {
-                    console.warn(`! Can't detect response type for ${className}.${methodName} (${contentType})`, schema);
-                  }
+                }
+                if (!returnType && schema['type'] === 'string') {
+                  // example: previewSAMLmetadataForApplication, listAllSignInWidgetVersions
+                  returnType = isArray ? `Array<${schema['type']}>` : schema['type'];
+                }
+                if (!returnType) {
+                  console.warn(`! Can't detect response type for ${className}.${methodName} (${contentType})`, schema);
                 }
               }
             }
@@ -434,30 +437,39 @@ async function main() {
     classRenames, methodRenames, removedApis, pathParamsRenames, returnTypeDiffs, bodyNameRenames, queryParamDiffs,
   } = findApiDiffs(specApis, generatedApis);
 
+  console.log('\n');
   if (unusedApis.length) {
-    console.log('Unused APIs (please add to src/client.js and src/types/client.d.ts): ', unusedApis);
+    console.log('Unused (generated but not exported) APIs: ', unusedApis);
+    console.log('Please add those APIs to src/client.js and src/types/client.d.ts');
+    console.log('\n-----------\n');
   }
   if (Object.keys(classRenames).length) {
     console.log('Breaking class renames (new -> old): ', classRenames);
-    console.log('To make changes to class names non-breaking edit "apiConsolidation" in scripts/fixSpec.cjs');
+    console.log('To make changes to class names non-breaking please edit scripts/mappings/apiConsolidation.cjs');
+    console.log('\n-----------\n');
   }
   if (Object.keys(methodRenames).length) {
     console.log('Breaking method renames (new -> old): ', methodRenames);
+    console.log('\n-----------\n');
     // TODO: generate mapping - for operationId
   }
   if (Object.keys(pathParamsRenames).length) {
     console.log('Breaking changes to path params (old -> new): ', pathParamsRenames);
+    console.log('\n-----------\n');
     // TODO: generate mapping - for {name} in path
   }
   if (Object.keys(bodyNameRenames).length) {
     console.log('Breaking changes to body parameter type (old -> new): ', bodyNameRenames);
+    console.log('\n-----------\n');
     // TODO: generate mapping - for x-codegen-request-body-name
   }
   if (Object.keys(queryParamDiffs).length) {
     console.log('Possibly breaking changes to query params (old -> new): ', queryParamDiffs);
+    console.log('\n-----------\n');
   }
   if (Object.keys(returnTypeDiffs).length) {
     console.log('Possibly breaking changes to return types (old -> new): ', returnTypeDiffs);
+    console.log('\n-----------\n');
   }
   if (removedApis.length) {
     console.log('!!! Note that there are removed methods: ', removedApis);
