@@ -222,11 +222,18 @@ const getSpec3Meta = () => {
                 // example: publishCsrFromApplication
                 bodyParams = ['body'];
               }
-              if (!bodyParams && contentType === 'multipart/form-data' && schema['type'] === 'object' && schema['properties']) {
+              if (!bodyParams && schema['type'] === 'object' && schema['properties']) {
+                // examples: uploadYubikeyOtpTokenSeed, uploadBrandThemeBackgroundImage
                 bodyParams = Object.keys(schema['properties']);
                 if (httpMethod !== 'get' && bodyParams.length > 1) {
                   console.warn(`! Detected multiple body params for ${className}.${methodName}:`, bodyParams);
                 }
+              }
+              if (endpoint['x-codegen-request-body-name']) {
+                // override
+                bodyParams = [
+                  endpoint['x-codegen-request-body-name']
+                ];
               }
               if (!bodyParams) {
                 console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, schema);
@@ -252,10 +259,30 @@ const getSpec3Meta = () => {
                     refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
                   }
                   if (refSchemaKey) {
-                    returnType = refSchemaKey;
+                    returnType = isArray ? `Array<${refSchemaKey}>` : refSchemaKey;
+                  }
+                  if (!returnType && schema['oneOf']) {
+                    // examples: getGroupAssignedRole, listGroupAssignedRoles, executeInlineHook, getSsfStreams
+                    returnType = schema['oneOf'].map(t => {
+                      let isArray = t['type'] === 'array';
+                      let tRefSchemaKey;
+                      if (isArray) {
+                        t = t['items'];
+                      }
+                      if (t['$ref']) {
+                        tRefSchemaKey = t['$ref'].replace('#/components/schemas/', '');
+                      }
+                      if (tRefSchemaKey) {
+                        return isArray ? `Array<${tRefSchemaKey}>` : tRefSchemaKey;
+                      }
+                    }).join('|');
                     if (isArray) {
                       returnType = `Array<${returnType}>`;
                     }
+                  }
+                  if (!returnType && schema['type'] === 'string') {
+                    // example: previewSAMLmetadataForApplication, listAllSignInWidgetVersions
+                    returnType = isArray ? `Array<${schema['type']}>` : schema['type'];
                   }
                   if (!returnType) {
                     console.warn(`! Can't detect response type for ${className}.${methodName} (${contentType})`, schema);
