@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import {
   ApiClient,
   DefaultRequestExecutor,
-  Role,
   StandardRole,
   Group,
 } from '@okta/okta-sdk-nodejs';

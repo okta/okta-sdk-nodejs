@@ -8,7 +8,6 @@ import {
   AssignRoleRequest,
   CreateUserRequest,
   Group,
-  StandardRole,
   AddGroupRequest
 } from '@okta/okta-sdk-nodejs';
 
