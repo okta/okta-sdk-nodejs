@@ -167,17 +167,23 @@ function patchSpec3(spec3) {
         const endpoint = spec3.paths[httpPath][httpMethod];
         // API consilidation
         if (endpoint.tags) {
-          endpoint.tags = endpoint.tags.map(tag => {
+          const oldTags = endpoint.tags;
+          const newTags = oldTags.map(tag => {
+            const groupTags = [];
             for (const groupApiName in apiConsolidation) {
               if (apiConsolidation[groupApiName].apis.includes(tag) && groupApiName !== tag) {
-                apiTagChanges[tag] = groupApiName;
-                return groupApiName;
+                groupTags.push(groupApiName);
               }
             }
-            return tag;
-          });
-          if (endpoint.tags.length > 1) {
-            console.warn(`Endpoint ${httpMethod} ${httpPath} has > 1 tags:`, endpoint.tags);
+            return groupTags.length ? groupTags : [tag];
+          }).flat();
+          if (JSON.stringify(oldTags) !== JSON.stringify(newTags)) {
+            endpoint.tags = newTags;
+            if (oldTags.length === 1) {
+              apiTagChanges[oldTags[0]] = (newTags.length === 1 ? newTags[0] : newTags);
+            } else {
+              apiTagChanges[JSON.stringify(oldTags)] = newTags;
+            }
           }
         }
         // Modify request
