@@ -467,6 +467,7 @@ async function main() {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
     fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges
   } = patchSpec3(spec3);
+
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);

@@ -63,7 +63,7 @@ function parseGeneratedClient() {
     }
   });
 
-  for (const className in /*res*/ {AgentPoolsApi: 1}) { //todo
+  for (const className in apis) {
     const apiFile = pathGeneratedAPIs + className + '.js';
     const apiProgram = ts.createProgram([file], { allowJs: true });
     const apiSourceFile = apiProgram.getSourceFile(apiFile);
@@ -76,7 +76,7 @@ function parseGeneratedClient() {
             const apiMeta = apis[className][methodName];
             const text = printer.printNode(ts.EmitHint.Unspecified, funcNode, apiSourceFile);
 
-            const regexMethod = /makeRequestContext\(path, .*HttpMethodEnum\.(\w+),/;
+            const regexMethod = /makeRequestContext\(path, .*HttpMethodEnum\.(\w+)/;
             const methodMatch = text.match(regexMethod);
             if (methodMatch) {
               const httpMethod = methodMatch[1].toLowerCase();
@@ -95,6 +95,16 @@ function parseGeneratedClient() {
                 pathParams.push(paramName);
                 return '*';
               });
+
+              const headerParams = [];
+              const regexHeaderParams = /requestContext\.setHeaderParam\((".+?"),.*ObjectSerializer\.serialize\((.+?),/g;
+              const headerParamsMatch = text.matchAll(regexHeaderParams);
+              if (headerParamsMatch) {
+                for (const m of headerParamsMatch) {
+                  headerParams.push(m[2]);
+                }
+              }
+
               const queryParams = [];
               const regexQueryParams = /requestContext\.setQueryParam\((".+?"),/g;
               const queryParamsMatch = text.matchAll(regexQueryParams);
@@ -103,9 +113,13 @@ function parseGeneratedClient() {
                   queryParams.push(JSON.parse(m[1]));
                 }
               }
-              const bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p));
+
+              let bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p) && !headerParams.includes(p));
               if (apiMeta.httpMethod && apiMeta.httpMethod !== 'get' && bodyParams.length > 1) {
-                console.warn(`! Detected multiple body params for ${className}.${methodName}:`, bodyParams);
+                console.warn(`! Detected multiple body params for ${className}.${methodName} in generated client:`, bodyParams);
+              }
+              if (!bodyParams.length) {
+                bodyParams = undefined;
               }
               Object.assign(apiMeta, {
                 path,
@@ -129,7 +143,10 @@ function parseGeneratedClient() {
             const regexBody = /const body = .*?ObjectSerializer\.deserialize\(.*?ObjectSerializer\.parse\(.*\), (".+?"), ".*"\);\s*return body;/m;
             const bodyMatch = text.match(regexBody);
             if (bodyMatch) {
-              const returnType = JSON.parse(bodyMatch[1]);
+              let returnType = JSON.parse(bodyMatch[1]);
+              if (returnType === 'void') {
+                returnType = undefined;
+              }
               Object.assign(apiMeta, {
                 returnType,
               });
@@ -193,10 +210,10 @@ const getSpec3Meta = () => {
           }
           // Process request body
           let bodyParams;
-          if (endpoint.requestBody?.content) {
-            const contentTypes = Object.keys(endpoint.requestBody.content);
+          if (endpoint.requestBody) {
+            const contentTypes = Object.keys(endpoint.requestBody?.content ?? {});
             const contentType = contentTypes[0];
-            const typedContent = endpoint.requestBody.content[contentType];
+            const typedContent = endpoint.requestBody.content?.[contentType];
             if (typedContent?.schema) {
               let schema = typedContent.schema;
               let refSchemaKey;
@@ -205,7 +222,7 @@ const getSpec3Meta = () => {
                 schema = schema['items'];
               }
               if (schema['$ref']) {
-                refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+                refSchemaKey = schema['$ref'].replace('#/components/schemas/', '').replace('#/components/requestBodies/', '');
               }
               if (refSchemaKey) {
                 if (isArray) {
@@ -218,26 +235,26 @@ const getSpec3Meta = () => {
                 // example: updateDefaultProvisioningConnectionForApplication
                 bodyParams = [`${methodName}Request`];
               }
-              if (!bodyParams && contentTypes.includes('application/x-x509-ca-cert')) {
-                // example: publishCsrFromApplication
-                bodyParams = ['body'];
-              }
               if (!bodyParams && schema['type'] === 'object' && schema['properties']) {
                 // examples: uploadYubikeyOtpTokenSeed, uploadBrandThemeBackgroundImage
                 bodyParams = Object.keys(schema['properties']);
                 if (httpMethod !== 'get' && bodyParams.length > 1) {
-                  console.warn(`! Detected multiple body params for ${className}.${methodName}:`, bodyParams);
+                  console.warn(`! Detected multiple body params for ${className}.${methodName} in spec:`, bodyParams);
                 }
               }
-              if (endpoint['x-codegen-request-body-name']) {
-                // override
-                bodyParams = [
-                  endpoint['x-codegen-request-body-name']
-                ];
-              }
-              if (!bodyParams) {
-                console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, schema);
-              }
+            }
+            if (!bodyParams && contentTypes.includes('application/x-x509-ca-cert')) {
+              // example: publishCsrFromApplication
+              bodyParams = ['body'];
+            }
+            if (endpoint['x-codegen-request-body-name']) {
+              // override
+              bodyParams = [
+                endpoint['x-codegen-request-body-name']
+              ];
+            }
+            if (!bodyParams) {
+              console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, typedContent?.schema);
             }
           }
           // Process response type
@@ -322,6 +339,9 @@ function findUnusedApis(generatedApis, usedApiClasses) {
 }
 
 function findApiDiffs(specApis, generatedApis) {
+  const classRenames = {}, methodRenames = {}, removedApis = [];
+  const pathParamsRenames = {}, returnTypeDiffs = {}, bodyNameRenames = {}, queryParamDiffs = {};
+
   for (const className in generatedApis) {
     for (const methodName in generatedApis[className]) {
       const generatedMethod = generatedApis[className][methodName];
@@ -334,10 +354,10 @@ function findApiDiffs(specApis, generatedApis) {
             if (maybeMethod.starPath === generatedMethod.starPath && maybeMethod.httpMethod === generatedMethod.httpMethod) {
               specMethod = maybeMethod;
               if (specClassName !== className) {
-                classRename = [className, specClassName];
+                classRename = {className, specClassName};
               }
               if (specMethodName !== methodName) {
-                methodRename = [methodName, specMethodName];
+                methodRename = {methodName, specMethodName};
               }
               break;
             }
@@ -347,15 +367,61 @@ function findApiDiffs(specApis, generatedApis) {
           }
         }
       }
-      if (!specMethod && generatedMethod.starPath) {
-        console.warn(`! Can't find correspondent method in spec for ${className}.${methodName}`, generatedMethod);
-        //todo: res
-      } else if (classRename || methodRename) {
-        //todo: res
-        console.log('Rename: ', {classRename, methodRename});
+      if (!specMethod) {
+        removedApis.push({
+          className,
+          methodName,
+          generatedMethod,
+        });
+      } else {
+        if (classRename) {
+          classRenames[classRename.specClassName] = classRename.className;
+        }
+        if (methodRename) {
+          methodRenames[methodRename.specMethodName] = methodRename.methodName;
+        }
+        if (JSON.stringify(specMethod.pathParams) !== JSON.stringify(generatedMethod.pathParams)) {
+          pathParamsRenames[methodName] = {};
+          generatedMethod.pathParams.map((existingParam, i) => {
+            const specParam = specMethod.pathParams[i];
+            if (existingParam !== specParam) {
+              pathParamsRenames[methodName][existingParam] = specParam;
+            }
+          });
+        }
+        if (JSON.stringify(specMethod.queryParams) !== JSON.stringify(generatedMethod.queryParams)) {
+          const missingInSpec = generatedMethod.queryParams.filter(p => !specMethod.queryParams.includes(p));
+          const excessInSpec = specMethod.queryParams.filter(p => !generatedMethod.queryParams.includes(p));
+          if (missingInSpec.length) {
+            queryParamDiffs[methodName] = {
+              // inSpec: specMethod.queryParams,
+              // inGen: generatedMethod.queryParams,
+              missingInSpec,
+              excessInSpec,
+            };
+          }
+        }
+        if (JSON.stringify(specMethod.bodyParams) !== JSON.stringify(generatedMethod.bodyParams)) {
+          bodyNameRenames[methodName] = {};
+          bodyNameRenames[methodName][generatedMethod.bodyParams?.[0]] = specMethod.bodyParams?.[0];
+        }
+        if (specMethod.returnType !== generatedMethod.returnType) {
+          returnTypeDiffs[methodName] = {};
+          returnTypeDiffs[methodName][generatedMethod.returnType] = specMethod.returnType;
+        }
       }
     }
   }
+
+  return {
+    classRenames,
+    methodRenames,
+    removedApis,
+    pathParamsRenames,
+    returnTypeDiffs,
+    bodyNameRenames,
+    queryParamDiffs,
+  };
 }
 
 
@@ -364,9 +430,38 @@ async function main() {
   const generatedApis = parseGeneratedClient();
   const { usedApiClasses } = parseClient();
   const { unusedApis } = findUnusedApis(generatedApis, usedApiClasses);
-  console.log('Unused APIs: ', unusedApis);
-  const diffs = findApiDiffs(specApis, generatedApis);
-  console.log('Diffs: ', diffs);
+  const {
+    classRenames, methodRenames, removedApis, pathParamsRenames, returnTypeDiffs, bodyNameRenames, queryParamDiffs,
+  } = findApiDiffs(specApis, generatedApis);
+
+  if (unusedApis.length) {
+    console.log('Unused APIs (please add to src/client.js and src/types/client.d.ts): ', unusedApis);
+  }
+  if (Object.keys(classRenames).length) {
+    console.log('Breaking class renames (new -> old): ', classRenames);
+    console.log('To make changes to class names non-breaking edit "apiConsolidation" in scripts/fixSpec.cjs');
+  }
+  if (Object.keys(methodRenames).length) {
+    console.log('Breaking method renames (new -> old): ', methodRenames);
+    // TODO: generate mapping - for operationId
+  }
+  if (Object.keys(pathParamsRenames).length) {
+    console.log('Breaking changes to path params (old -> new): ', pathParamsRenames);
+    // TODO: generate mapping - for {name} in path
+  }
+  if (Object.keys(bodyNameRenames).length) {
+    console.log('Breaking changes to body parameter type (old -> new): ', bodyNameRenames);
+    // TODO: generate mapping - for x-codegen-request-body-name
+  }
+  if (Object.keys(queryParamDiffs).length) {
+    console.log('Possibly breaking changes to query params (old -> new): ', queryParamDiffs);
+  }
+  if (Object.keys(returnTypeDiffs).length) {
+    console.log('Possibly breaking changes to return types (old -> new): ', returnTypeDiffs);
+  }
+  if (removedApis.length) {
+    console.log('!!! Note that there are removed methods: ', removedApis);
+  }
 }
 
 main();
