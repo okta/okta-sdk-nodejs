@@ -68,8 +68,8 @@ function parseGeneratedClient() {
     const apiProgram = ts.createProgram([file], { allowJs: true });
     const apiSourceFile = apiProgram.getSourceFile(apiFile);
     ts.forEachChild(apiSourceFile, rootNode => {
-      const rfClassName = rootNode?.name?.text;
-      if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && rfClassName?.indexOf('RequestFactory') !== -1) {
+      // Process RequestFactory class
+      if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && rootNode?.name?.text?.indexOf('RequestFactory') !== -1) {
         ts.forEachChild(rootNode, funcNode => {
           const methodName = funcNode?.name?.text;
           if (funcNode.kind === ts.SyntaxKind.MethodDeclaration) {
@@ -119,9 +119,26 @@ function parseGeneratedClient() {
           }
         });
       }
-    });
+      // Process ResponseProcessor class
+      if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && rootNode?.name?.text?.indexOf('ResponseProcessor') !== -1) {
+        ts.forEachChild(rootNode, funcNode => {
+          const methodName = funcNode?.name?.text;
+          if (funcNode.kind === ts.SyntaxKind.MethodDeclaration) {
+            const apiMeta = apis[className][methodName];
+            const text = printer.printNode(ts.EmitHint.Unspecified, funcNode, apiSourceFile);
 
-    console.log(apis[className])
+            const regexBody = /const body = .*?ObjectSerializer\.deserialize\(.*?ObjectSerializer\.parse\(.*\), (".+?"), ".*"\);\s*return body;/m;
+            const bodyMatch = text.match(regexBody);
+            if (bodyMatch) {
+              const returnType = JSON.parse(bodyMatch[1]);
+              Object.assign(apiMeta, {
+                returnType,
+              });
+            }
+          }
+        });
+      }
+    });
   }
 
   return apis;
@@ -130,30 +147,122 @@ function parseGeneratedClient() {
 const getSpec3Meta = () => {
   const yamlStr = fs.readFileSync(fileSpec, { encoding: 'utf8' });
   const spec3 = yaml.load(yamlStr);
-  // const discriminators = {};
 
-  // for (const schemaKey in spec3.components.schemas) {
-  //   const schema = spec3.components.schemas[schemaKey];
-  //   if (schema.discriminator) {
-  //     const { propertyName, mapping } = schema.discriminator;
-  //     if (!discriminators[propertyName]) {
-  //       discriminators[propertyName] = {};
-  //     }
-  //     for (let k in mapping) {
-  //       let v = mapping[k];
-  //       const r = v.match(/^#\/components\/schemas\/(.+)/);
-  //       if (r) {
-  //         v = r[1];
-  //       }
-  //       mapping[k] = v;
-  //     }
-  //     discriminators[propertyName][schemaKey] = mapping;
-  //   }
-  // }
+  const apis = {};
 
-  // return {
-  //   discriminators
-  // };
+  for (const httpPath in spec3.paths) {
+    for (const httpMethod in spec3.paths[httpPath]) {
+      if (!['parameters'].includes(httpMethod)) {
+        const endpoint = spec3.paths[httpPath][httpMethod];
+        for (const tag of endpoint.tags) {
+          const className = tag + 'Api';
+          if (!apis[className]) {
+            apis[className] = {};
+          }
+          const methodName = endpoint.operationId;
+          const path = httpPath;
+          const regexPathParams = /{(.+?)}/g;
+          const pathParams = [];
+          const starPath = path.replaceAll(regexPathParams, (_paramWithBrackets, paramName) => {
+            pathParams.push(paramName);
+            return '*';
+          });
+          // Process parameters
+          const queryParams = [];
+          if (endpoint.parameters) {
+            for (let param of endpoint.parameters) {
+              let refSchemaKey;
+              if (param?.['$ref']) {
+                refSchemaKey = param['$ref'].replace('#/components/schemas/', '');
+                param = spec3.components.schemas[refSchemaKey];
+              }
+              let paramName = param?.['name'];
+              if (!paramName) {
+                console.warn(`! Can't detect param name for ${className}.${methodName}`, param);
+                if (refSchemaKey) {
+                  paramName = refSchemaKey;
+                } else {
+                  continue;
+                }
+              }
+              if (param?.['in'] === 'path' && !pathParams.includes(paramName)) {
+                pathParams.push(paramName);
+              } else if (param?.['in'] === 'query' && !queryParams.includes(paramName)) {
+                queryParams.push(paramName);
+              }
+            }
+          }
+          // Process request body
+          let bodyParam;
+          if (endpoint.requestBody?.content) {
+            for (const contentType in endpoint.requestBody.content) {
+              const typedContent = endpoint.requestBody.content[contentType];
+              if (typedContent?.schema) {
+                let schema = typedContent.schema;
+                let refSchemaKey;
+                let isArray = schema['type'] === 'array';
+                if (isArray) {
+                  schema = schema['items'];
+                }
+                if (schema['$ref']) {
+                  refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+                }
+                if (refSchemaKey) {
+                  bodyParam = refSchemaKey;
+                  if (isArray) {
+                    bodyParam = `Array<${bodyParam}>`;
+                  }
+                } else {
+                  console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentType})`, typedContent);
+                }
+              }
+            }
+          }
+          // Process response type
+          let returnType;
+          for (const responseCode in endpoint.responses) {
+            const response = endpoint.responses[responseCode];
+            if (response?.content) {
+              for (const contentType in response?.content) {
+                const typedContent = response.content[contentType];
+                if (responseCode.startsWith('2') && typedContent?.schema) {
+                  // 2xx response schema
+                  let schema = typedContent.schema;
+                  let refSchemaKey;
+                  let isArray = schema['type'] === 'array';
+                  if (isArray) {
+                    schema = schema['items'];
+                  }
+                  if (schema['$ref']) {
+                    refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+                  }
+                  if (refSchemaKey) {
+                    returnType = refSchemaKey;
+                    if (isArray) {
+                      returnType = `Array<${returnType}>`;
+                    }
+                  } else {
+                    console.warn(`! Can't detect response name for ${className}.${methodName} (${contentType})`, typedContent);
+                  }
+                }
+              }
+            }
+          }
+
+          apis[className][methodName] = {
+            path,
+            starPath,
+            pathParams,
+            queryParams,
+            bodyParam,
+            returnType,
+          };
+        }
+      }
+    }
+  }
+
+  return apis;
 };
 
 function findUnusedApis(generatedApis, usedApiClasses) {
@@ -168,15 +277,19 @@ function findUnusedApis(generatedApis, usedApiClasses) {
   };
 }
 
+function findApiDiffs(specApis, generatedApis) {
+
+}
+
 
 async function main() {
-  const spec3Meta = getSpec3Meta();
-
+  const specApis = getSpec3Meta();
   const generatedApis = parseGeneratedClient();
-  //console.log(generatedApis)
   const { usedApiClasses } = parseClient();
-  const res = findUnusedApis(generatedApis, usedApiClasses);
-  console.log(res);
+  const { unusedApis } = findUnusedApis(generatedApis, usedApiClasses);
+  console.log('Unused APIs: ', unusedApis);
+  const diffs = findApiDiffs(specApis, generatedApis);
+  console.log('Diffs: ', diffs);
 }
 
 main();
