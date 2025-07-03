@@ -63,7 +63,7 @@ describe('Application API: provisioning connection for application', () => {
     try {
       await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
-        updateDefaultProvisioningConnectionForApplicationRequest: {
+        provisioningConnectionRequest: {
           profile: {
             authScheme: 'TOKEN',
             token: 'testToken'
@@ -80,7 +80,7 @@ describe('Application API: provisioning connection for application', () => {
     try {
       await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
-        updateDefaultProvisioningConnectionForApplicationRequest: {
+        provisioningConnectionRequest: {
           profile: {
             authScheme: 'OAUTH2',
             clientId: 'testClientId'

@@ -8,7 +8,7 @@ import {
   AssignRoleRequest,
   CreateUserRequest,
   Group,
-  AddGroupRequest
+  CreateGroupRequest
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -44,7 +44,7 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, newUser, newGroup);
     const queryParameters = { activate : true };
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
-    const createdGroup = await client.groupApi.addGroup({group: newGroup as AddGroupRequest});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup as CreateGroupRequest});
 
     // 2. Assign USER_ADMIN role to the user
     const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
@@ -56,7 +56,7 @@ describe('User Role API Tests', () => {
     // 3. Add Group Target to User Admin Role
     await client.roleTargetApi.assignGroupTargetToUserRole({
       userId: createdUser.id,
-      roleAssignmentId: role.id,
+      roleId: role.id,
       groupId: createdGroup.id,
     });
 
@@ -75,16 +75,16 @@ describe('User Role API Tests', () => {
 
     await utils.cleanup(client, null, group);
 
-    const adminGroup = await client.groupApi.addGroup({group});
+    const adminGroup = await client.groupApi.createGroup({group});
     await client.roleTargetApi.assignGroupTargetToUserRole({
       userId: createdUser.id,
-      roleAssignmentId: role.id,
+      roleId: role.id,
       groupId: adminGroup.id,
     });
 
     await client.roleTargetApi.unassignGroupTargetFromUserAdminRole({
       userId: createdUser.id,
-      roleAssignmentId: role.id,
+      roleId: role.id,
       groupId: createdGroup.id,
     });
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role, client);

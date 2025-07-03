@@ -26,7 +26,7 @@ describe('Policy Crud API', () => {
   let group: Group;
   let mockPolicy: OktaSignOnPolicy;
   beforeEach(async () => {
-    group = await client.groupApi.addGroup({group: getMockGroup()});
+    group = await client.groupApi.createGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
   });

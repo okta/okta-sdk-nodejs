@@ -39,7 +39,7 @@ describe('client.getApplicationGroupAssignment()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, null, group);
       createdApplication = await client.applicationApi.createApplication({application});
-      createdGroup = await client.groupApi.addGroup({group});
+      createdGroup = await client.groupApi.createGroup({group});
       await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id, applicationGroupAssignment: {}});
       const assignment = await client.applicationApi.getApplicationGroupAssignment({appId: createdApplication.id, groupId: createdGroup.id});
       expect(assignment).to.be.instanceof(ApplicationGroupAssignment);

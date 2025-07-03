@@ -47,7 +47,7 @@ describe('User Role API Tests', () => {
     if (role) {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: createdUser.id,
-        roleAssignmentId: role.id
+        roleId: role.id
       });
     }
 

@@ -39,13 +39,13 @@ describe('Application API: applicaton features', () => {
   });
 
   xit('gets application feature', async () => {
-    const feature = await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'});
+    const feature = await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'});
     expect(feature.name).to.equal('USER_PROVISIONING');
   });
 
   xit('updates application feature', async () => {
-    let feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
-      updateFeatureForApplicationRequest: {
+    let feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
+      capabilitiesObject: {
         update: {
           lifecycleDeactivate: {
             status: 'DISABLED'
@@ -56,8 +56,8 @@ describe('Application API: applicaton features', () => {
       }
     });
     expect(feature.status).to.equal('DISABLED');
-    feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING',
-      updateFeatureForApplicationRequest: {
+    feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
+      capabilitiesObject: {
         update: {
           lifecycleDeactivate: {
             status: 'ENABLED'

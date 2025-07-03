@@ -1,7 +1,7 @@
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { ApiClient, AddGroupRequest, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { ApiClient, CreateGroupRequest, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -20,13 +20,13 @@ describe('Group API tests', () => {
   let group;
   beforeEach(async () => {
     // 1. Create a new group
-    const newGroup: AddGroupRequest = {
+    const newGroup: CreateGroupRequest = {
       profile: {
         name: `node-sdk: Update test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
-    group = await client.groupApi.addGroup({group: newGroup});
+    group = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(group, newGroup);
   });
 

@@ -41,7 +41,7 @@ describe('client.listApplicationGroupAssignments()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, null, group);
       createdApplication = await client.applicationApi.createApplication({application});
-      createdGroup = await client.groupApi.addGroup({group});
+      createdGroup = await client.groupApi.createGroup({group});
       await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id, applicationGroupAssignment: {}});
       await (await client.applicationApi.listApplicationGroupAssignments({appId: createdApplication.id})).each(async (assignment) => {
         // there should be only one assignment
@@ -75,7 +75,7 @@ describe('client.listApplicationGroupAssignments({ })', () => {
         name
       }
     };
-    const createdGroup = await client.groupApi.addGroup({group: newGroup});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
     return createdGroup;
   };
 

@@ -34,12 +34,12 @@ describe('User API Tests', () => {
 
     // 2. Expire the user's password
     await client.userApi.expirePassword({
-      id: createdUser.id
+      userId: createdUser.id
     });
 
     // 3. Verify that password was expired
     const expiredUser = await client.userApi.getUser({
-      id: createdUser.id
+      userId: createdUser.id
     });
     expect(expiredUser.status).to.equal('PASSWORD_EXPIRED');
 
@@ -64,13 +64,13 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Expire the user's password
-    const jsonResponse = await client.userApi.expirePasswordWithTempPassword({
-      id: createdUser.id
+    const jsonResponse = await client.userApi.expirePasswordAndGetTemporaryPassword({
+      userId: createdUser.id
     });
 
     // 3. Verify that password was expired
     const expiredUser = await client.userApi.getUser({
-      id: createdUser.id
+      userId: createdUser.id
     });
     /* eslint-disable @typescript-eslint/no-explicit-any */
     expect((jsonResponse as any).tempPassword).to.not.be.null;

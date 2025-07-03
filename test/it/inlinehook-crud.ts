@@ -33,7 +33,7 @@ describe('Inline Hook Crud API', () => {
 
     it('should return correct model', async () => {
       const mockInlineHook: InlineHookCreate = getMockInlineHook();
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: mockInlineHook});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: mockInlineHook});
       expect(inlineHook.id).to.be.exist;
       expect(inlineHook.name).to.be.equal(mockInlineHook.name);
     });
@@ -42,7 +42,7 @@ describe('Inline Hook Crud API', () => {
   describe('List Inline Hooks', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -64,7 +64,7 @@ describe('Inline Hook Crud API', () => {
   describe('Get InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -80,7 +80,7 @@ describe('Inline Hook Crud API', () => {
   describe('Update InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
     afterEach(async () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
@@ -101,7 +101,7 @@ describe('Inline Hook Crud API', () => {
   describe('Delete InlineHook', () => {
     let inlineHook: InlineHook;
     beforeEach(async () => {
-      inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+      inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
 
     it('should not get inlineHook after deletion', async () => {

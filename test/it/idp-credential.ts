@@ -44,7 +44,7 @@ describe('Idp credential API', () => {
         key = await client.identityProviderApi.createIdentityProviderKey({jsonWebKey: mockJwk});
       });
       afterEach(async () => {
-        await client.identityProviderApi.deleteIdentityProviderKey({kid: key.kid});
+        await client.identityProviderApi.deleteIdentityProviderKey({keyId: key.kid});
       });
 
       it('should return a Collection', async () => {
@@ -61,7 +61,7 @@ describe('Idp credential API', () => {
 
     describe('Create key', () => {
       afterEach(async () => {
-        await client.identityProviderApi.deleteIdentityProviderKey({kid: key.kid});
+        await client.identityProviderApi.deleteIdentityProviderKey({keyId: key.kid});
       });
 
       it('should create key', async () => {
@@ -76,11 +76,11 @@ describe('Idp credential API', () => {
         key = await client.identityProviderApi.createIdentityProviderKey({jsonWebKey: mockJwk});
       });
       afterEach(async () => {
-        await client.identityProviderApi.deleteIdentityProviderKey({kid: key.kid});
+        await client.identityProviderApi.deleteIdentityProviderKey({keyId: key.kid});
       });
 
       it('should get key', async () => {
-        key = await client.identityProviderApi.getIdentityProviderKey({kid: key.kid});
+        key = await client.identityProviderApi.getIdentityProviderKey({keyId: key.kid});
         expect(key).to.be.exist;
         expect(key).to.be.instanceOf(IdPKeyCredential);
       });
@@ -92,9 +92,9 @@ describe('Idp credential API', () => {
       });
 
       it('should delete key', async () => {
-        await client.identityProviderApi.deleteIdentityProviderKey({kid: key.kid});
+        await client.identityProviderApi.deleteIdentityProviderKey({keyId: key.kid});
         try {
-          await client.identityProviderApi.getIdentityProviderKey({kid: key.kid});
+          await client.identityProviderApi.getIdentityProviderKey({keyId: key.kid});
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -109,7 +109,7 @@ describe('Idp credential API', () => {
         csr = await client.identityProviderApi.generateCsrForIdentityProvider({idpId: idp.id, metadata: mockCsr});
       });
       afterEach(async () => {
-        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
       });
 
       it('should return a Collection', async () => {
@@ -126,7 +126,7 @@ describe('Idp credential API', () => {
 
     describe('Generate signing csr', () => {
       afterEach(async () => {
-        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
       });
 
       it('should generate csr', async () => {
@@ -141,9 +141,9 @@ describe('Idp credential API', () => {
       });
 
       it('should delete csr', async () => {
-        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         try {
-          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -163,7 +163,7 @@ describe('Idp credential API', () => {
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
-          idpCsrId: csr.id,
+          csrId: csr.id,
           body: {
             data: Buffer.from(b64),
             name: 'csr.der'
@@ -174,7 +174,7 @@ describe('Idp credential API', () => {
         expect(key.x5c[0]).to.equal(b64);
 
         try {
-          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -188,7 +188,7 @@ describe('Idp credential API', () => {
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
-          idpCsrId: csr.id,
+          csrId: csr.id,
           body: {
             data: Buffer.from(pem),
             name: 'csr.pem'
@@ -199,7 +199,7 @@ describe('Idp credential API', () => {
         expect(key.x5c[0]).to.equal(b64);
 
         try {
-          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -213,7 +213,7 @@ describe('Idp credential API', () => {
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
-          idpCsrId: csr.id,
+          csrId: csr.id,
           body: {
             data: Buffer.from(der),
             name: 'csr.der'
@@ -224,7 +224,7 @@ describe('Idp credential API', () => {
         expect(key.x5c[0]).to.equal(b64);
 
         try {
-          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+          csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -236,11 +236,11 @@ describe('Idp credential API', () => {
         csr = await client.identityProviderApi.generateCsrForIdentityProvider({idpId: idp.id, metadata: mockCsr});
       });
       afterEach(async () => {
-        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+        await client.identityProviderApi.revokeCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
       });
 
       it('should get csr', async () => {
-        csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, idpCsrId: csr.id});
+        csr = await client.identityProviderApi.getCsrForIdentityProvider({idpId: idp.id, csrId: csr.id});
         expect(csr).to.be.exist;
       });
     });
@@ -279,7 +279,7 @@ describe('Idp credential API', () => {
       });
 
       it('should return a Collection', async () => {
-        key = await client.identityProviderApi.getIdentityProviderSigningKey({idpId: idp.id, kid: key.kid});
+        key = await client.identityProviderApi.getIdentityProviderSigningKey({idpId: idp.id, keyId: key.kid});
         expect(key).to.be.exist;
       });
     });
@@ -297,7 +297,7 @@ describe('Idp credential API', () => {
       });
 
       it('should clone key to another idp', async () => {
-        const clonedKey = await client.identityProviderApi.cloneIdentityProviderKey({idpId: idp.id, kid: key.kid, targetIdpId: anotherIdp.id });
+        const clonedKey = await client.identityProviderApi.cloneIdentityProviderKey({idpId: idp.id, keyId: key.kid, targetIdpId: anotherIdp.id });
         expect(clonedKey).to.be.exist;
         expect(clonedKey).to.be.instanceOf(IdPKeyCredential);
       });

@@ -28,7 +28,7 @@ describe('Group App API', () => {
     beforeEach(async () => {
       const mockApplication = utils.getBookmarkApplication();
       application = await client.applicationApi.createApplication({application: mockApplication});
-      group = await client.groupApi.addGroup({group: getMockGroup()});
+      group = await client.groupApi.createGroup({group: getMockGroup()});
       await client.applicationApi.assignGroupToApplication({appId: application.id, groupId: group.id});
     });
     afterEach(async () => {

@@ -973,7 +973,7 @@ const client: ApiClient = new ApiClient({
 
 ## Migrating between versions
 
-### From 7.0 to 7.1
+### From 7.1 to 7.2
 
 #### API changes
 
@@ -984,50 +984,11 @@ const client: ApiClient = new ApiClient({
 - const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
 + const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
 
-- await client.userApi.updateUser({ userId, user });
-+ await client.userApi.updateUser({ id, user });
-
-- await client.userApi.deactivateUser({ userId: user.id })
-+ await client.userApi.deactivateUser({ id: user.id })
-
-- await client.userApi.getUser({ userId: user.id })
-+ await client.userApi.getUser({ id: user.id })
-
-- await client.userApi.deleteUser({ userId: user.id })
-+ await client.userApi.deleteUser({ id: user.id })
-
-- await client.roleTargetApi.listGroupTargetsForRole({ userId, roleId })
-+ await client.roleTargetApi.listGroupTargetsForRole({ userId, roleAssignmentId })
-
-- await client.applicationApi.getFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING'});
-+ await client.applicationApi.getFeatureForApplication({appId: application.id, featureName: 'USER_PROVISIONING'})
-
-- await client.groupApi.createGroup({group});
-+ await client.groupApi.addGroup({group});
-
-- await client.schemaApi.updateApplicationUserProfile({ appInstanceId, body });
-+ await client.schemaApi.updateApplicationUserProfile({ appId, body });
-
-- await client.identityProviderApi.getIdentityProviderKey({keyId: key.kid});
-+ await client.identityProviderApi.getIdentityProviderKey({kid: key.kid});
-
-- await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
-+ await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+- await client.applicationApi.updateFeatureForApplication({ appId, name, CapabilitiesObject })
++ await client.applicationApi.updateFeatureForApplication({ appId, name, capabilitiesObject })
 
 - await client.orgSettingApi.updateOrgSettings({ OrgSetting })
 + await client.orgSettingApi.updateOrgSettings({ orgSetting })
-
-- await client.orgSettingApi.getOrgContactTypes()
-+ await client.orgSettingApi.listOrgContactTypes()
-
-- await client.orgSettingApi.updateOrgHideOktaUIFooter();
-+ await client.orgSettingApi.setOrgHideOktaUIFooter();
-
-- await client.subscriptionApi.listRoleSubscriptions({ roleTypeOrRoleId });
-+ await client.subscriptionApi.listSubscriptionsRole({ roleRef });
-
-- await client.userApi.unlockUser({ userId });
-+ await client.userApi.unlockUser({ id });
 
 ```
 

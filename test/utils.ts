@@ -107,10 +107,10 @@ async function waitTill(condition: () => Promise<boolean>): Promise<boolean> {
 
 async function deleteUser(user: User, client: ApiClient) {
   await client.userApi.deactivateUser({
-    id: user.id
+    userId: user.id
   });
   await client.userApi.deleteUser({
-    id: user.id
+    userId: user.id
   });
 }
 
@@ -171,7 +171,7 @@ async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | S
   let groupTargetPresent = false;
   const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 
-    roleAssignmentId: role.id
+    roleId: role.id
   });
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
@@ -189,13 +189,13 @@ async function cleanupUser(client: ApiClient, user: User) {
 
   try {
     const existingUser = await client.userApi.getUser({
-      id: user.profile.login
+      userId: user.profile.login
     });
     await client.userApi.deactivateUser({
-      id: existingUser.id
+      userId: existingUser.id
     });
     await client.userApi.deleteUser({
-      id: existingUser.id
+      userId: existingUser.id
     });
   } catch (err) {
     // expect(err.message).to.contain('Okta HTTP 404');

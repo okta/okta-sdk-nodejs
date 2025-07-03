@@ -39,7 +39,7 @@ describe('Group-Member API Tests', () => {
 
     const queryParameters = { activate : false };
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
-    const createdGroup = await client.groupApi.addGroup({group: newGroup});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
 
     // 2. Add user to the group and validate user present in group (can be delayed!)
     await client.groupApi.assignUserToGroup({groupId: createdGroup.id, userId: createdUser.id});

@@ -18,7 +18,7 @@ const client = new ApiClient({
 describe('Inline Hook Lifecycle API', () => {
   let inlineHook;
   beforeEach(async () => {
-    inlineHook = await client.inlineHookApi.createInlineHook({inlineHookCreate: getMockInlineHook()});
+    inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
   });
 
   afterEach(async () => {

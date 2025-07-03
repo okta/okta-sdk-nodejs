@@ -2,7 +2,7 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import utils = require('../utils');
-import { ApiClient, Group, DefaultRequestExecutor, AddGroupRequest } from '@okta/okta-sdk-nodejs';
+import { ApiClient, Group, DefaultRequestExecutor, CreateGroupRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -26,13 +26,13 @@ const createTestGroups = async () => {
   for (const prefix of namePrefixes) {
     for (let i = 0 ; i < 2 ; i++) {
       const groupName = `node-sdk: Search test Group ${prefix} ${i} ${faker.random.word()}`.substring(0, 49);
-      const newGroup: AddGroupRequest = {
+      const newGroup: CreateGroupRequest = {
         profile: {
           name: groupName
         },
       };
       await utils.cleanup(client, null, newGroup);
-      const createdGroup = await client.groupApi.addGroup({group: newGroup});
+      const createdGroup = await client.groupApi.createGroup({group: newGroup});
       utils.validateGroup(createdGroup, newGroup);
       createdGroups.push(createdGroup);
     }

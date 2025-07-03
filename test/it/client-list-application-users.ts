@@ -120,8 +120,8 @@ describe('client.listApplicationUsers({ })', () => {
 
   after(async () => {
     for (const appUser of appUsers) {
-      await client.userApi.deactivateUser({id: appUser.id});
-      await client.userApi.deleteUser({id: appUser.id});
+      await client.userApi.deactivateUser({userId: appUser.id});
+      await client.userApi.deleteUser({userId: appUser.id});
     }
 
     await client.applicationApi.deactivateApplication({

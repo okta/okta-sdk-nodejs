@@ -72,7 +72,7 @@ describe('Policy Scenarios', () => {
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.groupApi.addGroup({group: newGroup});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Set Up Policy JSON

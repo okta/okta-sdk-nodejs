@@ -63,7 +63,7 @@ describe('User API Tests', () => {
 
     // 4. Verify that password was updated
     const updatedUser = await client.userApi.getUser({
-      id: createdUser.id
+      userId: createdUser.id
     });
     expect(new Date(updatedUser.passwordChanged)).to.be.gt(new Date(createdUser.passwordChanged));
 

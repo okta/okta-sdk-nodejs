@@ -171,9 +171,9 @@ async function cleanTestGroupRules() {
     if (canDelete) {
       try {
         if (rule.status !== 'INVALID') {
-          await client.groupApi.deactivateGroupRule({groupRuleId: rule.id!});
+          await client.groupApi.deactivateGroupRule({ruleId: rule.id!});
         }
-        await client.groupApi.deleteGroupRule({groupRuleId: rule.id!});
+        await client.groupApi.deleteGroupRule({ruleId: rule.id!});
       } catch (err) {
         console.error(err);
       }

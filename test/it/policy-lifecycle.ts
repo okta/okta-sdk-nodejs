@@ -20,7 +20,7 @@ describe('Policy Lifecycle API', () => {
   let mockPolicy: OktaSignOnPolicy;
   let policy: Policy;
   beforeEach(async () => {
-    group = await client.groupApi.addGroup({group: getMockGroup()});
+    group = await client.groupApi.createGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
     policy = await client.policyApi.createPolicy({

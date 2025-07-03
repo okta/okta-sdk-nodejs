@@ -44,7 +44,7 @@ xdescribe('AppUser.delete()', () => {
           id: createdUser.id
         }
       });
-      const response = await client.userApi.deleteUser({id: createdAppUser.id});
+      const response = await client.userApi.deleteUser({userId: createdAppUser.id});
       expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {

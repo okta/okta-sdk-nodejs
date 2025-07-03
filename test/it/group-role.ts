@@ -24,7 +24,7 @@ describe('Group role API', () => {
   describe('Role assignment', () => {
     let group: Group;
     beforeEach(async () => {
-      group = await client.groupApi.addGroup({group: getMockGroup()});
+      group = await client.groupApi.createGroup({group: getMockGroup()});
     });
     afterEach(async () => {
       await client.groupApi.deleteGroup({groupId: group.id});
@@ -50,12 +50,12 @@ describe('Group role API', () => {
         } else {
           const resRole = await client.roleAssignmentApi.getGroupAssignedRole({
             groupId: group.id,
-            roleAssignmentId: role.id
+            roleId: role.id
           });
           expect(resRole.id).to.not.be.undefined;
           const res = await client.roleAssignmentApi.unassignRoleFromGroup({
             groupId: group.id,
-            roleAssignmentId: role.id
+            roleId: role.id
           });
           expect(res).to.be.undefined;
         }

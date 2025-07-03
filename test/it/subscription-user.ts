@@ -38,7 +38,7 @@ describe('Subscription API', () => {
     }
     try {
       const subscriptions: Subscription[] = [];
-      const list = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
+      const list = await client.subscriptionApi.listUserSubscriptions({ userId: user.id });
       for await (const subscription of list) {
         subscriptions.push(subscription);
       }
@@ -57,11 +57,11 @@ describe('Subscription API', () => {
       this.skip();
     }
     try {
-      await client.subscriptionApi.subscribeByNotificationTypeUser({
+      await client.subscriptionApi.subscribeUserSubscriptionByNotificationType({
         userId: user.id,
         notificationType: 'OKTA_UPDATE',
       });
-      const subscriptions = await client.subscriptionApi.listSubscriptionsUser({
+      const subscriptions = await client.subscriptionApi.listUserSubscriptions({
         userId: user.id,
       });
       let subscription: Subscription;
@@ -86,11 +86,11 @@ describe('Subscription API', () => {
     }
     try {
       let subscription: Subscription;
-      await client.subscriptionApi.unsubscribeByNotificationTypeUser({
+      await client.subscriptionApi.unsubscribeUserSubscriptionByNotificationType({
         userId: user.id,
         notificationType: 'OKTA_UPDATE'
       });
-      let subscriptions = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
+      let subscriptions = await client.subscriptionApi.listUserSubscriptions({ userId: user.id });
       await subscriptions.each(s => {
         if (s.notificationType === 'OKTA_UPDATE') {
           subscription = s;
@@ -98,11 +98,11 @@ describe('Subscription API', () => {
       });
       expect(subscription.status).to.equal('unsubscribed');
 
-      await client.subscriptionApi.subscribeByNotificationTypeUser({
+      await client.subscriptionApi.subscribeUserSubscriptionByNotificationType({
         userId: user.id,
         notificationType: 'OKTA_UPDATE'
       });
-      subscriptions = await client.subscriptionApi.listSubscriptionsUser({ userId: user.id });
+      subscriptions = await client.subscriptionApi.listUserSubscriptions({ userId: user.id });
       await subscriptions.each(s => {
         if (s.notificationType === 'OKTA_UPDATE') {
           subscription = s;

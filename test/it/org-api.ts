@@ -33,7 +33,7 @@ describe('Org API', () => {
 
   it('allows fetching and updating Org contact user', async () => {
     const contactTypes: OrgContactType[] = [];
-    const list = await client.orgSettingApi.listOrgContactTypes();
+    const list = await client.orgSettingApi.getOrgContactTypes();
     await list.each(async contactTypeObj =>
       contactTypes.push(contactTypeObj.contactType)
     );
@@ -82,12 +82,12 @@ describe('Org API', () => {
   });
 
   it('gets Org preferences and allows toggling footer visibility', async () => {
-    await client.orgSettingApi.setOrgHideOktaUIFooter();
+    await client.orgSettingApi.updateOrgHideOktaUIFooter();
     let orgPreferences = await client.orgSettingApi.getOrgPreferences();
     expect(orgPreferences.showEndUserFooter).to.equal(false);
-    orgPreferences = await client.orgSettingApi.setOrgShowOktaUIFooter();
+    orgPreferences = await client.orgSettingApi.updateOrgShowOktaUIFooter();
     expect(orgPreferences.showEndUserFooter).to.equal(true);
-    orgPreferences = await client.orgSettingApi.setOrgHideOktaUIFooter();
+    orgPreferences = await client.orgSettingApi.updateOrgHideOktaUIFooter();
     expect(orgPreferences.showEndUserFooter).to.equal(false);
   });
 

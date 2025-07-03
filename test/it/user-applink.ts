@@ -31,7 +31,7 @@ describe('User applink API', () => {
     // Only test on if Collection is returned, since no api has been provided to assign applink to user
     it('should return a Collection', async () => {
       const applinks = await client.userApi.listAppLinks({
-        id: user.id
+        userId: user.id
       });
       expect(applinks).to.be.instanceOf(Collection);
     });

@@ -40,13 +40,13 @@ describe('User API Tests', () => {
 
     // 2. Get the user by user ID
     const userByID = await client.userApi.getUser({
-      id: createdUser.id
+      userId: createdUser.id
     });
     utils.validateUser(userByID, createdUser);
 
     // 3. Get the user by user login
     const userByLogin = await client.userApi.getUser({
-      id: createdUser.profile.login
+      userId: createdUser.profile.login
     });
     utils.validateUser(userByLogin, createdUser);
     expect(userByLogin.profile.age).to.equal(newUser.profile.age);
@@ -58,7 +58,7 @@ describe('User API Tests', () => {
     let err;
     try {
       await client.userApi.getUser({
-        id: createdUser.profile.login
+        userId: createdUser.profile.login
       });
     } catch (e) {
       err = e;
