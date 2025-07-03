@@ -380,7 +380,8 @@ function findApiDiffs(specApis, generatedApis) {
         if (classRename) {
           classRenames[classRename.specClassName] = classRename.className;
         }
-        if (methodRename) {
+        // Make an exception for addResourceSetResource because of naming conflicts between POST and PATCH methods
+        if (methodRename && !['addResourceSetResource'].includes(methodRename.methodName)) {
           methodRenames[methodRename.methodName] = methodRename.specMethodName;
         }
         if (JSON.stringify(specMethod.pathParams) !== JSON.stringify(generatedMethod.pathParams)) {
