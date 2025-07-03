@@ -27,12 +27,12 @@
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
-    "test:integration:ssws": "./scripts/test_it_ssws.sh",
-    "test:integration:oauth": "./scripts/test_it_oauth.sh",
+    "test:integration:ssws": "./scripts/test-it-ssws.sh",
+    "test:integration:oauth": "./scripts/test-it-oauth.sh",
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "source .env &> /dev/null && TEST_TYPE=clean mocha test/delete-resources.ts"
+    "aftertest": "./scripts/test-it-clean.sh"
   },
   "keywords": [],
   "license": "Apache-2.0",
