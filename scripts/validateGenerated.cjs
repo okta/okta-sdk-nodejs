@@ -381,7 +381,7 @@ function findApiDiffs(specApis, generatedApis) {
           classRenames[classRename.specClassName] = classRename.className;
         }
         if (methodRename) {
-          methodRenames[methodRename.specMethodName] = methodRename.methodName;
+          methodRenames[methodRename.methodName] = methodRename.specMethodName;
         }
         if (JSON.stringify(specMethod.pathParams) !== JSON.stringify(generatedMethod.pathParams)) {
           pathParamsRenames[methodName] = {};
@@ -451,11 +451,10 @@ async function main() {
     console.log('\n-----------\n');
   }
   if (Object.keys(methodRenames).length) {
-    console.log('Breaking method renames (new -> old):');
+    console.log('Breaking method renames (old -> new):');
     console.log(methodRenames);
     console.log('To make changes to method names non-breaking please copy this mapping to scripts/mappings/maethodRenames.cjs before running "yarn build"');
     console.log('\n-----------\n');
-    // TODO: generate mapping - for operationId
   }
   if (Object.keys(pathParamsRenames).length) {
     console.log('Breaking changes to path params (old -> new):');

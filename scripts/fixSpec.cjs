@@ -4,6 +4,10 @@ const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { apiConsolidation } = require('./mappings/apiConsolidation.cjs');
+const { methodRenames } = require('./mappings/methodRenames.cjs');
+const { pathParamsRenames } = require('./mappings/pathParamsRenames.cjs');
+const methodRenamesNew2Old = Object.fromEntries(Object.entries(methodRenames).map(a => a.reverse()));
+const pathParamsRenamesNew2Old = Object.fromEntries(Object.entries(pathParamsRenames).map(a => a.reverse()));
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
@@ -81,6 +85,47 @@ function patchSpec3(spec3) {
   const ffAmends = [];
   const customDescriminatorsForEndpoints = [];
   const apiTagChanges = {};
+  const operationRenames = {};
+  const pathParameterRenames = {};
+  const pathRenames = {};
+
+  // Path renames first
+  for (const httpPath in spec3.paths) {
+    const pathSpec = spec3.paths[httpPath];
+    for (const httpMethod in pathSpec) {
+      if (!['parameters'].includes(httpMethod)) {
+        const endpoint = spec3.paths[httpPath][httpMethod];
+        const operationId = methodRenamesNew2Old[endpoint.operationId] ?? endpoint.operationId;
+        const pathParamsRenames = pathParamsRenamesNew2Old[operationId];
+        if (pathParamsRenames) {
+          let newHttpPath = httpPath;
+          for (const oldKey in pathParamsRenames) {
+            const newKey = pathParamsRenames[oldKey];
+            newHttpPath = newHttpPath.replace('{' + oldKey + '}', '{' + newKey + '}');
+            pathRenames[httpPath] = newHttpPath;
+          }
+          for (let parameter of [...(pathSpec.parameters ?? []), ...(endpoint.parameters ?? [])]) {
+            if (parameter['$ref']) {
+              const refParamKey = parameter['$ref'].replace('#/components/parameters/', '');
+              parameter = spec3.components.parameters[refParamKey];
+            }
+            if (pathParamsRenames[parameter.name]) {
+              pathParameterRenames[parameter.name] = pathParamsRenames[parameter.name];
+              parameter.name = pathParamsRenames[parameter.name];
+            }
+          }
+        }
+      }
+    }
+  }
+  // Apply path renames
+  const origPaths = spec3.paths;
+  const origPathKeys = Object.keys(origPaths);
+  spec3.paths = {};
+  for (const k of origPathKeys) {
+    const key = pathRenames[k] ?? k;
+    spec3.paths[key] = origPaths[k];
+  }
 
   for (const httpPath in spec3.paths) {
     for (const httpMethod in spec3.paths[httpPath]) {
@@ -106,6 +151,11 @@ function patchSpec3(spec3) {
               apiTagChanges[JSON.stringify(oldTags)] = newTags;
             }
           }
+        }
+        // Method rename
+        if (methodRenamesNew2Old[endpoint.operationId]) {
+          operationRenames[endpoint.operationId] = methodRenamesNew2Old[endpoint.operationId];
+          endpoint.operationId = methodRenamesNew2Old[endpoint.operationId];
         }
         // Modify request
         if (endpoint?.requestBody?.content) {
@@ -367,6 +417,8 @@ function patchSpec3(spec3) {
     ffAmends,
     customDescriminatorsForEndpoints,
     apiTagChanges,
+    operationRenames,
+    pathParameterRenames,
   };
 }
 
@@ -386,7 +438,8 @@ async function main() {
 
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
-    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges
+    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges,
+    operationRenames, pathParameterRenames, pathRenames,
   } = patchSpec3(spec3);
 
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -400,6 +453,9 @@ async function main() {
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
+  console.log('API path renames: ', pathRenames);
+  console.log('API operationId renames: ', operationRenames);
+  console.log('API path parameter renames: ', pathParameterRenames);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1
