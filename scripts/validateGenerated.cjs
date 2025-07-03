@@ -79,9 +79,9 @@ function parseGeneratedClient() {
             const regexMethod = /makeRequestContext\(path, .*HttpMethodEnum\.(\w+),/;
             const methodMatch = text.match(regexMethod);
             if (methodMatch) {
-              const method = methodMatch[1].toLowerCase();
+              const httpMethod = methodMatch[1].toLowerCase();
               Object.assign(apiMeta, {
-                method,
+                httpMethod,
               });
             }
 
@@ -103,17 +103,16 @@ function parseGeneratedClient() {
                   queryParams.push(JSON.parse(m[1]));
                 }
               }
-              const maybeBodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p));
-              if (apiMeta.method && apiMeta.method !== 'get' && maybeBodyParams.length > 1) {
-                console.warn(`! Can't detect single body param for ${className}.${methodName}:`, maybeBodyParams);
+              const bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p));
+              if (apiMeta.httpMethod && apiMeta.httpMethod !== 'get' && bodyParams.length > 1) {
+                console.warn(`! Detected multiple body params for ${className}.${methodName}:`, bodyParams);
               }
-              const bodyParam = maybeBodyParams.length === 1 ? maybeBodyParams[0] : undefined;
               Object.assign(apiMeta, {
                 path,
                 starPath,
                 pathParams,
                 queryParams,
-                bodyParam,
+                bodyParams,
               });
             }
           }
@@ -154,7 +153,7 @@ const getSpec3Meta = () => {
     for (const httpMethod in spec3.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
-        for (const tag of endpoint.tags) {
+        for (const tag of endpoint.tags || []) {
           const className = tag + 'Api';
           if (!apis[className]) {
             apis[className] = {};
@@ -173,8 +172,8 @@ const getSpec3Meta = () => {
             for (let param of endpoint.parameters) {
               let refSchemaKey;
               if (param?.['$ref']) {
-                refSchemaKey = param['$ref'].replace('#/components/schemas/', '');
-                param = spec3.components.schemas[refSchemaKey];
+                refSchemaKey = param['$ref'].replace(/#\/components\/(parameters|schemas)\//, '');
+                param = spec3.components.parameters[refSchemaKey] ?? spec3.components.schemas[refSchemaKey];
               }
               let paramName = param?.['name'];
               if (!paramName) {
@@ -193,28 +192,44 @@ const getSpec3Meta = () => {
             }
           }
           // Process request body
-          let bodyParam;
+          let bodyParams;
           if (endpoint.requestBody?.content) {
-            for (const contentType in endpoint.requestBody.content) {
-              const typedContent = endpoint.requestBody.content[contentType];
-              if (typedContent?.schema) {
-                let schema = typedContent.schema;
-                let refSchemaKey;
-                let isArray = schema['type'] === 'array';
+            const contentTypes = Object.keys(endpoint.requestBody.content);
+            const contentType = contentTypes[0];
+            const typedContent = endpoint.requestBody.content[contentType];
+            if (typedContent?.schema) {
+              let schema = typedContent.schema;
+              let refSchemaKey;
+              let isArray = schema['type'] === 'array';
+              if (isArray) {
+                schema = schema['items'];
+              }
+              if (schema['$ref']) {
+                refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+              }
+              if (refSchemaKey) {
                 if (isArray) {
-                  schema = schema['items'];
-                }
-                if (schema['$ref']) {
-                  refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
-                }
-                if (refSchemaKey) {
-                  bodyParam = refSchemaKey;
-                  if (isArray) {
-                    bodyParam = `Array<${bodyParam}>`;
-                  }
+                  bodyParams = [`Array<${refSchemaKey}>`];
                 } else {
-                  console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentType})`, typedContent);
+                  bodyParams = [refSchemaKey];
                 }
+              }
+              if (!bodyParams && schema['oneOf']) {
+                // example: updateDefaultProvisioningConnectionForApplication
+                bodyParams = [`${methodName}Request`];
+              }
+              if (!bodyParams && contentTypes.includes('application/x-x509-ca-cert')) {
+                // example: publishCsrFromApplication
+                bodyParams = ['body'];
+              }
+              if (!bodyParams && contentType === 'multipart/form-data' && schema['type'] === 'object' && schema['properties']) {
+                bodyParams = Object.keys(schema['properties']);
+                if (httpMethod !== 'get' && bodyParams.length > 1) {
+                  console.warn(`! Detected multiple body params for ${className}.${methodName}:`, bodyParams);
+                }
+              }
+              if (!bodyParams) {
+                console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, schema);
               }
             }
           }
@@ -241,8 +256,9 @@ const getSpec3Meta = () => {
                     if (isArray) {
                       returnType = `Array<${returnType}>`;
                     }
-                  } else {
-                    console.warn(`! Can't detect response name for ${className}.${methodName} (${contentType})`, typedContent);
+                  }
+                  if (!returnType) {
+                    console.warn(`! Can't detect response type for ${className}.${methodName} (${contentType})`, schema);
                   }
                 }
               }
@@ -250,11 +266,12 @@ const getSpec3Meta = () => {
           }
 
           apis[className][methodName] = {
+            httpMethod,
             path,
             starPath,
             pathParams,
             queryParams,
-            bodyParam,
+            bodyParams,
             returnType,
           };
         }
@@ -278,7 +295,40 @@ function findUnusedApis(generatedApis, usedApiClasses) {
 }
 
 function findApiDiffs(specApis, generatedApis) {
-
+  for (const className in generatedApis) {
+    for (const methodName in generatedApis[className]) {
+      const generatedMethod = generatedApis[className][methodName];
+      let specMethod = specApis?.[className]?.[methodName];
+      let classRename, methodRename;
+      if (!specMethod) {
+        for (const specClassName in specApis) {
+          for (const specMethodName in specApis[specClassName]) {
+            const maybeMethod = specApis[specClassName][specMethodName];
+            if (maybeMethod.starPath === generatedMethod.starPath && maybeMethod.httpMethod === generatedMethod.httpMethod) {
+              specMethod = maybeMethod;
+              if (specClassName !== className) {
+                classRename = [className, specClassName];
+              }
+              if (specMethodName !== methodName) {
+                methodRename = [methodName, specMethodName];
+              }
+              break;
+            }
+          }
+          if (specMethod) {
+            break;
+          }
+        }
+      }
+      if (!specMethod && generatedMethod.starPath) {
+        console.warn(`! Can't find correspondent method in spec for ${className}.${methodName}`, generatedMethod);
+        //todo: res
+      } else if (classRename || methodRename) {
+        //todo: res
+        console.log('Rename: ', {classRename, methodRename});
+      }
+    }
+  }
 }
 
 
