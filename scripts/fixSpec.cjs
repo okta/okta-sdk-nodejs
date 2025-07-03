@@ -6,11 +6,16 @@ const yaml = require('js-yaml');
 const { apiConsolidation } = require('./mappings/apiConsolidation.cjs');
 const { methodRenames } = require('./mappings/methodRenames.cjs');
 const { pathParamsRenames } = require('./mappings/pathParamsRenames.cjs');
+const { bodyNameRenames } = require('./mappings/bodyNameRenames.cjs');
 
 const methodRenamesNew2Old = Object.fromEntries(Object.entries(methodRenames).map(a => a.reverse()));
 const pathParamsRenamesNew2Old = {};
 for (const opId in pathParamsRenames) {
   pathParamsRenamesNew2Old[opId] = Object.fromEntries(Object.entries(pathParamsRenames[opId]).map(a => a.reverse()));
+}
+const bodyNameRenamesNew2Old = {};
+for (const opId in bodyNameRenames) {
+  bodyNameRenamesNew2Old[opId] = Object.fromEntries(Object.entries(bodyNameRenames[opId]).map(a => a.reverse()));
 }
 
 // Some schemas for reponse are missing discriminators
@@ -92,6 +97,7 @@ function patchSpec3(spec3) {
   const operationRenames = {};
   const pathParameterRenames = {};
   const pathRenames = {};
+  const bodyNameRenames = {};
 
   // Path renames first
   for (const httpPath in spec3.paths) {
@@ -106,7 +112,9 @@ function patchSpec3(spec3) {
           for (const oldKey in httpPathParamsRenames) {
             const newKey = httpPathParamsRenames[oldKey];
             newHttpPath = newHttpPath.replace('{' + oldKey + '}', '{' + newKey + '}');
-            pathRenames[httpPath] = newHttpPath;
+            if (httpPath !== newHttpPath) {
+              pathRenames[httpPath] = newHttpPath;
+            }
           }
           for (let parameter of [...(pathSpec.parameters ?? []), ...(endpoint.parameters ?? [])]) {
             let refParamKey;
@@ -123,6 +131,10 @@ function patchSpec3(spec3) {
               parameter.name = httpPathParamsRenames[parameter.name];
             }
           }
+        }
+        const bodyNameRename = bodyNameRenamesNew2Old[operationId];
+        if (bodyNameRename) {
+          endpoint['x-codegen-request-body-name'] = Object.values(bodyNameRename)[0];
         }
       }
     }
@@ -428,6 +440,8 @@ function patchSpec3(spec3) {
     apiTagChanges,
     operationRenames,
     pathParameterRenames,
+    pathRenames,
+    bodyNameRenames,
   };
 }
 
@@ -448,7 +462,7 @@ async function main() {
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
     fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges,
-    operationRenames, pathParameterRenames, pathRenames,
+    operationRenames, pathParameterRenames, pathRenames, bodyNameRenames,
   } = patchSpec3(spec3);
 
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -465,6 +479,7 @@ async function main() {
   console.log('API path renames: ', pathRenames);
   console.log('API operationId renames: ', operationRenames);
   console.log('API path parameter renames: ', pathParameterRenames);
+  console.log('API body name renames: ', bodyNameRenames);
 
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1

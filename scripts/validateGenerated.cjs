@@ -404,7 +404,7 @@ function findApiDiffs(specApis, generatedApis) {
             };
           }
         }
-        if (JSON.stringify(specMethod.bodyParams) !== JSON.stringify(generatedMethod.bodyParams)) {
+        if (JSON.stringify(specMethod.bodyParams) !== JSON.stringify(generatedMethod.bodyParams) && !!generatedMethod.bodyParams) {
           bodyNameRenames[methodName] = {};
           bodyNameRenames[methodName][generatedMethod.bodyParams?.[0]] = specMethod.bodyParams?.[0];
         }
@@ -459,14 +459,14 @@ async function main() {
   if (Object.keys(pathParamsRenames).length) {
     console.log('Breaking changes to path params (old -> new):');
     console.log(pathParamsRenames);
+    console.log('To make changes to path parameter names non-breaking please copy this mapping to scripts/mappings/pathParamsRenames.cjs before running "yarn build"');
     console.log('\n-----------\n');
-    // TODO: generate mapping - for {name} in path
   }
   if (Object.keys(bodyNameRenames).length) {
-    console.log('Breaking changes to body parameter type (old -> new):');
+    console.log('Breaking changes to body parameter name (old -> new):');
     console.log(bodyNameRenames);
+    console.log('To make changes to body parameter names non-breaking please copy this mapping to scripts/mappings/bodyNameRenames.cjs before running "yarn build"');
     console.log('\n-----------\n');
-    // TODO: generate mapping - for x-codegen-request-body-name
   }
   if (Object.keys(queryParamDiffs).length) {
     console.log('Possibly breaking changes to query params (old -> new):');
