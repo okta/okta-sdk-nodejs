@@ -5,7 +5,6 @@ const methodRenames = {
   getOrgContactTypes: 'listOrgContactTypes',
   updateOrgHideOktaUIFooter: 'setOrgHideOktaUIFooter',
   updateOrgShowOktaUIFooter: 'setOrgShowOktaUIFooter',
-  addResourceSetResource: 'addResourceSetResources',
   listRoleSubscriptions: 'listSubscriptionsRole',
   listRoleSubscriptionsByNotificationType: 'getSubscriptionsNotificationTypeRole',
   listUserSubscriptions: 'listSubscriptionsUser',
