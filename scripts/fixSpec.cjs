@@ -116,19 +116,23 @@ function patchSpec3(spec3) {
               pathRenames[httpPath] = newHttpPath;
             }
           }
-          for (let parameter of [...(pathSpec.parameters ?? []), ...(endpoint.parameters ?? [])]) {
-            let refParamKey;
-            if (parameter['$ref']) {
-              refParamKey = parameter['$ref'].replace('#/components/parameters/', '');
-              parameter = spec3.components.parameters[refParamKey];
-            }
-            if (httpPathParamsRenames[parameter.name]) {
-              if (refParamKey) {
-                pathParameterRenames['#/components/parameters/' + refParamKey] = [parameter.name, httpPathParamsRenames[parameter.name]];
+          for (let parameter of pathSpec.parameters ?? []) {
+            const refKey = parameter['$ref'].replace('#/components/parameters/', '');
+            const refParam = spec3.components.parameters[refKey];
+            if (httpPathParamsRenames[refParam.name]) {
+              const newName = httpPathParamsRenames[refParam.name];
+              const refRename = pathParameterRenames[refKey];
+              if (refRename && refRename[0] === refParam.name && refRename[1] === newName) {
+                const newRefKey = refRename[2];
+                parameter['$ref'] = '#/components/parameters/' + newRefKey;
               } else {
-                pathParameterRenames[httpPath] = [parameter.name, httpPathParamsRenames[parameter.name]];
+                const newRefParam = _.clone(refParam);
+                newRefParam.name = newName;
+                const newRefKey = refKey + '_' + newName;
+                spec3.components.parameters[newRefKey] = newRefParam;
+                parameter['$ref'] = '#/components/parameters/' + newRefKey;
+                pathParameterRenames[refKey] = [refParam.name, httpPathParamsRenames[refParam.name], newRefKey];
               }
-              parameter.name = httpPathParamsRenames[parameter.name];
             }
           }
         }
