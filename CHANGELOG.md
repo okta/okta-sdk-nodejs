@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 8.0.0
+
+### Features
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator and latest OpenAPI spec (as on 20 June 2025)
+
 # 7.1.1
 
 ### Fixes

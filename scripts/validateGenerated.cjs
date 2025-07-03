@@ -225,11 +225,7 @@ const getSpec3Meta = () => {
                 refSchemaKey = schema['$ref'].replace('#/components/schemas/', '').replace('#/components/requestBodies/', '');
               }
               if (refSchemaKey) {
-                if (isArray) {
-                  bodyParams = [`Array<${refSchemaKey}>`];
-                } else {
-                  bodyParams = [refSchemaKey];
-                }
+                bodyParams = [refSchemaKey];
               }
               if (!bodyParams && schema['oneOf']) {
                 // example: updateDefaultProvisioningConnectionForApplication
@@ -253,6 +249,7 @@ const getSpec3Meta = () => {
                 endpoint['x-codegen-request-body-name']
               ];
             }
+            bodyParams = bodyParams.map(_.lowerFirst);
             if (!bodyParams) {
               console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, typedContent?.schema);
             }
@@ -385,10 +382,12 @@ function findApiDiffs(specApis, generatedApis) {
           methodRenames[methodRename.methodName] = methodRename.specMethodName;
         }
         if (JSON.stringify(specMethod.pathParams) !== JSON.stringify(generatedMethod.pathParams)) {
-          pathParamsRenames[methodName] = {};
           generatedMethod.pathParams.map((existingParam, i) => {
             const specParam = specMethod.pathParams[i];
             if (existingParam !== specParam) {
+              if (!pathParamsRenames[methodName]) {
+                pathParamsRenames[methodName] = {};
+              }
               pathParamsRenames[methodName][existingParam] = specParam;
             }
           });

@@ -1,4 +1,5 @@
 // Please run `yarn build:validateGenerated` to fill this mapping
+// Keep it empty if you want to make breaking changes
 const methodRenames = {
   // old -> new
   createGroup: 'addGroup',

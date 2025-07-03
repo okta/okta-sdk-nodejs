@@ -973,9 +973,12 @@ const client: ApiClient = new ApiClient({
 
 ## Migrating between versions
 
-### From 7.1 to 7.2
+### From 7.x to 8.0
 
-#### API changes
+#### Breaking changes
+
+- Use `ApiClient` instead of `Client`
+- All parameters now use `lowerCamelCase` convention (eg. `orgSetting` instead of `OrgSetting`)
 
 ```diff
 
