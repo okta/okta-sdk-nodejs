@@ -239,7 +239,7 @@ const getSpec3Meta = () => {
                 // examples: uploadYubikeyOtpTokenSeed, uploadBrandThemeBackgroundImage
                 bodyParams = Object.keys(schema['properties']);
                 if (httpMethod !== 'get' && bodyParams.length > 1) {
-                  console.warn(`! Detected multiple body params for ${className}.${methodName} in spec:`, bodyParams);
+                  console.warn(`Detected multiple body params for ${className}.${methodName} in spec:`, bodyParams);
                 }
               }
             }
@@ -439,40 +439,49 @@ async function main() {
 
   console.log('\n');
   if (unusedApis.length) {
-    console.log('Unused (generated but not exported) APIs: ', unusedApis);
+    console.log('Unused (generated but not exported) APIs:');
+    console.log(unusedApis);
     console.log('Please add those APIs to src/client.js and src/types/client.d.ts');
     console.log('\n-----------\n');
   }
   if (Object.keys(classRenames).length) {
-    console.log('Breaking class renames (new -> old): ', classRenames);
-    console.log('To make changes to class names non-breaking please edit scripts/mappings/apiConsolidation.cjs');
+    console.log('Breaking class renames (new -> old):');
+    console.log(classRenames);
+    console.log('To make changes to class names non-breaking please edit scripts/mappings/apiConsolidation.cjs before running "yarn build"');
     console.log('\n-----------\n');
   }
   if (Object.keys(methodRenames).length) {
-    console.log('Breaking method renames (new -> old): ', methodRenames);
+    console.log('Breaking method renames (new -> old):');
+    console.log(methodRenames);
+    console.log('To make changes to method names non-breaking please copy this mapping to scripts/mappings/maethodRenames.cjs before running "yarn build"');
     console.log('\n-----------\n');
     // TODO: generate mapping - for operationId
   }
   if (Object.keys(pathParamsRenames).length) {
-    console.log('Breaking changes to path params (old -> new): ', pathParamsRenames);
+    console.log('Breaking changes to path params (old -> new):');
+    console.log(pathParamsRenames);
     console.log('\n-----------\n');
     // TODO: generate mapping - for {name} in path
   }
   if (Object.keys(bodyNameRenames).length) {
-    console.log('Breaking changes to body parameter type (old -> new): ', bodyNameRenames);
+    console.log('Breaking changes to body parameter type (old -> new):');
+    console.log(bodyNameRenames);
     console.log('\n-----------\n');
     // TODO: generate mapping - for x-codegen-request-body-name
   }
   if (Object.keys(queryParamDiffs).length) {
-    console.log('Possibly breaking changes to query params (old -> new): ', queryParamDiffs);
+    console.log('Possibly breaking changes to query params (old -> new):');
+    console.log(queryParamDiffs);
     console.log('\n-----------\n');
   }
   if (Object.keys(returnTypeDiffs).length) {
-    console.log('Possibly breaking changes to return types (old -> new): ', returnTypeDiffs);
+    console.log('Possibly breaking changes to return types (old -> new):');
+    console.log(returnTypeDiffs);
     console.log('\n-----------\n');
   }
   if (removedApis.length) {
-    console.log('!!! Note that there are removed methods: ', removedApis);
+    console.log('!!! Note that there are removed methods: \n');
+    console.log(removedApis);
   }
 }
 
