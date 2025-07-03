@@ -1,6 +1,6 @@
 // Please run `yarn build:validateGenerated` to fill this mapping
 const pathParamsRenames = {
-  // old -> new
+  // values are old -> new
   getFeatureForApplication: { name: 'featureName' },
   updateFeatureForApplication: { name: 'featureName' },
   activateGroupRule: { ruleId: 'groupRuleId' },

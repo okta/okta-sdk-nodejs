@@ -6,8 +6,12 @@ const yaml = require('js-yaml');
 const { apiConsolidation } = require('./mappings/apiConsolidation.cjs');
 const { methodRenames } = require('./mappings/methodRenames.cjs');
 const { pathParamsRenames } = require('./mappings/pathParamsRenames.cjs');
+
 const methodRenamesNew2Old = Object.fromEntries(Object.entries(methodRenames).map(a => a.reverse()));
-const pathParamsRenamesNew2Old = Object.fromEntries(Object.entries(pathParamsRenames).map(a => a.reverse()));
+const pathParamsRenamesNew2Old = {};
+for (const opId in pathParamsRenames) {
+  pathParamsRenamesNew2Old[opId] = Object.fromEntries(Object.entries(pathParamsRenames[opId]).map(a => a.reverse()));
+}
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
@@ -96,22 +100,27 @@ function patchSpec3(spec3) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
         const operationId = methodRenamesNew2Old[endpoint.operationId] ?? endpoint.operationId;
-        const pathParamsRenames = pathParamsRenamesNew2Old[operationId];
-        if (pathParamsRenames) {
+        const httpPathParamsRenames = pathParamsRenamesNew2Old[operationId];
+        if (httpPathParamsRenames) {
           let newHttpPath = httpPath;
-          for (const oldKey in pathParamsRenames) {
-            const newKey = pathParamsRenames[oldKey];
+          for (const oldKey in httpPathParamsRenames) {
+            const newKey = httpPathParamsRenames[oldKey];
             newHttpPath = newHttpPath.replace('{' + oldKey + '}', '{' + newKey + '}');
             pathRenames[httpPath] = newHttpPath;
           }
           for (let parameter of [...(pathSpec.parameters ?? []), ...(endpoint.parameters ?? [])]) {
+            let refParamKey;
             if (parameter['$ref']) {
-              const refParamKey = parameter['$ref'].replace('#/components/parameters/', '');
+              refParamKey = parameter['$ref'].replace('#/components/parameters/', '');
               parameter = spec3.components.parameters[refParamKey];
             }
-            if (pathParamsRenames[parameter.name]) {
-              pathParameterRenames[parameter.name] = pathParamsRenames[parameter.name];
-              parameter.name = pathParamsRenames[parameter.name];
+            if (httpPathParamsRenames[parameter.name]) {
+              if (refParamKey) {
+                pathParameterRenames['#/components/parameters/' + refParamKey] = [parameter.name, httpPathParamsRenames[parameter.name]];
+              } else {
+                pathParameterRenames[httpPath] = [parameter.name, httpPathParamsRenames[parameter.name]];
+              }
+              parameter.name = httpPathParamsRenames[parameter.name];
             }
           }
         }
