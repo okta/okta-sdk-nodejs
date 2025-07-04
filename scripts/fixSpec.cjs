@@ -603,7 +603,7 @@ function loadSpec(yamlFile) {
 
   // `src/client.js` exports `Client` class which is a base class for performing API requests
   // But spec also have `Client` model which is not hoever yet used (it is used in `oauth.yaml` spec only)
-  // If it's not used we can safely delete `Client` model to prevent breaking chnages
+  // If it's not used we can safely delete `Client` model to prevent breaking changes
   const doesSpecUseClientSchema = yamlStrFixed.indexOf('\'#/components/schemas/Client\'') !== -1;
   if (!doesSpecUseClientSchema && isBackwardCompatibility) {
     delete spec3.components.schemas['Client'];

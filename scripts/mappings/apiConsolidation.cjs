@@ -10,9 +10,15 @@ const apiConsolidation = {
       'ApplicationConnections',
       'ApplicationTokens',
       'ApplicationGrants',
-      'ApplicationSSOCredentialKey',
       'ApplicationFeatures',
       'ApplicationLogos',
+      'ApplicationCWOConnections',
+      'ApplicationExpressConfiguration',
+      'ApplicationPolicies',
+      'ApplicationSSO',
+      'ApplicationSSOCredentialKey',
+      'ApplicationSSOCredentialOAuth2ClientAuth',
+      'ApplicationSSOFederatedClaims',
     ]
   },
   AuthorizationServer: {
@@ -23,6 +29,8 @@ const apiConsolidation = {
       'AuthorizationServerKeys',
       'AuthorizationServerPolicies',
       'AuthorizationServerRules',
+      'AuthorizationServerAssoc',
+      'AuthorizationServerClients',
     ]
   },
   Customization: {
@@ -30,17 +38,22 @@ const apiConsolidation = {
       'Brands',
       'Themes',
       'CustomTemplates',
+      'EmailCustomization',
+      'CustomPages',
     ]
   },
   RoleAssignment: {
     apis: [
       'RoleAssignmentAUser',
       'RoleAssignmentBGroup',
+      'RoleAssignmentClient',
     ]
   },
   RoleTarget: {
     apis: [
       'RoleBTargetAdmin',
+      'RoleBTargetBGroup',
+      'RoleBTargetClient',
     ]
   },
   Group: {
@@ -67,6 +80,9 @@ const apiConsolidation = {
       'UserGrant',
       'IdentityProviderUsers',
       'UserLinkedObject',
+      'UserClassification',
+      'UserOAuth',
+      'UserRisk',
     ]
   },
   OrgSetting: {
@@ -76,6 +92,28 @@ const apiConsolidation = {
       'OrgSettingCustomization',
       'OrgSettingCommunication',
       'OrgSettingSupport',
+      'OrgSettingAdmin',
+      'OrgSettingMetadata',
+    ]
+  },
+  ResourceSet: {
+    apis: [
+      'RoleCResourceSet',
+      'RoleCResourceSetResource',
+      'RoleDResourceSetBinding',
+      'RoleDResourceSetBindingMember',
+    ]
+  },
+  Integrations: {
+    apis: [
+      'ApiServiceIntegrations',
+      'YourOinIntegrations',
+    ]
+  },
+  Role: {
+    apis: [
+      'RoleECustom',
+      'RoleECustomPermission',
     ]
   },
 };

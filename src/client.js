@@ -46,6 +46,36 @@ const {
   CustomDomainApi,
   DeviceApi,
 
+  AttackProtectionApi,
+  CAPTCHAApi,
+  DeviceAccessApi,
+  DeviceIntegrationsApi,
+  DevicePostureCheckApi,
+  DirectoriesIntegrationApi,
+  DisasterRecoveryApi,
+  EmailDomainApi,
+  EmailServerApi,
+  GovernanceBundleApi,
+  GroupOwnerApi,
+  HookKeyApi,
+  IdentitySourceApi,
+  LogStreamApi,
+  OktaApplicationSettingsApi,
+  OktaPersonalSettingsApi,
+  OrgCreatorApi,
+  PrivilegedResourceApi,
+  RateLimitSettingsApi,
+  RealmApi,
+  RealmAssignmentApi,
+  RiskEventApi,
+  RiskProviderApi,
+  SSFReceiverApi,
+  SSFSecurityEventTokenApi,
+  SSFTransmitterApi,
+  ServiceAccountApi,
+  UISchemaApi,
+  WebAuthnPreregistrationApi,
+
   // consolidated apis
   CustomizationApi,
   RoleAssignmentApi,
@@ -56,6 +86,9 @@ const {
   AuthorizationServerApi,
   IdentityProviderApi,
   UserApi,
+  ResourceSetApi,
+  IntegrationsApi,
+  RoleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -142,6 +175,9 @@ class Client {
     this.identityProviderApi = new IdentityProviderApi(configuration);
     this.userApi = new UserApi(configuration);
     this.orgSettingApi = new OrgSettingApi(configuration);
+    this.resourceSetApi = new ResourceSetApi(configuration);
+    this.integrationsApi = new IntegrationsApi(configuration);
+    this.roleApi = new RoleApi(configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -168,6 +204,36 @@ class Client {
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
+
+    this.attackProtectionApi = new AttackProtectionApi(configuration);
+    this.captchaApi = new CAPTCHAApi(configuration);
+    this.deviceAccessApi = new DeviceAccessApi(configuration);
+    this.deviceIntegrationsApi = new DeviceIntegrationsApi(configuration);
+    this.devicePostureCheckApi = new DevicePostureCheckApi(configuration);
+    this.directoriesIntegrationApi = new DirectoriesIntegrationApi(configuration);
+    this.disasterRecoveryApi = new DisasterRecoveryApi(configuration);
+    this.emailDomainApi = new EmailDomainApi(configuration);
+    this.emailServerApi = new EmailServerApi(configuration);
+    this.governanceBundleApi = new GovernanceBundleApi(configuration);
+    this.groupOwnerApi = new GroupOwnerApi(configuration);
+    this.hookKeyApi = new HookKeyApi(configuration);
+    this.identitySourceApi = new IdentitySourceApi(configuration);
+    this.logStreamApi = new LogStreamApi(configuration);
+    this.oktaApplicationSettingsApi = new OktaApplicationSettingsApi(configuration);
+    this.oktaPersonalSettingsApi = new OktaPersonalSettingsApi(configuration);
+    this.orgCreatorApi = new OrgCreatorApi(configuration);
+    this.privilegedResourceApi = new PrivilegedResourceApi(configuration);
+    this.rateLimitSettingsApi = new RateLimitSettingsApi(configuration);
+    this.realmApi = new RealmApi(configuration);
+    this.realmAssignmentApi = new RealmAssignmentApi(configuration);
+    this.riskEventApi = new RiskEventApi(configuration);
+    this.riskProviderApi = new RiskProviderApi(configuration);
+    this.ssfReceiverApi = new SSFReceiverApi(configuration);
+    this.ssfSecurityEventTokenApi = new SSFSecurityEventTokenApi(configuration);
+    this.ssfTransmitterApi = new SSFTransmitterApi(configuration);
+    this.serviceAccountApi = new ServiceAccountApi(configuration);
+    this.uiSchemaApi = new UISchemaApi(configuration);
+    this.webAuthnPreregistrationApi = new WebAuthnPreregistrationApi(configuration);
   }
 }
 

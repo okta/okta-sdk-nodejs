@@ -9,6 +9,7 @@ Please put the latest version of Okta Open API spec into `spec/management.yaml` 
 First run
 
 ```sh
+yarn build:fixSpec # run this if you want to keep changes backward compatible
 yarn build:validateGenerated
 ```
 
@@ -16,7 +17,7 @@ This util will show you breaking and possibly breaking changes like API class / 
 
 It will show you instructions on keeping changes non-breaking like editing files in `scripts/mappings` to keep old names for backward compatibility.
 
-If you sure you want to use breaking chnages please keep objects in `scripts/mappings/*.cjs` empty before building.
+If you sure you want to use breaking changes please keep objects in `scripts/mappings/*.cjs` empty before building.
 
 To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 

@@ -41,6 +41,36 @@ import {
   CustomDomainApi,
   DeviceApi,
 
+  AttackProtectionApi,
+  CAPTCHAApi,
+  DeviceAccessApi,
+  DeviceIntegrationsApi,
+  DevicePostureCheckApi,
+  DirectoriesIntegrationApi,
+  DisasterRecoveryApi,
+  EmailDomainApi,
+  EmailServerApi,
+  GovernanceBundleApi,
+  GroupOwnerApi,
+  HookKeyApi,
+  IdentitySourceApi,
+  LogStreamApi,
+  OktaApplicationSettingsApi,
+  OktaPersonalSettingsApi,
+  OrgCreatorApi,
+  PrivilegedResourceApi,
+  RateLimitSettingsApi,
+  RealmApi,
+  RealmAssignmentApi,
+  RiskEventApi,
+  RiskProviderApi,
+  SSFReceiverApi,
+  SSFSecurityEventTokenApi,
+  SSFTransmitterApi,
+  ServiceAccountApi,
+  UISchemaApi,
+  WebAuthnPreregistrationApi,
+
   // consolidated apis
   CustomizationApi,
   RoleAssignmentApi,
@@ -51,6 +81,9 @@ import {
   GroupApi,
   UserApi,
   IdentityProviderApi,
+  ResourceSetApi,
+  IntegrationsApi,
+  RoleApi,
 } from './generated';
 
 export declare class Client {
@@ -77,6 +110,9 @@ export declare class Client {
   identityProviderApi: IdentityProviderApi;
   userApi: UserApi;
   orgSettingApi: OrgSettingApi;
+  resourceSetApi: ResourceSetApi;
+  integrationsApi: IntegrationsApi;
+  roleApi: RoleApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -103,4 +139,34 @@ export declare class Client {
   deviceAssuranceApi: DeviceAssuranceApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
+
+  attackProtectionApi: AttackProtectionApi;
+  captchaApi: CAPTCHAApi;
+  deviceAccessApi: DeviceAccessApi;
+  deviceIntegrationsApi: DeviceIntegrationsApi;
+  devicePostureCheckApi: DevicePostureCheckApi;
+  directoriesIntegrationApi: DirectoriesIntegrationApi;
+  disasterRecoveryApi: DisasterRecoveryApi;
+  emailDomainApi: EmailDomainApi;
+  emailServerApi: EmailServerApi;
+  governanceBundleApi: GovernanceBundleApi;
+  groupOwnerApi: GroupOwnerApi;
+  hookKeyApi: HookKeyApi;
+  identitySourceApi: IdentitySourceApi;
+  logStreamApi: LogStreamApi;
+  oktaApplicationSettingsApi: OktaApplicationSettingsApi;
+  oktaPersonalSettingsApi: OktaPersonalSettingsApi;
+  orgCreatorApi: OrgCreatorApi;
+  privilegedResourceApi: PrivilegedResourceApi;
+  rateLimitSettingsApi: RateLimitSettingsApi;
+  realmApi: RealmApi;
+  realmAssignmentApi: RealmAssignmentApi;
+  riskEventApi: RiskEventApi;
+  riskProviderApi: RiskProviderApi;
+  ssfReceiverApi: SSFReceiverApi;
+  ssfSecurityEventTokenApi: SSFSecurityEventTokenApi;
+  ssfTransmitterApi: SSFTransmitterApi;
+  serviceAccountApi: ServiceAccountApi;
+  uiSchemaApi: UISchemaApi;
+  webAuthnPreregistrationApi: WebAuthnPreregistrationApi;
 }
