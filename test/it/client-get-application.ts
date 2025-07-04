@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import {
   BookmarkApplication,
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
@@ -13,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

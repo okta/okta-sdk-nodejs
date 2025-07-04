@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {
   AuthorizationServer,
-  ApiClient,
+  Client,
   Collection,
   DefaultRequestExecutor,
   AuthorizationServerJsonWebKey as JsonWebKey,
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-credential`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

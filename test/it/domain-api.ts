@@ -1,13 +1,13 @@
 import {
   DefaultRequestExecutor,
-  ApiClient,
+  Client,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 
 const orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.logs.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

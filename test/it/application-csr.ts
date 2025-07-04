@@ -3,7 +3,7 @@ import utils = require('../utils');
 import forge = require('node-forge');
 import getMockApplication = require('./mocks/application-oidc');
 import {
-  ApiClient,
+  Client,
   Application,
   Collection,
   Csr,
@@ -18,7 +18,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-csr`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -63,10 +63,10 @@ const { ServerConfiguration } = require('./generated/servers');
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
  *
- * @class ApiClient
- * @extends {GeneratedApiClient}
+ * @class Client
+ * @extends {GeneratedClient}
  */
-class ApiClient {
+class Client {
   constructor(config) {
     const configLoader = new ConfigLoader();
     const clientConfig = Object.assign({}, config);
@@ -171,4 +171,4 @@ class ApiClient {
   }
 }
 
-module.exports = ApiClient;
+module.exports = Client;

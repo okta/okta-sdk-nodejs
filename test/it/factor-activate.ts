@@ -3,7 +3,7 @@ import speakeasy = require('speakeasy');
 import utils = require('../utils');
 import { expect } from 'chai';
 import {
-  ApiClient, TokenSoftwareTotp, DefaultRequestExecutor, Policy, User, UserFactor, CreateUserRequest, AuthenticatorEnrollmentPolicy
+  Client, TokenSoftwareTotp, DefaultRequestExecutor, Policy, User, UserFactor, CreateUserRequest, AuthenticatorEnrollmentPolicy
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -12,7 +12,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/factor-activate`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

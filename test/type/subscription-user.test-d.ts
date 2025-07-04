@@ -1,8 +1,8 @@
 import { expectType } from 'tsd';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { Subscription } from '../../src/types/generated/models/Subscription';
 
-const client = new ApiClient();
+const client = new Client();
 (async function () {
   const { value: subscription } = await (await client.subscriptionApi.listRoleSubscriptions({roleTypeOrRoleId: 'testAppId'})).next();
   expectType<Subscription | null>(subscription);

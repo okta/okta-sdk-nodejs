@@ -1,11 +1,11 @@
 import { expectType } from 'tsd';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { AgentPoolUpdate } from '../../src/types/generated/models/AgentPoolUpdate';
 import { AgentPoolUpdateSetting } from '../../src/types/generated/models/AgentPoolUpdateSetting';
 import { AgentPool } from '../../src/types/generated/models/AgentPool';
 import { Agent } from '../../src/types/generated/models/Agent';
 
-const client = new ApiClient();
+const client = new Client();
 (async function () {
 
   const agent: Agent = {

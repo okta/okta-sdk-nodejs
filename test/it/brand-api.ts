@@ -1,5 +1,5 @@
 import {
-  ApiClient,
+  Client,
   BrandRequest,
   UpdateThemeRequest,
 } from '@okta/okta-sdk-nodejs';
@@ -8,7 +8,7 @@ import { expect } from 'chai';
 
 import utils = require('../utils');
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

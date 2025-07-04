@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { ApiClient } from '@okta/okta-sdk-nodejs';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/subsctiption-role`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

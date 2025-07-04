@@ -3,7 +3,7 @@ import faker = require('@faker-js/faker');
 
 import {
   ApplicationGroupAssignment,
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application-group-assignment`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

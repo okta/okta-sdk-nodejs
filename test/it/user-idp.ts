@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  ApiClient,
+  Client,
   Collection,
   DefaultRequestExecutor,
   IdentityProvider,
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-idp`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

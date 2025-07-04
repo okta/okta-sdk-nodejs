@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { ApiClient, Application, SamlApplication } from '@okta/okta-sdk-nodejs';
+import { Client, Application, SamlApplication } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-provisioning-connection`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

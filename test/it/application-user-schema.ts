@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { ApiClient, Application, UserSchema, DefaultRequestExecutor, MemoryStore, UserSchemaPropertiesProfileItem } from '@okta/okta-sdk-nodejs';
+import { Client, Application, UserSchema, DefaultRequestExecutor, MemoryStore, UserSchemaPropertiesProfileItem } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-user-schema`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.schemas.read', 'okta.schemas.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

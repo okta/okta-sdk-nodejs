@@ -1,8 +1,8 @@
 import { expectType } from 'tsd';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { OAuth, TokenEndpointResponse } from '../../src/types/oauth';
 
-const oauthClient = new OAuth(new ApiClient());
+const oauthClient = new OAuth(new Client());
 expectType<Promise<TokenEndpointResponse>>(oauthClient.getAccessToken());
 expectType<string>(oauthClient.getJwt('https://foo/token'));
 expectType<void>(oauthClient.clearCachedAccessToken());

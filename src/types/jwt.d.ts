@@ -13,10 +13,10 @@
 import * as Rasha from 'rasha';
 import { Jwt } from 'njwt';
 
-import { ApiClient } from './client';
+import { Client } from './client';
 
 
-export function makeJwt(client: ApiClient, endpoint: string): Jwt;
+export function makeJwt(client: Client, endpoint: string): Jwt;
 export function getPemAndJwk(privateKey: string | Record<string, unknown>): Promise<{
   pem: string,
   jwk: Rasha.Jwk | Record<string, unknown>

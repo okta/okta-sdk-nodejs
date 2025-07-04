@@ -1,10 +1,10 @@
 import { expectError, expectType } from 'tsd';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
 import { Application } from '../../src/types/generated/models/Application';
 import { BookmarkApplication } from '../../src/types/generated/models/BookmarkApplication';
 
-const client = new ApiClient();
+const client = new Client();
 (async function () {
   // mandatory query parameters
   expectError(await client.policyApi.listPolicies({ }));

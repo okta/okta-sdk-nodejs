@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-delete-application-group-assignment`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

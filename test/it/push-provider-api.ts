@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import {
-  ApiClient, PushProvider,
+  Client, PushProvider,
 } from '@okta/okta-sdk-nodejs';
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

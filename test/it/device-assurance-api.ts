@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import {
-  ApiClient, DeviceAssurance, DeviceAssuranceIOSPlatform, DeviceAssuranceAndroidPlatformScreenLockType,
+  Client, DeviceAssurance, DeviceAssuranceIOSPlatform, DeviceAssuranceAndroidPlatformScreenLockType,
 } from '@okta/okta-sdk-nodejs';
 
 import getMockAssurancePolicy = require('./mocks/device-assurance-policy');
 
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

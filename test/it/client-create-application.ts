@@ -12,7 +12,7 @@ import {
   BookmarkApplicationSettings,
   BookmarkApplicationSettingsApplication,
   BrowserPluginApplication,
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   OAuthApplicationCredentials,
   OpenIdConnectApplication,
@@ -40,7 +40,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-create`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

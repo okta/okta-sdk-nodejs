@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Subscription, ApiClient, User } from '@okta/okta-sdk-nodejs';
+import { Subscription, Client, User } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const orgUser = process.env.ORG_USER;
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/subsctiption-user`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

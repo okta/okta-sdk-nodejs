@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {
   AgentPool,
-  ApiClient,
+  Client,
   Collection,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/agent-pools`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

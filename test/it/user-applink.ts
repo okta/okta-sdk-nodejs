@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Collection, DefaultRequestExecutor, ApiClient, User } from '@okta/okta-sdk-nodejs';
+import { Collection, DefaultRequestExecutor, Client, User } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockUser = require('./mocks/user-without-credentials');
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-applink`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

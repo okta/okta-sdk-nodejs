@@ -6,7 +6,7 @@ import {
   AuthorizationServerPolicyRuleRequest,
   AuthorizationServerPolicyRuleActions,
   AuthorizationServerPolicyRuleConditions,
-  ApiClient,
+  Client,
   Collection,
   DefaultRequestExecutor,
   TokenAuthorizationServerPolicyRuleAction
@@ -21,7 +21,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-policy`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

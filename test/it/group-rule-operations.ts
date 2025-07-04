@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { ApiClient, CreateGroupRuleRequest, DefaultRequestExecutor, GroupRule } from '@okta/okta-sdk-nodejs';
+import { Client, CreateGroupRuleRequest, DefaultRequestExecutor, GroupRule } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-rule-operations`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.groups.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

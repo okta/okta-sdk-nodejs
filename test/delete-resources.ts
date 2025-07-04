@@ -1,6 +1,6 @@
 
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor
 } from '..';
 import * as utils from './utils';
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
-import { ApiClient, DefaultRequestExecutor, Policy, Group, OktaSignOnPolicy } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, Group, OktaSignOnPolicy } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-lifecycle`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

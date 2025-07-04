@@ -1,6 +1,6 @@
 import { expectType } from 'tsd';
 import { Response } from 'node-fetch';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { RequestExecutor } from '../../src/types/request-executor';
 import { OAuth } from '../../src/types/oauth';
 import { RequestOptions } from '../../src/types/request-options';
@@ -9,7 +9,7 @@ import { Http } from '../../src/types/http';
 
 const httpClient = new Http({
   requestExecutor: new RequestExecutor(),
-  oauth: new OAuth(new ApiClient())
+  oauth: new OAuth(new Client())
 });
 expectType<Promise<Response>>(httpClient.delete('https://foo'));
 expectType<Promise<Record<string, unknown>>>(httpClient.getJson('https://foo'));

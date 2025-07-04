@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   LogEvent,
 } from '@okta/okta-sdk-nodejs';
@@ -12,7 +12,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.logs.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

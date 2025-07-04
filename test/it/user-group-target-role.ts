@@ -3,7 +3,7 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import utils = require('../utils');
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   AssignRoleRequest,
   CreateUserRequest,
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-group-target-role`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.users.manage', 'okta.groups.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

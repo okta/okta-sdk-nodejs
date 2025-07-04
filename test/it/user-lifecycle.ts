@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { ApiClient, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-lifecycle`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

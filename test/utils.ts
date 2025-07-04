@@ -1,5 +1,5 @@
 import {
-  ApiClient,
+  Client,
   User, Group, Role, StandardRole, CustomRole,
   UserGetSingleton,
   UserApiListUsersRequest,
@@ -36,7 +36,7 @@ interface AuthTransaction {
   sessionToken?: string;
 };
 
-function authenticateUser(client: ApiClient, userName: string, password: string) {
+function authenticateUser(client: Client, userName: string, password: string) {
   const data = {
     username: userName,
     password: password,
@@ -55,7 +55,7 @@ function validateGroup(group: Group, expectedGroup: Group) {
   expect(group.type).to.equal('OKTA_GROUP');
 }
 
-async function isUserInGroup(client: ApiClient, groupUser: User, group: Group) {
+async function isUserInGroup(client: Client, groupUser: User, group: Group) {
   let userPresent = false;
   const collection = await client.groupApi.listGroupUsers({
     groupId: group.id
@@ -69,7 +69,7 @@ async function isUserInGroup(client: ApiClient, groupUser: User, group: Group) {
   return userPresent;
 }
 
-async function waitTillUserInGroup(client: ApiClient, user: User, group: Group, condition: boolean) {
+async function waitTillUserInGroup(client: Client, user: User, group: Group, condition: boolean) {
   let userInGroup = await isUserInGroup(client, user, group);
   let timeOut = 0;
   while (userInGroup !== condition) {
@@ -105,7 +105,7 @@ async function waitTill(condition: () => Promise<boolean>): Promise<boolean> {
   return false;
 }
 
-async function deleteUser(user: User, client: ApiClient) {
+async function deleteUser(user: User, client: Client) {
   await client.userApi.deactivateUser({
     userId: user.id
   });
@@ -114,7 +114,7 @@ async function deleteUser(user: User, client: ApiClient) {
   });
 }
 
-async function isUserPresent(client: ApiClient, expectedUser: User, queryParameters: UserApiListUsersRequest) {
+async function isUserPresent(client: Client, expectedUser: User, queryParameters: UserApiListUsersRequest) {
   let userPresent = false;
   const collection = await client.userApi.listUsers(queryParameters);
   await collection.each(user => {
@@ -127,7 +127,7 @@ async function isUserPresent(client: ApiClient, expectedUser: User, queryParamet
   return userPresent;
 }
 
-async function isUserPresentByLogin(client: ApiClient, expectedUser: User) {
+async function isUserPresentByLogin(client: Client, expectedUser: User) {
   let userPresent = false;
   const collection = await client.userApi.listUsers({ search: `profile.login eq "${expectedUser.profile.login}"` });
   await collection.each(user => {
@@ -140,7 +140,7 @@ async function isUserPresentByLogin(client: ApiClient, expectedUser: User) {
   return userPresent;
 }
 
-async function isGroupPresent(client: ApiClient, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
+async function isGroupPresent(client: Client, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
   let groupPresent = false;
   const collection = await client.groupApi.listGroups(queryParameters);
   await collection.each(async group => {
@@ -153,7 +153,7 @@ async function isGroupPresent(client: ApiClient, expectedGroup: Group, queryPara
   return groupPresent;
 }
 
-async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClient) {
+async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) {
   let hasRole = false;
   await (await client.roleAssignmentApi.listAssignedRolesForUser({
     userId: user.id
@@ -167,7 +167,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: ApiClien
   return hasRole;
 }
 
-async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | StandardRole | CustomRole, client: ApiClient) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | StandardRole | CustomRole, client: Client) {
   let groupTargetPresent = false;
   const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 
@@ -182,7 +182,7 @@ async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | S
   return groupTargetPresent;
 }
 
-async function cleanupUser(client: ApiClient, user: User) {
+async function cleanupUser(client: Client, user: User) {
   if (!user.profile.login) {
     return;
   }
@@ -202,7 +202,7 @@ async function cleanupUser(client: ApiClient, user: User) {
   }
 }
 
-async function cleanupGroup(client: ApiClient, expectedGroup: Group) {
+async function cleanupGroup(client: Client, expectedGroup: Group) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
   await (await client.groupApi.listGroups(queryParameters)).each(async (group) => {
     expect(group).to.be.an.instanceof(Group);
@@ -218,7 +218,7 @@ async function cleanupGroup(client: ApiClient, expectedGroup: Group) {
   });
 }
 
-async function cleanup(client: ApiClient, users: User[]|User = null, groups: Group[]|Group = null) {
+async function cleanup(client: Client, users: User[]|User = null, groups: Group[]|Group = null) {
   // Cleanup the entities only if user is running a real OKTA server
   if (process.env.OKTA_USE_MOCK) {
     return;
@@ -235,7 +235,7 @@ async function cleanup(client: ApiClient, users: User[]|User = null, groups: Gro
   }
 }
 
-async function removeAppByLabel(client: ApiClient, label: string) {
+async function removeAppByLabel(client: Client, label: string) {
   return (await client.applicationApi.listApplications()).each(async (application) => {
     if (application.label === label) {
       await client.applicationApi.deactivateApplication({appId: application.id});
@@ -244,7 +244,7 @@ async function removeAppByLabel(client: ApiClient, label: string) {
   });
 }
 
-async function activateSecurityQuestion(client: ApiClient) {
+async function activateSecurityQuestion(client: Client) {
   const authenticators = await client.authenticatorApi.listAuthenticators();  // returns Collection<Authenticator>
   await authenticators.each(async (item) => {
     if (item.type === 'security_question') {
@@ -334,7 +334,7 @@ function getOrg2OrgApplicationOptions(): Org2OrgApplication {
   };
 }
 
-async function verifyOrgIsOIE(client: ApiClient) {
+async function verifyOrgIsOIE(client: Client) {
   const url = `${client.baseUrl}/.well-known/okta-organization`;
   const request = {
     method: 'get'

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   StandardRole,
   Group,
@@ -13,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-role`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

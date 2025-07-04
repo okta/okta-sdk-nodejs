@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
-import { Application, AppUser, ApiClient, User } from '@okta/okta-sdk-nodejs';
+import { Application, AppUser, Client, User } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-delete-user`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

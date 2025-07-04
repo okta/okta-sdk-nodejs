@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { BookmarkApplication, Application, ApiClient, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
+import { BookmarkApplication, Application, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-assign-user`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   Session,
 } from '@okta/okta-sdk-nodejs';
@@ -12,7 +12,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/session-get`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

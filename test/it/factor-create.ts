@@ -1,7 +1,7 @@
 import utils = require('../utils');
 import {
   UserFactorCall,
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   Policy,
   User,
@@ -19,7 +19,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/factor-create`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

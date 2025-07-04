@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import {
-  ApiClient,
+  Client,
   DefaultRequestExecutor,
   OktaSignOnPolicy,
   OktaSignOnPolicyRule,
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policies`;
 }
 
-const client = new ApiClient({
+const client = new Client({
   scopes: ['okta.policies.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

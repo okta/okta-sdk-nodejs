@@ -1,8 +1,8 @@
 import { expectType } from 'tsd';
-import { ApiClient } from '../../src/types/client';
+import { Client } from '../../src/types/client';
 import { ApplicationFeature } from '../../src/types/generated/models/ApplicationFeature';
 
-const client = new ApiClient();
+const client = new Client();
 (async function () {
   const { value: feature } = await (await client.applicationApi.listFeaturesForApplication({appId: 'testAppId'})).next();
   expectType<ApplicationFeature | null>(feature);
