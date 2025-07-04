@@ -4,6 +4,7 @@ const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const mappings = require('./mappings/index.cjs');
+const packageJson = require('../package.json');
 
 // Use true to apply tag/method/params renames (new to old) in the spec for compatibility with previous SDK versions
 const isBackwardCompatibility = true;
@@ -106,8 +107,11 @@ function applyParameterRenames(spec3) {
           // Override body name
           const bodyNameRename = bodyNameRenamesNew2Old[operationId];
           if (bodyNameRename) {
-            endpoint['x-codegen-request-body-name'] = Object.values(bodyNameRename)[0];
-            bodyNameRenames[operationId] = bodyNameRename;
+            const newBodyName = Object.values(bodyNameRename)[0];
+            if (endpoint['x-codegen-request-body-name'] !== newBodyName) {
+              endpoint['x-codegen-request-body-name'] = newBodyName;
+              bodyNameRenames[operationId] = bodyNameRename;
+            }
           }
         }
       }
@@ -195,7 +199,7 @@ function fixResponses(spec3) {
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
                 const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list') && endpoint.operationId.endsWith('s')
-                  && httpMethod === 'get' && responseCode === '200';
+                  && httpMethod === 'get' && responseCode.startsWith('2');
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
@@ -204,7 +208,7 @@ function fixResponses(spec3) {
                 // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
-                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
                 }
 
                 // add missing discriminators
@@ -220,7 +224,7 @@ function fixResponses(spec3) {
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
+                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
                 }
               }
             }
@@ -236,22 +240,26 @@ function fixResponses(spec3) {
   };
 }
 
-const ffAmendsMerge = (obj, onSuccess) => {
-  if (obj?.['x-okta-feature-flag-amends']) {
-    const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
-    _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
-      if (Array.isArray(objValue)) {
-        return [...new Set(objValue.concat(srcValue))];
-      }
-    });
-    onSuccess();
-  }
-};
-
 // Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
 // Uses x-okta-feature-flag-amends
 function applyFFAments(spec3) {
   const ffAmends = [];
+
+  const ffAmendsMerge = (obj, onSuccess) => {
+    if (obj?.['x-okta-feature-flag-amends']) {
+      const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
+      const oldObjStr = JSON.stringify(obj);
+      _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
+        if (Array.isArray(objValue)) {
+          return [...new Set(objValue.concat(srcValue))];
+        }
+      });
+      const newObjStr = JSON.stringify(obj);
+      if (oldObjStr !== newObjStr) {
+        onSuccess();
+      }
+    }
+  };
 
   for (const schemaKey in spec3.components.schemas) {
     let schema = spec3.components.schemas[schemaKey];
@@ -341,11 +349,14 @@ function buildTypeMap(spec3) {
 // If it now resolves previous issues then typeMap file and corresponding code should be removed
 function writeTypeMap(typeMap) {
   const typeMapMustache = 'templates/openapi-generator/model/typeMap.mustache';
-  const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
+  const typeMapMustacheStr = fs.readFileSync(typeMapMustache, { encoding: 'utf8' });
+  const newTypeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
     addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
   ).join('\n');
-  fs.writeFileSync(typeMapMustache, typeMapStr);
-  console.log(`Fixed file ${typeMapMustache}`);
+  if (typeMapMustacheStr !== newTypeMapStr) {
+    fs.writeFileSync(typeMapMustache, newTypeMapStr);
+    console.log(`Fixed file ${typeMapMustache}`);
+  }
 }
 
 function fixExtensibleSchemas(spec3) {
@@ -496,8 +507,12 @@ function fixSchemaPropsErrors(spec3) {
         if (isInlineModel) {
           const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
           if (spec3.components.schemas[inlineClassName]) {
-            console.warn('! Found possible naming collision between ', {schemaKey: inlineClassName}, ' and ', {schemaKey, propName});
-            console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
+            const suggestedFlag = `--model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`;
+            const isFlagExist = packageJson["scripts"]["build:generate"]?.includes(suggestedFlag);
+            if (!isFlagExist) {
+              console.warn('! Found possible naming collision between ', {schemaKey: inlineClassName}, ' and ', {schemaKey, propName});
+              console.log(`  Consider using ${suggestedFlag}`);
+            }
           }
         }
       }
@@ -570,7 +585,7 @@ function loadSpec(yamlFile) {
 
   const spec3 = yaml.load(yamlStrFixed);
   return {
-    spec3
+    spec3, yamlStr
   };
 }
 
@@ -579,7 +594,7 @@ async function main() {
   const yamlFile = process.argv[2] || 'spec/management.yaml';
   const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
 
-  const { spec3 } = loadSpec(yamlFile);
+  const { spec3, yamlStr } = loadSpec(yamlFile);
 
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec3);
@@ -588,7 +603,7 @@ async function main() {
   const { ffAmends } = applyFFAments(spec3);
   const { typeMap } = buildTypeMap(spec3);
   const {
-    emptySchemas, extensibleSchemas, forcedExtensibleSchemas, fixedAdditionalPropertiesTrue
+    emptySchemas, forcedExtensibleSchemas, fixedAdditionalPropertiesTrue
   } = fixExtensibleSchemas(spec3);
   const { manualSchemaFixes } = fixSchemaErrors(spec3);
   const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec3);
@@ -596,14 +611,13 @@ async function main() {
 
   // Log fix results
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
-  console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);
-  console.log(`Properties without items: ${arrayPropsWithoutItems.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log('Fixed properties without items:', arrayPropsWithoutItems);
   console.log(`Fixed properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log(`Manual schema fixes: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log(`Manual schema props fixes: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
-  console.log('Manual paths fixes:', manualPathsFixes);
+  console.log(`Fixed schemas: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
+  console.log('Fixed paths:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
@@ -616,8 +630,10 @@ async function main() {
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1
   });
-  fs.writeFileSync(yamlFixedFile, yamlFixedStr);
-  console.log(`Fixed file ${yamlFixedFile}`);
+  if (yamlStr !== yamlFixedStr) {
+    fs.writeFileSync(yamlFixedFile, yamlFixedStr);
+    console.log(`Fixed file ${yamlFixedFile}`);
+  }
 
   // Write typeMap
   writeTypeMap(typeMap);
