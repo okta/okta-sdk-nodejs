@@ -132,6 +132,7 @@ function parseGeneratedClient() {
           }
         });
       }
+
       // Process ResponseProcessor class
       if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && rootNode?.name?.text?.indexOf('ResponseProcessor') !== -1) {
         ts.forEachChild(rootNode, funcNode => {
