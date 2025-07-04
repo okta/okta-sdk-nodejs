@@ -292,7 +292,11 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint) => {
 const buildEndpointResponseType = (spec3, endpoint, className, methodName) => {
   let returnType;
   for (const responseCode in endpoint.responses) {
-    const response = endpoint.responses[responseCode];
+    let response = endpoint.responses[responseCode];
+    if (response?.['$ref']) {
+      const refSchemaKey = response['$ref'].replace('#/components/responses/', '');
+      response = spec3.components.responses[refSchemaKey];
+    }
     if (response?.content) {
       const contentTypes = Object.keys(response?.content);
       let contentType = contentTypes?.[0];
@@ -310,8 +314,9 @@ const buildEndpointResponseType = (spec3, endpoint, className, methodName) => {
         }
         if (schema['$ref']) {
           refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
+          schema = spec3.components.schemas[refSchemaKey];
         }
-        if (refSchemaKey) {
+        if (refSchemaKey && schema['type'] !== 'string') {
           returnType = isArray ? `Array<${refSchemaKey}>` : refSchemaKey;
         }
         if (!returnType && schema['oneOf']) {
@@ -334,11 +339,10 @@ const buildEndpointResponseType = (spec3, endpoint, className, methodName) => {
           }
         }
         if (!returnType && schema['type'] === 'string') {
-          // example: previewSAMLmetadataForApplication, listAllSignInWidgetVersions
+          // example: previewSAMLmetadataForApplication, listAllSignInWidgetVersions, generateCsrForApplication
           returnType = isArray ? `Array<${schema['type']}>` : schema['type'];
-        }
-        if (!returnType) {
-          console.warn(`! Can't detect response type for ${className}.${methodName} (${contentType})`, schema);
+        } else if (returnType) {
+          returnType = _.upperFirst(returnType.replace(/^_/, ''));
         }
       }
     }
@@ -470,8 +474,13 @@ function findApiDiffs(specApis, generatedApis) {
           bodyNameRenames[methodName][generatedMethod.bodyParams?.[0]] = specMethod.bodyParams?.[0];
         }
         if (specMethod.returnType !== generatedMethod.returnType) {
-          returnTypeDiffs[methodName] = {};
-          returnTypeDiffs[methodName][generatedMethod.returnType] = specMethod.returnType;
+          // example: assignRoleToClient - return type is StandardRole|CustomRole which is generated as ListGroupAssignedRoles200ResponseInner class
+          const isOneOf = specMethod.returnType?.indexOf('|') !== -1;
+          const canIgnore = isOneOf || !specMethod.returnType;
+          if (!canIgnore) {
+            returnTypeDiffs[methodName] = {};
+            returnTypeDiffs[methodName][generatedMethod.returnType] = specMethod.returnType;
+          }
         }
       }
     }
