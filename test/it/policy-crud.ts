@@ -45,12 +45,12 @@ describe('Policy Crud API', () => {
       await client.policyApi.deletePolicy({policyId: signonPolicy.id});
     });
 
-    xit('should return a Collection', async () => {
+    it('should return a Collection', async () => {
       const policies = await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'});
       expect(policies).to.be.instanceOf(Collection);
     });
 
-    xit('should resolve Policy in collection', async () => {
+    it('should resolve Policy in collection', async () => {
       await (await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
         expect(policy).to.be.instanceOf(Policy);
       });
