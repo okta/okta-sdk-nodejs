@@ -536,7 +536,7 @@ function fixSchemaBadArrayProps(spec3) {
         const prop = schema.properties[propName];
         if (prop.type === 'array' && !prop.items) {
           // Manual fixes
-          // TODO: check again, prepare PR for okta-oas3
+          // TODO: should be fixed in okta-oas3
           if (schemaKey === 'CreateIamRoleRequest' && propName === 'permissions') {
             prop.items = {
               '$ref': '#/components/schemas/Permission'
@@ -556,9 +556,18 @@ function fixSchemaBadArrayProps(spec3) {
           } else if (['PersonalAppsBlockList', 'RealmAssignment', 'RealmProfile'].includes(schemaKey) && propName === 'domains') {
             prop.items = { type: 'string' };
           } else if (schemaKey === 'RegistrationInlineHookResponse' && propName === 'commands') {
-            prop.items = {
-              '$ref': '#/components/schemas/InlineHookResponseCommands'
-            };
+            const registrationResponse = spec3.components.schemas['RegistrationResponse'];
+            if (registrationResponse) {
+              const items = registrationResponse.properties.commands?.items;
+              if (items) {
+                prop.items = _.clone(items);
+              }
+            }
+            if (!prop.items) {
+              prop.items = {
+                '$ref': '#/components/schemas/InlineHookResponseCommands'
+              };
+            }
           } else {
             console.warn(`! Can't resolve item type for array ${schemaKey}.${propName}`);
           }

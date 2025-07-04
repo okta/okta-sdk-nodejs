@@ -28,6 +28,93 @@ function parseClient() {
   };
 }
 
+function processRequestFactoryText(text, apis, className, methodName) {
+  const apiMeta = apis[className][methodName];
+  const regexMethod = /makeRequestContext\(path, .*HttpMethodEnum\.(\w+)/;
+  const methodMatch = text.match(regexMethod);
+  if (methodMatch) {
+    const httpMethod = methodMatch[1].toLowerCase();
+    Object.assign(apiMeta, {
+      httpMethod,
+    });
+  }
+
+  const regexPath = /const path = (".+");/;
+  const pathMatch = text.match(regexPath);
+  if (pathMatch) {
+    const httpPath = JSON.parse(pathMatch[1]);
+    const regexPathParams = /{(.+?)}/g;
+    const pathParams = [];
+    const starPath = httpPath.replaceAll(regexPathParams, (_paramWithBrackets, paramName) => {
+      pathParams.push(paramName);
+      return '*';
+    });
+
+    const headerParams = [];
+    const regexHeaderParams = /requestContext\.setHeaderParam\((".+?"),.*ObjectSerializer\.serialize\((.+?),/g;
+    const headerParamsMatch = text.matchAll(regexHeaderParams);
+    if (headerParamsMatch) {
+      for (const m of headerParamsMatch) {
+        headerParams.push(m[2]);
+      }
+    }
+
+    const queryParams = [];
+    const regexQueryParams = /requestContext\.setQueryParam\((".+?"),/g;
+    const queryParamsMatch = text.matchAll(regexQueryParams);
+    if (queryParamsMatch) {
+      for (const m of queryParamsMatch) {
+        queryParams.push(JSON.parse(m[1]));
+      }
+    }
+
+    let bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p) && !headerParams.includes(p));
+    if (apiMeta.httpMethod && apiMeta.httpMethod !== 'get' && bodyParams.length > 1) {
+      console.warn(`Detected multiple body params for ${className}.${methodName} in generated client:`, bodyParams);
+    }
+    if (!bodyParams.length) {
+      bodyParams = undefined;
+    }
+    Object.assign(apiMeta, {
+      httpPath,
+      starPath,
+      pathParams,
+      queryParams,
+      bodyParams,
+    });
+  }
+}
+
+function processResponseProcessorText(text, apis, className, methodName) {
+  const apiMeta = apis[className][methodName];
+  const regexBody = /const body = .*?ObjectSerializer\.deserialize\(.*?ObjectSerializer\.parse\(.*\), (".+?"), ".*"\);\s*return body;/m;
+  const bodyMatch = text.match(regexBody);
+  if (bodyMatch) {
+    let returnType = JSON.parse(bodyMatch[1]);
+    if (returnType === 'void') {
+      returnType = undefined;
+    }
+    Object.assign(apiMeta, {
+      returnType,
+    });
+  }
+}
+
+function processApiClassText(text, apis, className, methodName) {
+  const regexReturn = /return this\.api\.(\w+)\((.+?)\)/;
+  const returnMatch = text.match(regexReturn);
+  let params;
+  if (returnMatch) {
+    params = returnMatch[2].split(', ').filter(arg => arg.startsWith('param.')).map(arg => arg.split('param.')[1]);
+    if (!apis[className]) {
+      apis[className] = {};
+    }
+    apis[className][methodName] = {
+      params
+    };
+  }
+}
+
 // Parse `ObjectParamAPI.js` to build list of params for each method in each api
 // Parse APIs to get paths for each method
 function parseGeneratedClient() {
@@ -46,18 +133,7 @@ function parseGeneratedClient() {
         const methodName = funcNode?.name?.text;
         if (funcNode.kind === ts.SyntaxKind.MethodDeclaration) {
           const text = printer.printNode(ts.EmitHint.Unspecified, funcNode, sourceFile);
-          const regexReturn = /return this\.api\.(\w+)\((.+?)\)/;
-          const returnMatch = text.match(regexReturn);
-          let params;
-          if (returnMatch) {
-            params = returnMatch[2].split(', ').filter(arg => arg.startsWith('param.')).map(arg => arg.split('param.')[1]);
-            if (!apis[className]) {
-              apis[className] = {};
-            }
-            apis[className][methodName] = {
-              params
-            };
-          }
+          processApiClassText(text, apis, className, methodName);
         }
       });
     }
@@ -73,62 +149,8 @@ function parseGeneratedClient() {
         ts.forEachChild(rootNode, funcNode => {
           const methodName = funcNode?.name?.text;
           if (funcNode.kind === ts.SyntaxKind.MethodDeclaration) {
-            const apiMeta = apis[className][methodName];
             const text = printer.printNode(ts.EmitHint.Unspecified, funcNode, apiSourceFile);
-
-            const regexMethod = /makeRequestContext\(path, .*HttpMethodEnum\.(\w+)/;
-            const methodMatch = text.match(regexMethod);
-            if (methodMatch) {
-              const httpMethod = methodMatch[1].toLowerCase();
-              Object.assign(apiMeta, {
-                httpMethod,
-              });
-            }
-
-            const regexPath = /const path = (".+");/;
-            const pathMatch = text.match(regexPath);
-            if (pathMatch) {
-              const httpPath = JSON.parse(pathMatch[1]);
-              const regexPathParams = /{(.+?)}/g;
-              const pathParams = [];
-              const starPath = httpPath.replaceAll(regexPathParams, (_paramWithBrackets, paramName) => {
-                pathParams.push(paramName);
-                return '*';
-              });
-
-              const headerParams = [];
-              const regexHeaderParams = /requestContext\.setHeaderParam\((".+?"),.*ObjectSerializer\.serialize\((.+?),/g;
-              const headerParamsMatch = text.matchAll(regexHeaderParams);
-              if (headerParamsMatch) {
-                for (const m of headerParamsMatch) {
-                  headerParams.push(m[2]);
-                }
-              }
-
-              const queryParams = [];
-              const regexQueryParams = /requestContext\.setQueryParam\((".+?"),/g;
-              const queryParamsMatch = text.matchAll(regexQueryParams);
-              if (queryParamsMatch) {
-                for (const m of queryParamsMatch) {
-                  queryParams.push(JSON.parse(m[1]));
-                }
-              }
-
-              let bodyParams = [...apiMeta.params].filter(p => !pathParams.includes(p) && !queryParams.includes(p) && !headerParams.includes(p));
-              if (apiMeta.httpMethod && apiMeta.httpMethod !== 'get' && bodyParams.length > 1) {
-                console.warn(`Detected multiple body params for ${className}.${methodName} in generated client:`, bodyParams);
-              }
-              if (!bodyParams.length) {
-                bodyParams = undefined;
-              }
-              Object.assign(apiMeta, {
-                httpPath,
-                starPath,
-                pathParams,
-                queryParams,
-                bodyParams,
-              });
-            }
+            processRequestFactoryText(text, apis, className, methodName);
           }
         });
       }
@@ -138,20 +160,8 @@ function parseGeneratedClient() {
         ts.forEachChild(rootNode, funcNode => {
           const methodName = funcNode?.name?.text;
           if (funcNode.kind === ts.SyntaxKind.MethodDeclaration) {
-            const apiMeta = apis[className][methodName];
             const text = printer.printNode(ts.EmitHint.Unspecified, funcNode, apiSourceFile);
-
-            const regexBody = /const body = .*?ObjectSerializer\.deserialize\(.*?ObjectSerializer\.parse\(.*\), (".+?"), ".*"\);\s*return body;/m;
-            const bodyMatch = text.match(regexBody);
-            if (bodyMatch) {
-              let returnType = JSON.parse(bodyMatch[1]);
-              if (returnType === 'void') {
-                returnType = undefined;
-              }
-              Object.assign(apiMeta, {
-                returnType,
-              });
-            }
+            processResponseProcessorText(text, apis, className, methodName);
           }
         });
       }
@@ -226,6 +236,10 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
         bodyParams = [refSchemaKey];
       }
       if (!bodyParams && schema['oneOf']) {
+      if(methodName === 'assignRoleToClient') {
+        console.log('>>> Request', endpoint)
+        console.log(JSON.stringify(endpoint))
+      }
         // example: updateDefaultProvisioningConnectionForApplication
         bodyParams = [`${methodName}Request`];
       }
@@ -243,6 +257,9 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
     }
 
     if (endpoint['x-codegen-request-body-name']) {
+      if(methodName === 'assignRoleToClient') {
+        console.log('>>> x-codegen-request-body-name', endpoint['x-codegen-request-body-name'])
+      }
       // override
       bodyParams = [
         endpoint['x-codegen-request-body-name']
@@ -474,7 +491,7 @@ async function main() {
   if (unusedApis.length) {
     console.log('Unused (generated but not exported) APIs:');
     console.log(unusedApis);
-    console.log('Please add those APIs to src/client.js and src/types/client.d.ts');
+    console.log('Please add these APIs to src/client.js and src/types/client.d.ts');
     console.log('\n-----------\n');
   }
   if (Object.keys(classRenames).length) {
