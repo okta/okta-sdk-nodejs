@@ -188,7 +188,7 @@ await client.userApi.updateUser({
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser(({ userId })` and `client.userApi.deleteUser({ userId })` operations:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser({ userId })` and `client.userApi.deleteUser({ userId })` operations:
 
 ```javascript
 await client.userApi.deactivateUser({ userId: user.id });
@@ -977,14 +977,58 @@ const client: Client = new Client({
 
 #### Breaking changes
 
-- All parameters now use `lowerCamelCase` convention (eg. `orgSetting` instead of `OrgSetting`)
+All parameters now use `lowerCamelCase` convention (eg. `orgSetting` instead of `OrgSetting`).
+
+Full list:
 
 ```diff
+- await client.orgSettingApi.updateOrgSettings({ OrgSetting })
++ await client.orgSettingApi.updateOrgSettings({ orgSetting })
+
 - await client.applicationApi.updateFeatureForApplication({ appId, name, CapabilitiesObject })
 + await client.applicationApi.updateFeatureForApplication({ appId, name, capabilitiesObject })
 
-- await client.orgSettingApi.updateOrgSettings({ OrgSetting })
-+ await client.orgSettingApi.updateOrgSettings({ orgSetting })
+- await client.agentPoolsApi.createAgentPoolsUpdate({ poolId, AgentPoolUpdate })
++ await client.agentPoolsApi.createAgentPoolsUpdate({ poolId, agentPoolUpdate })
+
+- await client.agentPoolsApi.updateAgentPoolsUpdate({ poolId, updateId, AgentPoolUpdate })
++ await client.agentPoolsApi.updateAgentPoolsUpdate({ poolId, updateId, agentPoolUpdate })
+
+- await client.agentPoolsApi.updateAgentPoolsUpdateSettings({ poolId, AgentPoolUpdateSetting })
++ await client.agentPoolsApi.updateAgentPoolsUpdateSettings({ poolId, agentPoolUpdateSetting })
+
+- await client.applicationApi.updateDefaultProvisioningConnectionForApplication({ appId, ProvisioningConnectionRequest })
++ await client.applicationApi.updateDefaultProvisioningConnectionForApplication({ appId, provisioningConnectionRequest })
+
+- await client.customDomainApi.replaceCustomDomain({ domainId, UpdateDomain })
++ await client.customDomainApi.replaceCustomDomain({ domainId, updateDomain })
+
+- await client.customizationApi.createBrand({ CreateBrandRequest })
++ await client.customizationApi.createBrand({ createBrandRequest })
+
+- await client.customizationApi.replaceCustomizedErrorPage({ brandId, ErrorPage })
++ await client.customizationApi.replaceCustomizedErrorPage({ brandId, errorPage })
+
+- await client.customizationApi.replacePreviewErrorPage({ brandId, ErrorPage })
++ await client.customizationApi.replacePreviewErrorPage({ brandId, errorPage })
+
+- await client.customizationApi.replaceCustomizedSignInPage({ brandId, SignInPage })
++ await client.customizationApi.replaceCustomizedSignInPage({ brandId, signInPage })
+
+- await client.customizationApi.replacePreviewSignInPage({ brandId, SignInPage })
++ await client.customizationApi.replacePreviewSignInPage({ brandId, signInPage })
+
+- await client.customizationApi.replaceEmailSettings({ brandId, templateName, EmailSettings })
++ await client.customizationApi.replaceEmailSettings({ brandId, templateName, emailSettings })
+
+- await client.customizationApi.replaceSignOutPageSettings({ brandId, HostedPage })
++ await client.customizationApi.replaceSignOutPageSettings({ brandId, hostedPage })
+
+- await client.groupApi.assignGroupOwner({ groupId, GroupOwner })
++ await client.groupApi.assignGroupOwner({ groupId, groupOwner })
+
+- await client.schemaApi.updateGroupSchema({ GroupSchema })
++ await client.schemaApi.updateGroupSchema({ groupSchema })
 ```
 
 ### From 6.x to 7.0
