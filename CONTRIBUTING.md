@@ -12,7 +12,7 @@ yarn build
 
 If there are modifications to the auto-generated files, please include those changes in your pull request.
 
-Please put the latest version of Okta Open API spec into `spec/management.yaml`
+Please put the latest version of Okta Open API spec into `spec/management.yaml` and `spec/oauth.yaml`
 
 To see the list of new APIs please run
 

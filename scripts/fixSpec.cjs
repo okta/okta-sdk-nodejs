@@ -3,34 +3,15 @@
 const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
-const { apiConsolidation } = require('./mappings/apiConsolidation.cjs');
-const { methodRenames } = require('./mappings/methodRenames.cjs');
-const { pathParamsRenames } = require('./mappings/pathParamsRenames.cjs');
-const { bodyNameRenames } = require('./mappings/bodyNameRenames.cjs');
+const mappings = require('./mappings/index.cjs');
 
-const methodRenamesNew2Old = Object.fromEntries(Object.entries(methodRenames).map(a => a.reverse()));
-const pathParamsRenamesNew2Old = {};
-for (const opId in pathParamsRenames) {
-  pathParamsRenamesNew2Old[opId] = Object.fromEntries(Object.entries(pathParamsRenames[opId]).map(a => a.reverse()));
-}
-const bodyNameRenamesNew2Old = {};
-for (const opId in bodyNameRenames) {
-  bodyNameRenamesNew2Old[opId] = Object.fromEntries(Object.entries(bodyNameRenames[opId]).map(a => a.reverse()));
-}
+const isBackwardCompatibility = false;
+
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
-  const customDiscriminatorsForEndpointsResponses = [
-    {
-      propertyName: 'type',
-      mapping: {
-        'CUSTOM': '#/components/schemas/CustomRole',
-        '*': '#/components/schemas/StandardRole'
-      }
-    },
-  ];
-
-  if (schema['type'] === 'array' && schema['items']['oneOf']?.length > 1) {
+  const { customDiscriminatorsForEndpointsResponses } = mappings;
+  if (schema['type'] === 'array' && schema['items']?.['oneOf']?.length > 1) {
     for (const discriminator of customDiscriminatorsForEndpointsResponses) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
       const shouldHaveDiscriminator = schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
@@ -54,140 +35,168 @@ const addCustomDiscriminatorToResponse = (schema) => {
   return undefined;
 };
 
-function patchSpec3(spec3) {
-  // Schemas to add `x-okta-extensible`
-  const schemasToForceExtensible = [
-    'UserProfile',
-  ];
+// Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
+const ffAmendsMerge = (obj, onSuccess) => {
+  if (obj?.['x-okta-feature-flag-amends']) {
+    const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
+    _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
+      if (Array.isArray(objValue)) {
+        return [...new Set(objValue.concat(srcValue))];
+      }
+    });
+    onSuccess();
+  }
+};
 
-  // See file `typeMap.mustache` which contains type mappings based on discriminator values.
-  // For simplicity most of keys in mappings are simple, but you can choose classes to add its name as a prefix
-  //  to be more explicit and prevent possible naming collision issues.
-  const schemasToForceDiscriminatorPrefixInTypeMap = [
-    'BehaviorRule',
-    'PolicyRule',
-    'InlineHookChannel',
-  ];
-
-  // Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
-  const ffAmendsMerge = (obj, onSuccess) => {
-    if (obj?.['x-okta-feature-flag-amends']) {
-      const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
-      _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
-        if (Array.isArray(objValue)) {
-          return [...new Set(objValue.concat(srcValue))];
-        }
-      });
-      onSuccess();
-    }
-  };
-
-  const typeMap = [];
-  const emptySchemas = [];
-  const extensibleSchemas = [];
-  const forcedExtensibleSchemas = [];
-  const arrayPropsWithoutItems = [];
-  const badDateTimeProps = [];
-  const fixedAdditionalPropertiesTrue = [];
-  const manualSchemaFixes = [];
-  const manualPathsFixes = [];
-  const ffAmends = [];
-  const customDescriminatorsForEndpoints = [];
-  const apiTagChanges = {};
-  const operationRenames = {};
+// For backward compatibility - rename path, path parameters, body name
+function applyParameterRenames(spec3) {
   const pathParameterRenames = {};
   const pathRenames = {};
   const bodyNameRenames = {};
 
-  // Path renames first
-  for (const httpPath in spec3.paths) {
-    const pathSpec = spec3.paths[httpPath];
-    for (const httpMethod in pathSpec) {
-      if (!['parameters'].includes(httpMethod)) {
-        const endpoint = spec3.paths[httpPath][httpMethod];
-        const operationId = methodRenamesNew2Old[endpoint.operationId] ?? endpoint.operationId;
-        const httpPathParamsRenames = pathParamsRenamesNew2Old[operationId];
-        if (httpPathParamsRenames) {
-          let newHttpPath = httpPath;
-          for (const oldKey in httpPathParamsRenames) {
-            const newKey = httpPathParamsRenames[oldKey];
-            newHttpPath = newHttpPath.replace('{' + oldKey + '}', '{' + newKey + '}');
-            if (httpPath !== newHttpPath) {
-              pathRenames[httpPath] = newHttpPath;
+  const pathParamsRenamesNew2Old = {};
+  for (const opId in mappings.pathParamsRenames) {
+    pathParamsRenamesNew2Old[opId] = Object.fromEntries(Object.entries(mappings.pathParamsRenames[opId]).map(a => a.reverse()));
+  }
+  const bodyNameRenamesNew2Old = {};
+  for (const opId in mappings.bodyNameRenames) {
+    bodyNameRenamesNew2Old[opId] = Object.fromEntries(Object.entries(mappings.bodyNameRenames[opId]).map(a => a.reverse()));
+  }
+  const methodRenamesNew2Old = Object.fromEntries(Object.entries(mappings.methodRenames).map(a => a.reverse()));
+
+  if (isBackwardCompatibility) {
+    for (const httpPath in spec3.paths) {
+      const pathSpec = spec3.paths[httpPath];
+      for (const httpMethod in pathSpec) {
+        if (!['parameters'].includes(httpMethod)) {
+          const endpoint = spec3.paths[httpPath][httpMethod];
+          const operationId = methodRenamesNew2Old[endpoint.operationId] ?? endpoint.operationId;
+
+          const pathParamsRenames = pathParamsRenamesNew2Old[operationId];
+          if (pathParamsRenames) {
+            // Rename path
+            let newHttpPath = httpPath;
+            for (const key in pathParamsRenames) {
+              const newKey = pathParamsRenames[key];
+              newHttpPath = newHttpPath.replace('{' + key + '}', '{' + newKey + '}');
+              if (httpPath !== newHttpPath) {
+                pathRenames[httpPath] = newHttpPath;
+              }
             }
-          }
-          for (let parameter of pathSpec.parameters ?? []) {
-            const refKey = parameter['$ref'].replace('#/components/parameters/', '');
-            const refParam = spec3.components.parameters[refKey];
-            if (httpPathParamsRenames[refParam.name]) {
-              const newName = httpPathParamsRenames[refParam.name];
-              const refRename = pathParameterRenames[refKey];
-              if (refRename && refRename[0] === refParam.name && refRename[1] === newName) {
-                const newRefKey = refRename[2];
-                parameter['$ref'] = '#/components/parameters/' + newRefKey;
-              } else {
-                const newRefParam = _.clone(refParam);
-                newRefParam.name = newName;
-                const newRefKey = refKey + '_' + newName;
-                spec3.components.parameters[newRefKey] = newRefParam;
-                parameter['$ref'] = '#/components/parameters/' + newRefKey;
-                pathParameterRenames[refKey] = [refParam.name, httpPathParamsRenames[refParam.name], newRefKey];
+            // Clone parameters with new names
+            for (let parameter of pathSpec.parameters ?? []) {
+              const refKey = parameter['$ref']?.replace('#/components/parameters/', '');
+              const refParam = spec3.components.parameters[refKey];
+              if (refKey && pathParamsRenames[refParam?.name]) {
+                const name = refParam.name;
+                const newName = pathParamsRenames[name];
+                const refRename = pathParameterRenames[refKey];
+                if (refRename && refRename[0] === name && refRename[1] === newName) {
+                  const newRefKey = refRename[2];
+                  parameter['$ref'] = '#/components/parameters/' + newRefKey;
+                } else {
+                  const newRefParam = _.clone(refParam);
+                  newRefParam.name = newName;
+                  const newRefKey = refKey + '_' + newName;
+                  spec3.components.parameters[newRefKey] = newRefParam;
+                  parameter['$ref'] = '#/components/parameters/' + newRefKey;
+                  pathParameterRenames[refKey] = [name, newName, newRefKey];
+                }
               }
             }
           }
+
+          // Override body name
+          const bodyNameRename = bodyNameRenamesNew2Old[operationId];
+          if (bodyNameRename) {
+            endpoint['x-codegen-request-body-name'] = Object.values(bodyNameRename)[0];
+            bodyNameRenames[operationId] = bodyNameRename;
+          }
         }
-        const bodyNameRename = bodyNameRenamesNew2Old[operationId];
-        if (bodyNameRename) {
-          endpoint['x-codegen-request-body-name'] = Object.values(bodyNameRename)[0];
+      }
+    }
+
+    // Apply path renames
+    const origPaths = spec3.paths;
+    const origPathKeys = Object.keys(origPaths);
+    spec3.paths = {};
+    for (const k of origPathKeys) {
+      const key = pathRenames[k] ?? k;
+      spec3.paths[key] = origPaths[k];
+    }
+  }
+
+  return {
+    pathRenames,
+    pathParameterRenames,
+    bodyNameRenames,
+  };
+}
+
+// For backward compatibility - change tags, operationId
+function applyTagsAndOperationRenames(spec3) {
+  const apiTagChanges = {};
+  const operationRenames = {};
+
+  const methodRenamesNew2Old = Object.fromEntries(Object.entries(mappings.methodRenames).map(a => a.reverse()));
+
+  if (isBackwardCompatibility) {
+    for (const httpPath in spec3.paths) {
+      for (const httpMethod in spec3.paths[httpPath]) {
+        if (!['parameters'].includes(httpMethod)) {
+          const endpoint = spec3.paths[httpPath][httpMethod];
+          // API consilidation - tags changes
+          if (endpoint.tags) {
+            const oldTags = endpoint.tags;
+            const newTags = oldTags.map(tag => {
+              const groupTags = [];
+              for (const groupApiName in mappings.apiConsolidation) {
+                if (mappings.apiConsolidation[groupApiName].apis.includes(tag) && groupApiName !== tag) {
+                  groupTags.push(groupApiName);
+                }
+              }
+              return groupTags.length ? groupTags : [tag];
+            }).flat();
+            if (JSON.stringify(oldTags) !== JSON.stringify(newTags)) {
+              endpoint.tags = newTags;
+              if (oldTags.length === 1) {
+                apiTagChanges[oldTags[0]] = (newTags.length === 1 ? newTags[0] : newTags);
+              } else {
+                apiTagChanges[JSON.stringify(oldTags)] = newTags;
+              }
+            }
+          }
+          // Method rename
+          if (methodRenamesNew2Old[endpoint.operationId]) {
+            operationRenames[endpoint.operationId] = methodRenamesNew2Old[endpoint.operationId];
+            endpoint.operationId = methodRenamesNew2Old[endpoint.operationId];
+          }
         }
       }
     }
   }
-  // Apply path renames
-  const origPaths = spec3.paths;
-  const origPathKeys = Object.keys(origPaths);
-  spec3.paths = {};
-  for (const k of origPathKeys) {
-    const key = pathRenames[k] ?? k;
-    spec3.paths[key] = origPaths[k];
-  }
+
+  return {
+    apiTagChanges,
+    operationRenames,
+  };
+}
+
+function fixPaths(spec3) {
+  const customDescriminatorsForEndpoints = [];
+  const manualPathsFixes = [];
 
   for (const httpPath in spec3.paths) {
     for (const httpMethod in spec3.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
-        // API consilidation
-        if (endpoint.tags) {
-          const oldTags = endpoint.tags;
-          const newTags = oldTags.map(tag => {
-            const groupTags = [];
-            for (const groupApiName in apiConsolidation) {
-              if (apiConsolidation[groupApiName].apis.includes(tag) && groupApiName !== tag) {
-                groupTags.push(groupApiName);
-              }
-            }
-            return groupTags.length ? groupTags : [tag];
-          }).flat();
-          if (JSON.stringify(oldTags) !== JSON.stringify(newTags)) {
-            endpoint.tags = newTags;
-            if (oldTags.length === 1) {
-              apiTagChanges[oldTags[0]] = (newTags.length === 1 ? newTags[0] : newTags);
-            } else {
-              apiTagChanges[JSON.stringify(oldTags)] = newTags;
-            }
-          }
-        }
-        // Method rename
-        if (methodRenamesNew2Old[endpoint.operationId]) {
-          operationRenames[endpoint.operationId] = methodRenamesNew2Old[endpoint.operationId];
-          endpoint.operationId = methodRenamesNew2Old[endpoint.operationId];
-        }
         // Modify request
         if (endpoint?.requestBody?.content) {
           for (const contentType in endpoint.requestBody.content) {
             const typedContent = endpoint.requestBody.content[contentType];
             if (typedContent?.schema) {
               const schema = typedContent.schema;
+              // remove unnecessary type: 'object' for oneOf
               if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                 delete schema.type;
                 manualPathsFixes.push({ httpMethod, httpPath, contentType, key: schema });
@@ -208,6 +217,7 @@ function patchSpec3(spec3) {
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
+                // remove unnecessary type: 'object' for oneOf and $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
@@ -217,13 +227,13 @@ function patchSpec3(spec3) {
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
 
-                // Special fix to add discriminators
+                // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
                   customDescriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
-                // Special fix for /api/v1/policies - should return array (Policies, not Policy)
+                // Special fix for /api/v1/policies - should return array of Policy, not single Policy
                 if (httpPath === '/api/v1/policies' && isListEndpoint && refSchemaKey === 'Policy') {
                   schema = {
                     type: 'array',
@@ -239,6 +249,24 @@ function patchSpec3(spec3) {
       }
     }
   }
+
+  return {
+    manualPathsFixes,
+    customDescriminatorsForEndpoints,
+  };
+}
+
+function patchSpec3(spec3) {
+  const typeMap = [];
+  const emptySchemas = [];
+  const extensibleSchemas = [];
+  const forcedExtensibleSchemas = [];
+  const arrayPropsWithoutItems = [];
+  const badDateTimeProps = [];
+  const fixedAdditionalPropertiesTrue = [];
+  const manualSchemaFixes = [];
+  const ffAmends = [];
+
 
   for (const schemaKey in spec3.components.schemas) {
     let schema = spec3.components.schemas[schemaKey];
@@ -256,7 +284,7 @@ function patchSpec3(spec3) {
     // x-okta-extensible
     if (schema['x-okta-extensible']) {
       extensibleSchemas.push(schemaKey);
-    } else if (schemasToForceExtensible.includes(schemaKey)) {
+    } else if (mappings.schemasToForceExtensible.includes(schemaKey)) {
       schema['x-okta-extensible'] = true;
       forcedExtensibleSchemas.push(schemaKey);
     }
@@ -421,7 +449,7 @@ function patchSpec3(spec3) {
           return {...acc, [key]: refSchemaKey};
         }, {});
         const hasNameConflicts = typeMap.filter(([k]) => !!map[k]).length > 0;
-        const addPrefix = hasNameConflicts || schemasToForceDiscriminatorPrefixInTypeMap.includes(schemaKey);
+        const addPrefix = hasNameConflicts || mappings.schemasToForceDiscriminatorPrefixInTypeMap.includes(schemaKey);
         for (const [k, v] of Object.entries(map)) {
           typeMap.push([k, v, schemaKey, addPrefix]);
         }
@@ -438,14 +466,7 @@ function patchSpec3(spec3) {
     badDateTimeProps,
     fixedAdditionalPropertiesTrue,
     manualSchemaFixes,
-    manualPathsFixes,
     ffAmends,
-    customDescriminatorsForEndpoints,
-    apiTagChanges,
-    operationRenames,
-    pathParameterRenames,
-    pathRenames,
-    bodyNameRenames,
   };
 }
 
@@ -463,10 +484,13 @@ async function main() {
     .replace(/^[ ]{4}Error:$/m, '    ModelError:');
   const spec3 = yaml.load(yamlStrFixed);
 
+  const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec3);
+  const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec3);
+  const { manualPathsFixes, customDescriminatorsForEndpoints } = fixPaths(spec3);
+
   const {
     typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
-    fixedAdditionalPropertiesTrue, manualSchemaFixes, manualPathsFixes, ffAmends, customDescriminatorsForEndpoints, apiTagChanges,
-    operationRenames, pathParameterRenames, pathRenames, bodyNameRenames,
+    fixedAdditionalPropertiesTrue, manualSchemaFixes, ffAmends
   } = patchSpec3(spec3);
 
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -480,8 +504,8 @@ async function main() {
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
-  console.log('API path renames: ', pathRenames);
   console.log('API operationId renames: ', operationRenames);
+  console.log('API path renames: ', pathRenames);
   console.log('API path parameter renames: ', pathParameterRenames);
   console.log('API body name renames: ', bodyNameRenames);
 
