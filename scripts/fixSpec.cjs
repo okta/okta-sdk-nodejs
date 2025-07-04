@@ -5,12 +5,22 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const mappings = require('./mappings/index.cjs');
 
+// Use true to apply tag/method/params renames (new to old) in the spec for compatibility with previous SDK versions
 const isBackwardCompatibility = true;
 
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
-  const { customDiscriminatorsForEndpointsResponses } = mappings;
+  const customDiscriminatorsForEndpointsResponses = [
+    {
+      propertyName: 'type',
+      mapping: {
+        'CUSTOM': '#/components/schemas/CustomRole',
+        '*': '#/components/schemas/StandardRole'
+      }
+    },
+  ];
+
   if (schema['type'] === 'array' && schema['items']?.['oneOf']?.length > 1) {
     for (const discriminator of customDiscriminatorsForEndpointsResponses) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
@@ -290,7 +300,15 @@ function applyFFAments(spec3) {
 
 function buildTypeMap(spec3) {
   const typeMap = [];
-  const { schemasToForceDiscriminatorPrefixInTypeMap } = mappings;
+
+  // See file `typeMap.mustache` which contains type mappings based on discriminator values.
+  // For simplicity most of keys in mappings are simple, but you can choose classes to add its name as a prefix
+  //  to be more explicit and prevent possible naming collision issues.
+  const schemasToForceDiscriminatorPrefixInTypeMap = [
+    'BehaviorRule',
+    'PolicyRule',
+    'InlineHookChannel',
+  ];
 
   for (const schemaKey in spec3.components.schemas) {
     let schema = spec3.components.schemas[schemaKey];
@@ -335,7 +353,11 @@ function fixExtensibleSchemas(spec3) {
   const extensibleSchemas = [];
   const forcedExtensibleSchemas = [];
   const fixedAdditionalPropertiesTrue = [];
-  const { schemasToForceExtensible } = mappings;
+
+  // Schemas to add `x-okta-extensible`
+  const schemasToForceExtensible = [
+    'UserProfile',
+  ];
 
   for (const schemaKey in spec3.components.schemas) {
     let schema = spec3.components.schemas[schemaKey];
