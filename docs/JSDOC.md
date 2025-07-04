@@ -19,7 +19,7 @@ All usage of this SDK begins with the creation of a client, the client handles t
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
@@ -58,14 +58,14 @@ client.userApi.createUser({ body: newUser })
 
 #### Get a User
 
-The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ id: :id|:login })`:
+The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ userId: :id|:login })`:
 
 ```javascript
-client.userApi.getUser({ id: 'ausmvdt5xg8wRVI1d0g3' }).then(user => {
+client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' }).then(user => {
   console.log(user);
 });
 
-client.userApi.getUser({ id: 'foo@bar.com' }).then(user => {
+client.userApi.getUser({ userId: 'foo@bar.com' }).then(user => {
   console.log(user);
 });
 ```
@@ -76,7 +76,7 @@ Once you have a user instance, you can modify it and then call the `client.userA
 
 ```javascript
 user.profile.nickName = 'rob';
-client.userApi.updateUser({ id: user.id, user }).then(() => console.log('User nickname change has been saved'));
+client.userApi.updateUser({ userId: user.id, user }).then(() => console.log('User nickname change has been saved'));
 ```
 
 #### Delete a User
@@ -84,9 +84,9 @@ client.userApi.updateUser({ id: user.id, user }).then(() => console.log('User ni
 Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `client.userApi.deactivateUser()` and `client.userApi.deleteUser()` operations on the user instance to achieve both calls:
 
 ```javascript
-client.userApi.deactivateUser({ id: user.id })
+client.userApi.deactivateUser({ userId: user.id })
 .then(() => console.log('User has been deactivated'))
-.then(() => client.userApi.deleteUser({ id: user.id }))
+.then(() => client.userApi.deleteUser({ userId: user.id }))
 .then(() => console.log('User has been deleted'));
 ```
 
@@ -131,7 +131,7 @@ await (await client.userApi.listUsers({
 
 #### Create a Group
 
-The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.addGroup({ group })`:
+The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.createGroup({ group })`:
 
 ```javascript
 const newGroup = {
@@ -140,7 +140,7 @@ const newGroup = {
   }
 };
 
-client.groupApi.addGroup({grpup: newGroup})
+client.groupApi.createGroup({grpup: newGroup})
 .then(group => {
   console.log('Created group', group);
 });
@@ -231,7 +231,7 @@ There are several ways to provide configuration to the client constructor.  When
 1. Environment variables
 1. Properties passed to the client constructor
 
-As such, you can create a client without passing a configuration option, e.g. `new okta.ApiClient()`, so long as you have provided the configuration in one of the other locations.
+As such, you can create a client without passing a configuration option, e.g. `new okta.Client()`, so long as you have provided the configuration in one of the other locations.
 
 If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
 

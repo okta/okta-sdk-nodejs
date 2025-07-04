@@ -53,7 +53,7 @@ import {
   IdentityProviderApi,
 } from './generated';
 
-export declare class ApiClient {
+export declare class Client {
   constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;

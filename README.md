@@ -73,7 +73,7 @@ We also include an opt-in [default request executor](#default-request-executor) 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
@@ -82,7 +82,7 @@ const client = new okta.ApiClient({
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
 All interactions with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
- list of methods please refer to the JsDoc page for the [ApiClient].
+ list of methods please refer to the JsDoc page for the [Client].
 
 ### OAuth 2.0 Authentication
 
@@ -93,7 +93,7 @@ This SDK supports this feature only for service-to-service applications. Please 
 When using this approach you won't need an API Token because the SDK will request an access token for you. In order to use OAuth 2.0, construct a client instance by passing the following parameters:
 
 ```js
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   authorizationMode: 'PrivateKey',
   clientId: '{oauth application ID}',
@@ -163,36 +163,36 @@ console.log('Created user', user);
 
 #### Get a User
 
-The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ id: :id|:login })`:
+The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ userId: :id|:login })`:
 
 ```javascript
 let user;
-user = await client.userApi.getUser({ id: 'ausmvdt5xg8wRVI1d0g3' });
+user = await client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' });
 console.log(user);
 
-user = await client.userApi.getUser({ id: 'foo@bar.com' });
+user = await client.userApi.getUser({ userId: 'foo@bar.com' });
 console.log(user);
 ```
 
 #### Update a User
 
-Once you have a user instance, you can modify it and then call the `client.userApi.updateUser({ id, user })` method to persist those changes to the API.  This uses the [Users: Update User] API:
+Once you have a user instance, you can modify it and then call the `client.userApi.updateUser({ userId, user })` method to persist those changes to the API.  This uses the [Users: Update User] API:
 
 ```javascript
 user.profile.nickName = 'rob';
 await client.userApi.updateUser({
-  id: user.id,
+  userId: user.id,
   user: user
 });
 ```
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser(({ id })` and `client.userApi.deleteUser({ id })` operations:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API by calling `client.userApi.deactivateUser(({ userId })` and `client.userApi.deleteUser({ userId })` operations:
 
 ```javascript
-await client.userApi.deactivateUser({ id: user.id });
-await client.userApi.deleteUser({ id: user.id });
+await client.userApi.deactivateUser({ userId: user.id });
+await client.userApi.deleteUser({ userId: user.id });
 ```
 
 #### List All Org Users
@@ -434,7 +434,7 @@ Not every API endpoint is represented by a method in this library. You can call 
 const okta = require('@okta/okta-sdk-nodejs');
 
 // Assumes configuration is loaded via yaml or environment variables
-const client = new okta.ApiClient();
+const client = new okta.Client();
 
 // https://developer.okta.com/docs/reference/api/apps/#preview-saml-metadata-for-application
 const applicationId = '{your custom SAML app id}';
@@ -561,7 +561,7 @@ There are several ways to provide configuration to the client constructor.  When
 1. Environment variables
 1. Properties passed to the client constructor
 
-As such, you can create a client without passing a configuration option, e.g. `new okta.ApiClient()`, so long as you have provided the configuration in one of the other locations.
+As such, you can create a client without passing a configuration option, e.g. `new okta.Client()`, so long as you have provided the configuration in one of the other locations.
 
 If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
 
@@ -595,7 +595,7 @@ To prevent this behavior, and instead remove expired values from memory proactiv
 const okta = require('@okta/okta-sdk-nodejs');
 const MemoryStore = okta.MemoryStore;
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
@@ -630,7 +630,7 @@ The default caching middleware caches any resource that has a `self` link, and i
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: null
@@ -648,7 +648,7 @@ async function customMiddleware(ctx, next) {
   // do something after the response
 }
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: customMiddleware
@@ -735,7 +735,7 @@ const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
   requestTimeout: 0 // Specify in milliseconds if needed
 })
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.okta.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: customDefaultRequestExecutor
@@ -765,7 +765,7 @@ See [RequestExecutor] for the class code.
 The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
 
 ```javascript
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: new okta.RequestExecutor()
@@ -775,7 +775,7 @@ const client = new okta.ApiClient({
 The base executor also emits `request` and `response` events, these can be useful for debugging and request logging:
 
 ```javascript
-const client = new okta.ApiClient({
+const client = new okta.Client({
   // uses the base executor by default
 });
 
@@ -810,7 +810,7 @@ class DefaultExecutorWithLogging extends okta.DefaultRequestExecutor {
   }
 }
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   requestExecutor: new DefaultExecutorWithLogging()
 })
 ```
@@ -821,7 +821,7 @@ If you need to use a proxy, you can configure it with `httpsProxy` property.
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   httpsProxy: 'http://proxy.example.net:8080/'
@@ -839,7 +839,7 @@ If you need to specify a User-Agent for the client requests, you can configure i
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
+const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   userAgent: 'example/1.0'
@@ -851,9 +851,9 @@ const client = new okta.ApiClient({
 ### 4.5.x
 
 ```typescript
-import { ApiClient } from '@okta/okta-sdk-nodejs'
+import { Client } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-const client = new ApiClient({
+const client = new Client({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
@@ -871,9 +871,9 @@ logEvents.each((entry: LogEvent) => {
 Providing request body parameters:
 ```typescript
 import { Application, ApplicationOptions } from '@okta/okta-sdk-nodejs/src/types/models/Application';
-import { ApiClient } from '@okta/okta-sdk-nodejs'
+import { Client } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
-const client = new ApiClient({
+const client = new Client({
   orgUrl:'https://dev-org.okta.com',
   token: 'apiToken',
 });
@@ -961,7 +961,7 @@ The recommended solution is to provide custom cache middleware implementation.
 Alternatively, users can pass custom `highWaterMark` parameter to `node-fetch` by specifying parameter `defaultCacheMiddlewareResponseBufferSize` in the Client config:
 
 ```
-const client: ApiClient = new ApiClient({
+const client: Client = new Client({
   orgUrl: 'https://orgname.okta.com',
   token: 'apiToken',
   defaultCacheMiddlewareResponseBufferSize: sizeInBytes
@@ -977,22 +977,14 @@ const client: ApiClient = new ApiClient({
 
 #### Breaking changes
 
-- Use `ApiClient` instead of `Client`
 - All parameters now use `lowerCamelCase` convention (eg. `orgSetting` instead of `OrgSetting`)
 
 ```diff
-
-- import { Client } from '@okta/okta-sdk-nodejs'
-+ import { ApiClient } from '@okta/okta-sdk-nodejs'
-- const client = new Client({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
-+ const client = new ApiClient({ orgUrl:'https://dev-org.okta.com', token: 'apiToken' });
-
 - await client.applicationApi.updateFeatureForApplication({ appId, name, CapabilitiesObject })
 + await client.applicationApi.updateFeatureForApplication({ appId, name, capabilitiesObject })
 
 - await client.orgSettingApi.updateOrgSettings({ OrgSetting })
 + await client.orgSettingApi.updateOrgSettings({ orgSetting })
-
 ```
 
 ### From 6.x to 7.0
@@ -1082,7 +1074,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
-[ApiClient]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
+[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch
