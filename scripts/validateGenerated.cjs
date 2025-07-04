@@ -60,11 +60,11 @@ function processRequestFactoryText(text, apis, className, methodName) {
     }
 
     const queryParams = [];
-    const regexQueryParams = /requestContext\.setQueryParam\((".+?"),/g;
+    const regexQueryParams = /requestContext\.setQueryParam\((".+?"),.*ObjectSerializer\.serialize\((.+?),/g;
     const queryParamsMatch = text.matchAll(regexQueryParams);
     if (queryParamsMatch) {
       for (const m of queryParamsMatch) {
-        queryParams.push(JSON.parse(m[1]));
+        queryParams.push(m[2]);
       }
     }
 
@@ -214,7 +214,7 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
   };
 };
 
-const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
+const buildEndpointBodyParams = (spec3, httpMethod, endpoint) => {
   const methodName = endpoint.operationId;
   let bodyParams;
 
@@ -235,21 +235,18 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
       if (refSchemaKey) {
         bodyParams = [refSchemaKey];
       }
-      if (!bodyParams && schema['oneOf']) {
-        // example: updateDefaultProvisioningConnectionForApplication
-        bodyParams = [`${methodName}Request`];
-      }
-      if (!bodyParams && schema['type'] === 'object' && schema['properties']) {
-        // examples: uploadYubikeyOtpTokenSeed, uploadBrandThemeBackgroundImage
+      if (!bodyParams && schema['type'] === 'object' && schema['properties'] && Object.keys(schema['properties']).length === 1) {
+        // example: uploadBrandThemeBackgroundImage
         bodyParams = Object.keys(schema['properties']);
-        if (httpMethod !== 'get' && bodyParams.length > 1) {
-          console.warn(`Detected multiple body params for ${className}.${methodName} in spec:`, bodyParams);
-        }
       }
     }
     if (!bodyParams && contentTypes.includes('application/x-x509-ca-cert')) {
       // example: publishCsrFromApplication
       bodyParams = ['body'];
+    }
+    if (!bodyParams) {
+      // example: updateDefaultProvisioningConnectionForApplication, uploadYubikeyOtpTokenSeed
+      bodyParams = [`${methodName}Request`];
     }
 
     if (endpoint['x-codegen-request-body-name']) {
@@ -259,12 +256,7 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
       ];
     }
 
-    // First letter is always in lower case!
-    bodyParams = bodyParams.map(_.lowerFirst);
-
-    if (!bodyParams) {
-      console.warn(`! Can't detect request body name for ${className}.${methodName} (${contentTypes.join(', ')})`, typedContent?.schema);
-    }
+    bodyParams = bodyParams.map(p => _.lowerFirst(p.replaceAll(/\s+/g, '')));
   }
 
   return {
@@ -349,7 +341,7 @@ const getSpec3Meta = () => {
           }
           const methodName = endpoint.operationId;
           const { starPath, pathParams, queryParams } = buildEndpointParams(spec3, httpPath, endpoint, className);
-          const { bodyParams } = buildEndpointBodyParams(spec3, httpMethod, endpoint, className);
+          const { bodyParams } = buildEndpointBodyParams(spec3, httpMethod, endpoint);
           const { returnType } = buildEndpointResponseType(spec3, endpoint, className, methodName);
 
           apis[className][methodName] = {

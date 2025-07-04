@@ -82,7 +82,7 @@ function applyParameterRenames(spec3) {
               }
             }
             // Clone parameters with new names
-            for (let parameter of pathSpec.parameters ?? []) {
+            for (const parameter of pathSpec.parameters ?? []) {
               const refKey = parameter['$ref']?.replace('#/components/parameters/', '');
               const refParam = spec3.components.parameters[refKey];
               if (refKey && pathParamsRenames[refParam?.name]) {
@@ -100,6 +100,13 @@ function applyParameterRenames(spec3) {
                   parameter['$ref'] = '#/components/parameters/' + newRefKey;
                   pathParameterRenames[refKey] = [name, newName, newRefKey];
                 }
+              }
+            }
+            // Also fix name of parameters inside endpoints if there are any (example: getHookKey)
+            for (const parameter of endpoint.parameters ?? []) {
+              if (parameter['in'] === 'path' && parameter.name && pathParamsRenames[parameter.name]) {
+                const newName = pathParamsRenames[parameter.name];
+                parameter.name = newName;
               }
             }
           }
