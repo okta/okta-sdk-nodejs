@@ -6,6 +6,65 @@
 
 - [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator and latest OpenAPI spec (as on 20 June 2025)
 
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Added new APIs:
+  - ResourceSetApi
+  - IntegrationsApi
+  - RoleApi
+  - AttackProtectionApi
+  - CAPTCHAApi
+  - DeviceAccessApi
+  - DeviceIntegrationsApi
+  - DevicePostureCheckApi
+  - DirectoriesIntegrationApi
+  - DisasterRecoveryApi
+  - EmailDomainApi
+  - EmailServerApi
+  - GovernanceBundleApi
+  - GroupOwnerApi
+  - HookKeyApi
+  - IdentitySourceApi
+  - LogStreamApi
+  - OktaApplicationSettingsApi
+  - OktaPersonalSettingsApi
+  - OrgCreatorApi
+  - PrivilegedResourceApi
+  - RateLimitSettingsApi
+  - RealmApi
+  - RealmAssignmentApi
+  - RiskEventApi
+  - RiskProviderApi
+  - SSFReceiverApi
+  - SSFSecurityEventTokenApi
+  - SSFTransmitterApi
+  - ServiceAccountApi
+  - UISchemaApi
+  - WebAuthnPreregistrationApi
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Updated APIs:
+  - ApplicationApi:
+    - ApplicationCWOConnectionsApi
+    - ApplicationExpressConfigurationApi
+    - ApplicationPoliciesApi
+    - ApplicationSSOApi
+    - ApplicationSSOCredentialOAuth2ClientAuthApi
+    - ApplicationSSOFederatedClaimsApi
+  - AuthorizationServerApi:
+    - AuthorizationServerClientsApi
+    - AuthorizationServerAssocApi
+  - CustomizationApi:
+    - EmailCustomizationApi
+    - CustomPagesApi
+  - RoleAssignmentApi
+    - RoleAssignmentClientApi
+  - RoleTargetApi
+    - RoleBTargetBGroupApi
+    - RoleBTargetClientApi
+  - UserApi:
+    - UserClassificationApi
+    - UserOAuthApi
+    - UserRiskApi
+
+
 # 7.1.1
 
 ### Fixes
