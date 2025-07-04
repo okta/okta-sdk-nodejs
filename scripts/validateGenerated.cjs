@@ -173,6 +173,7 @@ function parseGeneratedClient() {
 
 const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
   const methodName = endpoint.operationId;
+  const pathSpec = spec3.paths[httpPath];
 
   const regexPathParams = /{(.+?)}/g;
   const pathParams = [];
@@ -181,7 +182,7 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
     return '*';
   });
 
-  // Process parameters
+  // Process parameters of endpoint
   const queryParams = [];
   if (endpoint.parameters) {
     for (let param of endpoint.parameters) {
@@ -199,10 +200,34 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
           continue;
         }
       }
+      if (paramName) {
+        paramName = _.camelCase(paramName);
+      }
       if (param?.['in'] === 'path' && !pathParams.includes(paramName)) {
         pathParams.push(paramName);
       } else if (param?.['in'] === 'query' && !queryParams.includes(paramName)) {
         queryParams.push(paramName);
+      }
+    }
+  }
+
+  // Process parameters of path
+  // (there could be query parameters at this level, eg. see getErrorPage)
+  if (pathSpec.parameters) {
+    for (let param of pathSpec.parameters) {
+      let refSchemaKey;
+      if (param?.['$ref']) {
+        refSchemaKey = param['$ref'].replace(/#\/components\/(parameters|schemas)\//, '');
+        param = spec3.components.parameters[refSchemaKey] ?? spec3.components.schemas[refSchemaKey];
+      }
+      let paramName = param?.['name'];
+      if (paramName) {
+        paramName = _.camelCase(paramName);
+        if (param?.['in'] === 'path' && !pathParams.includes(paramName)) {
+          pathParams.push(paramName);
+        } else if (param?.['in'] === 'query' && !queryParams.includes(paramName)) {
+          queryParams.push(paramName);
+        }
       }
     }
   }
@@ -331,7 +356,8 @@ const getSpec3Meta = () => {
   const apis = {};
 
   for (const httpPath in spec3.paths) {
-    for (const httpMethod in spec3.paths[httpPath]) {
+    const pathSpec = spec3.paths[httpPath];
+    for (const httpMethod in pathSpec) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
         for (const tag of endpoint.tags || []) {
