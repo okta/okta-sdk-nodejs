@@ -236,10 +236,6 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
         bodyParams = [refSchemaKey];
       }
       if (!bodyParams && schema['oneOf']) {
-      if(methodName === 'assignRoleToClient') {
-        console.log('>>> Request', endpoint)
-        console.log(JSON.stringify(endpoint))
-      }
         // example: updateDefaultProvisioningConnectionForApplication
         bodyParams = [`${methodName}Request`];
       }
@@ -257,9 +253,6 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint, className) => {
     }
 
     if (endpoint['x-codegen-request-body-name']) {
-      if(methodName === 'assignRoleToClient') {
-        console.log('>>> x-codegen-request-body-name', endpoint['x-codegen-request-body-name'])
-      }
       // override
       bodyParams = [
         endpoint['x-codegen-request-body-name']
