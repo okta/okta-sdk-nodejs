@@ -35,7 +35,7 @@ You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodej
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
 
-✔️: The current stable major version series is: 7.x.x
+✔️: The current stable major version series is: 8.x.x
 
 | Version | Status                    |
 | ------- | ------------------------- |
@@ -46,6 +46,7 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 5.x | :x: Retired |
 | 6.x | :x: Retired |
 | 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
+| 8.x | :heavy_check_mark: Stable ([migration guide](#from-7x-to-80)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
