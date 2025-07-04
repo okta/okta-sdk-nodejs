@@ -8,6 +8,9 @@ const bodyNameRenames = {
   updateFeatureForApplication: { CapabilitiesObject: 'updateFeatureForApplicationRequest' },
   assignGroupOwner: { GroupOwner: 'AssignGroupOwnerRequestBody' },
   createInlineHook: { inlineHook: 'inlineHookCreate' },
+
+  // manual
+  assignRoleToClient: { assignRoleRequest: 'assignRoleToClientRequest' },
 };
 
 module.exports = {
