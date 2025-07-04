@@ -5,7 +5,7 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const mappings = require('./mappings/index.cjs');
 
-const isBackwardCompatibility = false;
+const isBackwardCompatibility = true;
 
 
 // Some schemas for reponse are missing discriminators
