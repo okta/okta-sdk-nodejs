@@ -9,7 +9,6 @@ Please put the latest version of Okta Open API spec into `spec/management.yaml` 
 First run
 
 ```sh
-yarn build:fixSpec
 yarn build:validateGenerated
 ```
 
