@@ -35,19 +35,6 @@ const addCustomDiscriminatorToResponse = (schema) => {
   return undefined;
 };
 
-// Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
-const ffAmendsMerge = (obj, onSuccess) => {
-  if (obj?.['x-okta-feature-flag-amends']) {
-    const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
-    _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
-      if (Array.isArray(objValue)) {
-        return [...new Set(objValue.concat(srcValue))];
-      }
-    });
-    onSuccess();
-  }
-};
-
 // For backward compatibility - rename path, path parameters, body name
 function applyParameterRenames(spec3) {
   const pathParameterRenames = {};
@@ -182,7 +169,7 @@ function applyTagsAndOperationRenames(spec3) {
   };
 }
 
-function fixPaths(spec3) {
+function fixResponses(spec3) {
   const customDescriminatorsForEndpoints = [];
   const manualPathsFixes = [];
 
@@ -239,17 +226,116 @@ function fixPaths(spec3) {
   };
 }
 
-function patchSpec3(spec3) {
+const ffAmendsMerge = (obj, onSuccess) => {
+  if (obj?.['x-okta-feature-flag-amends']) {
+    const ff = Object.keys(obj['x-okta-feature-flag-amends'])[0];
+    _.mergeWith(obj, obj['x-okta-feature-flag-amends'][ff], (objValue, srcValue) => {
+      if (Array.isArray(objValue)) {
+        return [...new Set(objValue.concat(srcValue))];
+      }
+    });
+    onSuccess();
+  }
+};
+
+// Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
+// Uses x-okta-feature-flag-amends
+function applyFFAments(spec3) {
+  const ffAmends = [];
+
+  for (const schemaKey in spec3.components.schemas) {
+    let schema = spec3.components.schemas[schemaKey];
+
+    ffAmendsMerge(schema, () => {
+      ffAmends.push({ schemaKey });
+    });
+
+    if (schema.oneOf) {
+      schema.oneOf.forEach((one, i) => {
+        ffAmendsMerge(one, () => {
+          ffAmends.push({ schemaKey, propName: `oneOf[${i}]` });
+        });
+      });
+    }
+
+    if (schema.allOf) {
+      schema.allOf.forEach((one, i) => {
+        ffAmendsMerge(one, () => {
+          ffAmends.push({ schemaKey, propName: `allOf[${i}]` });
+        });
+      });
+    }
+
+    if (schema.properties) {
+      for (let propName in schema.properties) {
+        const prop = schema.properties[propName];
+        ffAmendsMerge(prop, () => {
+          ffAmends.push({ schemaKey, propName });
+        });
+      }
+    }
+
+    if (schema.discriminator) {
+      // x-okta-feature-flag-amends
+      ffAmendsMerge(schema.discriminator, () => {
+        ffAmends.push({ schemaKey, propName: 'discriminator' });
+      });
+    }
+  }
+
+  return {
+    ffAmends
+  };
+}
+
+function buildTypeMap(spec3) {
   const typeMap = [];
+  const { schemasToForceDiscriminatorPrefixInTypeMap } = mappings;
+
+  for (const schemaKey in spec3.components.schemas) {
+    let schema = spec3.components.schemas[schemaKey];
+    if (schema.discriminator) {
+      const { mapping } = schema.discriminator;
+      if (mapping) {
+        const map = Object.keys(mapping).reduce((acc, key) => {
+          let refSchemaKey = mapping[key].replace(/^#\/components\/schemas\/(.+)/, '$1');
+          // fix issues with orgBillingContactType, orgTechnicalContactType
+          refSchemaKey = _.upperFirst(refSchemaKey);
+          return {...acc, [key]: refSchemaKey};
+        }, {});
+        const hasNameConflicts = typeMap.filter(([k]) => !!map[k]).length > 0;
+        const addPrefix = hasNameConflicts || schemasToForceDiscriminatorPrefixInTypeMap.includes(schemaKey);
+        for (const [k, v] of Object.entries(map)) {
+          typeMap.push([k, v, schemaKey, addPrefix]);
+        }
+      }
+    }
+  }
+
+  return {
+    typeMap
+  };
+}
+
+// TODO: remove?
+// Previously we had to use type mappings manually added in typeMap.mustache
+// But now classes can have `discriminator` and `mapping` static properties (eg. see model `generated/models/Policy.js`)
+// If it now resolves previous issues then typeMap file and corresponding code should be removed
+function writeTypeMap(typeMap) {
+  const typeMapMustache = 'templates/openapi-generator/model/typeMap.mustache';
+  const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
+    addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
+  ).join('\n');
+  fs.writeFileSync(typeMapMustache, typeMapStr);
+  console.log(`Fixed file ${typeMapMustache}`);
+}
+
+function fixExtensibleSchemas(spec3) {
   const emptySchemas = [];
   const extensibleSchemas = [];
   const forcedExtensibleSchemas = [];
-  const arrayPropsWithoutItems = [];
-  const badDateTimeProps = [];
   const fixedAdditionalPropertiesTrue = [];
-  const manualSchemaFixes = [];
-  const ffAmends = [];
-
+  const { schemasToForceExtensible } = mappings;
 
   for (const schemaKey in spec3.components.schemas) {
     let schema = spec3.components.schemas[schemaKey];
@@ -267,33 +353,38 @@ function patchSpec3(spec3) {
     // x-okta-extensible
     if (schema['x-okta-extensible']) {
       extensibleSchemas.push(schemaKey);
-    } else if (mappings.schemasToForceExtensible.includes(schemaKey)) {
+    } else if (schemasToForceExtensible.includes(schemaKey)) {
       schema['x-okta-extensible'] = true;
       forcedExtensibleSchemas.push(schemaKey);
     }
 
-    // x-okta-feature-flag-amends
-    ffAmendsMerge(schema, () => {
-      ffAmends.push({ schemaKey });
-    });
 
-    if (schema.oneOf) {
-      schema.oneOf.forEach((one, i) => {
-        // x-okta-feature-flag-amends
-        ffAmendsMerge(one, () => {
-          ffAmends.push({ schemaKey, propName: `oneOf[${i}]` });
-        });
-      });
-    }
+    if (schema.properties) {
+      for (let propName in schema.properties) {
+        const prop = schema.properties[propName];
 
-    if (schema.allOf) {
-      schema.allOf.forEach((one, i) => {
-        // x-okta-feature-flag-amends
-        ffAmendsMerge(one, () => {
-          ffAmends.push({ schemaKey, propName: `allOf[${i}]` });
-        });
-      });
+        if (prop.additionalProperties === true) {
+          // fix for openapi-generator v6
+          fixedAdditionalPropertiesTrue.push({ schemaKey, propName });
+          prop.additionalProperties = {};
+        }
+      }
     }
+  }
+
+  return {
+    emptySchemas,
+    extensibleSchemas,
+    forcedExtensibleSchemas,
+    fixedAdditionalPropertiesTrue,
+  };
+}
+
+function fixSchemaErrors(spec3) {
+  const manualSchemaFixes = [];
+
+  for (const schemaKey in spec3.components.schemas) {
+    let schema = spec3.components.schemas[schemaKey];
 
     // Special fix for ByDurationExpiry
     if (schema.allOf && Object.keys(schema).length > 1) {
@@ -334,6 +425,74 @@ function patchSpec3(spec3) {
       delete schema['$ref'];
       manualSchemaFixes.push({ schemaKey });
     }
+  }
+
+  return {
+    manualSchemaFixes
+  };
+}
+
+function fixSchemaPropsErrors(spec3) {
+  const manualSchemaPropsFixes = [];
+  const badDateTimeProps = [];
+
+  for (const schemaKey in spec3.components.schemas) {
+    let schema = spec3.components.schemas[schemaKey];
+    if (schema.properties) {
+      for (let propName in schema.properties) {
+        const prop = schema.properties[propName];
+
+        // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
+        if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
+          let fixed = false;
+          prop.oneOf.forEach((one, i) => {
+            if (one.type === 'array' && !one.items) {
+              prop.oneOf[i].items = { type: 'string' };
+              fixed = true;
+            }
+          });
+          if (fixed) {
+            manualSchemaPropsFixes.push({ schemaKey, propName });
+          }
+        }
+
+        // remove unnecessary type: 'object' for $ref
+        // resolves error:
+        // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
+        if (prop['$ref'] && prop['type'] === 'object') {
+          manualSchemaPropsFixes.push({ schemaKey, propName });
+          delete prop['type'];
+        }
+
+        if (prop.format === 'date-time' && prop.default === 'Assigned') {
+          delete prop.default;
+          badDateTimeProps.push({ schemaKey, propName });
+        }
+
+        const isInlineModel = prop['type'] === 'object' && !!prop['properties']
+          || !!prop['allOf'] && prop['allOf'].length > 1;
+        if (isInlineModel) {
+          const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
+          if (spec3.components.schemas[inlineClassName]) {
+            console.warn('! Found possible naming collision between ', {schemaKey: inlineClassName}, ' and ', {schemaKey, propName});
+            console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    manualSchemaPropsFixes,
+    badDateTimeProps
+  };
+}
+
+function fixSchemaBadArrayProps(spec3) {
+  const arrayPropsWithoutItems = [];
+
+  for (const schemaKey in spec3.components.schemas) {
+    let schema = spec3.components.schemas[schemaKey];
 
     if (schema.properties) {
       for (let propName in schema.properties) {
@@ -369,95 +528,16 @@ function patchSpec3(spec3) {
 
           arrayPropsWithoutItems.push({ schemaKey, propName, fixed: !!prop.items });
         }
-
-        if (prop.format === 'date-time' && prop.default === 'Assigned') {
-          delete prop.default;
-          badDateTimeProps.push({ schemaKey, propName });
-        }
-
-        if (prop.additionalProperties === true) {
-          // fix for openapi-generator v6
-          fixedAdditionalPropertiesTrue.push({ schemaKey, propName });
-          prop.additionalProperties = {};
-        }
-
-        // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
-        if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
-          let fixed = false;
-          prop.oneOf.forEach((one, i) => {
-            if (one.type === 'array' && !one.items) {
-              prop.oneOf[i].items = { type: 'string' };
-              fixed = true;
-            }
-          });
-          if (fixed) {
-            manualSchemaFixes.push({ schemaKey, propName });
-          }
-        }
-
-        // x-okta-feature-flag-amends
-        ffAmendsMerge(prop, () => {
-          ffAmends.push({ schemaKey, propName });
-        });
-
-        if (prop['$ref'] && prop['type'] === 'object') {
-          manualSchemaFixes.push({ schemaKey, propName });
-          delete prop['type'];
-        }
-
-        const isInlineModel = prop['type'] === 'object' && !!prop['properties']
-          || !!prop['allOf'] && prop['allOf'].length > 1;
-        if (isInlineModel) {
-          const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
-          if (spec3.components.schemas[inlineClassName]) {
-            console.warn('! Found possible naming collision between ', {schemaKey: inlineClassName}, ' and ', {schemaKey, propName});
-            console.log(`  Consider using --model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`);
-          }
-        }
-      }
-    }
-
-    if (schema.discriminator) {
-      // x-okta-feature-flag-amends
-      ffAmendsMerge(schema.discriminator, () => {
-        ffAmends.push({ schemaKey, propName: 'discriminator' });
-      });
-
-      const { mapping } = schema.discriminator;
-      if (mapping) {
-        const map = Object.keys(mapping).reduce((acc, key) => {
-          let refSchemaKey = mapping[key].replace(/^#\/components\/schemas\/(.+)/, '$1');
-          // fix issues with orgBillingContactType, orgTechnicalContactType
-          refSchemaKey = _.upperFirst(refSchemaKey);
-          return {...acc, [key]: refSchemaKey};
-        }, {});
-        const hasNameConflicts = typeMap.filter(([k]) => !!map[k]).length > 0;
-        const addPrefix = hasNameConflicts || mappings.schemasToForceDiscriminatorPrefixInTypeMap.includes(schemaKey);
-        for (const [k, v] of Object.entries(map)) {
-          typeMap.push([k, v, schemaKey, addPrefix]);
-        }
       }
     }
   }
 
   return {
-    typeMap,
-    emptySchemas,
-    extensibleSchemas,
-    forcedExtensibleSchemas,
     arrayPropsWithoutItems,
-    badDateTimeProps,
-    fixedAdditionalPropertiesTrue,
-    manualSchemaFixes,
-    ffAmends,
   };
 }
 
-async function main() {
-  const yamlFile = process.argv[2] || 'spec/management.yaml';
-  const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
-  const typeMapMustache = 'templates/openapi-generator/model/typeMap.mustache';
-
+function loadSpec(yamlFile) {
   const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
   const yamlStrFixed = yamlStr
     .replaceAll('../oauth/dist/oauth.yaml', 'oauth.yaml')
@@ -465,17 +545,34 @@ async function main() {
     // [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
     .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
     .replace(/^[ ]{4}Error:$/m, '    ModelError:');
-  const spec3 = yaml.load(yamlStrFixed);
 
+  const spec3 = yaml.load(yamlStrFixed);
+  return {
+    spec3
+  };
+}
+
+
+async function main() {
+  const yamlFile = process.argv[2] || 'spec/management.yaml';
+  const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
+
+  const { spec3 } = loadSpec(yamlFile);
+
+  // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec3);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec3);
-  const { manualPathsFixes, customDescriminatorsForEndpoints } = fixPaths(spec3);
-
+  const { manualPathsFixes, customDescriminatorsForEndpoints } = fixResponses(spec3);
+  const { ffAmends } = applyFFAments(spec3);
+  const { typeMap } = buildTypeMap(spec3);
   const {
-    typeMap, emptySchemas, extensibleSchemas, forcedExtensibleSchemas, arrayPropsWithoutItems, badDateTimeProps,
-    fixedAdditionalPropertiesTrue, manualSchemaFixes, ffAmends
-  } = patchSpec3(spec3);
+    emptySchemas, extensibleSchemas, forcedExtensibleSchemas, fixedAdditionalPropertiesTrue
+  } = fixExtensibleSchemas(spec3);
+  const { manualSchemaFixes } = fixSchemaErrors(spec3);
+  const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec3);
+  const { arrayPropsWithoutItems } = fixSchemaBadArrayProps(spec3);
 
+  // Log fix results
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
   console.log(`[Note] Found extensible schemas: ${extensibleSchemas.join(', ')}`);
   console.log(`Forced extensible schemas: ${forcedExtensibleSchemas.join(', ')}`);
@@ -483,6 +580,7 @@ async function main() {
   console.log(`Fixed properties with bad date-time default value: ${badDateTimeProps.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Manual schema fixes: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
+  console.log(`Manual schema props fixes: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log('Manual paths fixes:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
@@ -492,21 +590,15 @@ async function main() {
   console.log('API path parameter renames: ', pathParameterRenames);
   console.log('API body name renames: ', bodyNameRenames);
 
+  // Write fixed file
   const yamlFixedStr = yaml.dump(spec3, {
     lineWidth: -1
   });
   fs.writeFileSync(yamlFixedFile, yamlFixedStr);
   console.log(`Fixed file ${yamlFixedFile}`);
 
-  // TODO: remove?
-  // Previously we had to use type mappings manually added in typeMap.mustache
-  // But now classes can have `discriminator` and `mapping` static properties (eg. see model `generated/models/Policy.js`)
-  // If it now resolves previous issues then typeMap file and corresponding code should be removed
-  const typeMapStr = typeMap.map(([k, v, schemaKey, addPrefix]) =>
-    addPrefix ? `  '__${schemaKey}__${k}': ${v},` : `  '__${k}': ${v},`
-  ).join('\n');
-  fs.writeFileSync(typeMapMustache, typeMapStr);
-  console.log(`Fixed file ${typeMapMustache}`);
+  // Write typeMap
+  writeTypeMap(typeMap);
 }
 
 main();
