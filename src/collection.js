@@ -21,7 +21,7 @@ class Collection {
 
   /**
    * Creates an instance of Collection.
-   * @param {Client} client A reference to the top-level api client
+   * @param {ApiClient} client A reference to the top-level api client
    * @param {String} uri E.g. /api/v1/resources
    * @param {Object} Ctor Class of each item in the collection
    * @param {Request} [request] Fetch API request object

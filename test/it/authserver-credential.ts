@@ -4,7 +4,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  AuthorizationServerJsonWebKey as JsonWebKey,
+  JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 

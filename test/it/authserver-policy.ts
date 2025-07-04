@@ -3,7 +3,6 @@ import {
   AuthorizationServer,
   AuthorizationServerPolicy,
   AuthorizationServerPolicyRule,
-  AuthorizationServerPolicyRuleRequest,
   AuthorizationServerPolicyRuleActions,
   AuthorizationServerPolicyRuleConditions,
   Client,
@@ -84,7 +83,7 @@ describe('Authorization Server Policies API', () => {
       expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(5);
 
       policyRuleFromGet.actions.token.accessTokenLifetimeMinutes = 360;
-      const updatedPolicyRule = await client.authorizationServerApi.replaceAuthorizationServerPolicyRule({policyId: policy.id, authServerId: authServer.id, ruleId: policyRuleFromGet.id, policyRule: policyRuleFromGet as AuthorizationServerPolicyRuleRequest});
+      const updatedPolicyRule = await client.authorizationServerApi.replaceAuthorizationServerPolicyRule({policyId: policy.id, authServerId: authServer.id, ruleId: policyRuleFromGet.id, policyRule: policyRuleFromGet});
       policyRuleFromGet = await client.authorizationServerApi.getAuthorizationServerPolicyRule({policyId: policyFromGet.id, authServerId: authServer.id, ruleId: policyRule.id});
       expect(updatedPolicyRule.actions.token.accessTokenLifetimeMinutes).to.equal(360);
       expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(360);

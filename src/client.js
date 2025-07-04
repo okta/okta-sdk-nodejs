@@ -64,7 +64,7 @@ const { ServerConfiguration } = require('./generated/servers');
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
  *
  * @class Client
- * @extends {GeneratedClient}
+ * @extends {GeneratedApiClient}
  */
 class Client {
   constructor(config) {

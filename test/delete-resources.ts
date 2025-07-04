@@ -250,7 +250,7 @@ async function cleanEmailCustomizations() {
 async function cleanUserTypes() {
   const userTypes = await client.userTypeApi.listUserTypes();
   await userTypes.each(async t => {
-    const canDelete = t.displayName.startsWith('node-sdk: ');
+    const canDelete = t.displayName?.startsWith('node-sdk: ');
     if (canDelete) {
       try {
         await client.userTypeApi.deleteUserType({
