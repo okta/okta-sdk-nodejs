@@ -190,21 +190,6 @@ function fixPaths(spec3) {
     for (const httpMethod in spec3.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec3.paths[httpPath][httpMethod];
-        // Modify request
-        if (endpoint?.requestBody?.content) {
-          for (const contentType in endpoint.requestBody.content) {
-            const typedContent = endpoint.requestBody.content[contentType];
-            if (typedContent?.schema) {
-              const schema = typedContent.schema;
-              // remove unnecessary type: 'object' for oneOf
-              if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
-                delete schema.type;
-                manualPathsFixes.push({ httpMethod, httpPath, contentType, key: schema });
-              }
-            }
-          }
-        }
-        // Modify response
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -217,12 +202,10 @@ function fixPaths(spec3) {
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
-                // remove unnecessary type: 'object' for oneOf and $ref
+                // remove unnecessary type: 'object' for $ref
+                // resolves error:
+                // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
-                  delete schema.type;
-                  manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
-                }
-                if (schema['oneOf'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
                   manualPathsFixes.push({ httpMethod, httpPath, responseCode, mimeType, key: schema });
                 }
