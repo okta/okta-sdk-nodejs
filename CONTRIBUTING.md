@@ -6,6 +6,8 @@ Some of this SDK is auto-generated from our API Spec, defined as an Open API Sch
 
 Please put the latest version of Okta Open API spec into `spec/management.yaml` and `spec/oauth.yaml`
 
+Install [Docker CLI client](https://docs.docker.com/desktop/)
+
 First run
 
 ```sh

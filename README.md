@@ -1105,6 +1105,7 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 ## Building the SDK
 
 - Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml` and `oauth.yaml`) and place it under `spec` dir
+- Install [Docker CLI client](https://docs.docker.com/desktop/)
 - run `yarn build`
 
 ## Contributing
