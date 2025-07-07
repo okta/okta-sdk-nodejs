@@ -11,10 +11,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 import { Headers } from 'node-fetch';
-
-export interface OktaApiErrorCause {
-  errorSummary: string;
-}
+import { ErrorCause } from './generated/models/ErrorCause';
 
 export declare class OktaApiError extends Error {
   constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
@@ -22,7 +19,7 @@ export declare class OktaApiError extends Error {
   status: number;
   errorCode: string | number;
   errorSummary: string;
-  errorCauses?: OktaApiErrorCause[];
+  errorCauses?: ErrorCause[];
   errorLink: string;
   errorId: string;
   url: string;
