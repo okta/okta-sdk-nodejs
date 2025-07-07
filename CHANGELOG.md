@@ -4,7 +4,7 @@
 
 ### Features
 
-- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator and latest OpenAPI spec (as on 20 June 2025)
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec (as on 20 June 2025)
 
 - [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Added new APIs:
   - ResourceSetApi
@@ -42,28 +42,23 @@
 
 - [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Updated APIs:
   - ApplicationApi:
-    - ApplicationCWOConnectionsApi
-    - ApplicationExpressConfigurationApi
-    - ApplicationPoliciesApi
-    - ApplicationSSOApi
-    - ApplicationSSOCredentialOAuth2ClientAuthApi
-    - ApplicationSSOFederatedClaimsApi
+    - Added new methods from ApplicationCWOConnectionsApi, ApplicationExpressConfigurationApi, ApplicationPoliciesApi
+    - Added new methods from ApplicationSSOApi, ApplicationSSOCredentialOAuth2ClientAuthApi, ApplicationSSOFederatedClaimsApi
   - AuthorizationServerApi:
-    - AuthorizationServerClientsApi
-    - AuthorizationServerAssocApi
+    - Added new methods from AuthorizationServerClientsApi, AuthorizationServerAssocApi
   - CustomizationApi:
-    - EmailCustomizationApi
-    - CustomPagesApi
+    - Added new methods from EmailCustomizationApi, CustomPagesApi
   - RoleAssignmentApi
-    - RoleAssignmentClientApi
+    - Added new methods from RoleAssignmentClientApi
   - RoleTargetApi
-    - RoleBTargetBGroupApi
-    - RoleBTargetClientApi
+    - Added new methods from RoleBTargetBGroupApi, RoleBTargetClientApi
   - UserApi:
-    - UserClassificationApi
-    - UserOAuthApi
-    - UserRiskApi
+    - Added new methods from UserClassificationApi, UserOAuthApi, UserRiskApi
 
+### Breaking changes
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Removed method `emailDomainApi.listEmailDomainBrands`
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) All method parameters now use lowerCamelCase convention (eg. `orgSetting` instead of `OrgSetting`)
 
 # 7.1.1
 

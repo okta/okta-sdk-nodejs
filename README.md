@@ -978,7 +978,7 @@ const client: Client = new Client({
 
 #### Breaking changes
 
-All parameters now use `lowerCamelCase` convention (eg. `orgSetting` instead of `OrgSetting`).
+All method parameters now use lowerCamelCase convention (eg. `orgSetting` instead of `OrgSetting`).
 
 Full list:
 

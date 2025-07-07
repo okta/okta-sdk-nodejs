@@ -17,7 +17,7 @@ This util will show you breaking and possibly breaking changes like API class / 
 
 It will show you instructions on keeping changes non-breaking like editing files in `scripts/mappings` to keep old names for backward compatibility.
 
-If you sure you want to use breaking changes please keep objects in `scripts/mappings/*.cjs` empty before building.
+If you're sure you want to apply breaking changes please keep objects in `scripts/mappings/*.cjs` empty before building.
 
 To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 
