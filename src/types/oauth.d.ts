@@ -26,5 +26,5 @@ export declare class OAuth {
   accessToken: TokenEndpointResponse;
   getAccessToken(): Promise<TokenEndpointResponse>;
   clearCachedAccessToken(): void;
-  getJwt(endpoint: string): string;
+  getJwt(endpoint: string): Promise<string>;
 }
