@@ -1,5 +1,30 @@
 /* eslint-disable quotes */
 
+// This file is intended to fix and normalize original `spec/management.yaml` before running `yarn build:generate`
+//
+// We need to patch original spec for reasons as:
+// - Some schemas are missing discriminators, we need to add it manually.
+//   Eg. response schema of `listAssignedRolesForUser` operation should have discriminator.
+// - Need to respect content of `x-okta-feature-flag-amends` property in spec for generated code.
+//   In order to do this we need to merge extra properties and/or enum values inside `x-okta-feature-flag-amends`
+//    with the properties of original schema.
+//   Otherwise generated code would be incomplete.
+// - Some schemas have `$ref` property and `type: object`.
+//   `openapi-generator` will fail with error `o.o.codegen.InlineModelResolver` until we remove `type`
+// - Schemas such as `UserProfile` should have property `x-okta-extensible: true`
+// - Some schemas have incorrect value for `allOf`
+//   (eg. `UserFactorPushTransactionSuccess`, `ByDurationExpiry`, `ByDateTimeExpiry`)
+// - Some schemas with `type: array` do not define `items` property
+//   (eg. `CreateIamRoleRequest.permissions`, `DevicePostureChecks.include`)
+// Without fixing these issues `yarn build:generate` won't work at all or will work with incorrect code being generated.
+//
+// Apart from this we need to apply renaming of:
+// - API classes (tags)
+// - API methods (operations)
+// - path, path parameters
+// - body parameter name
+// for backward compatibility with previous SDK versions.
+
 const _ = require('lodash');
 const fs = require('fs');
 const yaml = require('js-yaml');
@@ -191,7 +216,7 @@ function applyTagsAndOperationRenames(spec3) {
 }
 
 function fixResponses(spec3) {
-  const customDescriminatorsForEndpoints = [];
+  const customdiscriminatorsForEndpoints = [];
   const manualPathsFixes = [];
 
   for (const httpPath in spec3.paths) {
@@ -221,7 +246,7 @@ function fixResponses(spec3) {
                 // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customDescriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+                  customdiscriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
                 // Special fix for /api/v1/policies - should return array of Policy, not single Policy
@@ -243,7 +268,7 @@ function fixResponses(spec3) {
 
   return {
     manualPathsFixes,
-    customDescriminatorsForEndpoints,
+    customdiscriminatorsForEndpoints,
   };
 }
 
@@ -624,7 +649,7 @@ async function main() {
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec3);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec3);
-  const { manualPathsFixes, customDescriminatorsForEndpoints } = fixResponses(spec3);
+  const { manualPathsFixes, customdiscriminatorsForEndpoints } = fixResponses(spec3);
   const { ffAmends } = applyFFAments(spec3);
   const { typeMap } = buildTypeMap(spec3);
   const {
@@ -644,7 +669,7 @@ async function main() {
   console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log('Fixed paths:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log('Manually added discriminatoes for endpoints:', customDescriminatorsForEndpoints);
+  console.log('Manually added discriminatoes for endpoints:', customdiscriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
   console.log('API operationId renames: ', operationRenames);
   console.log('API path renames: ', pathRenames);

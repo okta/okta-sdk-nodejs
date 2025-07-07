@@ -1,3 +1,17 @@
+// This file is intended to detect breaking and possibly breaking changes introduced with new version
+//  of `spec/management.yaml` against the currently generated code.
+//
+// Run this script before `yarn build` to see breaking changes like:
+// - API class/method renames
+// - rename of operation parameters (in path, query or body)
+// - changes to return type of operation
+//
+// It will show you instructions on keeping changes non-breaking like editing files in `scripts/mappings`
+//  to keep old names for backward compatibility.
+//
+// Also it shows new API classes added to the spec and missing in the current generated client.
+// You need to add ones to `src/client.js` and `src/types/client.d.ts`
+
 const _ = require('lodash');
 const ts = require('typescript');
 const fs = require('fs');
@@ -289,7 +303,7 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint) => {
   };
 };
 
-const buildEndpointResponseType = (spec3, endpoint, className, methodName) => {
+const buildEndpointResponseType = (spec3, endpoint) => {
   let returnType;
   for (const responseCode in endpoint.responses) {
     let response = endpoint.responses[responseCode];

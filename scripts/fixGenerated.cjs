@@ -1,5 +1,13 @@
 /* eslint-disable quotes */
 
+// This file is intended to fix generated code after running `yarn build:generate`
+//
+// - If enum value contains `-` it will be wrapped with `''` which is incorrect sequence in JS
+//   We should replace `''` with `'` (eg. see `'respond-async'` for `Prefer` parameter for `deactivateUser` operation)
+// - Some classes are generated with unnecassary `AllOf` in the name (eg. `DeviceListAllOfEmbedded`)
+//   For convinience we remove it from the name (eg. rename to `DeviceListEmbedded`)
+// - There are some unnecessary html escapings like &#39; for ' that triggers lint warnings
+
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
