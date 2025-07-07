@@ -101,24 +101,6 @@ describe('Org API', () => {
     expect(communicationSettings.optOutEmailUsers).to.equal(false);
   });
 
-  // deprecated
-  xit('allows listing and configuring Org support settings', async () => {
-    await client.orgSettingApi.revokeOktaSupport();
-    let supportSettings = await client.orgSettingApi.getOrgOktaSupportSettings();
-    expect(supportSettings.support).to.equal('DISABLED');
-    await client.orgSettingApi.grantOktaSupport();
-    supportSettings = await client.orgSettingApi.getOrgOktaSupportSettings();
-    expect(supportSettings.support).to.equal('ENABLED');
-
-    const currentExpirationDate = new Date(supportSettings.expiration);
-    await client.orgSettingApi.extendOktaSupport();
-    supportSettings = await client.orgSettingApi.getOrgOktaSupportSettings();
-    expect(new Date(supportSettings.expiration)).to.be.greaterThanOrEqual(currentExpirationDate);
-    await client.orgSettingApi.revokeOktaSupport();
-    supportSettings = await client.orgSettingApi.getOrgOktaSupportSettings();
-    expect(supportSettings.support).to.equal('DISABLED');
-  });
-
   it('updates Org logo', async () => {
     const file = utils.getMockImage('logo.png');
     const response = await client.orgSettingApi.uploadOrgLogo({
