@@ -72,7 +72,7 @@ const addCustomDiscriminatorToResponse = (schema) => {
 };
 
 // For backward compatibility - rename path, path parameters, body name
-function applyParameterRenames(spec3) {
+function applyParameterRenames(spec) {
   const pathParameterRenames = {};
   const pathRenames = {};
   const bodyNameRenames = {};
@@ -88,11 +88,11 @@ function applyParameterRenames(spec3) {
   const methodRenamesNew2Old = Object.fromEntries(Object.entries(mappings.methodRenames).map(a => a.reverse()));
 
   if (isBackwardCompatibility) {
-    for (const httpPath in spec3.paths) {
-      const pathSpec = spec3.paths[httpPath];
+    for (const httpPath in spec.paths) {
+      const pathSpec = spec.paths[httpPath];
       for (const httpMethod in pathSpec) {
         if (!['parameters'].includes(httpMethod)) {
-          const endpoint = spec3.paths[httpPath][httpMethod];
+          const endpoint = spec.paths[httpPath][httpMethod];
           const operationId = methodRenamesNew2Old[endpoint.operationId] ?? endpoint.operationId;
 
           const pathParamsRenames = pathParamsRenamesNew2Old[operationId];
@@ -109,7 +109,7 @@ function applyParameterRenames(spec3) {
             // Clone parameters with new names
             for (const parameter of pathSpec.parameters ?? []) {
               const refKey = parameter['$ref']?.replace('#/components/parameters/', '');
-              const refParam = spec3.components.parameters[refKey];
+              const refParam = spec.components.parameters[refKey];
               if (refKey && pathParamsRenames[refParam?.name]) {
                 const name = refParam.name;
                 const newName = pathParamsRenames[name];
@@ -121,7 +121,7 @@ function applyParameterRenames(spec3) {
                   const newRefParam = _.clone(refParam);
                   newRefParam.name = newName;
                   const newRefKey = refKey + '_' + newName;
-                  spec3.components.parameters[newRefKey] = newRefParam;
+                  spec.components.parameters[newRefKey] = newRefParam;
                   parameter['$ref'] = '#/components/parameters/' + newRefKey;
                   pathParameterRenames[refKey] = [name, newName, newRefKey];
                 }
@@ -150,12 +150,12 @@ function applyParameterRenames(spec3) {
     }
 
     // Apply path renames
-    const origPaths = spec3.paths;
+    const origPaths = spec.paths;
     const origPathKeys = Object.keys(origPaths);
-    spec3.paths = {};
+    spec.paths = {};
     for (const k of origPathKeys) {
       const key = pathRenames[k] ?? k;
-      spec3.paths[key] = origPaths[k];
+      spec.paths[key] = origPaths[k];
     }
   }
 
@@ -167,17 +167,17 @@ function applyParameterRenames(spec3) {
 }
 
 // For backward compatibility - change tags, operationId
-function applyTagsAndOperationRenames(spec3) {
+function applyTagsAndOperationRenames(spec) {
   const apiTagChanges = {};
   const operationRenames = {};
 
   const methodRenamesNew2Old = Object.fromEntries(Object.entries(mappings.methodRenames).map(a => a.reverse()));
 
   if (isBackwardCompatibility) {
-    for (const httpPath in spec3.paths) {
-      for (const httpMethod in spec3.paths[httpPath]) {
+    for (const httpPath in spec.paths) {
+      for (const httpMethod in spec.paths[httpPath]) {
         if (!['parameters'].includes(httpMethod)) {
-          const endpoint = spec3.paths[httpPath][httpMethod];
+          const endpoint = spec.paths[httpPath][httpMethod];
           // API consilidation - tags changes
           if (endpoint.tags) {
             const oldTags = endpoint.tags;
@@ -215,14 +215,14 @@ function applyTagsAndOperationRenames(spec3) {
   };
 }
 
-function fixResponses(spec3) {
+function fixResponses(spec) {
   const customdiscriminatorsForEndpoints = [];
   const manualPathsFixes = [];
 
-  for (const httpPath in spec3.paths) {
-    for (const httpMethod in spec3.paths[httpPath]) {
+  for (const httpPath in spec.paths) {
+    for (const httpMethod in spec.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
-        const endpoint = spec3.paths[httpPath][httpMethod];
+        const endpoint = spec.paths[httpPath][httpMethod];
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -274,7 +274,7 @@ function fixResponses(spec3) {
 
 // Some schemas can have extra properties and/or enum values based on FF so we need to merge schemas with mixins based on FF
 // Uses x-okta-feature-flag-amends
-function applyFFAments(spec3) {
+function applyFFAments(spec) {
   const ffAmends = [];
 
   const ffAmendsMerge = (obj, onSuccess) => {
@@ -293,8 +293,8 @@ function applyFFAments(spec3) {
     }
   };
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
 
     ffAmendsMerge(schema, () => {
       ffAmends.push({ schemaKey });
@@ -338,7 +338,7 @@ function applyFFAments(spec3) {
   };
 }
 
-function buildTypeMap(spec3) {
+function buildTypeMap(spec) {
   const typeMap = [];
 
   // See file `typeMap.mustache` which contains type mappings based on discriminator values.
@@ -350,8 +350,8 @@ function buildTypeMap(spec3) {
     'InlineHookChannel',
   ];
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
     if (schema.discriminator) {
       const { mapping } = schema.discriminator;
       if (mapping) {
@@ -391,7 +391,7 @@ function writeTypeMap(typeMap) {
   }
 }
 
-function fixExtensibleSchemas(spec3) {
+function fixExtensibleSchemas(spec) {
   const emptySchemas = [];
   const extensibleSchemas = [];
   const forcedExtensibleSchemas = [];
@@ -402,8 +402,8 @@ function fixExtensibleSchemas(spec3) {
     'UserProfile',
   ];
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
 
     if (schema.type === 'object' && !schema.properties && !schema.additionalProperties) {
       schema.additionalProperties = {};
@@ -445,11 +445,11 @@ function fixExtensibleSchemas(spec3) {
   };
 }
 
-function fixSchemaErrors(spec3) {
+function fixSchemaErrors(spec) {
   const manualSchemaFixes = [];
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
 
     // Special fix for ByDurationExpiry
     if (schema.allOf && Object.keys(schema).length > 1) {
@@ -468,10 +468,10 @@ function fixSchemaErrors(spec3) {
       const one = schema.allOf[0];
       const isOneRef = one?.['$ref'] && Object.keys(one).length === 1;
       const refSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
-      const refSchema = refSchemaKey ? spec3.components.schemas[refSchemaKey] : undefined;
+      const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
       if (!isOneRef) {
         schema = one;
-        spec3.components.schemas[schemaKey] = schema;
+        spec.components.schemas[schemaKey] = schema;
         manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       } else if (schemaKey === 'ByDateTimeExpiry') {
         // Special fix for ByDateTimeExpiry
@@ -497,12 +497,12 @@ function fixSchemaErrors(spec3) {
   };
 }
 
-function fixSchemaPropsErrors(spec3) {
+function fixSchemaPropsErrors(spec) {
   const manualSchemaPropsFixes = [];
   const badDateTimeProps = [];
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
     if (schema.properties) {
       for (let propName in schema.properties) {
         const prop = schema.properties[propName];
@@ -538,7 +538,7 @@ function fixSchemaPropsErrors(spec3) {
           || !!prop['allOf'] && prop['allOf'].length > 1;
         if (isInlineModel) {
           const inlineClassName = schemaKey.replaceAll('AllOf', '') + _.upperFirst(propName.replace(/^_+/, ''));
-          if (spec3.components.schemas[inlineClassName]) {
+          if (spec.components.schemas[inlineClassName]) {
             const suggestedFlag = `--model-name-mappings ${schemaKey}_${propName}=${inlineClassName}Inline`;
             const isFlagExist = packageJson["scripts"]["build:generate"]?.includes(suggestedFlag);
             if (!isFlagExist) {
@@ -557,11 +557,11 @@ function fixSchemaPropsErrors(spec3) {
   };
 }
 
-function fixSchemaBadArrayProps(spec3) {
+function fixSchemaBadArrayProps(spec) {
   const arrayPropsWithoutItems = [];
 
-  for (const schemaKey in spec3.components.schemas) {
-    let schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    let schema = spec.components.schemas[schemaKey];
 
     if (schema.properties) {
       for (let propName in schema.properties) {
@@ -588,7 +588,7 @@ function fixSchemaBadArrayProps(spec3) {
           } else if (['PersonalAppsBlockList', 'RealmAssignment', 'RealmProfile'].includes(schemaKey) && propName === 'domains') {
             prop.items = { type: 'string' };
           } else if (schemaKey === 'RegistrationInlineHookResponse' && propName === 'commands') {
-            const registrationResponse = spec3.components.schemas['RegistrationResponse'];
+            const registrationResponse = spec.components.schemas['RegistrationResponse'];
             if (registrationResponse) {
               const items = registrationResponse.properties.commands?.items;
               if (items) {
@@ -624,18 +624,18 @@ function loadSpec(yamlFile) {
     .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
     .replace(/^[ ]{4}Error:$/m, '    ModelError:');
 
-  const spec3 = yaml.load(yamlStrFixed);
+  const spec = yaml.load(yamlStrFixed);
 
   // `src/client.js` exports `Client` class which is a base class for performing API requests
   // But spec also have `Client` model which is not hoever yet used (it is used in `oauth.yaml` spec only)
   // If it's not used we can safely delete `Client` model to prevent breaking changes
   const doesSpecUseClientSchema = yamlStrFixed.indexOf('\'#/components/schemas/Client\'') !== -1;
   if (!doesSpecUseClientSchema && isBackwardCompatibility) {
-    delete spec3.components.schemas['Client'];
+    delete spec.components.schemas['Client'];
   }
 
   return {
-    spec3, yamlStr
+    spec, yamlStr
   };
 }
 
@@ -644,20 +644,20 @@ async function main() {
   const yamlFile = process.argv[2] || 'spec/management.yaml';
   const yamlFixedFile = process.argv[3] || 'spec/management.yaml';
 
-  const { spec3, yamlStr } = loadSpec(yamlFile);
+  const { spec, yamlStr } = loadSpec(yamlFile);
 
   // Apply fixes
-  const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec3);
-  const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec3);
-  const { manualPathsFixes, customdiscriminatorsForEndpoints } = fixResponses(spec3);
-  const { ffAmends } = applyFFAments(spec3);
-  const { typeMap } = buildTypeMap(spec3);
+  const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec);
+  const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec);
+  const { manualPathsFixes, customdiscriminatorsForEndpoints } = fixResponses(spec);
+  const { ffAmends } = applyFFAments(spec);
+  const { typeMap } = buildTypeMap(spec);
   const {
     emptySchemas, forcedExtensibleSchemas, fixedAdditionalPropertiesTrue
-  } = fixExtensibleSchemas(spec3);
-  const { manualSchemaFixes } = fixSchemaErrors(spec3);
-  const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec3);
-  const { arrayPropsWithoutItems } = fixSchemaBadArrayProps(spec3);
+  } = fixExtensibleSchemas(spec);
+  const { manualSchemaFixes } = fixSchemaErrors(spec);
+  const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec);
+  const { arrayPropsWithoutItems } = fixSchemaBadArrayProps(spec);
 
   // Log fix results
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -677,7 +677,7 @@ async function main() {
   console.log('API body name renames: ', bodyNameRenames);
 
   // Write fixed file
-  const yamlFixedStr = yaml.dump(spec3, {
+  const yamlFixedStr = yaml.dump(spec, {
     lineWidth: -1
   });
   if (yamlStr !== yamlFixedStr) {

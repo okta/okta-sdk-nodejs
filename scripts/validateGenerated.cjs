@@ -185,9 +185,9 @@ function parseGeneratedClient() {
   return apis;
 }
 
-const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
+const buildEndpointParams = (spec, httpPath, endpoint, className) => {
   const methodName = endpoint.operationId;
-  const pathSpec = spec3.paths[httpPath];
+  const pathSpec = spec.paths[httpPath];
 
   const regexPathParams = /{(.+?)}/g;
   const pathParams = [];
@@ -203,7 +203,7 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
       let refSchemaKey;
       if (param?.['$ref']) {
         refSchemaKey = param['$ref'].replace(/#\/components\/(parameters|schemas)\//, '');
-        param = spec3.components.parameters[refSchemaKey] ?? spec3.components.schemas[refSchemaKey];
+        param = spec.components.parameters[refSchemaKey] ?? spec.components.schemas[refSchemaKey];
       }
       let paramName = param?.['name'];
       if (!paramName) {
@@ -232,7 +232,7 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
       let refSchemaKey;
       if (param?.['$ref']) {
         refSchemaKey = param['$ref'].replace(/#\/components\/(parameters|schemas)\//, '');
-        param = spec3.components.parameters[refSchemaKey] ?? spec3.components.schemas[refSchemaKey];
+        param = spec.components.parameters[refSchemaKey] ?? spec.components.schemas[refSchemaKey];
       }
       let paramName = param?.['name'];
       if (paramName) {
@@ -253,7 +253,7 @@ const buildEndpointParams = (spec3, httpPath, endpoint, className) => {
   };
 };
 
-const buildEndpointBodyParams = (spec3, httpMethod, endpoint) => {
+const buildEndpointBodyParams = (spec, httpMethod, endpoint) => {
   const methodName = endpoint.operationId;
   let bodyParams;
 
@@ -303,13 +303,13 @@ const buildEndpointBodyParams = (spec3, httpMethod, endpoint) => {
   };
 };
 
-const buildEndpointResponseType = (spec3, endpoint) => {
+const buildEndpointResponseType = (spec, endpoint) => {
   let returnType;
   for (const responseCode in endpoint.responses) {
     let response = endpoint.responses[responseCode];
     if (response?.['$ref']) {
       const refSchemaKey = response['$ref'].replace('#/components/responses/', '');
-      response = spec3.components.responses[refSchemaKey];
+      response = spec.components.responses[refSchemaKey];
     }
     if (response?.content) {
       const contentTypes = Object.keys(response?.content);
@@ -328,7 +328,7 @@ const buildEndpointResponseType = (spec3, endpoint) => {
         }
         if (schema['$ref']) {
           refSchemaKey = schema['$ref'].replace('#/components/schemas/', '');
-          schema = spec3.components.schemas[refSchemaKey];
+          schema = spec.components.schemas[refSchemaKey];
         }
         if (refSchemaKey && schema['type'] !== 'string') {
           returnType = isArray ? `Array<${refSchemaKey}>` : refSchemaKey;
@@ -369,24 +369,24 @@ const buildEndpointResponseType = (spec3, endpoint) => {
 
 const getSpec3Meta = () => {
   const yamlStr = fs.readFileSync(fileSpec, { encoding: 'utf8' });
-  const spec3 = yaml.load(yamlStr);
+  const spec = yaml.load(yamlStr);
 
   const apis = {};
 
-  for (const httpPath in spec3.paths) {
-    const pathSpec = spec3.paths[httpPath];
+  for (const httpPath in spec.paths) {
+    const pathSpec = spec.paths[httpPath];
     for (const httpMethod in pathSpec) {
       if (!['parameters'].includes(httpMethod)) {
-        const endpoint = spec3.paths[httpPath][httpMethod];
+        const endpoint = spec.paths[httpPath][httpMethod];
         for (const tag of endpoint.tags || []) {
           const className = tag + 'Api';
           if (!apis[className]) {
             apis[className] = {};
           }
           const methodName = endpoint.operationId;
-          const { starPath, pathParams, queryParams } = buildEndpointParams(spec3, httpPath, endpoint, className);
-          const { bodyParams } = buildEndpointBodyParams(spec3, httpMethod, endpoint);
-          const { returnType } = buildEndpointResponseType(spec3, endpoint, className, methodName);
+          const { starPath, pathParams, queryParams } = buildEndpointParams(spec, httpPath, endpoint, className);
+          const { bodyParams } = buildEndpointBodyParams(spec, httpMethod, endpoint);
+          const { returnType } = buildEndpointResponseType(spec, endpoint, className, methodName);
 
           apis[className][methodName] = {
             httpMethod,

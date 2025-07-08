@@ -15,11 +15,11 @@ const yaml = require('js-yaml');
 
 let replaceInFileSync; // to be imported from ESM 'replace-in-file'
 
-const getSpec3Meta = (spec3) => {
+const getSpecMeta = (spec) => {
   const discriminators = {};
 
-  for (const schemaKey in spec3.components.schemas) {
-    const schema = spec3.components.schemas[schemaKey];
+  for (const schemaKey in spec.components.schemas) {
+    const schema = spec.components.schemas[schemaKey];
     if (schema.discriminator) {
       const { propertyName, mapping } = schema.discriminator;
       if (!discriminators[propertyName]) {
@@ -42,7 +42,7 @@ const getSpec3Meta = (spec3) => {
   };
 };
 
-const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
+const removeIncorrectDiscriminator = (discriminatorName, specMeta, oauthSpecMeta) => {
   const regex = new RegExp(`^(\\s*)(this\\.${discriminatorName} = '(.+?)';)`, 'gm');
   let result = {};
   const _res = replaceInFileSync({
@@ -53,18 +53,22 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
       let [_, className, parentClassName] = fileContents.match(/class (\w+) extends (\w+)/m) || [];
       className = className || fileName;
       let baseClassName = parentClassName;
-      let mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
+      let mapping = specMeta.discriminators[discriminatorName]?.[baseClassName];
+      if (!mapping && baseClassName?.endsWith('1')) {
+        // management.yaml has own `JsonWebKey` and refers to `JsonWebKey` in oauth.yaml which has class name `JsonWebKey1`
+        mapping = oauthSpecMeta.discriminators[discriminatorName]?.[baseClassName.slice(0, -1)];
+      }
       while (!mapping && baseClassName) {
         const baseClassContents = fs.readFileSync('src/generated/models/' + baseClassName + '.ts', { encoding: 'utf8' });
         [_, _, baseClassName] = baseClassContents.match(/class (\w+) extends (\w+)/m) || [];
         if (baseClassName) {
-          mapping = spec3Meta.discriminators[discriminatorName]?.[baseClassName];
+          mapping = specMeta.discriminators[discriminatorName]?.[baseClassName];
         } else {
           break; // it's base class in hierarchy
         }
       }
-      const fundKeys = Object.keys(mapping || {}).filter(k => mapping[k] === className);
-      const foundKey = fundKeys.length === 1 ? fundKeys[0] : undefined;
+      const foundKeys = Object.keys(mapping || {}).filter(k => mapping[k] === className);
+      const foundKey = foundKeys.length === 1 ? foundKeys[0] : undefined;
       result[fileName] = [grpValue, foundKey];
       if (foundKey) {
         return grpSpaces + 'this.' + discriminatorName + ' = ' + JSON.stringify(foundKey) + ';';
@@ -79,15 +83,14 @@ const removeIncorrectDiscriminator = (discriminatorName, spec3Meta) => {
   return result;
 };
 
-const removeIncorrectDiscriminators = (spec3Meta) => {
+const removeIncorrectDiscriminators = (specMeta, oauthSpecMeta) => {
   const decsriminatorNames = [
-    ...Object.keys(spec3Meta.discriminators),
-    // for JsonWebKey1
-    'kty'
+    ...Object.keys(specMeta.discriminators),
+    ...Object.keys(oauthSpecMeta.discriminators),
   ];
   const totalRes = {};
   for (const decsriminatorName of decsriminatorNames) {
-    const res = removeIncorrectDiscriminator(decsriminatorName, spec3Meta);
+    const res = removeIncorrectDiscriminator(decsriminatorName, specMeta, oauthSpecMeta);
     if (Object.keys(res).length) {
       totalRes[decsriminatorName] = res;
     }
@@ -204,14 +207,22 @@ const removeAllOf = () => {
 
 async function main() {
   try {
+    // Use ESM import
     ({ replaceInFileSync } = await import('replace-in-file'));
+
     const yamlFile = 'spec/management.yaml';
     const yamlStr = fs.readFileSync(yamlFile, { encoding: 'utf8' });
-    const spec3 = yaml.load(yamlStr);
-    const spec3Meta = getSpec3Meta(spec3);
+    const spec = yaml.load(yamlStr);
+    const specMeta = getSpecMeta(spec);
+
+    // management.yaml has a reference to `JsonWebKey` in oauth.yaml
+    const oauthYamlFile = 'spec/oauth.yaml';
+    const oauthYamlStr = fs.readFileSync(oauthYamlFile, { encoding: 'utf8' });
+    const oauthSpec = yaml.load(oauthYamlStr);
+    const oauthSpecMeta = getSpecMeta(oauthSpec);
 
     // remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
-    const removeIncorrectDiscriminatorsResult = removeIncorrectDiscriminators(spec3Meta);
+    const removeIncorrectDiscriminatorsResult = removeIncorrectDiscriminators(specMeta, oauthSpecMeta);
     console.log('Fix/remove incorrect discriminators result =', removeIncorrectDiscriminatorsResult);
 
     // fix '' with '
