@@ -26,8 +26,8 @@ const util_1 = require('../util');
 class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates an authorization server
-     * Activate an Authorization Server
-     * @param authServerId
+     * Activate an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async activateAuthorizationServer(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -62,9 +62,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Activates an authorization server policy
-     * Activate a Policy
-     * @param authServerId
-     * @param policyId
+     * Activate a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   async activateAuthorizationServerPolicy(authServerId, policyId, _options) {
     let _config = _options || this.configuration;
@@ -104,10 +104,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Activates an authorization server policy rule
-     * Activate a Policy Rule
-     * @param authServerId
-     * @param policyId
-     * @param ruleId
+     * Activate a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
   async activateAuthorizationServerPolicyRule(authServerId, policyId, ruleId, _options) {
     let _config = _options || this.configuration;
@@ -151,8 +151,57 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
+     * Creates trusted relationships between the given authorization server and other authorization servers
+     * Create an associated authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param associatedServerMediated
+     */
+  async createAssociatedServers(authServerId, associatedServerMediated, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAssociatedServers', 'authServerId');
+    }
+    // verify required parameter 'associatedServerMediated' is not null or undefined
+    if (associatedServerMediated === null || associatedServerMediated === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAssociatedServers', 'associatedServerMediated');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/associatedServers';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], associatedServerMediated);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(associatedServerMediated, 'AssociatedServerMediated', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * Creates an authorization server
-     * Create an Authorization Server
+     * Create an authorization server
      * @param authorizationServer
      */
   async createAuthorizationServer(authorizationServer, _options) {
@@ -193,8 +242,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Creates a policy
-     * Create a Policy
-     * @param authServerId
+     * Create a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param policy
      */
   async createAuthorizationServerPolicy(authServerId, policy, _options) {
@@ -242,20 +291,20 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Creates a policy rule for the specified Custom Authorization Server and Policy
-     * Create a Policy Rule
-     * @param policyId
-     * @param authServerId
+     * Create a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      * @param policyRule
      */
-  async createAuthorizationServerPolicyRule(policyId, authServerId, policyRule, _options) {
+  async createAuthorizationServerPolicyRule(authServerId, policyId, policyRule, _options) {
     let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServerPolicyRule', 'policyId');
-    }
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServerPolicyRule', 'authServerId');
+    }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServerPolicyRule', 'policyId');
     }
     // verify required parameter 'policyRule' is not null or undefined
     if (policyRule === null || policyRule === undefined) {
@@ -264,8 +313,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     // Path Params
     const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules';
     const vars = {
-      ['policyId']: String(policyId),
       ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
     };
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
@@ -276,7 +325,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     ], policyRule);
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRule', ''), contentType);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRuleRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
@@ -296,9 +345,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Creates a custom token claim
-     * Create a Custom Token Claim
-     * @param authServerId
+     * Creates a custom token Claim for a custom authorization server
+     * Create a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param oAuth2Claim
      */
   async createOAuth2Claim(authServerId, oAuth2Claim, _options) {
@@ -346,8 +395,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Creates a custom token scope
-     * Create a Custom Token Scope
-     * @param authServerId
+     * Create a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param oAuth2Scope
      */
   async createOAuth2Scope(authServerId, oAuth2Scope, _options) {
@@ -395,8 +444,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deactivates an authorization server
-     * Deactivate an Authorization Server
-     * @param authServerId
+     * Deactivate an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async deactivateAuthorizationServer(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -431,9 +480,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deactivates an authorization server policy
-     * Deactivate a Policy
-     * @param authServerId
-     * @param policyId
+     * Deactivate a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   async deactivateAuthorizationServerPolicy(authServerId, policyId, _options) {
     let _config = _options || this.configuration;
@@ -473,10 +522,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deactivates an authorization server policy rule
-     * Deactivate a Policy Rule
-     * @param authServerId
-     * @param policyId
-     * @param ruleId
+     * Deactivate a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
   async deactivateAuthorizationServerPolicyRule(authServerId, policyId, ruleId, _options) {
     let _config = _options || this.configuration;
@@ -520,9 +569,51 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
+     * Deletes an associated Authorization Server
+     * Delete an associated authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param associatedServerId &#x60;id&#x60; of the associated Authorization Server
+     */
+  async deleteAssociatedServer(authServerId, associatedServerId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAssociatedServer', 'authServerId');
+    }
+    // verify required parameter 'associatedServerId' is not null or undefined
+    if (associatedServerId === null || associatedServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAssociatedServer', 'associatedServerId');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/associatedServers/{associatedServerId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['associatedServerId']: String(associatedServerId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * Deletes an authorization server
-     * Delete an Authorization Server
-     * @param authServerId
+     * Delete an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async deleteAuthorizationServer(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -557,9 +648,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deletes a policy
-     * Delete a Policy
-     * @param authServerId
-     * @param policyId
+     * Delete a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   async deleteAuthorizationServerPolicy(authServerId, policyId, _options) {
     let _config = _options || this.configuration;
@@ -599,20 +690,20 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
-     * Delete a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Delete a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
-  async deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId, _options) {
+  async deleteAuthorizationServerPolicyRule(authServerId, policyId, ruleId, _options) {
     let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServerPolicyRule', 'policyId');
-    }
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServerPolicyRule', 'authServerId');
+    }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServerPolicyRule', 'policyId');
     }
     // verify required parameter 'ruleId' is not null or undefined
     if (ruleId === null || ruleId === undefined) {
@@ -621,8 +712,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     // Path Params
     const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
     const vars = {
-      ['policyId']: String(policyId),
       ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
       ['ruleId']: String(ruleId),
     };
     // Make Request Context
@@ -646,10 +737,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Deletes a custom token claim
-     * Delete a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Deletes a custom token Claim specified by the `claimId`
+     * Delete a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      */
   async deleteOAuth2Claim(authServerId, claimId, _options) {
     let _config = _options || this.configuration;
@@ -689,9 +780,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deletes a custom token scope
-     * Delete a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Delete a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      */
   async deleteOAuth2Scope(authServerId, scopeId, _options) {
     let _config = _options || this.configuration;
@@ -731,8 +822,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Retrieves an authorization server
-     * Retrieve an Authorization Server
-     * @param authServerId
+     * Retrieve an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async getAuthorizationServer(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -766,10 +857,52 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
+     * Retrieves an Authorization Server Key specified by the `keyId`
+     * Retrieve an authorization server key
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param keyId &#x60;id&#x60; of the certificate key
+     */
+  async getAuthorizationServerKey(authServerId, keyId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerKey', 'authServerId');
+    }
+    // verify required parameter 'keyId' is not null or undefined
+    if (keyId === null || keyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerKey', 'keyId');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/credentials/keys/{keyId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['keyId']: String(keyId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * Retrieves a policy
-     * Retrieve a Policy
-     * @param authServerId
-     * @param policyId
+     * Retrieve a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   async getAuthorizationServerPolicy(authServerId, policyId, _options) {
     let _config = _options || this.configuration;
@@ -809,20 +942,20 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Retrieves a policy rule by `ruleId`
-     * Retrieve a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Retrieve a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
-  async getAuthorizationServerPolicyRule(policyId, authServerId, ruleId, _options) {
+  async getAuthorizationServerPolicyRule(authServerId, policyId, ruleId, _options) {
     let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerPolicyRule', 'policyId');
-    }
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerPolicyRule', 'authServerId');
+    }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerPolicyRule', 'policyId');
     }
     // verify required parameter 'ruleId' is not null or undefined
     if (ruleId === null || ruleId === undefined) {
@@ -831,8 +964,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     // Path Params
     const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
     const vars = {
-      ['policyId']: String(policyId),
       ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
       ['ruleId']: String(ruleId),
     };
     // Make Request Context
@@ -856,10 +989,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Retrieves a custom token claim
-     * Retrieve a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Retrieves a custom token Claim by the specified `claimId`
+     * Retrieve a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      */
   async getOAuth2Claim(authServerId, claimId, _options) {
     let _config = _options || this.configuration;
@@ -899,9 +1032,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Retrieves a custom token scope
-     * Retrieve a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Retrieve a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      */
   async getOAuth2Scope(authServerId, scopeId, _options) {
     let _config = _options || this.configuration;
@@ -940,12 +1073,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Retrieves a refresh token for a client
-     * Retrieve a Refresh Token for a Client
-     * @param authServerId
-     * @param clientId
-     * @param tokenId
-     * @param expand
+     * Retrieves a refresh token for a Client
+     * Retrieve a refresh token for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param tokenId &#x60;id&#x60; of Token
+     * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
      */
   async getRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, expand, _options) {
     let _config = _options || this.configuration;
@@ -993,9 +1126,65 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Lists all credential keys
-     * List all Credential Keys
-     * @param authServerId
+     * Lists all associated Authorization Servers by trusted type for the given `authServerId`
+     * List all associated authorization servers
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param trusted Searches trusted authorization servers when &#x60;true&#x60; or searches untrusted authorization servers when &#x60;false&#x60;
+     * @param q Searches for the name or audience of the associated authorization servers
+     * @param limit Specifies the number of results for a page
+     * @param after Specifies the pagination cursor for the next page of the associated authorization servers
+     */
+  async listAssociatedServersByTrustedType(authServerId, trusted, q, limit, after, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAssociatedServersByTrustedType', 'authServerId');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/associatedServers';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Query Params
+    if (trusted !== undefined) {
+      requestContext.setQueryParam('trusted', ObjectSerializer_1.ObjectSerializer.serialize(trusted, 'boolean', ''));
+    }
+    // Query Params
+    if (q !== undefined) {
+      requestContext.setQueryParam('q', ObjectSerializer_1.ObjectSerializer.serialize(q, 'string', ''));
+    }
+    // Query Params
+    if (limit !== undefined) {
+      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
+    }
+    // Query Params
+    if (after !== undefined) {
+      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
+    }
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Lists all of the current, future, and expired Keys used by the Custom Authorization Server
+     * List all credential keys
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async listAuthorizationServerKeys(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -1030,8 +1219,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Lists all policies
-     * List all Policies
-     * @param authServerId
+     * List all policies
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async listAuthorizationServerPolicies(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -1066,25 +1255,25 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Lists all policy rules for the specified Custom Authorization Server and Policy
-     * List all Policy Rules
-     * @param policyId
-     * @param authServerId
+     * List all policy rules
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
-  async listAuthorizationServerPolicyRules(policyId, authServerId, _options) {
+  async listAuthorizationServerPolicyRules(authServerId, policyId, _options) {
     let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerPolicyRules', 'policyId');
-    }
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerPolicyRules', 'authServerId');
     }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerPolicyRules', 'policyId');
+    }
     // Path Params
     const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules';
     const vars = {
-      ['policyId']: String(policyId),
       ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
     };
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
@@ -1107,11 +1296,11 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Lists all authorization servers
-     * List all Authorization Servers
-     * @param q
-     * @param limit
-     * @param after
+     * Lists all custom authorization servers in the org
+     * List all authorization servers
+     * @param q Searches the &#x60;name&#x60; and &#x60;audiences&#x60; of authorization servers for matching values
+     * @param limit Specifies the number of authorization server results on a page. Maximum value: 200
+     * @param after Specifies the pagination cursor for the next page of authorization servers. Treat as an opaque value and obtain through the next link relationship.
      */
   async listAuthorizationServers(q, limit, after, _options) {
     let _config = _options || this.configuration;
@@ -1150,9 +1339,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Lists all custom token claims
-     * List all Custom Token Claims
-     * @param authServerId
+     * Lists all custom token Claims defined for a specified custom authorization server
+     * List all custom token claims
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async listOAuth2Claims(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -1186,9 +1375,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Lists all clients
-     * List all Clients
-     * @param authServerId
+     * Lists all client resources for which the specified authorization server has tokens.  > **Note:** To list a specific user\'s client resources for which they have tokens or grants, use the [List all clients endpoint in the User Resources API](/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserClients).
+     * List all client resources for an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   async listOAuth2ClientsForAuthorizationServer(authServerId, _options) {
     let _config = _options || this.configuration;
@@ -1223,14 +1412,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Lists all custom token scopes
-     * List all Custom Token Scopes
-     * @param authServerId
-     * @param q
-     * @param filter
-     * @param cursor
-     * @param limit
+     * List all custom token scopes
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param q Searches the &#x60;name&#x60; of Custom Token Scopes for matching values
+     * @param filter Filter expression for Custom Token Scopes
+     * @param after Specifies the pagination cursor for the next page of scopes. Treat the after cursor as an opaque value and obtain it through the next link relationship. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param limit Specifies the number of objects to return per page. If there are multiple pages of results, the Link header contains a &#x60;next&#x60; link that you need to use as an opaque value (follow it, don\&#39;t parse it). See [Pagination](https://developer.okta.com/docs/api/#pagination).
      */
-  async listOAuth2Scopes(authServerId, q, filter, cursor, limit, _options) {
+  async listOAuth2Scopes(authServerId, q, filter, after, limit, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
@@ -1253,12 +1442,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       requestContext.setQueryParam('filter', ObjectSerializer_1.ObjectSerializer.serialize(filter, 'string', ''));
     }
     // Query Params
-    if (cursor !== undefined) {
-      requestContext.setQueryParam('cursor', ObjectSerializer_1.ObjectSerializer.serialize(cursor, 'string', ''));
+    if (after !== undefined) {
+      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
     }
     // Query Params
     if (limit !== undefined) {
-      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
+      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', ''));
     }
     let authMethod;
     // Apply auth methods
@@ -1278,13 +1467,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Lists all refresh tokens for a client
-     * List all Refresh Tokens for a Client
-     * @param authServerId
-     * @param clientId
-     * @param expand
-     * @param after
-     * @param limit
+     * Lists all refresh tokens issued by an authorization server for a specific Client
+     * List all refresh tokens for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
+     * @param after Specifies the pagination cursor for the next page of tokens
+     * @param limit The maximum number of tokens to return (maximum 200)
      */
   async listRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, expand, after, limit, _options) {
     let _config = _options || this.configuration;
@@ -1336,8 +1525,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Replaces an authorization server
-     * Replace an Authorization Server
-     * @param authServerId
+     * Replace an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param authorizationServer
      */
   async replaceAuthorizationServer(authServerId, authorizationServer, _options) {
@@ -1385,9 +1574,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Replaces a policy
-     * Replace a Policy
-     * @param authServerId
-     * @param policyId
+     * Replace a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      * @param policy
      */
   async replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
@@ -1440,21 +1629,21 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
-     * Replace a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Replace a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      * @param policyRule
      */
-  async replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
+  async replaceAuthorizationServerPolicyRule(authServerId, policyId, ruleId, policyRule, _options) {
     let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'policyId');
-    }
     // verify required parameter 'authServerId' is not null or undefined
     if (authServerId === null || authServerId === undefined) {
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'authServerId');
+    }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'policyId');
     }
     // verify required parameter 'ruleId' is not null or undefined
     if (ruleId === null || ruleId === undefined) {
@@ -1467,8 +1656,8 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     // Path Params
     const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
     const vars = {
-      ['policyId']: String(policyId),
       ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
       ['ruleId']: String(ruleId),
     };
     // Make Request Context
@@ -1480,7 +1669,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     ], policyRule);
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRule', ''), contentType);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRuleRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
@@ -1500,10 +1689,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Replaces a custom token claim
-     * Replace a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Replaces a custom token Claim specified by the `claimId`
+     * Replace a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      * @param oAuth2Claim
      */
   async replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
@@ -1556,9 +1745,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Replaces a custom token scope
-     * Replace a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Replace a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      * @param oAuth2Scope
      */
   async replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
@@ -1610,11 +1799,11 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Revokes a refresh token for a client
-     * Revoke a Refresh Token for a Client
-     * @param authServerId
-     * @param clientId
-     * @param tokenId
+     * Revokes a refresh token for a Client
+     * Revoke a refresh token for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param tokenId &#x60;id&#x60; of Token
      */
   async revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, _options) {
     let _config = _options || this.configuration;
@@ -1658,10 +1847,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Revokes all refresh tokens for a client
-     * Revoke all Refresh Tokens for a Client
-     * @param authServerId
-     * @param clientId
+     * Revokes all refresh tokens for a Client
+     * Revoke all refresh tokens for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
      */
   async revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, _options) {
     let _config = _options || this.configuration;
@@ -1700,9 +1889,9 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Rotates all credential keys
-     * Rotate all Credential Keys
-     * @param authServerId
+     * Rotates the current Keys for a Custom Authorization Server. If you rotate Keys, the `ACTIVE` Key becomes the `EXPIRED` Key, the `NEXT` Key becomes the `ACTIVE` Key, and the Custom Authorization Server immediately begins using the new active Key to sign tokens.  > **Note:** Okta rotates your Keys automatically in `AUTO` mode. You can rotate Keys yourself in either mode. If Keys are rotated manually, you should invalidate any intermediate cache. and fetch the Keys again using the Keys endpoint.
+     * Rotate all credential keys
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param use
      */
   async rotateAuthorizationServerKeys(authServerId, use, _options) {
@@ -1764,15 +1953,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1795,15 +1984,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1826,20 +2015,56 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to createAssociatedServers
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async createAssociatedServers(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServer>', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServer>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1858,15 +2083,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1890,19 +2115,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1926,19 +2151,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1962,19 +2187,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1998,19 +2223,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2033,15 +2258,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2064,15 +2289,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2095,15 +2320,46 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteAssociatedServer
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async deleteAssociatedServer(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+      return;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2126,15 +2382,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2157,15 +2413,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2188,15 +2444,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2219,15 +2475,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2250,15 +2506,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2282,20 +2538,52 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getAuthorizationServerKey
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getAuthorizationServerKey(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerJsonWebKey', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerJsonWebKey', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -2314,15 +2602,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2346,15 +2634,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2378,15 +2666,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2410,15 +2698,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2442,20 +2730,52 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2RefreshToken', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listAssociatedServersByTrustedType
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async listAssociatedServersByTrustedType(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServer>', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServer>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -2470,24 +2790,24 @@ class AuthorizationServerApiResponseProcessor {
   async listAuthorizationServerKeys(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<JsonWebKey>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServerJsonWebKey>', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<JsonWebKey>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServerJsonWebKey>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -2506,15 +2826,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2538,15 +2858,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2570,11 +2890,11 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2598,15 +2918,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2630,15 +2950,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2662,15 +2982,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2694,15 +3014,15 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2726,19 +3046,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2762,19 +3082,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2798,19 +3118,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2834,19 +3154,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2870,19 +3190,19 @@ class AuthorizationServerApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2905,15 +3225,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2936,15 +3256,15 @@ class AuthorizationServerApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -2964,28 +3284,28 @@ class AuthorizationServerApiResponseProcessor {
   async rotateAuthorizationServerKeys(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<JsonWebKey>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServerJsonWebKey>', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<JsonWebKey>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<AuthorizationServerJsonWebKey>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

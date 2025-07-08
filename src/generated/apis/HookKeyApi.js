@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class HookKeyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Creates a key
+     * Creates a key for use with other parts of the application, such as inline hooks  > **Note:**  Use the key name to access this key for inline hook operations.  The total number of keys that you can create in an Okta org is limited to 50.   The response is a [Key object](https://developer.okta.com/docs/reference/api/hook-keys/#key-object) that represents the   key that you create. The `id` property in the response serves as the unique ID for the key, which you can specify when   invoking other CRUD operations. The `keyId` provided in the response is the alias of the public key that you can use to get   details of the public key data in a separate call.  > **Note:** The keyId is the alias of the public key that you can use to retrieve the public key.
      * Create a key
      * @param keyRequest
      */
@@ -66,9 +66,9 @@ class HookKeyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+     * Deletes a key by `id`. After being deleted, the key is unrecoverable.  As a safety precaution, only keys that aren\'t being used are eligible for deletion.
      * Delete a key
-     * @param hookKeyId
+     * @param hookKeyId ID of the Hook Key
      */
   async deleteHookKey(hookKeyId, _options) {
     let _config = _options || this.configuration;
@@ -102,9 +102,9 @@ class HookKeyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves a key by `hookKeyId`
-     * Retrieve a key
-     * @param hookKeyId
+     * Retrieves the public portion of the Key object using the `id` parameter  >**Note:** The `?expand=publickey` query parameter optionally returns the full object including the details of the public key in the response body\'s `_embedded` property.
+     * Retrieve a key by ID
+     * @param hookKeyId ID of the Hook Key
      */
   async getHookKey(hookKeyId, _options) {
     let _config = _options || this.configuration;
@@ -138,9 +138,9 @@ class HookKeyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves a public key by `keyId`
+     * Retrieves a public key by `keyId`  >**Note:** keyId is the alias of the public key.
      * Retrieve a public key
-     * @param keyId
+     * @param keyId id\&quot; of the Public Key
      */
   async getPublicKey(keyId, _options) {
     let _config = _options || this.configuration;
@@ -202,9 +202,9 @@ class HookKeyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Replaces a key by `hookKeyId`
+     * Replaces a key by `id`  This request replaces existing properties after passing validation.  > **Note:** The only parameter that you can update is the name of the key, which must be unique at all times.
      * Replace a key
-     * @param hookKeyId
+     * @param hookKeyId ID of the Hook Key
      * @param keyRequest
      */
   async replaceHookKey(hookKeyId, keyRequest, _options) {
@@ -263,24 +263,24 @@ class HookKeyApiResponseProcessor {
   async createHookKey(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'HookKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'DetailedHookKeyInstance', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'HookKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'DetailedHookKeyInstance', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -298,15 +298,15 @@ class HookKeyApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -330,15 +330,15 @@ class HookKeyApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -358,24 +358,24 @@ class HookKeyApiResponseProcessor {
   async getPublicKey(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'JsonWebKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Embedded', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'JsonWebKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Embedded', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -394,11 +394,11 @@ class HookKeyApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -418,28 +418,28 @@ class HookKeyApiResponseProcessor {
   async replaceHookKey(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'HookKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'DetailedHookKeyInstance', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'HookKey', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'DetailedHookKeyInstance', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

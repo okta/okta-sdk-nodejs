@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Creates a new custom SMS template
-     * Create an SMS Template
+     * Create an SMS template
      * @param smsTemplate
      */
   async createSmsTemplate(smsTemplate, _options) {
@@ -67,8 +67,8 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes an SMS template
-     * Delete an SMS Template
-     * @param templateId
+     * Delete an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      */
   async deleteSmsTemplate(templateId, _options) {
     let _config = _options || this.configuration;
@@ -103,8 +103,8 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Retrieves a specific template by `id`
-     * Retrieve an SMS Template
-     * @param templateId
+     * Retrieve an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      */
   async getSmsTemplate(templateId, _options) {
     let _config = _options || this.configuration;
@@ -139,7 +139,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
-     * List all SMS Templates
+     * List all SMS templates
      * @param templateType
      */
   async listSmsTemplates(templateType, _options) {
@@ -171,9 +171,9 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Replaces the SMS template
-     * Replace an SMS Template
-     * @param templateId
+     * Replaces the SMS Template > **Notes:** You can\'t update the default SMS Template.
+     * Replace an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      * @param smsTemplate
      */
   async replaceSmsTemplate(templateId, smsTemplate, _options) {
@@ -220,9 +220,9 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates an SMS template
-     * Update an SMS Template
-     * @param templateId
+     * Updates only some of the SMS Template properties:   * All properties within the custom SMS Template that have values are updated.   * Any translation that doesn\'t exist is added.   * Any translation with a null or empty value is removed.   * Any translation with non-empty/null value is updated.
+     * Update an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      * @param smsTemplate
      */
   async updateSmsTemplate(templateId, smsTemplate, _options) {
@@ -285,15 +285,15 @@ class TemplateApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -316,15 +316,15 @@ class TemplateApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -348,15 +348,15 @@ class TemplateApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -380,11 +380,11 @@ class TemplateApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -408,19 +408,19 @@ class TemplateApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -444,19 +444,19 @@ class TemplateApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml

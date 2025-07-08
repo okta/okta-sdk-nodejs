@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
+     * Creates a new CAPTCHA instance. Currently, an org can only configure a single CAPTCHA instance.
      * Create a CAPTCHA instance
      * @param instance
      */
@@ -66,9 +66,9 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-     * Delete a CAPTCHA Instance
-     * @param captchaId id of the CAPTCHA
+     * Deletes a specified CAPTCHA instance > **Note:** If your CAPTCHA instance is still associated with your org, the request fails. You must first update your Org-wide CAPTCHA settings to remove the CAPTCHA instance.
+     * Delete a CAPTCHA instance
+     * @param captchaId The unique key used to identify your CAPTCHA instance
      */
   async deleteCaptchaInstance(captchaId, _options) {
     let _config = _options || this.configuration;
@@ -102,9 +102,37 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves a CAPTCHA instance by `captchaId`
-     * Retrieve a CAPTCHA Instance
-     * @param captchaId id of the CAPTCHA
+     * Deletes the CAPTCHA settings object for your organization
+     * Delete the org-wide CAPTCHA settings
+     */
+  async deleteOrgCaptchaSettings(_options) {
+    let _config = _options || this.configuration;
+    // Path Params
+    const path = '/api/v1/org/captcha';
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Retrieves the properties of a specified CAPTCHA instance
+     * Retrieve a CAPTCHA instance
+     * @param captchaId The unique key used to identify your CAPTCHA instance
      */
   async getCaptchaInstance(captchaId, _options) {
     let _config = _options || this.configuration;
@@ -119,6 +147,34 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     };
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Retrieves the CAPTCHA settings object for your organization > **Note**: If the current organization hasn\'t configured CAPTCHA Settings, the request returns an empty object.
+     * Retrieve the org-wide CAPTCHA settings
+     */
+  async getOrgCaptchaSettings(_options) {
+    let _config = _options || this.configuration;
+    // Path Params
+    const path = '/api/v1/org/captcha';
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -166,9 +222,9 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Replaces a CAPTCHA instance by `captchaId`
+     * Replaces the properties for a specified CAPTCHA instance
      * Replace a CAPTCHA instance
-     * @param captchaId id of the CAPTCHA
+     * @param captchaId The unique key used to identify your CAPTCHA instance
      * @param instance
      */
   async replaceCaptchaInstance(captchaId, instance, _options) {
@@ -215,9 +271,50 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Partially updates a CAPTCHA instance by `captchaId`
+     * Replaces the CAPTCHA settings object for your organization > **Note**: You can disable CAPTCHA for your organization by setting `captchaId` and `enabledPages` to `null`.
+     * Replace the org-wide CAPTCHA settings
+     * @param orgCAPTCHASettings
+     */
+  async replacesOrgCaptchaSettings(orgCAPTCHASettings, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'orgCAPTCHASettings' is not null or undefined
+    if (orgCAPTCHASettings === null || orgCAPTCHASettings === undefined) {
+      throw new baseapi_1.RequiredError('CAPTCHAApi', 'replacesOrgCaptchaSettings', 'orgCAPTCHASettings');
+    }
+    // Path Params
+    const path = '/api/v1/org/captcha';
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], orgCAPTCHASettings);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(orgCAPTCHASettings, 'OrgCAPTCHASettings', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Partially updates the properties of a specified CAPTCHA instance
      * Update a CAPTCHA instance
-     * @param captchaId id of the CAPTCHA
+     * @param captchaId The unique key used to identify your CAPTCHA instance
      * @param instance
      */
   async updateCaptchaInstance(captchaId, instance, _options) {
@@ -280,15 +377,15 @@ class CAPTCHAApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -311,15 +408,46 @@ class CAPTCHAApiResponseProcessor {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteOrgCaptchaSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async deleteOrgCaptchaSettings(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+      return;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -343,20 +471,48 @@ class CAPTCHAApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'CAPTCHAInstance', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getOrgCaptchaSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getOrgCaptchaSettings(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCAPTCHASettings', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCAPTCHASettings', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -375,11 +531,11 @@ class CAPTCHAApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -403,24 +559,56 @@ class CAPTCHAApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'CAPTCHAInstance', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replacesOrgCaptchaSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replacesOrgCaptchaSettings(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCAPTCHASettings', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCAPTCHASettings', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -439,19 +627,19 @@ class CAPTCHAApiResponseProcessor {
       return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml

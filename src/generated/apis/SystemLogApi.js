@@ -25,17 +25,17 @@ const util_1 = require('../util');
  */
 class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-     * List all System Log Events
-     * @param since
-     * @param until
-     * @param filter
-     * @param q
-     * @param limit
-     * @param sortOrder
-     * @param after
+     * Lists all System Log events  See [System Log query](https://developer.okta.com/docs/reference/system-log-query/) for further details and examples, and [System Log filters and search](https://help.okta.com/okta_help.htm?type=oie&id=csh-syslog-filters) for common use cases.  By default, 100 System Log events are returned. If there are more events, see the [header link](https://developer.okta.com/docs/api/#link-header) for the `next` link, or increase the number of returned objects using the `limit` parameter.  >**Note:** The value of the `clientSecret` property in the System Log is secured by a hashing function, and isn\'t the value used during authentication.
+     * List all System Log events
+     * @param since Filters the lower time bound of the log events &#x60;published&#x60; property for bounded queries or persistence time for polling queries
+     * @param until Filters the upper time bound of the log events &#x60;published&#x60; property for bounded queries or persistence time for polling queries.
+     * @param after Retrieves the next page of results. Okta returns a link in the HTTP Header (&#x60;rel&#x3D;next&#x60;) that includes the after query parameter
+     * @param filter Filter expression that filters the results. All operators except [ ] are supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
+     * @param q Filters log events results by one or more case insensitive keywords.
+     * @param limit Sets the number of results that are returned in the response
+     * @param sortOrder The order of the returned events that are sorted by the &#x60;published&#x60; property
      */
-  async listLogEvents(since, until, filter, q, limit, sortOrder, after, _options) {
+  async listLogEvents(since, until, after, filter, q, limit, sortOrder, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/logs';
@@ -44,31 +44,31 @@ class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (since !== undefined) {
-      requestContext.setQueryParam('since', ObjectSerializer_1.ObjectSerializer.serialize(since, 'Date', 'date-time'));
+      requestContext.setQueryParam('since', ObjectSerializer_1.ObjectSerializer.serialize(since, 'string', 'ISO 8601 compliant timestamp'));
     }
     // Query Params
     if (until !== undefined) {
-      requestContext.setQueryParam('until', ObjectSerializer_1.ObjectSerializer.serialize(until, 'Date', 'date-time'));
-    }
-    // Query Params
-    if (filter !== undefined) {
-      requestContext.setQueryParam('filter', ObjectSerializer_1.ObjectSerializer.serialize(filter, 'string', ''));
-    }
-    // Query Params
-    if (q !== undefined) {
-      requestContext.setQueryParam('q', ObjectSerializer_1.ObjectSerializer.serialize(q, 'string', ''));
-    }
-    // Query Params
-    if (limit !== undefined) {
-      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', ''));
-    }
-    // Query Params
-    if (sortOrder !== undefined) {
-      requestContext.setQueryParam('sortOrder', ObjectSerializer_1.ObjectSerializer.serialize(sortOrder, 'string', ''));
+      requestContext.setQueryParam('until', ObjectSerializer_1.ObjectSerializer.serialize(until, 'string', 'ISO 8601 compliant timestamp'));
     }
     // Query Params
     if (after !== undefined) {
-      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
+      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', 'Opaque token'));
+    }
+    // Query Params
+    if (filter !== undefined) {
+      requestContext.setQueryParam('filter', ObjectSerializer_1.ObjectSerializer.serialize(filter, 'string', 'SCIM Filter expression'));
+    }
+    // Query Params
+    if (q !== undefined) {
+      requestContext.setQueryParam('q', ObjectSerializer_1.ObjectSerializer.serialize(q, 'string', 'URL encoded string. Max length is 40 characters per keyword, with a maximum of 10 keyword filters per query (before encoding)'));
+    }
+    // Query Params
+    if (limit !== undefined) {
+      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'Integer between 0 and 1000'));
+    }
+    // Query Params
+    if (sortOrder !== undefined) {
+      requestContext.setQueryParam('sortOrder', ObjectSerializer_1.ObjectSerializer.serialize(sortOrder, '\'ASCENDING\' | \'DESCENDING\'', ''));
     }
     let authMethod;
     // Apply auth methods
@@ -103,12 +103,16 @@ class SystemLogApiResponseProcessor {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<LogEvent>', '');
       return body;
     }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml

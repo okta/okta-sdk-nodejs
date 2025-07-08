@@ -14,19 +14,31 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
 import { UserLockoutSettings } from '../models/UserLockoutSettings';
 /**
  * no description
  */
 export declare class AttackProtectionApiRequestFactory extends BaseAPIRequestFactory {
   /**
+     * Retrieves the Authenticator Settings for an org
+     * Retrieve the authenticator settings
+     */
+  getAuthenticatorSettings(_options?: Configuration): Promise<RequestContext>;
+  /**
      * Retrieves the User Lockout Settings for an org
-     * Retrieve the User Lockout Settings
+     * Retrieve the user lockout settings
      */
   getUserLockoutSettings(_options?: Configuration): Promise<RequestContext>;
   /**
+     * Replaces the Authenticator Settings for an org
+     * Replace the authenticator settings
+     * @param authenticatorSettings
+     */
+  replaceAuthenticatorSettings(authenticatorSettings: AttackProtectionAuthenticatorSettings, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Replaces the User Lockout Settings for an org
-     * Replace the User Lockout Settings
+     * Replace the user lockout settings
      * @param lockoutSettings
      */
   replaceUserLockoutSettings(lockoutSettings: UserLockoutSettings, _options?: Configuration): Promise<RequestContext>;
@@ -36,10 +48,26 @@ export declare class AttackProtectionApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getAuthenticatorSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getAuthenticatorSettings(response: ResponseContext): Promise<Array<AttackProtectionAuthenticatorSettings>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getUserLockoutSettings
      * @throws ApiException if the response code was not in [200, 299]
      */
   getUserLockoutSettings(response: ResponseContext): Promise<Array<UserLockoutSettings>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceAuthenticatorSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceAuthenticatorSettings(response: ResponseContext): Promise<AttackProtectionAuthenticatorSettings>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

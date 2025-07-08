@@ -20,32 +20,32 @@ import { DeviceAssurance } from '../models/DeviceAssurance';
  */
 export declare class DeviceAssuranceApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new Device Assurance Policy
-     * Create a Device Assurance Policy
+     * Creates a new device assurance policy
+     * Create a device assurance policy
      * @param deviceAssurance
      */
   createDeviceAssurancePolicy(deviceAssurance: DeviceAssurance, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
-     * Delete a Device Assurance Policy
-     * @param deviceAssuranceId Id of the Device Assurance Policy
+     * Deletes a device assurance policy by `deviceAssuranceId`. If the device assurance policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+     * Delete a device assurance policy
+     * @param deviceAssuranceId Id of the device assurance policy
      */
   deleteDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a Device Assurance Policy by `deviceAssuranceId`
-     * Retrieve a Device Assurance Policy
-     * @param deviceAssuranceId Id of the Device Assurance Policy
+     * Retrieves a device assurance policy by `deviceAssuranceId`
+     * Retrieve a device assurance policy
+     * @param deviceAssuranceId Id of the device assurance policy
      */
   getDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all device assurance policies
-     * List all Device Assurance Policies
+     * List all device assurance policies
      */
   listDeviceAssurancePolicies(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a Device Assurance Policy by `deviceAssuranceId`
-     * Replace a Device Assurance Policy
-     * @param deviceAssuranceId Id of the Device Assurance Policy
+     * Replaces a device assurance policy by `deviceAssuranceId`
+     * Replace a device assurance policy
+     * @param deviceAssuranceId Id of the device assurance policy
      * @param deviceAssurance
      */
   replaceDeviceAssurancePolicy(deviceAssuranceId: string, deviceAssurance: DeviceAssurance, _options?: Configuration): Promise<RequestContext>;

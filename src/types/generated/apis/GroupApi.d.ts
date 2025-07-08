@@ -15,8 +15,9 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { Application } from '../models/Application';
+import { CreateGroupRequest } from '../models/CreateGroupRequest';
+import { CreateGroupRuleRequest } from '../models/CreateGroupRuleRequest';
 import { Group } from '../models/Group';
-import { GroupOwner } from '../models/GroupOwner';
 import { GroupRule } from '../models/GroupRule';
 import { User } from '../models/User';
 /**
@@ -24,142 +25,119 @@ import { User } from '../models/User';
  */
 export declare class GroupApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates a specific group rule by `ruleId`
-     * Activate a Group Rule
-     * @param ruleId
+     * Activates a specific group rule by ID from your org
+     * Activate a group rule
+     * @param ruleId The &#x60;id&#x60; of the group rule
      */
   activateGroupRule(ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Assigns a group owner
-     * Assign a Group Owner
-     * @param groupId
-     * @param GroupOwner
-     */
-  assignGroupOwner(groupId: string, GroupOwner: GroupOwner, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Assigns a user to a group with 'OKTA_GROUP' type
-     * Assign a User
-     * @param groupId
-     * @param userId
+     * Assigns a user to a group with the `OKTA_GROUP` type. > **Note:** You only can modify memberships for groups of the `OKTA_GROUP` type. App imports are responsible for managing group memberships for groups of the `APP_GROUP` type, such as Active Directory groups.
+     * Assign a user to a group
+     * @param groupId The &#x60;id&#x60; of the group
+     * @param userId ID of an existing Okta user
      */
   assignUserToGroup(groupId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a new group with `OKTA_GROUP` type
-     * Create a Group
+     * Adds a new group with the `OKTA_GROUP` type to your org. > **Note:** App import operations are responsible for syncing groups with `APP_GROUP` type such as Active Directory groups. See [About groups](https://help.okta.com/okta_help.htm?id=Directory_Groups) in the help documentation.
+     * Add a group
      * @param group
      */
-  createGroup(group: Group, _options?: Configuration): Promise<RequestContext>;
+  createGroup(group: CreateGroupRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a group rule to dynamically add users to the specified group if they match the condition
-     * Create a Group Rule
+     * Creates a group rule to dynamically add users to the specified group if they match the condition > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
+     * Create a group rule
      * @param groupRule
      */
-  createGroupRule(groupRule: GroupRule, _options?: Configuration): Promise<RequestContext>;
+  createGroupRule(groupRule: CreateGroupRuleRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates a specific group rule by `ruleId`
-     * Deactivate a Group Rule
-     * @param ruleId
+     * Deactivates a specific group rule by ID from your org
+     * Deactivate a group rule
+     * @param ruleId The &#x60;id&#x60; of the group rule
      */
   deactivateGroupRule(ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a group with `OKTA_GROUP` type
-     * Delete a Group
-     * @param groupId
+     * Deletes a group of the `OKTA_GROUP` or `APP_GROUP` type from your org. > **Note:** You can\'t remove groups of type `APP_GROUP` if they are used in a group push mapping.
+     * Delete a group
+     * @param groupId The &#x60;id&#x60; of the group
      */
   deleteGroup(groupId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a group owner from a specific group
-     * Delete a Group Owner
-     * @param groupId
-     * @param ownerId
-     */
-  deleteGroupOwner(groupId: string, ownerId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Deletes a specific group rule by `ruleId`
-     * Delete a group Rule
-     * @param ruleId
-     * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
+     * Deletes a specific group rule by `groupRuleId`
+     * Delete a group rule
+     * @param ruleId The &#x60;id&#x60; of the group rule
+     * @param removeUsers If set to &#x60;true&#x60;, removes users from groups assigned by this rule
      */
   deleteGroupRule(ruleId: string, removeUsers?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a group by `groupId`
-     * Retrieve a Group
-     * @param groupId
+     * Retrieves a specific group by `id` from your org
+     * Retrieve a group
+     * @param groupId The &#x60;id&#x60; of the group
      */
   getGroup(groupId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a specific group rule by `ruleId`
-     * Retrieve a Group Rule
-     * @param ruleId
-     * @param expand
+     * Retrieves a specific group rule by ID from your org
+     * Retrieve a group rule
+     * @param ruleId The &#x60;id&#x60; of the group rule
+     * @param expand If specified as &#x60;groupIdToGroupNameMap&#x60;, then show group names
      */
   getGroupRule(ruleId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all applications that are assigned to a group
-     * List all Assigned Applications
-     * @param groupId
+     * Lists all apps that are assigned to a group. See [Application Groups API](/openapi/okta-management/management/tag/ApplicationGroups/).
+     * List all assigned apps
+     * @param groupId The &#x60;id&#x60; of the group
      * @param after Specifies the pagination cursor for the next page of apps
      * @param limit Specifies the number of app results for a page
      */
   listAssignedApplicationsForGroup(groupId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all owners for a specific group
-     * List all Group Owners
-     * @param groupId
-     * @param filter SCIM Filter expression for group owners. Allows to filter owners by type.
-     * @param after Specifies the pagination cursor for the next page of owners
-     * @param limit Specifies the number of owner results in a page
-     */
-  listGroupOwners(groupId: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Lists all group rules
-     * List all Group Rules
+     * Lists all group rules for your org
+     * List all group rules
      * @param limit Specifies the number of rule results in a page
      * @param after Specifies the pagination cursor for the next page of rules
-     * @param search Specifies the keyword to search fules for
-     * @param expand If specified as &#x60;groupIdToGroupNameMap&#x60;, then show group names
+     * @param search Specifies the keyword to search rules for
+     * @param expand If specified as &#x60;groupIdToGroupNameMap&#x60;, then displays group names
      */
   listGroupRules(limit?: number, after?: string, search?: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all users that are a member of a group
-     * List all Member Users
-     * @param groupId
-     * @param after Specifies the pagination cursor for the next page of users
+     * Lists all users that are a member of a group. The default user limit is set to a very high number due to historical reasons that are no longer valid for most orgs. This will change in a future version of this API. The recommended page limit is now `limit=200`.
+     * List all member users
+     * @param groupId The &#x60;id&#x60; of the group
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
      * @param limit Specifies the number of user results in a page
      */
   listGroupUsers(groupId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
-     * List all Groups
-     * @param q Searches the name property of groups for matching value
-     * @param filter Filter expression for groups
-     * @param after Specifies the pagination cursor for the next page of groups
-     * @param limit Specifies the number of group results in a page
-     * @param expand If specified, it causes additional metadata to be included in the response.
-     * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
-     * @param sortBy Specifies field to sort by and can be any single property (for search queries only).
-     * @param sortOrder Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
+     * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** Results from the filter or query parameter are driven from an eventually consistent datasource. The synchronization lag is typically less than one second.
+     * List all groups
+     * @param search Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+     * @param filter Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.
+     * @param q Finds a group that matches the &#x60;name&#x60; property. &gt; **Note:** Paging and searching are currently mutually exclusive. You can\&#39;t page a query. The default limit for a query is 300 results. Query is intended for an auto-complete picker use case where users refine their search string to constrain the results.
+     * @param after Specifies the pagination cursor for the next page of groups. The &#x60;after&#x60; cursor should be treated as an opaque value and obtained through the next link relation. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param limit Specifies the number of group results in a page.  Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).  The Okta default &#x60;Everyone&#x60; group isn\&#39;t returned for users with a group admin role.
+     * @param expand If specified, additional metadata is included in the response. Possible values are &#x60;stats&#x60; and &#x60;app&#x60;. This additional metadata is listed in the [&#x60;_embedded&#x60;](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/addGroup!c&#x3D;200&amp;path&#x3D;_embedded&amp;t&#x3D;response) property of the response.  &gt; **Note:** You can use the &#x60;stats&#x60; value to return the number of users within a group. This is listed as the &#x60;_embedded.stats.usersCount&#x60; value in the response. See this [Knowledge Base article](https://support.okta.com/help/s/article/Is-there-an-API-that-returns-the-number-of-users-in-a-group?language&#x3D;en_US) for more information and an example.
+     * @param sortBy Specifies field to sort by **(for search queries only)**. &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;.
+     * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;.
      */
-  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
+  listGroups(search?: string, filter?: string, q?: string, after?: string, limit?: number, expand?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the profile for a group with `OKTA_GROUP` type
-     * Replace a Group
-     * @param groupId
+     * Replaces the profile for a group of `OKTA_GROUP` type from your org. > **Note :** You only can modify profiles for groups of the `OKTA_GROUP` type. > > App imports are responsible for updating profiles for groups of the `APP_GROUP` type, such as Active Directory groups.
+     * Replace a group
+     * @param groupId The &#x60;id&#x60; of the group
      * @param group
      */
-  replaceGroup(groupId: string, group: Group, _options?: Configuration): Promise<RequestContext>;
+  replaceGroup(groupId: string, group: CreateGroupRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a group rule. Only `INACTIVE` rules can be updated.
-     * Replace a Group Rule
-     * @param ruleId
+     * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `\'INACTIVE\'`. > > You currently can\'t update the `action` section.
+     * Replace a group rule
+     * @param ruleId The &#x60;id&#x60; of the group rule
      * @param groupRule
      */
   replaceGroupRule(ruleId: string, groupRule: GroupRule, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Unassigns a user from a group with 'OKTA_GROUP' type
-     * Unassign a User
-     * @param groupId
-     * @param userId
+     * Unassigns a user from a group with the `OKTA_GROUP` type. > **Note:** You only can modify memberships for groups of the `OKTA_GROUP` type. > > App imports are responsible for managing group memberships for groups of the `APP_GROUP` type, such as Active Directory groups.
+     * Unassign a user from a group
+     * @param groupId The &#x60;id&#x60; of the group
+     * @param userId ID of an existing Okta user
      */
   unassignUserFromGroup(groupId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
 }
@@ -172,14 +150,6 @@ export declare class GroupApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activateGroupRule(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to assignGroupOwner
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  assignGroupOwner(response: ResponseContext): Promise<GroupOwner>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -224,14 +194,6 @@ export declare class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteGroupOwner
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  deleteGroupOwner(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to deleteGroupRule
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -260,14 +222,6 @@ export declare class GroupApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   listAssignedApplicationsForGroup(response: ResponseContext): Promise<Array<Application>>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listGroupOwners
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  listGroupOwners(response: ResponseContext): Promise<Array<GroupOwner>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

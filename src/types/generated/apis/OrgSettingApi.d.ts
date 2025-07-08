@@ -14,119 +14,181 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext, HttpFile } from '../http/http';
-import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
-import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
+import { AutoAssignAdminAppSetting } from '../models/AutoAssignAdminAppSetting';
+import { ClientPrivilegesSetting } from '../models/ClientPrivilegesSetting';
+import { OktaSupportCase } from '../models/OktaSupportCase';
+import { OktaSupportCases } from '../models/OktaSupportCases';
+import { OrgAerialConsent } from '../models/OrgAerialConsent';
+import { OrgAerialConsentDetails } from '../models/OrgAerialConsentDetails';
+import { OrgAerialConsentRevoked } from '../models/OrgAerialConsentRevoked';
 import { OrgContactTypeObj } from '../models/OrgContactTypeObj';
 import { OrgContactUser } from '../models/OrgContactUser';
 import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetting';
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
+import { ThirdPartyAdminSetting } from '../models/ThirdPartyAdminSetting';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 /**
  * no description
  */
 export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Removes a list of email addresses to be removed from the set of email addresses that are bounced
-     * Remove Emails from Email Provider Bounce List
-     * @param BouncesRemoveListObj
+     * Assigns the [Super Admin role](https://help.okta.com/okta_help.htm?type=oie&id=ext_superadmin) as the default role for new public client apps
+     * Assign the default public client app role setting
+     * @param clientPrivilegesSetting
      */
-  bulkRemoveEmailAddressBounces(BouncesRemoveListObj?: BouncesRemoveListObj, _options?: Configuration): Promise<RequestContext>;
+  assignClientPrivilegesSetting(clientPrivilegesSetting?: ClientPrivilegesSetting, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-     * Extend Okta Support Access
+     * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.  > **Note:** This resource is deprecated. Use the [Update an Okta Support case](/openapi/okta-management/management/tag/OrgSettingSupport/#tag/OrgSettingSupport/operation/updateOktaSupportCase) resource to extend Okta Support access for a support case. > For the corresponding Okta Admin Console feature, see [Give access to Okta Support](https://help.okta.com/okta_help.htm?type=oie&id=settings-support-access).
+     * Extend Okta Support access
      */
   extendOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves Okta Communication Settings of your organization
-     * Retrieve the Okta Communication Settings
+     * Retrieves the Okta Aerial consent grant details for your Org. Returns a 404 Not Found error if no consent has been granted.
+     * Retrieve Okta Aerial consent for your org
+     */
+  getAerialConsent(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the org setting to automatically assign the Okta Admin Console when an admin role is assigned
+     * Retrieve the Okta Admin Console assignment setting
+     */
+  getAutoAssignAdminAppSetting(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the org setting to assign the [Super Admin role](https://help.okta.com/okta_help.htm?type=oie&id=ext_superadmin) to new public client apps
+     * Retrieve the default public client app role setting
+     */
+  getClientPrivilegesSetting(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves Okta Communication Settings of your org
+     * Retrieve the Okta communication settings
      */
   getOktaCommunicationSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves Contact Types of your organization
-     * Retrieve the Org Contact Types
+     * Lists all org contact types for your Okta org
+     * List all org contact types
      */
   getOrgContactTypes(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the URL of the User associated with the specified Contact Type
-     * Retrieve the User of the Contact Type
+     * Retrieves the ID and the user resource associated with the specified contact type
+     * Retrieve the contact type user
      * @param contactType
      */
-  getOrgContactUser(contactType: string, _options?: Configuration): Promise<RequestContext>;
+  getOrgContactUser(contactType: 'BILLING' | 'TECHNICAL', _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves Okta Support Settings of your organization
-     * Retrieve the Okta Support Settings
+     * Retrieves Okta Support Settings for your org
+     * Retrieve the Okta Support settings
      */
   getOrgOktaSupportSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves preferences of your organization
-     * Retrieve the Org Preferences
+     * Retrieves preferences of your Okta org
+     * Retrieve the org preferences
      */
   getOrgPreferences(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the org settings
-     * Retrieve the Org Settings
+     * Retrieves the Org General Settings
+     * Retrieve the Org general settings
      */
   getOrgSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
-     * Retrieve the Well-Known Org Metadata
+     * Retrieves the third-party admin setting. See [Configure third-party administrators](https://help.okta.com/okta_help.htm?type=oie&id=csh_admin-third) in the Okta product documentation.
+     * Retrieve the org third-party admin setting
+     */
+  getThirdPartyAdminSetting(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the org metadata, which includes the org ID, configured custom domains, and authentication pipeline
+     * Retrieve the Org metadata
      */
   getWellknownOrgMetadata(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Grants Okta Support temporary access your org as an administrator for eight hours
-     * Grant Okta Support Access to your Org
+     * Grants an Okta Aerial account consent to manage your org. If the org is a child org, consent is taken from the parent org. Grant calls directly to the child are not allowed.
+     * Grant Okta Aerial access to your org
+     * @param orgAerialConsent
+     */
+  grantAerialConsent(orgAerialConsent?: OrgAerialConsent, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Grants Okta Support temporary access to your org as an administrator for eight hours  > **Note:** This resource is deprecated. Use the [Update an Okta Support case](/openapi/okta-management/management/tag/OrgSettingSupport/#tag/OrgSettingSupport/operation/updateOktaSupportCase) resource to grant Okta Support access for a support case. > For the corresponding Okta Admin Console feature, see [Give access to Okta Support](https://help.okta.com/okta_help.htm?type=oie&id=settings-support-access).
+     * Grant Okta Support access
      */
   grantOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Opts in all users of this org to Okta Communication emails
-     * Opt in all Users to Okta Communication emails
+     * Lists all Okta Support cases that the requesting principal has permission to view
+     * List all Okta Support cases
+     */
+  listOktaSupportCases(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Opts in all users of this org to Okta communication emails
+     * Opt in to Okta user communication emails
      */
   optInUsersToOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Opts out all users of this org from Okta Communication emails
-     * Opt out all Users from Okta Communication emails
+     * Opts out all users of this org from Okta communication emails
+     * Opt out of Okta user communication emails
      */
   optOutUsersFromOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the User associated with the specified Contact Type
-     * Replace the User of the Contact Type
+     * Replaces the user associated with the specified contact type
+     * Replace the contact type user
      * @param contactType
      * @param orgContactUser
      */
-  replaceOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Promise<RequestContext>;
+  replaceOrgContactUser(contactType: 'BILLING' | 'TECHNICAL', orgContactUser: OrgContactUser, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the settings of your organization
-     * Replace the Org Settings
+     * Replaces the Org General Settings for your Okta org
+     * Replace the Org general settings
      * @param orgSetting
      */
   replaceOrgSettings(orgSetting: OrgSetting, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes Okta Support access to your organization
-     * Revoke Okta Support Access
+     * Revokes access of an Okta Aerial account to your Org. The revoke operation will fail if the org has already been added to an Aerial account.
+     * Revoke Okta Aerial access to your org
+     * @param orgAerialConsent
+     */
+  revokeAerialConsent(orgAerialConsent?: OrgAerialConsent, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes Okta Support access to your org  > **Note:** This resource is deprecated. Use the [Update an Okta Support case](/openapi/okta-management/management/tag/OrgSettingSupport/#tag/OrgSettingSupport/operation/updateOktaSupportCase) resource to revoke Okta Support access for a support case. > For the corresponding Okta Admin Console feature, see [Give access to Okta Support](https://help.okta.com/okta_help.htm?type=oie&id=settings-support-access).
+     * Revoke Okta Support access
      */
   revokeOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the preference hide the Okta UI footer for all end users of your organization
-     * Update the Preference to Hide the Okta Dashboard Footer
+     * Updates the org setting to automatically assign the Okta Admin Console when an admin role is assigned  > **Note:** This setting doesn\'t apply to the `SUPER_ADMIN` role. > When you assign the `SUPER_ADMIN` role to a user, the Admin Console is always assigned to the user regardless of the `autoAssignAdminAppSetting` setting.
+     * Update the Okta Admin Console assignment setting
+     * @param autoAssignAdminAppSetting
+     */
+  updateAutoAssignAdminAppSetting(autoAssignAdminAppSetting?: AutoAssignAdminAppSetting, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates access to the org for an Okta Support case:  * You can enable, disable, or extend access to your org for an Okta Support case.  * You can approve Okta Support access to your org for self-assigned cases. A self-assigned case is created and assigned by the same Okta Support user.
+     * Update an Okta Support case
+     * @param caseNumber
+     * @param oktaSupportCase
+     */
+  updateOktaSupportCase(caseNumber: string, oktaSupportCase?: OktaSupportCase, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Sets the preference to hide the Okta End-User Dashboard footer for all end users of your org
+     * Set the hide dashboard footer preference
      */
   updateOrgHideOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Partially updates the org settings depending on provided fields
-     * Update the Org Settings
-     * @param OrgSetting
+     * Updates partial Org General Settings
+     * Update the Org general settings
+     * @param orgSetting
      */
-  updateOrgSettings(OrgSetting?: OrgSetting, _options?: Configuration): Promise<RequestContext>;
+  updateOrgSettings(orgSetting?: OrgSetting, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the preference to show the Okta UI footer for all end users of your organization
-     * Update the Preference to Show the Okta Dashboard Footer
+     * Sets the preference to show the Okta UI footer for all end users of your org
+     * Set the show dashboard footer preference
      */
   updateOrgShowOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
-     * Upload the Org Logo
-     * @param file
+     * Updates the third-party admin setting. This setting allows third-party admins to perform administrative actions in the Admin Console, but they can\'t do any of the following:   * Receive Okta admin email notifications   * Contact Okta support   * Sign in to the Okta Help Center  See [Configure third-party administrators](https://help.okta.com/okta_help.htm?type=oie&id=csh_admin-third) in the Okta product documentation.
+     * Update the org third-party admin setting
+     * @param thirdPartyAdminSetting
+     */
+  updateThirdPartyAdminSetting(thirdPartyAdminSetting: ThirdPartyAdminSetting, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads and replaces the logo for your organization
+     * Upload the org logo
+     * @param file The file must be in PNG, JPG, or GIF format and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
      */
   uploadOrgLogo(file: HttpFile, _options?: Configuration): Promise<RequestContext>;
 }
@@ -135,10 +197,10 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to bulkRemoveEmailAddressBounces
+     * @params response Response returned by the server for a request to assignClientPrivilegesSetting
      * @throws ApiException if the response code was not in [200, 299]
      */
-  bulkRemoveEmailAddressBounces(response: ResponseContext): Promise<BouncesRemoveListResult>;
+  assignClientPrivilegesSetting(response: ResponseContext): Promise<ClientPrivilegesSetting>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -146,7 +208,31 @@ export declare class OrgSettingApiResponseProcessor {
      * @params response Response returned by the server for a request to extendOktaSupport
      * @throws ApiException if the response code was not in [200, 299]
      */
-  extendOktaSupport(response: ResponseContext): Promise<OrgOktaSupportSettingsObj>;
+  extendOktaSupport(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getAerialConsent
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getAerialConsent(response: ResponseContext): Promise<OrgAerialConsentDetails>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getAutoAssignAdminAppSetting
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getAutoAssignAdminAppSetting(response: ResponseContext): Promise<AutoAssignAdminAppSetting>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getClientPrivilegesSetting
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getClientPrivilegesSetting(response: ResponseContext): Promise<ClientPrivilegesSetting>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -199,6 +285,14 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getThirdPartyAdminSetting
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getThirdPartyAdminSetting(response: ResponseContext): Promise<ThirdPartyAdminSetting>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getWellknownOrgMetadata
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -207,10 +301,26 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to grantAerialConsent
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  grantAerialConsent(response: ResponseContext): Promise<OrgAerialConsentDetails>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to grantOktaSupport
      * @throws ApiException if the response code was not in [200, 299]
      */
-  grantOktaSupport(response: ResponseContext): Promise<OrgOktaSupportSettingsObj>;
+  grantOktaSupport(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listOktaSupportCases
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listOktaSupportCases(response: ResponseContext): Promise<OktaSupportCases>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -247,10 +357,34 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to revokeAerialConsent
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  revokeAerialConsent(response: ResponseContext): Promise<OrgAerialConsentRevoked>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeOktaSupport
      * @throws ApiException if the response code was not in [200, 299]
      */
-  revokeOktaSupport(response: ResponseContext): Promise<OrgOktaSupportSettingsObj>;
+  revokeOktaSupport(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateAutoAssignAdminAppSetting
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateAutoAssignAdminAppSetting(response: ResponseContext): Promise<AutoAssignAdminAppSetting>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateOktaSupportCase
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateOktaSupportCase(response: ResponseContext): Promise<OktaSupportCase>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -275,6 +409,14 @@ export declare class OrgSettingApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   updateOrgShowOktaUIFooter(response: ResponseContext): Promise<OrgPreferences>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateThirdPartyAdminSetting
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateThirdPartyAdminSetting(response: ResponseContext): Promise<ThirdPartyAdminSetting>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
