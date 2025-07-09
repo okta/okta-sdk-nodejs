@@ -19,15 +19,23 @@ const client = new Client({
 });
 
 async function cleanInlineHooks() {
+  let deletedCnt = 0;
   const collection = await client.inlineHookApi.listInlineHooks();
   await collection.each(async (inlineHook) => {
-    await client.inlineHookApi.deactivateInlineHook({
-      inlineHookId: inlineHook.id!
-    });
-    await client.inlineHookApi.deleteInlineHook({
-      inlineHookId: inlineHook.id!
-    });
+    const canDelete = inlineHook.name?.startsWith('node-sdk: ');
+    if (canDelete) {
+      await client.inlineHookApi.deactivateInlineHook({
+        inlineHookId: inlineHook.id!
+      });
+      await client.inlineHookApi.deleteInlineHook({
+        inlineHookId: inlineHook.id!
+      });
+      deletedCnt++;
+    } else {
+      console.log(`Skipped inline hook to remove ${inlineHook.name}`);
+    }
   });
+  return deletedCnt;
 }
 
 async function cleanDomains() {
@@ -53,9 +61,11 @@ async function cleanDomains() {
   for (const brandId of brandIdsToDelete) {
     await client.customizationApi.deleteBrand({ brandId });
   }
+  return brandIdsToDelete.length;
 }
 
 async function cleanAuthorizationServers() {
+  let deletedCnt = 0;
   await (await client.authorizationServerApi.listAuthorizationServers()).each(
     async authorizationServer => {
       const canDelete = authorizationServer.name !== 'default';
@@ -63,14 +73,17 @@ async function cleanAuthorizationServers() {
         await client.authorizationServerApi.deleteAuthorizationServer({
           authServerId: authorizationServer.id!
         });
+        deletedCnt++;
       } else {
         console.log(`Skipped authorization server to remove ${authorizationServer.name}`);
       }
     }
   );
+  return deletedCnt;
 }
 
 async function cleanNetworkZones() {
+  let deletedCnt = 0;
   await (await client.networkZoneApi.listNetworkZones()).each(
     async networkZone => {
       const canDelete = networkZone.name?.startsWith('node-sdk: ');
@@ -84,6 +97,7 @@ async function cleanNetworkZones() {
           await client.networkZoneApi.deleteNetworkZone({
             zoneId: networkZone.id!,
           });
+          deletedCnt++;
         } catch (err) {
           console.error(err);
         }
@@ -92,9 +106,11 @@ async function cleanNetworkZones() {
       }
     }
   );
+  return deletedCnt;
 }
 
 async function cleanApplications() {
+  let deletedCnt = 0;
   await (await client.applicationApi.listApplications()).each(async application => {
     const canDelete = ![
       'Okta Admin Console',
@@ -106,6 +122,7 @@ async function cleanApplications() {
     if (canDelete) {
       try {
         await utils.removeAppByLabel(client, application.label!);
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -113,14 +130,17 @@ async function cleanApplications() {
       console.log(`Skipped application to remove ${application.label}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTestUsers() {
+  let deletedCnt = 0;
   await (await client.userApi.listUsers()).each(async user => {
     const canDelete = !user.profile!.email!.endsWith('okta.com');
     if (canDelete) {
       try {
         await utils.deleteUser(user, client);
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -128,14 +148,17 @@ async function cleanTestUsers() {
       console.log(`Skipped user to remove ${user.profile!.email}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTestGroups() {
+  let deletedCnt = 0;
   await (await client.groupApi.listGroups()).each(async (group) => {
     const canDelete = group.profile!.name !== 'Everyone' && group.profile!.name!.startsWith('node-sdk:');
     if (canDelete) {
       try {
         await utils.cleanupGroup(client, group);
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -143,9 +166,11 @@ async function cleanTestGroups() {
       console.log(`Skipped group to remove ${group.profile!.name}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTrustedOrigins() {
+  let deletedCnt = 0;
   await (await client.trustedOriginApi.listTrustedOrigins()).each(async (origin) => {
     const canDelete = origin.name!.startsWith('node-sdk:');
     if (canDelete) {
@@ -156,6 +181,7 @@ async function cleanTrustedOrigins() {
         await client.trustedOriginApi.deleteTrustedOrigin({
           trustedOriginId: origin.id!
         });
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -163,9 +189,11 @@ async function cleanTrustedOrigins() {
       console.log(`Skipped trusted origin to remove ${origin.name}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTestGroupRules() {
+  let deletedCnt = 0;
   await (await client.groupApi.listGroupRules()).each(async (rule) => {
     const canDelete = rule.name!.startsWith('node-sdk:');
     if (canDelete) {
@@ -174,6 +202,7 @@ async function cleanTestGroupRules() {
           await client.groupApi.deactivateGroupRule({ruleId: rule.id!});
         }
         await client.groupApi.deleteGroupRule({ruleId: rule.id!});
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -181,9 +210,11 @@ async function cleanTestGroupRules() {
       console.log(`Skipped group rule to remove ${rule.name}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTestPolicies() {
+  let deletedCnt = 0;
   await (await client.policyApi.listPolicies({ type: 'OKTA_SIGN_ON' })).each(async policy => {
     const canDelete = policy.name!.startsWith('node-sdk:');
     if (canDelete) {
@@ -191,6 +222,7 @@ async function cleanTestPolicies() {
         await client.policyApi.deletePolicy({
           policyId: policy.id!
         });
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -198,15 +230,18 @@ async function cleanTestPolicies() {
       console.log(`Skipped policy to remove ${policy.name}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanTestIdps() {
+  let deletedCnt = 0;
   await (await client.identityProviderApi.listIdentityProviders()).each(async idp => {
     const canDelete = idp.name!.startsWith('node-sdk:');
     if (canDelete) {
       try {
         await client.identityProviderApi.deactivateIdentityProvider({ idpId: idp.id! });
         await client.identityProviderApi.deleteIdentityProvider({ idpId: idp.id! });
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -214,6 +249,7 @@ async function cleanTestIdps() {
       console.log(`Skipped IDP to remove ${idp.name}`);
     }
   });
+  return deletedCnt;
 }
 
 async function getBrandId() {
@@ -222,6 +258,7 @@ async function getBrandId() {
 }
 
 async function cleanEmailCustomizations() {
+  let deletedCnt = 0;
   const templateName = 'ForgotPassword';
   const brandId: string = await getBrandId() as string;
 
@@ -238,6 +275,7 @@ async function cleanEmailCustomizations() {
           brandId,
           templateName
         });
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -245,9 +283,11 @@ async function cleanEmailCustomizations() {
       console.log(`Skipped Email customization to remove ${ec.subject} for language ${ec.language}`);
     }
   });
+  return deletedCnt;
 }
 
 async function cleanUserTypes() {
+  let deletedCnt = 0;
   const userTypes = await client.userTypeApi.listUserTypes();
   await userTypes.each(async t => {
     const canDelete = t.displayName?.startsWith('node-sdk: ');
@@ -256,6 +296,7 @@ async function cleanUserTypes() {
         await client.userTypeApi.deleteUserType({
           typeId: t.id!
         });
+        deletedCnt++;
       } catch (err) {
         console.error(err);
       }
@@ -263,23 +304,71 @@ async function cleanUserTypes() {
       console.log(`Skipped user type to remove ${t.displayName}`);
     }
   });
+  return deletedCnt;
+}
+
+async function cleanResourceSets() {
+  let deletedCnt = 0;
+  const resourceSets = await client.resourceSetApi.listResourceSets();
+  for (const resourceSet of resourceSets.resource_sets ?? []) {
+    const canDelete = resourceSet.label?.startsWith('node-sdk: ');
+    if (canDelete) {
+      try {
+        await client.resourceSetApi.deleteResourceSet({
+          resourceSetId: resourceSet.id!,
+        });
+        deletedCnt++;
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped resource set to remove ${resourceSet.label}`);
+    }
+  }
+  return deletedCnt;
+}
+
+async function cleanCustomRoles() {
+  let deletedCnt = 0;
+  const customRoles = await client.customRoleApi.listRoles({});
+  for (const role of customRoles.roles ?? []) {
+    const canDelete = role.label?.startsWith('node-sdk: ');
+    if (canDelete) {
+        try {
+          await client.customRoleApi.deleteRole({
+            roleIdOrLabel: role.id!
+          });
+          deletedCnt++;
+        } catch (err) {
+          console.error(err);
+        }
+    } else {
+      console.log(`Skipped role to remove ${role.label}`);
+    }
+  }
+  return deletedCnt;
 }
 
 
 describe('Clean', () => {
   it('all test resources', async () => {
-    await cleanNetworkZones();
-    await cleanAuthorizationServers();
-    await cleanTestUsers();
-    await cleanTestGroupRules();
-    await cleanTestGroups();
-    await cleanTrustedOrigins();
-    await cleanApplications();
-    await cleanDomains();
-    await cleanInlineHooks();
-    await cleanTestPolicies();
-    await cleanTestIdps();
-    await cleanEmailCustomizations();
-    await cleanUserTypes();
+    const res = {
+      NetworkZones: await cleanNetworkZones(),
+      AuthorizationServers: await cleanAuthorizationServers(),
+      Users: await cleanTestUsers(),
+      GroupRules: await cleanTestGroupRules(),
+      Groups: await cleanTestGroups(),
+      TrustedOrigins: await cleanTrustedOrigins(),
+      Applications: await cleanApplications(),
+      Domains: await cleanDomains(),
+      InlineHooks: await cleanInlineHooks(),
+      Policies: await cleanTestPolicies(),
+      Idps: await cleanTestIdps(),
+      EmailCustomizations: await cleanEmailCustomizations(),
+      UserTypes: await cleanUserTypes(),
+      ResourceSets: await cleanResourceSets(),
+      CustomRoles: await cleanCustomRoles(),
+    };
+    console.log('Clean result: ', res);
   });
 });
