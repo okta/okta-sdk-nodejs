@@ -32,5 +32,8 @@ exports.AssignRoleToUserRequestClass = void 0;
 class AssignRoleToUserRequestClass {
 }
 exports.AssignRoleToUserRequestClass = AssignRoleToUserRequestClass;
-AssignRoleToUserRequestClass.discriminator = undefined;
-AssignRoleToUserRequestClass.mapping = undefined;
+AssignRoleToUserRequestClass.discriminator = 'type';
+AssignRoleToUserRequestClass.mapping = {
+  '*': 'StandardRoleAssignmentSchema',
+  'CUSTOM': 'CustomRoleAssignmentSchema',
+};

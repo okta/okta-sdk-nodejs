@@ -37,7 +37,7 @@ const isBackwardCompatibility = true;
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
-  const customDiscriminatorsForEndpointsResponses = [
+  const customDiscriminatorsForEndpoints = [
     {
       propertyName: 'type',
       mapping: {
@@ -45,10 +45,17 @@ const addCustomDiscriminatorToResponse = (schema) => {
         '*': '#/components/schemas/StandardRole'
       }
     },
+    {
+      propertyName: 'type',
+      mapping: {
+        'CUSTOM': '#/components/schemas/CustomRoleAssignmentSchema',
+        '*': '#/components/schemas/StandardRoleAssignmentSchema'
+      }
+    }
   ];
 
   if (schema['type'] === 'array' && schema['items']?.['oneOf']?.length > 1) {
-    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+    for (const discriminator of customDiscriminatorsForEndpoints) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
       const shouldHaveDiscriminator = schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
       const alreadtyHasDiscriminator = !!schema['items'].discriminator;
@@ -58,7 +65,7 @@ const addCustomDiscriminatorToResponse = (schema) => {
       }
     }
   } else if (schema['oneOf']?.length > 1) {
-    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+    for (const discriminator of customDiscriminatorsForEndpoints) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
       const shouldHaveDiscriminator = schema['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
       const alreadtyHasDiscriminator = !!schema.discriminator;
@@ -215,8 +222,38 @@ function applyTagsAndOperationRenames(spec) {
   };
 }
 
+function fixRequests(spec) {
+  const customDiscriminatorsForRequests = [];
+
+  for (const httpPath in spec.paths) {
+    for (const httpMethod in spec.paths[httpPath]) {
+      if (!['parameters'].includes(httpMethod)) {
+        const endpoint = spec.paths[httpPath][httpMethod];
+        if (endpoint.requestBody) {
+          const contentTypes = Object.keys(endpoint.requestBody?.content ?? {});
+          const contentType = contentTypes[0];
+          const typedContent = endpoint.requestBody.content?.[contentType];
+          if (typedContent?.schema) {
+            const schema = typedContent.schema;
+
+            // add missing discriminators
+            const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
+            if (maybeAddedCustomDiscriminator) {
+              customDiscriminatorsForRequests.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    customDiscriminatorsForRequests,
+  };
+}
+
 function fixResponses(spec) {
-  const customdiscriminatorsForEndpoints = [];
+  const customDiscriminatorsForResponses = [];
   const manualPathsFixes = [];
 
   for (const httpPath in spec.paths) {
@@ -244,7 +281,7 @@ function fixResponses(spec) {
                 // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customdiscriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+                  customDiscriminatorsForResponses.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
                 // Special fix for listPolicies - should return array of Policy, not single Policy
@@ -276,7 +313,7 @@ function fixResponses(spec) {
 
   return {
     manualPathsFixes,
-    customdiscriminatorsForEndpoints,
+    customDiscriminatorsForResponses,
   };
 }
 
@@ -657,7 +694,8 @@ async function main() {
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec);
-  const { manualPathsFixes, customdiscriminatorsForEndpoints } = fixResponses(spec);
+  const { manualPathsFixes, customDiscriminatorsForResponses } = fixResponses(spec);
+  const { customDiscriminatorsForRequests } = fixRequests(spec);
   const { ffAmends } = applyFFAments(spec);
   const { typeMap } = buildTypeMap(spec);
   const {
@@ -666,6 +704,7 @@ async function main() {
   const { manualSchemaFixes } = fixSchemaErrors(spec);
   const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec);
   const { arrayPropsWithoutItems } = fixSchemaBadArrayProps(spec);
+  const customDiscriminatorsForEndpoints = [...customDiscriminatorsForRequests, ...customDiscriminatorsForResponses];
 
   // Log fix results
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -677,7 +716,7 @@ async function main() {
   console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log('Fixed paths:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log('Manually added discriminatoes for endpoints:', customdiscriminatorsForEndpoints);
+  console.log('Manually added discriminatoes for endpoints:', customDiscriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
   console.log('API operationId renames: ', operationRenames);
   console.log('API path renames: ', pathRenames);

@@ -32,5 +32,8 @@ exports.AssignRoleToGroupRequestClass = void 0;
 class AssignRoleToGroupRequestClass {
 }
 exports.AssignRoleToGroupRequestClass = AssignRoleToGroupRequestClass;
-AssignRoleToGroupRequestClass.discriminator = undefined;
-AssignRoleToGroupRequestClass.mapping = undefined;
+AssignRoleToGroupRequestClass.discriminator = 'type';
+AssignRoleToGroupRequestClass.mapping = {
+  '*': 'StandardRoleAssignmentSchema',
+  'CUSTOM': 'CustomRoleAssignmentSchema',
+};
