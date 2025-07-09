@@ -59,10 +59,14 @@ class ServerConfiguration {
     while (pl--) {
       if (path[pl] === '}') {
         const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
-        resources.push(this.getUrl() + resourcePath);
-      } else if (path[pl] === '/') {
+        if (!resources.includes(this.getUrl() + resourcePath)) {
+          resources.push(this.getUrl() + resourcePath);
+        }
+      } else if (path[pl] === '/' && pl > this.getUrl().length) {
         const resourcePath = path.slice(0, pl).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
-        resources.push(this.getUrl() + resourcePath);
+        if (!resources.includes(this.getUrl() + resourcePath)) {
+          resources.push(this.getUrl() + resourcePath);
+        }
       }
     }
     return resources;
