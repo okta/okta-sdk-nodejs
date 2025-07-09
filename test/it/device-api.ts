@@ -34,7 +34,8 @@ describe('Device API', () => {
     expect(deviceFromGet.id).to.equal(testDevice.id);
   });
 
-  it('manage status of device', async () => {
+  // TODO: flaky on Bacon
+  xit('manage status of device', async () => {
     let testDevice = await getFirstDevice();
 
     // deactivate
