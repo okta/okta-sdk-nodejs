@@ -267,8 +267,11 @@ function fixResponses(spec) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
+                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list')
+                  && httpMethod === 'get' && responseCode.startsWith('2');
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
                 // remove unnecessary type: 'object' for $ref
                 // resolves error:
@@ -302,6 +305,15 @@ function fixResponses(spec) {
                   };
                   typedContent.schema = schema;
                   manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                }
+
+                if (refSchema) {
+                  schema = refSchema;
+                }
+                const propKeys = Object.keys(schema['properties'] ?? {}).filter(k => !k.startsWith('_'));
+                const isOneArrayProp = propKeys.length === 1 && schema['properties'][propKeys[0]]['type'] === 'array';
+                if (isListEndpoint && schema['type'] !== 'array' && !isOneArrayProp) {
+                  console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
                 }
               }
             }
