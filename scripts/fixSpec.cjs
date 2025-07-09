@@ -313,7 +313,13 @@ function fixResponses(spec) {
                 const propKeys = Object.keys(schema['properties'] ?? {}).filter(k => !k.startsWith('_'));
                 const isOneArrayProp = propKeys.length === 1 && schema['properties'][propKeys[0]]['type'] === 'array';
                 if (isListEndpoint && schema['type'] !== 'array' && !isOneArrayProp) {
-                  console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
+                  const canIgnore  = [
+                    'listRoleSubscriptionsByNotificationType',
+                    'listUserSubscriptionsByNotificationType',
+                  ].includes(endpoint.operationId);
+                  if (!canIgnore) {
+                    console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
+                  }
                 }
               }
             }
