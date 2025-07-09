@@ -4335,7 +4335,7 @@ export declare class ObservableRoleAssignmentApi {
       * List all client role assignments
       * @param clientId Client app ID
       */
-  listRolesForClient(clientId: string, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner>;
+  listRolesForClient(clientId: string, _options?: Configuration): Observable<Collection<ListGroupAssignedRoles200ResponseInner>>;
   /**
       * Lists all users with role assignments
       * List all users with role assignments

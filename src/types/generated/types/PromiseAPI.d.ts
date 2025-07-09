@@ -4234,7 +4234,7 @@ export declare class PromiseRoleAssignmentApi {
       * List all client role assignments
       * @param clientId Client app ID
       */
-  listRolesForClient(clientId: string, _options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  listRolesForClient(clientId: string, _options?: Configuration): Promise<Collection<ListGroupAssignedRoles200ResponseInner>>;
   /**
       * Lists all users with role assignments
       * List all users with role assignments

@@ -238,7 +238,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to listRolesForClient
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listRolesForClient(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner>;
+  listRolesForClient(response: ResponseContext): Promise<Array<ListGroupAssignedRoles200ResponseInner>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

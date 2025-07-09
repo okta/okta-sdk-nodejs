@@ -10580,7 +10580,7 @@ export declare class ObjectRoleAssignmentApi {
       * List all client role assignments
       * @param param the request object
       */
-  listRolesForClient(param: RoleAssignmentApiListRolesForClientRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  listRolesForClient(param: RoleAssignmentApiListRolesForClientRequest, options?: Configuration): Promise<Collection<ListGroupAssignedRoles200ResponseInner>>;
   /**
       * Lists all users with role assignments
       * List all users with role assignments
