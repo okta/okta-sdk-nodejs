@@ -29,7 +29,7 @@ describe('Authorization Server Crud API', () => {
     });
 
     it('should return correct model', async () => {
-      const mockAuthorizationServer = getMockAuthorizationServer();
+      const mockAuthorizationServer: AuthorizationServer = getMockAuthorizationServer();
       authServer = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: mockAuthorizationServer});
       expect(authServer).to.be.instanceOf(AuthorizationServer);
       expect(authServer.id).to.be.exist;
@@ -38,7 +38,7 @@ describe('Authorization Server Crud API', () => {
   });
 
   describe('List Authorization Servers', () => {
-    let createdServers = [];
+    let createdServers: AuthorizationServer[] = [];
     before(async () => {
       createdServers = [];
       const namePrefixes = [

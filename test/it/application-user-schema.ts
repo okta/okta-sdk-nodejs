@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, BookmarkApplication, UserSchema, DefaultRequestExecutor, MemoryStore } from '@okta/okta-sdk-nodejs';
+import { Client, Application, UserSchema, DefaultRequestExecutor, MemoryStore, UserSchemaPropertiesProfileItem } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -20,7 +20,7 @@ const client = new Client({
 
 describe('App User Schema', () => {
   const applicationOptions = utils.getOIDCApplication();
-  let createdApplication: BookmarkApplication;
+  let createdApplication: Application;
 
   beforeEach(async () => {
     createdApplication = await client.applicationApi.createApplication({
@@ -43,10 +43,12 @@ describe('App User Schema', () => {
     const userSchema = await client.schemaApi.getApplicationUserSchema({
       appInstanceId: createdApplication.id
     });
+    expect(userSchema.properties.profile.allOf).to.be.an('array').that.is.not.empty;
+    expect(userSchema.properties.profile.allOf.find(item => item.ref === '#/definitions/base')).to.be.an.instanceOf(UserSchemaPropertiesProfileItem);
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
       appInstanceId: createdApplication.id,
-      body: getMockSchemaProperty()
+      body: getMockSchemaProperty() as UserSchema
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
   });
@@ -81,7 +83,7 @@ describe('App User Schema', () => {
   });
 
   it('removes custom user type UserSchema property', async () => {
-    const mockSchemaProperty = getMockSchemaProperty();
+    const mockSchemaProperty: UserSchema = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
       appInstanceId: createdApplication.id,
       body: mockSchemaProperty

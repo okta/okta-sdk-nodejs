@@ -35,7 +35,7 @@ You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodej
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
 
-✔️: The current stable major version series is: 6.x.x
+✔️: The current stable major version series is: 8.x.x
 
 | Version | Status                    |
 | ------- | ------------------------- |
@@ -43,9 +43,10 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 2.x | :x: Retired |
 | 3.x | :x: Retired |
 | 4.x | :x: Retired |
-| 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
-| 6.x | :heavy_check_mark: Stable ([migration guide](#from-5x-to-60)) |
+| 5.x | :x: Retired |
+| 6.x | :x: Retired |
 | 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
+| 8.x | :heavy_check_mark: Stable ([migration guide](#from-7x-to-80)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
@@ -973,6 +974,64 @@ const client: Client = new Client({
 
 ## Migrating between versions
 
+### From 7.x to 8.0
+
+#### Breaking changes
+
+All method parameters now use lowerCamelCase convention (eg. `orgSetting` instead of `OrgSetting`).
+
+Full list:
+
+```diff
+- await client.orgSettingApi.updateOrgSettings({ OrgSetting })
++ await client.orgSettingApi.updateOrgSettings({ orgSetting })
+
+- await client.applicationApi.updateFeatureForApplication({ appId, name, CapabilitiesObject })
++ await client.applicationApi.updateFeatureForApplication({ appId, name, capabilitiesObject })
+
+- await client.agentPoolsApi.createAgentPoolsUpdate({ poolId, AgentPoolUpdate })
++ await client.agentPoolsApi.createAgentPoolsUpdate({ poolId, agentPoolUpdate })
+
+- await client.agentPoolsApi.updateAgentPoolsUpdate({ poolId, updateId, AgentPoolUpdate })
++ await client.agentPoolsApi.updateAgentPoolsUpdate({ poolId, updateId, agentPoolUpdate })
+
+- await client.agentPoolsApi.updateAgentPoolsUpdateSettings({ poolId, AgentPoolUpdateSetting })
++ await client.agentPoolsApi.updateAgentPoolsUpdateSettings({ poolId, agentPoolUpdateSetting })
+
+- await client.applicationApi.updateDefaultProvisioningConnectionForApplication({ appId, ProvisioningConnectionRequest })
++ await client.applicationApi.updateDefaultProvisioningConnectionForApplication({ appId, provisioningConnectionRequest })
+
+- await client.customDomainApi.replaceCustomDomain({ domainId, UpdateDomain })
++ await client.customDomainApi.replaceCustomDomain({ domainId, updateDomain })
+
+- await client.customizationApi.createBrand({ CreateBrandRequest })
++ await client.customizationApi.createBrand({ createBrandRequest })
+
+- await client.customizationApi.replaceCustomizedErrorPage({ brandId, ErrorPage })
++ await client.customizationApi.replaceCustomizedErrorPage({ brandId, errorPage })
+
+- await client.customizationApi.replacePreviewErrorPage({ brandId, ErrorPage })
++ await client.customizationApi.replacePreviewErrorPage({ brandId, errorPage })
+
+- await client.customizationApi.replaceCustomizedSignInPage({ brandId, SignInPage })
++ await client.customizationApi.replaceCustomizedSignInPage({ brandId, signInPage })
+
+- await client.customizationApi.replacePreviewSignInPage({ brandId, SignInPage })
++ await client.customizationApi.replacePreviewSignInPage({ brandId, signInPage })
+
+- await client.customizationApi.replaceEmailSettings({ brandId, templateName, EmailSettings })
++ await client.customizationApi.replaceEmailSettings({ brandId, templateName, emailSettings })
+
+- await client.customizationApi.replaceSignOutPageSettings({ brandId, HostedPage })
++ await client.customizationApi.replaceSignOutPageSettings({ brandId, hostedPage })
+
+- await client.groupApi.assignGroupOwner({ groupId, GroupOwner })
++ await client.groupApi.assignGroupOwner({ groupId, groupOwner })
+
+- await client.schemaApi.updateGroupSchema({ GroupSchema })
++ await client.schemaApi.updateGroupSchema({ groupSchema })
+```
+
 ### From 6.x to 7.0
 
 #### Breaking changes
@@ -1045,8 +1104,8 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 
 ## Building the SDK
 
-- Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml`) and place it under `spec` dir
-- run `yarn build:openapi`
+- Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml` and `oauth.yaml`) and place it under `spec` dir
+- Install [Docker CLI client](https://docs.docker.com/desktop/)
 - run `yarn build`
 
 ## Contributing

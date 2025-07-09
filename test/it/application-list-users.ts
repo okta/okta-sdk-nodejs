@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Application, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
+import { Application, Client, DefaultRequestExecutor, User, AppUser, CreateUserRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -21,7 +21,7 @@ describe('Application.listUsers()', () => {
   it('should allow me to list the application users', async () => {
     const application = utils.getBookmarkApplication();
 
-    const user = {
+    const user: CreateUserRequest = {
       profile: utils.getMockProfile('application-list-users'),
       credentials: {
         password: { value: 'Abcd1234#@' }

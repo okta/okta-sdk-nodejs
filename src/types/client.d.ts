@@ -23,18 +23,11 @@ import {
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
-  GroupApi,
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  OrgSettingApi,
-  ApplicationApi,
-  AuthorizationServerApi,
-  CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
-  UserApi,
-  IdentityProviderApi,
   SessionApi,
   TemplateApi,
   PolicyApi,
@@ -45,11 +38,54 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  RoleAssignmentApi,
-  RoleTargetApi,
   CustomDomainApi,
   DeviceApi,
+
+  AttackProtectionApi,
+  CAPTCHAApi,
+  DeviceAccessApi,
+  DeviceIntegrationsApi,
+  DevicePostureCheckApi,
+  DirectoriesIntegrationApi,
+  DisasterRecoveryApi,
+  EmailDomainApi,
+  EmailServerApi,
+  GovernanceBundleApi,
+  GroupOwnerApi,
+  HookKeyApi,
+  IdentitySourceApi,
+  LogStreamApi,
+  OktaApplicationSettingsApi,
+  OktaPersonalSettingsApi,
+  OrgCreatorApi,
+  PrivilegedResourceApi,
+  RateLimitSettingsApi,
+  RealmApi,
+  RealmAssignmentApi,
+  RiskEventApi,
+  RiskProviderApi,
+  SSFReceiverApi,
+  SSFSecurityEventTokenApi,
+  SSFTransmitterApi,
+  ServiceAccountApi,
+  UISchemaApi,
+  WebAuthnPreregistrationApi,
+
+  // consolidated apis
+  CustomizationApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  OrgSettingApi,
+  ApplicationApi,
+  AuthorizationServerApi,
+  GroupApi,
+  UserApi,
+  IdentityProviderApi,
+  ResourceSetApi,
+  IntegrationsApi,
+  RoleApi,
 } from './generated';
+
 export declare class Client {
   constructor(config?: V2Configuration);
 
@@ -64,6 +100,20 @@ export declare class Client {
   oauth: OAuth;
   http: Http;
 
+  // consolidated apis
+  applicationApi: ApplicationApi;
+  authorizationServerApi: AuthorizationServerApi;
+  customizationApi: CustomizationApi;
+  roleAssignmentApi: RoleAssignmentApi;
+  roleTargetApi: RoleTargetApi;
+  groupApi: GroupApi;
+  identityProviderApi: IdentityProviderApi;
+  userApi: UserApi;
+  orgSettingApi: OrgSettingApi;
+  resourceSetApi: ResourceSetApi;
+  integrationsApi: IntegrationsApi;
+  roleApi: RoleApi;
+
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
   schemaApi: SchemaApi;
@@ -72,18 +122,11 @@ export declare class Client {
   linkedObjectApi: LinkedObjectApi;
   systemLogApi: SystemLogApi;
   featureApi: FeatureApi;
-  groupApi: GroupApi;
   eventHookApi: EventHookApi;
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
-  orgSettingApi: OrgSettingApi;
-  applicationApi: ApplicationApi;
-  authorizationServerApi: AuthorizationServerApi;
-  customizationApi: CustomizationApi;
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
-  userApi: UserApi;
-  identityProviderApi: IdentityProviderApi;
   sessionApi: SessionApi;
   templateApi: TemplateApi;
   policyApi: PolicyApi;
@@ -94,9 +137,36 @@ export declare class Client {
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
   deviceAssuranceApi: DeviceAssuranceApi;
-  roleAssignmentApi: RoleAssignmentApi;
-  roleTargetApi: RoleTargetApi;
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
 
+  attackProtectionApi: AttackProtectionApi;
+  captchaApi: CAPTCHAApi;
+  deviceAccessApi: DeviceAccessApi;
+  deviceIntegrationsApi: DeviceIntegrationsApi;
+  devicePostureCheckApi: DevicePostureCheckApi;
+  directoriesIntegrationApi: DirectoriesIntegrationApi;
+  disasterRecoveryApi: DisasterRecoveryApi;
+  emailDomainApi: EmailDomainApi;
+  emailServerApi: EmailServerApi;
+  governanceBundleApi: GovernanceBundleApi;
+  groupOwnerApi: GroupOwnerApi;
+  hookKeyApi: HookKeyApi;
+  identitySourceApi: IdentitySourceApi;
+  logStreamApi: LogStreamApi;
+  oktaApplicationSettingsApi: OktaApplicationSettingsApi;
+  oktaPersonalSettingsApi: OktaPersonalSettingsApi;
+  orgCreatorApi: OrgCreatorApi;
+  privilegedResourceApi: PrivilegedResourceApi;
+  rateLimitSettingsApi: RateLimitSettingsApi;
+  realmApi: RealmApi;
+  realmAssignmentApi: RealmAssignmentApi;
+  riskEventApi: RiskEventApi;
+  riskProviderApi: RiskProviderApi;
+  ssfReceiverApi: SSFReceiverApi;
+  ssfSecurityEventTokenApi: SSFSecurityEventTokenApi;
+  ssfTransmitterApi: SSFTransmitterApi;
+  serviceAccountApi: ServiceAccountApi;
+  uiSchemaApi: UISchemaApi;
+  webAuthnPreregistrationApi: WebAuthnPreregistrationApi;
 }

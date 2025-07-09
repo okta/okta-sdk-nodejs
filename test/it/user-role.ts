@@ -6,8 +6,8 @@ import {
   Collection,
   DefaultRequestExecutor,
   Group,
-  Role,
-  User
+  User,
+  StandardRole
 } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -38,7 +38,7 @@ describe('User role API', () => {
   });
 
   describe('Role assignment', () => {
-    let role: Role;
+    let role: StandardRole;
     afterEach(async () => {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
@@ -51,14 +51,14 @@ describe('User role API', () => {
         userId: user.id,
         assignRoleRequest: { type: 'APP_ADMIN' }
       });
-      expect(role).to.be.instanceOf(Role);
+      expect(role).to.be.instanceOf(StandardRole);
       expect(role.id).to.be.exist;
       expect(role.type).to.equal('APP_ADMIN');
     });
   });
 
   describe('Role unassignment', () => {
-    let role: Role;
+    let role: StandardRole;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -76,7 +76,7 @@ describe('User role API', () => {
   });
 
   describe('List user assigned roles', () => {
-    let role: Role;
+    let role: StandardRole;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -96,14 +96,14 @@ describe('User role API', () => {
       });
       expect(roles).to.be.instanceOf(Collection);
       await roles.each(roleFromCollection => {
-        expect(roleFromCollection).to.be.instanceOf(Role);
+        expect(roleFromCollection).to.be.instanceOf(StandardRole);
         expect(roleFromCollection.id).to.be.equal(role.id);
       });
     });
   });
 
   describe('App targets for admin role', () => {
-    let role: Role;
+    let role: StandardRole;
     let application: BookmarkApplication;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
@@ -113,7 +113,7 @@ describe('User role API', () => {
       const mockApplication = utils.getBookmarkApplication();
       application = await client.applicationApi.createApplication({
         application: mockApplication
-      });
+      }) as BookmarkApplication;
     });
     afterEach(async () => {
       await client.applicationApi.deactivateApplication({appId: application.id});
@@ -159,7 +159,7 @@ describe('User role API', () => {
   });
 
   describe('Group targets for admin role', () => {
-    let role: Role;
+    let role: StandardRole;
     let group: Group;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({

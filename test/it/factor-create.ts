@@ -1,14 +1,16 @@
 import utils = require('../utils');
 import {
-  CallUserFactor,
+  UserFactorCall,
   Client,
   DefaultRequestExecutor,
   Policy,
-  PushUserFactor,
-  SecurityQuestionUserFactor,
-  SmsUserFactor,
+  User,
+  UserFactorPush,
+  UserFactorSecurityQuestion,
+  UserFactorSMS,
   UserFactor,
   OktaApiError,
+  AuthenticatorEnrollmentPolicy,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -31,7 +33,7 @@ const client = new Client({
  */
 
 describe('Factors API', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Ensure Security Question is active
     await utils.activateSecurityQuestion(client);
@@ -51,7 +53,7 @@ describe('Factors API', () => {
     for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
-    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
+    const defaultPolicy: AuthenticatorEnrollmentPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
     // enable Okta Verify, Security Question and Phone authenticators
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
@@ -77,14 +79,14 @@ describe('Factors API', () => {
 
   it('should not allow me to create a factor that is not enabled in the Org', async () => {
     try {
-      const factor: PushUserFactor = {
+      const factor: UserFactor = {
         factorType: 'push',
         provider: 'YUBICO'
       };
       const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
       expect(createdFactor.factorType).to.equal('push');
       expect(createdFactor.provider).to.equal('YUBICO');
-      expect(createdFactor).to.be.instanceof(PushUserFactor);
+      expect(createdFactor).to.be.instanceof(UserFactorPush);
     } catch (e) {
       expect(e instanceof OktaApiError);
       expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
@@ -94,7 +96,7 @@ describe('Factors API', () => {
   it('should not allow me to create an invalid factor', async () => {
     let err: OktaApiError;
     try {
-      const factor: PushUserFactor = {
+      const factor: UserFactorPush = {
         factorType: 'push',
         /* eslint-disable @typescript-eslint/no-explicit-any */
         provider: 'UNSUPPORTED_PROVIDER' as any
@@ -109,7 +111,7 @@ describe('Factors API', () => {
 
   it('should allow me to create a Call factor', async () => {
     try {
-      const factor: CallUserFactor = {
+      const factor: UserFactorCall = {
         factorType: 'call',
         provider: 'OKTA',
         profile: {
@@ -119,7 +121,7 @@ describe('Factors API', () => {
       const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
       expect(createdFactor.factorType).to.equal('call');
       expect(createdFactor).to.be.instanceof(UserFactor);
-      expect(createdFactor).to.be.instanceof(CallUserFactor);
+      expect(createdFactor).to.be.instanceof(UserFactorCall);
     } catch (e) {
       expect(e instanceof OktaApiError);
       expect((e as OktaApiError).errorCauses?.[0]?.errorSummary).to.equal('Factor not enabled.');
@@ -127,18 +129,18 @@ describe('Factors API', () => {
   });
 
   it('should allow me to create a Push factor', async () => {
-    const factor: PushUserFactor = {
+    const factor: UserFactorPush = {
       factorType: 'push',
       provider: 'OKTA'
     };
     const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('push');
     expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(PushUserFactor);
+    expect(createdFactor).to.be.instanceof(UserFactorPush);
   });
 
   it('should allow me to create a Security Question factor', async () => {
-    const factor: SecurityQuestionUserFactor = {
+    const factor: UserFactorSecurityQuestion = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -149,11 +151,11 @@ describe('Factors API', () => {
     const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('question');
     expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(SecurityQuestionUserFactor);
+    expect(createdFactor).to.be.instanceof(UserFactorSecurityQuestion);
   });
 
   it('should allow me to create a SMS factor', async () => {
-    const factor: SmsUserFactor = {
+    const factor: UserFactorSMS = {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
@@ -164,7 +166,7 @@ describe('Factors API', () => {
       const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
       expect(createdFactor.factorType).to.equal('sms');
       expect(createdFactor).to.be.instanceof(UserFactor);
-      expect(createdFactor).to.be.instanceof(SmsUserFactor);
+      expect(createdFactor).to.be.instanceof(UserFactorSMS);
     } catch (e) {
       expect(e.status).to.equal(429);
       expect(e.message).to.contain('Your free tier organization has reached the limit of sms requests');

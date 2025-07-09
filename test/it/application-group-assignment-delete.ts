@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, Application, DefaultRequestExecutor, Group } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,8 +28,8 @@ describe('ApplicationGroupAssignment.delete(:appId)', () => {
       }
     };
 
-    let createdApplication;
-    let createdGroup;
+    let createdApplication: Application;
+    let createdGroup: Group;
 
     try {
       await utils.removeAppByLabel(client, application.label);

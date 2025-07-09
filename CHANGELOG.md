@@ -1,5 +1,65 @@
 # Okta Node SDK Changelog
 
+# 8.0.0
+
+### Features
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec (as on 20 June 2025)
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Added new APIs:
+  - ResourceSetApi
+  - IntegrationsApi
+  - RoleApi
+  - AttackProtectionApi
+  - CAPTCHAApi
+  - DeviceAccessApi
+  - DeviceIntegrationsApi
+  - DevicePostureCheckApi
+  - DirectoriesIntegrationApi
+  - DisasterRecoveryApi
+  - EmailDomainApi
+  - EmailServerApi
+  - GovernanceBundleApi
+  - GroupOwnerApi
+  - HookKeyApi
+  - IdentitySourceApi
+  - LogStreamApi
+  - OktaApplicationSettingsApi
+  - OktaPersonalSettingsApi
+  - OrgCreatorApi
+  - PrivilegedResourceApi
+  - RateLimitSettingsApi
+  - RealmApi
+  - RealmAssignmentApi
+  - RiskEventApi
+  - RiskProviderApi
+  - SSFReceiverApi
+  - SSFSecurityEventTokenApi
+  - SSFTransmitterApi
+  - ServiceAccountApi
+  - UISchemaApi
+  - WebAuthnPreregistrationApi
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Updated APIs:
+  - ApplicationApi:
+    - Added new methods from ApplicationCWOConnectionsApi, ApplicationExpressConfigurationApi, ApplicationPoliciesApi
+    - Added new methods from ApplicationSSOApi, ApplicationSSOCredentialOAuth2ClientAuthApi, ApplicationSSOFederatedClaimsApi
+  - AuthorizationServerApi:
+    - Added new methods from AuthorizationServerClientsApi, AuthorizationServerAssocApi
+  - CustomizationApi:
+    - Added new methods from EmailCustomizationApi, CustomPagesApi
+  - RoleAssignmentApi
+    - Added new methods from RoleAssignmentClientApi
+  - RoleTargetApi
+    - Added new methods from RoleBTargetBGroupApi, RoleBTargetClientApi
+  - UserApi:
+    - Added new methods from UserClassificationApi, UserOAuthApi, UserRiskApi
+
+### Breaking changes
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Removed method `emailDomainApi.listEmailDomainBrands`
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) All method parameters now use lowerCamelCase convention (eg. `orgSetting` instead of `OrgSetting`)
+
 # 7.1.1
 
 ### Fixes

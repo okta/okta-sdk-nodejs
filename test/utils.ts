@@ -1,12 +1,14 @@
 import {
   Client,
-  User, Group, Role,
+  User, Group, Role, StandardRole, CustomRole,
+  UserGetSingleton,
   UserApiListUsersRequest,
   GroupApiListGroupsRequest,
   RoleType,
   Csr,
+  IdPCsr,
   BookmarkApplication,
-  SamlApplication,
+  Org2OrgApplication,
   OpenIdConnectApplication
 } from '@okta/okta-sdk-nodejs';
 import * as forge from 'node-forge';
@@ -22,8 +24,8 @@ function delay(t) {
   });
 }
 
-function validateUser(user: User, expectedUser: User) {
-  expect(user).to.be.an.instanceof(User);
+function validateUser(user: User | UserGetSingleton, expectedUser: User) {
+  expect(user instanceof User || user instanceof UserGetSingleton).to.be.true;
   expect(user.profile.firstName).to.equal(expectedUser.profile.firstName);
   expect(user.profile.lastName).to.equal(expectedUser.profile.lastName);
   expect(user.profile.email).to.equal(expectedUser.profile.email);
@@ -85,6 +87,24 @@ async function waitTillUserInGroup(client: Client, user: User, group: Group, con
   return userInGroup;
 }
 
+async function waitTill(condition: () => Promise<boolean>): Promise<boolean> {
+  let currentConditionResult = false;
+  let timeOut = 0;
+  while (!currentConditionResult) {
+    currentConditionResult = await condition();
+    if (currentConditionResult) {
+      return true;
+    }
+
+    await delay(1000);
+    timeOut++;
+    if (timeOut === 30) {
+      break;
+    }
+  }
+  return false;
+}
+
 async function deleteUser(user: User, client: Client) {
   await client.userApi.deactivateUser({
     userId: user.id
@@ -97,6 +117,19 @@ async function deleteUser(user: User, client: Client) {
 async function isUserPresent(client: Client, expectedUser: User, queryParameters: UserApiListUsersRequest) {
   let userPresent = false;
   const collection = await client.userApi.listUsers(queryParameters);
+  await collection.each(user => {
+    expect(user).to.be.an.instanceof(User);
+    if (user.profile.login === expectedUser.profile.login) {
+      userPresent = true;
+      return false;
+    }
+  });
+  return userPresent;
+}
+
+async function isUserPresentByLogin(client: Client, expectedUser: User) {
+  let userPresent = false;
+  const collection = await client.userApi.listUsers({ search: `profile.login eq "${expectedUser.profile.login}"` });
   await collection.each(user => {
     expect(user).to.be.an.instanceof(User);
     if (user.profile.login === expectedUser.profile.login) {
@@ -125,7 +158,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) 
   await (await client.roleAssignmentApi.listAssignedRolesForUser({
     userId: user.id
   })).each(role => {
-    expect(role).to.be.an.instanceof(Role);
+    expect(role instanceof Role || role instanceof StandardRole || role instanceof CustomRole).to.be.true;
     if (role.type === roleType) {
       hasRole = true;
       return false;
@@ -134,7 +167,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) 
   return hasRole;
 }
 
-async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: Client) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | StandardRole | CustomRole, client: Client) {
   let groupTargetPresent = false;
   const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 
@@ -286,7 +319,7 @@ function getBookmarkApplication(): BookmarkApplication {
   };
 }
 
-function getOrg2OrgApplicationOptions(): SamlApplication {
+function getOrg2OrgApplicationOptions(): Org2OrgApplication {
   return {
     name: 'okta_org2org',
     label: 'node-sdk: Sample Okta Org2Org App',
@@ -339,13 +372,13 @@ function bigintToBase64(bi: forge.jsbn.BigInteger) {
   );
 }
 
-function parseCsr(csr: Csr): forge.pki.CertificateRequest {
+function parseCsr(csr: Csr | IdPCsr): forge.pki.CertificateRequest {
   const csrDer = forge.util.decode64(csr.csr);
   const csrAsn1 = forge.asn1.fromDer(csrDer);
   return forge.pki.certificationRequestFromAsn1(csrAsn1) as forge.pki.CertificateRequest;
 }
 
-function createCertFromCsr(csr: Csr, keys: forge.pki.KeyPair) {
+function createCertFromCsr(csr: Csr | IdPCsr, keys: forge.pki.KeyPair) {
   const csrF = parseCsr(csr);
   const certF = forge.pki.createCertificate();
   certF.publicKey = csrF.publicKey;
@@ -371,7 +404,7 @@ function certToBase64(certF: forge.pki.Certificate) {
   return forge.util.encode64(certToDer(certF));
 }
 
-function csrToN(csr: Csr) {
+function csrToN(csr: Csr | IdPCsr) {
   return bigintToBase64((parseCsr(csr).publicKey as forge.pki.rsa.PublicKey).n);
 }
 
@@ -386,8 +419,10 @@ export {
   validateGroup,
   isUserInGroup,
   waitTillUserInGroup,
+  waitTill,
   deleteUser,
   isUserPresent,
+  isUserPresentByLogin,
   isGroupPresent,
   doesUserHaveRole,
   isGroupTargetPresent,
@@ -408,5 +443,4 @@ export {
   certToBase64,
   certToPem,
   csrToN,
-  //getV2Client,
 };

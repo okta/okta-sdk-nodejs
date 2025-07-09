@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
-import { Client, DefaultRequestExecutor, Policy, Group, AccessPolicy } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, Group, OktaSignOnPolicy } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -17,7 +17,7 @@ const client = new Client({
 
 describe('Policy Lifecycle API', () => {
   let group: Group;
-  let mockPolicy: AccessPolicy;
+  let mockPolicy: OktaSignOnPolicy;
   let policy: Policy;
   beforeEach(async () => {
     group = await client.groupApi.createGroup({group: getMockGroup()});

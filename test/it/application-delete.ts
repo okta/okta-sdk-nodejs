@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { BookmarkApplication, Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Application, Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -21,7 +21,7 @@ describe('Application.delete()', () => {
   it('should allow me to delete the application', async () => {
     const application = utils.getBookmarkApplication();
 
-    let createdApplication: BookmarkApplication;
+    let createdApplication: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);

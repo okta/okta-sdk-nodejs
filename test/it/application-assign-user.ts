@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { BookmarkApplication, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
+import { BookmarkApplication, Application, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -27,7 +27,7 @@ describe('Application.assignUserToApplication()', () => {
       }
     };
 
-    let createdApplication: BookmarkApplication;
+    let createdApplication: Application;
     let createdUser: User;
     let createdAppUser: AppUser;
 

@@ -33,7 +33,7 @@ This libray is a wrapper for the [Okta Platform API], which should be referred t
 
 #### Create a User
 
-The [Users: Create User] API can be used to create users.  The most basic type of user is one that has an email address and a password to login with, and can be created with the `client.createUser()` method:
+The [Users: Create User] API can be used to create users.  The most basic type of user is one that has an email address and a password to login with, and can be created with the `client.userApi.createUser()` method:
 
 ```javascript
 const newUser = {
@@ -50,7 +50,7 @@ const newUser = {
   }
 };
 
-client.createUser(newUser)
+client.userApi.createUser({ body: newUser })
 .then(user => {
   console.log('Created user', user);
 });
@@ -58,35 +58,35 @@ client.createUser(newUser)
 
 #### Get a User
 
-The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.getUser(:id|:login)`:
+The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.userApi.getUser({ userId: :id|:login })`:
 
 ```javascript
-client.getUser('ausmvdt5xg8wRVI1d0g3').then(user => {
+client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' }).then(user => {
   console.log(user);
 });
 
-client.getUser('foo@bar.com').then(user => {
+client.userApi.getUser({ userId: 'foo@bar.com' }).then(user => {
   console.log(user);
 });
 ```
 
 #### Update a User
 
-Once you have a user instance, you can modify it and then call the `update()` method to persist those changes to the API.  This uses the [Users: Update User] API:
+Once you have a user instance, you can modify it and then call the `client.userApi.updateUser()` method to persist those changes to the API.  This uses the [Users: Update User] API:
 
 ```javascript
 user.profile.nickName = 'rob';
-user.update().then(() => console.log('User nickname change has been saved'));
+client.userApi.updateUser({ userId: user.id, user }).then(() => console.log('User nickname change has been saved'));
 ```
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `client.userApi.deactivateUser()` and `client.userApi.deleteUser()` operations on the user instance to achieve both calls:
 
 ```javascript
-user.deactivate()
+client.userApi.deactivateUser({ userId: user.id })
 .then(() => console.log('User has been deactivated'))
-.then(() => user.delete())
+.then(() => client.userApi.deleteUser({ userId: user.id }))
 .then(() => console.log('User has been deleted'));
 ```
 
@@ -95,7 +95,7 @@ user.deactivate()
 The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collections](#collections).
 
 ```javascript
-const orgUsersCollection = client.listUsers();
+const orgUsersCollection = client.userApi.listUsers();
 
 orgUsersCollection.each(user => {
   console.log(user);
@@ -107,31 +107,31 @@ For more information about this API see [Users: Get User].
 
 #### Search for Users
 
-The [Users: List Users] API provides three ways to search for users, "q", "filter", or "search", and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL encode the values for you.
+The [Users: List Users] API provides three ways to search for users, "q", "filter", or "search", and all of these approaches can be achieved by passing them as query parameters to the `client.userApi.listUsers()` method.  The library will URL encode the values for you.
 
 ```javascript
-client.listUsers({
+await (await client.userApi.listUsers({
   q: 'Robert'
-}).each(user => {
+})).each(user => {
   console.log('User matches query: ', user);
 });
 
-client.listUsers({
+await (await client.userApi.listUsers({
   search: 'profile.nickName eq "abc 1234"'
-}).each(user => {
+})).each(user => {
   console.log('User matches search:', user);
 });
 
-client.listUsers({
+await (await client.userApi.listUsers({
   filter: 'lastUpdated gt "2017-06-05T23:00:00.000Z"'
-}).each(user => {
+})).each(user => {
   console.log('User matches filter:', user);
 });
 ```
 
 #### Create a Group
 
-The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.createGroup(:newGroup)`:
+The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.createGroup({ group })`:
 
 ```javascript
 const newGroup = {
@@ -140,7 +140,7 @@ const newGroup = {
   }
 };
 
-client.createGroup(newGroup)
+client.groupApi.createGroup({grpup: newGroup})
 .then(group => {
   console.log('Created group', group);
 });
@@ -148,10 +148,10 @@ client.createGroup(newGroup)
 
 #### Assign a User to a Group
 
-With a user and group instance, you can use the `addToGroup(:groupId)` method of the user to add the user to the known group:
+With a user and group instance, you can use the `client.groupApi.assignUserToGroup({groupId, userId})` method  to add the user to the known group:
 
 ```javascript
-user.addToGroup(group.id).then(() => console.log('User has been added to group'));
+client.groupApi.assignUserToGroup({groupId: group.id, userId: user.id}).then(() => console.log('User has been added to group'));
 ```
 
 ## Collections
@@ -167,7 +167,7 @@ Allows you to visit every item in the collection, while optionally doing work at
 If no value is returned, each() will continue to the next item:
 
 ```javascript
-client.listUsers().each(user => {
+(await client.userApi.listUsers()).each(user => {
   console.log(user);
   logUserToRemoteSystem(user);
 }).then(() => {
@@ -180,7 +180,7 @@ client.listUsers().each(user => {
 Returning a promise will pause the iterator until the promise is resolved:
 
 ```javascript
-client.listUsers().each(user => {
+(await client.userApi.listUsers()).each(user => {
   return new Promise((resolve, reject) => {
     // do work, then resolve or reject the promise
   })
@@ -192,7 +192,7 @@ client.listUsers().each(user => {
 Returning false will end iteration:
 
 ```javascript
-client.listUsers().each(user => {
+(await client.userApi.listUsers()).each(user => {
   console.log(user);
   return false;
 }).then(() => {
@@ -203,7 +203,7 @@ client.listUsers().each(user => {
 Returning false in a promise will also end iteration:
 
 ```javascript
-client.listUsers().each((user) => {
+(await client.userApi.listUsers()).each((user) => {
   console.log(user);
   return Promise.resolve(false);
 }).then(() => {
@@ -214,7 +214,7 @@ client.listUsers().each((user) => {
 Rejecting a promise will end iteration with an error:
 
 ```javascript
-return client.listUsers().each((user) => {
+return (await client.userApi.listUsers()).each((user) => {
   console.log(user);
   return Promise.reject('foo error');
 }).catch((err)=>{

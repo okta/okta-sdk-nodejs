@@ -18,14 +18,14 @@ describe('Org API', () => {
     const originalCompanyName = orgSettings.companyName;
     expect(originalCompanyName).to.not.contain(companyNameSuffix);
     await client.orgSettingApi.updateOrgSettings({
-      OrgSetting: {
+      orgSetting: {
         companyName: `${originalCompanyName} ${companyNameSuffix}`
       }
     });
     orgSettings = await client.orgSettingApi.getOrgSettings();
     expect(orgSettings.companyName).to.contain(companyNameSuffix);
     await client.orgSettingApi.updateOrgSettings({
-      OrgSetting: {
+      orgSetting: {
         companyName: originalCompanyName
       }
     });
@@ -99,20 +99,6 @@ describe('Org API', () => {
     expect(communicationSettings.optOutEmailUsers).to.equal(true);
     communicationSettings = await client.orgSettingApi.optInUsersToOktaCommunicationEmails();
     expect(communicationSettings.optOutEmailUsers).to.equal(false);
-  });
-
-  it('allows listing and configuring Org support settings', async () => {
-    await client.orgSettingApi.revokeOktaSupport();
-    let supportSettings = await client.orgSettingApi.getOrgOktaSupportSettings();
-    expect(supportSettings.support).to.equal('DISABLED');
-    supportSettings = await client.orgSettingApi.grantOktaSupport();
-    expect(supportSettings.support).to.equal('ENABLED');
-
-    const currentExpirationDate = new Date(supportSettings.expiration);
-    supportSettings = await client.orgSettingApi.extendOktaSupport();
-    expect(new Date(supportSettings.expiration)).to.be.greaterThanOrEqual(currentExpirationDate);
-    supportSettings = await client.orgSettingApi.revokeOktaSupport();
-    expect(supportSettings.support).to.equal('DISABLED');
   });
 
   it('updates Org logo', async () => {

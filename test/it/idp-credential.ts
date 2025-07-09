@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import {
   Client,
   Collection,
-  Csr,
+  IdPCsr,
   DefaultRequestExecutor,
   IdentityProvider,
-  JsonWebKey,
+  IdPKeyCredential,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import forge = require('node-forge');
@@ -38,7 +38,7 @@ describe('Idp credential API', () => {
   });
 
   describe('Key', () => {
-    let key: JsonWebKey;
+    let key: IdPKeyCredential;
     describe('List keys', () => {
       beforeEach(async () => {
         key = await client.identityProviderApi.createIdentityProviderKey({jsonWebKey: mockJwk});
@@ -52,9 +52,9 @@ describe('Idp credential API', () => {
         expect(keys).to.be.instanceOf(Collection);
       });
 
-      it('should resolve JsonWebKey in collection', async () => {
+      it('should resolve IdPKeyCredential in collection', async () => {
         await (await client.identityProviderApi.listIdentityProviderKeys()).each(key => {
-          expect(key).to.be.instanceOf(JsonWebKey);
+          expect(key).to.be.instanceOf(IdPKeyCredential);
         });
       });
     });
@@ -67,7 +67,7 @@ describe('Idp credential API', () => {
       it('should create key', async () => {
         key = await client.identityProviderApi.createIdentityProviderKey({jsonWebKey: mockJwk});
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(IdPKeyCredential);
       });
     });
 
@@ -82,7 +82,7 @@ describe('Idp credential API', () => {
       it('should get key', async () => {
         key = await client.identityProviderApi.getIdentityProviderKey({keyId: key.kid});
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(IdPKeyCredential);
       });
     });
 
@@ -103,7 +103,7 @@ describe('Idp credential API', () => {
   });
 
   describe('Signing CSR', () => {
-    let csr: Csr, keys: forge.pki.KeyPair;
+    let csr: IdPCsr, keys: forge.pki.KeyPair;
     describe('List signing csrs', () => {
       beforeEach(async () => {
         csr = await client.identityProviderApi.generateCsrForIdentityProvider({idpId: idp.id, metadata: mockCsr});
@@ -119,7 +119,7 @@ describe('Idp credential API', () => {
 
       it('should resolve CSR in collection', async () => {
         await (await client.identityProviderApi.listCsrsForIdentityProvider({idpId: idp.id})).each(csr => {
-          expect(csr).to.be.instanceOf(Csr);
+          expect(csr).to.be.instanceOf(IdPCsr);
         });
       });
     });
@@ -169,7 +169,7 @@ describe('Idp credential API', () => {
             name: 'csr.der'
           }
         });
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(IdPKeyCredential);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -194,7 +194,7 @@ describe('Idp credential API', () => {
             name: 'csr.pem'
           }
         });
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(IdPKeyCredential);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -219,7 +219,7 @@ describe('Idp credential API', () => {
             name: 'csr.der'
           }
         });
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(IdPKeyCredential);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -247,7 +247,7 @@ describe('Idp credential API', () => {
   });
 
   describe('Signing Key', () => {
-    let key: JsonWebKey;
+    let key: IdPKeyCredential;
     describe('List signing keys', () => {
       beforeEach(async () => {
         key = await client.identityProviderApi.generateIdentityProviderSigningKey({idpId: idp.id, validityYears: 2});
@@ -258,9 +258,9 @@ describe('Idp credential API', () => {
         expect(keys).to.be.instanceOf(Collection);
       });
 
-      it('should resolve JsonWebKey in collection', async () => {
+      it('should resolve IdPKeyCredential in collection', async () => {
         await (await client.identityProviderApi.listIdentityProviderSigningKeys({idpId: idp.id})).each(key => {
-          expect(key).to.be.instanceOf(JsonWebKey);
+          expect(key).to.be.instanceOf(IdPKeyCredential);
         });
       });
 
@@ -299,7 +299,7 @@ describe('Idp credential API', () => {
       it('should clone key to another idp', async () => {
         const clonedKey = await client.identityProviderApi.cloneIdentityProviderKey({idpId: idp.id, keyId: key.kid, targetIdpId: anotherIdp.id });
         expect(clonedKey).to.be.exist;
-        expect(clonedKey).to.be.instanceOf(JsonWebKey);
+        expect(clonedKey).to.be.instanceOf(IdPKeyCredential);
       });
     });
   });

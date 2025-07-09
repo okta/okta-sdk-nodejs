@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  AccessPolicy,
+  OktaSignOnPolicy,
   Client,
   Collection,
   DefaultRequestExecutor,
@@ -27,7 +27,7 @@ const client = new Client({
 
 describe('Policy Rule API', () => {
   let group: Group;
-  let mockPolicy: AccessPolicy;
+  let mockPolicy: OktaSignOnPolicy;
   let policy: Policy;
   beforeEach(async () => {
     group = await client.groupApi.createGroup({group: getMockGroup()});
@@ -48,7 +48,7 @@ describe('Policy Rule API', () => {
       beforeEach(async () => {
         rule = await client.policyApi.createPolicyRule({
           policyId: policy.id,
-          policyRule: getMockRule()
+          policyRule: getMockRule() as OktaSignOnPolicyRule
         });
       });
       afterEach(async () => {
@@ -66,6 +66,8 @@ describe('Policy Rule API', () => {
       it('should resolve PolicyRule in collection', async () => {
         await (await client.policyApi.listPolicyRules({ policyId: policy.id })).each(rule => {
           expect(rule).to.be.instanceOf(PolicyRule);
+          expect(rule).to.be.instanceOf(OktaSignOnPolicyRule);
+          expect((rule as OktaSignOnPolicyRule).actions.signon.access).to.equal('DENY');
         });
       });
     });

@@ -4,5 +4,5 @@ import { OAuth, TokenEndpointResponse } from '../../src/types/oauth';
 
 const oauthClient = new OAuth(new Client());
 expectType<Promise<TokenEndpointResponse>>(oauthClient.getAccessToken());
-expectType<string>(oauthClient.getJwt('https://foo/token'));
+expectType<Promise<string>>(oauthClient.getJwt('https://foo/token'));
 expectType<void>(oauthClient.clearCachedAccessToken());

@@ -106,11 +106,18 @@ describe('okta.Client', () => {
   });
 
   it('should use the DefaultRequestExecutor by default', () => {
-    const client = new Client();
+    const client = new Client({
+      orgUrl: 'https://fakey.local',
+      token: 'fake-token',
+      authorizationMode: 'SSWS',
+    });
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);
   });
   it('should let me pass an alternate request executor', () => {
     const client = new Client({
+      orgUrl: 'https://fakey.local',
+      token: 'fake-token',
+      authorizationMode: 'SSWS',
       requestExecutor: new DefaultRequestExecutor()
     });
     expect(client.requestExecutor).toBeInstanceOf(DefaultRequestExecutor);

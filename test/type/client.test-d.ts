@@ -7,7 +7,7 @@ import { BookmarkApplication } from '../../src/types/generated/models/BookmarkAp
 const client = new Client();
 (async function () {
   // mandatory query parameters
-  expectError(await client.policyApi.listPolicies());
+  expectError(await client.policyApi.listPolicies({ }));
 
   // Client methods return either Promise or Collection
   expectType<Promise<void>>(client.policyApi.deletePolicy({policyId: 'policyId'}));

@@ -28,18 +28,11 @@ const {
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
-  GroupApi,
   EventHookApi,
   NetworkZoneApi,
   ThreatInsightApi,
-  OrgSettingApi,
-  ApplicationApi,
-  AuthorizationServerApi,
-  CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
-  UserApi,
-  IdentityProviderApi,
   SessionApi,
   TemplateApi,
   PolicyApi,
@@ -50,14 +43,55 @@ const {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
-  RoleTargetApi,
-  RoleAssignmentApi,
   CustomDomainApi,
   DeviceApi,
+
+  AttackProtectionApi,
+  CAPTCHAApi,
+  DeviceAccessApi,
+  DeviceIntegrationsApi,
+  DevicePostureCheckApi,
+  DirectoriesIntegrationApi,
+  DisasterRecoveryApi,
+  EmailDomainApi,
+  EmailServerApi,
+  GovernanceBundleApi,
+  GroupOwnerApi,
+  HookKeyApi,
+  IdentitySourceApi,
+  LogStreamApi,
+  OktaApplicationSettingsApi,
+  OktaPersonalSettingsApi,
+  OrgCreatorApi,
+  PrivilegedResourceApi,
+  RateLimitSettingsApi,
+  RealmApi,
+  RealmAssignmentApi,
+  RiskEventApi,
+  RiskProviderApi,
+  SSFReceiverApi,
+  SSFSecurityEventTokenApi,
+  SSFTransmitterApi,
+  ServiceAccountApi,
+  UISchemaApi,
+  WebAuthnPreregistrationApi,
+
+  // consolidated apis
+  CustomizationApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
+  OrgSettingApi,
+  GroupApi,
+  ApplicationApi,
+  AuthorizationServerApi,
+  IdentityProviderApi,
+  UserApi,
+  ResourceSetApi,
+  IntegrationsApi,
+  RoleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
-
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -130,6 +164,21 @@ class Client {
       baseServer: new ServerConfiguration(parsedConfig.client.orgUrl),
       httpApi: this.http,
     });
+
+    // consolidated apis
+    this.applicationApi = new ApplicationApi(configuration);
+    this.authorizationServerApi = new AuthorizationServerApi(configuration);
+    this.customizationApi = new CustomizationApi(configuration);
+    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
+    this.roleTargetApi = new RoleTargetApi(configuration);
+    this.groupApi = new GroupApi(configuration);
+    this.identityProviderApi = new IdentityProviderApi(configuration);
+    this.userApi = new UserApi(configuration);
+    this.orgSettingApi = new OrgSettingApi(configuration);
+    this.resourceSetApi = new ResourceSetApi(configuration);
+    this.integrationsApi = new IntegrationsApi(configuration);
+    this.roleApi = new RoleApi(configuration);
+
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
     this.schemaApi = new SchemaApi(configuration);
@@ -138,18 +187,11 @@ class Client {
     this.linkedObjectApi = new LinkedObjectApi(configuration);
     this.systemLogApi = new SystemLogApi(configuration);
     this.featureApi = new FeatureApi(configuration);
-    this.groupApi = new GroupApi(configuration);
     this.eventHookApi = new EventHookApi(configuration);
     this.networkZoneApi = new NetworkZoneApi(configuration);
     this.threatInsightApi = new ThreatInsightApi(configuration);
-    this.orgSettingApi = new OrgSettingApi(configuration);
-    this.applicationApi = new ApplicationApi(configuration);
-    this.authorizationServerApi = new AuthorizationServerApi(configuration);
-    this.customizationApi = new CustomizationApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
-    this.userApi = new UserApi(configuration);
-    this.identityProviderApi = new IdentityProviderApi(configuration);
     this.sessionApi = new SessionApi(configuration);
     this.templateApi = new TemplateApi(configuration);
     this.policyApi = new PolicyApi(configuration);
@@ -160,10 +202,38 @@ class Client {
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
-    this.roleTargetApi = new RoleTargetApi(configuration);
-    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
+
+    this.attackProtectionApi = new AttackProtectionApi(configuration);
+    this.captchaApi = new CAPTCHAApi(configuration);
+    this.deviceAccessApi = new DeviceAccessApi(configuration);
+    this.deviceIntegrationsApi = new DeviceIntegrationsApi(configuration);
+    this.devicePostureCheckApi = new DevicePostureCheckApi(configuration);
+    this.directoriesIntegrationApi = new DirectoriesIntegrationApi(configuration);
+    this.disasterRecoveryApi = new DisasterRecoveryApi(configuration);
+    this.emailDomainApi = new EmailDomainApi(configuration);
+    this.emailServerApi = new EmailServerApi(configuration);
+    this.governanceBundleApi = new GovernanceBundleApi(configuration);
+    this.groupOwnerApi = new GroupOwnerApi(configuration);
+    this.hookKeyApi = new HookKeyApi(configuration);
+    this.identitySourceApi = new IdentitySourceApi(configuration);
+    this.logStreamApi = new LogStreamApi(configuration);
+    this.oktaApplicationSettingsApi = new OktaApplicationSettingsApi(configuration);
+    this.oktaPersonalSettingsApi = new OktaPersonalSettingsApi(configuration);
+    this.orgCreatorApi = new OrgCreatorApi(configuration);
+    this.privilegedResourceApi = new PrivilegedResourceApi(configuration);
+    this.rateLimitSettingsApi = new RateLimitSettingsApi(configuration);
+    this.realmApi = new RealmApi(configuration);
+    this.realmAssignmentApi = new RealmAssignmentApi(configuration);
+    this.riskEventApi = new RiskEventApi(configuration);
+    this.riskProviderApi = new RiskProviderApi(configuration);
+    this.ssfReceiverApi = new SSFReceiverApi(configuration);
+    this.ssfSecurityEventTokenApi = new SSFSecurityEventTokenApi(configuration);
+    this.ssfTransmitterApi = new SSFTransmitterApi(configuration);
+    this.serviceAccountApi = new ServiceAccountApi(configuration);
+    this.uiSchemaApi = new UISchemaApi(configuration);
+    this.webAuthnPreregistrationApi = new WebAuthnPreregistrationApi(configuration);
   }
 }
 

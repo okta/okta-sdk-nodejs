@@ -4,7 +4,7 @@ import {
   DefaultRequestExecutor,
   EmailDefaultContent,
   EmailPreview,
-  EmailTemplate,
+  EmailTemplateResponse,
   EmailCustomization,
   Client
 } from '@okta/okta-sdk-nodejs';
@@ -28,7 +28,7 @@ async function getBrandId() {
 
 describe('Email Template API', () => {
   let brandId: string;
-  let template: EmailTemplate;
+  let template: EmailTemplateResponse;
   beforeEach(async () => {
     brandId = await getBrandId();
     const item = await (await client.customizationApi.listEmailTemplates({
@@ -45,7 +45,7 @@ describe('Email Template API', () => {
       expect(templates).to.be.instanceOf(Collection);
       let counter = 0;
       await templates.each(template => {
-        expect(template).to.be.instanceOf(EmailTemplate);
+        expect(template).to.be.instanceOf(EmailTemplateResponse);
         counter++;
       });
       expect(counter).to.be.greaterThan(1);

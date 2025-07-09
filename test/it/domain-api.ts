@@ -86,6 +86,8 @@ describe('Domains API', () => {
           certificate: {
             certificate: 'cert',
             privateKey: 'pk',
+            certificateChain: 'chain',
+            type: 'PEM'
           }
         });
       } catch (err) {

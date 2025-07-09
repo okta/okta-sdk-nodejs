@@ -7,14 +7,15 @@ export OKTA_CLIENT_ORGURL=https://node-sdk-oie.oktapreview.com
 export OKTA_CLIENT_CLIENTID=0oa1q34stxthm0zbJ1d7
 get_terminus_secret "/" api_key OKTA_CLIENT_TOKEN
 get_terminus_secret "/" private_key E2E_PK
+export OKTA_CLIENT_KEYID="vcwwhGUkVJbyKt3hu9DqKneDgjBD-IOQ-LLNNrtsCGg" # public key
 get_terminus_secret "/" username ORG_USER
 
-HEADER="-----BEGIN RSA PRIVATE KEY-----"
-FOOTER="-----END RSA PRIVATE KEY-----"
+HEADER="-----BEGIN PRIVATE KEY-----"
+FOOTER="-----END PRIVATE KEY-----"
 
 # NOTE: storing pem as secret results in newline characters becoming spaces, which
 # causes the pem to be malformed when used by tests. Below solves this issue
-pem=$(echo ${E2E_PK:31})                            # remove -----BEGIN prefix
+pem=$(echo ${E2E_PK:27})                            # remove -----BEGIN prefix
 pem=$(echo "${pem% ${FOOTER}}")                     # remove -----END suffix
 # BEGIN / END need to be removed so all remaining spaces can be converted to newlines
 echo $HEADER > /tmp/e2e.pem                         # appends BEGIN header to tmp file

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, SamlApplication } from '@okta/okta-sdk-nodejs';
+import { Client, Application, SamlApplication } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,7 +19,7 @@ describe('Application API: provisioning connection for application', () => {
 
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({
-      application: utils.getOrg2OrgApplicationOptions()
+      application: utils.getOrg2OrgApplicationOptions() as Application
     });
   });
 
@@ -59,14 +59,31 @@ describe('Application API: provisioning connection for application', () => {
     expect(provisioningConnection.status).to.equal('DISABLED');
   });
 
-  it('provides method for creating provisioning connection for application', async () => {
+  it('provides token method for creating provisioning connection for application', async () => {
     try {
       await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
         appId: application.id,
-        ProvisioningConnectionRequest: {
+        provisioningConnectionRequest: {
           profile: {
             authScheme: 'TOKEN',
             token: 'testToken'
+          }
+        }
+      });
+    } catch (err) {
+      expect(err.status).to.equal(400);
+      expect(err.message).to.contain('Api validation failed: credential. Verification failed: Invalid URL. Not authorized.');
+    }
+  });
+
+  it('provides oauth2 method for creating provisioning connection for application', async () => {
+    try {
+      await client.applicationApi.updateDefaultProvisioningConnectionForApplication({
+        appId: application.id,
+        provisioningConnectionRequest: {
+          profile: {
+            authScheme: 'OAUTH2',
+            clientId: 'testClientId'
           }
         }
       });

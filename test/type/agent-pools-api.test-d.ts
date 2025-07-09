@@ -65,13 +65,13 @@ const client = new Client();
 
   expectType<AgentPoolUpdate>(await client.agentPoolsApi.createAgentPoolsUpdate({
     poolId: 'testPoolId',
-    AgentPoolUpdate: agentPoolUpdate,
+    agentPoolUpdate: agentPoolUpdate,
   }));
 
   expectType<AgentPoolUpdate>(await client.agentPoolsApi.updateAgentPoolsUpdate({
     poolId: 'testPoolId',
     updateId: 'testUpdateId',
-    AgentPoolUpdate: agentPoolUpdate,
+    agentPoolUpdate: agentPoolUpdate,
   }));
 
   expectType<AgentPoolUpdate>(await client.agentPoolsApi.activateAgentPoolsUpdate({
@@ -120,7 +120,7 @@ const client = new Client();
 
   expectType<AgentPoolUpdateSetting>(await client.agentPoolsApi.updateAgentPoolsUpdateSettings({
     poolId: 'testPoolId',
-    AgentPoolUpdateSetting: agentPoolUpdateSetting,
+    agentPoolUpdateSetting: agentPoolUpdateSetting,
   }));
 
 }());

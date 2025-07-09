@@ -1,9 +1,10 @@
 import speakeasy = require('speakeasy');
 
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import { Client } from '@okta/okta-sdk-nodejs';
+import {
+  Client, TokenSoftwareTotp, DefaultRequestExecutor, Policy, User, UserFactor, CreateUserRequest, AuthenticatorEnrollmentPolicy
+} from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +16,7 @@ const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 /**
@@ -25,10 +26,10 @@ const client = new Client({
  */
 
 describe('Factors API', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Create a user
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('factor-activate'),
       credentials: {
         password: { value: 'Abcd1234#@' }
@@ -38,11 +39,11 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.userApi.createUser({body: newUser});
 
-    const authenticatorPolicies: okta.Policy[] = [];
+    const authenticatorPolicies: Policy[] = [];
     for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
-    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
+    const defaultPolicy: AuthenticatorEnrollmentPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
     // enable Okta Verify authenticator so that okta_totp factor can be activated
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
@@ -61,19 +62,23 @@ describe('Factors API', () => {
   });
 
   it('should allow me to activate a TOTP factor', async () => {
-    const factor: okta.UserFactor = {
+    const factor: UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
     const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.status).to.be.equal('PENDING_ACTIVATION');
-    const embedded = createdFactor._embedded as Record<string, unknown>;
-    const activation = embedded.activation as Record<string, unknown>;
+    const embedded = createdFactor._embedded;
+    const activation = embedded.activation;
     const passCode = speakeasy.totp({
       secret: activation.sharedSecret,
       encoding: 'base32'
     });
-    const updatedFactor = await client.userFactorApi.activateFactor({userId: createdUser.id, factorId: createdFactor.id, body: { passCode }});
+
+    const updatedFactorResponse = await client.userFactorApi.activateFactor({userId: createdUser.id, factorId: createdFactor.id, body: { passCode } as TokenSoftwareTotp});
+    expect(updatedFactorResponse.factorType).to.equal('token:software:totp');
+
+    const updatedFactor = await client.userFactorApi.getFactor({ userId: createdUser.id, factorId: createdFactor.id });
     expect(updatedFactor.status).to.equal('ACTIVE');
   });
 });

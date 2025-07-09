@@ -65,7 +65,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as BookmarkApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BookmarkApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -101,7 +101,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as BasicAuthApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BasicAuthApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -140,7 +140,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as BrowserPluginApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -169,12 +169,16 @@ describe('client.createApplication()', () => {
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
+          buttonField: '#btn-login',
           buttonSelector: '#btn-login',
+          passwordField: '#txtbox-password',
           passwordSelector: '#txtbox-password',
+          usernameField: '#txtbox-username',
           userNameSelector: '#txtbox-username',
           extraFieldSelector: '.login',
           extraFieldValue: 'SOMEVALUE',
-          targetURL: 'https://example.com/login.html'
+          url: 'https://example.com/login.html',
+          targetURL: 'https://example.com/login.html',
         }
       }
     };
@@ -183,7 +187,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as BrowserPluginApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -229,7 +233,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as SecurePasswordStoreApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SecurePasswordStoreApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -323,6 +327,7 @@ describe('client.createApplication()', () => {
       settings: {
         signOn: {
           assertionSigned: true,
+          allowMultipleAcsEndpoints: true,
           attributeStatements: [
             {
               type: 'EXPRESSION',
@@ -331,8 +336,6 @@ describe('client.createApplication()', () => {
               values: [
                 'Value'
               ],
-              filterType: undefined,
-              filterValue: undefined
             }
           ],
           audience: 'asdqwe123',
@@ -421,7 +424,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as WsFederationApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(WsFederationApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -487,7 +490,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.applicationApi.createApplication({application});
+      createdApplication = await client.applicationApi.createApplication({application}) as OpenIdConnectApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(OpenIdConnectApplication);
       expect(createdApplication.name).to.equal(application.name);

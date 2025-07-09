@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  Client, Device,
+  Client, Device, DeviceList,
 } from '@okta/okta-sdk-nodejs';
 
 const client = new Client({
@@ -20,7 +20,7 @@ describe('Device API', () => {
   it('lists existing devices', async () => {
     const collection = await client.deviceApi.listDevices();
     for await (const device of collection) {
-      expect(device).to.be.instanceOf(Device);
+      expect(device).to.be.instanceOf(DeviceList);
     }
   });
 

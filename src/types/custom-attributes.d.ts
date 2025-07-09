@@ -11,7 +11,7 @@
  */
 
 
-type CustomAttributeValue = boolean | number | string;
+type CustomAttributeValue = boolean | number | string | null;
 
 export {
   CustomAttributeValue

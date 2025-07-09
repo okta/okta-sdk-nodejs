@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  JsonWebKey
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;

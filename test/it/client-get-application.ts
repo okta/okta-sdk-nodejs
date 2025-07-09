@@ -30,7 +30,7 @@ describe('client.getApplication()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.applicationApi.createApplication({application});
-      const fetchedApplication: BookmarkApplication = await client.applicationApi.getApplication({appId: createdApplication.id});
+      const fetchedApplication = await client.applicationApi.getApplication({appId: createdApplication.id}) as BookmarkApplication;
       expect(fetchedApplication.id).to.equal(createdApplication.id);
       expect(fetchedApplication).to.be.instanceof(BookmarkApplication);
     } finally {

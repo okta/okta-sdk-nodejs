@@ -5,4 +5,4 @@ import { UserProfile } from './../../src/types/generated/models/UserProfile';
 
 const userProfile = new UserProfile();
 expectType<CustomAttributeValue | CustomAttributeValue[] | undefined>(userProfile.customAttribute);
-expectType<string | undefined>(userProfile.costCenter);
+expectType<string | undefined | null>(userProfile.costCenter);

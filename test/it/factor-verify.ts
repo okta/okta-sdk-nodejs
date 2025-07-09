@@ -1,7 +1,6 @@
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, AuthenticatorEnrollmentPolicy, DefaultRequestExecutor, Policy, User, UserFactorSecurityQuestion } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -13,7 +12,7 @@ const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 /**
@@ -23,7 +22,7 @@ const client = new Client({
  */
 
 describe('Factors API', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Ensure Security Question is active
     await utils.activateSecurityQuestion(client);
@@ -39,11 +38,11 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.userApi.createUser({body: newUser});
 
-    const authenticatorPolicies: okta.Policy[] = [];
+    const authenticatorPolicies: Policy[] = [];
     for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
-    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
+    const defaultPolicy: AuthenticatorEnrollmentPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
     // enable Security Question authenticator
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
@@ -68,7 +67,7 @@ describe('Factors API', () => {
     }
 
     const answer = 'pizza';
-    const factor: okta.SecurityQuestionUserFactor = {
+    const factor: UserFactorSecurityQuestion = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Application } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -26,7 +26,7 @@ describe('Application.getApplicationKey() / Application.listKeys()', () => {
 
     const application = utils.getBookmarkApplication();
 
-    let createdApplication;
+    let createdApplication: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);
