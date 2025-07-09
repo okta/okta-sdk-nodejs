@@ -9,7 +9,7 @@ import {
   IdPCsr,
   BookmarkApplication,
   Org2OrgApplication,
-  OpenIdConnectApplication
+  OpenIdConnectApplication,
 } from '@okta/okta-sdk-nodejs';
 import * as forge from 'node-forge';
 const expect = require('chai').expect;
@@ -305,6 +305,41 @@ function getOIDCApplication(): OpenIdConnectApplication {
   };
 }
 
+function getServiceApplication(): OpenIdConnectApplication {
+  return  {
+    name: 'oidc_client',
+    label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
+    signOnMode: 'OPENID_CONNECT',
+    credentials: {
+      oauthClient: {
+        autoKeyRotation: true,
+        token_endpoint_auth_method: 'client_secret_post'
+      }
+    },
+    settings: {
+      oauthClient: {
+        application_type: 'service',
+        client_uri: 'https://example.com/client',
+        grant_types: [
+          'implicit',
+          'authorization_code',
+          'client_credentials'
+        ],
+        logo_uri: 'https://example.com/assets/images/logo-new.png',
+        redirect_uris: [
+          'https://example.com/oauth2/callback',
+          'myapp://callback'
+        ],
+        response_types: [
+          'token',
+          'id_token',
+          'code'
+        ]
+      }
+    }
+  };
+}
+
 function getBookmarkApplication(): BookmarkApplication {
   return {
     name: 'bookmark',
@@ -435,6 +470,7 @@ export {
   getBookmarkApplication,
   getOrg2OrgApplicationOptions,
   getOIDCApplication,
+  getServiceApplication,
   verifyOrgIsOIE,
   getMockImage,
   runWithRetry,
