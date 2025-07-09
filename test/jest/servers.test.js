@@ -44,6 +44,7 @@ describe('ServerConfiguration', () => {
       const affectedResources = server.getAffectedResources(path, vars);
       expect(affectedResources).toEqual([
         'https://fakey.local/api/v1/users/test%23user%40okta.com/grants/123%3F',
+        'https://fakey.local/api/v1/users/test%23user%40okta.com/grants',
         'https://fakey.local/api/v1/users/test%23user%40okta.com',
       ]);
     });
