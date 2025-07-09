@@ -54,10 +54,14 @@ class ServerConfiguration {
   }
   getAffectedResources(path, vars) {
     const resources = [];
+    resources.push(this.getEndpointUrl(path, vars));
     let pl = path.length;
     while (pl--) {
       if (path[pl] === '}') {
         const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
+        resources.push(this.getUrl() + resourcePath);
+      } else if (path[pl] === '/') {
+        const resourcePath = path.slice(0, pl).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
         resources.push(this.getUrl() + resourcePath);
       }
     }
