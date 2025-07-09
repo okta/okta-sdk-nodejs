@@ -22,7 +22,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Permission } from './../models/Permission';
 export declare class CreateIamRoleRequest {
   /**
     * Description of the role
@@ -35,7 +34,7 @@ export declare class CreateIamRoleRequest {
   /**
     * Array of permissions that the role grants. See [Permissions](/openapi/okta-management/guides/permissions).
     */
-  'permissions': Array<Permission>;
+  'permissions': Array<string>;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

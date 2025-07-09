@@ -571,7 +571,7 @@ function fixSchemaBadArrayProps(spec) {
           // TODO: should be fixed in okta-oas3
           if (schemaKey === 'CreateIamRoleRequest' && propName === 'permissions') {
             prop.items = {
-              '$ref': '#/components/schemas/Permission'
+              type: 'string'
             };
           } else if (schemaKey === 'DevicePostureChecks' && propName === 'include') {
             prop.items = {

@@ -50,7 +50,7 @@ CreateIamRoleRequest.attributeTypeMap = [
   {
     'name': 'permissions',
     'baseName': 'permissions',
-    'type': 'Array<Permission>',
+    'type': 'Array<string>',
     'format': ''
   }
 ];
