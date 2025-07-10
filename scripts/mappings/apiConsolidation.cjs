@@ -106,7 +106,7 @@ const apiConsolidation = {
       'RoleDResourceSetBindingMember',
     ]
   },
-  Role: {
+  CustomRole: {
     apis: [
       'RoleECustom',
       'RoleECustomPermission',

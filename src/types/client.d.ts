@@ -83,7 +83,7 @@ import {
   UserApi,
   IdentityProviderApi,
   ResourceSetApi,
-  RoleApi,
+  CustomRoleApi,
 } from './generated';
 
 export declare class Client {
@@ -111,7 +111,7 @@ export declare class Client {
   userApi: UserApi;
   orgSettingApi: OrgSettingApi;
   resourceSetApi: ResourceSetApi;
-  roleApi: RoleApi;
+  customRoleApi: CustomRoleApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;

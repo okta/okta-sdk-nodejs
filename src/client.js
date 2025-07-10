@@ -88,7 +88,7 @@ const {
   IdentityProviderApi,
   UserApi,
   ResourceSetApi,
-  RoleApi,
+  CustomRoleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -176,7 +176,7 @@ class Client {
     this.userApi = new UserApi(configuration);
     this.orgSettingApi = new OrgSettingApi(configuration);
     this.resourceSetApi = new ResourceSetApi(configuration);
-    this.roleApi = new RoleApi(configuration);
+    this.customRoleApi = new CustomRoleApi(configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
