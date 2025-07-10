@@ -218,12 +218,14 @@ const renameBodyParams = () => {
       renames.push({
         key:  oldKeyName,
         from: [
-          `  ${newKeyName}: `,
-          `  ${newKeyName}?: `,
+          new RegExp(`  ${newKeyName}: `, 'g'),
+          new RegExp(`  ${newKeyName}\\?: `, 'g'),
+          new RegExp(`param\\.${newKeyName},`, 'g'),
         ],
         to: [
           `  ${oldKeyName}: `,
           `  ${oldKeyName}?: `,
+          `param.${oldKeyName},`,
         ]
       });
     }
