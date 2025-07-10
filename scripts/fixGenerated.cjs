@@ -7,11 +7,14 @@
 // - Some classes are generated with unnecassary `AllOf` in the name (eg. `DeviceListAllOfEmbedded`)
 //   For convinience we remove it from the name (eg. rename to `DeviceListEmbedded`)
 // - There are some unnecessary html escapings like &#39; for ' that triggers lint warnings
+// - Apply body parameter renames according to mapping in `mappings/bodyNameRenames.cjs`
 
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
 const yaml = require('js-yaml');
+const _ = require('lodash');
+const mappings = require('./mappings/index.cjs');
 
 let replaceInFileSync; // to be imported from ESM 'replace-in-file'
 
@@ -205,6 +208,45 @@ const removeAllOf = () => {
   };
 };
 
+const renameBodyParams = () => {
+  const renames = [];
+  for (const opId in mappings.bodyNameRenames) {
+    const oldKeyName = Object.keys(mappings.bodyNameRenames[opId])[0];
+    const isFirstLetterInUpperCase = oldKeyName[0] === oldKeyName[0].toUpperCase();
+    if (isFirstLetterInUpperCase) {
+      const newKeyName = _.lowerFirst(oldKeyName);
+      renames.push({
+        key:  oldKeyName,
+        from: [
+          new RegExp(`  ${newKeyName}: `, 'g'),
+          new RegExp(`  ${newKeyName}\\?: `, 'g'),
+          new RegExp(`param\\.${newKeyName},`, 'g'),
+        ],
+        to: [
+          `  ${oldKeyName}: `,
+          `  ${oldKeyName}?: `,
+          `param.${oldKeyName},`,
+        ]
+      });
+    }
+  }
+
+  const renamesResult = {};
+  for (const rename of renames) {
+    const { from, to, key } = rename;
+    const res = replaceInFileSync({
+      files: [
+        'src/generated/types/ObjectParamAPI.ts',
+      ],
+      from,
+      to,
+    });
+    renamesResult[key] = res[0].hasChanged;
+  }
+
+  return renamesResult;
+};
+
 async function main() {
   try {
     // Use ESM import
@@ -228,6 +270,10 @@ async function main() {
     // fix '' with '
     const fixRespondAsyncResult = fixRespondAsync();
     console.log('Fix \'respond-async\' =', fixRespondAsyncResult);
+
+    // replace body parameter names
+    const bodyParameterRenames = renameBodyParams();
+    console.log('Replace body parameter names =', bodyParameterRenames);
 
     // remove *AllOf
     const removeAllOfResult = removeAllOf();

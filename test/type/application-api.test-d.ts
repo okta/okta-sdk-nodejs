@@ -9,7 +9,7 @@ const client = new Client();
 
   expectType<ApplicationFeature>(await client.applicationApi.getFeatureForApplication({appId: 'appId', name: 'USER_PROVISIONING'}));
 
-  expectType<ApplicationFeature>(await client.applicationApi.updateFeatureForApplication({appId: 'appId', name: 'USER_PROVISIONING', capabilitiesObject: {
+  expectType<ApplicationFeature>(await client.applicationApi.updateFeatureForApplication({appId: 'appId', name: 'USER_PROVISIONING', CapabilitiesObject: {
     update: {
       lifecycleDeactivate: {
         status: 'ENABLED'

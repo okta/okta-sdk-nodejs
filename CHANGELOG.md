@@ -1,6 +1,6 @@
 # Okta Node SDK Changelog
 
-# 8.0.0
+# 7.2.0
 
 ### Features
 
@@ -54,11 +54,6 @@
     - Added new methods from RoleBTargetBGroupApi, RoleBTargetClientApi
   - UserApi:
     - Added new methods from UserClassificationApi, UserOAuthApi, UserRiskApi
-
-### Breaking changes
-
-- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Removed method `emailDomainApi.listEmailDomainBrands`
-- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) All method parameters now use lowerCamelCase convention (eg. `orgSetting` instead of `OrgSetting`)
 
 # 7.1.1
 

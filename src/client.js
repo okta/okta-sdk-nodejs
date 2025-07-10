@@ -56,7 +56,6 @@ const {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
-  GroupOwnerApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
@@ -75,6 +74,8 @@ const {
   ServiceAccountApi,
   UISchemaApi,
   WebAuthnPreregistrationApi,
+  ApiServiceIntegrationsApi,
+  YourOinIntegrationsApi,
 
   // consolidated apis
   CustomizationApi,
@@ -87,8 +88,7 @@ const {
   IdentityProviderApi,
   UserApi,
   ResourceSetApi,
-  IntegrationsApi,
-  RoleApi,
+  CustomRoleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -176,8 +176,7 @@ class Client {
     this.userApi = new UserApi(configuration);
     this.orgSettingApi = new OrgSettingApi(configuration);
     this.resourceSetApi = new ResourceSetApi(configuration);
-    this.integrationsApi = new IntegrationsApi(configuration);
-    this.roleApi = new RoleApi(configuration);
+    this.customRoleApi = new CustomRoleApi(configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
@@ -215,7 +214,6 @@ class Client {
     this.emailDomainApi = new EmailDomainApi(configuration);
     this.emailServerApi = new EmailServerApi(configuration);
     this.governanceBundleApi = new GovernanceBundleApi(configuration);
-    this.groupOwnerApi = new GroupOwnerApi(configuration);
     this.hookKeyApi = new HookKeyApi(configuration);
     this.identitySourceApi = new IdentitySourceApi(configuration);
     this.logStreamApi = new LogStreamApi(configuration);
@@ -234,6 +232,8 @@ class Client {
     this.serviceAccountApi = new ServiceAccountApi(configuration);
     this.uiSchemaApi = new UISchemaApi(configuration);
     this.webAuthnPreregistrationApi = new WebAuthnPreregistrationApi(configuration);
+    this.apiServiceIntegrationsApi = new ApiServiceIntegrationsApi(configuration);
+    this.yourOinIntegrationsApi = new YourOinIntegrationsApi(configuration);
   }
 }
 

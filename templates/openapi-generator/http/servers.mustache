@@ -48,14 +48,24 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
 
     private getAffectedResources(path: string, vars?: Partial<T>): string[] {
         const resources = [];
+        resources.push(this.getEndpointUrl(path, vars));
         let pl = path.length;
         while (pl--) {
-        if (path[pl] === '}') {
-            const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) =>
-                this._encodeParam(vars?.[key]) || match
-            );
-            resources.push(this.getUrl() + resourcePath);
-        }
+            if (path[pl] === '}') {
+                const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) =>
+                    this._encodeParam(vars?.[key]) || match
+                );
+                if (!resources.includes(this.getUrl() + resourcePath)) {
+                    resources.push(this.getUrl() + resourcePath);
+                }
+            } else if (path[pl] === '/' && pl > this.getUrl().length) {
+                const resourcePath = path.slice(0, pl).replace(/{(\w+)}/g, (match, key) =>
+                    this._encodeParam(vars?.[key]) || match
+                );
+                if (!resources.includes(this.getUrl() + resourcePath)) {
+                    resources.push(this.getUrl() + resourcePath);
+                }
+            }
         }
         return resources;
     }

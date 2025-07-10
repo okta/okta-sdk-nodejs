@@ -22,7 +22,7 @@ describe('Group Schema API', () => {
     expect(Object.keys(groupSchema.definitions)).to.include('custom');
     expect(getCustomPropertiesKeys(groupSchema)).to.be.empty;
 
-    groupSchema = await client.schemaApi.updateGroupSchema({groupSchema: {
+    groupSchema = await client.schemaApi.updateGroupSchema({GroupSchema: {
       definitions: {custom: {
         id: '#custom',
         type: 'object',
@@ -38,7 +38,7 @@ describe('Group Schema API', () => {
     }});
     expect(Object.keys(groupSchema.definitions.custom.properties)).to.contain(customAttributeName);
 
-    groupSchema = await client.schemaApi.updateGroupSchema({groupSchema: {
+    groupSchema = await client.schemaApi.updateGroupSchema({GroupSchema: {
       definitions: {custom: {
         id: '#custom',
         type: 'object',

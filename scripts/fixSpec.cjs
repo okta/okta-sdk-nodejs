@@ -37,7 +37,7 @@ const isBackwardCompatibility = true;
 
 // Some schemas for reponse are missing discriminators
 const addCustomDiscriminatorToResponse = (schema) => {
-  const customDiscriminatorsForEndpointsResponses = [
+  const customDiscriminatorsForEndpoints = [
     {
       propertyName: 'type',
       mapping: {
@@ -45,10 +45,17 @@ const addCustomDiscriminatorToResponse = (schema) => {
         '*': '#/components/schemas/StandardRole'
       }
     },
+    {
+      propertyName: 'type',
+      mapping: {
+        'CUSTOM': '#/components/schemas/CustomRoleAssignmentSchema',
+        '*': '#/components/schemas/StandardRoleAssignmentSchema'
+      }
+    }
   ];
 
   if (schema['type'] === 'array' && schema['items']?.['oneOf']?.length > 1) {
-    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+    for (const discriminator of customDiscriminatorsForEndpoints) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
       const shouldHaveDiscriminator = schema['items']['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
       const alreadtyHasDiscriminator = !!schema['items'].discriminator;
@@ -58,7 +65,7 @@ const addCustomDiscriminatorToResponse = (schema) => {
       }
     }
   } else if (schema['oneOf']?.length > 1) {
-    for (const discriminator of customDiscriminatorsForEndpointsResponses) {
+    for (const discriminator of customDiscriminatorsForEndpoints) {
       const oneOfRefSchemas = Object.values(discriminator.mapping);
       const shouldHaveDiscriminator = schema['oneOf'].filter(s => oneOfRefSchemas.includes(s?.['$ref'])).length === oneOfRefSchemas.length;
       const alreadtyHasDiscriminator = !!schema.discriminator;
@@ -215,8 +222,38 @@ function applyTagsAndOperationRenames(spec) {
   };
 }
 
+function fixRequests(spec) {
+  const customDiscriminatorsForRequests = [];
+
+  for (const httpPath in spec.paths) {
+    for (const httpMethod in spec.paths[httpPath]) {
+      if (!['parameters'].includes(httpMethod)) {
+        const endpoint = spec.paths[httpPath][httpMethod];
+        if (endpoint.requestBody) {
+          const contentTypes = Object.keys(endpoint.requestBody?.content ?? {});
+          const contentType = contentTypes[0];
+          const typedContent = endpoint.requestBody.content?.[contentType];
+          if (typedContent?.schema) {
+            const schema = typedContent.schema;
+
+            // add missing discriminators
+            const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
+            if (maybeAddedCustomDiscriminator) {
+              customDiscriminatorsForRequests.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    customDiscriminatorsForRequests,
+  };
+}
+
 function fixResponses(spec) {
-  const customdiscriminatorsForEndpoints = [];
+  const customDiscriminatorsForResponses = [];
   const manualPathsFixes = [];
 
   for (const httpPath in spec.paths) {
@@ -230,10 +267,11 @@ function fixResponses(spec) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
-                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list') && endpoint.operationId.endsWith('s')
+                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list')
                   && httpMethod === 'get' && responseCode.startsWith('2');
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
                 // remove unnecessary type: 'object' for $ref
                 // resolves error:
@@ -246,17 +284,42 @@ function fixResponses(spec) {
                 // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customdiscriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+                  customDiscriminatorsForResponses.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
-                // Special fix for /api/v1/policies - should return array of Policy, not single Policy
-                if (httpPath === '/api/v1/policies' && isListEndpoint && refSchemaKey === 'Policy') {
+                // Special fix for listPolicies - should return array of Policy, not single Policy
+                if (endpoint.operationId === 'listPolicies' && refSchemaKey === 'Policy') {
                   schema = {
                     type: 'array',
                     items: schema
                   };
                   typedContent.schema = schema;
                   manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                }
+
+                // Special fix for listRolesForClient - should return array of roles
+                if (endpoint.operationId === 'listRolesForClient' && schema['type'] !== 'array') {
+                  schema = {
+                    type: 'array',
+                    items: schema
+                  };
+                  typedContent.schema = schema;
+                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                }
+
+                if (refSchema) {
+                  schema = refSchema;
+                }
+                const propKeys = Object.keys(schema['properties'] ?? {}).filter(k => !k.startsWith('_'));
+                const isOneArrayProp = propKeys.length === 1 && schema['properties'][propKeys[0]]['type'] === 'array';
+                if (isListEndpoint && schema['type'] !== 'array' && !isOneArrayProp) {
+                  const canIgnore  = [
+                    'listRoleSubscriptionsByNotificationType',
+                    'listUserSubscriptionsByNotificationType',
+                  ].includes(endpoint.operationId);
+                  if (!canIgnore) {
+                    console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
+                  }
                 }
               }
             }
@@ -268,7 +331,7 @@ function fixResponses(spec) {
 
   return {
     manualPathsFixes,
-    customdiscriminatorsForEndpoints,
+    customDiscriminatorsForResponses,
   };
 }
 
@@ -571,7 +634,7 @@ function fixSchemaBadArrayProps(spec) {
           // TODO: should be fixed in okta-oas3
           if (schemaKey === 'CreateIamRoleRequest' && propName === 'permissions') {
             prop.items = {
-              '$ref': '#/components/schemas/Permission'
+              type: 'string'
             };
           } else if (schemaKey === 'DevicePostureChecks' && propName === 'include') {
             prop.items = {
@@ -622,7 +685,9 @@ function loadSpec(yamlFile) {
     // to prevent warn in console
     // [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
     .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
-    .replace(/^[ ]{4}Error:$/m, '    ModelError:');
+    .replace(/^[ ]{4}Error:$/m, '    ModelError:')
+    // use full URLs to doc
+    .replaceAll('(/openapi/okta-management/', '(https://developer.okta.com/docs/api/openapi/okta-management/');
 
   const spec = yaml.load(yamlStrFixed);
 
@@ -649,7 +714,8 @@ async function main() {
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec);
-  const { manualPathsFixes, customdiscriminatorsForEndpoints } = fixResponses(spec);
+  const { manualPathsFixes, customDiscriminatorsForResponses } = fixResponses(spec);
+  const { customDiscriminatorsForRequests } = fixRequests(spec);
   const { ffAmends } = applyFFAments(spec);
   const { typeMap } = buildTypeMap(spec);
   const {
@@ -658,6 +724,7 @@ async function main() {
   const { manualSchemaFixes } = fixSchemaErrors(spec);
   const { manualSchemaPropsFixes, badDateTimeProps } = fixSchemaPropsErrors(spec);
   const { arrayPropsWithoutItems } = fixSchemaBadArrayProps(spec);
+  const customDiscriminatorsForEndpoints = [...customDiscriminatorsForRequests, ...customDiscriminatorsForResponses];
 
   // Log fix results
   console.log(`Fixed empty schemas: ${emptySchemas.join(', ')}`);
@@ -669,7 +736,7 @@ async function main() {
   console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
   console.log('Fixed paths:', manualPathsFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
-  console.log('Manually added discriminatoes for endpoints:', customdiscriminatorsForEndpoints);
+  console.log('Manually added discriminatoes for endpoints:', customDiscriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
   console.log('API operationId renames: ', operationRenames);
   console.log('API path renames: ', pathRenames);

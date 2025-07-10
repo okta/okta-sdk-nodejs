@@ -51,7 +51,6 @@ import {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
-  GroupOwnerApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
@@ -70,6 +69,8 @@ import {
   ServiceAccountApi,
   UISchemaApi,
   WebAuthnPreregistrationApi,
+  ApiServiceIntegrationsApi,
+  YourOinIntegrationsApi,
 
   // consolidated apis
   CustomizationApi,
@@ -82,8 +83,7 @@ import {
   UserApi,
   IdentityProviderApi,
   ResourceSetApi,
-  IntegrationsApi,
-  RoleApi,
+  CustomRoleApi,
 } from './generated';
 
 export declare class Client {
@@ -111,8 +111,7 @@ export declare class Client {
   userApi: UserApi;
   orgSettingApi: OrgSettingApi;
   resourceSetApi: ResourceSetApi;
-  integrationsApi: IntegrationsApi;
-  roleApi: RoleApi;
+  customRoleApi: CustomRoleApi;
 
   userTypeApi: UserTypeApi;
   authenticatorApi: AuthenticatorApi;
@@ -150,7 +149,6 @@ export declare class Client {
   emailDomainApi: EmailDomainApi;
   emailServerApi: EmailServerApi;
   governanceBundleApi: GovernanceBundleApi;
-  groupOwnerApi: GroupOwnerApi;
   hookKeyApi: HookKeyApi;
   identitySourceApi: IdentitySourceApi;
   logStreamApi: LogStreamApi;
@@ -169,4 +167,6 @@ export declare class Client {
   serviceAccountApi: ServiceAccountApi;
   uiSchemaApi: UISchemaApi;
   webAuthnPreregistrationApi: WebAuthnPreregistrationApi;
+  apiServiceIntegrationsApi: ApiServiceIntegrationsApi;
+  yourOinIntegrationsApi: YourOinIntegrationsApi;
 }
