@@ -29,7 +29,7 @@ describe('Custom Pages API', () => {
 
     const brandName = `node-sdk: Brand ${faker.random.word()}`.substring(0, 49);
     customBrand = await client.customizationApi.createBrand({
-      createBrandRequest: {
+      CreateBrandRequest: {
         name: brandName
       }
     });
@@ -71,7 +71,7 @@ describe('Custom Pages API', () => {
       );
       const newErrorPage = await client.customizationApi.replaceCustomizedErrorPage({
         brandId: customBrand.id,
-        errorPage,
+        ErrorPage: errorPage,
       });
       expect(newErrorPage).to.be.instanceOf(ErrorPage);
       expect(newErrorPage.pageContent).to.include('Test - {{orgName}}');
