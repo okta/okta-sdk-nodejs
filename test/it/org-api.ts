@@ -18,14 +18,14 @@ describe('Org API', () => {
     const originalCompanyName = orgSettings.companyName;
     expect(originalCompanyName).to.not.contain(companyNameSuffix);
     await client.orgSettingApi.updateOrgSettings({
-      orgSetting: {
+      OrgSetting: {
         companyName: `${originalCompanyName} ${companyNameSuffix}`
       }
     });
     orgSettings = await client.orgSettingApi.getOrgSettings();
     expect(orgSettings.companyName).to.contain(companyNameSuffix);
     await client.orgSettingApi.updateOrgSettings({
-      orgSetting: {
+      OrgSetting: {
         companyName: originalCompanyName
       }
     });
