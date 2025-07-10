@@ -1,7 +1,8 @@
-// For backward compatibility with 7.0 group some APIs (identified by `tags` in spec)
+// For backward compatibility with 7.0 - group some APIs (identified by `tags` in spec)
 const apiConsolidation = {
   // keys are tags in spec used to generate 7.0
-  // values of `apis` are tags in newest spec, corresponding APIs will be consolidated to a single API as before (in 7.0  )
+  // values of `apis` are tags in newest spec, corresponding APIs will be consolidated to a single API as before (in 7.0)
+  // Also see `x-tagGroups` in `management.yaml`
   Application: {
     apis: [
       'Application',
