@@ -22,39 +22,39 @@ import { SmsTemplateType } from '../models/SmsTemplateType';
 export declare class TemplateApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Creates a new custom SMS template
-     * Create an SMS Template
+     * Create an SMS template
      * @param smsTemplate
      */
   createSmsTemplate(smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes an SMS template
-     * Delete an SMS Template
-     * @param templateId
+     * Delete an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      */
   deleteSmsTemplate(templateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a specific template by `id`
-     * Retrieve an SMS Template
-     * @param templateId
+     * Retrieve an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      */
   getSmsTemplate(templateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
-     * List all SMS Templates
+     * List all SMS templates
      * @param templateType
      */
   listSmsTemplates(templateType?: SmsTemplateType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the SMS template
-     * Replace an SMS Template
-     * @param templateId
+     * Replaces the SMS Template > **Notes:** You can\'t update the default SMS Template.
+     * Replace an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      * @param smsTemplate
      */
   replaceSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an SMS template
-     * Update an SMS Template
-     * @param templateId
+     * Updates only some of the SMS Template properties:   * All properties within the custom SMS Template that have values are updated.   * Any translation that doesn\'t exist is added.   * Any translation with a null or empty value is removed.   * Any translation with non-empty/null value is updated.
+     * Update an SMS template
+     * @param templateId &#x60;id&#x60; of the Template
      * @param smsTemplate
      */
   updateSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Promise<RequestContext>;

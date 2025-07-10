@@ -15,35 +15,40 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { ApiToken } from '../models/ApiToken';
+import { ApiTokenUpdate } from '../models/ApiTokenUpdate';
 /**
  * no description
  */
 export declare class ApiTokenApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Retrieves the metadata for an active API token by id
-     * Retrieve an API Token's Metadata
+     * Retrieves the metadata for an active API token by `apiTokenId`
+     * Retrieve an API token\'s metadata
      * @param apiTokenId id of the API Token
      */
   getApiToken(apiTokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all the metadata of the active API tokens
-     * List all API Token Metadata
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
-     * @param limit A limit on the number of objects to return.
-     * @param q Finds a token that matches the name or clientName.
+     * List all API token metadata
      */
-  listApiTokens(after?: string, limit?: number, q?: string, _options?: Configuration): Promise<RequestContext>;
+  listApiTokens(_options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes an API token by `apiTokenId`
-     * Revoke an API Token
+     * Revoke an API token
      * @param apiTokenId id of the API Token
      */
   revokeApiToken(apiTokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes the API token provided in the Authorization header
-     * Revoke the Current API Token
+     * Revoke the current API token
      */
   revokeCurrentApiToken(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Upserts an API Token Network Condition by `apiTokenId`
+     * Upsert an API token network condition
+     * @param apiTokenId id of the API Token
+     * @param apiTokenUpdate
+     */
+  upsertApiToken(apiTokenId: string, apiTokenUpdate: ApiTokenUpdate, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class ApiTokenApiResponseProcessor {
   /**
@@ -78,4 +83,12 @@ export declare class ApiTokenApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   revokeCurrentApiToken(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to upsertApiToken
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  upsertApiToken(response: ResponseContext): Promise<ApiToken>;
 }

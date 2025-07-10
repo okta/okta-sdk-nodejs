@@ -14,65 +14,67 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
+import { NotificationType } from '../models/NotificationType';
 import { Subscription } from '../models/Subscription';
 /**
  * no description
  */
 export declare class SubscriptionApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
-     * List all Subscriptions of a Custom Role
-     * @param roleTypeOrRoleId
+     * Lists all subscriptions available to a specified Role
+     * List all subscriptions for a role
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      */
-  listRoleSubscriptions(roleTypeOrRoleId: string, _options?: Configuration): Promise<RequestContext>;
+  listRoleSubscriptions(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
-     * List all Subscriptions of a Custom Role with a specific notification type
-     * @param roleTypeOrRoleId
+     * Retrieves a subscription by `notificationType` for a specified Role
+     * Retrieve a subscription for a role
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
-  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-     * List all Subscriptions
-     * @param userId
+     * Lists all subscriptions available to a specified user. Returns an `AccessDeniedException` message if requests are made for another user.
+     * List all subscriptions for a user
+     * @param userId ID of an existing Okta user
      */
   listUserSubscriptions(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-     * List all Subscriptions by type
-     * @param userId
+     * Retrieves a subscription by `notificationType` for a specified user. Returns an `AccessDeniedException` message if requests are made for another user.
+     * Retrieve a subscription for a user
      * @param notificationType
+     * @param userId ID of an existing Okta user
      */
-  listUserSubscriptionsByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  listUserSubscriptionsByNotificationType(notificationType: NotificationType, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
-     * Subscribe a Custom Role to a specific notification type
-     * @param roleTypeOrRoleId
+     * Subscribes a Role to a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
+     * Subscribe a role to a specific notification type
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
-  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Subscribes a User to a specific notification type. Only the current User can subscribe to a specific notification type. An AccessDeniedException message is sent if requests are made from other users.
-     * Subscribe to a specific notification type
-     * @param userId
+     * Subscribes the current user to a specified notification type. Returns an `AccessDeniedException` message if requests are made for another user.
+     * Subscribe a user to a specific notification type
      * @param notificationType
+     * @param userId ID of an existing Okta user
      */
-  subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  subscribeUserSubscriptionByNotificationType(notificationType: NotificationType, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
-     * Unsubscribe a Custom Role from a specific notification type
-     * @param roleTypeOrRoleId
+     * Unsubscribes a Role from a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
+     * Unsubscribe a role from a specific notification type
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
-  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Unsubscribes a User from a specific notification type. Only the current User can unsubscribe from a specific notification type. An AccessDeniedException message is sent if requests are made from other users.
-     * Unsubscribe from a specific notification type
-     * @param userId
+     * Unsubscribes the current user from a specified notification type. Returns an `AccessDeniedException` message if requests are made for another user.
+     * Unsubscribe a user from a specific notification type
      * @param notificationType
+     * @param userId ID of an existing Okta user
      */
-  unsubscribeUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
+  unsubscribeUserSubscriptionByNotificationType(notificationType: NotificationType, userId: string, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SubscriptionApiResponseProcessor {
   /**

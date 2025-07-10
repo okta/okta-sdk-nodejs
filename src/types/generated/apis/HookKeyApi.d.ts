@@ -14,35 +14,36 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { DetailedHookKeyInstance } from '../models/DetailedHookKeyInstance';
+import { Embedded } from '../models/Embedded';
 import { HookKey } from '../models/HookKey';
-import { JsonWebKey } from '../models/JsonWebKey';
 import { KeyRequest } from '../models/KeyRequest';
 /**
  * no description
  */
 export declare class HookKeyApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a key
+     * Creates a key for use with other parts of the application, such as inline hooks  > **Note:**  Use the key name to access this key for inline hook operations.  The total number of keys that you can create in an Okta org is limited to 50.   The response is a [Key object](https://developer.okta.com/docs/reference/api/hook-keys/#key-object) that represents the   key that you create. The `id` property in the response serves as the unique ID for the key, which you can specify when   invoking other CRUD operations. The `keyId` provided in the response is the alias of the public key that you can use to get   details of the public key data in a separate call.  > **Note:** The keyId is the alias of the public key that you can use to retrieve the public key.
      * Create a key
      * @param keyRequest
      */
   createHookKey(keyRequest: KeyRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+     * Deletes a key by `id`. After being deleted, the key is unrecoverable.  As a safety precaution, only keys that aren\'t being used are eligible for deletion.
      * Delete a key
-     * @param hookKeyId
+     * @param hookKeyId ID of the Hook Key
      */
   deleteHookKey(hookKeyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a key by `hookKeyId`
-     * Retrieve a key
-     * @param hookKeyId
+     * Retrieves the public portion of the Key object using the `id` parameter  >**Note:** The `?expand=publickey` query parameter optionally returns the full object including the details of the public key in the response body\'s `_embedded` property.
+     * Retrieve a key by ID
+     * @param hookKeyId ID of the Hook Key
      */
   getHookKey(hookKeyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a public key by `keyId`
+     * Retrieves a public key by `keyId`  >**Note:** keyId is the alias of the public key.
      * Retrieve a public key
-     * @param keyId
+     * @param keyId id\&quot; of the Public Key
      */
   getPublicKey(keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -51,9 +52,9 @@ export declare class HookKeyApiRequestFactory extends BaseAPIRequestFactory {
      */
   listHookKeys(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a key by `hookKeyId`
+     * Replaces a key by `id`  This request replaces existing properties after passing validation.  > **Note:** The only parameter that you can update is the name of the key, which must be unique at all times.
      * Replace a key
-     * @param hookKeyId
+     * @param hookKeyId ID of the Hook Key
      * @param keyRequest
      */
   replaceHookKey(hookKeyId: string, keyRequest: KeyRequest, _options?: Configuration): Promise<RequestContext>;
@@ -66,7 +67,7 @@ export declare class HookKeyApiResponseProcessor {
      * @params response Response returned by the server for a request to createHookKey
      * @throws ApiException if the response code was not in [200, 299]
      */
-  createHookKey(response: ResponseContext): Promise<HookKey>;
+  createHookKey(response: ResponseContext): Promise<DetailedHookKeyInstance>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -90,7 +91,7 @@ export declare class HookKeyApiResponseProcessor {
      * @params response Response returned by the server for a request to getPublicKey
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getPublicKey(response: ResponseContext): Promise<JsonWebKey>;
+  getPublicKey(response: ResponseContext): Promise<Embedded>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -106,5 +107,5 @@ export declare class HookKeyApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceHookKey
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replaceHookKey(response: ResponseContext): Promise<HookKey>;
+  replaceHookKey(response: ResponseContext): Promise<DetailedHookKeyInstance>;
 }

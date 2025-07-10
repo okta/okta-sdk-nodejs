@@ -20,32 +20,32 @@ import { RiskProvider } from '../models/RiskProvider';
  */
 export declare class RiskProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
-     * Create a Risk Provider
+     * Creates a risk provider object. You can create a maximum of three risk provider objects.
+     * Create a risk provider
      * @param instance
      */
   createRiskProvider(instance: RiskProvider, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Risk Provider object by its ID
-     * Delete a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+     * Deletes a risk provider object by its ID
+     * Delete a risk provider
+     * @param riskProviderId &#x60;id&#x60; of the risk provider object
      */
   deleteRiskProvider(riskProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a Risk Provider object by ID
-     * Retrieve a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+     * Retrieves a risk provider object by ID
+     * Retrieve a risk provider
+     * @param riskProviderId &#x60;id&#x60; of the risk provider object
      */
   getRiskProvider(riskProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Risk Provider objects
-     * List all Risk Providers
+     * Lists all risk provider objects
+     * List all risk providers
      */
   listRiskProviders(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the properties for a given Risk Provider object ID
-     * Replace a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
+     * Replaces the properties for a given risk provider object ID
+     * Replace a risk provider
+     * @param riskProviderId &#x60;id&#x60; of the risk provider object
      * @param instance
      */
   replaceRiskProvider(riskProviderId: string, instance: RiskProvider, _options?: Configuration): Promise<RequestContext>;

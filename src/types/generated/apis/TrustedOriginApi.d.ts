@@ -15,53 +15,54 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { TrustedOriginWrite } from '../models/TrustedOriginWrite';
 /**
  * no description
  */
 export declare class TrustedOriginApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates a trusted origin
-     * Activate a Trusted Origin
-     * @param trustedOriginId
+     * Activates a trusted origin. Sets the `status` to `ACTIVE`.
+     * Activate a trusted origin
+     * @param trustedOriginId &#x60;id&#x60; of the trusted origin
      */
   activateTrustedOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a trusted origin
-     * Create a Trusted Origin
+     * Create a trusted origin
      * @param trustedOrigin
      */
-  createTrustedOrigin(trustedOrigin: TrustedOrigin, _options?: Configuration): Promise<RequestContext>;
+  createTrustedOrigin(trustedOrigin: TrustedOriginWrite, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates a trusted origin
-     * Deactivate a Trusted Origin
-     * @param trustedOriginId
+     * Deactivates a trusted origin. Sets the `status` to `INACTIVE`.
+     * Deactivate a trusted origin
+     * @param trustedOriginId &#x60;id&#x60; of the trusted origin
      */
   deactivateTrustedOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a trusted origin
-     * Delete a Trusted Origin
-     * @param trustedOriginId
+     * Delete a trusted origin
+     * @param trustedOriginId &#x60;id&#x60; of the trusted origin
      */
   deleteTrustedOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a trusted origin
-     * Retrieve a Trusted Origin
-     * @param trustedOriginId
+     * Retrieve a trusted origin
+     * @param trustedOriginId &#x60;id&#x60; of the trusted origin
      */
   getTrustedOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all trusted origins
-     * List all Trusted Origins
-     * @param q
-     * @param filter
-     * @param after
-     * @param limit
+     * List all trusted origins
+     * @param q A search string that prefix matches against the &#x60;name&#x60; and &#x60;origin&#x60;
+     * @param filter [Filter](https://developer.okta.com/docs/api/#filter) trusted origins with a supported expression for a subset of properties. You can filter on the following properties: &#x60;name&#x60;, &#x60;origin&#x60;, &#x60;status&#x60;, and &#x60;type&#x60; (type of scopes).
+     * @param after After cursor provided by a prior request
+     * @param limit Specifies the number of results
      */
   listTrustedOrigins(q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces a trusted origin
-     * Replace a Trusted Origin
-     * @param trustedOriginId
+     * Replace a trusted origin
+     * @param trustedOriginId &#x60;id&#x60; of the trusted origin
      * @param trustedOrigin
      */
   replaceTrustedOrigin(trustedOriginId: string, trustedOrigin: TrustedOrigin, _options?: Configuration): Promise<RequestContext>;
