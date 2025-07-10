@@ -55,11 +55,6 @@
   - UserApi:
     - Added new methods from UserClassificationApi, UserOAuthApi, UserRiskApi
 
-### Breaking changes
-
-- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Removed method `emailDomainApi.listEmailDomainBrands`
-
-
 # 7.1.1
 
 ### Fixes
