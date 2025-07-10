@@ -345,7 +345,7 @@ export interface AgentPoolsApiCreateAgentPoolsUpdateRequest {
       * @type AgentPoolUpdate
       * @memberof AgentPoolsApicreateAgentPoolsUpdate
       */
-    agentPoolUpdate: AgentPoolUpdate;
+    AgentPoolUpdate: AgentPoolUpdate;
 }
 export interface AgentPoolsApiDeactivateAgentPoolsUpdateRequest {
     /**
@@ -505,7 +505,7 @@ export interface AgentPoolsApiUpdateAgentPoolsUpdateRequest {
       * @type AgentPoolUpdate
       * @memberof AgentPoolsApiupdateAgentPoolsUpdate
       */
-    agentPoolUpdate: AgentPoolUpdate;
+    AgentPoolUpdate: AgentPoolUpdate;
 }
 export interface AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest {
     /**
@@ -519,7 +519,7 @@ export interface AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest {
       * @type AgentPoolUpdateSetting
       * @memberof AgentPoolsApiupdateAgentPoolsUpdateSettings
       */
-    agentPoolUpdateSetting: AgentPoolUpdateSetting;
+    AgentPoolUpdateSetting: AgentPoolUpdateSetting;
 }
 export declare class ObjectAgentPoolsApi {
   private api;
@@ -1816,7 +1816,7 @@ export interface ApplicationApiUpdateDefaultProvisioningConnectionForApplication
       * @type UpdateDefaultProvisioningConnectionForApplicationRequest
       * @memberof ApplicationApiupdateDefaultProvisioningConnectionForApplication
       */
-    provisioningConnectionRequest: UpdateDefaultProvisioningConnectionForApplicationRequest;
+    ProvisioningConnectionRequest: UpdateDefaultProvisioningConnectionForApplicationRequest;
     /**
       * Activates the provisioning connection
       * @type boolean
@@ -1842,7 +1842,7 @@ export interface ApplicationApiUpdateFeatureForApplicationRequest {
       * @type UpdateFeatureForApplicationRequest
       * @memberof ApplicationApiupdateFeatureForApplication
       */
-    capabilitiesObject: UpdateFeatureForApplicationRequest;
+    CapabilitiesObject: UpdateFeatureForApplicationRequest;
 }
 export interface ApplicationApiUpdateGroupAssignmentToApplicationRequest {
     /**
@@ -3834,7 +3834,7 @@ export interface CustomDomainApiReplaceCustomDomainRequest {
       * @type UpdateDomain
       * @memberof CustomDomainApireplaceCustomDomain
       */
-    updateDomain: UpdateDomain;
+    UpdateDomain: UpdateDomain;
 }
 export interface CustomDomainApiUpsertCertificateRequest {
     /**
@@ -4098,7 +4098,7 @@ export interface CustomizationApiBulkRemoveEmailAddressBouncesRequest {
       * @type BouncesRemoveListObj
       * @memberof CustomizationApibulkRemoveEmailAddressBounces
       */
-    bouncesRemoveListObj?: BouncesRemoveListObj;
+    BouncesRemoveListObj?: BouncesRemoveListObj;
 }
 export interface CustomizationApiCreateBrandRequest {
     /**
@@ -4106,7 +4106,7 @@ export interface CustomizationApiCreateBrandRequest {
       * @type CreateBrandRequest
       * @memberof CustomizationApicreateBrand
       */
-    createBrandRequest?: CreateBrandRequest;
+    CreateBrandRequest?: CreateBrandRequest;
 }
 export interface CustomizationApiCreateEmailCustomizationRequest {
     /**
@@ -4618,7 +4618,7 @@ export interface CustomizationApiReplaceCustomizedErrorPageRequest {
       * @type ErrorPage
       * @memberof CustomizationApireplaceCustomizedErrorPage
       */
-    errorPage: ErrorPage;
+    ErrorPage: ErrorPage;
 }
 export interface CustomizationApiReplaceCustomizedSignInPageRequest {
     /**
@@ -4632,7 +4632,7 @@ export interface CustomizationApiReplaceCustomizedSignInPageRequest {
       * @type SignInPage
       * @memberof CustomizationApireplaceCustomizedSignInPage
       */
-    signInPage: SignInPage;
+    SignInPage: SignInPage;
 }
 export interface CustomizationApiReplaceEmailCustomizationRequest {
     /**
@@ -4678,7 +4678,7 @@ export interface CustomizationApiReplaceEmailSettingsRequest {
       * @type EmailSettings
       * @memberof CustomizationApireplaceEmailSettings
       */
-    emailSettings?: EmailSettings;
+    EmailSettings?: EmailSettings;
 }
 export interface CustomizationApiReplacePreviewErrorPageRequest {
     /**
@@ -4692,7 +4692,7 @@ export interface CustomizationApiReplacePreviewErrorPageRequest {
       * @type ErrorPage
       * @memberof CustomizationApireplacePreviewErrorPage
       */
-    errorPage: ErrorPage;
+    ErrorPage: ErrorPage;
 }
 export interface CustomizationApiReplacePreviewSignInPageRequest {
     /**
@@ -4706,7 +4706,7 @@ export interface CustomizationApiReplacePreviewSignInPageRequest {
       * @type SignInPage
       * @memberof CustomizationApireplacePreviewSignInPage
       */
-    signInPage: SignInPage;
+    SignInPage: SignInPage;
 }
 export interface CustomizationApiReplaceSignOutPageSettingsRequest {
     /**
@@ -4720,7 +4720,7 @@ export interface CustomizationApiReplaceSignOutPageSettingsRequest {
       * @type HostedPage
       * @memberof CustomizationApireplaceSignOutPageSettings
       */
-    hostedPage: HostedPage;
+    HostedPage: HostedPage;
 }
 export interface CustomizationApiSendTestEmailRequest {
     /**
@@ -6179,7 +6179,7 @@ export interface GroupApiAssignGroupOwnerRequest {
       * @type AssignGroupOwnerRequestBody
       * @memberof GroupApiassignGroupOwner
       */
-    groupOwner: AssignGroupOwnerRequestBody;
+    GroupOwner: AssignGroupOwnerRequestBody;
 }
 export interface GroupApiAssignUserToGroupRequest {
     /**
@@ -7286,7 +7286,7 @@ export interface IdentitySourceApiUploadIdentitySourceDataForDeleteRequest {
       * @type BulkDeleteRequestBody
       * @memberof IdentitySourceApiuploadIdentitySourceDataForDelete
       */
-    bulkDeleteRequestBody?: BulkDeleteRequestBody;
+    BulkDeleteRequestBody?: BulkDeleteRequestBody;
 }
 export interface IdentitySourceApiUploadIdentitySourceDataForUpsertRequest {
     /**
@@ -7306,7 +7306,7 @@ export interface IdentitySourceApiUploadIdentitySourceDataForUpsertRequest {
       * @type BulkUpsertRequestBody
       * @memberof IdentitySourceApiuploadIdentitySourceDataForUpsert
       */
-    bulkUpsertRequestBody?: BulkUpsertRequestBody;
+    BulkUpsertRequestBody?: BulkUpsertRequestBody;
 }
 export declare class ObjectIdentitySourceApi {
   private api;
@@ -7974,7 +7974,7 @@ export interface OrgSettingApiReplaceOrgSettingsRequest {
       * @type OrgSetting
       * @memberof OrgSettingApireplaceOrgSettings
       */
-    orgSetting: OrgSetting;
+    OrgSetting: OrgSetting;
 }
 export interface OrgSettingApiRevokeAerialConsentRequest {
     /**
@@ -8016,7 +8016,7 @@ export interface OrgSettingApiUpdateOrgSettingsRequest {
       * @type OrgSetting
       * @memberof OrgSettingApiupdateOrgSettings
       */
-    orgSetting?: OrgSetting;
+    OrgSetting?: OrgSetting;
 }
 export interface OrgSettingApiUpdateOrgShowOktaUIFooterRequest {
 }
@@ -9080,7 +9080,7 @@ export interface RateLimitSettingsApiReplaceRateLimitSettingsAdminNotificationsR
       * @type RateLimitAdminNotifications
       * @memberof RateLimitSettingsApireplaceRateLimitSettingsAdminNotifications
       */
-    rateLimitAdminNotifications: RateLimitAdminNotifications;
+    RateLimitAdminNotifications: RateLimitAdminNotifications;
 }
 export interface RateLimitSettingsApiReplaceRateLimitSettingsPerClientRequest {
     /**
@@ -11255,7 +11255,7 @@ export interface SchemaApiUpdateGroupSchemaRequest {
       * @type GroupSchema
       * @memberof SchemaApiupdateGroupSchema
       */
-    groupSchema?: GroupSchema;
+    GroupSchema?: GroupSchema;
 }
 export interface SchemaApiUpdateUserProfileRequest {
     /**

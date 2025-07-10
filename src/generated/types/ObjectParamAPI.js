@@ -34,7 +34,7 @@ class ObjectAgentPoolsApi {
       * @param param the request object
       */
     createAgentPoolsUpdate(param, options) {
-        return this.api.createAgentPoolsUpdate(param.poolId, param.agentPoolUpdate, options).toPromise();
+        return this.api.createAgentPoolsUpdate(param.poolId, param.AgentPoolUpdate, options).toPromise();
     }
     /**
       * Deactivates scheduled Agent pool update
@@ -122,7 +122,7 @@ class ObjectAgentPoolsApi {
       * @param param the request object
       */
     updateAgentPoolsUpdate(param, options) {
-        return this.api.updateAgentPoolsUpdate(param.poolId, param.updateId, param.agentPoolUpdate, options).toPromise();
+        return this.api.updateAgentPoolsUpdate(param.poolId, param.updateId, param.AgentPoolUpdate, options).toPromise();
     }
     /**
       * Updates an agent pool update settings
@@ -130,7 +130,7 @@ class ObjectAgentPoolsApi {
       * @param param the request object
       */
     updateAgentPoolsUpdateSettings(param, options) {
-        return this.api.updateAgentPoolsUpdateSettings(param.poolId, param.agentPoolUpdateSetting, options).toPromise();
+        return this.api.updateAgentPoolsUpdateSettings(param.poolId, param.AgentPoolUpdateSetting, options).toPromise();
     }
 }
 exports.ObjectAgentPoolsApi = ObjectAgentPoolsApi;
@@ -791,7 +791,7 @@ class ObjectApplicationApi {
       * @param param the request object
       */
     updateDefaultProvisioningConnectionForApplication(param, options) {
-        return this.api.updateDefaultProvisioningConnectionForApplication(param.appId, param.provisioningConnectionRequest, param.activate, options).toPromise();
+        return this.api.updateDefaultProvisioningConnectionForApplication(param.appId, param.ProvisioningConnectionRequest, param.activate, options).toPromise();
     }
     /**
       * Updates a Feature object for an app > **Note:** This endpoint supports partial updates.
@@ -799,7 +799,7 @@ class ObjectApplicationApi {
       * @param param the request object
       */
     updateFeatureForApplication(param, options) {
-        return this.api.updateFeatureForApplication(param.appId, param.name, param.capabilitiesObject, options).toPromise();
+        return this.api.updateFeatureForApplication(param.appId, param.name, param.CapabilitiesObject, options).toPromise();
     }
     /**
       * Updates a group assignment to an app
@@ -1513,7 +1513,7 @@ class ObjectCustomDomainApi {
       * @param param the request object
       */
     replaceCustomDomain(param, options) {
-        return this.api.replaceCustomDomain(param.domainId, param.updateDomain, options).toPromise();
+        return this.api.replaceCustomDomain(param.domainId, param.UpdateDomain, options).toPromise();
     }
     /**
       * Upserts (creates or renews) the `MANUAL` certificate for the custom domain  > **Notes:** > * If the existing `certificateSourceType` is `OKTA_MANAGED`, this operation changes the source type to `MANUAL`. Okta no longer manages and renews certificates for this domain after you provide a user-managed certificate. > * Okta supports TLS certificates and private keys that are PEM-encoded and 2048, 3072, or 4096 bits. See the [Custom domain guide](https://developer.okta.com/docs/guides/custom-url-domain/main/) for more details.
@@ -1631,7 +1631,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     bulkRemoveEmailAddressBounces(param = {}, options) {
-        return this.api.bulkRemoveEmailAddressBounces(param.bouncesRemoveListObj, options).toPromise();
+        return this.api.bulkRemoveEmailAddressBounces(param.BouncesRemoveListObj, options).toPromise();
     }
     /**
       * Creates a new brand in your org
@@ -1639,7 +1639,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     createBrand(param = {}, options) {
-        return this.api.createBrand(param.createBrandRequest, options).toPromise();
+        return this.api.createBrand(param.CreateBrandRequest, options).toPromise();
     }
     /**
       * Creates a new Email Customization  <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled, you can create a customization for any BCP47 language in addition to the Okta-supported languages.
@@ -1935,7 +1935,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replaceCustomizedErrorPage(param, options) {
-        return this.api.replaceCustomizedErrorPage(param.brandId, param.errorPage, options).toPromise();
+        return this.api.replaceCustomizedErrorPage(param.brandId, param.ErrorPage, options).toPromise();
     }
     /**
       * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
@@ -1943,7 +1943,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replaceCustomizedSignInPage(param, options) {
-        return this.api.replaceCustomizedSignInPage(param.brandId, param.signInPage, options).toPromise();
+        return this.api.replaceCustomizedSignInPage(param.brandId, param.SignInPage, options).toPromise();
     }
     /**
       * Replaces an email customization using property values  <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is disabled, requests to update a customization for an additional language return a `404 Not Found` error response.
@@ -1959,7 +1959,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replaceEmailSettings(param, options) {
-        return this.api.replaceEmailSettings(param.brandId, param.templateName, param.emailSettings, options).toPromise();
+        return this.api.replaceEmailSettings(param.brandId, param.templateName, param.EmailSettings, options).toPromise();
     }
     /**
       * Replaces the preview error page. The preview error page contains unpublished changes and isn\'t shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
@@ -1967,7 +1967,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replacePreviewErrorPage(param, options) {
-        return this.api.replacePreviewErrorPage(param.brandId, param.errorPage, options).toPromise();
+        return this.api.replacePreviewErrorPage(param.brandId, param.ErrorPage, options).toPromise();
     }
     /**
       * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn\'t shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
@@ -1975,7 +1975,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replacePreviewSignInPage(param, options) {
-        return this.api.replacePreviewSignInPage(param.brandId, param.signInPage, options).toPromise();
+        return this.api.replacePreviewSignInPage(param.brandId, param.SignInPage, options).toPromise();
     }
     /**
       * Replaces the sign-out page settings
@@ -1983,7 +1983,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     replaceSignOutPageSettings(param, options) {
-        return this.api.replaceSignOutPageSettings(param.brandId, param.hostedPage, options).toPromise();
+        return this.api.replaceSignOutPageSettings(param.brandId, param.HostedPage, options).toPromise();
     }
     /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization. 3. The email template’s default content, translated to the current user\'s language.
@@ -2658,7 +2658,7 @@ class ObjectGroupApi {
       * @param param the request object
       */
     assignGroupOwner(param, options) {
-        return this.api.assignGroupOwner(param.groupId, param.groupOwner, options).toPromise();
+        return this.api.assignGroupOwner(param.groupId, param.GroupOwner, options).toPromise();
     }
     /**
       * Assigns a user to a group with the `OKTA_GROUP` type. > **Note:** You only can modify memberships for groups of the `OKTA_GROUP` type. App imports are responsible for managing group memberships for groups of the `APP_GROUP` type, such as Active Directory groups.
@@ -3135,7 +3135,7 @@ class ObjectIdentitySourceApi {
       * @param param the request object
       */
     uploadIdentitySourceDataForDelete(param, options) {
-        return this.api.uploadIdentitySourceDataForDelete(param.identitySourceId, param.sessionId, param.bulkDeleteRequestBody, options).toPromise();
+        return this.api.uploadIdentitySourceDataForDelete(param.identitySourceId, param.sessionId, param.BulkDeleteRequestBody, options).toPromise();
     }
     /**
       * Uploads entities that need to be inserted or updated in Okta from the identity source for the given session
@@ -3143,7 +3143,7 @@ class ObjectIdentitySourceApi {
       * @param param the request object
       */
     uploadIdentitySourceDataForUpsert(param, options) {
-        return this.api.uploadIdentitySourceDataForUpsert(param.identitySourceId, param.sessionId, param.bulkUpsertRequestBody, options).toPromise();
+        return this.api.uploadIdentitySourceDataForUpsert(param.identitySourceId, param.sessionId, param.BulkUpsertRequestBody, options).toPromise();
     }
 }
 exports.ObjectIdentitySourceApi = ObjectIdentitySourceApi;
@@ -3623,7 +3623,7 @@ class ObjectOrgSettingApi {
       * @param param the request object
       */
     replaceOrgSettings(param, options) {
-        return this.api.replaceOrgSettings(param.orgSetting, options).toPromise();
+        return this.api.replaceOrgSettings(param.OrgSetting, options).toPromise();
     }
     /**
       * Revokes access of an Okta Aerial account to your Org. The revoke operation will fail if the org has already been added to an Aerial account.
@@ -3671,7 +3671,7 @@ class ObjectOrgSettingApi {
       * @param param the request object
       */
     updateOrgSettings(param = {}, options) {
-        return this.api.updateOrgSettings(param.orgSetting, options).toPromise();
+        return this.api.updateOrgSettings(param.OrgSetting, options).toPromise();
     }
     /**
       * Sets the preference to show the Okta UI footer for all end users of your org
@@ -4105,7 +4105,7 @@ class ObjectRateLimitSettingsApi {
       * @param param the request object
       */
     replaceRateLimitSettingsAdminNotifications(param, options) {
-        return this.api.replaceRateLimitSettingsAdminNotifications(param.rateLimitAdminNotifications, options).toPromise();
+        return this.api.replaceRateLimitSettingsAdminNotifications(param.RateLimitAdminNotifications, options).toPromise();
     }
     /**
       * Replaces the Per-Client Rate Limit Settings and returns the configured properties
@@ -5030,7 +5030,7 @@ class ObjectSchemaApi {
       * @param param the request object
       */
     updateGroupSchema(param = {}, options) {
-        return this.api.updateGroupSchema(param.groupSchema, options).toPromise();
+        return this.api.updateGroupSchema(param.GroupSchema, options).toPromise();
     }
     /**
       * Updates a user schema. Use this request to update, add, or remove one or more profile properties in a user schema. If you specify `default` for the `schemaId`, updates will apply to the default user type.  Unlike custom user profile properties, limited changes are allowed to base user profile properties (permissions, nullability of the `firstName` and `lastName` properties, or pattern for `login`). You can\'t remove a property from the default schema if it\'s being referenced as a [`matchAttribute`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProvider/#tag/IdentityProvider/operation/createIdentityProvider!path=policy/subject/matchAttribute&t=request) in `SAML2` IdPs. Currently, all validation of SAML assertions are only performed against the default user type.  > **Note:** You must set properties explicitly to `null` to remove them from the schema; otherwise, `POST` is interpreted as a partial update.
