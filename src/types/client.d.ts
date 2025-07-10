@@ -70,6 +70,8 @@ import {
   ServiceAccountApi,
   UISchemaApi,
   WebAuthnPreregistrationApi,
+  ApiServiceIntegrationsApi,
+  YourOinIntegrationsApi,
 
   // consolidated apis
   CustomizationApi,
@@ -82,7 +84,6 @@ import {
   UserApi,
   IdentityProviderApi,
   ResourceSetApi,
-  IntegrationsApi,
   RoleApi,
 } from './generated';
 
@@ -111,7 +112,6 @@ export declare class Client {
   userApi: UserApi;
   orgSettingApi: OrgSettingApi;
   resourceSetApi: ResourceSetApi;
-  integrationsApi: IntegrationsApi;
   roleApi: RoleApi;
 
   userTypeApi: UserTypeApi;
@@ -169,4 +169,6 @@ export declare class Client {
   serviceAccountApi: ServiceAccountApi;
   uiSchemaApi: UISchemaApi;
   webAuthnPreregistrationApi: WebAuthnPreregistrationApi;
+  apiServiceIntegrationsApi: ApiServiceIntegrationsApi;
+  yourOinIntegrationsApi: YourOinIntegrationsApi;
 }

@@ -105,12 +105,6 @@ const apiConsolidation = {
       'RoleDResourceSetBindingMember',
     ]
   },
-  Integrations: {
-    apis: [
-      'ApiServiceIntegrations',
-      'YourOinIntegrations',
-    ]
-  },
   Role: {
     apis: [
       'RoleECustom',

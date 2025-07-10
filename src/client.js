@@ -75,6 +75,8 @@ const {
   ServiceAccountApi,
   UISchemaApi,
   WebAuthnPreregistrationApi,
+  ApiServiceIntegrationsApi,
+  YourOinIntegrationsApi,
 
   // consolidated apis
   CustomizationApi,
@@ -87,7 +89,6 @@ const {
   IdentityProviderApi,
   UserApi,
   ResourceSetApi,
-  IntegrationsApi,
   RoleApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
@@ -176,7 +177,6 @@ class Client {
     this.userApi = new UserApi(configuration);
     this.orgSettingApi = new OrgSettingApi(configuration);
     this.resourceSetApi = new ResourceSetApi(configuration);
-    this.integrationsApi = new IntegrationsApi(configuration);
     this.roleApi = new RoleApi(configuration);
 
     this.userTypeApi = new UserTypeApi(configuration);
@@ -234,6 +234,8 @@ class Client {
     this.serviceAccountApi = new ServiceAccountApi(configuration);
     this.uiSchemaApi = new UISchemaApi(configuration);
     this.webAuthnPreregistrationApi = new WebAuthnPreregistrationApi(configuration);
+    this.apiServiceIntegrationsApi = new ApiServiceIntegrationsApi(configuration);
+    this.yourOinIntegrationsApi = new YourOinIntegrationsApi(configuration);
   }
 }
 
