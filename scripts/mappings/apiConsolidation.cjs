@@ -61,6 +61,7 @@ const apiConsolidation = {
     apis: [
       'Group',
       'GroupRule',
+      'GroupOwner'
     ]
   },
   IdentityProvider: {

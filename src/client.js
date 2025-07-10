@@ -56,7 +56,6 @@ const {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
-  GroupOwnerApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
@@ -215,7 +214,6 @@ class Client {
     this.emailDomainApi = new EmailDomainApi(configuration);
     this.emailServerApi = new EmailServerApi(configuration);
     this.governanceBundleApi = new GovernanceBundleApi(configuration);
-    this.groupOwnerApi = new GroupOwnerApi(configuration);
     this.hookKeyApi = new HookKeyApi(configuration);
     this.identitySourceApi = new IdentitySourceApi(configuration);
     this.logStreamApi = new LogStreamApi(configuration);

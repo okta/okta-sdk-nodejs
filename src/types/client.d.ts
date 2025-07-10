@@ -51,7 +51,6 @@ import {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
-  GroupOwnerApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
@@ -150,7 +149,6 @@ export declare class Client {
   emailDomainApi: EmailDomainApi;
   emailServerApi: EmailServerApi;
   governanceBundleApi: GovernanceBundleApi;
-  groupOwnerApi: GroupOwnerApi;
   hookKeyApi: HookKeyApi;
   identitySourceApi: IdentitySourceApi;
   logStreamApi: LogStreamApi;
