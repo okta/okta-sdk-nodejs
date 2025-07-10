@@ -685,7 +685,9 @@ function loadSpec(yamlFile) {
     // to prevent warn in console
     // [main] WARN  o.o.c.l.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
     .replaceAll("'#/components/schemas/Error'", "'#/components/schemas/ModelError'")
-    .replace(/^[ ]{4}Error:$/m, '    ModelError:');
+    .replace(/^[ ]{4}Error:$/m, '    ModelError:')
+    // use full URLs to doc
+    .replaceAll('(/openapi/okta-management/', '(https://developer.okta.com/docs/api/openapi/okta-management/');
 
   const spec = yaml.load(yamlStrFixed);
 
