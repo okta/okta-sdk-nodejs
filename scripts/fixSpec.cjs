@@ -230,8 +230,6 @@ function fixResponses(spec) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
-                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list') && endpoint.operationId.endsWith('s')
-                  && httpMethod === 'get' && responseCode.startsWith('2');
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
@@ -249,8 +247,18 @@ function fixResponses(spec) {
                   customdiscriminatorsForEndpoints.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
                 }
 
-                // Special fix for /api/v1/policies - should return array of Policy, not single Policy
-                if (httpPath === '/api/v1/policies' && isListEndpoint && refSchemaKey === 'Policy') {
+                // Special fix for listPolicies - should return array of Policy, not single Policy
+                if (endpoint.operationId === 'listPolicies' && refSchemaKey === 'Policy') {
+                  schema = {
+                    type: 'array',
+                    items: schema
+                  };
+                  typedContent.schema = schema;
+                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                }
+
+                // Special fix for listRolesForClient - should return array of roles
+                if (endpoint.operationId === 'listRolesForClient' && schema['type'] !== 'array') {
                   schema = {
                     type: 'array',
                     items: schema
