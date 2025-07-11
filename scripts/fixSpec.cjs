@@ -553,6 +553,15 @@ function fixSchemaErrors(spec) {
       delete schema['$ref'];
       manualSchemaFixes.push({ schemaKey });
     }
+
+    // Fix for OrgCAPTCHASettings - captchaId can be null
+    if (schemaKey === 'OrgCAPTCHASettings') {
+      const propCaptchaId = schema.properties?.captchaId;
+      if (propCaptchaId && !propCaptchaId.nullable) {
+        propCaptchaId.nullable = true;
+        manualSchemaFixes.push({ schemaKey, propName: 'captchaId' });
+      }
+    }
   }
 
   return {
