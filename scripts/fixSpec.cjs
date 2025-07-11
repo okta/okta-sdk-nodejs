@@ -260,6 +260,7 @@ function fixResponses(spec) {
     for (const httpMethod in spec.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec.paths[httpPath][httpMethod];
+        const { operationId } = endpoint;
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -267,7 +268,7 @@ function fixResponses(spec) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
-                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list')
+                const isListEndpoint = operationId && operationId.startsWith('list')
                   && httpMethod === 'get' && responseCode.startsWith('2');
                 const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
                 const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
@@ -278,33 +279,49 @@ function fixResponses(spec) {
                 // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualPathsFixes.push({ operationId, key: schema });
                 }
 
                 // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customDiscriminatorsForResponses.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+                  customDiscriminatorsForResponses.push({ operationId, discriminator: maybeAddedCustomDiscriminator });
                 }
 
                 // Special fix for listPolicies - should return array of Policy, not single Policy
-                if (endpoint.operationId === 'listPolicies' && refSchemaKey === 'Policy') {
+                if (operationId === 'listPolicies' && refSchemaKey === 'Policy') {
                   schema = {
                     type: 'array',
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualPathsFixes.push({ operationId, key: schema });
                 }
 
                 // Special fix for listRolesForClient - should return array of roles
-                if (endpoint.operationId === 'listRolesForClient' && schema['type'] !== 'array') {
+                if (operationId === 'listRolesForClient' && schema['type'] !== 'array') {
                   schema = {
                     type: 'array',
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualPathsFixes.push({ operationId, key: schema });
+                }
+
+                // Special fix for listJwk
+                if (operationId === 'listJwk' && schema['type'] === 'array') {
+                  // schema is similar to AppConnectionUserProvisionJWKList
+                  schema = {
+                    type: 'object',
+                    properties: {
+                      keys: {
+                        type: 'array',
+                        items: schema.items
+                      }
+                    }
+                  };
+                  typedContent.schema = schema;
+                  manualPathsFixes.push({ operationId, key: schema });
                 }
 
                 if (refSchema) {
@@ -316,9 +333,9 @@ function fixResponses(spec) {
                   const canIgnore  = [
                     'listRoleSubscriptionsByNotificationType',
                     'listUserSubscriptionsByNotificationType',
-                  ].includes(endpoint.operationId);
+                  ].includes(operationId);
                   if (!canIgnore) {
-                    console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
+                    console.log(`! Please check return type for operation '${operationId}', looks like it's not an array`);
                   }
                 }
               }
