@@ -17,7 +17,11 @@ if (process.env.OKTA_USE_MOCK) {
 const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor(),
+  scopes: [
+    'okta.apps.read',
+    'okta.apps.manage'
+  ]
 });
 
 describe('ApplicationSSOCredentialOAuth2ClientAuthApi', () => {
