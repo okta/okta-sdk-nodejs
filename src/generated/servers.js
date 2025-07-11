@@ -62,7 +62,7 @@ class ServerConfiguration {
         if (!resources.includes(this.getUrl() + resourcePath)) {
           resources.push(this.getUrl() + resourcePath);
         }
-      } else if (path[pl] === '/' && pl > this.getUrl().length) {
+      } else if (path[pl] === '/' && pl > 0) {
         const resourcePath = path.slice(0, pl).replace(/{(\w+)}/g, (match, key) => this._encodeParam(vars?.[key]) || match);
         if (!resources.includes(this.getUrl() + resourcePath)) {
           resources.push(this.getUrl() + resourcePath);
