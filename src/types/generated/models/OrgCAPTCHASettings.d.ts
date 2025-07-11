@@ -31,7 +31,7 @@ export declare class OrgCAPTCHASettings {
   /**
     * The unique key of the associated CAPTCHA instance
     */
-  'captchaId'?: string;
+  'captchaId'?: string | null;
   /**
     * An array of pages that have CAPTCHA enabled
     */
