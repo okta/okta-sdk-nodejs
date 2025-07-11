@@ -39,6 +39,18 @@ async function cleanInlineHooks() {
 }
 
 async function cleanDomains() {
+  const emailDomains = await client.emailDomainApi.listEmailDomains({});
+  const emailDomainIds: string[] = [];
+  await emailDomains.each(ed => {
+    if (ed.domain?.endsWith('example.com') || ed.domain?.endsWith('acme.com')) {
+      emailDomainIds.push(ed.id!);
+    }
+  });
+  for (const emailDomainId of emailDomainIds) {
+    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId });
+  }
+
+  let deletedDomainsCnt = 0;
   const domains = await client.customDomainApi.listCustomDomains();
   for (const domain of domains.domains!) {
     const canDelete = domain.certificateSourceType === 'MANUAL';
@@ -46,6 +58,7 @@ async function cleanDomains() {
       await client.customDomainApi.deleteCustomDomain({
         domainId: domain.id!
       });
+      deletedDomainsCnt++;
     } else {
       console.log(`Skipped domain to remove ${domain.domain}`);
     }
@@ -54,14 +67,15 @@ async function cleanDomains() {
   const brands = await client.customizationApi.listBrands();
   const brandIdsToDelete: string[] = [];
   await brands.each(brand => {
-    if (brand?.name?.match(/^.+\.example\.com$/)) {
+    if (brand?.name?.match(/^.+\.example\.com$/) || brand?.name?.endsWith('acme.com')) {
       brandIdsToDelete.push(brand.id!);
     }
   });
   for (const brandId of brandIdsToDelete) {
     await client.customizationApi.deleteBrand({ brandId });
   }
-  return brandIdsToDelete.length;
+
+  return brandIdsToDelete.length + emailDomainIds.length + deletedDomainsCnt;
 }
 
 async function cleanAuthorizationServers() {
