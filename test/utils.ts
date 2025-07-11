@@ -11,7 +11,10 @@ import {
   Org2OrgApplication,
   OpenIdConnectApplication,
   SamlApplication,
+  OAuth2ClientJsonWebKeyRequestBody,
 } from '@okta/okta-sdk-nodejs';
+const Rasha = require('rasha');
+const nJwt = require('njwt');
 import * as forge from 'node-forge';
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
@@ -494,6 +497,26 @@ function certToPem(certF: forge.pki.Certificate) {
   return forge.pki.certificateToPem(certF);
 }
 
+async function makeOAuth2ClientJsonWebKeyRequestBody(): Promise<OAuth2ClientJsonWebKeyRequestBody> {
+  const keys = forge.pki.rsa.generateKeyPair(2048);
+  const pem = forge.pki.privateKeyToPem(keys.privateKey);
+  const jwk = await Rasha.import({ pem });
+  const claims = {
+    aud: 'atko'
+  };
+  const alg = jwk.alg || 'RS256';
+  const jwt = nJwt.create(claims, pem, alg);
+  const kid = jwt.body.jti;
+  return {
+    alg,
+    kid,
+    e: jwk.e,
+    kty: jwk.kty,
+    n: jwk.n,
+    use: 'sig',
+  };
+}
+
 export {
   delay,
   validateUser,
@@ -527,4 +550,5 @@ export {
   certToBase64,
   certToPem,
   csrToN,
+  makeOAuth2ClientJsonWebKeyRequestBody,
 };
