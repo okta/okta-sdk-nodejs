@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 7.2.1
+
+### Fixes
+
+- [#442](https://github.com/okta/okta-sdk-nodejs/pull/442) Fixed return type for `applicationApi.listJwk()`
+
 # 7.2.0
 
 ### Features

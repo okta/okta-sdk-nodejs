@@ -1658,12 +1658,19 @@ class ObservableApplicationApi {
       */
   listJwk(appId, _options) {
     const requestContextPromise = this.requestFactory.listJwk(appId, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listJwk(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listJwk(rsp)));
+      }));
   }
   /**
       * Lists all client secrets for an OAuth 2.0 client app

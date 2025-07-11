@@ -22,21 +22,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { EnabledPagesType } from './../models/EnabledPagesType';
-import { OrgCAPTCHASettingsLinks } from './../models/OrgCAPTCHASettingsLinks';
-/**
-*
-*/
-export declare class OrgCAPTCHASettings {
-  /**
-    * The unique key of the associated CAPTCHA instance
-    */
-  'captchaId'?: string | null;
-  /**
-    * An array of pages that have CAPTCHA enabled
-    */
-  'enabledPages'?: Array<EnabledPagesType>;
-  '_links'?: OrgCAPTCHASettingsLinks;
+import { OAuth2ClientJsonWebKey } from './../models/OAuth2ClientJsonWebKey';
+export declare class ListJwk200Response {
+  'keys'?: Array<OAuth2ClientJsonWebKey>;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

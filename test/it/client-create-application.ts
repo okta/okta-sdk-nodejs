@@ -313,49 +313,7 @@ describe('client.createApplication()', () => {
       return;
     }
 
-    const application: SamlApplication = {
-      label: `node-sdk: Example Custom SAML 2.0 App - ${faker.random.word()}`,
-      visibility: {
-        autoSubmitToolbar: false,
-        hide: {
-          iOS: false,
-          web: false
-        }
-      },
-      features: [],
-      signOnMode: 'SAML_2_0',
-      settings: {
-        signOn: {
-          assertionSigned: true,
-          allowMultipleAcsEndpoints: true,
-          attributeStatements: [
-            {
-              type: 'EXPRESSION',
-              name: 'Attribute',
-              namespace: 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
-              values: [
-                'Value'
-              ],
-            }
-          ],
-          audience: 'asdqwe123',
-          authnContextClassRef: 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
-          defaultRelayState: '',
-          destination: 'http://testorgone.okta',
-          digestAlgorithm: 'SHA256',
-          honorForceAuthn: true,
-          idpIssuer: 'http://www.okta.com/${org.externalKey}',
-          recipient: 'http://testorgone.okta',
-          requestCompressed: false,
-          responseSigned: true,
-          signatureAlgorithm: 'RSA_SHA256',
-          spIssuer: null,
-          ssoAcsUrl: 'http://testorgone.okta',
-          subjectNameIdFormat: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
-          subjectNameIdTemplate: '${user.userName}',
-        }
-      }
-    };
+    const application = utils.getSamlApplication();
 
     let createdApplication: SamlApplication;
 

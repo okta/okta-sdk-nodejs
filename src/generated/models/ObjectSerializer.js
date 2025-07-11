@@ -748,6 +748,7 @@ __exportStar(require("./LinksUser"), exports);
 __exportStar(require("./LinksUserRef"), exports);
 __exportStar(require("./LinksVerify"), exports);
 __exportStar(require("./ListGroupAssignedRoles200ResponseInner"), exports);
+__exportStar(require("./ListJwk200Response"), exports);
 __exportStar(require("./ListProfileMappings"), exports);
 __exportStar(require("./ListRoleSubscriptionsRoleTypeOrRoleIdParameter"), exports);
 __exportStar(require("./LoadingPageTouchPointVariant"), exports);
@@ -2221,6 +2222,7 @@ const LinksUser_1 = require("../models/LinksUser");
 const LinksUserRef_1 = require("../models/LinksUserRef");
 const LinksVerify_1 = require("../models/LinksVerify");
 const ListGroupAssignedRoles200ResponseInner_1 = require("../models/ListGroupAssignedRoles200ResponseInner");
+const ListJwk200Response_1 = require("../models/ListJwk200Response");
 const ListProfileMappings_1 = require("../models/ListProfileMappings");
 const ListRoleSubscriptionsRoleTypeOrRoleIdParameter_1 = require("../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter");
 const LogActor_1 = require("../models/LogActor");
@@ -4044,6 +4046,7 @@ let typeMap = {
     "LinksUserRef": LinksUserRef_1.LinksUserRef,
     "LinksVerify": LinksVerify_1.LinksVerify,
     "ListGroupAssignedRoles200ResponseInner": ListGroupAssignedRoles200ResponseInner_1.ListGroupAssignedRoles200ResponseInnerClass,
+    "ListJwk200Response": ListJwk200Response_1.ListJwk200Response,
     "ListProfileMappings": ListProfileMappings_1.ListProfileMappings,
     "ListRoleSubscriptionsRoleTypeOrRoleIdParameter": ListRoleSubscriptionsRoleTypeOrRoleIdParameter_1.ListRoleSubscriptionsRoleTypeOrRoleIdParameterClass,
     "LogActor": LogActor_1.LogActor,
