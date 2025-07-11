@@ -241,7 +241,7 @@ const renameBodyParams = () => {
       from,
       to,
     });
-    renamesResult[key] = res[0].hasChanged;
+    renamesResult[key] = renamesResult[key] || res[0].hasChanged;
   }
 
   return renamesResult;
