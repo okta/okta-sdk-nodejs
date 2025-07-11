@@ -349,6 +349,49 @@ async function cleanCustomRoles() {
   return deletedCnt;
 }
 
+async function cleanCaptchas() {
+  // unset org captcha instance
+  const settings = await client.captchaApi.getOrgCaptchaSettings();
+  if (settings.captchaId) {
+    const orgInstance = await client.captchaApi.getCaptchaInstance({
+      captchaId: settings.captchaId
+    });
+    if (orgInstance.name?.startsWith('node-sdk: ')) {
+      try {
+        await client.captchaApi.replacesOrgCaptchaSettings({
+          orgCAPTCHASettings: {
+            captchaId: null
+          }
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped captcha to unset ${orgInstance.name}`);
+    }
+  }
+
+  // delete captcha instances
+  let deletedCnt = 0;
+  const instancesCollection = await client.captchaApi.listCaptchaInstances();
+  await instancesCollection.each(async instance => {
+    const canDelete = instance.name?.startsWith('node-sdk: ');
+    if (canDelete) {
+      try {
+        await client.captchaApi.deleteCaptchaInstance({
+          captchaId: instance.id!
+        });
+        deletedCnt++;
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped captcha to remove ${instance.name}`);
+    }
+  });
+  return deletedCnt;
+}
+
 
 describe('Clean', () => {
   it('all test resources', async () => {
@@ -368,6 +411,7 @@ describe('Clean', () => {
       UserTypes: await cleanUserTypes(),
       ResourceSets: await cleanResourceSets(),
       CustomRoles: await cleanCustomRoles(),
+      CAPTCHA: await cleanCaptchas(),
     };
     console.log('Clean result: ', res);
   });
