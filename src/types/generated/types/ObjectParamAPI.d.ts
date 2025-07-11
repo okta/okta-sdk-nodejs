@@ -158,6 +158,7 @@ import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
+import { ListJwk200Response } from '../models/ListJwk200Response';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
 import { LogEvent } from '../models/LogEvent';
@@ -2246,7 +2247,7 @@ export declare class ObjectApplicationApi {
       * List all the OAuth 2.0 client JSON Web Keys
       * @param param the request object
       */
-  listJwk(param: ApplicationApiListJwkRequest, options?: Configuration): Promise<Collection<OAuth2ClientJsonWebKey>>;
+  listJwk(param: ApplicationApiListJwkRequest, options?: Configuration): Promise<ListJwk200Response>;
   /**
       * Lists all client secrets for an OAuth 2.0 client app
       * List all OAuth 2.0 client secrets
