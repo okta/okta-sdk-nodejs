@@ -30,7 +30,7 @@ describe('Group-Member API Tests', () => {
 
     const newGroup = {
       profile: {
-        name: `node-sdk: Group-Member API Test Group ${faker.random.word()}`.substring(0, 49)
+        name: `node-sdk: GroupMember ${faker.random.word()}`.substring(0, 49)
       }
     };
 
