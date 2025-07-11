@@ -5,8 +5,6 @@ import {
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
-import faker = require('@faker-js/faker');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
