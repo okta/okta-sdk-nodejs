@@ -517,6 +517,42 @@ async function makeOAuth2ClientJsonWebKeyRequestBody(): Promise<OAuth2ClientJson
   };
 }
 
+const deleteCustomDomains = async (client: Client) => {
+  const domains = await client.customDomainApi.listCustomDomains();
+  for (const domain of domains.domains) {
+    const canDelete = domain.certificateSourceType === 'MANUAL';
+    if (canDelete) {
+      await client.customDomainApi.deleteCustomDomain({
+        domainId: domain.id
+      });
+    }
+  }
+
+  const brands = await client.customizationApi.listBrands();
+  const brandIdsToDelete = [];
+  await brands.each(brand => {
+    if (brand.name.endsWith('example.com') || brand.name.endsWith('acme.com')) {
+      brandIdsToDelete.push(brand.id);
+    }
+  });
+  for (const brandId of brandIdsToDelete) {
+    await client.customizationApi.deleteBrand({ brandId });
+  }
+
+  const emailDomains = await client.emailDomainApi.listEmailDomains({});
+  const emailDomainIds = [];
+  await emailDomains.each(ed => {
+    if (ed.domain.endsWith('example.com') || ed.domain.endsWith('acme.com')) {
+      emailDomainIds.push(ed.id);
+    }
+  });
+  for (const emailDomainId of emailDomainIds) {
+    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId });
+  }
+
+  await delay(3000);
+};
+
 export {
   delay,
   validateUser,
@@ -551,4 +587,5 @@ export {
   certToPem,
   csrToN,
   makeOAuth2ClientJsonWebKeyRequestBody,
+  deleteCustomDomains,
 };
