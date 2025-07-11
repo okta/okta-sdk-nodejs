@@ -11,7 +11,11 @@ const orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor(),
+  scopes: [
+    'okta.rateLimits.read',
+    'okta.rateLimits.manage'
+  ]
 });
 
 describe('Rate Limit Settings API', () => {

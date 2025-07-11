@@ -22,7 +22,13 @@ const issuer = orgUrl.replace(/\/$/, '');
 const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor(),
+  scopes: [
+    'okta.roles.read',
+    'okta.roles.manage',
+    'okta.apps.read',
+    'okta.apps.manage'
+  ]
 });
 
 const createOidcApp = async () => {
