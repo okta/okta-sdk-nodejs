@@ -25,20 +25,10 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EmailServerListResponse = void 0;
-class EmailServerListResponse {
+class EmailServerListResponse extends Array {
   constructor() {
-  }
-  static getAttributeTypeMap() {
-    return EmailServerListResponse.attributeTypeMap;
+    super();
   }
 }
 exports.EmailServerListResponse = EmailServerListResponse;
 EmailServerListResponse.discriminator = undefined;
-EmailServerListResponse.attributeTypeMap = [
-  {
-    'name': 'email_servers',
-    'baseName': 'email-servers',
-    'type': 'Array<EmailServerResponse>',
-    'format': ''
-  }
-];

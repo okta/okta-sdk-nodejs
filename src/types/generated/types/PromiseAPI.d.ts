@@ -2339,7 +2339,7 @@ export declare class PromiseEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param emailServerId
       */
-  getEmailServer(emailServerId: string, _options?: Configuration): Promise<EmailServerListResponse>;
+  getEmailServer(emailServerId: string, _options?: Configuration): Promise<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers

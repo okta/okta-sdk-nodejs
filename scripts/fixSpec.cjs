@@ -324,6 +324,11 @@ function fixResponses(spec) {
                   manualPathsFixes.push({ operationId, key: schema });
                 }
 
+                // Special fix for getEmailServer - should return one email server
+                if (operationId === 'getEmailServer' && refSchemaKey === 'EmailServerListResponse') {
+                  schema['$ref'] = '#/components/schemas/EmailServerResponse';
+                }
+
                 if (refSchema) {
                   schema = refSchema;
                 }
@@ -530,6 +535,8 @@ function fixSchemaErrors(spec) {
 
   for (const schemaKey in spec.components.schemas) {
     let schema = spec.components.schemas[schemaKey];
+    const refSchemaKey = schema['$ref'] ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+    const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
     // Special fix for ByDurationExpiry
     if (schema.allOf && Object.keys(schema).length > 1) {
@@ -547,8 +554,8 @@ function fixSchemaErrors(spec) {
     if (schema.allOf && Object.keys(schema).length === 1 && schema.allOf.length === 1) {
       const one = schema.allOf[0];
       const isOneRef = one?.['$ref'] && Object.keys(one).length === 1;
-      const refSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
-      const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
+      const oneRefSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
+      const oneRefSchema = oneRefSchemaKey ? spec.components.schemas[oneRefSchemaKey] : undefined;
       if (!isOneRef) {
         schema = one;
         spec.components.schemas[schemaKey] = schema;
@@ -556,7 +563,7 @@ function fixSchemaErrors(spec) {
       } else if (schemaKey === 'ByDateTimeExpiry') {
         // Special fix for ByDateTimeExpiry
         schema.allOf.push({
-          description: refSchema.description,
+          description: oneRefSchema.description,
         });
         manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       }
@@ -577,6 +584,17 @@ function fixSchemaErrors(spec) {
       if (propCaptchaId && !propCaptchaId.nullable) {
         propCaptchaId.nullable = true;
         manualSchemaFixes.push({ schemaKey, propName: 'captchaId' });
+      }
+    }
+
+    // Special fix for schema EmailServerListResponse - it actually doesn't cotain key 'email-servers'
+    if (schemaKey === 'EmailServerListResponse' && refSchema && Object.keys(refSchema.properties).length === 1) {
+      const propName = Object.keys(schema.properties)[0];
+      if (propName === 'email-servers') {
+        const prop = schema.properties[propName];
+        schema = { ...prop };
+        spec.components.schemas[schemaKey] = schema;
+        manualSchemaFixes.push({ schemaKey, propName });
       }
     }
   }

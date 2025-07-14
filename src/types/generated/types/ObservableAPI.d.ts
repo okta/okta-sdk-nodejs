@@ -2382,7 +2382,7 @@ export declare class ObservableEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param emailServerId
       */
-  getEmailServer(emailServerId: string, _options?: Configuration): Observable<EmailServerListResponse>;
+  getEmailServer(emailServerId: string, _options?: Configuration): Observable<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers

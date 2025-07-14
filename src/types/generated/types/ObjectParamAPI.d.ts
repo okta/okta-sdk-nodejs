@@ -5772,7 +5772,7 @@ export declare class ObjectEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param param the request object
       */
-  getEmailServer(param: EmailServerApiGetEmailServerRequest, options?: Configuration): Promise<EmailServerListResponse>;
+  getEmailServer(param: EmailServerApiGetEmailServerRequest, options?: Configuration): Promise<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers

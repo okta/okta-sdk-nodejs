@@ -23,20 +23,7 @@
  * Do not edit the class manually.
  */
 import { EmailServerResponse } from './../models/EmailServerResponse';
-export declare class EmailServerListResponse {
-  'email_servers'?: Array<EmailServerResponse>;
+export declare class EmailServerListResponse extends Array<EmailServerResponse> {
   static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
   constructor();
 }
