@@ -518,9 +518,20 @@ async function makeOAuth2ClientJsonWebKeyRequestBody(): Promise<OAuth2ClientJson
 }
 
 const deleteCustomDomains = async (client: Client) => {
+  const emailDomains = await client.emailDomainApi.listEmailDomains({});
+  const emailDomainIds = [];
+  await emailDomains.each(ed => {
+    if (ed.domain.endsWith('example.com') || ed.domain.endsWith('acme.com')) {
+      emailDomainIds.push(ed.id);
+    }
+  });
+  for (const emailDomainId of emailDomainIds) {
+    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId, expand: ['brands'] });
+  }
+
   const domains = await client.customDomainApi.listCustomDomains();
   for (const domain of domains.domains) {
-    const canDelete = domain.certificateSourceType === 'MANUAL';
+    const canDelete = domain.domain.endsWith('example.com') || domain.domain.endsWith('acme.com');
     if (canDelete) {
       await client.customDomainApi.deleteCustomDomain({
         domainId: domain.id
@@ -531,23 +542,12 @@ const deleteCustomDomains = async (client: Client) => {
   const brands = await client.customizationApi.listBrands();
   const brandIdsToDelete = [];
   await brands.each(brand => {
-    if (brand.name.endsWith('example.com') || brand.name.endsWith('acme.com')) {
+    if (brand.name.startsWith('node-sdk: Brand')) {
       brandIdsToDelete.push(brand.id);
     }
   });
   for (const brandId of brandIdsToDelete) {
     await client.customizationApi.deleteBrand({ brandId });
-  }
-
-  const emailDomains = await client.emailDomainApi.listEmailDomains({});
-  const emailDomainIds = [];
-  await emailDomains.each(ed => {
-    if (ed.domain.endsWith('example.com') || ed.domain.endsWith('acme.com')) {
-      emailDomainIds.push(ed.id);
-    }
-  });
-  for (const emailDomainId of emailDomainIds) {
-    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId });
   }
 
   await delay(3000);

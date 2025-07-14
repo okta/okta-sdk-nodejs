@@ -1,12 +1,10 @@
 import {
   Client,
   DefaultRequestExecutor,
-  Brand,
   DomainResponse,
   EmailDomainResponse,
   EmailDomainResponseWithEmbedded,
 } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 
@@ -31,23 +29,14 @@ const client = new Client({
 });
 
 describe('EmailDomainApi', () => {
-  let customBrand: Brand;
   let customDomain: DomainResponse;
   let emailDomain: EmailDomainResponse;
 
   before(async () => {
-    await utils.deleteCustomDomains(client);
-
-    const brandName = `node-sdk: Brand ${faker.random.word()}`.substring(0, 49);
-    customBrand = await client.customizationApi.createBrand({
-      CreateBrandRequest: {
-        name: brandName
-      }
-    });
-
+    const domainName = `${faker.internet.domainWord()}.acme.com`;
     customDomain = await client.customDomainApi.createCustomDomain({
       domain: {
-        domain: 'acme.com',
+        domain: domainName,
         certificateSourceType: 'MANUAL',
       }
     });
@@ -64,9 +53,9 @@ describe('EmailDomainApi', () => {
         domainId: customDomain.id
       });
     }
-    if (customBrand) {
+    if (customDomain?.brandId) {
       await client.customizationApi.deleteBrand({
-        brandId: customBrand.id
+        brandId: customDomain.brandId
       });
     }
   });
@@ -76,13 +65,13 @@ describe('EmailDomainApi', () => {
     const userName = `nodesdk_user_${faker.random.word()}`;
     emailDomain = await client.emailDomainApi.createEmailDomain({
       emailDomain: {
-        brandId: customBrand.id,
+        brandId: customDomain.brandId,
         domain: customDomain.domain,
         displayName,
         userName,
       }
     });
-    expect(emailDomain.domain).to.equal('acme.com');
+    expect(emailDomain.domain).to.contain('acme.com');
     expect(emailDomain.userName).to.equal(userName);
     expect(emailDomain.displayName).to.equal(displayName);
   });
@@ -114,8 +103,11 @@ describe('EmailDomainApi', () => {
 
     const emailDomainCollection = await client.emailDomainApi.listEmailDomains();
     const emailDomains: EmailDomainResponseWithEmbedded[] = [];
-    await emailDomainCollection.each(ed => emailDomains.push(ed));
-    // TODO
-    // expect(emailDomains.map(ed => ed.displayName)).to.not.include(emailDomain.displayName);
+    await emailDomainCollection.each(ed => {
+      if (ed.validationStatus !== 'DELETED') {
+        emailDomains.push(ed);
+      }
+    });
+    expect(emailDomains.map(ed => ed.displayName)).to.not.include(emailDomain.displayName);
   });
 });

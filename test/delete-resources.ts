@@ -42,8 +42,11 @@ async function cleanDomains() {
   const emailDomains = await client.emailDomainApi.listEmailDomains({});
   const emailDomainIds: string[] = [];
   await emailDomains.each(ed => {
-    if (ed.domain?.endsWith('example.com') || ed.domain?.endsWith('acme.com')) {
+    const canDelete = (ed.domain?.endsWith('example.com') || ed.domain?.endsWith('acme.com')) && ed.validationStatus !== 'DELETED';
+    if (canDelete) {
       emailDomainIds.push(ed.id!);
+    } else {
+      console.log(`Skipped email domain to remove ${ed.displayName} (${ed.domain})`);
     }
   });
   for (const emailDomainId of emailDomainIds) {
@@ -53,7 +56,7 @@ async function cleanDomains() {
   let deletedDomainsCnt = 0;
   const domains = await client.customDomainApi.listCustomDomains();
   for (const domain of domains.domains!) {
-    const canDelete = domain.certificateSourceType === 'MANUAL';
+    const canDelete = domain.domain?.endsWith('example.com') || domain.domain?.endsWith('acme.com');
     if (canDelete) {
       await client.customDomainApi.deleteCustomDomain({
         domainId: domain.id!
@@ -67,15 +70,22 @@ async function cleanDomains() {
   const brands = await client.customizationApi.listBrands();
   const brandIdsToDelete: string[] = [];
   await brands.each(brand => {
-    if (brand?.name?.match(/^.+\.example\.com$/) || brand?.name?.endsWith('acme.com')) {
+    const canDelete = brand?.name?.match(/^.+\.example\.com$/) || brand?.name?.endsWith('acme.com');
+    if (canDelete) {
       brandIdsToDelete.push(brand.id!);
+    } else {
+      console.log(`Skipped brand to remove ${brand.name}`);
     }
   });
   for (const brandId of brandIdsToDelete) {
     await client.customizationApi.deleteBrand({ brandId });
   }
 
-  return brandIdsToDelete.length + emailDomainIds.length + deletedDomainsCnt;
+  return {
+    emailDomains: emailDomainIds.length,
+    domains: deletedDomainsCnt,
+    brands: brandIdsToDelete.length
+  };
 }
 
 async function cleanAuthorizationServers() {
