@@ -436,6 +436,26 @@ async function cleanCaptchas() {
   return deletedCnt;
 }
 
+async function cleanLogStreams() {
+  let deletedCnt = 0;
+  const logStreamCollection = await client.logStreamApi.listLogStreams();
+  await logStreamCollection.each(async logStream => {
+    const canDelete = logStream.name?.startsWith('node-sdk: ');
+    if (canDelete) {
+      try {
+        await client.logStreamApi.deleteLogStream({
+          logStreamId: logStream.id
+        });
+        deletedCnt++;
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped log stream to remove ${logStream.name}`);
+    }
+  });
+  return deletedCnt;
+}
 
 describe('Clean', () => {
   it('all test resources', async () => {
@@ -457,6 +477,7 @@ describe('Clean', () => {
       ResourceSets: await cleanResourceSets(),
       CustomRoles: await cleanCustomRoles(),
       CAPTCHA: await cleanCaptchas(),
+      LogStreams: await cleanLogStreams(),
     };
     console.log('Clean result: ', res);
   });
