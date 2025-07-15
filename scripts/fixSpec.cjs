@@ -339,12 +339,14 @@ function fixResponses(spec) {
                 // Special fix for getEmailServer - should return one email server
                 if (operationId === 'getEmailServer' && refSchemaKey === 'EmailServerListResponse') {
                   schema['$ref'] = '#/components/schemas/EmailServerResponse';
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // Specia fix for activateLogStream / deactivateLogStream - should return no content
                 if (['activateLogStream', 'deactivateLogStream'].includes(operationId) && refSchemaKey === 'LogStream') {
                   delete response.content;
                   response.description = 'No Content';
+                  manualResponseFixes.push({ operationId });
                 }
 
                 if (refSchema) {
