@@ -270,9 +270,6 @@ function fixResponses(spec) {
                 let schema = typedContent.schema;
                 const isListEndpoint = operationId && operationId.startsWith('list')
                   && httpMethod === 'get' && responseCode.startsWith('2');
-                const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
-                const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
-                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
                 // remove unnecessary type: 'object' for $ref
                 // resolves error:
@@ -288,7 +285,11 @@ function fixResponses(spec) {
                   customDiscriminatorsForResponses.push({ operationId, discriminator: maybeAddedCustomDiscriminator });
                 }
 
-                // Special fix for listPolicies - should return array of Policy, not single Policy
+                const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
+                const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
+
+                // Special fix for listPolicies - should return array of Policy, not a single Policy
                 if (operationId === 'listPolicies' && refSchemaKey === 'Policy') {
                   schema = {
                     type: 'array',
@@ -298,8 +299,8 @@ function fixResponses(spec) {
                   manualPathsFixes.push({ operationId, key: schema });
                 }
 
-                // Special fix for listRolesForClient - should return array of roles
-                if (operationId === 'listRolesForClient' && schema['type'] !== 'array') {
+                // Special fix for listRolesForClient - should return array of roles, not a single role
+                if (operationId === 'listRolesForClient' && schema['oneOf'] && schema['type'] !== 'array') {
                   schema = {
                     type: 'array',
                     items: schema
@@ -308,7 +309,7 @@ function fixResponses(spec) {
                   manualPathsFixes.push({ operationId, key: schema });
                 }
 
-                // Special fix for listJwk
+                // Special fix for listJwk - shoult return object with 'keys', not an array
                 if (operationId === 'listJwk' && schema['type'] === 'array') {
                   // schema is similar to AppConnectionUserProvisionJWKList
                   schema = {
@@ -535,8 +536,6 @@ function fixSchemaErrors(spec) {
 
   for (const schemaKey in spec.components.schemas) {
     let schema = spec.components.schemas[schemaKey];
-    const refSchemaKey = schema['$ref'] ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
-    const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
     // Special fix for ByDurationExpiry
     if (schema.allOf && Object.keys(schema).length > 1) {
@@ -587,8 +586,8 @@ function fixSchemaErrors(spec) {
       }
     }
 
-    // Special fix for schema EmailServerListResponse - it actually doesn't cotain key 'email-servers'
-    if (schemaKey === 'EmailServerListResponse' && refSchema && Object.keys(refSchema.properties).length === 1) {
+    // Special fix for schema EmailServerListResponse - server response doesn't cotain key 'email-servers'
+    if (schemaKey === 'EmailServerListResponse' && schema.properties) {
       const propName = Object.keys(schema.properties)[0];
       if (propName === 'email-servers') {
         const prop = schema.properties[propName];
