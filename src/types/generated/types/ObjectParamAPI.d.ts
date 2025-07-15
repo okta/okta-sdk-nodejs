@@ -7571,10 +7571,10 @@ export interface LogStreamApiActivateLogStreamRequest {
 export interface LogStreamApiCreateLogStreamRequest {
     /**
       *
-      * @type LogStream
+      * @type LogStreamPutSchema
       * @memberof LogStreamApicreateLogStream
       */
-    instance: LogStream;
+    instance: LogStreamPutSchema;
 }
 export interface LogStreamApiDeactivateLogStreamRequest {
     /**
@@ -7642,7 +7642,7 @@ export declare class ObjectLogStreamApi {
       * Activate a log stream
       * @param param the request object
       */
-  activateLogStream(param: LogStreamApiActivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  activateLogStream(param: LogStreamApiActivateLogStreamRequest, options?: Configuration): Promise<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
@@ -7654,7 +7654,7 @@ export declare class ObjectLogStreamApi {
       * Deactivate a log stream
       * @param param the request object
       */
-  deactivateLogStream(param: LogStreamApiDeactivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  deactivateLogStream(param: LogStreamApiDeactivateLogStreamRequest, options?: Configuration): Promise<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream

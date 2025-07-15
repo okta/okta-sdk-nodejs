@@ -3053,19 +3053,19 @@ export declare class PromiseLogStreamApi {
       * Activate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  activateLogStream(logStreamId: string, _options?: Configuration): Promise<LogStream>;
+  activateLogStream(logStreamId: string, _options?: Configuration): Promise<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
       * @param instance
       */
-  createLogStream(instance: LogStream, _options?: Configuration): Promise<LogStream>;
+  createLogStream(instance: LogStreamPutSchema, _options?: Configuration): Promise<LogStream>;
   /**
       * Deactivates a log stream by `logStreamId`
       * Deactivate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  deactivateLogStream(logStreamId: string, _options?: Configuration): Promise<LogStream>;
+  deactivateLogStream(logStreamId: string, _options?: Configuration): Promise<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream

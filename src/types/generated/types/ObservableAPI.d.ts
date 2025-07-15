@@ -3116,19 +3116,19 @@ export declare class ObservableLogStreamApi {
       * Activate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  activateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  activateLogStream(logStreamId: string, _options?: Configuration): Observable<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
       * @param instance
       */
-  createLogStream(instance: LogStream, _options?: Configuration): Observable<LogStream>;
+  createLogStream(instance: LogStreamPutSchema, _options?: Configuration): Observable<LogStream>;
   /**
       * Deactivates a log stream by `logStreamId`
       * Deactivate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  deactivateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  deactivateLogStream(logStreamId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream

@@ -224,22 +224,32 @@ function applyTagsAndOperationRenames(spec) {
 
 function fixRequests(spec) {
   const customDiscriminatorsForRequests = [];
+  const manualRequestFixes = [];
 
   for (const httpPath in spec.paths) {
     for (const httpMethod in spec.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec.paths[httpPath][httpMethod];
+        const { operationId } = endpoint;
         if (endpoint.requestBody) {
           const contentTypes = Object.keys(endpoint.requestBody?.content ?? {});
           const contentType = contentTypes[0];
           const typedContent = endpoint.requestBody.content?.[contentType];
           if (typedContent?.schema) {
             const schema = typedContent.schema;
+            const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
+            const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
             // add missing discriminators
             const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
             if (maybeAddedCustomDiscriminator) {
               customDiscriminatorsForRequests.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+            }
+
+            // Special fix for createLogStream - it should use LogStreamPutSchema, not LogStream
+            if (operationId === 'createLogStream' && refSchemaKey === 'LogStream') {
+              schema['$ref'] = '#/components/schemas/LogStreamPutSchema';
+              manualRequestFixes.push({ operationId, key: schema });
             }
           }
         }
@@ -249,12 +259,13 @@ function fixRequests(spec) {
 
   return {
     customDiscriminatorsForRequests,
+    manualRequestFixes,
   };
 }
 
 function fixResponses(spec) {
   const customDiscriminatorsForResponses = [];
-  const manualPathsFixes = [];
+  const manualResponseFixes = [];
 
   for (const httpPath in spec.paths) {
     for (const httpMethod in spec.paths[httpPath]) {
@@ -276,7 +287,7 @@ function fixResponses(spec) {
                 // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
-                  manualPathsFixes.push({ operationId, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // add missing discriminators
@@ -296,7 +307,7 @@ function fixResponses(spec) {
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ operationId, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // Special fix for listRolesForClient - should return array of roles, not a single role
@@ -306,7 +317,7 @@ function fixResponses(spec) {
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ operationId, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // Special fix for listJwk - shoult return object with 'keys', not an array
@@ -322,12 +333,18 @@ function fixResponses(spec) {
                     }
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ operationId, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // Special fix for getEmailServer - should return one email server
                 if (operationId === 'getEmailServer' && refSchemaKey === 'EmailServerListResponse') {
                   schema['$ref'] = '#/components/schemas/EmailServerResponse';
+                }
+
+                // Specia fix for activateLogStream / deactivateLogStream - should return no content
+                if (['activateLogStream', 'deactivateLogStream'].includes(operationId) && refSchemaKey === 'LogStream') {
+                  delete response.content;
+                  response.description = 'No Content';
                 }
 
                 if (refSchema) {
@@ -353,7 +370,7 @@ function fixResponses(spec) {
   }
 
   return {
-    manualPathsFixes,
+    manualResponseFixes,
     customDiscriminatorsForResponses,
   };
 }
@@ -757,8 +774,8 @@ async function main() {
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec);
-  const { manualPathsFixes, customDiscriminatorsForResponses } = fixResponses(spec);
-  const { customDiscriminatorsForRequests } = fixRequests(spec);
+  const { manualResponseFixes, customDiscriminatorsForResponses } = fixResponses(spec);
+  const { manualRequestFixes, customDiscriminatorsForRequests } = fixRequests(spec);
   const { ffAmends } = applyFFAments(spec);
   const { typeMap } = buildTypeMap(spec);
   const {
@@ -777,7 +794,8 @@ async function main() {
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Fixed schemas: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
-  console.log('Fixed paths:', manualPathsFixes);
+  console.log('Fixed requests:', manualRequestFixes);
+  console.log('Fixed responses:', manualResponseFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDiscriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);
