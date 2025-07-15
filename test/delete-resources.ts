@@ -38,15 +38,35 @@ async function cleanInlineHooks() {
   return deletedCnt;
 }
 
+async function cleanHookKeys() {
+  let deletedCnt = 0;
+  const collection = await client.hookKeyApi.listHookKeys();
+  await collection.each(async (hookKey) => {
+    const canDelete = hookKey.name?.startsWith('node-sdk: ');
+    if (canDelete) {
+      await client.hookKeyApi.deleteHookKey({
+        hookKeyId: hookKey.id!
+      });
+      deletedCnt++;
+    } else {
+      console.log(`Skipped hook key to remove ${hookKey.name}`);
+    }
+  });
+  return deletedCnt;
+}
+
 async function cleanDomains() {
   const emailDomains = await client.emailDomainApi.listEmailDomains({});
   const emailDomainIds: string[] = [];
   await emailDomains.each(ed => {
-    const canDelete = (ed.domain?.endsWith('example.com') || ed.domain?.endsWith('acme.com')) && ed.validationStatus !== 'DELETED';
-    if (canDelete) {
-      emailDomainIds.push(ed.id!);
-    } else {
-      console.log(`Skipped email domain to remove ${ed.displayName} (${ed.domain})`);
+    const isDeleted = ed.validationStatus === 'DELETED';
+    const canDelete = ed.domain?.endsWith('example.com') || ed.domain?.endsWith('acme.com');
+    if (!isDeleted) {
+      if (canDelete) {
+        emailDomainIds.push(ed.id!);
+      } else {
+        console.log(`Skipped email domain to remove ${ed.displayName} (${ed.domain})`);
+      }
     }
   });
   for (const emailDomainId of emailDomainIds) {
@@ -429,6 +449,7 @@ describe('Clean', () => {
       Applications: await cleanApplications(),
       Domains: await cleanDomains(),
       InlineHooks: await cleanInlineHooks(),
+      HookKeys: await cleanHookKeys(),
       Policies: await cleanTestPolicies(),
       Idps: await cleanTestIdps(),
       EmailCustomizations: await cleanEmailCustomizations(),
