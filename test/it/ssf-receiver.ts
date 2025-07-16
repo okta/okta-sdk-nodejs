@@ -2,7 +2,6 @@ import {
   Client,
   DefaultRequestExecutor,
   SecurityEventsProviderResponse,
-  SecurityEventsProviderRequest,
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
@@ -18,8 +17,8 @@ const client = new Client({
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor(),
   scopes: [
-    'okta.apps.read',
-    'okta.apps.manage'
+    'okta.securityEventsProviders.read',
+    'okta.securityEventsProviders.manage'
   ]
 });
 
