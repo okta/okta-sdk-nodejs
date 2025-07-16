@@ -630,7 +630,7 @@ function fixSchemaPropsErrors(spec) {
     let schema = spec.components.schemas[schemaKey];
     if (schema.properties) {
       for (let propName in schema.properties) {
-        const prop = schema.properties[propName];
+        let prop = schema.properties[propName];
 
         // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
         if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
@@ -652,6 +652,16 @@ function fixSchemaPropsErrors(spec) {
         if (prop['$ref'] && prop['type'] === 'object') {
           manualSchemaPropsFixes.push({ schemaKey, propName });
           delete prop['type'];
+        }
+
+        // Special fix for UISchemaObject.elements - it should be an array of UIElement, not a single UIElement
+        if (schemaKey === 'UISchemaObject' && propName === 'elements' && prop['$ref'] === '#/components/schemas/UIElement') {
+          prop = {
+            type: 'array',
+            items: prop
+          };
+          schema.properties[propName] = prop;
+          manualSchemaPropsFixes.push({ schemaKey, propName });
         }
 
         if (prop.format === 'date-time' && prop.default === 'Assigned') {

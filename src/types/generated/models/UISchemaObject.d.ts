@@ -31,7 +31,7 @@ export declare class UISchemaObject {
     * Specifies the button label for the `Submit` button at the bottom of the enrollment form
     */
   'buttonLabel'?: string;
-  'elements'?: UIElement;
+  'elements'?: Array<UIElement>;
   /**
     * Specifies the label at the top of the enrollment form under the logo
     */

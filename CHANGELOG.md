@@ -8,6 +8,7 @@
   - Fixed schemas:
     - OrgCAPTCHASettings
     - EmailServerListResponse
+    - UISchemaObject (elements)
   - Fixed return type for:
     - applicationApi.listJwk
     - logStreamApi.activateLogStream
