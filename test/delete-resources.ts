@@ -457,6 +457,27 @@ async function cleanLogStreams() {
   return deletedCnt;
 }
 
+async function cleanSsfReceivers() {
+  let deletedCnt = 0;
+  const collection = await client.ssfReceiverApi.listSecurityEventsProviderInstances();
+  await collection.each(async provider => {
+    const canDelete = provider.name?.startsWith('node-sdk: ');
+    if (canDelete) {
+      try {
+        await client.ssfReceiverApi.deleteSecurityEventsProviderInstance({
+          securityEventProviderId: provider.id!
+        });
+        deletedCnt++;
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped security events provider to remove ${provider.name}`);
+    }
+  });
+  return deletedCnt;
+}
+
 describe('Clean', () => {
   it('all test resources', async () => {
     const res = {
@@ -478,6 +499,7 @@ describe('Clean', () => {
       CustomRoles: await cleanCustomRoles(),
       CAPTCHA: await cleanCaptchas(),
       LogStreams: await cleanLogStreams(),
+      SsfReceivers: await cleanSsfReceivers(),
     };
     console.log('Clean result: ', res);
   });
