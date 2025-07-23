@@ -18,6 +18,8 @@
     - logStreamApi.createLogStream
   - Fixes detection of affected resources for caching middleware
 
+- [#445](https://github.com/okta/okta-sdk-nodejs/pull/445) fix: upgrades `form-data` version to `4.0.4` to pull in [CVE-2025-7783](https://www.cve.org/CVERecord?id=CVE-2025-7783) resolution
+
 # 7.2.0
 
 ### Features
