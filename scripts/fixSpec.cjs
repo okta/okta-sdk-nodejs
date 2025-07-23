@@ -224,22 +224,32 @@ function applyTagsAndOperationRenames(spec) {
 
 function fixRequests(spec) {
   const customDiscriminatorsForRequests = [];
+  const manualRequestFixes = [];
 
   for (const httpPath in spec.paths) {
     for (const httpMethod in spec.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec.paths[httpPath][httpMethod];
+        const { operationId } = endpoint;
         if (endpoint.requestBody) {
           const contentTypes = Object.keys(endpoint.requestBody?.content ?? {});
           const contentType = contentTypes[0];
           const typedContent = endpoint.requestBody.content?.[contentType];
           if (typedContent?.schema) {
             const schema = typedContent.schema;
+            const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
+            const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
 
             // add missing discriminators
             const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
             if (maybeAddedCustomDiscriminator) {
               customDiscriminatorsForRequests.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+            }
+
+            // Special fix for createLogStream - it should use LogStreamPutSchema, not LogStream
+            if (operationId === 'createLogStream' && refSchemaKey === 'LogStream') {
+              schema['$ref'] = '#/components/schemas/LogStreamPutSchema';
+              manualRequestFixes.push({ operationId, key: schema });
             }
           }
         }
@@ -249,17 +259,19 @@ function fixRequests(spec) {
 
   return {
     customDiscriminatorsForRequests,
+    manualRequestFixes,
   };
 }
 
 function fixResponses(spec) {
   const customDiscriminatorsForResponses = [];
-  const manualPathsFixes = [];
+  const manualResponseFixes = [];
 
   for (const httpPath in spec.paths) {
     for (const httpMethod in spec.paths[httpPath]) {
       if (!['parameters'].includes(httpMethod)) {
         const endpoint = spec.paths[httpPath][httpMethod];
+        const { operationId } = endpoint;
         for (const responseCode in endpoint.responses) {
           const response = endpoint.responses[responseCode];
           if (response?.content) {
@@ -267,44 +279,74 @@ function fixResponses(spec) {
               const typedContent = response.content[mimeType];
               if (typedContent?.schema) {
                 let schema = typedContent.schema;
-                const isListEndpoint = endpoint.operationId && endpoint.operationId.startsWith('list')
+                const isListEndpoint = operationId && operationId.startsWith('list')
                   && httpMethod === 'get' && responseCode.startsWith('2');
-                const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
-                const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
-                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
 
                 // remove unnecessary type: 'object' for $ref
                 // resolves error:
                 // ERROR o.o.codegen.InlineModelResolver - Illegal schema found with $ref combined with other properties, no properties should be defined alongside a $ref
                 if (schema['$ref'] && schema.type === 'object' && Object.keys(schema).length === 2) {
                   delete schema.type;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
                 // add missing discriminators
                 const maybeAddedCustomDiscriminator = addCustomDiscriminatorToResponse(schema);
                 if (maybeAddedCustomDiscriminator) {
-                  customDiscriminatorsForResponses.push({ httpMethod, httpPath, discriminator: maybeAddedCustomDiscriminator });
+                  customDiscriminatorsForResponses.push({ operationId, discriminator: maybeAddedCustomDiscriminator });
                 }
 
-                // Special fix for listPolicies - should return array of Policy, not single Policy
-                if (endpoint.operationId === 'listPolicies' && refSchemaKey === 'Policy') {
+                const isOneRef = schema['$ref'] && Object.keys(schema).length === 1;
+                const refSchemaKey = isOneRef ? schema['$ref'].replace('#/components/schemas/', '') : undefined;
+                const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
+
+                // Special fix for listPolicies - should return array of Policy, not a single Policy
+                if (operationId === 'listPolicies' && refSchemaKey === 'Policy') {
                   schema = {
                     type: 'array',
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
                 }
 
-                // Special fix for listRolesForClient - should return array of roles
-                if (endpoint.operationId === 'listRolesForClient' && schema['type'] !== 'array') {
+                // Special fix for listRolesForClient - should return array of roles, not a single role
+                if (operationId === 'listRolesForClient' && schema['oneOf'] && schema['type'] !== 'array') {
                   schema = {
                     type: 'array',
                     items: schema
                   };
                   typedContent.schema = schema;
-                  manualPathsFixes.push({ httpMethod, httpPath, key: schema });
+                  manualResponseFixes.push({ operationId, key: schema });
+                }
+
+                // Special fix for listJwk - shoult return object with 'keys', not an array
+                if (operationId === 'listJwk' && schema['type'] === 'array') {
+                  // schema is similar to AppConnectionUserProvisionJWKList
+                  schema = {
+                    type: 'object',
+                    properties: {
+                      keys: {
+                        type: 'array',
+                        items: schema.items
+                      }
+                    }
+                  };
+                  typedContent.schema = schema;
+                  manualResponseFixes.push({ operationId, key: schema });
+                }
+
+                // Special fix for getEmailServer - should return one email server
+                if (operationId === 'getEmailServer' && refSchemaKey === 'EmailServerListResponse') {
+                  schema['$ref'] = '#/components/schemas/EmailServerResponse';
+                  manualResponseFixes.push({ operationId, key: schema });
+                }
+
+                // Specia fix for activateLogStream / deactivateLogStream - should return no content
+                if (['activateLogStream', 'deactivateLogStream'].includes(operationId) && refSchemaKey === 'LogStream') {
+                  delete response.content;
+                  response.description = 'No Content';
+                  manualResponseFixes.push({ operationId });
                 }
 
                 if (refSchema) {
@@ -316,9 +358,9 @@ function fixResponses(spec) {
                   const canIgnore  = [
                     'listRoleSubscriptionsByNotificationType',
                     'listUserSubscriptionsByNotificationType',
-                  ].includes(endpoint.operationId);
+                  ].includes(operationId);
                   if (!canIgnore) {
-                    console.log(`! Please check return type for operation '${endpoint.operationId}', looks like it's not an array`);
+                    console.log(`! Please check return type for operation '${operationId}', looks like it's not an array`);
                   }
                 }
               }
@@ -330,7 +372,7 @@ function fixResponses(spec) {
   }
 
   return {
-    manualPathsFixes,
+    manualResponseFixes,
     customDiscriminatorsForResponses,
   };
 }
@@ -530,8 +572,8 @@ function fixSchemaErrors(spec) {
     if (schema.allOf && Object.keys(schema).length === 1 && schema.allOf.length === 1) {
       const one = schema.allOf[0];
       const isOneRef = one?.['$ref'] && Object.keys(one).length === 1;
-      const refSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
-      const refSchema = refSchemaKey ? spec.components.schemas[refSchemaKey] : undefined;
+      const oneRefSchemaKey = isOneRef ? one['$ref'].replace('#/components/schemas/', '') : undefined;
+      const oneRefSchema = oneRefSchemaKey ? spec.components.schemas[oneRefSchemaKey] : undefined;
       if (!isOneRef) {
         schema = one;
         spec.components.schemas[schemaKey] = schema;
@@ -539,7 +581,7 @@ function fixSchemaErrors(spec) {
       } else if (schemaKey === 'ByDateTimeExpiry') {
         // Special fix for ByDateTimeExpiry
         schema.allOf.push({
-          description: refSchema.description,
+          description: oneRefSchema.description,
         });
         manualSchemaFixes.push({ schemaKey, propName: 'allOf' });
       }
@@ -552,6 +594,26 @@ function fixSchemaErrors(spec) {
       ];
       delete schema['$ref'];
       manualSchemaFixes.push({ schemaKey });
+    }
+
+    // Fix for OrgCAPTCHASettings - captchaId can be null
+    if (schemaKey === 'OrgCAPTCHASettings') {
+      const propCaptchaId = schema.properties?.captchaId;
+      if (propCaptchaId && !propCaptchaId.nullable) {
+        propCaptchaId.nullable = true;
+        manualSchemaFixes.push({ schemaKey, propName: 'captchaId' });
+      }
+    }
+
+    // Special fix for schema EmailServerListResponse - server response doesn't cotain key 'email-servers'
+    if (schemaKey === 'EmailServerListResponse' && schema.properties) {
+      const propName = Object.keys(schema.properties)[0];
+      if (propName === 'email-servers') {
+        const prop = schema.properties[propName];
+        schema = { ...prop };
+        spec.components.schemas[schemaKey] = schema;
+        manualSchemaFixes.push({ schemaKey, propName });
+      }
     }
   }
 
@@ -568,7 +630,7 @@ function fixSchemaPropsErrors(spec) {
     let schema = spec.components.schemas[schemaKey];
     if (schema.properties) {
       for (let propName in schema.properties) {
-        const prop = schema.properties[propName];
+        let prop = schema.properties[propName];
 
         // Special fix for error `attribute components.schemas.UserSchemaAttribute.items is missing`
         if (schemaKey === 'UserSchemaAttribute' && propName === 'default' && prop.oneOf) {
@@ -590,6 +652,16 @@ function fixSchemaPropsErrors(spec) {
         if (prop['$ref'] && prop['type'] === 'object') {
           manualSchemaPropsFixes.push({ schemaKey, propName });
           delete prop['type'];
+        }
+
+        // Special fix for UISchemaObject.elements - it should be an array of UIElement, not a single UIElement
+        if (schemaKey === 'UISchemaObject' && propName === 'elements' && prop['$ref'] === '#/components/schemas/UIElement') {
+          prop = {
+            type: 'array',
+            items: prop
+          };
+          schema.properties[propName] = prop;
+          manualSchemaPropsFixes.push({ schemaKey, propName });
         }
 
         if (prop.format === 'date-time' && prop.default === 'Assigned') {
@@ -714,8 +786,8 @@ async function main() {
   // Apply fixes
   const { pathRenames, pathParameterRenames, bodyNameRenames } = applyParameterRenames(spec);
   const { apiTagChanges, operationRenames } = applyTagsAndOperationRenames(spec);
-  const { manualPathsFixes, customDiscriminatorsForResponses } = fixResponses(spec);
-  const { customDiscriminatorsForRequests } = fixRequests(spec);
+  const { manualResponseFixes, customDiscriminatorsForResponses } = fixResponses(spec);
+  const { manualRequestFixes, customDiscriminatorsForRequests } = fixRequests(spec);
   const { ffAmends } = applyFFAments(spec);
   const { typeMap } = buildTypeMap(spec);
   const {
@@ -734,7 +806,8 @@ async function main() {
   console.log(`Fixed additionalProperties=true: ${fixedAdditionalPropertiesTrue.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Fixed schemas: ${manualSchemaFixes.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log(`Fixed schema props: ${manualSchemaPropsFixes.map(({ schemaKey, propName }) => `${schemaKey}.${propName}`).join(', ')}`);
-  console.log('Fixed paths:', manualPathsFixes);
+  console.log('Fixed requests:', manualRequestFixes);
+  console.log('Fixed responses:', manualResponseFixes);
   console.log(`Merged using x-okta-feature-flag-amends: ${ffAmends.map(({ schemaKey, propName }) => (propName ? `${schemaKey}.${propName}` : schemaKey)).join(', ')}`);
   console.log('Manually added discriminatoes for endpoints:', customDiscriminatorsForEndpoints);
   console.log('API tag changes: ', apiTagChanges);

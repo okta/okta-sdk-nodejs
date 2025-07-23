@@ -16,35 +16,10 @@ const client = new Client({
 
 
 describe('Domains API', () => {
-  const deleteCustomDomains = async () => {
-    const domains = await client.customDomainApi.listCustomDomains();
-    for (const domain of domains.domains) {
-      const canDelete = domain.certificateSourceType === 'MANUAL';
-      if (canDelete) {
-        await client.customDomainApi.deleteCustomDomain({
-          domainId: domain.id
-        });
-      }
-    }
-
-    const brands = await client.customizationApi.listBrands();
-    const brandIdsToDelete = [];
-    await brands.each(brand => {
-      if (brand.name.match(/^.+\.example\.com$/)) {
-        brandIdsToDelete.push(brand.id);
-      }
-    });
-    for (const brandId of brandIdsToDelete) {
-      await client.customizationApi.deleteBrand({ brandId });
-    }
-
-    await utils.delay(3000);
-  };
-
   // clear out custom domains before attempting any tests in case
   // afterEach hook failed to run in a previous run due to test abort/timeout
-  before(deleteCustomDomains);
-  afterEach(deleteCustomDomains);
+  before(async () => await utils.deleteCustomDomains(client));
+  afterEach(async () => await utils.deleteCustomDomains(client));
 
   it('can create, list and get domains by id', async function () {
     try {

@@ -31,7 +31,7 @@ export declare class LogStreamApiRequestFactory extends BaseAPIRequestFactory {
      * Create a log stream
      * @param instance
      */
-  createLogStream(instance: LogStream, _options?: Configuration): Promise<RequestContext>;
+  createLogStream(instance: LogStreamPutSchema, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates a log stream by `logStreamId`
      * Deactivate a log stream
@@ -74,7 +74,7 @@ export declare class LogStreamApiResponseProcessor {
      * @params response Response returned by the server for a request to activateLogStream
      * @throws ApiException if the response code was not in [200, 299]
      */
-  activateLogStream(response: ResponseContext): Promise<LogStream>;
+  activateLogStream(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -90,7 +90,7 @@ export declare class LogStreamApiResponseProcessor {
      * @params response Response returned by the server for a request to deactivateLogStream
      * @throws ApiException if the response code was not in [200, 299]
      */
-  deactivateLogStream(response: ResponseContext): Promise<LogStream>;
+  deactivateLogStream(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

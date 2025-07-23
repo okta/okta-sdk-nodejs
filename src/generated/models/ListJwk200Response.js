@@ -11,6 +11,7 @@
  */
 
 
+'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -22,33 +23,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { EnabledPagesType } from './../models/EnabledPagesType';
-import { OrgCAPTCHASettingsLinks } from './../models/OrgCAPTCHASettingsLinks';
-/**
-*
-*/
-export declare class OrgCAPTCHASettings {
-  /**
-    * The unique key of the associated CAPTCHA instance
-    */
-  'captchaId'?: string | null;
-  /**
-    * An array of pages that have CAPTCHA enabled
-    */
-  'enabledPages'?: Array<EnabledPagesType>;
-  '_links'?: OrgCAPTCHASettingsLinks;
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.ListJwk200Response = void 0;
+class ListJwk200Response {
+  constructor() {
+  }
+  static getAttributeTypeMap() {
+    return ListJwk200Response.attributeTypeMap;
+  }
 }
+exports.ListJwk200Response = ListJwk200Response;
+ListJwk200Response.discriminator = undefined;
+ListJwk200Response.attributeTypeMap = [
+  {
+    'name': 'keys',
+    'baseName': 'keys',
+    'type': 'Array<OAuth2ClientJsonWebKey>',
+    'format': ''
+  }
+];

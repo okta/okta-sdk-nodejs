@@ -9,8 +9,12 @@ import {
   IdPCsr,
   BookmarkApplication,
   Org2OrgApplication,
-  OpenIdConnectApplication
+  OpenIdConnectApplication,
+  SamlApplication,
+  OAuth2ClientJsonWebKeyRequestBody,
 } from '@okta/okta-sdk-nodejs';
+const Rasha = require('rasha');
+const nJwt = require('njwt');
 import * as forge from 'node-forge';
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
@@ -305,6 +309,41 @@ function getOIDCApplication(): OpenIdConnectApplication {
   };
 }
 
+function getServiceApplication(): OpenIdConnectApplication {
+  return  {
+    name: 'oidc_client',
+    label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
+    signOnMode: 'OPENID_CONNECT',
+    credentials: {
+      oauthClient: {
+        autoKeyRotation: true,
+        token_endpoint_auth_method: 'client_secret_post'
+      }
+    },
+    settings: {
+      oauthClient: {
+        application_type: 'service',
+        client_uri: 'https://example.com/client',
+        grant_types: [
+          'implicit',
+          'authorization_code',
+          'client_credentials'
+        ],
+        logo_uri: 'https://example.com/assets/images/logo-new.png',
+        redirect_uris: [
+          'https://example.com/oauth2/callback',
+          'myapp://callback'
+        ],
+        response_types: [
+          'token',
+          'id_token',
+          'code'
+        ]
+      }
+    }
+  };
+}
+
 function getBookmarkApplication(): BookmarkApplication {
   return {
     name: 'bookmark',
@@ -329,6 +368,52 @@ function getOrg2OrgApplicationOptions(): Org2OrgApplication {
         acsUrl: 'https://example.atko.com/sso/saml2/exampleid',
         audRestriction: 'https://www.atko.com/saml2/service-provider/exampleid',
         baseUrl: 'https://example.atko.com'
+      }
+    }
+  };
+}
+
+function getSamlApplication(): SamlApplication {
+  return {
+    label: `node-sdk: Example Custom SAML 2.0 App - ${faker.random.word()}`,
+    visibility: {
+      autoSubmitToolbar: false,
+      hide: {
+        iOS: false,
+        web: false
+      }
+    },
+    features: [],
+    signOnMode: 'SAML_2_0',
+    settings: {
+      signOn: {
+        assertionSigned: true,
+        allowMultipleAcsEndpoints: true,
+        attributeStatements: [
+          {
+            type: 'EXPRESSION',
+            name: 'Attribute',
+            namespace: 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
+            values: [
+              'Value'
+            ],
+          }
+        ],
+        audience: 'asdqwe123',
+        authnContextClassRef: 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+        defaultRelayState: '',
+        destination: 'http://testorgone.okta',
+        digestAlgorithm: 'SHA256',
+        honorForceAuthn: true,
+        idpIssuer: 'http://www.okta.com/${org.externalKey}',
+        recipient: 'http://testorgone.okta',
+        requestCompressed: false,
+        responseSigned: true,
+        signatureAlgorithm: 'RSA_SHA256',
+        spIssuer: null,
+        ssoAcsUrl: 'http://testorgone.okta',
+        subjectNameIdFormat: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+        subjectNameIdTemplate: '${user.userName}',
       }
     }
   };
@@ -412,6 +497,62 @@ function certToPem(certF: forge.pki.Certificate) {
   return forge.pki.certificateToPem(certF);
 }
 
+async function makeOAuth2ClientJsonWebKeyRequestBody(): Promise<OAuth2ClientJsonWebKeyRequestBody> {
+  const keys = forge.pki.rsa.generateKeyPair(2048);
+  const pem = forge.pki.privateKeyToPem(keys.privateKey);
+  const jwk = await Rasha.import({ pem });
+  const claims = {
+    aud: 'atko'
+  };
+  const alg = jwk.alg || 'RS256';
+  const jwt = nJwt.create(claims, pem, alg);
+  const kid = jwt.body.jti;
+  return {
+    alg,
+    kid,
+    e: jwk.e,
+    kty: jwk.kty,
+    n: jwk.n,
+    use: 'sig',
+  };
+}
+
+const deleteCustomDomains = async (client: Client) => {
+  const emailDomains = await client.emailDomainApi.listEmailDomains({});
+  const emailDomainIds = [];
+  await emailDomains.each(ed => {
+    if (ed.domain.endsWith('example.com') || ed.domain.endsWith('acme.com')) {
+      emailDomainIds.push(ed.id);
+    }
+  });
+  for (const emailDomainId of emailDomainIds) {
+    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId, expand: ['brands'] });
+  }
+
+  const domains = await client.customDomainApi.listCustomDomains();
+  for (const domain of domains.domains) {
+    const canDelete = domain.domain.endsWith('example.com') || domain.domain.endsWith('acme.com');
+    if (canDelete) {
+      await client.customDomainApi.deleteCustomDomain({
+        domainId: domain.id
+      });
+    }
+  }
+
+  const brands = await client.customizationApi.listBrands();
+  const brandIdsToDelete = [];
+  await brands.each(brand => {
+    if (brand.name.startsWith('node-sdk: Brand')) {
+      brandIdsToDelete.push(brand.id);
+    }
+  });
+  for (const brandId of brandIdsToDelete) {
+    await client.customizationApi.deleteBrand({ brandId });
+  }
+
+  await delay(3000);
+};
+
 export {
   delay,
   validateUser,
@@ -435,6 +576,8 @@ export {
   getBookmarkApplication,
   getOrg2OrgApplicationOptions,
   getOIDCApplication,
+  getSamlApplication,
+  getServiceApplication,
   verifyOrgIsOIE,
   getMockImage,
   runWithRetry,
@@ -443,4 +586,6 @@ export {
   certToBase64,
   certToPem,
   csrToN,
+  makeOAuth2ClientJsonWebKeyRequestBody,
+  deleteCustomDomains,
 };

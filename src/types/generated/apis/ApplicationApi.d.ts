@@ -29,6 +29,7 @@ import { FederatedClaim } from '../models/FederatedClaim';
 import { FederatedClaimRequestBody } from '../models/FederatedClaimRequestBody';
 import { JsonPatchOperation } from '../models/JsonPatchOperation';
 import { JsonWebKey } from '../models/JsonWebKey';
+import { ListJwk200Response } from '../models/ListJwk200Response';
 import { OAuth2ClientJsonWebKey } from '../models/OAuth2ClientJsonWebKey';
 import { OAuth2ClientJsonWebKeyRequestBody } from '../models/OAuth2ClientJsonWebKeyRequestBody';
 import { OAuth2ClientSecret } from '../models/OAuth2ClientSecret';
@@ -968,7 +969,7 @@ export declare class ApplicationApiResponseProcessor {
      * @params response Response returned by the server for a request to listJwk
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listJwk(response: ResponseContext): Promise<Array<OAuth2ClientJsonWebKey>>;
+  listJwk(response: ResponseContext): Promise<ListJwk200Response>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

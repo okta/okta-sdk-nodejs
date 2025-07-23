@@ -47,7 +47,7 @@ UISchemaObject.attributeTypeMap = [
   {
     'name': 'elements',
     'baseName': 'elements',
-    'type': 'UIElement',
+    'type': 'Array<UIElement>',
     'format': ''
   },
   {
