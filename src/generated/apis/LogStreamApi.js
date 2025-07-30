@@ -82,7 +82,7 @@ class LogStreamApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     ], instance);
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(instance, 'LogStream', ''), contentType);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(instance, 'LogStreamPutSchema', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
@@ -314,8 +314,7 @@ class LogStreamApiResponseProcessor {
   async activateLogStream(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'LogStream', '');
-      return body;
+      return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
@@ -331,7 +330,7 @@ class LogStreamApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'LogStream'), 'LogStream', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void'), 'void', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -378,8 +377,7 @@ class LogStreamApiResponseProcessor {
   async deactivateLogStream(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'LogStream', '');
-      return body;
+      return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
@@ -395,7 +393,7 @@ class LogStreamApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'LogStream'), 'LogStream', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void'), 'void', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

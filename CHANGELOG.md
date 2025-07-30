@@ -1,5 +1,25 @@
 # Okta Node SDK Changelog
 
+# 7.2.1
+
+### Fixes
+
+- [#442](https://github.com/okta/okta-sdk-nodejs/pull/442)
+  - Fixed schemas:
+    - OrgCAPTCHASettings
+    - EmailServerListResponse
+    - UISchemaObject (elements)
+  - Fixed return type for:
+    - applicationApi.listJwk
+    - logStreamApi.activateLogStream
+    - logStreamApi.deactivateLogStream
+    - emailServerApi.getEmailServer
+  - Fixed request type for:
+    - logStreamApi.createLogStream
+  - Fixes detection of affected resources for caching middleware
+
+- [#445](https://github.com/okta/okta-sdk-nodejs/pull/445) fix: upgrades `form-data` version to `4.0.4` to pull in [CVE-2025-7783](https://www.cve.org/CVERecord?id=CVE-2025-7783) resolution
+
 # 7.2.0
 
 ### Features

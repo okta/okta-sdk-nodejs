@@ -158,6 +158,7 @@ import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
+import { ListJwk200Response } from '../models/ListJwk200Response';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
 import { LogEvent } from '../models/LogEvent';
@@ -877,7 +878,7 @@ export declare class PromiseApplicationApi {
       * List all the OAuth 2.0 client JSON Web Keys
       * @param appId Application ID
       */
-  listJwk(appId: string, _options?: Configuration): Promise<Collection<OAuth2ClientJsonWebKey>>;
+  listJwk(appId: string, _options?: Configuration): Promise<ListJwk200Response>;
   /**
       * Lists all client secrets for an OAuth 2.0 client app
       * List all OAuth 2.0 client secrets
@@ -2338,7 +2339,7 @@ export declare class PromiseEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param emailServerId
       */
-  getEmailServer(emailServerId: string, _options?: Configuration): Promise<EmailServerListResponse>;
+  getEmailServer(emailServerId: string, _options?: Configuration): Promise<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers
@@ -3052,19 +3053,19 @@ export declare class PromiseLogStreamApi {
       * Activate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  activateLogStream(logStreamId: string, _options?: Configuration): Promise<LogStream>;
+  activateLogStream(logStreamId: string, _options?: Configuration): Promise<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
       * @param instance
       */
-  createLogStream(instance: LogStream, _options?: Configuration): Promise<LogStream>;
+  createLogStream(instance: LogStreamPutSchema, _options?: Configuration): Promise<LogStream>;
   /**
       * Deactivates a log stream by `logStreamId`
       * Deactivate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  deactivateLogStream(logStreamId: string, _options?: Configuration): Promise<LogStream>;
+  deactivateLogStream(logStreamId: string, _options?: Configuration): Promise<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream

@@ -158,6 +158,7 @@ import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
+import { ListJwk200Response } from '../models/ListJwk200Response';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
 import { LogEvent } from '../models/LogEvent';
@@ -2246,7 +2247,7 @@ export declare class ObjectApplicationApi {
       * List all the OAuth 2.0 client JSON Web Keys
       * @param param the request object
       */
-  listJwk(param: ApplicationApiListJwkRequest, options?: Configuration): Promise<Collection<OAuth2ClientJsonWebKey>>;
+  listJwk(param: ApplicationApiListJwkRequest, options?: Configuration): Promise<ListJwk200Response>;
   /**
       * Lists all client secrets for an OAuth 2.0 client app
       * List all OAuth 2.0 client secrets
@@ -5771,7 +5772,7 @@ export declare class ObjectEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param param the request object
       */
-  getEmailServer(param: EmailServerApiGetEmailServerRequest, options?: Configuration): Promise<EmailServerListResponse>;
+  getEmailServer(param: EmailServerApiGetEmailServerRequest, options?: Configuration): Promise<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers
@@ -7570,10 +7571,10 @@ export interface LogStreamApiActivateLogStreamRequest {
 export interface LogStreamApiCreateLogStreamRequest {
     /**
       *
-      * @type LogStream
+      * @type LogStreamPutSchema
       * @memberof LogStreamApicreateLogStream
       */
-    instance: LogStream;
+    instance: LogStreamPutSchema;
 }
 export interface LogStreamApiDeactivateLogStreamRequest {
     /**
@@ -7641,7 +7642,7 @@ export declare class ObjectLogStreamApi {
       * Activate a log stream
       * @param param the request object
       */
-  activateLogStream(param: LogStreamApiActivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  activateLogStream(param: LogStreamApiActivateLogStreamRequest, options?: Configuration): Promise<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
@@ -7653,7 +7654,7 @@ export declare class ObjectLogStreamApi {
       * Deactivate a log stream
       * @param param the request object
       */
-  deactivateLogStream(param: LogStreamApiDeactivateLogStreamRequest, options?: Configuration): Promise<LogStream>;
+  deactivateLogStream(param: LogStreamApiDeactivateLogStreamRequest, options?: Configuration): Promise<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream

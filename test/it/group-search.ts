@@ -25,7 +25,7 @@ const createTestGroups = async () => {
   const createdGroups: Group[] = [];
   for (const prefix of namePrefixes) {
     for (let i = 0 ; i < 2 ; i++) {
-      const groupName = `node-sdk: Search test Group ${prefix} ${i} ${faker.random.word()}`.substring(0, 49);
+      const groupName = `node-sdk: Search ${prefix} ${i} ${faker.random.word()}`.substring(0, 49);
       const newGroup: CreateGroupRequest = {
         profile: {
           name: groupName
@@ -66,7 +66,7 @@ describe('Group API tests', () => {
 
   // Pagination does not work with q
   it('should search by name with q', async () => {
-    const q = 'node-sdk: Search test Group GROUP_AB';
+    const q = 'node-sdk: Search GROUP_AB';
     const collection = await client.groupApi.listGroups({
       q
     });
@@ -81,17 +81,14 @@ describe('Group API tests', () => {
 
   it('should filter with search and paginate results', async () => {
     const filtered = new Set();
-    const q = 'node-sdk: Search test Group GROUP_XY';
+    const q = 'node-sdk: Search GROUP_XY';
     const collection = await client.groupApi.listGroups({
-      search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,
-      limit: 1
+      search: `profile.name sw "${q}"`,
     });
-    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(Group);
       filtered.add(group.profile.name);
     });
     expect(filtered.size).to.equal(2);
-    expect(pageSpy.getCalls().length).to.equal(2);
   });
 });

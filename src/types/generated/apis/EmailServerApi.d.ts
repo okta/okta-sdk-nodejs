@@ -85,7 +85,7 @@ export declare class EmailServerApiResponseProcessor {
      * @params response Response returned by the server for a request to getEmailServer
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getEmailServer(response: ResponseContext): Promise<EmailServerListResponse>;
+  getEmailServer(response: ResponseContext): Promise<EmailServerResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

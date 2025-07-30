@@ -159,6 +159,7 @@ import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
+import { ListJwk200Response } from '../models/ListJwk200Response';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
 import { LogEvent } from '../models/LogEvent';
@@ -886,7 +887,7 @@ export declare class ObservableApplicationApi {
       * List all the OAuth 2.0 client JSON Web Keys
       * @param appId Application ID
       */
-  listJwk(appId: string, _options?: Configuration): Observable<Collection<OAuth2ClientJsonWebKey>>;
+  listJwk(appId: string, _options?: Configuration): Observable<ListJwk200Response>;
   /**
       * Lists all client secrets for an OAuth 2.0 client app
       * List all OAuth 2.0 client secrets
@@ -2381,7 +2382,7 @@ export declare class ObservableEmailServerApi {
       * Retrieve an SMTP server configuration
       * @param emailServerId
       */
-  getEmailServer(emailServerId: string, _options?: Configuration): Observable<EmailServerListResponse>;
+  getEmailServer(emailServerId: string, _options?: Configuration): Observable<EmailServerResponse>;
   /**
       * Lists all the enrolled custom SMTP server configurations
       * List all enrolled SMTP servers
@@ -3115,19 +3116,19 @@ export declare class ObservableLogStreamApi {
       * Activate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  activateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  activateLogStream(logStreamId: string, _options?: Configuration): Observable<void>;
   /**
       * Creates a new log stream object
       * Create a log stream
       * @param instance
       */
-  createLogStream(instance: LogStream, _options?: Configuration): Observable<LogStream>;
+  createLogStream(instance: LogStreamPutSchema, _options?: Configuration): Observable<LogStream>;
   /**
       * Deactivates a log stream by `logStreamId`
       * Deactivate a log stream
       * @param logStreamId Unique identifier for the log stream
       */
-  deactivateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  deactivateLogStream(logStreamId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes a log stream object from your org by ID
       * Delete a log stream
