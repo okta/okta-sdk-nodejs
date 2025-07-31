@@ -34,6 +34,10 @@ export declare class ProtocolOidc {
   'credentials'?: OAuthCredentials;
   'endpoints'?: OAuthEndpoints;
   /**
+    * URL of the IdP org
+    */
+  'oktaIdpOrgUrl'?: string;
+  /**
     * OpenID Connect and IdP-defined permission bundles to request delegated access from the user > **Note:** The [IdP type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProvider/#tag/IdentityProvider/operation/createIdentityProvider!path=type&t=request) table lists the scopes that are supported for each IdP.
     */
   'scopes'?: Array<string>;

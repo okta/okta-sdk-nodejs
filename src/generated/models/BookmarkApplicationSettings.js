@@ -36,6 +36,12 @@ exports.BookmarkApplicationSettings = BookmarkApplicationSettings;
 BookmarkApplicationSettings.discriminator = undefined;
 BookmarkApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'BookmarkApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

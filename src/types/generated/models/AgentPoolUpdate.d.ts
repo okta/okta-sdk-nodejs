@@ -28,19 +28,40 @@ import { AgentUpdateJobStatus } from './../models/AgentUpdateJobStatus';
 import { AutoUpdateSchedule } from './../models/AutoUpdateSchedule';
 import { LinksSelf } from './../models/LinksSelf';
 /**
-* Various information about agent auto update configuration
+* Various information about agent auto-update configuration
 */
 export declare class AgentPoolUpdate {
   'agents'?: Array<Agent>;
   'agentType'?: AgentType;
+  /**
+    * Indicates if auto-update is enabled for the agent pool
+    */
   'enabled'?: boolean;
+  /**
+    * ID of the agent pool update
+    */
   'id'?: string;
+  /**
+    * Name of the agent pool update
+    */
   'name'?: string;
+  /**
+    * Indicates if the admin is notified about the update
+    */
   'notifyAdmin'?: boolean;
+  /**
+    * Reason for the update
+    */
   'reason'?: string;
   'schedule'?: AutoUpdateSchedule;
+  /**
+    * Specifies the sort order
+    */
   'sortOrder'?: number;
   'status'?: AgentUpdateJobStatus;
+  /**
+    * The agent version to update to
+    */
   'targetVersion'?: string;
   '_links'?: LinksSelf;
   static readonly discriminator: string | undefined;

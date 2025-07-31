@@ -23,7 +23,7 @@
  * Do not edit the class manually.
  */
 /**
-* <div class=\"x-lifecycle-container\"><x-lifecycle class=\"oie\"></x-lifecycle></div> Universal Logout properties for the app. These properties are only returned and can\'t be updated.  > This feature is only available with Identity Threat Protection in Identity Engine.
+* <div class=\"x-lifecycle-container\"><x-lifecycle class=\"oie\"></x-lifecycle></div> Universal Logout properties for the app. These properties are only returned and can\'t be updated.
 */
 export declare class ApplicationUniversalLogout {
   /**

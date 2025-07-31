@@ -77,6 +77,12 @@ PolicyRule.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'actions',
+    'baseName': 'actions',
+    'type': 'PolicyRuleActions',
+    'format': ''
+  },
+  {
     'name': 'status',
     'baseName': 'status',
     'type': 'LifecycleStatus',

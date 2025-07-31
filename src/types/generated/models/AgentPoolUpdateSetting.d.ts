@@ -29,10 +29,25 @@ import { ReleaseChannel } from './../models/ReleaseChannel';
 */
 export declare class AgentPoolUpdateSetting {
   'agentType'?: AgentType;
+  /**
+    * Continues the update even if some agents fail to update
+    */
   'continueOnError'?: boolean;
+  /**
+    * Latest version of the agent
+    */
   'latestVersion'?: string;
+  /**
+    * Minimal version of the agent
+    */
   'minimalSupportedVersion'?: string;
+  /**
+    * ID of the agent pool that the settings apply to
+    */
   'poolId'?: string;
+  /**
+    * Pool name
+    */
   'poolName'?: string;
   'releaseChannel'?: ReleaseChannel;
   static readonly discriminator: string | undefined;

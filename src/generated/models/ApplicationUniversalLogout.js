@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ApplicationUniversalLogout = void 0;
 /**
-* <div class=\"x-lifecycle-container\"><x-lifecycle class=\"oie\"></x-lifecycle></div> Universal Logout properties for the app. These properties are only returned and can\'t be updated.  > This feature is only available with Identity Threat Protection in Identity Engine.
+* <div class=\"x-lifecycle-container\"><x-lifecycle class=\"oie\"></x-lifecycle></div> Universal Logout properties for the app. These properties are only returned and can\'t be updated.
 */
 class ApplicationUniversalLogout {
   constructor() {

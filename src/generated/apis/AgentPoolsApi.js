@@ -25,10 +25,10 @@ const util_1 = require('../util');
  */
 class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Activates scheduled Agent pool update
+     * Activates a scheduled agent pool update
      * Activate an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async activateAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -67,9 +67,9 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+     * Creates an agent pool update
      * Create an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
+     * @param poolId ID of the agent pool for which the settings apply to
      * @param agentPoolUpdate
      */
   async createAgentPoolsUpdate(poolId, agentPoolUpdate, _options) {
@@ -116,10 +116,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deactivates scheduled Agent pool update
+     * Deactivates scheduled agent pool update
      * Deactivate an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async deactivateAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -158,10 +158,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes Agent pool update
+     * Deletes agent pool update
      * Delete an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async deleteAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -200,10 +200,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves Agent pool update from updateId
+     * Retrieves an agent pool update by its `updateId`
      * Retrieve an agent pool update by ID
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async getAgentPoolsUpdateInstance(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -244,7 +244,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Retrieves the current state of the agent pool update instance settings
      * Retrieve an agent pool update\'s settings
-     * @param poolId Id of the agent pool for which the settings will apply
+     * @param poolId ID of the agent pool for which the settings apply to
      */
   async getAgentPoolsUpdateSettings(poolId, _options) {
     let _config = _options || this.configuration;
@@ -280,7 +280,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all agent pools with pagination support
      * List all agent pools
-     * @param limitPerPoolType Maximum number of AgentPools being returned
+     * @param limitPerPoolType Maximum number of agent pools returned
      * @param poolType Agent type to search for
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
      */
@@ -323,8 +323,8 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all agent pool updates
      * List all agent pool updates
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param scheduled Return only scheduled or ad-hoc updates. If this parameter isn\&#39;t provided, Okta returns the entire list of updates.
      */
   async listAgentPoolsUpdates(poolId, scheduled, _options) {
     let _config = _options || this.configuration;
@@ -362,10 +362,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Pauses running or queued Agent pool update
+     * Pauses a running or queued agent pool update
      * Pause an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async pauseAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -404,10 +404,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Resumes running or queued Agent pool update
+     * Resumes a running or queued agent pool update
      * Resume an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async resumeAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -446,10 +446,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retries Agent pool update
+     * Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
      * Retry an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async retryAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -488,10 +488,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Stops Agent pool update
+     * Stops an agent pool update
      * Stop an agent pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   async stopAgentPoolsUpdate(poolId, updateId, _options) {
     let _config = _options || this.configuration;
@@ -530,10 +530,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates Agent pool update and return latest agent pool update
+     * Updates an agent pool update instance and returns the latest agent pool update
      * Update an agent pool update by ID
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      * @param agentPoolUpdate
      */
   async updateAgentPoolsUpdate(poolId, updateId, agentPoolUpdate, _options) {
@@ -585,9 +585,9 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates an agent pool update settings
+     * Updates an agent pool update instance settings
      * Update an agent pool update settings
-     * @param poolId Id of the agent pool for which the settings will apply
+     * @param poolId ID of the agent pool for which the settings apply to
      * @param agentPoolUpdateSetting
      */
   async updateAgentPoolsUpdateSettings(poolId, agentPoolUpdateSetting, _options) {

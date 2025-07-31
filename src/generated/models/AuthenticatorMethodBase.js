@@ -46,6 +46,7 @@ AuthenticatorMethodBase.mapping = {
   'security_question': 'AuthenticatorMethodSimple',
   'signed_nonce': 'AuthenticatorMethodSignedNonce',
   'sms': 'AuthenticatorMethodSimple',
+  'tac': 'AuthenticatorMethodTac',
   'totp': 'AuthenticatorMethodTotp',
   'voice': 'AuthenticatorMethodSimple',
   'webauthn': 'AuthenticatorMethodWebAuthn',

@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AgentPoolUpdate = void 0;
 /**
-* Various information about agent auto update configuration
+* Various information about agent auto-update configuration
 */
 class AgentPoolUpdate {
   constructor() {

@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Push1 = void 0;
 /**
-* Sends an asynchronous push notification to the device for approval by the user. You must poll the transaction to determine the state of the verification. See [Retrieve a factor transaction status](./#tag/UserFactor/operation/getFactorTransactionStatus).
+* Sends an asynchronous push notification to the device for approval by the user. A successful request returns an HTTP 201 response, unlike other factors. You must poll the transaction to determine the state of the verification. See [Retrieve a factor transaction status](./#tag/UserFactor/operation/getFactorTransactionStatus).
 */
 class Push1 {
   constructor() {

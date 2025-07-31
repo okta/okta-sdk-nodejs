@@ -27,6 +27,7 @@ import { OAuthResponseType } from './../models/OAuthResponseType';
 import { OpenIdConnectApplicationConsentMethod } from './../models/OpenIdConnectApplicationConsentMethod';
 import { OpenIdConnectApplicationIdpInitiatedLogin } from './../models/OpenIdConnectApplicationIdpInitiatedLogin';
 import { OpenIdConnectApplicationIssuerMode } from './../models/OpenIdConnectApplicationIssuerMode';
+import { OpenIdConnectApplicationNetwork } from './../models/OpenIdConnectApplicationNetwork';
 import { OpenIdConnectApplicationSettingsClientKeys } from './../models/OpenIdConnectApplicationSettingsClientKeys';
 import { OpenIdConnectApplicationSettingsRefreshToken } from './../models/OpenIdConnectApplicationSettingsRefreshToken';
 import { OpenIdConnectApplicationType } from './../models/OpenIdConnectApplicationType';
@@ -77,6 +78,7 @@ export declare class OpenIdConnectApplicationSettingsClient {
     * The URL string that references a logo for the client. This logo appears on the client tile in the End-User Dashboard. It also appears on the client consent dialog during the client consent flow.
     */
   'logo_uri'?: string;
+  'network'?: OpenIdConnectApplicationNetwork;
   /**
     * Allows the app to participate in front-channel Single Logout  > **Note:** You can only enable `participate_slo` for `web` and `browser` application types (`application_type`).
     */

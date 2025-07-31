@@ -36,6 +36,12 @@ exports.BasicApplicationSettings = BasicApplicationSettings;
 BasicApplicationSettings.discriminator = undefined;
 BasicApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'BasicApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

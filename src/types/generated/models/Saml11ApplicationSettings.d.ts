@@ -27,6 +27,10 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { Saml11ApplicationSettingsSignOn } from './../models/Saml11ApplicationSettingsSignOn';
 export declare class Saml11ApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: Saml11ApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -59,3 +63,4 @@ export declare class Saml11ApplicationSettings {
     }[];
   constructor();
 }
+export declare type Saml11ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

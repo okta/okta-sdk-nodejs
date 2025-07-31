@@ -15,6 +15,7 @@ jsdoc/
 .idea
 okta.yaml
 test-reports/
+spec/
 
 .yalc
 yalc.lock

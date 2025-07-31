@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AutoUpdateSchedule = void 0;
 /**
-* The schedule of auto-update configured by admin.
+* The schedule of auto-update configured by the admin
 */
 class AutoUpdateSchedule {
   constructor() {

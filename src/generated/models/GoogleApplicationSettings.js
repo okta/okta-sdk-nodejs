@@ -36,6 +36,12 @@ exports.GoogleApplicationSettings = GoogleApplicationSettings;
 GoogleApplicationSettings.discriminator = undefined;
 GoogleApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'GoogleApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

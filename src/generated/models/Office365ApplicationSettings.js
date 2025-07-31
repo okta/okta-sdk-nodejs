@@ -36,6 +36,12 @@ exports.Office365ApplicationSettings = Office365ApplicationSettings;
 Office365ApplicationSettings.discriminator = undefined;
 Office365ApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'Office365ApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

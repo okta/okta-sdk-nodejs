@@ -36,6 +36,12 @@ exports.WsFederationApplicationSettings = WsFederationApplicationSettings;
 WsFederationApplicationSettings.discriminator = undefined;
 WsFederationApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'WsFederationApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

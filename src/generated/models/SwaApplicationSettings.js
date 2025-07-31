@@ -36,6 +36,12 @@ exports.SwaApplicationSettings = SwaApplicationSettings;
 SwaApplicationSettings.discriminator = undefined;
 SwaApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'SwaApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

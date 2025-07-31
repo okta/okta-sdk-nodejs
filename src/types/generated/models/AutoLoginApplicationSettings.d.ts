@@ -27,6 +27,10 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { AutoLoginApplicationSettingsSignOn } from './../models/AutoLoginApplicationSettingsSignOn';
 export declare class AutoLoginApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: AutoLoginApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -56,3 +60,4 @@ export declare class AutoLoginApplicationSettings {
     }[];
   constructor();
 }
+export declare type AutoLoginApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

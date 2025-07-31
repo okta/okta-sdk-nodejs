@@ -27,6 +27,10 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { SwaApplicationSettingsApplication } from './../models/SwaApplicationSettingsApplication';
 export declare class SwaApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: SwaApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -56,3 +60,4 @@ export declare class SwaApplicationSettings {
     }[];
   constructor();
 }
+export declare type SwaApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

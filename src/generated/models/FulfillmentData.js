@@ -26,34 +26,12 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FulfillmentData = void 0;
 /**
-* Fulfillment provider details
+* List of fulfillment order details
 */
-class FulfillmentData {
+class FulfillmentData extends Array {
   constructor() {
-  }
-  static getAttributeTypeMap() {
-    return FulfillmentData.attributeTypeMap;
+    super();
   }
 }
 exports.FulfillmentData = FulfillmentData;
 FulfillmentData.discriminator = undefined;
-FulfillmentData.attributeTypeMap = [
-  {
-    'name': 'customizationId',
-    'baseName': 'customizationId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'inventoryProductId',
-    'baseName': 'inventoryProductId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'productId',
-    'baseName': 'productId',
-    'type': 'string',
-    'format': ''
-  }
-];

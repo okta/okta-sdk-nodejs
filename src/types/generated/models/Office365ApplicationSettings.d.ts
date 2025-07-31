@@ -28,6 +28,10 @@ import { OINSaml11ApplicationSettingsSignOn } from './../models/OINSaml11Applica
 import { Office365ApplicationSettingsApplication } from './../models/Office365ApplicationSettingsApplication';
 export declare class Office365ApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: Office365ApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -58,3 +62,4 @@ export declare class Office365ApplicationSettings {
     }[];
   constructor();
 }
+export declare type Office365ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

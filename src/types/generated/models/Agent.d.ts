@@ -30,16 +30,40 @@ import { OperationalStatus } from './../models/OperationalStatus';
 * Agent details
 */
 export declare class Agent {
+  /**
+    * Unique identifier for the agent that\'s generated during installation
+    */
   'id'?: string;
+  /**
+    * Determines if an agent is hidden from the Admin Console
+    */
   'isHidden'?: boolean;
+  /**
+    * Determines if the agent is on the latest generally available version
+    */
   'isLatestGAedVersion'?: boolean;
+  /**
+    * Timestamp when the agent last connected to Okta
+    */
   'lastConnection'?: Date;
+  /**
+    * Agent name
+    */
   'name'?: string;
   'operationalStatus'?: OperationalStatus;
+  /**
+    * Pool ID
+    */
   'poolId'?: string;
   'type'?: AgentType;
+  /**
+    * Status message of the agent
+    */
   'updateMessage'?: string;
   'updateStatus'?: AgentUpdateInstanceStatus;
+  /**
+    * Agent version number
+    */
   'version'?: string;
   '_links'?: LinksSelf;
   static readonly discriminator: string | undefined;

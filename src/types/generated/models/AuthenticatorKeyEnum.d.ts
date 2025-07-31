@@ -25,4 +25,4 @@
 /**
 * A human-readable string that identifies the authenticator
 */
-export declare type AuthenticatorKeyEnum = 'custom_app' | 'duo' | 'external_idp' | 'google_otp' | 'okta_email' | 'okta_password' | 'okta_verify' | 'onprem_mfa' | 'phone_number' | 'security_key' | 'security_question' | 'smart_card_idp' | 'symantec_vip' | 'webauthn' | 'yubikey_token';
+export declare type AuthenticatorKeyEnum = 'custom_app' | 'duo' | 'external_idp' | 'google_otp' | 'okta_email' | 'okta_password' | 'okta_verify' | 'onprem_mfa' | 'phone_number' | 'security_key' | 'security_question' | 'smart_card_idp' | 'symantec_vip' | 'webauthn' | 'yubikey_token' | 'tac';

@@ -39,6 +39,12 @@ exports.ApplicationSettings = ApplicationSettings;
 ApplicationSettings.discriminator = undefined;
 ApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'ApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

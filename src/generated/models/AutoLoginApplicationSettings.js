@@ -36,6 +36,12 @@ exports.AutoLoginApplicationSettings = AutoLoginApplicationSettings;
 AutoLoginApplicationSettings.discriminator = undefined;
 AutoLoginApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'AutoLoginApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',
