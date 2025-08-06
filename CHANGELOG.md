@@ -1,5 +1,14 @@
 # Okta Node SDK Changelog
 
+# 6.6.1
+
+### Security Fixes
+
+- [#448](https://github.com/okta/okta-sdk-nodejs/pull/448) Fixes security vulnerabilities in dependencies:
+  - Upgrades form-data from 4.0.0 to 4.0.4 to fix SNYK-JS-FORMDATA-10841150 (Critical - Predictable Value Range)
+  - Upgrades njwt from 1.0.0 to 2.0.1 to fix SNYK-JS-NJWT-6861582 (High - Prototype Pollution)
+  - Both upgrades are backward compatible with no breaking changes
+
 # 6.6.0
 
 ### Bug Fixes
