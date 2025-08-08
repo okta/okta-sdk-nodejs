@@ -11,6 +11,7 @@
  */
 
 
+'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -22,21 +23,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { NumberFactorChallengeEmbeddedLinksChallenge } from './../models/NumberFactorChallengeEmbeddedLinksChallenge';
-export declare class UserFactorVerifyResponseEmbedded {
-  'challenge'?: NumberFactorChallengeEmbeddedLinksChallenge | null;
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.WellKnownURIsRootEmbeddedAppleAppSiteAssociation = void 0;
+/**
+* Contains the customized well-known URI content and links
+*/
+class WellKnownURIsRootEmbeddedAppleAppSiteAssociation {
+  constructor() {
+  }
+  static getAttributeTypeMap() {
+    return WellKnownURIsRootEmbeddedAppleAppSiteAssociation.attributeTypeMap;
+  }
 }
+exports.WellKnownURIsRootEmbeddedAppleAppSiteAssociation = WellKnownURIsRootEmbeddedAppleAppSiteAssociation;
+WellKnownURIsRootEmbeddedAppleAppSiteAssociation.discriminator = undefined;
+WellKnownURIsRootEmbeddedAppleAppSiteAssociation.attributeTypeMap = [
+  {
+    'name': 'customized',
+    'baseName': 'customized',
+    'type': 'WellKnownURIObjectResponse',
+    'format': ''
+  }
+];

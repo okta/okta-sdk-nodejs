@@ -132,6 +132,12 @@ OpenIdConnectApplicationSettingsClient.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'network',
+    'baseName': 'network',
+    'type': 'OpenIdConnectApplicationNetwork',
+    'format': ''
+  },
+  {
     'name': 'participate_slo',
     'baseName': 'participate_slo',
     'type': 'boolean',

@@ -36,6 +36,12 @@ exports.SamlApplicationSettings = SamlApplicationSettings;
 SamlApplicationSettings.discriminator = undefined;
 SamlApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'SamlApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

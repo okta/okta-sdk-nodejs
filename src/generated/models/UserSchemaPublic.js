@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserSchemaPublic = void 0;
 /**
-* All custom profile properties are defined in a profile subschema with the resolution scope `#custom`.  > **Note:** When you refer to custom profile attributes that differ only by case, name collisions occur. This includes naming custom profile attributes the same as base profile attributes, for example, `firstName` and `FirstName`.
+* All custom profile properties are defined in a profile subschema with the resolution scope `#custom`.  > **Notes:**  > * When you refer to custom profile attributes that differ only by case, name collisions occur. This includes naming custom profile attributes the same as base profile attributes, for example, `firstName` and `FirstName`. > * Certain attributes are reserved and can\'t be used for custom user profiles. See [Review reserved attributes](https://help.okta.com/okta_help.htm?type=oie&id=reserved-attributes).
 */
 class UserSchemaPublic {
   constructor() {

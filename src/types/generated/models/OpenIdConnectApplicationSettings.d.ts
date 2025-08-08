@@ -27,6 +27,10 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { OpenIdConnectApplicationSettingsClient } from './../models/OpenIdConnectApplicationSettingsClient';
 export declare class OpenIdConnectApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: OpenIdConnectApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -56,3 +60,4 @@ export declare class OpenIdConnectApplicationSettings {
     }[];
   constructor();
 }
+export declare type OpenIdConnectApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

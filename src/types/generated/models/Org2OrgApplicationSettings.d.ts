@@ -28,6 +28,10 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { Org2OrgApplicationSettingsApplication } from './../models/Org2OrgApplicationSettingsApplication';
 export declare class Org2OrgApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: Org2OrgApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -58,3 +62,4 @@ export declare class Org2OrgApplicationSettings {
     }[];
   constructor();
 }
+export declare type Org2OrgApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

@@ -14,9 +14,13 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { AllCustomAAGUIDResponseObject } from '../models/AllCustomAAGUIDResponseObject';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
+import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
+import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
+import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
 import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 /**
  * no description
@@ -43,6 +47,13 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      */
   createAuthenticator(authenticator: AuthenticatorBase, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Creates a custom AAGUID for the WebAuthn authenticator
+     * Create a custom AAGUID
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param customAAGUIDCreateRequestObject
+     */
+  createCustomAAGUID(authenticatorId: string, customAAGUIDCreateRequestObject?: CustomAAGUIDCreateRequestObject, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Deactivates an authenticator by `authenticatorId`
      * Deactivate an authenticator
      * @param authenticatorId &#x60;id&#x60; of the authenticator
@@ -55,6 +66,13 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      * @param methodType Type of authenticator method
      */
   deactivateAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes a custom AAGUID  You can only delete custom AAGUIDs that an admin has created.
+     * Delete a custom AAGUID
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param aaguid Unique ID of a custom AAGUID
+     */
+  deleteCustomAAGUID(authenticatorId: string, aaguid: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves an authenticator from your Okta organization by `authenticatorId`
      * Retrieve an authenticator
@@ -69,11 +87,24 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      */
   getAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Retrieves a custom AAGUID
+     * Retrieve a custom AAGUID
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param aaguid Unique ID of a custom AAGUID
+     */
+  getCustomAAGUID(authenticatorId: string, aaguid: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Retrieves the well-known app authenticator configuration. Includes an app authenticator\'s settings, supported methods, and other details.
      * Retrieve the well-known app authenticator configuration
      * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
      */
   getWellKnownAppAuthenticatorConfiguration(oauthClientId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all custom Authenticator Attestation Global Unique Identifiers (AAGUIDs) in the org  Only custom AAGUIDs that an admin has created are returned.
+     * List all custom AAGUIDs
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     */
+  listAllCustomAAGUIDs(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all methods of an authenticator identified by `authenticatorId`
      * List all methods of an authenticator
@@ -100,6 +131,22 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      * @param authenticatorMethodBase
      */
   replaceAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, authenticatorMethodBase?: AuthenticatorMethodBase, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces a custom AAGUID for the specified WebAuthn authenticator
+     * Replace a custom AAGUID
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param aaguid Unique ID of a custom AAGUID
+     * @param customAAGUIDUpdateRequestObject
+     */
+  replaceCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates the properties of a custom AAGUID by the `authenticatorId` and `aaguid` ID
+     * Update a custom AAGUID
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param aaguid Unique ID of a custom AAGUID
+     * @param customAAGUIDUpdateRequestObject
+     */
+  updateCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AuthenticatorApiResponseProcessor {
   /**
@@ -130,6 +177,14 @@ export declare class AuthenticatorApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to createCustomAAGUID
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  createCustomAAGUID(response: ResponseContext): Promise<CustomAAGUIDResponseObject>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deactivateAuthenticator
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -142,6 +197,14 @@ export declare class AuthenticatorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   deactivateAuthenticatorMethod(response: ResponseContext): Promise<AuthenticatorMethodBase>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteCustomAAGUID
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteCustomAAGUID(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -162,10 +225,26 @@ export declare class AuthenticatorApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getCustomAAGUID
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getCustomAAGUID(response: ResponseContext): Promise<CustomAAGUIDResponseObject>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getWellKnownAppAuthenticatorConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
   getWellKnownAppAuthenticatorConfiguration(response: ResponseContext): Promise<Array<WellKnownAppAuthenticatorConfiguration>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listAllCustomAAGUIDs
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listAllCustomAAGUIDs(response: ResponseContext): Promise<AllCustomAAGUIDResponseObject>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -198,4 +277,20 @@ export declare class AuthenticatorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   replaceAuthenticatorMethod(response: ResponseContext): Promise<AuthenticatorMethodBase>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceCustomAAGUID
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceCustomAAGUID(response: ResponseContext): Promise<CustomAAGUIDResponseObject>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateCustomAAGUID
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateCustomAAGUID(response: ResponseContext): Promise<CustomAAGUIDResponseObject>;
 }

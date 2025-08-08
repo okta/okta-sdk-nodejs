@@ -36,6 +36,12 @@ exports.SalesforceApplicationSettings = SalesforceApplicationSettings;
 SalesforceApplicationSettings.discriminator = undefined;
 SalesforceApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'SalesforceApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

@@ -146,7 +146,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   createOAuth2ClientSecret(appId: string, oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates an active application
+     * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
      * Deactivate an application
      * @param appId Application ID
      */

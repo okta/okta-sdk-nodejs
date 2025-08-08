@@ -23,7 +23,6 @@
  * Do not edit the class manually.
  */
 import { UserFactorLinks } from './../models/UserFactorLinks';
-import { UserFactorVerifyResponseEmbedded } from './../models/UserFactorVerifyResponseEmbedded';
 import { UserFactorVerifyResult } from './../models/UserFactorVerifyResult';
 export declare class UserFactorVerifyResponse {
   /**
@@ -38,7 +37,9 @@ export declare class UserFactorVerifyResponse {
   'profile'?: {
         [key: string]: any;
     };
-  '_embedded'?: UserFactorVerifyResponseEmbedded;
+  '_embedded'?: {
+        [key: string]: any | null;
+    };
   '_links'?: UserFactorLinks;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

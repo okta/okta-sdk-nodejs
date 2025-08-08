@@ -24,6 +24,7 @@ import { UserFactorSecurityQuestionProfile } from '../models/UserFactorSecurityQ
 import { UserFactorSupported } from '../models/UserFactorSupported';
 import { UserFactorVerifyRequest } from '../models/UserFactorVerifyRequest';
 import { UserFactorVerifyResponse } from '../models/UserFactorVerifyResponse';
+import { UserFactorVerifyResponseWaiting } from '../models/UserFactorVerifyResponseWaiting';
 import { UserFactorYubikeyOtpToken } from '../models/UserFactorYubikeyOtpToken';
 /**
  * no description
@@ -248,5 +249,5 @@ export declare class UserFactorApiResponseProcessor {
      * @params response Response returned by the server for a request to verifyFactor
      * @throws ApiException if the response code was not in [200, 299]
      */
-  verifyFactor(response: ResponseContext): Promise<UserFactorVerifyResponse>;
+  verifyFactor(response: ResponseContext): Promise<UserFactorVerifyResponse | UserFactorVerifyResponseWaiting>;
 }

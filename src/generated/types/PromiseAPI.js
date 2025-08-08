@@ -13,27 +13,27 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.PromiseSSFReceiverApi = exports.PromiseRoleTargetApi = exports.PromiseRoleAssignmentApi = exports.PromiseRiskProviderApi = exports.PromiseRiskEventApi = exports.PromiseResourceSetApi = exports.PromiseRealmAssignmentApi = exports.PromiseRealmApi = exports.PromiseRateLimitSettingsApi = exports.PromisePushProviderApi = exports.PromiseProfileMappingApi = exports.PromisePrivilegedResourceApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseOrgCreatorApi = exports.PromiseOktaPersonalSettingsApi = exports.PromiseOktaApplicationSettingsApi = exports.PromiseNetworkZoneApi = exports.PromiseLogStreamApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentitySourceApi = exports.PromiseIdentityProviderApi = exports.PromiseHookKeyApi = exports.PromiseGroupApi = exports.PromiseGovernanceBundleApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseEmailServerApi = exports.PromiseEmailDomainApi = exports.PromiseDisasterRecoveryApi = exports.PromiseDirectoriesIntegrationApi = exports.PromiseDevicePostureCheckApi = exports.PromiseDeviceIntegrationsApi = exports.PromiseDeviceAssuranceApi = exports.PromiseDeviceAccessApi = exports.PromiseDeviceApi = exports.PromiseCustomizationApi = exports.PromiseCustomRoleApi = exports.PromiseCustomDomainApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseAttackProtectionApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseApiServiceIntegrationsApi = exports.PromiseAgentPoolsApi = void 0;
-exports.PromiseYourOinIntegrationsApi = exports.PromiseWebAuthnPreregistrationApi = exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserApi = exports.PromiseUISchemaApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseServiceAccountApi = exports.PromiseSchemaApi = exports.PromiseSSFTransmitterApi = exports.PromiseSSFSecurityEventTokenApi = void 0;
+exports.PromiseRoleAssignmentApi = exports.PromiseRiskProviderApi = exports.PromiseRiskEventApi = exports.PromiseResourceSetApi = exports.PromiseRealmAssignmentApi = exports.PromiseRealmApi = exports.PromiseRateLimitSettingsApi = exports.PromisePushProviderApi = exports.PromiseProfileMappingApi = exports.PromisePrivilegedResourceApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseOrgCreatorApi = exports.PromiseOktaPersonalSettingsApi = exports.PromiseOktaApplicationSettingsApi = exports.PromiseNetworkZoneApi = exports.PromiseLogStreamApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentitySourceApi = exports.PromiseIdentityProviderApi = exports.PromiseHookKeyApi = exports.PromiseGroupPushMappingApi = exports.PromiseGroupApi = exports.PromiseGovernanceBundleApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseEmailServerApi = exports.PromiseEmailDomainApi = exports.PromiseDisasterRecoveryApi = exports.PromiseDirectoriesIntegrationApi = exports.PromiseDevicePostureCheckApi = exports.PromiseDeviceIntegrationsApi = exports.PromiseDeviceAssuranceApi = exports.PromiseDeviceAccessApi = exports.PromiseDeviceApi = exports.PromiseCustomizationApi = exports.PromiseCustomRoleApi = exports.PromiseCustomDomainApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseAttackProtectionApi = exports.PromiseAssociatedDomainCustomizationsApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseApiServiceIntegrationsApi = exports.PromiseAgentPoolsApi = void 0;
+exports.PromiseYourOinIntegrationsApi = exports.PromiseWebAuthnPreregistrationApi = exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserAuthenticatorEnrollmentsApi = exports.PromiseUserApi = exports.PromiseUISchemaApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseServiceAccountApi = exports.PromiseSchemaApi = exports.PromiseSSFTransmitterApi = exports.PromiseSSFSecurityEventTokenApi = exports.PromiseSSFReceiverApi = exports.PromiseRoleTargetApi = void 0;
 const ObservableAPI_1 = require('./ObservableAPI');
 class PromiseAgentPoolsApi {
   constructor(configuration, requestFactory, responseProcessor) {
     this.api = new ObservableAPI_1.ObservableAgentPoolsApi(configuration, requestFactory, responseProcessor);
   }
   /**
-      * Activates scheduled Agent pool update
+      * Activates a scheduled agent pool update
       * Activate an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   activateAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.activateAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Creates an agent pool update
       * Create an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       * @param agentPoolUpdate
       */
   createAgentPoolsUpdate(poolId, agentPoolUpdate, _options) {
@@ -41,30 +41,30 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Deactivates scheduled Agent pool update
+      * Deactivates scheduled agent pool update
       * Deactivate an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   deactivateAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.deactivateAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Deletes Agent pool update
+      * Deletes agent pool update
       * Delete an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   deleteAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.deleteAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Retrieves Agent pool update from updateId
+      * Retrieves an agent pool update by its `updateId`
       * Retrieve an agent pool update by ID
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   getAgentPoolsUpdateInstance(poolId, updateId, _options) {
     const result = this.api.getAgentPoolsUpdateInstance(poolId, updateId, _options);
@@ -73,7 +73,7 @@ class PromiseAgentPoolsApi {
   /**
       * Retrieves the current state of the agent pool update instance settings
       * Retrieve an agent pool update\'s settings
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       */
   getAgentPoolsUpdateSettings(poolId, _options) {
     const result = this.api.getAgentPoolsUpdateSettings(poolId, _options);
@@ -82,7 +82,7 @@ class PromiseAgentPoolsApi {
   /**
       * Lists all agent pools with pagination support
       * List all agent pools
-      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param limitPerPoolType Maximum number of agent pools returned
       * @param poolType Agent type to search for
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       */
@@ -93,58 +93,58 @@ class PromiseAgentPoolsApi {
   /**
       * Lists all agent pool updates
       * List all agent pool updates
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param scheduled Return only scheduled or ad-hoc updates. If this parameter isn\&#39;t provided, Okta returns the entire list of updates.
       */
   listAgentPoolsUpdates(poolId, scheduled, _options) {
     const result = this.api.listAgentPoolsUpdates(poolId, scheduled, _options);
     return result.toPromise();
   }
   /**
-      * Pauses running or queued Agent pool update
+      * Pauses a running or queued agent pool update
       * Pause an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   pauseAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.pauseAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Resumes running or queued Agent pool update
+      * Resumes a running or queued agent pool update
       * Resume an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   resumeAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.resumeAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Retries Agent pool update
+      * Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
       * Retry an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   retryAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.retryAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Stops Agent pool update
+      * Stops an agent pool update
       * Stop an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   stopAgentPoolsUpdate(poolId, updateId, _options) {
     const result = this.api.stopAgentPoolsUpdate(poolId, updateId, _options);
     return result.toPromise();
   }
   /**
-      * Updates Agent pool update and return latest agent pool update
+      * Updates an agent pool update instance and returns the latest agent pool update
       * Update an agent pool update by ID
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       * @param agentPoolUpdate
       */
   updateAgentPoolsUpdate(poolId, updateId, agentPoolUpdate, _options) {
@@ -152,9 +152,9 @@ class PromiseAgentPoolsApi {
     return result.toPromise();
   }
   /**
-      * Updates an agent pool update settings
+      * Updates an agent pool update instance settings
       * Update an agent pool update settings
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       * @param agentPoolUpdateSetting
       */
   updateAgentPoolsUpdateSettings(poolId, agentPoolUpdateSetting, _options) {
@@ -452,7 +452,7 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Deactivates an active application
+      * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
       * Deactivate an application
       * @param appId Application ID
       */
@@ -1051,9 +1051,82 @@ class PromiseApplicationApi {
 }
 exports.PromiseApplicationApi = PromiseApplicationApi;
 const ObservableAPI_5 = require('./ObservableAPI');
+class PromiseAssociatedDomainCustomizationsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_5.ObservableAssociatedDomainCustomizationsApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Retrieves the content from each of the well-known URIs for a specified brand
+      * Retrieve all the well-known URIs
+      * @param brandId The ID of the brand
+      * @param expand Specifies additional metadata to include in the response
+      */
+  getAllWellKnownURIs(brandId, expand, _options) {
+    const result = this.api.getAllWellKnownURIs(brandId, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the content of the `apple-app-site-assocation` well-known URI  > **Note:**  When serving this URI, Okta adds `authsrv` content to provide a seamless experience for Okta Verify. You can\'t modify the content in the `authsrv` object.
+      * Retrieve the customized apple-app-site-association URI content
+      */
+  getAppleAppSiteAssociationWellKnownURI(_options) {
+    const result = this.api.getAppleAppSiteAssociationWellKnownURI(_options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the content of the `assetlinks.json` well-known URI
+      * Retrieve the customized assetlinks.json URI content
+      */
+  getAssetLinksWellKnownURI(_options) {
+    const result = this.api.getAssetLinksWellKnownURI(_options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the customized content of a well-known URI for a specific brand and well-known URI path
+      * Retrieve the customized content of the specified well-known URI
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      */
+  getBrandWellKnownURI(brandId, uriPath, _options) {
+    const result = this.api.getBrandWellKnownURI(brandId, uriPath, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the well-known URI of a specific brand and well-known URI path
+      * Retrieve the well-known URI of a specific brand
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      * @param expand Specifies additional metadata to include in the response
+      */
+  getRootBrandWellKnownURI(brandId, uriPath, expand, _options) {
+    const result = this.api.getRootBrandWellKnownURI(brandId, uriPath, expand, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the content of the `webauthn` well-known URI
+      * Retrieve the customized webauthn URI content
+      */
+  getWebAuthnWellKnownURI(_options) {
+    const result = this.api.getWebAuthnWellKnownURI(_options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the content of a customized well-known URI that you specify.  There are endpoint-specific format requirements when you update the content of a customized well-known URI. See [Customize associated domains](https://developer.okta.com/docs/guides/custom-well-known-uri/main/).
+      * Replace the customized well-known URI of the specific path
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      * @param wellKnownURIRequest
+      */
+  replaceBrandWellKnownURI(brandId, uriPath, wellKnownURIRequest, _options) {
+    const result = this.api.replaceBrandWellKnownURI(brandId, uriPath, wellKnownURIRequest, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseAssociatedDomainCustomizationsApi = PromiseAssociatedDomainCustomizationsApi;
+const ObservableAPI_6 = require('./ObservableAPI');
 class PromiseAttackProtectionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_5.ObservableAttackProtectionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_6.ObservableAttackProtectionApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the Authenticator Settings for an org
@@ -1091,10 +1164,10 @@ class PromiseAttackProtectionApi {
   }
 }
 exports.PromiseAttackProtectionApi = PromiseAttackProtectionApi;
-const ObservableAPI_6 = require('./ObservableAPI');
+const ObservableAPI_7 = require('./ObservableAPI');
 class PromiseAuthenticatorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_6.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_7.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates an authenticator by `authenticatorId`
@@ -1126,6 +1199,16 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
+      * Creates a custom AAGUID for the WebAuthn authenticator
+      * Create a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param customAAGUIDCreateRequestObject
+      */
+  createCustomAAGUID(authenticatorId, customAAGUIDCreateRequestObject, _options) {
+    const result = this.api.createCustomAAGUID(authenticatorId, customAAGUIDCreateRequestObject, _options);
+    return result.toPromise();
+  }
+  /**
       * Deactivates an authenticator by `authenticatorId`
       * Deactivate an authenticator
       * @param authenticatorId &#x60;id&#x60; of the authenticator
@@ -1142,6 +1225,16 @@ class PromiseAuthenticatorApi {
       */
   deactivateAuthenticatorMethod(authenticatorId, methodType, _options) {
     const result = this.api.deactivateAuthenticatorMethod(authenticatorId, methodType, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a custom AAGUID  You can only delete custom AAGUIDs that an admin has created.
+      * Delete a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      */
+  deleteCustomAAGUID(authenticatorId, aaguid, _options) {
+    const result = this.api.deleteCustomAAGUID(authenticatorId, aaguid, _options);
     return result.toPromise();
   }
   /**
@@ -1164,12 +1257,31 @@ class PromiseAuthenticatorApi {
     return result.toPromise();
   }
   /**
+      * Retrieves a custom AAGUID
+      * Retrieve a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      */
+  getCustomAAGUID(authenticatorId, aaguid, _options) {
+    const result = this.api.getCustomAAGUID(authenticatorId, aaguid, _options);
+    return result.toPromise();
+  }
+  /**
       * Retrieves the well-known app authenticator configuration. Includes an app authenticator\'s settings, supported methods, and other details.
       * Retrieve the well-known app authenticator configuration
       * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
       */
   getWellKnownAppAuthenticatorConfiguration(oauthClientId, _options) {
     const result = this.api.getWellKnownAppAuthenticatorConfiguration(oauthClientId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all custom Authenticator Attestation Global Unique Identifiers (AAGUIDs) in the org  Only custom AAGUIDs that an admin has created are returned.
+      * List all custom AAGUIDs
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      */
+  listAllCustomAAGUIDs(authenticatorId, _options) {
+    const result = this.api.listAllCustomAAGUIDs(authenticatorId, _options);
     return result.toPromise();
   }
   /**
@@ -1210,12 +1322,34 @@ class PromiseAuthenticatorApi {
     const result = this.api.replaceAuthenticatorMethod(authenticatorId, methodType, authenticatorMethodBase, _options);
     return result.toPromise();
   }
+  /**
+      * Replaces a custom AAGUID for the specified WebAuthn authenticator
+      * Replace a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      * @param customAAGUIDUpdateRequestObject
+      */
+  replaceCustomAAGUID(authenticatorId, aaguid, customAAGUIDUpdateRequestObject, _options) {
+    const result = this.api.replaceCustomAAGUID(authenticatorId, aaguid, customAAGUIDUpdateRequestObject, _options);
+    return result.toPromise();
+  }
+  /**
+      * Updates the properties of a custom AAGUID by the `authenticatorId` and `aaguid` ID
+      * Update a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      * @param customAAGUIDUpdateRequestObject
+      */
+  updateCustomAAGUID(authenticatorId, aaguid, customAAGUIDUpdateRequestObject, _options) {
+    const result = this.api.updateCustomAAGUID(authenticatorId, aaguid, customAAGUIDUpdateRequestObject, _options);
+    return result.toPromise();
+  }
 }
 exports.PromiseAuthenticatorApi = PromiseAuthenticatorApi;
-const ObservableAPI_7 = require('./ObservableAPI');
+const ObservableAPI_8 = require('./ObservableAPI');
 class PromiseAuthorizationServerApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_7.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_8.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates an authorization server
@@ -1653,10 +1787,10 @@ class PromiseAuthorizationServerApi {
   }
 }
 exports.PromiseAuthorizationServerApi = PromiseAuthorizationServerApi;
-const ObservableAPI_8 = require('./ObservableAPI');
+const ObservableAPI_9 = require('./ObservableAPI');
 class PromiseBehaviorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_8.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_9.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a behavior detection rule
@@ -1723,10 +1857,10 @@ class PromiseBehaviorApi {
   }
 }
 exports.PromiseBehaviorApi = PromiseBehaviorApi;
-const ObservableAPI_9 = require('./ObservableAPI');
+const ObservableAPI_10 = require('./ObservableAPI');
 class PromiseCAPTCHAApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_9.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_10.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new CAPTCHA instance. Currently, an org can only configure a single CAPTCHA instance.
@@ -1810,10 +1944,10 @@ class PromiseCAPTCHAApi {
   }
 }
 exports.PromiseCAPTCHAApi = PromiseCAPTCHAApi;
-const ObservableAPI_10 = require('./ObservableAPI');
+const ObservableAPI_11 = require('./ObservableAPI');
 class PromiseCustomDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_10.ObservableCustomDomainApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_11.ObservableCustomDomainApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates your custom domain
@@ -1881,10 +2015,10 @@ class PromiseCustomDomainApi {
   }
 }
 exports.PromiseCustomDomainApi = PromiseCustomDomainApi;
-const ObservableAPI_11 = require('./ObservableAPI');
+const ObservableAPI_12 = require('./ObservableAPI');
 class PromiseCustomRoleApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_11.ObservableCustomRoleApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_12.ObservableCustomRoleApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a custom role
@@ -1985,10 +2119,10 @@ class PromiseCustomRoleApi {
   }
 }
 exports.PromiseCustomRoleApi = PromiseCustomRoleApi;
-const ObservableAPI_12 = require('./ObservableAPI');
+const ObservableAPI_13 = require('./ObservableAPI');
 class PromiseCustomizationApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_12.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_13.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Removes emails from an email service bounce list.  The emails submitted in this operation are removed from the bounce list by an asynchronous job. Any email address that passes validation is accepted for the removal process, even if there are other email addresses in the request that failed validation.  > **Note:** If there are validation errors for all email addresses, a `200 OK` HTTP status is still returned.
@@ -2441,7 +2575,7 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization. 3. The email template’s default content, translated to the current user\'s language.
+      * Sends a test email to the current user\'s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization 3. The email template\'s default content, translated to the current user\'s language  > **Note:** Super admins can view customized email templates with the **Send a test email** request. However, when custom email templates are sent to super admins as part of actual email notification flows, the customizations aren\'t applied. Instead, the default email template is used. This only applies to super admins.
       * Send a test email
       * @param brandId The ID of the brand
       * @param templateName The name of the email template
@@ -2486,10 +2620,10 @@ class PromiseCustomizationApi {
   }
 }
 exports.PromiseCustomizationApi = PromiseCustomizationApi;
-const ObservableAPI_13 = require('./ObservableAPI');
+const ObservableAPI_14 = require('./ObservableAPI');
 class PromiseDeviceApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_13.ObservableDeviceApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_14.ObservableDeviceApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a device by setting its status to `ACTIVE` by `deviceId`. Activated devices are used to create and delete device user links.
@@ -2568,10 +2702,10 @@ class PromiseDeviceApi {
   }
 }
 exports.PromiseDeviceApi = PromiseDeviceApi;
-const ObservableAPI_14 = require('./ObservableAPI');
+const ObservableAPI_15 = require('./ObservableAPI');
 class PromiseDeviceAccessApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_14.ObservableDeviceAccessApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_15.ObservableDeviceAccessApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the status of the Desktop MFA Enforce Number Matching Challenge push notifications feature. That is, whether or not the feature is enabled for your org.
@@ -2609,10 +2743,10 @@ class PromiseDeviceAccessApi {
   }
 }
 exports.PromiseDeviceAccessApi = PromiseDeviceAccessApi;
-const ObservableAPI_15 = require('./ObservableAPI');
+const ObservableAPI_16 = require('./ObservableAPI');
 class PromiseDeviceAssuranceApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_15.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_16.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new device assurance policy
@@ -2661,10 +2795,10 @@ class PromiseDeviceAssuranceApi {
   }
 }
 exports.PromiseDeviceAssuranceApi = PromiseDeviceAssuranceApi;
-const ObservableAPI_16 = require('./ObservableAPI');
+const ObservableAPI_17 = require('./ObservableAPI');
 class PromiseDeviceIntegrationsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_16.ObservableDeviceIntegrationsApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_17.ObservableDeviceIntegrationsApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a device integration and populates the related configurations by `deviceIntegrationId`
@@ -2703,10 +2837,10 @@ class PromiseDeviceIntegrationsApi {
   }
 }
 exports.PromiseDeviceIntegrationsApi = PromiseDeviceIntegrationsApi;
-const ObservableAPI_17 = require('./ObservableAPI');
+const ObservableAPI_18 = require('./ObservableAPI');
 class PromiseDevicePostureCheckApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_17.ObservableDevicePostureCheckApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_18.ObservableDevicePostureCheckApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a device posture check
@@ -2763,10 +2897,10 @@ class PromiseDevicePostureCheckApi {
   }
 }
 exports.PromiseDevicePostureCheckApi = PromiseDevicePostureCheckApi;
-const ObservableAPI_18 = require('./ObservableAPI');
+const ObservableAPI_19 = require('./ObservableAPI');
 class PromiseDirectoriesIntegrationApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_18.ObservableDirectoriesIntegrationApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_19.ObservableDirectoriesIntegrationApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
@@ -2780,10 +2914,10 @@ class PromiseDirectoriesIntegrationApi {
   }
 }
 exports.PromiseDirectoriesIntegrationApi = PromiseDirectoriesIntegrationApi;
-const ObservableAPI_19 = require('./ObservableAPI');
+const ObservableAPI_20 = require('./ObservableAPI');
 class PromiseDisasterRecoveryApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_19.ObservableDisasterRecoveryApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_20.ObservableDisasterRecoveryApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the failover or failback status for all the domains for your org
@@ -2822,10 +2956,10 @@ class PromiseDisasterRecoveryApi {
   }
 }
 exports.PromiseDisasterRecoveryApi = PromiseDisasterRecoveryApi;
-const ObservableAPI_20 = require('./ObservableAPI');
+const ObservableAPI_21 = require('./ObservableAPI');
 class PromiseEmailDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_20.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_21.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an Email Domain in your org
@@ -2888,10 +3022,10 @@ class PromiseEmailDomainApi {
   }
 }
 exports.PromiseEmailDomainApi = PromiseEmailDomainApi;
-const ObservableAPI_21 = require('./ObservableAPI');
+const ObservableAPI_22 = require('./ObservableAPI');
 class PromiseEmailServerApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_21.ObservableEmailServerApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_22.ObservableEmailServerApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a custom email SMTP server configuration for your org
@@ -2950,10 +3084,10 @@ class PromiseEmailServerApi {
   }
 }
 exports.PromiseEmailServerApi = PromiseEmailServerApi;
-const ObservableAPI_22 = require('./ObservableAPI');
+const ObservableAPI_23 = require('./ObservableAPI');
 class PromiseEventHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_22.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_23.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates the event hook that matches the provided `id`
@@ -3029,10 +3163,10 @@ class PromiseEventHookApi {
   }
 }
 exports.PromiseEventHookApi = PromiseEventHookApi;
-const ObservableAPI_23 = require('./ObservableAPI');
+const ObservableAPI_24 = require('./ObservableAPI');
 class PromiseFeatureApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_23.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_24.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves a feature by ID
@@ -3082,10 +3216,10 @@ class PromiseFeatureApi {
   }
 }
 exports.PromiseFeatureApi = PromiseFeatureApi;
-const ObservableAPI_24 = require('./ObservableAPI');
+const ObservableAPI_25 = require('./ObservableAPI');
 class PromiseGovernanceBundleApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_24.ObservableGovernanceBundleApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_25.ObservableGovernanceBundleApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a Governance Bundle for the Admin Console in RAMP
@@ -3183,10 +3317,10 @@ class PromiseGovernanceBundleApi {
   }
 }
 exports.PromiseGovernanceBundleApi = PromiseGovernanceBundleApi;
-const ObservableAPI_25 = require('./ObservableAPI');
+const ObservableAPI_26 = require('./ObservableAPI');
 class PromiseGroupApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_25.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_26.ObservableGroupApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a specific group rule by ID from your org
@@ -3386,10 +3520,73 @@ class PromiseGroupApi {
   }
 }
 exports.PromiseGroupApi = PromiseGroupApi;
-const ObservableAPI_26 = require('./ObservableAPI');
+const ObservableAPI_27 = require('./ObservableAPI');
+class PromiseGroupPushMappingApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_27.ObservableGroupPushMappingApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates or links a group push mapping.  **Note:** Either `targetGroupId` or `targetGroupName` must be provided, but not both. If `targetGroupId` is provided, it links to an existing group. If `targetGroupName` is provided, it creates a new group.
+      * Create a group push mapping
+      * @param appId Application ID
+      * @param body
+      */
+  createGroupPushMapping(appId, body, _options) {
+    const result = this.api.createGroupPushMapping(appId, body, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes a specific group push mapping. The group push mapping must be in an `INACTIVE` state.
+      * Delete a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      * @param deleteTargetGroup If set to &#x60;true&#x60;, the target group is also deleted. If set to &#x60;false&#x60;, the target group isn\&#39;t deleted.
+      */
+  deleteGroupPushMapping(appId, mappingId, deleteTargetGroup, _options) {
+    const result = this.api.deleteGroupPushMapping(appId, mappingId, deleteTargetGroup, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a group push mapping by ID
+      * Retrieve a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      */
+  getGroupPushMapping(appId, mappingId, _options) {
+    const result = this.api.getGroupPushMapping(appId, mappingId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all group push mappings with pagination support
+      * List all group push mappings
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of mappings
+      * @param limit Specifies the number of results returned
+      * @param lastUpdated Filters group push mappings by last updated date. The &#x60;lastUpdated&#x60; parameter supports the following format: &#x60;YYYY-MM-DDTHH:mm:ssZ&#x60;. This filters mappings updated on or after the specified date and time in UTC.  If you don\&#39;t specify a value, all group push mappings are returned.
+      * @param sourceGroupId Filters group push mappings by source group ID. If you don\&#39;t specify a value, all group push mappings are returned.
+      * @param status Filters group push mappings by status. If you don\&#39;t specify a value, all group push mappings are returned.
+      */
+  listGroupPushMappings(appId, after, limit, lastUpdated, sourceGroupId, status, _options) {
+    const result = this.api.listGroupPushMappings(appId, after, limit, lastUpdated, sourceGroupId, status, _options);
+    return result.toPromise();
+  }
+  /**
+      * Updates the status of a group push mapping
+      * Update a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      * @param body
+      */
+  updateGroupPushMapping(appId, mappingId, body, _options) {
+    const result = this.api.updateGroupPushMapping(appId, mappingId, body, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseGroupPushMappingApi = PromiseGroupPushMappingApi;
+const ObservableAPI_28 = require('./ObservableAPI');
 class PromiseHookKeyApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_26.ObservableHookKeyApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_28.ObservableHookKeyApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a key for use with other parts of the application, such as inline hooks  > **Note:**  Use the key name to access this key for inline hook operations.  The total number of keys that you can create in an Okta org is limited to 50.   The response is a [Key object](https://developer.okta.com/docs/reference/api/hook-keys/#key-object) that represents the   key that you create. The `id` property in the response serves as the unique ID for the key, which you can specify when   invoking other CRUD operations. The `keyId` provided in the response is the alias of the public key that you can use to get   details of the public key data in a separate call.  > **Note:** The keyId is the alias of the public key that you can use to retrieve the public key.
@@ -3447,10 +3644,10 @@ class PromiseHookKeyApi {
   }
 }
 exports.PromiseHookKeyApi = PromiseHookKeyApi;
-const ObservableAPI_27 = require('./ObservableAPI');
+const ObservableAPI_29 = require('./ObservableAPI');
 class PromiseIdentityProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_27.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_29.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates an inactive identity provider (IdP)
@@ -3473,7 +3670,7 @@ class PromiseIdentityProviderApi {
     return result.toPromise();
   }
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/) <x-lifecycle class=\"ea\"></x-lifecycle>  * [Incode](https://incode.com/) <x-lifecycle class=\"ea\"></x-lifecycle>
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
       * Create an IdP
       * @param identityProvider IdP settings
       */
@@ -3730,10 +3927,10 @@ class PromiseIdentityProviderApi {
   }
 }
 exports.PromiseIdentityProviderApi = PromiseIdentityProviderApi;
-const ObservableAPI_28 = require('./ObservableAPI');
+const ObservableAPI_30 = require('./ObservableAPI');
 class PromiseIdentitySourceApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_28.ObservableIdentitySourceApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_30.ObservableIdentitySourceApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an identity source session for the given identity source instance
@@ -3805,12 +4002,56 @@ class PromiseIdentitySourceApi {
     const result = this.api.uploadIdentitySourceDataForUpsert(identitySourceId, sessionId, bulkUpsertRequestBody, _options);
     return result.toPromise();
   }
+  /**
+      * Uploads the group memberships that need to be deleted in Okta from the identity source for the given session
+      * Upload the group memberships to be deleted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupMembershipsDeleteRequestBody
+      */
+  uploadIdentitySourceGroupMembershipsForDelete(identitySourceId, sessionId, bulkGroupMembershipsDeleteRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceGroupMembershipsForDelete(identitySourceId, sessionId, bulkGroupMembershipsDeleteRequestBody, _options);
+    return result.toPromise();
+  }
+  /**
+      * Uploads the group memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group memberships to be upserted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupMembershipsUpsertRequestBody
+      */
+  uploadIdentitySourceGroupMembershipsForUpsert(identitySourceId, sessionId, bulkGroupMembershipsUpsertRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceGroupMembershipsForUpsert(identitySourceId, sessionId, bulkGroupMembershipsUpsertRequestBody, _options);
+    return result.toPromise();
+  }
+  /**
+      * Uploads external IDs of groups that need to be deleted in Okta from the identity source for the given session
+      * Upload the group external IDs to be deleted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupDeleteRequestBody
+      */
+  uploadIdentitySourceGroupsDataForDelete(identitySourceId, sessionId, bulkGroupDeleteRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceGroupsDataForDelete(identitySourceId, sessionId, bulkGroupDeleteRequestBody, _options);
+    return result.toPromise();
+  }
+  /**
+      * Uploads the group profiles without memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group profiles without memberships to be upserted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupUpsertRequestBody
+      */
+  uploadIdentitySourceGroupsForUpsert(identitySourceId, sessionId, bulkGroupUpsertRequestBody, _options) {
+    const result = this.api.uploadIdentitySourceGroupsForUpsert(identitySourceId, sessionId, bulkGroupUpsertRequestBody, _options);
+    return result.toPromise();
+  }
 }
 exports.PromiseIdentitySourceApi = PromiseIdentitySourceApi;
-const ObservableAPI_29 = require('./ObservableAPI');
+const ObservableAPI_31 = require('./ObservableAPI');
 class PromiseInlineHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_29.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_31.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates the inline hook by `inlineHookId`
@@ -3898,10 +4139,10 @@ class PromiseInlineHookApi {
   }
 }
 exports.PromiseInlineHookApi = PromiseInlineHookApi;
-const ObservableAPI_30 = require('./ObservableAPI');
+const ObservableAPI_32 = require('./ObservableAPI');
 class PromiseLinkedObjectApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_30.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_32.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a Linked Object definition
@@ -3940,10 +4181,10 @@ class PromiseLinkedObjectApi {
   }
 }
 exports.PromiseLinkedObjectApi = PromiseLinkedObjectApi;
-const ObservableAPI_31 = require('./ObservableAPI');
+const ObservableAPI_33 = require('./ObservableAPI');
 class PromiseLogStreamApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_31.ObservableLogStreamApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_33.ObservableLogStreamApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a log stream by `logStreamId`
@@ -4013,10 +4254,10 @@ class PromiseLogStreamApi {
   }
 }
 exports.PromiseLogStreamApi = PromiseLogStreamApi;
-const ObservableAPI_32 = require('./ObservableAPI');
+const ObservableAPI_34 = require('./ObservableAPI');
 class PromiseNetworkZoneApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_32.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_34.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a Network Zone by `zoneId`
@@ -4086,10 +4327,10 @@ class PromiseNetworkZoneApi {
   }
 }
 exports.PromiseNetworkZoneApi = PromiseNetworkZoneApi;
-const ObservableAPI_33 = require('./ObservableAPI');
+const ObservableAPI_35 = require('./ObservableAPI');
 class PromiseOktaApplicationSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_33.ObservableOktaApplicationSettingsApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_35.ObservableOktaApplicationSettingsApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the settings for an Okta app (also known as an Okta first-party app)
@@ -4112,10 +4353,10 @@ class PromiseOktaApplicationSettingsApi {
   }
 }
 exports.PromiseOktaApplicationSettingsApi = PromiseOktaApplicationSettingsApi;
-const ObservableAPI_34 = require('./ObservableAPI');
+const ObservableAPI_36 = require('./ObservableAPI');
 class PromiseOktaPersonalSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_34.ObservableOktaPersonalSettingsApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_36.ObservableOktaPersonalSettingsApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Lists all blocked email domains which are excluded from app migration
@@ -4145,10 +4386,10 @@ class PromiseOktaPersonalSettingsApi {
   }
 }
 exports.PromiseOktaPersonalSettingsApi = PromiseOktaPersonalSettingsApi;
-const ObservableAPI_35 = require('./ObservableAPI');
+const ObservableAPI_37 = require('./ObservableAPI');
 class PromiseOrgCreatorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_35.ObservableOrgCreatorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_37.ObservableOrgCreatorApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an org (child org) that has the same features as the current requesting org (parent org). A child org inherits any new features added to the parent org, but new features added to the child org aren\'t propagated back to the parent org. > **Notes:** > * Some features associated with products, such as Atspoke, Workflows, and Okta Identity Governance, aren\'t propagated to the child org. > * Wait at least 30 seconds after a 201-Created response before you make API requests to the new child org. > * For rate limits, see [Org creation rate limits](https://developer.okta.com/docs/reference/rl-additional-limits/#org-creation-rate-limits).
@@ -4161,10 +4402,10 @@ class PromiseOrgCreatorApi {
   }
 }
 exports.PromiseOrgCreatorApi = PromiseOrgCreatorApi;
-const ObservableAPI_36 = require('./ObservableAPI');
+const ObservableAPI_38 = require('./ObservableAPI');
 class PromiseOrgSettingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_36.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_38.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Assigns the [Super Admin role](https://help.okta.com/okta_help.htm?type=oie&id=ext_superadmin) as the default role for new public client apps
@@ -4413,10 +4654,10 @@ class PromiseOrgSettingApi {
   }
 }
 exports.PromiseOrgSettingApi = PromiseOrgSettingApi;
-const ObservableAPI_37 = require('./ObservableAPI');
+const ObservableAPI_39 = require('./ObservableAPI');
 class PromisePolicyApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_37.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_39.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a policy
@@ -4633,10 +4874,10 @@ class PromisePolicyApi {
   }
 }
 exports.PromisePolicyApi = PromisePolicyApi;
-const ObservableAPI_38 = require('./ObservableAPI');
+const ObservableAPI_40 = require('./ObservableAPI');
 class PromisePrincipalRateLimitApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_38.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_40.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new principal rate limit entity. Okta only allows one principal rate limit entity per org and principal.
@@ -4679,10 +4920,10 @@ class PromisePrincipalRateLimitApi {
   }
 }
 exports.PromisePrincipalRateLimitApi = PromisePrincipalRateLimitApi;
-const ObservableAPI_39 = require('./ObservableAPI');
+const ObservableAPI_41 = require('./ObservableAPI');
 class PromisePrivilegedResourceApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_39.ObservablePrivilegedResourceApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_41.ObservablePrivilegedResourceApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Claims a specified privileged resource for management. This also marks the `status` as `ACTIVE`.
@@ -4775,10 +5016,10 @@ class PromisePrivilegedResourceApi {
   }
 }
 exports.PromisePrivilegedResourceApi = PromisePrivilegedResourceApi;
-const ObservableAPI_40 = require('./ObservableAPI');
+const ObservableAPI_42 = require('./ObservableAPI');
 class PromiseProfileMappingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_40.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_42.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves a single profile mapping referenced by its ID
@@ -4813,10 +5054,10 @@ class PromiseProfileMappingApi {
   }
 }
 exports.PromiseProfileMappingApi = PromiseProfileMappingApi;
-const ObservableAPI_41 = require('./ObservableAPI');
+const ObservableAPI_43 = require('./ObservableAPI');
 class PromisePushProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_41.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_43.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new push provider. Each Push Provider must have a unique `name`.
@@ -4866,10 +5107,10 @@ class PromisePushProviderApi {
   }
 }
 exports.PromisePushProviderApi = PromisePushProviderApi;
-const ObservableAPI_42 = require('./ObservableAPI');
+const ObservableAPI_44 = require('./ObservableAPI');
 class PromiseRateLimitSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_42.ObservableRateLimitSettingsApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_44.ObservableRateLimitSettingsApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the currently configured Rate Limit Admin Notification Settings
@@ -4924,10 +5165,10 @@ class PromiseRateLimitSettingsApi {
   }
 }
 exports.PromiseRateLimitSettingsApi = PromiseRateLimitSettingsApi;
-const ObservableAPI_43 = require('./ObservableAPI');
+const ObservableAPI_45 = require('./ObservableAPI');
 class PromiseRealmApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_43.ObservableRealmApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_45.ObservableRealmApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new realm
@@ -4981,10 +5222,10 @@ class PromiseRealmApi {
   }
 }
 exports.PromiseRealmApi = PromiseRealmApi;
-const ObservableAPI_44 = require('./ObservableAPI');
+const ObservableAPI_46 = require('./ObservableAPI');
 class PromiseRealmAssignmentApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_44.ObservableRealmAssignmentApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_46.ObservableRealmAssignmentApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a realm assignment
@@ -5072,10 +5313,10 @@ class PromiseRealmAssignmentApi {
   }
 }
 exports.PromiseRealmAssignmentApi = PromiseRealmAssignmentApi;
-const ObservableAPI_45 = require('./ObservableAPI');
+const ObservableAPI_47 = require('./ObservableAPI');
 class PromiseResourceSetApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_45.ObservableResourceSetApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_47.ObservableResourceSetApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Adds more members to a role resource set binding
@@ -5269,10 +5510,10 @@ class PromiseResourceSetApi {
   }
 }
 exports.PromiseResourceSetApi = PromiseResourceSetApi;
-const ObservableAPI_46 = require('./ObservableAPI');
+const ObservableAPI_48 = require('./ObservableAPI');
 class PromiseRiskEventApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_46.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_48.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
@@ -5285,10 +5526,10 @@ class PromiseRiskEventApi {
   }
 }
 exports.PromiseRiskEventApi = PromiseRiskEventApi;
-const ObservableAPI_47 = require('./ObservableAPI');
+const ObservableAPI_49 = require('./ObservableAPI');
 class PromiseRiskProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_47.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_49.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a risk provider object. You can create a maximum of three risk provider objects.
@@ -5337,10 +5578,10 @@ class PromiseRiskProviderApi {
   }
 }
 exports.PromiseRiskProviderApi = PromiseRiskProviderApi;
-const ObservableAPI_48 = require('./ObservableAPI');
+const ObservableAPI_50 = require('./ObservableAPI');
 class PromiseRoleAssignmentApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_48.ObservableRoleAssignmentApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_50.ObservableRoleAssignmentApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
@@ -5507,10 +5748,10 @@ class PromiseRoleAssignmentApi {
   }
 }
 exports.PromiseRoleAssignmentApi = PromiseRoleAssignmentApi;
-const ObservableAPI_49 = require('./ObservableAPI');
+const ObservableAPI_51 = require('./ObservableAPI');
 class PromiseRoleTargetApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_49.ObservableRoleTargetApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_51.ObservableRoleTargetApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Assigns all apps as target to an `APP_ADMIN` role
@@ -5813,10 +6054,10 @@ class PromiseRoleTargetApi {
   }
 }
 exports.PromiseRoleTargetApi = PromiseRoleTargetApi;
-const ObservableAPI_50 = require('./ObservableAPI');
+const ObservableAPI_52 = require('./ObservableAPI');
 class PromiseSSFReceiverApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_50.ObservableSSFReceiverApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_52.ObservableSSFReceiverApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a Security Events Provider instance by setting its status to `ACTIVE`. This operation resumes the flow of events from the Security Events Provider to Okta.
@@ -5883,10 +6124,10 @@ class PromiseSSFReceiverApi {
   }
 }
 exports.PromiseSSFReceiverApi = PromiseSSFReceiverApi;
-const ObservableAPI_51 = require('./ObservableAPI');
+const ObservableAPI_53 = require('./ObservableAPI');
 class PromiseSSFSecurityEventTokenApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_51.ObservableSSFSecurityEventTokenApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_53.ObservableSSFSecurityEventTokenApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Publishes a Security Event Token (SET) sent by a Security Events Provider. After the token is verified, Okta ingests the event and performs any appropriate action.
@@ -5899,10 +6140,10 @@ class PromiseSSFSecurityEventTokenApi {
   }
 }
 exports.PromiseSSFSecurityEventTokenApi = PromiseSSFSecurityEventTokenApi;
-const ObservableAPI_52 = require('./ObservableAPI');
+const ObservableAPI_54 = require('./ObservableAPI');
 class PromiseSSFTransmitterApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_52.ObservableSSFTransmitterApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_54.ObservableSSFTransmitterApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an SSF Stream for an event receiver to start receiving security events in the form of Security Event Tokens (SETs) from Okta.  An SSF Stream is associated with the Client ID of the OAuth 2.0 access token used to create the stream. The Client ID is provided by Okta for an [OAuth 2.0 app integration](https://help.okta.com/okta_help.htm?id=ext_Apps_App_Integration_Wizard-oidc). One SSF Stream is allowed for each Client ID, hence, one SSF Stream is allowed for each app integration in Okta.  A maximum of 10 SSF Stream configurations can be created for one org.
@@ -5977,10 +6218,10 @@ class PromiseSSFTransmitterApi {
   }
 }
 exports.PromiseSSFTransmitterApi = PromiseSSFTransmitterApi;
-const ObservableAPI_53 = require('./ObservableAPI');
+const ObservableAPI_55 = require('./ObservableAPI');
 class PromiseSchemaApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_53.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_55.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the default schema for an app user.  The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to apps. All users assigned to a given app use the same app user schema. Therefore, unlike the user schema operations, the app user schema operations all specify `default` and don\'t accept a schema ID.
@@ -6056,10 +6297,10 @@ class PromiseSchemaApi {
   }
 }
 exports.PromiseSchemaApi = PromiseSchemaApi;
-const ObservableAPI_54 = require('./ObservableAPI');
+const ObservableAPI_56 = require('./ObservableAPI');
 class PromiseServiceAccountApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_54.ObservableServiceAccountApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_56.ObservableServiceAccountApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new app service account for managing an app account
@@ -6159,10 +6400,10 @@ class PromiseServiceAccountApi {
   }
 }
 exports.PromiseServiceAccountApi = PromiseServiceAccountApi;
-const ObservableAPI_55 = require('./ObservableAPI');
+const ObservableAPI_57 = require('./ObservableAPI');
 class PromiseSessionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_55.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_57.ObservableSessionApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
@@ -6229,10 +6470,10 @@ class PromiseSessionApi {
   }
 }
 exports.PromiseSessionApi = PromiseSessionApi;
-const ObservableAPI_56 = require('./ObservableAPI');
+const ObservableAPI_58 = require('./ObservableAPI');
 class PromiseSubscriptionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_56.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_58.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Lists all subscriptions available to a specified Role
@@ -6314,10 +6555,10 @@ class PromiseSubscriptionApi {
   }
 }
 exports.PromiseSubscriptionApi = PromiseSubscriptionApi;
-const ObservableAPI_57 = require('./ObservableAPI');
+const ObservableAPI_59 = require('./ObservableAPI');
 class PromiseSystemLogApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_57.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_59.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Lists all System Log events  See [System Log query](https://developer.okta.com/docs/reference/system-log-query/) for further details and examples, and [System Log filters and search](https://help.okta.com/okta_help.htm?type=oie&id=csh-syslog-filters) for common use cases.  By default, 100 System Log events are returned. If there are more events, see the [header link](https://developer.okta.com/docs/api/#link-header) for the `next` link, or increase the number of returned objects using the `limit` parameter.  >**Note:** The value of the `clientSecret` property in the System Log is secured by a hashing function, and isn\'t the value used during authentication.
@@ -6336,10 +6577,10 @@ class PromiseSystemLogApi {
   }
 }
 exports.PromiseSystemLogApi = PromiseSystemLogApi;
-const ObservableAPI_58 = require('./ObservableAPI');
+const ObservableAPI_60 = require('./ObservableAPI');
 class PromiseTemplateApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_58.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_60.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new custom SMS template
@@ -6399,10 +6640,10 @@ class PromiseTemplateApi {
   }
 }
 exports.PromiseTemplateApi = PromiseTemplateApi;
-const ObservableAPI_59 = require('./ObservableAPI');
+const ObservableAPI_61 = require('./ObservableAPI');
 class PromiseThreatInsightApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_59.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_61.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Retrieves the ThreatInsight configuration for the org
@@ -6423,10 +6664,10 @@ class PromiseThreatInsightApi {
   }
 }
 exports.PromiseThreatInsightApi = PromiseThreatInsightApi;
-const ObservableAPI_60 = require('./ObservableAPI');
+const ObservableAPI_62 = require('./ObservableAPI');
 class PromiseTrustedOriginApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_60.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_62.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a trusted origin. Sets the `status` to `ACTIVE`.
@@ -6497,10 +6738,10 @@ class PromiseTrustedOriginApi {
   }
 }
 exports.PromiseTrustedOriginApi = PromiseTrustedOriginApi;
-const ObservableAPI_61 = require('./ObservableAPI');
+const ObservableAPI_63 = require('./ObservableAPI');
 class PromiseUISchemaApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_61.ObservableUISchemaApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_63.ObservableUISchemaApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an input for an enrollment form
@@ -6569,10 +6810,10 @@ class PromiseUISchemaApi {
   }
 }
 exports.PromiseUISchemaApi = PromiseUISchemaApi;
-const ObservableAPI_62 = require('./ObservableAPI');
+const ObservableAPI_64 = require('./ObservableAPI');
 class PromiseUserApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_62.ObservableUserApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_64.ObservableUserApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a user.  Perform this operation only on users with a `STAGED` or `DEPROVISIONED` status. Activation of a user is an asynchronous operation. * The user has the `transitioningToStatus` property with an `ACTIVE` value during activation. This indicates that the user hasn\'t completed the asynchronous operation. * The user has an `ACTIVE` status when the activation process completes.  Users who don\'t have a password must complete the welcome flow by visiting the activation link to complete the transition to `ACTIVE` status.  > **Note:** If you want to send a branded user activation email, change the subdomain of your request to the custom domain that\'s associated with the brand. > For example, change `subdomain.okta.com` to `custom.domain.one`. See [Multibrand and custom domains](https://developer.okta.com/docs/concepts/brands/#multibrand-and-custom-domains).  > **Note:** If you have optional password enabled, visiting the activation link is optional for users who aren\'t required to enroll a password. > See [Create user with optional password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#create-user-with-optional-password).  > **Legal disclaimer** > After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, > you agreed not to use Okta\'s service/product to spam and/or send unsolicited messages. > Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all > liability associated with, the activation email\'s content. You, and you alone, bear responsibility for the emails sent to any recipients.
@@ -7098,10 +7339,66 @@ class PromiseUserApi {
   }
 }
 exports.PromiseUserApi = PromiseUserApi;
-const ObservableAPI_63 = require('./ObservableAPI');
+const ObservableAPI_65 = require('./ObservableAPI');
+class PromiseUserAuthenticatorEnrollmentsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_65.ObservableUserAuthenticatorEnrollmentsApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates a Phone authenticator enrollment that\'s automatically activated
+      * Create an auto-activated Phone authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param authenticator
+      */
+  createAuthenticatorEnrollment(userId, authenticator, _options) {
+    const result = this.api.createAuthenticatorEnrollment(userId, authenticator, _options);
+    return result.toPromise();
+  }
+  /**
+      * Creates an auto-activated Temporary access code (TAC) authenticator enrollment
+      * Create an auto-activated TAC authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param authenticator
+      */
+  createTacAuthenticatorEnrollment(userId, authenticator, _options) {
+    const result = this.api.createTacAuthenticatorEnrollment(userId, authenticator, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes an existing enrollment for the specified user. The user can enroll the authenticator again.
+      * Delete an authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param enrollmentId Unique identifier of an enrollment
+      */
+  deleteAuthenticatorEnrollment(userId, enrollmentId, _options) {
+    const result = this.api.deleteAuthenticatorEnrollment(userId, enrollmentId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves a user\'s authenticator enrollment by `enrollmentId`
+      * Retrieve an authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param enrollmentId Unique identifier of an enrollment
+      */
+  getAuthenticatorEnrollment(userId, enrollmentId, _options) {
+    const result = this.api.getAuthenticatorEnrollment(userId, enrollmentId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Lists all authenticator enrollments of the specified user
+      * List all authenticator enrollments
+      * @param userId ID of an existing Okta user
+      */
+  listAuthenticatorEnrollments(userId, _options) {
+    const result = this.api.listAuthenticatorEnrollments(userId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseUserAuthenticatorEnrollmentsApi = PromiseUserAuthenticatorEnrollmentsApi;
+const ObservableAPI_66 = require('./ObservableAPI');
 class PromiseUserFactorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_63.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_66.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a factor. Some factors (`call`, `email`, `push`, `sms`, `token:software:totp`, `u2f`, and `webauthn`) require activation to complete the enrollment process.  Okta enforces a rate limit of five activation attempts within five minutes. After a user exceeds the rate limit, Okta returns an error message.  > **Notes:**  > * If the user exceeds their SMS, call, or email factor activation rate limit, then an [OTP resend request](./#tag/UserFactor/operation/resendEnrollFactor) isn\'t allowed for the same factor. > * You can\'t use the Factors API to activate Okta Fastpass (`signed_nonce`) for a user. See [Configure Okta Fastpass](https://help.okta.com/okta_help.htm?type=oie&id=ext-fp-configure).
@@ -7258,10 +7555,10 @@ class PromiseUserFactorApi {
   }
 }
 exports.PromiseUserFactorApi = PromiseUserFactorApi;
-const ObservableAPI_64 = require('./ObservableAPI');
+const ObservableAPI_67 = require('./ObservableAPI');
 class PromiseUserTypeApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_64.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_67.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new user type. Okta automatically creates a `default` user type for your org. You may add up to nine additional user types. > **Note**: New user types are based on the current default schema template. Modifications to this schema do not automatically propagate to previously created user types.
@@ -7320,10 +7617,10 @@ class PromiseUserTypeApi {
   }
 }
 exports.PromiseUserTypeApi = PromiseUserTypeApi;
-const ObservableAPI_65 = require('./ObservableAPI');
+const ObservableAPI_68 = require('./ObservableAPI');
 class PromiseWebAuthnPreregistrationApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_65.ObservableWebAuthnPreregistrationApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_68.ObservableWebAuthnPreregistrationApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a preregistered WebAuthn factor. As part of this operation, Okta first decrypts and verifies the factor PIN and enrollment data sent by the fulfillment provider.
@@ -7392,10 +7689,10 @@ class PromiseWebAuthnPreregistrationApi {
   }
 }
 exports.PromiseWebAuthnPreregistrationApi = PromiseWebAuthnPreregistrationApi;
-const ObservableAPI_66 = require('./ObservableAPI');
+const ObservableAPI_69 = require('./ObservableAPI');
 class PromiseYourOinIntegrationsApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_66.ObservableYourOinIntegrationsApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_69.ObservableYourOinIntegrationsApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates an OIN Integration submission for verification and publication

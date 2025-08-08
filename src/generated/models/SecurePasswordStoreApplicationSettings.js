@@ -36,6 +36,12 @@ exports.SecurePasswordStoreApplicationSettings = SecurePasswordStoreApplicationS
 SecurePasswordStoreApplicationSettings.discriminator = undefined;
 SecurePasswordStoreApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'SecurePasswordStoreApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

@@ -36,6 +36,12 @@ exports.ZscalerbyzApplicationSettings = ZscalerbyzApplicationSettings;
 ZscalerbyzApplicationSettings.discriminator = undefined;
 ZscalerbyzApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'ZscalerbyzApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

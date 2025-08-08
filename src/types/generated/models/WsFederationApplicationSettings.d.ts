@@ -27,6 +27,10 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { WsFederationApplicationSettingsApplication } from './../models/WsFederationApplicationSettingsApplication';
 export declare class WsFederationApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: WsFederationApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -56,3 +60,4 @@ export declare class WsFederationApplicationSettings {
     }[];
   constructor();
 }
+export declare type WsFederationApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

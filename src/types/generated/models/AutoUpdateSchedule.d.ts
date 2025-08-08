@@ -23,22 +23,28 @@
  * Do not edit the class manually.
  */
 /**
-* The schedule of auto-update configured by admin.
+* The schedule of auto-update configured by the admin
 */
 export declare class AutoUpdateSchedule {
+  /**
+    * The schedule of the update in cron format. The cron settings are limited to only the day of the month or the nth-day-of-the-week configurations. For example, `0 8 ? * 6#3` indicates every third Saturday at 8:00 AM.
+    */
   'cron'?: string;
   /**
-    * delay in days
+    * Delay in days
     */
   'delay'?: number;
   /**
-    * duration in minutes
+    * Duration in minutes
     */
   'duration'?: number;
   /**
-    * last time when the updated finished (success or failed, exclude cancelled), null if job haven\'t finished once yet.
+    * Timestamp when the update finished (only for a successful or failed update, not for a cancelled update). Null is returned if the job hasn\'t finished once yet.
     */
   'lastUpdated'?: Date;
+  /**
+    * Timezone of where the scheduled job takes place
+    */
   'timezone'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

@@ -22,34 +22,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { FulfillmentDataOrderDetails } from './../models/FulfillmentDataOrderDetails';
 /**
-* Fulfillment provider details
+* List of fulfillment order details
 */
-export declare class FulfillmentData {
-  /**
-    * ID for the set of custom configurations of the requested factor
-    */
-  'customizationId'?: string;
-  /**
-    * ID for the specific inventory bucket of the requested factor
-    */
-  'inventoryProductId'?: string;
-  /**
-    * ID for the make and model of the requested factor
-    */
-  'productId'?: string;
+export declare class FulfillmentData extends Array<FulfillmentDataOrderDetails> {
   static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
   constructor();
 }

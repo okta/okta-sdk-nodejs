@@ -24,6 +24,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectSerializer = void 0;
+__exportStar(require("./AAGUIDAuthenticatorCharacteristics"), exports);
 __exportStar(require("./AAGUIDGroupObject"), exports);
 __exportStar(require("./APIServiceIntegrationInstance"), exports);
 __exportStar(require("./APIServiceIntegrationInstanceSecret"), exports);
@@ -44,6 +45,8 @@ __exportStar(require("./AccessPolicyRuleConditions"), exports);
 __exportStar(require("./AccessPolicyRuleCustomCondition"), exports);
 __exportStar(require("./AcsEndpoint"), exports);
 __exportStar(require("./Actions"), exports);
+__exportStar(require("./ActiveDirectoryGroupScope"), exports);
+__exportStar(require("./ActiveDirectoryGroupType"), exports);
 __exportStar(require("./AdminConsoleSettings"), exports);
 __exportStar(require("./Agent"), exports);
 __exportStar(require("./AgentAction"), exports);
@@ -53,6 +56,7 @@ __exportStar(require("./AgentPoolUpdateSetting"), exports);
 __exportStar(require("./AgentType"), exports);
 __exportStar(require("./AgentUpdateInstanceStatus"), exports);
 __exportStar(require("./AgentUpdateJobStatus"), exports);
+__exportStar(require("./AllCustomAAGUIDResponseObject"), exports);
 __exportStar(require("./AllowedForEnum"), exports);
 __exportStar(require("./AndroidDeviceTrust"), exports);
 __exportStar(require("./ApiToken"), exports);
@@ -63,6 +67,9 @@ __exportStar(require("./AppAccountContainerLink"), exports);
 __exportStar(require("./AppAndInstanceConditionEvaluatorAppOrInstance"), exports);
 __exportStar(require("./AppAndInstancePolicyRuleCondition"), exports);
 __exportStar(require("./AppAndInstanceType"), exports);
+__exportStar(require("./AppConfig"), exports);
+__exportStar(require("./AppConfigActiveDirectory"), exports);
+__exportStar(require("./AppConfigType"), exports);
 __exportStar(require("./AppConnectionUserProvisionJWKList"), exports);
 __exportStar(require("./AppConnectionUserProvisionJWKResponse"), exports);
 __exportStar(require("./AppCustomHrefObject"), exports);
@@ -130,6 +137,10 @@ __exportStar(require("./AssociatedServerMediated"), exports);
 __exportStar(require("./AssuranceMethod"), exports);
 __exportStar(require("./AssuranceMethodFactorMode"), exports);
 __exportStar(require("./AttackProtectionAuthenticatorSettings"), exports);
+__exportStar(require("./AttestationRootCertificatesRequest"), exports);
+__exportStar(require("./AttestationRootCertificatesRequestInner"), exports);
+__exportStar(require("./AttestationRootCertificatesResponse"), exports);
+__exportStar(require("./AttestationRootCertificatesResponseInner"), exports);
 __exportStar(require("./AuthServerLinks"), exports);
 __exportStar(require("./AuthServerLinksClaims"), exports);
 __exportStar(require("./AuthServerLinksPolicies"), exports);
@@ -144,6 +155,10 @@ __exportStar(require("./AuthenticationProviderType"), exports);
 __exportStar(require("./AuthenticationProviderTypeWritable"), exports);
 __exportStar(require("./AuthenticationProviderWritable"), exports);
 __exportStar(require("./AuthenticatorBase"), exports);
+__exportStar(require("./AuthenticatorEnrollment"), exports);
+__exportStar(require("./AuthenticatorEnrollmentCreateRequest"), exports);
+__exportStar(require("./AuthenticatorEnrollmentCreateRequestTac"), exports);
+__exportStar(require("./AuthenticatorEnrollmentLinks"), exports);
 __exportStar(require("./AuthenticatorEnrollmentPolicy"), exports);
 __exportStar(require("./AuthenticatorEnrollmentPolicyAuthenticatorSettings"), exports);
 __exportStar(require("./AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints"), exports);
@@ -187,6 +202,10 @@ __exportStar(require("./AuthenticatorKeySecurityKey"), exports);
 __exportStar(require("./AuthenticatorKeySecurityQuestion"), exports);
 __exportStar(require("./AuthenticatorKeySmartCard"), exports);
 __exportStar(require("./AuthenticatorKeySymantecVip"), exports);
+__exportStar(require("./AuthenticatorKeyTac"), exports);
+__exportStar(require("./AuthenticatorKeyTacProvider"), exports);
+__exportStar(require("./AuthenticatorKeyTacProviderConfiguration"), exports);
+__exportStar(require("./AuthenticatorKeyTacProviderConfigurationComplexity"), exports);
 __exportStar(require("./AuthenticatorKeyWebauthn"), exports);
 __exportStar(require("./AuthenticatorKeyYubikey"), exports);
 __exportStar(require("./AuthenticatorLinks"), exports);
@@ -200,6 +219,7 @@ __exportStar(require("./AuthenticatorMethodPushSettings"), exports);
 __exportStar(require("./AuthenticatorMethodSignedNonce"), exports);
 __exportStar(require("./AuthenticatorMethodSignedNonceSettings"), exports);
 __exportStar(require("./AuthenticatorMethodSimple"), exports);
+__exportStar(require("./AuthenticatorMethodTac"), exports);
 __exportStar(require("./AuthenticatorMethodTotp"), exports);
 __exportStar(require("./AuthenticatorMethodTotpSettings"), exports);
 __exportStar(require("./AuthenticatorMethodTransactionType"), exports);
@@ -207,6 +227,9 @@ __exportStar(require("./AuthenticatorMethodType"), exports);
 __exportStar(require("./AuthenticatorMethodWebAuthn"), exports);
 __exportStar(require("./AuthenticatorMethodWebAuthnSettings"), exports);
 __exportStar(require("./AuthenticatorMethodWithVerifiableProperties"), exports);
+__exportStar(require("./AuthenticatorProfile"), exports);
+__exportStar(require("./AuthenticatorProfileTacRequest"), exports);
+__exportStar(require("./AuthenticatorProfileTacResponsePost"), exports);
 __exportStar(require("./AuthenticatorSimple"), exports);
 __exportStar(require("./AuthenticatorType"), exports);
 __exportStar(require("./AuthorizationServer"), exports);
@@ -271,6 +294,11 @@ __exportStar(require("./BrandRequest"), exports);
 __exportStar(require("./BrandWithEmbedded"), exports);
 __exportStar(require("./BrowserPluginApplication"), exports);
 __exportStar(require("./BulkDeleteRequestBody"), exports);
+__exportStar(require("./BulkGroupDeleteRequestBody"), exports);
+__exportStar(require("./BulkGroupMembershipsDeleteRequestBody"), exports);
+__exportStar(require("./BulkGroupMembershipsUpsertRequestBody"), exports);
+__exportStar(require("./BulkGroupUpsertRequestBody"), exports);
+__exportStar(require("./BulkGroupUpsertRequestBodyProfilesInner"), exports);
 __exportStar(require("./BulkUpsertRequestBody"), exports);
 __exportStar(require("./BulkUpsertRequestBodyProfilesInner"), exports);
 __exportStar(require("./BundleEntitlement"), exports);
@@ -323,6 +351,7 @@ __exportStar(require("./ConnectionsSigningRotationMode"), exports);
 __exportStar(require("./ContentSecurityPolicySetting"), exports);
 __exportStar(require("./ContextPolicyRuleCondition"), exports);
 __exportStar(require("./CreateBrandRequest"), exports);
+__exportStar(require("./CreateGroupPushMappingRequest"), exports);
 __exportStar(require("./CreateGroupRequest"), exports);
 __exportStar(require("./CreateGroupRuleRequest"), exports);
 __exportStar(require("./CreateIamRoleRequest"), exports);
@@ -343,6 +372,9 @@ __exportStar(require("./CsrMetadataSubject"), exports);
 __exportStar(require("./CsrMetadataSubjectAltNames"), exports);
 __exportStar(require("./CsrPublishHrefHints"), exports);
 __exportStar(require("./CsrSelfHrefHints"), exports);
+__exportStar(require("./CustomAAGUIDCreateRequestObject"), exports);
+__exportStar(require("./CustomAAGUIDResponseObject"), exports);
+__exportStar(require("./CustomAAGUIDUpdateRequestObject"), exports);
 __exportStar(require("./CustomAppUserVerificationEnum"), exports);
 __exportStar(require("./CustomRole"), exports);
 __exportStar(require("./CustomRoleAssignmentSchema"), exports);
@@ -527,6 +559,7 @@ __exportStar(require("./FederatedClaimRequestBody"), exports);
 __exportStar(require("./FipsEnum"), exports);
 __exportStar(require("./ForgotPasswordResponse"), exports);
 __exportStar(require("./FulfillmentData"), exports);
+__exportStar(require("./FulfillmentDataOrderDetails"), exports);
 __exportStar(require("./FulfillmentRequest"), exports);
 __exportStar(require("./GetDRStatus200Response"), exports);
 __exportStar(require("./GetSsfStreams200Response"), exports);
@@ -555,6 +588,10 @@ __exportStar(require("./GroupOwnerOriginType"), exports);
 __exportStar(require("./GroupOwnerType"), exports);
 __exportStar(require("./GroupPolicyRuleCondition"), exports);
 __exportStar(require("./GroupProfile"), exports);
+__exportStar(require("./GroupPushMapping"), exports);
+__exportStar(require("./GroupPushMappingLinks"), exports);
+__exportStar(require("./GroupPushMappingStatus"), exports);
+__exportStar(require("./GroupPushMappingStatusUpsert"), exports);
 __exportStar(require("./GroupRule"), exports);
 __exportStar(require("./GroupRuleAction"), exports);
 __exportStar(require("./GroupRuleConditions"), exports);
@@ -639,6 +676,11 @@ __exportStar(require("./IdentityProviderPolicyRuleCondition"), exports);
 __exportStar(require("./IdentityProviderProperties"), exports);
 __exportStar(require("./IdentityProviderProtocol"), exports);
 __exportStar(require("./IdentityProviderType"), exports);
+__exportStar(require("./IdentitySourceGroupMembershipsDeleteProfile"), exports);
+__exportStar(require("./IdentitySourceGroupMembershipsDeleteProfileInner"), exports);
+__exportStar(require("./IdentitySourceGroupMembershipsUpsertProfile"), exports);
+__exportStar(require("./IdentitySourceGroupMembershipsUpsertProfileInner"), exports);
+__exportStar(require("./IdentitySourceGroupProfileForUpsert"), exports);
 __exportStar(require("./IdentitySourceSession"), exports);
 __exportStar(require("./IdentitySourceSessionStatus"), exports);
 __exportStar(require("./IdentitySourceUserProfileForDelete"), exports);
@@ -724,6 +766,7 @@ __exportStar(require("./LinksAerialConsentGranted"), exports);
 __exportStar(require("./LinksAerialConsentRevoked"), exports);
 __exportStar(require("./LinksAppAndUser"), exports);
 __exportStar(require("./LinksAssignee"), exports);
+__exportStar(require("./LinksAuthenticator"), exports);
 __exportStar(require("./LinksCancel"), exports);
 __exportStar(require("./LinksCustomRoleResponse"), exports);
 __exportStar(require("./LinksDeactivate"), exports);
@@ -902,6 +945,7 @@ __exportStar(require("./OpenIdConnectApplication"), exports);
 __exportStar(require("./OpenIdConnectApplicationConsentMethod"), exports);
 __exportStar(require("./OpenIdConnectApplicationIdpInitiatedLogin"), exports);
 __exportStar(require("./OpenIdConnectApplicationIssuerMode"), exports);
+__exportStar(require("./OpenIdConnectApplicationNetwork"), exports);
 __exportStar(require("./OpenIdConnectApplicationSettings"), exports);
 __exportStar(require("./OpenIdConnectApplicationSettingsClient"), exports);
 __exportStar(require("./OpenIdConnectApplicationSettingsClientKeys"), exports);
@@ -1128,6 +1172,9 @@ __exportStar(require("./ProvisioningGroups"), exports);
 __exportStar(require("./ProvisioningGroupsAction"), exports);
 __exportStar(require("./ProvisioningSuspendedAction"), exports);
 __exportStar(require("./ProvisioningSuspendedCondition"), exports);
+__exportStar(require("./PublicAppleAppSiteWellKnownURI"), exports);
+__exportStar(require("./PublicAssetLinksWellKnownURI"), exports);
+__exportStar(require("./PublicWebauthnSiteWellKnownURI"), exports);
 __exportStar(require("./Push"), exports);
 __exportStar(require("./Push1"), exports);
 __exportStar(require("./PushMethodKeyProtection"), exports);
@@ -1382,6 +1429,7 @@ __exportStar(require("./SupportedMethods"), exports);
 __exportStar(require("./SupportedMethodsSettings"), exports);
 __exportStar(require("./SwaApplicationSettings"), exports);
 __exportStar(require("./SwaApplicationSettingsApplication"), exports);
+__exportStar(require("./TacAuthenticatorEnrollment"), exports);
 __exportStar(require("./TelephonyRequest"), exports);
 __exportStar(require("./TelephonyRequestData"), exports);
 __exportStar(require("./TelephonyRequestDataMessageProfile"), exports);
@@ -1446,6 +1494,7 @@ __exportStar(require("./UpdateDefaultProvisioningConnectionForApplicationRequest
 __exportStar(require("./UpdateDomain"), exports);
 __exportStar(require("./UpdateEmailDomain"), exports);
 __exportStar(require("./UpdateFeatureForApplicationRequest"), exports);
+__exportStar(require("./UpdateGroupPushMappingRequest"), exports);
 __exportStar(require("./UpdateIamRoleRequest"), exports);
 __exportStar(require("./UpdateRealmAssignmentRequest"), exports);
 __exportStar(require("./UpdateRealmRequest"), exports);
@@ -1509,8 +1558,10 @@ __exportStar(require("./UserFactorU2F"), exports);
 __exportStar(require("./UserFactorU2FProfile"), exports);
 __exportStar(require("./UserFactorVerifyRequest"), exports);
 __exportStar(require("./UserFactorVerifyResponse"), exports);
-__exportStar(require("./UserFactorVerifyResponseEmbedded"), exports);
+__exportStar(require("./UserFactorVerifyResponseWaiting"), exports);
+__exportStar(require("./UserFactorVerifyResponseWaitingEmbedded"), exports);
 __exportStar(require("./UserFactorVerifyResult"), exports);
+__exportStar(require("./UserFactorVerifyResultWaiting"), exports);
 __exportStar(require("./UserFactorWeb"), exports);
 __exportStar(require("./UserFactorWebAuthn"), exports);
 __exportStar(require("./UserFactorWebAuthnProfile"), exports);
@@ -1596,6 +1647,15 @@ __exportStar(require("./WellKnownOrgMetadataLinks"), exports);
 __exportStar(require("./WellKnownOrgMetadataSettings"), exports);
 __exportStar(require("./WellKnownSSFMetadata"), exports);
 __exportStar(require("./WellKnownSSFMetadataSpecUrn"), exports);
+__exportStar(require("./WellKnownURIArrayResponse"), exports);
+__exportStar(require("./WellKnownURIArrayResponseLinks"), exports);
+__exportStar(require("./WellKnownURIObjectResponse"), exports);
+__exportStar(require("./WellKnownURIRequest"), exports);
+__exportStar(require("./WellKnownURIsRoot"), exports);
+__exportStar(require("./WellKnownURIsRootEmbedded"), exports);
+__exportStar(require("./WellKnownURIsRootEmbeddedAppleAppSiteAssociation"), exports);
+__exportStar(require("./WellKnownURIsRootEmbeddedAssetlinksJson"), exports);
+__exportStar(require("./WellKnownURIsRootLinks"), exports);
 __exportStar(require("./WidgetGeneration"), exports);
 __exportStar(require("./WsFederationApplication"), exports);
 __exportStar(require("./WsFederationApplicationSettings"), exports);
@@ -1607,6 +1667,7 @@ __exportStar(require("./ZoomUsApplicationSettingsApplication"), exports);
 __exportStar(require("./ZscalerbyzApplication"), exports);
 __exportStar(require("./ZscalerbyzApplicationSettings"), exports);
 __exportStar(require("./ZscalerbyzApplicationSettingsApplication"), exports);
+const AAGUIDAuthenticatorCharacteristics_1 = require("../models/AAGUIDAuthenticatorCharacteristics");
 const AAGUIDGroupObject_1 = require("../models/AAGUIDGroupObject");
 const APIServiceIntegrationInstance_1 = require("../models/APIServiceIntegrationInstance");
 const APIServiceIntegrationInstanceSecret_1 = require("../models/APIServiceIntegrationInstanceSecret");
@@ -1632,6 +1693,7 @@ const AgentAction_1 = require("../models/AgentAction");
 const AgentPool_1 = require("../models/AgentPool");
 const AgentPoolUpdate_1 = require("../models/AgentPoolUpdate");
 const AgentPoolUpdateSetting_1 = require("../models/AgentPoolUpdateSetting");
+const AllCustomAAGUIDResponseObject_1 = require("../models/AllCustomAAGUIDResponseObject");
 const AndroidDeviceTrust_1 = require("../models/AndroidDeviceTrust");
 const ApiToken_1 = require("../models/ApiToken");
 const ApiTokenNetwork_1 = require("../models/ApiTokenNetwork");
@@ -1640,6 +1702,8 @@ const AppAccountContainerDetails_1 = require("../models/AppAccountContainerDetai
 const AppAccountContainerLink_1 = require("../models/AppAccountContainerLink");
 const AppAndInstanceConditionEvaluatorAppOrInstance_1 = require("../models/AppAndInstanceConditionEvaluatorAppOrInstance");
 const AppAndInstancePolicyRuleCondition_1 = require("../models/AppAndInstancePolicyRuleCondition");
+const AppConfig_1 = require("../models/AppConfig");
+const AppConfigActiveDirectory_1 = require("../models/AppConfigActiveDirectory");
 const AppConnectionUserProvisionJWKList_1 = require("../models/AppConnectionUserProvisionJWKList");
 const AppConnectionUserProvisionJWKResponse_1 = require("../models/AppConnectionUserProvisionJWKResponse");
 const AppCustomHrefObject_1 = require("../models/AppCustomHrefObject");
@@ -1697,6 +1761,10 @@ const AssignedAppLink_1 = require("../models/AssignedAppLink");
 const AssociatedServerMediated_1 = require("../models/AssociatedServerMediated");
 const AssuranceMethod_1 = require("../models/AssuranceMethod");
 const AttackProtectionAuthenticatorSettings_1 = require("../models/AttackProtectionAuthenticatorSettings");
+const AttestationRootCertificatesRequest_1 = require("../models/AttestationRootCertificatesRequest");
+const AttestationRootCertificatesRequestInner_1 = require("../models/AttestationRootCertificatesRequestInner");
+const AttestationRootCertificatesResponse_1 = require("../models/AttestationRootCertificatesResponse");
+const AttestationRootCertificatesResponseInner_1 = require("../models/AttestationRootCertificatesResponseInner");
 const AuthServerLinks_1 = require("../models/AuthServerLinks");
 const AuthServerLinksClaims_1 = require("../models/AuthServerLinksClaims");
 const AuthServerLinksPolicies_1 = require("../models/AuthServerLinksPolicies");
@@ -1709,6 +1777,10 @@ const AuthenticationMethodObject_1 = require("../models/AuthenticationMethodObje
 const AuthenticationProvider_1 = require("../models/AuthenticationProvider");
 const AuthenticationProviderWritable_1 = require("../models/AuthenticationProviderWritable");
 const AuthenticatorBase_1 = require("../models/AuthenticatorBase");
+const AuthenticatorEnrollment_1 = require("../models/AuthenticatorEnrollment");
+const AuthenticatorEnrollmentCreateRequest_1 = require("../models/AuthenticatorEnrollmentCreateRequest");
+const AuthenticatorEnrollmentCreateRequestTac_1 = require("../models/AuthenticatorEnrollmentCreateRequestTac");
+const AuthenticatorEnrollmentLinks_1 = require("../models/AuthenticatorEnrollmentLinks");
 const AuthenticatorEnrollmentPolicy_1 = require("../models/AuthenticatorEnrollmentPolicy");
 const AuthenticatorEnrollmentPolicyAuthenticatorSettings_1 = require("../models/AuthenticatorEnrollmentPolicyAuthenticatorSettings");
 const AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints_1 = require("../models/AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints");
@@ -1748,6 +1820,10 @@ const AuthenticatorKeySecurityKey_1 = require("../models/AuthenticatorKeySecurit
 const AuthenticatorKeySecurityQuestion_1 = require("../models/AuthenticatorKeySecurityQuestion");
 const AuthenticatorKeySmartCard_1 = require("../models/AuthenticatorKeySmartCard");
 const AuthenticatorKeySymantecVip_1 = require("../models/AuthenticatorKeySymantecVip");
+const AuthenticatorKeyTac_1 = require("../models/AuthenticatorKeyTac");
+const AuthenticatorKeyTacProvider_1 = require("../models/AuthenticatorKeyTacProvider");
+const AuthenticatorKeyTacProviderConfiguration_1 = require("../models/AuthenticatorKeyTacProviderConfiguration");
+const AuthenticatorKeyTacProviderConfigurationComplexity_1 = require("../models/AuthenticatorKeyTacProviderConfigurationComplexity");
 const AuthenticatorKeyWebauthn_1 = require("../models/AuthenticatorKeyWebauthn");
 const AuthenticatorKeyYubikey_1 = require("../models/AuthenticatorKeyYubikey");
 const AuthenticatorLinks_1 = require("../models/AuthenticatorLinks");
@@ -1759,11 +1835,15 @@ const AuthenticatorMethodPushSettings_1 = require("../models/AuthenticatorMethod
 const AuthenticatorMethodSignedNonce_1 = require("../models/AuthenticatorMethodSignedNonce");
 const AuthenticatorMethodSignedNonceSettings_1 = require("../models/AuthenticatorMethodSignedNonceSettings");
 const AuthenticatorMethodSimple_1 = require("../models/AuthenticatorMethodSimple");
+const AuthenticatorMethodTac_1 = require("../models/AuthenticatorMethodTac");
 const AuthenticatorMethodTotp_1 = require("../models/AuthenticatorMethodTotp");
 const AuthenticatorMethodTotpSettings_1 = require("../models/AuthenticatorMethodTotpSettings");
 const AuthenticatorMethodWebAuthn_1 = require("../models/AuthenticatorMethodWebAuthn");
 const AuthenticatorMethodWebAuthnSettings_1 = require("../models/AuthenticatorMethodWebAuthnSettings");
 const AuthenticatorMethodWithVerifiableProperties_1 = require("../models/AuthenticatorMethodWithVerifiableProperties");
+const AuthenticatorProfile_1 = require("../models/AuthenticatorProfile");
+const AuthenticatorProfileTacRequest_1 = require("../models/AuthenticatorProfileTacRequest");
+const AuthenticatorProfileTacResponsePost_1 = require("../models/AuthenticatorProfileTacResponsePost");
 const AuthenticatorSimple_1 = require("../models/AuthenticatorSimple");
 const AuthorizationServer_1 = require("../models/AuthorizationServer");
 const AuthorizationServerCredentials_1 = require("../models/AuthorizationServerCredentials");
@@ -1822,6 +1902,11 @@ const BrandRequest_1 = require("../models/BrandRequest");
 const BrandWithEmbedded_1 = require("../models/BrandWithEmbedded");
 const BrowserPluginApplication_1 = require("../models/BrowserPluginApplication");
 const BulkDeleteRequestBody_1 = require("../models/BulkDeleteRequestBody");
+const BulkGroupDeleteRequestBody_1 = require("../models/BulkGroupDeleteRequestBody");
+const BulkGroupMembershipsDeleteRequestBody_1 = require("../models/BulkGroupMembershipsDeleteRequestBody");
+const BulkGroupMembershipsUpsertRequestBody_1 = require("../models/BulkGroupMembershipsUpsertRequestBody");
+const BulkGroupUpsertRequestBody_1 = require("../models/BulkGroupUpsertRequestBody");
+const BulkGroupUpsertRequestBodyProfilesInner_1 = require("../models/BulkGroupUpsertRequestBodyProfilesInner");
 const BulkUpsertRequestBody_1 = require("../models/BulkUpsertRequestBody");
 const BulkUpsertRequestBodyProfilesInner_1 = require("../models/BulkUpsertRequestBodyProfilesInner");
 const BundleEntitlement_1 = require("../models/BundleEntitlement");
@@ -1865,6 +1950,7 @@ const Conditions_1 = require("../models/Conditions");
 const ContentSecurityPolicySetting_1 = require("../models/ContentSecurityPolicySetting");
 const ContextPolicyRuleCondition_1 = require("../models/ContextPolicyRuleCondition");
 const CreateBrandRequest_1 = require("../models/CreateBrandRequest");
+const CreateGroupPushMappingRequest_1 = require("../models/CreateGroupPushMappingRequest");
 const CreateGroupRequest_1 = require("../models/CreateGroupRequest");
 const CreateGroupRuleRequest_1 = require("../models/CreateGroupRuleRequest");
 const CreateIamRoleRequest_1 = require("../models/CreateIamRoleRequest");
@@ -1884,6 +1970,9 @@ const CsrMetadataSubject_1 = require("../models/CsrMetadataSubject");
 const CsrMetadataSubjectAltNames_1 = require("../models/CsrMetadataSubjectAltNames");
 const CsrPublishHrefHints_1 = require("../models/CsrPublishHrefHints");
 const CsrSelfHrefHints_1 = require("../models/CsrSelfHrefHints");
+const CustomAAGUIDCreateRequestObject_1 = require("../models/CustomAAGUIDCreateRequestObject");
+const CustomAAGUIDResponseObject_1 = require("../models/CustomAAGUIDResponseObject");
+const CustomAAGUIDUpdateRequestObject_1 = require("../models/CustomAAGUIDUpdateRequestObject");
 const CustomRole_1 = require("../models/CustomRole");
 const CustomRoleAssignmentSchema_1 = require("../models/CustomRoleAssignmentSchema");
 const CustomizablePage_1 = require("../models/CustomizablePage");
@@ -2029,6 +2118,7 @@ const FederatedClaim_1 = require("../models/FederatedClaim");
 const FederatedClaimRequestBody_1 = require("../models/FederatedClaimRequestBody");
 const ForgotPasswordResponse_1 = require("../models/ForgotPasswordResponse");
 const FulfillmentData_1 = require("../models/FulfillmentData");
+const FulfillmentDataOrderDetails_1 = require("../models/FulfillmentDataOrderDetails");
 const FulfillmentRequest_1 = require("../models/FulfillmentRequest");
 const GetDRStatus200Response_1 = require("../models/GetDRStatus200Response");
 const GetSsfStreams200Response_1 = require("../models/GetSsfStreams200Response");
@@ -2052,6 +2142,8 @@ const GroupLinks_1 = require("../models/GroupLinks");
 const GroupOwner_1 = require("../models/GroupOwner");
 const GroupPolicyRuleCondition_1 = require("../models/GroupPolicyRuleCondition");
 const GroupProfile_1 = require("../models/GroupProfile");
+const GroupPushMapping_1 = require("../models/GroupPushMapping");
+const GroupPushMappingLinks_1 = require("../models/GroupPushMappingLinks");
 const GroupRule_1 = require("../models/GroupRule");
 const GroupRuleAction_1 = require("../models/GroupRuleAction");
 const GroupRuleConditions_1 = require("../models/GroupRuleConditions");
@@ -2128,6 +2220,11 @@ const IdentityProviderPolicy_1 = require("../models/IdentityProviderPolicy");
 const IdentityProviderPolicyRuleCondition_1 = require("../models/IdentityProviderPolicyRuleCondition");
 const IdentityProviderProperties_1 = require("../models/IdentityProviderProperties");
 const IdentityProviderProtocol_1 = require("../models/IdentityProviderProtocol");
+const IdentitySourceGroupMembershipsDeleteProfile_1 = require("../models/IdentitySourceGroupMembershipsDeleteProfile");
+const IdentitySourceGroupMembershipsDeleteProfileInner_1 = require("../models/IdentitySourceGroupMembershipsDeleteProfileInner");
+const IdentitySourceGroupMembershipsUpsertProfile_1 = require("../models/IdentitySourceGroupMembershipsUpsertProfile");
+const IdentitySourceGroupMembershipsUpsertProfileInner_1 = require("../models/IdentitySourceGroupMembershipsUpsertProfileInner");
+const IdentitySourceGroupProfileForUpsert_1 = require("../models/IdentitySourceGroupProfileForUpsert");
 const IdentitySourceSession_1 = require("../models/IdentitySourceSession");
 const IdentitySourceUserProfileForDelete_1 = require("../models/IdentitySourceUserProfileForDelete");
 const IdentitySourceUserProfileForUpsert_1 = require("../models/IdentitySourceUserProfileForUpsert");
@@ -2198,6 +2295,7 @@ const LinksAerialConsentGranted_1 = require("../models/LinksAerialConsentGranted
 const LinksAerialConsentRevoked_1 = require("../models/LinksAerialConsentRevoked");
 const LinksAppAndUser_1 = require("../models/LinksAppAndUser");
 const LinksAssignee_1 = require("../models/LinksAssignee");
+const LinksAuthenticator_1 = require("../models/LinksAuthenticator");
 const LinksCancel_1 = require("../models/LinksCancel");
 const LinksCustomRoleResponse_1 = require("../models/LinksCustomRoleResponse");
 const LinksDeactivate_1 = require("../models/LinksDeactivate");
@@ -2345,6 +2443,7 @@ const OktaUserRiskChangeEvent_1 = require("../models/OktaUserRiskChangeEvent");
 const OktaUserServiceAccountCredentials_1 = require("../models/OktaUserServiceAccountCredentials");
 const OpenIdConnectApplication_1 = require("../models/OpenIdConnectApplication");
 const OpenIdConnectApplicationIdpInitiatedLogin_1 = require("../models/OpenIdConnectApplicationIdpInitiatedLogin");
+const OpenIdConnectApplicationNetwork_1 = require("../models/OpenIdConnectApplicationNetwork");
 const OpenIdConnectApplicationSettings_1 = require("../models/OpenIdConnectApplicationSettings");
 const OpenIdConnectApplicationSettingsClient_1 = require("../models/OpenIdConnectApplicationSettingsClient");
 const OpenIdConnectApplicationSettingsClientKeys_1 = require("../models/OpenIdConnectApplicationSettingsClientKeys");
@@ -2523,6 +2622,9 @@ const ProvisioningDeprovisionedCondition_1 = require("../models/ProvisioningDepr
 const ProvisioningDetails_1 = require("../models/ProvisioningDetails");
 const ProvisioningGroups_1 = require("../models/ProvisioningGroups");
 const ProvisioningSuspendedCondition_1 = require("../models/ProvisioningSuspendedCondition");
+const PublicAppleAppSiteWellKnownURI_1 = require("../models/PublicAppleAppSiteWellKnownURI");
+const PublicAssetLinksWellKnownURI_1 = require("../models/PublicAssetLinksWellKnownURI");
+const PublicWebauthnSiteWellKnownURI_1 = require("../models/PublicWebauthnSiteWellKnownURI");
 const Push_1 = require("../models/Push");
 const Push1_1 = require("../models/Push1");
 const PushProvider_1 = require("../models/PushProvider");
@@ -2743,6 +2845,7 @@ const SupportedMethods_1 = require("../models/SupportedMethods");
 const SupportedMethodsSettings_1 = require("../models/SupportedMethodsSettings");
 const SwaApplicationSettings_1 = require("../models/SwaApplicationSettings");
 const SwaApplicationSettingsApplication_1 = require("../models/SwaApplicationSettingsApplication");
+const TacAuthenticatorEnrollment_1 = require("../models/TacAuthenticatorEnrollment");
 const TelephonyRequest_1 = require("../models/TelephonyRequest");
 const TelephonyRequestData_1 = require("../models/TelephonyRequestData");
 const TelephonyRequestDataMessageProfile_1 = require("../models/TelephonyRequestDataMessageProfile");
@@ -2803,6 +2906,7 @@ const UpdateDefaultProvisioningConnectionForApplicationRequest_1 = require("../m
 const UpdateDomain_1 = require("../models/UpdateDomain");
 const UpdateEmailDomain_1 = require("../models/UpdateEmailDomain");
 const UpdateFeatureForApplicationRequest_1 = require("../models/UpdateFeatureForApplicationRequest");
+const UpdateGroupPushMappingRequest_1 = require("../models/UpdateGroupPushMappingRequest");
 const UpdateIamRoleRequest_1 = require("../models/UpdateIamRoleRequest");
 const UpdateRealmAssignmentRequest_1 = require("../models/UpdateRealmAssignmentRequest");
 const UpdateRealmRequest_1 = require("../models/UpdateRealmRequest");
@@ -2861,7 +2965,8 @@ const UserFactorU2F_1 = require("../models/UserFactorU2F");
 const UserFactorU2FProfile_1 = require("../models/UserFactorU2FProfile");
 const UserFactorVerifyRequest_1 = require("../models/UserFactorVerifyRequest");
 const UserFactorVerifyResponse_1 = require("../models/UserFactorVerifyResponse");
-const UserFactorVerifyResponseEmbedded_1 = require("../models/UserFactorVerifyResponseEmbedded");
+const UserFactorVerifyResponseWaiting_1 = require("../models/UserFactorVerifyResponseWaiting");
+const UserFactorVerifyResponseWaitingEmbedded_1 = require("../models/UserFactorVerifyResponseWaitingEmbedded");
 const UserFactorWeb_1 = require("../models/UserFactorWeb");
 const UserFactorWebAuthn_1 = require("../models/UserFactorWebAuthn");
 const UserFactorWebAuthnProfile_1 = require("../models/UserFactorWebAuthnProfile");
@@ -2934,6 +3039,15 @@ const WellKnownOrgMetadataLinks_1 = require("../models/WellKnownOrgMetadataLinks
 const WellKnownOrgMetadataSettings_1 = require("../models/WellKnownOrgMetadataSettings");
 const WellKnownSSFMetadata_1 = require("../models/WellKnownSSFMetadata");
 const WellKnownSSFMetadataSpecUrn_1 = require("../models/WellKnownSSFMetadataSpecUrn");
+const WellKnownURIArrayResponse_1 = require("../models/WellKnownURIArrayResponse");
+const WellKnownURIArrayResponseLinks_1 = require("../models/WellKnownURIArrayResponseLinks");
+const WellKnownURIObjectResponse_1 = require("../models/WellKnownURIObjectResponse");
+const WellKnownURIRequest_1 = require("../models/WellKnownURIRequest");
+const WellKnownURIsRoot_1 = require("../models/WellKnownURIsRoot");
+const WellKnownURIsRootEmbedded_1 = require("../models/WellKnownURIsRootEmbedded");
+const WellKnownURIsRootEmbeddedAppleAppSiteAssociation_1 = require("../models/WellKnownURIsRootEmbeddedAppleAppSiteAssociation");
+const WellKnownURIsRootEmbeddedAssetlinksJson_1 = require("../models/WellKnownURIsRootEmbeddedAssetlinksJson");
+const WellKnownURIsRootLinks_1 = require("../models/WellKnownURIsRootLinks");
 const WsFederationApplication_1 = require("../models/WsFederationApplication");
 const WsFederationApplicationSettings_1 = require("../models/WsFederationApplicationSettings");
 const WsFederationApplicationSettingsApplication_1 = require("../models/WsFederationApplicationSettingsApplication");
@@ -2960,11 +3074,14 @@ let enumsMap = new Set([
     'AccessPolicyConstraintMethodsEnum',
     'AccessPolicyConstraintTypesEnum',
     'AccessPolicyRuleApplicationSignOnAccess',
+    'ActiveDirectoryGroupScope',
+    'ActiveDirectoryGroupType',
     'AgentType',
     'AgentUpdateInstanceStatus',
     'AgentUpdateJobStatus',
     'AllowedForEnum',
     'AppAndInstanceType',
+    'AppConfigType',
     'AppInstanceContainerStatus',
     'AppUserScopeEnum',
     'AppUserAssignRequestScopeEnum',
@@ -2977,6 +3094,7 @@ let enumsMap = new Set([
     'ApplicationCredentialsUsernameTemplateTypeEnum',
     'ApplicationFeatureType',
     'ApplicationLifecycleStatus',
+    'ApplicationSettingsEmOptInStatusEnum',
     'ApplicationSettingsNotificationsVpnNetworkConnectionEnum',
     'ApplicationSignOnMode',
     'ApplicationType',
@@ -2998,6 +3116,7 @@ let enumsMap = new Set([
     'AuthenticatorKeyCustomAppProviderTypeEnum',
     'AuthenticatorKeyDuoProviderTypeEnum',
     'AuthenticatorKeyEnum',
+    'AuthenticatorKeyTacProviderTypeEnum',
     'AuthenticatorMethodAlgorithm',
     'AuthenticatorMethodConstraintMethodEnum',
     'AuthenticatorMethodProperty',
@@ -3012,11 +3131,14 @@ let enumsMap = new Set([
     'AuthorizationServerPolicyRuleTypeEnum',
     'AuthorizationServerPolicyRuleRequestStatusEnum',
     'AuthorizationServerPolicyRuleRequestTypeEnum',
+    'AutoLoginApplicationSettingsEmOptInStatusEnum',
     'AwsRegion',
+    'BasicApplicationSettingsEmOptInStatusEnum',
     'BasicAuthApplicationNameEnum',
     'BehaviorRuleType',
     'BindingMethod',
     'BookmarkApplicationNameEnum',
+    'BookmarkApplicationSettingsEmOptInStatusEnum',
     'BrowserPluginApplicationNameEnum',
     'BulkDeleteRequestBodyEntityTypeEnum',
     'BulkUpsertRequestBodyEntityTypeEnum',
@@ -3114,12 +3236,15 @@ let enumsMap = new Set([
     'GetSsfStreams200ResponseFormatEnum',
     'GoogleApplicationNameEnum',
     'GoogleApplicationSignOnModeEnum',
+    'GoogleApplicationSettingsEmOptInStatusEnum',
     'GovernanceSourceType',
     'GracePeriodTypeEnum',
     'GrantOrTokenStatus',
     'GrantType',
     'GroupOwnerOriginType',
     'GroupOwnerType',
+    'GroupPushMappingStatus',
+    'GroupPushMappingStatusUpsert',
     'GroupRuleStatus',
     'GroupType',
     'HostedPageType',
@@ -3195,6 +3320,7 @@ let enumsMap = new Set([
     'OSVersionDynamicVersionRequirementTypeEnum',
     'Office365ApplicationNameEnum',
     'Office365ApplicationSignOnModeEnum',
+    'Office365ApplicationSettingsEmOptInStatusEnum',
     'OidcSigningAlgorithm',
     'OktaDeviceRiskChangeEventCurrentLevelEnum',
     'OktaDeviceRiskChangeEventInitiatingEntityEnum',
@@ -3211,6 +3337,8 @@ let enumsMap = new Set([
     'OpenIdConnectApplicationConsentMethod',
     'OpenIdConnectApplicationIdpInitiatedLoginModeEnum',
     'OpenIdConnectApplicationIssuerMode',
+    'OpenIdConnectApplicationNetworkConnectionEnum',
+    'OpenIdConnectApplicationSettingsEmOptInStatusEnum',
     'OpenIdConnectApplicationSettingsClientBackchannelAuthenticationRequestSigningAlgEnum',
     'OpenIdConnectApplicationSettingsClientBackchannelTokenDeliveryModeEnum',
     'OpenIdConnectApplicationSettingsClientRequestObjectSigningAlgEnum',
@@ -3223,6 +3351,7 @@ let enumsMap = new Set([
     'OptInStatusResponseOptInStatusEnum',
     'Org2OrgApplicationNameEnum',
     'Org2OrgApplicationSignOnModeEnum',
+    'Org2OrgApplicationSettingsEmOptInStatusEnum',
     'OrgContactType',
     'OrgOktaSupportSetting',
     'OrgSettingStatusEnum',
@@ -3312,8 +3441,11 @@ let enumsMap = new Set([
     'SafeBrowsingProtectionLevel',
     'SalesforceApplicationNameEnum',
     'SalesforceApplicationSignOnModeEnum',
+    'SalesforceApplicationSettingsEmOptInStatusEnum',
     'SalesforceApplicationSettingsApplicationInstanceTypeEnum',
     'SalesforceApplicationSettingsApplicationIntegrationTypeEnum',
+    'Saml11ApplicationSettingsEmOptInStatusEnum',
+    'SamlApplicationSettingsEmOptInStatusEnum',
     'SamlApplicationSettingsSignOnAuthnContextClassRefEnum',
     'SamlApplicationSettingsSignOnDigestAlgorithmEnum',
     'SamlApplicationSettingsSignOnSignatureAlgorithmEnum',
@@ -3333,6 +3465,7 @@ let enumsMap = new Set([
     'ScreenLockComplexity',
     'ScreenLockType',
     'SecurePasswordStoreApplicationNameEnum',
+    'SecurePasswordStoreApplicationSettingsEmOptInStatusEnum',
     'SecurityEventTokenErrorErrEnum',
     'SecurityEventsProviderResponseStatusEnum',
     'SeedEnum',
@@ -3350,6 +3483,7 @@ let enumsMap = new Set([
     'SimulateResultStatus',
     'SlackApplicationNameEnum',
     'SlackApplicationSignOnModeEnum',
+    'SlackApplicationSettingsEmOptInStatusEnum',
     'SloParticipateBindingTypeEnum',
     'SmsTemplateType',
     'SplunkEdition',
@@ -3364,6 +3498,7 @@ let enumsMap = new Set([
     'SubjectType',
     'SubscriptionStatus',
     'SupportedMethodsTypeEnum',
+    'SwaApplicationSettingsEmOptInStatusEnum',
     'TelephonyResponseCommandsInnerValueInnerStatusEnum',
     'ThreatInsightConfigurationActionEnum',
     'TokenDeliveryMode',
@@ -3373,6 +3508,7 @@ let enumsMap = new Set([
     'TokenType',
     'TrendMicroApexOneServiceApplicationNameEnum',
     'TrendMicroApexOneServiceApplicationSignOnModeEnum',
+    'TrendMicroApexOneServiceApplicationSettingsEmOptInStatusEnum',
     'TrustedOriginScopeType',
     'UIElementOptionsFormatEnum',
     'UserTransitioningToStatusEnum',
@@ -3398,6 +3534,7 @@ let enumsMap = new Set([
     'UserFactorType',
     'UserFactorU2FProviderEnum',
     'UserFactorVerifyResult',
+    'UserFactorVerifyResultWaiting',
     'UserFactorWebProviderEnum',
     'UserFactorWebAuthnProviderEnum',
     'UserFactorYubikeyOtpTokenStatusEnum',
@@ -3423,14 +3560,18 @@ let enumsMap = new Set([
     'WellKnownSSFMetadataDefaultSubjectsEnum',
     'WidgetGeneration',
     'WsFederationApplicationNameEnum',
+    'WsFederationApplicationSettingsEmOptInStatusEnum',
     'WsFederationApplicationSettingsApplicationGroupValueFormatEnum',
     'WsFederationApplicationSettingsApplicationUsernameAttributeEnum',
     'ZoomUsApplicationNameEnum',
     'ZoomUsApplicationSignOnModeEnum',
+    'ZoomUsApplicationSettingsEmOptInStatusEnum',
     'ZscalerbyzApplicationNameEnum',
     'ZscalerbyzApplicationSignOnModeEnum',
+    'ZscalerbyzApplicationSettingsEmOptInStatusEnum',
 ]);
 let typeMap = {
+    "AAGUIDAuthenticatorCharacteristics": AAGUIDAuthenticatorCharacteristics_1.AAGUIDAuthenticatorCharacteristics,
     "AAGUIDGroupObject": AAGUIDGroupObject_1.AAGUIDGroupObject,
     "APIServiceIntegrationInstance": APIServiceIntegrationInstance_1.APIServiceIntegrationInstance,
     "APIServiceIntegrationInstanceSecret": APIServiceIntegrationInstanceSecret_1.APIServiceIntegrationInstanceSecret,
@@ -3456,6 +3597,7 @@ let typeMap = {
     "AgentPool": AgentPool_1.AgentPool,
     "AgentPoolUpdate": AgentPoolUpdate_1.AgentPoolUpdate,
     "AgentPoolUpdateSetting": AgentPoolUpdateSetting_1.AgentPoolUpdateSetting,
+    "AllCustomAAGUIDResponseObject": AllCustomAAGUIDResponseObject_1.AllCustomAAGUIDResponseObject,
     "AndroidDeviceTrust": AndroidDeviceTrust_1.AndroidDeviceTrust,
     "ApiToken": ApiToken_1.ApiToken,
     "ApiTokenNetwork": ApiTokenNetwork_1.ApiTokenNetwork,
@@ -3464,6 +3606,8 @@ let typeMap = {
     "AppAccountContainerLink": AppAccountContainerLink_1.AppAccountContainerLink,
     "AppAndInstanceConditionEvaluatorAppOrInstance": AppAndInstanceConditionEvaluatorAppOrInstance_1.AppAndInstanceConditionEvaluatorAppOrInstance,
     "AppAndInstancePolicyRuleCondition": AppAndInstancePolicyRuleCondition_1.AppAndInstancePolicyRuleCondition,
+    "AppConfig": AppConfig_1.AppConfig,
+    "AppConfigActiveDirectory": AppConfigActiveDirectory_1.AppConfigActiveDirectory,
     "AppConnectionUserProvisionJWKList": AppConnectionUserProvisionJWKList_1.AppConnectionUserProvisionJWKList,
     "AppConnectionUserProvisionJWKResponse": AppConnectionUserProvisionJWKResponse_1.AppConnectionUserProvisionJWKResponse,
     "AppCustomHrefObject": AppCustomHrefObject_1.AppCustomHrefObject,
@@ -3521,6 +3665,10 @@ let typeMap = {
     "AssociatedServerMediated": AssociatedServerMediated_1.AssociatedServerMediated,
     "AssuranceMethod": AssuranceMethod_1.AssuranceMethod,
     "AttackProtectionAuthenticatorSettings": AttackProtectionAuthenticatorSettings_1.AttackProtectionAuthenticatorSettings,
+    "AttestationRootCertificatesRequest": AttestationRootCertificatesRequest_1.AttestationRootCertificatesRequest,
+    "AttestationRootCertificatesRequestInner": AttestationRootCertificatesRequestInner_1.AttestationRootCertificatesRequestInner,
+    "AttestationRootCertificatesResponse": AttestationRootCertificatesResponse_1.AttestationRootCertificatesResponse,
+    "AttestationRootCertificatesResponseInner": AttestationRootCertificatesResponseInner_1.AttestationRootCertificatesResponseInner,
     "AuthServerLinks": AuthServerLinks_1.AuthServerLinks,
     "AuthServerLinksClaims": AuthServerLinksClaims_1.AuthServerLinksClaims,
     "AuthServerLinksPolicies": AuthServerLinksPolicies_1.AuthServerLinksPolicies,
@@ -3533,6 +3681,10 @@ let typeMap = {
     "AuthenticationProvider": AuthenticationProvider_1.AuthenticationProvider,
     "AuthenticationProviderWritable": AuthenticationProviderWritable_1.AuthenticationProviderWritable,
     "AuthenticatorBase": AuthenticatorBase_1.AuthenticatorBase,
+    "AuthenticatorEnrollment": AuthenticatorEnrollment_1.AuthenticatorEnrollment,
+    "AuthenticatorEnrollmentCreateRequest": AuthenticatorEnrollmentCreateRequest_1.AuthenticatorEnrollmentCreateRequest,
+    "AuthenticatorEnrollmentCreateRequestTac": AuthenticatorEnrollmentCreateRequestTac_1.AuthenticatorEnrollmentCreateRequestTac,
+    "AuthenticatorEnrollmentLinks": AuthenticatorEnrollmentLinks_1.AuthenticatorEnrollmentLinks,
     "AuthenticatorEnrollmentPolicy": AuthenticatorEnrollmentPolicy_1.AuthenticatorEnrollmentPolicy,
     "AuthenticatorEnrollmentPolicyAuthenticatorSettings": AuthenticatorEnrollmentPolicyAuthenticatorSettings_1.AuthenticatorEnrollmentPolicyAuthenticatorSettings,
     "AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints": AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints_1.AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints,
@@ -3572,6 +3724,10 @@ let typeMap = {
     "AuthenticatorKeySecurityQuestion": AuthenticatorKeySecurityQuestion_1.AuthenticatorKeySecurityQuestion,
     "AuthenticatorKeySmartCard": AuthenticatorKeySmartCard_1.AuthenticatorKeySmartCard,
     "AuthenticatorKeySymantecVip": AuthenticatorKeySymantecVip_1.AuthenticatorKeySymantecVip,
+    "AuthenticatorKeyTac": AuthenticatorKeyTac_1.AuthenticatorKeyTac,
+    "AuthenticatorKeyTacProvider": AuthenticatorKeyTacProvider_1.AuthenticatorKeyTacProvider,
+    "AuthenticatorKeyTacProviderConfiguration": AuthenticatorKeyTacProviderConfiguration_1.AuthenticatorKeyTacProviderConfiguration,
+    "AuthenticatorKeyTacProviderConfigurationComplexity": AuthenticatorKeyTacProviderConfigurationComplexity_1.AuthenticatorKeyTacProviderConfigurationComplexity,
     "AuthenticatorKeyWebauthn": AuthenticatorKeyWebauthn_1.AuthenticatorKeyWebauthn,
     "AuthenticatorKeyYubikey": AuthenticatorKeyYubikey_1.AuthenticatorKeyYubikey,
     "AuthenticatorLinks": AuthenticatorLinks_1.AuthenticatorLinks,
@@ -3583,11 +3739,15 @@ let typeMap = {
     "AuthenticatorMethodSignedNonce": AuthenticatorMethodSignedNonce_1.AuthenticatorMethodSignedNonce,
     "AuthenticatorMethodSignedNonceSettings": AuthenticatorMethodSignedNonceSettings_1.AuthenticatorMethodSignedNonceSettings,
     "AuthenticatorMethodSimple": AuthenticatorMethodSimple_1.AuthenticatorMethodSimple,
+    "AuthenticatorMethodTac": AuthenticatorMethodTac_1.AuthenticatorMethodTac,
     "AuthenticatorMethodTotp": AuthenticatorMethodTotp_1.AuthenticatorMethodTotp,
     "AuthenticatorMethodTotpSettings": AuthenticatorMethodTotpSettings_1.AuthenticatorMethodTotpSettings,
     "AuthenticatorMethodWebAuthn": AuthenticatorMethodWebAuthn_1.AuthenticatorMethodWebAuthn,
     "AuthenticatorMethodWebAuthnSettings": AuthenticatorMethodWebAuthnSettings_1.AuthenticatorMethodWebAuthnSettings,
     "AuthenticatorMethodWithVerifiableProperties": AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
+    "AuthenticatorProfile": AuthenticatorProfile_1.AuthenticatorProfile,
+    "AuthenticatorProfileTacRequest": AuthenticatorProfileTacRequest_1.AuthenticatorProfileTacRequest,
+    "AuthenticatorProfileTacResponsePost": AuthenticatorProfileTacResponsePost_1.AuthenticatorProfileTacResponsePost,
     "AuthenticatorSimple": AuthenticatorSimple_1.AuthenticatorSimple,
     "AuthorizationServer": AuthorizationServer_1.AuthorizationServer,
     "AuthorizationServerCredentials": AuthorizationServerCredentials_1.AuthorizationServerCredentials,
@@ -3646,6 +3806,11 @@ let typeMap = {
     "BrandWithEmbedded": BrandWithEmbedded_1.BrandWithEmbedded,
     "BrowserPluginApplication": BrowserPluginApplication_1.BrowserPluginApplication,
     "BulkDeleteRequestBody": BulkDeleteRequestBody_1.BulkDeleteRequestBody,
+    "BulkGroupDeleteRequestBody": BulkGroupDeleteRequestBody_1.BulkGroupDeleteRequestBody,
+    "BulkGroupMembershipsDeleteRequestBody": BulkGroupMembershipsDeleteRequestBody_1.BulkGroupMembershipsDeleteRequestBody,
+    "BulkGroupMembershipsUpsertRequestBody": BulkGroupMembershipsUpsertRequestBody_1.BulkGroupMembershipsUpsertRequestBody,
+    "BulkGroupUpsertRequestBody": BulkGroupUpsertRequestBody_1.BulkGroupUpsertRequestBody,
+    "BulkGroupUpsertRequestBodyProfilesInner": BulkGroupUpsertRequestBodyProfilesInner_1.BulkGroupUpsertRequestBodyProfilesInner,
     "BulkUpsertRequestBody": BulkUpsertRequestBody_1.BulkUpsertRequestBody,
     "BulkUpsertRequestBodyProfilesInner": BulkUpsertRequestBodyProfilesInner_1.BulkUpsertRequestBodyProfilesInner,
     "BundleEntitlement": BundleEntitlement_1.BundleEntitlement,
@@ -3689,6 +3854,7 @@ let typeMap = {
     "ContentSecurityPolicySetting": ContentSecurityPolicySetting_1.ContentSecurityPolicySetting,
     "ContextPolicyRuleCondition": ContextPolicyRuleCondition_1.ContextPolicyRuleCondition,
     "CreateBrandRequest": CreateBrandRequest_1.CreateBrandRequest,
+    "CreateGroupPushMappingRequest": CreateGroupPushMappingRequest_1.CreateGroupPushMappingRequest,
     "CreateGroupRequest": CreateGroupRequest_1.CreateGroupRequest,
     "CreateGroupRuleRequest": CreateGroupRuleRequest_1.CreateGroupRuleRequest,
     "CreateIamRoleRequest": CreateIamRoleRequest_1.CreateIamRoleRequest,
@@ -3708,6 +3874,9 @@ let typeMap = {
     "CsrMetadataSubjectAltNames": CsrMetadataSubjectAltNames_1.CsrMetadataSubjectAltNames,
     "CsrPublishHrefHints": CsrPublishHrefHints_1.CsrPublishHrefHints,
     "CsrSelfHrefHints": CsrSelfHrefHints_1.CsrSelfHrefHints,
+    "CustomAAGUIDCreateRequestObject": CustomAAGUIDCreateRequestObject_1.CustomAAGUIDCreateRequestObject,
+    "CustomAAGUIDResponseObject": CustomAAGUIDResponseObject_1.CustomAAGUIDResponseObject,
+    "CustomAAGUIDUpdateRequestObject": CustomAAGUIDUpdateRequestObject_1.CustomAAGUIDUpdateRequestObject,
     "CustomRole": CustomRole_1.CustomRole,
     "CustomRoleAssignmentSchema": CustomRoleAssignmentSchema_1.CustomRoleAssignmentSchema,
     "CustomizablePage": CustomizablePage_1.CustomizablePage,
@@ -3853,6 +4022,7 @@ let typeMap = {
     "FederatedClaimRequestBody": FederatedClaimRequestBody_1.FederatedClaimRequestBody,
     "ForgotPasswordResponse": ForgotPasswordResponse_1.ForgotPasswordResponse,
     "FulfillmentData": FulfillmentData_1.FulfillmentData,
+    "FulfillmentDataOrderDetails": FulfillmentDataOrderDetails_1.FulfillmentDataOrderDetails,
     "FulfillmentRequest": FulfillmentRequest_1.FulfillmentRequest,
     "GetDRStatus200Response": GetDRStatus200Response_1.GetDRStatus200Response,
     "GetSsfStreams200Response": GetSsfStreams200Response_1.GetSsfStreams200ResponseClass,
@@ -3876,6 +4046,8 @@ let typeMap = {
     "GroupOwner": GroupOwner_1.GroupOwner,
     "GroupPolicyRuleCondition": GroupPolicyRuleCondition_1.GroupPolicyRuleCondition,
     "GroupProfile": GroupProfile_1.GroupProfile,
+    "GroupPushMapping": GroupPushMapping_1.GroupPushMapping,
+    "GroupPushMappingLinks": GroupPushMappingLinks_1.GroupPushMappingLinks,
     "GroupRule": GroupRule_1.GroupRule,
     "GroupRuleAction": GroupRuleAction_1.GroupRuleAction,
     "GroupRuleConditions": GroupRuleConditions_1.GroupRuleConditions,
@@ -3952,6 +4124,11 @@ let typeMap = {
     "IdentityProviderPolicyRuleCondition": IdentityProviderPolicyRuleCondition_1.IdentityProviderPolicyRuleCondition,
     "IdentityProviderProperties": IdentityProviderProperties_1.IdentityProviderProperties,
     "IdentityProviderProtocol": IdentityProviderProtocol_1.IdentityProviderProtocolClass,
+    "IdentitySourceGroupMembershipsDeleteProfile": IdentitySourceGroupMembershipsDeleteProfile_1.IdentitySourceGroupMembershipsDeleteProfile,
+    "IdentitySourceGroupMembershipsDeleteProfileInner": IdentitySourceGroupMembershipsDeleteProfileInner_1.IdentitySourceGroupMembershipsDeleteProfileInner,
+    "IdentitySourceGroupMembershipsUpsertProfile": IdentitySourceGroupMembershipsUpsertProfile_1.IdentitySourceGroupMembershipsUpsertProfile,
+    "IdentitySourceGroupMembershipsUpsertProfileInner": IdentitySourceGroupMembershipsUpsertProfileInner_1.IdentitySourceGroupMembershipsUpsertProfileInner,
+    "IdentitySourceGroupProfileForUpsert": IdentitySourceGroupProfileForUpsert_1.IdentitySourceGroupProfileForUpsert,
     "IdentitySourceSession": IdentitySourceSession_1.IdentitySourceSession,
     "IdentitySourceUserProfileForDelete": IdentitySourceUserProfileForDelete_1.IdentitySourceUserProfileForDelete,
     "IdentitySourceUserProfileForUpsert": IdentitySourceUserProfileForUpsert_1.IdentitySourceUserProfileForUpsert,
@@ -4022,6 +4199,7 @@ let typeMap = {
     "LinksAerialConsentRevoked": LinksAerialConsentRevoked_1.LinksAerialConsentRevoked,
     "LinksAppAndUser": LinksAppAndUser_1.LinksAppAndUser,
     "LinksAssignee": LinksAssignee_1.LinksAssignee,
+    "LinksAuthenticator": LinksAuthenticator_1.LinksAuthenticator,
     "LinksCancel": LinksCancel_1.LinksCancel,
     "LinksCustomRoleResponse": LinksCustomRoleResponse_1.LinksCustomRoleResponse,
     "LinksDeactivate": LinksDeactivate_1.LinksDeactivate,
@@ -4169,6 +4347,7 @@ let typeMap = {
     "OktaUserServiceAccountCredentials": OktaUserServiceAccountCredentials_1.OktaUserServiceAccountCredentials,
     "OpenIdConnectApplication": OpenIdConnectApplication_1.OpenIdConnectApplication,
     "OpenIdConnectApplicationIdpInitiatedLogin": OpenIdConnectApplicationIdpInitiatedLogin_1.OpenIdConnectApplicationIdpInitiatedLogin,
+    "OpenIdConnectApplicationNetwork": OpenIdConnectApplicationNetwork_1.OpenIdConnectApplicationNetwork,
     "OpenIdConnectApplicationSettings": OpenIdConnectApplicationSettings_1.OpenIdConnectApplicationSettings,
     "OpenIdConnectApplicationSettingsClient": OpenIdConnectApplicationSettingsClient_1.OpenIdConnectApplicationSettingsClient,
     "OpenIdConnectApplicationSettingsClientKeys": OpenIdConnectApplicationSettingsClientKeys_1.OpenIdConnectApplicationSettingsClientKeys,
@@ -4347,6 +4526,9 @@ let typeMap = {
     "ProvisioningDetails": ProvisioningDetails_1.ProvisioningDetails,
     "ProvisioningGroups": ProvisioningGroups_1.ProvisioningGroups,
     "ProvisioningSuspendedCondition": ProvisioningSuspendedCondition_1.ProvisioningSuspendedCondition,
+    "PublicAppleAppSiteWellKnownURI": PublicAppleAppSiteWellKnownURI_1.PublicAppleAppSiteWellKnownURI,
+    "PublicAssetLinksWellKnownURI": PublicAssetLinksWellKnownURI_1.PublicAssetLinksWellKnownURI,
+    "PublicWebauthnSiteWellKnownURI": PublicWebauthnSiteWellKnownURI_1.PublicWebauthnSiteWellKnownURI,
     "Push": Push_1.Push,
     "Push1": Push1_1.Push1,
     "PushProvider": PushProvider_1.PushProvider,
@@ -4567,6 +4749,7 @@ let typeMap = {
     "SupportedMethodsSettings": SupportedMethodsSettings_1.SupportedMethodsSettings,
     "SwaApplicationSettings": SwaApplicationSettings_1.SwaApplicationSettings,
     "SwaApplicationSettingsApplication": SwaApplicationSettingsApplication_1.SwaApplicationSettingsApplication,
+    "TacAuthenticatorEnrollment": TacAuthenticatorEnrollment_1.TacAuthenticatorEnrollment,
     "TelephonyRequest": TelephonyRequest_1.TelephonyRequest,
     "TelephonyRequestData": TelephonyRequestData_1.TelephonyRequestData,
     "TelephonyRequestDataMessageProfile": TelephonyRequestDataMessageProfile_1.TelephonyRequestDataMessageProfile,
@@ -4627,6 +4810,7 @@ let typeMap = {
     "UpdateDomain": UpdateDomain_1.UpdateDomain,
     "UpdateEmailDomain": UpdateEmailDomain_1.UpdateEmailDomain,
     "UpdateFeatureForApplicationRequest": UpdateFeatureForApplicationRequest_1.UpdateFeatureForApplicationRequestClass,
+    "UpdateGroupPushMappingRequest": UpdateGroupPushMappingRequest_1.UpdateGroupPushMappingRequest,
     "UpdateIamRoleRequest": UpdateIamRoleRequest_1.UpdateIamRoleRequest,
     "UpdateRealmAssignmentRequest": UpdateRealmAssignmentRequest_1.UpdateRealmAssignmentRequest,
     "UpdateRealmRequest": UpdateRealmRequest_1.UpdateRealmRequest,
@@ -4685,7 +4869,8 @@ let typeMap = {
     "UserFactorU2FProfile": UserFactorU2FProfile_1.UserFactorU2FProfile,
     "UserFactorVerifyRequest": UserFactorVerifyRequest_1.UserFactorVerifyRequestClass,
     "UserFactorVerifyResponse": UserFactorVerifyResponse_1.UserFactorVerifyResponse,
-    "UserFactorVerifyResponseEmbedded": UserFactorVerifyResponseEmbedded_1.UserFactorVerifyResponseEmbedded,
+    "UserFactorVerifyResponseWaiting": UserFactorVerifyResponseWaiting_1.UserFactorVerifyResponseWaiting,
+    "UserFactorVerifyResponseWaitingEmbedded": UserFactorVerifyResponseWaitingEmbedded_1.UserFactorVerifyResponseWaitingEmbedded,
     "UserFactorWeb": UserFactorWeb_1.UserFactorWeb,
     "UserFactorWebAuthn": UserFactorWebAuthn_1.UserFactorWebAuthn,
     "UserFactorWebAuthnProfile": UserFactorWebAuthnProfile_1.UserFactorWebAuthnProfile,
@@ -4758,6 +4943,15 @@ let typeMap = {
     "WellKnownOrgMetadataSettings": WellKnownOrgMetadataSettings_1.WellKnownOrgMetadataSettings,
     "WellKnownSSFMetadata": WellKnownSSFMetadata_1.WellKnownSSFMetadata,
     "WellKnownSSFMetadataSpecUrn": WellKnownSSFMetadataSpecUrn_1.WellKnownSSFMetadataSpecUrn,
+    "WellKnownURIArrayResponse": WellKnownURIArrayResponse_1.WellKnownURIArrayResponse,
+    "WellKnownURIArrayResponseLinks": WellKnownURIArrayResponseLinks_1.WellKnownURIArrayResponseLinks,
+    "WellKnownURIObjectResponse": WellKnownURIObjectResponse_1.WellKnownURIObjectResponse,
+    "WellKnownURIRequest": WellKnownURIRequest_1.WellKnownURIRequest,
+    "WellKnownURIsRoot": WellKnownURIsRoot_1.WellKnownURIsRoot,
+    "WellKnownURIsRootEmbedded": WellKnownURIsRootEmbedded_1.WellKnownURIsRootEmbedded,
+    "WellKnownURIsRootEmbeddedAppleAppSiteAssociation": WellKnownURIsRootEmbeddedAppleAppSiteAssociation_1.WellKnownURIsRootEmbeddedAppleAppSiteAssociation,
+    "WellKnownURIsRootEmbeddedAssetlinksJson": WellKnownURIsRootEmbeddedAssetlinksJson_1.WellKnownURIsRootEmbeddedAssetlinksJson,
+    "WellKnownURIsRootLinks": WellKnownURIsRootLinks_1.WellKnownURIsRootLinks,
     "WsFederationApplication": WsFederationApplication_1.WsFederationApplication,
     "WsFederationApplicationSettings": WsFederationApplicationSettings_1.WsFederationApplicationSettings,
     "WsFederationApplicationSettingsApplication": WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
@@ -4770,6 +4964,7 @@ let typeMap = {
     "ZscalerbyzApplicationSettingsApplication": ZscalerbyzApplicationSettingsApplication_1.ZscalerbyzApplicationSettingsApplication,
     // generated manually from spec
     // TODO: remove
+    '__ACTIVE_DIRECTORY': AppConfigActiveDirectory_1.AppConfigActiveDirectory,
     '__AUTO_LOGIN': AutoLoginApplication_1.AutoLoginApplication,
     '__BASIC_AUTH': BasicAuthApplication_1.BasicAuthApplication,
     '__BOOKMARK': BookmarkApplication_1.BookmarkApplication,
@@ -4796,6 +4991,7 @@ let typeMap = {
     '__smart_card_idp': AuthenticatorKeySmartCard_1.AuthenticatorKeySmartCard,
     '__webauthn': AuthenticatorKeyWebauthn_1.AuthenticatorKeyWebauthn,
     '__yubikey_token': AuthenticatorKeyYubikey_1.AuthenticatorKeyYubikey,
+    '__tac': AuthenticatorKeyTac_1.AuthenticatorKeyTac,
     '__AuthenticatorMethodBase__sms': AuthenticatorMethodSimple_1.AuthenticatorMethodSimple,
     '__AuthenticatorMethodBase__voice': AuthenticatorMethodSimple_1.AuthenticatorMethodSimple,
     '__AuthenticatorMethodBase__email': AuthenticatorMethodSimple_1.AuthenticatorMethodSimple,
@@ -4809,6 +5005,7 @@ let typeMap = {
     '__AuthenticatorMethodBase__idp': AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
     '__AuthenticatorMethodBase__duo': AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
     '__AuthenticatorMethodBase__cert': AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
+    '__AuthenticatorMethodBase__tac': AuthenticatorMethodTac_1.AuthenticatorMethodTac,
     '__BehaviorRule__ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
     '__BehaviorRule__ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     '__BehaviorRule__ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,

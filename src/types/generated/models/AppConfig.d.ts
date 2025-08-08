@@ -11,7 +11,6 @@
  */
 
 
-'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -23,22 +22,27 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.UserFactorVerifyResponseEmbedded = void 0;
-class UserFactorVerifyResponseEmbedded {
-  constructor() {
-  }
-  static getAttributeTypeMap() {
-    return UserFactorVerifyResponseEmbedded.attributeTypeMap;
-  }
+import { AppConfigType } from './../models/AppConfigType';
+/**
+* Additional app configuration for group push mappings. Currently only required for Active Directory.
+*/
+export declare class AppConfig {
+  'type'?: AppConfigType;
+  static readonly discriminator: string | undefined;
+  static readonly mapping: {
+        [index: string]: string;
+    } | undefined;
+  static readonly attributeTypeMap: Array<{
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }>;
+  static getAttributeTypeMap(): {
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }[];
+  constructor();
 }
-exports.UserFactorVerifyResponseEmbedded = UserFactorVerifyResponseEmbedded;
-UserFactorVerifyResponseEmbedded.discriminator = undefined;
-UserFactorVerifyResponseEmbedded.attributeTypeMap = [
-  {
-    'name': 'challenge',
-    'baseName': 'challenge',
-    'type': 'NumberFactorChallengeEmbeddedLinksChallenge',
-    'format': ''
-  }
-];
