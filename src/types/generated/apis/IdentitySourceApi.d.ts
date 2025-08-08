@@ -15,6 +15,10 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { BulkDeleteRequestBody } from '../models/BulkDeleteRequestBody';
+import { BulkGroupDeleteRequestBody } from '../models/BulkGroupDeleteRequestBody';
+import { BulkGroupMembershipsDeleteRequestBody } from '../models/BulkGroupMembershipsDeleteRequestBody';
+import { BulkGroupMembershipsUpsertRequestBody } from '../models/BulkGroupMembershipsUpsertRequestBody';
+import { BulkGroupUpsertRequestBody } from '../models/BulkGroupUpsertRequestBody';
 import { BulkUpsertRequestBody } from '../models/BulkUpsertRequestBody';
 import { IdentitySourceSession } from '../models/IdentitySourceSession';
 /**
@@ -70,6 +74,38 @@ export declare class IdentitySourceApiRequestFactory extends BaseAPIRequestFacto
      * @param bulkUpsertRequestBody
      */
   uploadIdentitySourceDataForUpsert(identitySourceId: string, sessionId: string, bulkUpsertRequestBody?: BulkUpsertRequestBody, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads the group memberships that need to be deleted in Okta from the identity source for the given session
+     * Upload the group memberships to be deleted in Okta
+     * @param identitySourceId The ID of the identity source for which the session is created
+     * @param sessionId The ID of the identity source session
+     * @param bulkGroupMembershipsDeleteRequestBody
+     */
+  uploadIdentitySourceGroupMembershipsForDelete(identitySourceId: string, sessionId: string, bulkGroupMembershipsDeleteRequestBody?: BulkGroupMembershipsDeleteRequestBody, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads the group memberships that need to be inserted or updated in Okta from the identity source for the given session
+     * Upload the group memberships to be upserted in Okta
+     * @param identitySourceId The ID of the identity source for which the session is created
+     * @param sessionId The ID of the identity source session
+     * @param bulkGroupMembershipsUpsertRequestBody
+     */
+  uploadIdentitySourceGroupMembershipsForUpsert(identitySourceId: string, sessionId: string, bulkGroupMembershipsUpsertRequestBody?: BulkGroupMembershipsUpsertRequestBody, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads external IDs of groups that need to be deleted in Okta from the identity source for the given session
+     * Upload the group external IDs to be deleted in Okta
+     * @param identitySourceId The ID of the identity source for which the session is created
+     * @param sessionId The ID of the identity source session
+     * @param bulkGroupDeleteRequestBody
+     */
+  uploadIdentitySourceGroupsDataForDelete(identitySourceId: string, sessionId: string, bulkGroupDeleteRequestBody?: BulkGroupDeleteRequestBody, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads the group profiles without memberships that need to be inserted or updated in Okta from the identity source for the given session
+     * Upload the group profiles without memberships to be upserted in Okta
+     * @param identitySourceId The ID of the identity source for which the session is created
+     * @param sessionId The ID of the identity source session
+     * @param bulkGroupUpsertRequestBody
+     */
+  uploadIdentitySourceGroupsForUpsert(identitySourceId: string, sessionId: string, bulkGroupUpsertRequestBody?: BulkGroupUpsertRequestBody, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class IdentitySourceApiResponseProcessor {
   /**
@@ -128,4 +164,36 @@ export declare class IdentitySourceApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   uploadIdentitySourceDataForUpsert(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to uploadIdentitySourceGroupMembershipsForDelete
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  uploadIdentitySourceGroupMembershipsForDelete(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to uploadIdentitySourceGroupMembershipsForUpsert
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  uploadIdentitySourceGroupMembershipsForUpsert(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to uploadIdentitySourceGroupsDataForDelete
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  uploadIdentitySourceGroupsDataForDelete(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to uploadIdentitySourceGroupsForUpsert
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  uploadIdentitySourceGroupsForUpsert(response: ResponseContext): Promise<void>;
 }

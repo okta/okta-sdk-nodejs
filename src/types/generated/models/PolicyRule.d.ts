@@ -24,6 +24,7 @@
  */
 import { LifecycleStatus } from './../models/LifecycleStatus';
 import { PolicyLinks } from './../models/PolicyLinks';
+import { PolicyRuleActions } from './../models/PolicyRuleActions';
 import { PolicyRuleType } from './../models/PolicyRuleType';
 export declare class PolicyRule {
   /**
@@ -46,6 +47,7 @@ export declare class PolicyRule {
     * Priority of the rule
     */
   'priority'?: number | null;
+  'actions'?: PolicyRuleActions;
   'status'?: LifecycleStatus;
   /**
     * Specifies whether Okta created the policy rule (`system=true`). You can\'t delete policy rules that have `system` set to `true`.

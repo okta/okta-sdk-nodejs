@@ -36,6 +36,12 @@ exports.SlackApplicationSettings = SlackApplicationSettings;
 SlackApplicationSettings.discriminator = undefined;
 SlackApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'SlackApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

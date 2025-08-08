@@ -28,6 +28,10 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { ZscalerbyzApplicationSettingsApplication } from './../models/ZscalerbyzApplicationSettingsApplication';
 export declare class ZscalerbyzApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: ZscalerbyzApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -58,3 +62,4 @@ export declare class ZscalerbyzApplicationSettings {
     }[];
   constructor();
 }
+export declare type ZscalerbyzApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

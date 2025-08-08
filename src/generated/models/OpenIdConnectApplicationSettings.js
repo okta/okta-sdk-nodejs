@@ -36,6 +36,12 @@ exports.OpenIdConnectApplicationSettings = OpenIdConnectApplicationSettings;
 OpenIdConnectApplicationSettings.discriminator = undefined;
 OpenIdConnectApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'OpenIdConnectApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

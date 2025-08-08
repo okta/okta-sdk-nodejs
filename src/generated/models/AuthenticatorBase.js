@@ -49,6 +49,7 @@ AuthenticatorBase.mapping = {
   'security_question': 'AuthenticatorKeySecurityQuestion',
   'smart_card_idp': 'AuthenticatorKeySmartCard',
   'symantec_vip': 'AuthenticatorKeySymantecVip',
+  'tac': 'AuthenticatorKeyTac',
   'webauthn': 'AuthenticatorKeyWebauthn',
   'yubikey_token': 'AuthenticatorKeyYubikey',
 };

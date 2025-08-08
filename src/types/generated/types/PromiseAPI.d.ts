@@ -22,6 +22,7 @@ import { AgentPool } from '../models/AgentPool';
 import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
 import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
 import { AgentType } from '../models/AgentType';
+import { AllCustomAAGUIDResponseObject } from '../models/AllCustomAAGUIDResponseObject';
 import { ApiToken } from '../models/ApiToken';
 import { ApiTokenUpdate } from '../models/ApiTokenUpdate';
 import { AppConnectionUserProvisionJWKResponse } from '../models/AppConnectionUserProvisionJWKResponse';
@@ -44,6 +45,9 @@ import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
+import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
+import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
+import { AuthenticatorEnrollmentCreateRequestTac } from '../models/AuthenticatorEnrollmentCreateRequestTac';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -60,6 +64,10 @@ import { BrandDomains } from '../models/BrandDomains';
 import { BrandRequest } from '../models/BrandRequest';
 import { BrandWithEmbedded } from '../models/BrandWithEmbedded';
 import { BulkDeleteRequestBody } from '../models/BulkDeleteRequestBody';
+import { BulkGroupDeleteRequestBody } from '../models/BulkGroupDeleteRequestBody';
+import { BulkGroupMembershipsDeleteRequestBody } from '../models/BulkGroupMembershipsDeleteRequestBody';
+import { BulkGroupMembershipsUpsertRequestBody } from '../models/BulkGroupMembershipsUpsertRequestBody';
+import { BulkGroupUpsertRequestBody } from '../models/BulkGroupUpsertRequestBody';
 import { BulkUpsertRequestBody } from '../models/BulkUpsertRequestBody';
 import { BundleEntitlementsResponse } from '../models/BundleEntitlementsResponse';
 import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
@@ -69,6 +77,7 @@ import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
 import { ChildOrg } from '../models/ChildOrg';
 import { ClientPrivilegesSetting } from '../models/ClientPrivilegesSetting';
 import { CreateBrandRequest } from '../models/CreateBrandRequest';
+import { CreateGroupPushMappingRequest } from '../models/CreateGroupPushMappingRequest';
 import { CreateGroupRequest } from '../models/CreateGroupRequest';
 import { CreateGroupRuleRequest } from '../models/CreateGroupRuleRequest';
 import { CreateIamRoleRequest } from '../models/CreateIamRoleRequest';
@@ -82,6 +91,9 @@ import { CreateUpdateIamRolePermissionRequest } from '../models/CreateUpdateIamR
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
+import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
+import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
+import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
 import { DesktopMFAEnforceNumberMatchingChallengeOrgSetting } from '../models/DesktopMFAEnforceNumberMatchingChallengeOrgSetting';
 import { DesktopMFARecoveryPinOrgSetting } from '../models/DesktopMFARecoveryPinOrgSetting';
 import { DetailedHookKeyInstance } from '../models/DetailedHookKeyInstance';
@@ -133,6 +145,8 @@ import { GovernanceBundleUpdateRequest } from '../models/GovernanceBundleUpdateR
 import { GovernanceBundlesResponse } from '../models/GovernanceBundlesResponse';
 import { Group } from '../models/Group';
 import { GroupOwner } from '../models/GroupOwner';
+import { GroupPushMapping } from '../models/GroupPushMapping';
+import { GroupPushMappingStatus } from '../models/GroupPushMappingStatus';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
 import { HookKey } from '../models/HookKey';
@@ -217,6 +231,9 @@ import { ProfileMapping } from '../models/ProfileMapping';
 import { ProfileMappingRequest } from '../models/ProfileMappingRequest';
 import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnectionResponse } from '../models/ProvisioningConnectionResponse';
+import { PublicAppleAppSiteWellKnownURI } from '../models/PublicAppleAppSiteWellKnownURI';
+import { PublicAssetLinksWellKnownURI } from '../models/PublicAssetLinksWellKnownURI';
+import { PublicWebauthnSiteWellKnownURI } from '../models/PublicWebauthnSiteWellKnownURI';
 import { PushProvider } from '../models/PushProvider';
 import { RateLimitAdminNotifications } from '../models/RateLimitAdminNotifications';
 import { RateLimitWarningThresholdRequest } from '../models/RateLimitWarningThresholdRequest';
@@ -271,6 +288,7 @@ import { StreamVerificationRequest } from '../models/StreamVerificationRequest';
 import { SubmissionRequest } from '../models/SubmissionRequest';
 import { SubmissionResponse } from '../models/SubmissionResponse';
 import { Subscription } from '../models/Subscription';
+import { TacAuthenticatorEnrollment } from '../models/TacAuthenticatorEnrollment';
 import { TestInfo } from '../models/TestInfo';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThirdPartyAdminSetting } from '../models/ThirdPartyAdminSetting';
@@ -282,6 +300,7 @@ import { UpdateDefaultProvisioningConnectionForApplicationRequest } from '../mod
 import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateFeatureForApplicationRequest } from '../models/UpdateFeatureForApplicationRequest';
+import { UpdateGroupPushMappingRequest } from '../models/UpdateGroupPushMappingRequest';
 import { UpdateIamRoleRequest } from '../models/UpdateIamRoleRequest';
 import { UpdateRealmAssignmentRequest } from '../models/UpdateRealmAssignmentRequest';
 import { UpdateRealmRequest } from '../models/UpdateRealmRequest';
@@ -303,6 +322,7 @@ import { UserFactorSecurityQuestionProfile } from '../models/UserFactorSecurityQ
 import { UserFactorSupported } from '../models/UserFactorSupported';
 import { UserFactorVerifyRequest } from '../models/UserFactorVerifyRequest';
 import { UserFactorVerifyResponse } from '../models/UserFactorVerifyResponse';
+import { UserFactorVerifyResponseWaiting } from '../models/UserFactorVerifyResponseWaiting';
 import { UserFactorYubikeyOtpToken } from '../models/UserFactorYubikeyOtpToken';
 import { UserGetSingleton } from '../models/UserGetSingleton';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
@@ -319,55 +339,58 @@ import { WebAuthnPreregistrationFactor } from '../models/WebAuthnPreregistration
 import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 import { WellKnownSSFMetadata } from '../models/WellKnownSSFMetadata';
+import { WellKnownURIObjectResponse } from '../models/WellKnownURIObjectResponse';
+import { WellKnownURIRequest } from '../models/WellKnownURIRequest';
+import { WellKnownURIsRoot } from '../models/WellKnownURIsRoot';
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export declare class PromiseAgentPoolsApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
   /**
-      * Activates scheduled Agent pool update
+      * Activates a scheduled agent pool update
       * Activate an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   activateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Creates an agent pool update
       * Create an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       * @param agentPoolUpdate
       */
   createAgentPoolsUpdate(poolId: string, agentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Deactivates scheduled Agent pool update
+      * Deactivates scheduled agent pool update
       * Deactivate an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   deactivateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Deletes Agent pool update
+      * Deletes agent pool update
       * Delete an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<void>;
   /**
-      * Retrieves Agent pool update from updateId
+      * Retrieves an agent pool update by its `updateId`
       * Retrieve an agent pool update by ID
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Retrieves the current state of the agent pool update instance settings
       * Retrieve an agent pool update\'s settings
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       */
   getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Promise<AgentPoolUpdateSetting>;
   /**
       * Lists all agent pools with pagination support
       * List all agent pools
-      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param limitPerPoolType Maximum number of agent pools returned
       * @param poolType Agent type to search for
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       */
@@ -375,50 +398,50 @@ export declare class PromiseAgentPoolsApi {
   /**
       * Lists all agent pool updates
       * List all agent pool updates
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param scheduled Return only scheduled or ad-hoc updates. If this parameter isn\&#39;t provided, Okta returns the entire list of updates.
       */
   listAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
   /**
-      * Pauses running or queued Agent pool update
+      * Pauses a running or queued agent pool update
       * Pause an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   pauseAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Resumes running or queued Agent pool update
+      * Resumes a running or queued agent pool update
       * Resume an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   resumeAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Retries Agent pool update
+      * Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
       * Retry an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Stops Agent pool update
+      * Stops an agent pool update
       * Stop an agent pool update
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       */
   stopAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Updates Agent pool update and return latest agent pool update
+      * Updates an agent pool update instance and returns the latest agent pool update
       * Update an agent pool update by ID
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param updateId Id of the update
+      * @param poolId ID of the agent pool for which the settings apply to
+      * @param updateId ID of the update
       * @param agentPoolUpdate
       */
   updateAgentPoolsUpdate(poolId: string, updateId: string, agentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Updates an agent pool update settings
+      * Updates an agent pool update instance settings
       * Update an agent pool update settings
-      * @param poolId Id of the agent pool for which the settings will apply
+      * @param poolId ID of the agent pool for which the settings apply to
       * @param agentPoolUpdateSetting
       */
   updateAgentPoolsUpdateSettings(poolId: string, agentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<AgentPoolUpdateSetting>;
@@ -623,7 +646,7 @@ export declare class PromiseApplicationApi {
       */
   createOAuth2ClientSecret(appId: string, oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody, _options?: Configuration): Promise<OAuth2ClientSecret>;
   /**
-      * Deactivates an active application
+      * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
       * Deactivate an application
       * @param appId Application ID
       */
@@ -1046,6 +1069,56 @@ export declare class PromiseApplicationApi {
       */
   verifyProvisioningConnectionForOfficeApplication(appId: string, code?: string, state?: string, _options?: Configuration): Promise<void>;
 }
+import { AssociatedDomainCustomizationsApiRequestFactory, AssociatedDomainCustomizationsApiResponseProcessor } from '../apis/AssociatedDomainCustomizationsApi';
+export declare class PromiseAssociatedDomainCustomizationsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AssociatedDomainCustomizationsApiRequestFactory, responseProcessor?: AssociatedDomainCustomizationsApiResponseProcessor);
+  /**
+      * Retrieves the content from each of the well-known URIs for a specified brand
+      * Retrieve all the well-known URIs
+      * @param brandId The ID of the brand
+      * @param expand Specifies additional metadata to include in the response
+      */
+  getAllWellKnownURIs(brandId: string, expand?: Array<'all' | 'apple-app-site-association' | 'assetlinks.json' | 'webauthn'>, _options?: Configuration): Promise<WellKnownURIsRoot>;
+  /**
+      * Retrieves the content of the `apple-app-site-assocation` well-known URI  > **Note:**  When serving this URI, Okta adds `authsrv` content to provide a seamless experience for Okta Verify. You can\'t modify the content in the `authsrv` object.
+      * Retrieve the customized apple-app-site-association URI content
+      */
+  getAppleAppSiteAssociationWellKnownURI(_options?: Configuration): Promise<PublicAppleAppSiteWellKnownURI>;
+  /**
+      * Retrieves the content of the `assetlinks.json` well-known URI
+      * Retrieve the customized assetlinks.json URI content
+      */
+  getAssetLinksWellKnownURI(_options?: Configuration): Promise<PublicAssetLinksWellKnownURI>;
+  /**
+      * Retrieves the customized content of a well-known URI for a specific brand and well-known URI path
+      * Retrieve the customized content of the specified well-known URI
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      */
+  getBrandWellKnownURI(brandId: string, uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn', _options?: Configuration): Promise<WellKnownURIObjectResponse>;
+  /**
+      * Retrieves the well-known URI of a specific brand and well-known URI path
+      * Retrieve the well-known URI of a specific brand
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      * @param expand Specifies additional metadata to include in the response
+      */
+  getRootBrandWellKnownURI(brandId: string, uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn', expand?: Array<'customized'>, _options?: Configuration): Promise<WellKnownURIObjectResponse>;
+  /**
+      * Retrieves the content of the `webauthn` well-known URI
+      * Retrieve the customized webauthn URI content
+      */
+  getWebAuthnWellKnownURI(_options?: Configuration): Promise<PublicWebauthnSiteWellKnownURI>;
+  /**
+      * Replaces the content of a customized well-known URI that you specify.  There are endpoint-specific format requirements when you update the content of a customized well-known URI. See [Customize associated domains](https://developer.okta.com/docs/guides/custom-well-known-uri/main/).
+      * Replace the customized well-known URI of the specific path
+      * @param brandId The ID of the brand
+      * @param uriPath The path of the well-known URI
+      * @param wellKnownURIRequest
+      */
+  replaceBrandWellKnownURI(brandId: string, uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn', wellKnownURIRequest?: WellKnownURIRequest, _options?: Configuration): Promise<WellKnownURIObjectResponse>;
+}
 import { AttackProtectionApiRequestFactory, AttackProtectionApiResponseProcessor } from '../apis/AttackProtectionApi';
 export declare class PromiseAttackProtectionApi {
   private api;
@@ -1098,6 +1171,13 @@ export declare class PromiseAuthenticatorApi {
       */
   createAuthenticator(authenticator: AuthenticatorBase, activate?: boolean, _options?: Configuration): Promise<AuthenticatorBase>;
   /**
+      * Creates a custom AAGUID for the WebAuthn authenticator
+      * Create a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param customAAGUIDCreateRequestObject
+      */
+  createCustomAAGUID(authenticatorId: string, customAAGUIDCreateRequestObject?: CustomAAGUIDCreateRequestObject, _options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
       * Deactivates an authenticator by `authenticatorId`
       * Deactivate an authenticator
       * @param authenticatorId &#x60;id&#x60; of the authenticator
@@ -1110,6 +1190,13 @@ export declare class PromiseAuthenticatorApi {
       * @param methodType Type of authenticator method
       */
   deactivateAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, _options?: Configuration): Promise<AuthenticatorMethodBase>;
+  /**
+      * Deletes a custom AAGUID  You can only delete custom AAGUIDs that an admin has created.
+      * Delete a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      */
+  deleteCustomAAGUID(authenticatorId: string, aaguid: string, _options?: Configuration): Promise<void>;
   /**
       * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an authenticator
@@ -1124,11 +1211,24 @@ export declare class PromiseAuthenticatorApi {
       */
   getAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, _options?: Configuration): Promise<AuthenticatorMethodBase>;
   /**
+      * Retrieves a custom AAGUID
+      * Retrieve a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      */
+  getCustomAAGUID(authenticatorId: string, aaguid: string, _options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
       * Retrieves the well-known app authenticator configuration. Includes an app authenticator\'s settings, supported methods, and other details.
       * Retrieve the well-known app authenticator configuration
       * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
       */
   getWellKnownAppAuthenticatorConfiguration(oauthClientId: string, _options?: Configuration): Promise<Collection<WellKnownAppAuthenticatorConfiguration>>;
+  /**
+      * Lists all custom Authenticator Attestation Global Unique Identifiers (AAGUIDs) in the org  Only custom AAGUIDs that an admin has created are returned.
+      * List all custom AAGUIDs
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      */
+  listAllCustomAAGUIDs(authenticatorId: string, _options?: Configuration): Promise<AllCustomAAGUIDResponseObject>;
   /**
       * Lists all methods of an authenticator identified by `authenticatorId`
       * List all methods of an authenticator
@@ -1155,6 +1255,22 @@ export declare class PromiseAuthenticatorApi {
       * @param authenticatorMethodBase
       */
   replaceAuthenticatorMethod(authenticatorId: string, methodType: AuthenticatorMethodType, authenticatorMethodBase?: AuthenticatorMethodBase, _options?: Configuration): Promise<AuthenticatorMethodBase>;
+  /**
+      * Replaces a custom AAGUID for the specified WebAuthn authenticator
+      * Replace a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      * @param customAAGUIDUpdateRequestObject
+      */
+  replaceCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
+      * Updates the properties of a custom AAGUID by the `authenticatorId` and `aaguid` ID
+      * Update a custom AAGUID
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param aaguid Unique ID of a custom AAGUID
+      * @param customAAGUIDUpdateRequestObject
+      */
+  updateCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Promise<CustomAAGUIDResponseObject>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export declare class PromiseAuthorizationServerApi {
@@ -2014,7 +2130,7 @@ export declare class PromiseCustomizationApi {
       */
   replaceSignOutPageSettings(brandId: string, hostedPage: HostedPage, _options?: Configuration): Promise<HostedPage>;
   /**
-      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization. 3. The email template’s default content, translated to the current user\'s language.
+      * Sends a test email to the current user\'s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization 3. The email template\'s default content, translated to the current user\'s language  > **Note:** Super admins can view customized email templates with the **Send a test email** request. However, when custom email templates are sent to super admins as part of actual email notification flows, the customizations aren\'t applied. Instead, the default email template is used. This only applies to super admins.
       * Send a test email
       * @param brandId The ID of the brand
       * @param templateName The name of the email template
@@ -2662,6 +2778,52 @@ export declare class PromiseGroupApi {
       */
   unassignUserFromGroup(groupId: string, userId: string, _options?: Configuration): Promise<void>;
 }
+import { GroupPushMappingApiRequestFactory, GroupPushMappingApiResponseProcessor } from '../apis/GroupPushMappingApi';
+export declare class PromiseGroupPushMappingApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: GroupPushMappingApiRequestFactory, responseProcessor?: GroupPushMappingApiResponseProcessor);
+  /**
+      * Creates or links a group push mapping.  **Note:** Either `targetGroupId` or `targetGroupName` must be provided, but not both. If `targetGroupId` is provided, it links to an existing group. If `targetGroupName` is provided, it creates a new group.
+      * Create a group push mapping
+      * @param appId Application ID
+      * @param body
+      */
+  createGroupPushMapping(appId: string, body: CreateGroupPushMappingRequest, _options?: Configuration): Promise<GroupPushMapping>;
+  /**
+      * Deletes a specific group push mapping. The group push mapping must be in an `INACTIVE` state.
+      * Delete a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      * @param deleteTargetGroup If set to &#x60;true&#x60;, the target group is also deleted. If set to &#x60;false&#x60;, the target group isn\&#39;t deleted.
+      */
+  deleteGroupPushMapping(appId: string, mappingId: string, deleteTargetGroup: boolean, _options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a group push mapping by ID
+      * Retrieve a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      */
+  getGroupPushMapping(appId: string, mappingId: string, _options?: Configuration): Promise<GroupPushMapping>;
+  /**
+      * Lists all group push mappings with pagination support
+      * List all group push mappings
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of mappings
+      * @param limit Specifies the number of results returned
+      * @param lastUpdated Filters group push mappings by last updated date. The &#x60;lastUpdated&#x60; parameter supports the following format: &#x60;YYYY-MM-DDTHH:mm:ssZ&#x60;. This filters mappings updated on or after the specified date and time in UTC.  If you don\&#39;t specify a value, all group push mappings are returned.
+      * @param sourceGroupId Filters group push mappings by source group ID. If you don\&#39;t specify a value, all group push mappings are returned.
+      * @param status Filters group push mappings by status. If you don\&#39;t specify a value, all group push mappings are returned.
+      */
+  listGroupPushMappings(appId: string, after?: string, limit?: number, lastUpdated?: string, sourceGroupId?: string, status?: GroupPushMappingStatus, _options?: Configuration): Promise<Collection<GroupPushMapping>>;
+  /**
+      * Updates the status of a group push mapping
+      * Update a group push mapping
+      * @param appId Application ID
+      * @param mappingId Group push mapping ID
+      * @param body
+      */
+  updateGroupPushMapping(appId: string, mappingId: string, body: UpdateGroupPushMappingRequest, _options?: Configuration): Promise<GroupPushMapping>;
+}
 import { HookKeyApiRequestFactory, HookKeyApiResponseProcessor } from '../apis/HookKeyApi';
 export declare class PromiseHookKeyApi {
   private api;
@@ -2722,7 +2884,7 @@ export declare class PromiseIdentityProviderApi {
       */
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Promise<IdPKeyCredential>;
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/) <x-lifecycle class=\"ea\"></x-lifecycle>  * [Incode](https://incode.com/) <x-lifecycle class=\"ea\"></x-lifecycle>
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
       * Create an IdP
       * @param identityProvider IdP settings
       */
@@ -2953,6 +3115,38 @@ export declare class PromiseIdentitySourceApi {
       * @param bulkUpsertRequestBody
       */
   uploadIdentitySourceDataForUpsert(identitySourceId: string, sessionId: string, bulkUpsertRequestBody?: BulkUpsertRequestBody, _options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group memberships that need to be deleted in Okta from the identity source for the given session
+      * Upload the group memberships to be deleted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupMembershipsDeleteRequestBody
+      */
+  uploadIdentitySourceGroupMembershipsForDelete(identitySourceId: string, sessionId: string, bulkGroupMembershipsDeleteRequestBody?: BulkGroupMembershipsDeleteRequestBody, _options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group memberships to be upserted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupMembershipsUpsertRequestBody
+      */
+  uploadIdentitySourceGroupMembershipsForUpsert(identitySourceId: string, sessionId: string, bulkGroupMembershipsUpsertRequestBody?: BulkGroupMembershipsUpsertRequestBody, _options?: Configuration): Promise<void>;
+  /**
+      * Uploads external IDs of groups that need to be deleted in Okta from the identity source for the given session
+      * Upload the group external IDs to be deleted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupDeleteRequestBody
+      */
+  uploadIdentitySourceGroupsDataForDelete(identitySourceId: string, sessionId: string, bulkGroupDeleteRequestBody?: BulkGroupDeleteRequestBody, _options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group profiles without memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group profiles without memberships to be upserted in Okta
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param sessionId The ID of the identity source session
+      * @param bulkGroupUpsertRequestBody
+      */
+  uploadIdentitySourceGroupsForUpsert(identitySourceId: string, sessionId: string, bulkGroupUpsertRequestBody?: BulkGroupUpsertRequestBody, _options?: Configuration): Promise<void>;
 }
 import { InlineHookApiRequestFactory, InlineHookApiResponseProcessor } from '../apis/InlineHookApi';
 export declare class PromiseInlineHookApi {
@@ -5238,6 +5432,45 @@ export declare class PromiseUserApi {
       */
   upsertUserRisk(userId: string, userRiskRequest: UserRiskRequest, _options?: Configuration): Promise<UserRiskPutResponse>;
 }
+import { UserAuthenticatorEnrollmentsApiRequestFactory, UserAuthenticatorEnrollmentsApiResponseProcessor } from '../apis/UserAuthenticatorEnrollmentsApi';
+export declare class PromiseUserAuthenticatorEnrollmentsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: UserAuthenticatorEnrollmentsApiRequestFactory, responseProcessor?: UserAuthenticatorEnrollmentsApiResponseProcessor);
+  /**
+      * Creates a Phone authenticator enrollment that\'s automatically activated
+      * Create an auto-activated Phone authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param authenticator
+      */
+  createAuthenticatorEnrollment(userId: string, authenticator: AuthenticatorEnrollmentCreateRequest, _options?: Configuration): Promise<AuthenticatorEnrollment>;
+  /**
+      * Creates an auto-activated Temporary access code (TAC) authenticator enrollment
+      * Create an auto-activated TAC authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param authenticator
+      */
+  createTacAuthenticatorEnrollment(userId: string, authenticator: AuthenticatorEnrollmentCreateRequestTac, _options?: Configuration): Promise<TacAuthenticatorEnrollment>;
+  /**
+      * Deletes an existing enrollment for the specified user. The user can enroll the authenticator again.
+      * Delete an authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param enrollmentId Unique identifier of an enrollment
+      */
+  deleteAuthenticatorEnrollment(userId: string, enrollmentId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a user\'s authenticator enrollment by `enrollmentId`
+      * Retrieve an authenticator enrollment
+      * @param userId ID of an existing Okta user
+      * @param enrollmentId Unique identifier of an enrollment
+      */
+  getAuthenticatorEnrollment(userId: string, enrollmentId: string, _options?: Configuration): Promise<AuthenticatorEnrollment>;
+  /**
+      * Lists all authenticator enrollments of the specified user
+      * List all authenticator enrollments
+      * @param userId ID of an existing Okta user
+      */
+  listAuthenticatorEnrollments(userId: string, _options?: Configuration): Promise<AuthenticatorEnrollment>;
+}
 import { UserFactorApiRequestFactory, UserFactorApiResponseProcessor } from '../apis/UserFactorApi';
 export declare class PromiseUserFactorApi {
   private api;
@@ -5355,7 +5588,7 @@ export declare class PromiseUserFactorApi {
       * @param acceptLanguage An ISO 639-1 two-letter language code that defines a localized message to send. This parameter is only used by &#x60;sms&#x60; factors. If a localized message doesn\&#39;t exist or the &#x60;templateId&#x60; is incorrect, the default template is used instead.
       * @param body Verifies an OTP for a factor. Some factors (&#x60;call&#x60;, &#x60;email&#x60;, &#x60;push&#x60;, &#x60;sms&#x60;, &#x60;u2f&#x60;, and &#x60;webauthn&#x60;) must first issue a challenge before you can verify the factor. Do this by making a request without a body. After a challenge is issued, make another request to verify the factor.  &gt; **Note:** &gt; Unlike standard push challenges that don\&#39;t require a request body, a number matching [&#x60;push&#x60;](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserFactor/#tag/UserFactor/operation/verifyFactor!path&#x3D;2/useNumberMatchingChallenge&amp;t&#x3D;request) challenge requires a request body. &#x60;useNumberMatchingChallenge&#x60; must be set to &#x60;true&#x60;. &gt; When a number matching challenge is issued for an Okta Verify &#x60;push&#x60; factor enrollment, a &#x60;correctAnswer&#x60; challenge object is returned in the [&#x60;_embedded&#x60;](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserFactor/#tag/UserFactor/operation/verifyFactor!c&#x3D;200&amp;path&#x3D;_embedded&amp;t&#x3D;response) object.
       */
-  verifyFactor(userId: string, factorId: string, templateId?: string, tokenLifetimeSeconds?: number, xForwardedFor?: string, userAgent?: string, acceptLanguage?: string, body?: UserFactorVerifyRequest, _options?: Configuration): Promise<UserFactorVerifyResponse>;
+  verifyFactor(userId: string, factorId: string, templateId?: string, tokenLifetimeSeconds?: number, xForwardedFor?: string, userAgent?: string, acceptLanguage?: string, body?: UserFactorVerifyRequest, _options?: Configuration): Promise<UserFactorVerifyResponse | UserFactorVerifyResponseWaiting>;
 }
 import { UserTypeApiRequestFactory, UserTypeApiResponseProcessor } from '../apis/UserTypeApi';
 export declare class PromiseUserTypeApi {

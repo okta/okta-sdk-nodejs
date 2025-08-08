@@ -62,7 +62,7 @@ UserFactorVerifyResponse.attributeTypeMap = [
   {
     'name': '_embedded',
     'baseName': '_embedded',
-    'type': 'UserFactorVerifyResponseEmbedded',
+    'type': '{ [key: string]: any | null; }',
     'format': ''
   },
   {

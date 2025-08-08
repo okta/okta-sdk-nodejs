@@ -36,6 +36,12 @@ exports.ZoomUsApplicationSettings = ZoomUsApplicationSettings;
 ZoomUsApplicationSettings.discriminator = undefined;
 ZoomUsApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'ZoomUsApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

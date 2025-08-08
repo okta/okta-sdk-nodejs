@@ -36,6 +36,12 @@ exports.Org2OrgApplicationSettings = Org2OrgApplicationSettings;
 Org2OrgApplicationSettings.discriminator = undefined;
 Org2OrgApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'Org2OrgApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

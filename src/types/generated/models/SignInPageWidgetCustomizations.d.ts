@@ -107,6 +107,10 @@ export declare class SignInPageWidgetCustomizations {
   'classicRecoveryFlowEmailOrUsernameLabel'?: string;
   'widgetGeneration'?: WidgetGeneration;
   'postAuthKeepMeSignedInPrompt'?: PostAuthKeepMeSignedInPrompt;
+  /**
+    * The title of the footer link on the sign-in page. Only applicable for Classic Engine orgs.
+    */
+  'classicFooterHelpTitle'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

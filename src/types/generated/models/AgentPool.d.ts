@@ -24,16 +24,32 @@
  */
 import { Agent } from './../models/Agent';
 import { AgentType } from './../models/AgentType';
+import { LinksSelf } from './../models/LinksSelf';
 import { OperationalStatus } from './../models/OperationalStatus';
 /**
-* An AgentPool is a collection of agents that serve a common purpose. An AgentPool has a unique ID within an org, and contains a collection of agents disjoint to every other AgentPool (i.e. no two AgentPools share an Agent).
+* An agent pool is a collection of agents that serve a common purpose. An agent pool has a unique ID within an org, and contains a collection of agents disjoint to every other agent pool, meaning that no two agent pools share an agent.
 */
 export declare class AgentPool {
   'agents'?: Array<Agent>;
+  /**
+    * Number of agents in the pool that are in a disrupted state
+    */
+  'disruptedAgents'?: number;
+  /**
+    * Agent pool ID
+    */
   'id'?: string;
+  /**
+    * Number of agents in the pool that are in an inactive state
+    */
+  'inactiveAgents'?: number;
+  /**
+    * Agent pool name
+    */
   'name'?: string;
   'operationalStatus'?: OperationalStatus;
   'type'?: AgentType;
+  '_links'?: LinksSelf;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* Overall state for the auto-update job from admin perspective
+* Overall state for the auto-update job from the admin perspective
 */
 export declare type AgentUpdateJobStatus = 'Cancelled' | 'Failed' | 'InProgress' | 'Paused' | 'Scheduled' | 'Success';

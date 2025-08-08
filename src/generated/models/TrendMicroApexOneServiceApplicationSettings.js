@@ -36,6 +36,12 @@ exports.TrendMicroApexOneServiceApplicationSettings = TrendMicroApexOneServiceAp
 TrendMicroApexOneServiceApplicationSettings.discriminator = undefined;
 TrendMicroApexOneServiceApplicationSettings.attributeTypeMap = [
   {
+    'name': 'emOptInStatus',
+    'baseName': 'emOptInStatus',
+    'type': 'TrendMicroApexOneServiceApplicationSettingsEmOptInStatusEnum',
+    'format': ''
+  },
+  {
     'name': 'identityStoreId',
     'baseName': 'identityStoreId',
     'type': 'string',

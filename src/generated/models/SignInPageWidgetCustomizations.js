@@ -166,5 +166,11 @@ SignInPageWidgetCustomizations.attributeTypeMap = [
     'baseName': 'postAuthKeepMeSignedInPrompt',
     'type': 'PostAuthKeepMeSignedInPrompt',
     'format': ''
+  },
+  {
+    'name': 'classicFooterHelpTitle',
+    'baseName': 'classicFooterHelpTitle',
+    'type': 'string',
+    'format': ''
   }
 ];

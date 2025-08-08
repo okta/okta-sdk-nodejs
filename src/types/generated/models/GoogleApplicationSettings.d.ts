@@ -28,6 +28,10 @@ import { GoogleApplicationSettingsApplication } from './../models/GoogleApplicat
 import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20ApplicationSettingsSignOn';
 export declare class GoogleApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: GoogleApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -58,3 +62,4 @@ export declare class GoogleApplicationSettings {
     }[];
   constructor();
 }
+export declare type GoogleApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

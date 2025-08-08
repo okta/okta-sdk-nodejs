@@ -28,6 +28,10 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { SlackApplicationSettingsApplication } from './../models/SlackApplicationSettingsApplication';
 export declare class SlackApplicationSettings {
   /**
+    * The Governance Engine opt-in status for the app
+    */
+  'emOptInStatus'?: SlackApplicationSettingsEmOptInStatusEnum;
+  /**
     * Identifies an additional identity store app, if your app supports it. The `identityStoreId` value must be a valid identity store app ID. This identity store app must be created in the same org as your app.
     */
   'identityStoreId'?: string;
@@ -58,3 +62,4 @@ export declare class SlackApplicationSettings {
     }[];
   constructor();
 }
+export declare type SlackApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

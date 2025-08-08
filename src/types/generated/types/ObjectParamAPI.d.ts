@@ -22,6 +22,7 @@ import { AgentPool } from '../models/AgentPool';
 import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
 import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
 import { AgentType } from '../models/AgentType';
+import { AllCustomAAGUIDResponseObject } from '../models/AllCustomAAGUIDResponseObject';
 import { ApiToken } from '../models/ApiToken';
 import { ApiTokenUpdate } from '../models/ApiTokenUpdate';
 import { AppConnectionUserProvisionJWKResponse } from '../models/AppConnectionUserProvisionJWKResponse';
@@ -44,6 +45,9 @@ import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
+import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
+import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
+import { AuthenticatorEnrollmentCreateRequestTac } from '../models/AuthenticatorEnrollmentCreateRequestTac';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -60,6 +64,10 @@ import { BrandDomains } from '../models/BrandDomains';
 import { BrandRequest } from '../models/BrandRequest';
 import { BrandWithEmbedded } from '../models/BrandWithEmbedded';
 import { BulkDeleteRequestBody } from '../models/BulkDeleteRequestBody';
+import { BulkGroupDeleteRequestBody } from '../models/BulkGroupDeleteRequestBody';
+import { BulkGroupMembershipsDeleteRequestBody } from '../models/BulkGroupMembershipsDeleteRequestBody';
+import { BulkGroupMembershipsUpsertRequestBody } from '../models/BulkGroupMembershipsUpsertRequestBody';
+import { BulkGroupUpsertRequestBody } from '../models/BulkGroupUpsertRequestBody';
 import { BulkUpsertRequestBody } from '../models/BulkUpsertRequestBody';
 import { BundleEntitlementsResponse } from '../models/BundleEntitlementsResponse';
 import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
@@ -69,6 +77,7 @@ import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
 import { ChildOrg } from '../models/ChildOrg';
 import { ClientPrivilegesSetting } from '../models/ClientPrivilegesSetting';
 import { CreateBrandRequest } from '../models/CreateBrandRequest';
+import { CreateGroupPushMappingRequest } from '../models/CreateGroupPushMappingRequest';
 import { CreateGroupRequest } from '../models/CreateGroupRequest';
 import { CreateGroupRuleRequest } from '../models/CreateGroupRuleRequest';
 import { CreateIamRoleRequest } from '../models/CreateIamRoleRequest';
@@ -82,6 +91,9 @@ import { CreateUpdateIamRolePermissionRequest } from '../models/CreateUpdateIamR
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
+import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
+import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
+import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
 import { DesktopMFAEnforceNumberMatchingChallengeOrgSetting } from '../models/DesktopMFAEnforceNumberMatchingChallengeOrgSetting';
 import { DesktopMFARecoveryPinOrgSetting } from '../models/DesktopMFARecoveryPinOrgSetting';
 import { DetailedHookKeyInstance } from '../models/DetailedHookKeyInstance';
@@ -133,6 +145,8 @@ import { GovernanceBundleUpdateRequest } from '../models/GovernanceBundleUpdateR
 import { GovernanceBundlesResponse } from '../models/GovernanceBundlesResponse';
 import { Group } from '../models/Group';
 import { GroupOwner } from '../models/GroupOwner';
+import { GroupPushMapping } from '../models/GroupPushMapping';
+import { GroupPushMappingStatus } from '../models/GroupPushMappingStatus';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
 import { HookKey } from '../models/HookKey';
@@ -217,6 +231,9 @@ import { ProfileMapping } from '../models/ProfileMapping';
 import { ProfileMappingRequest } from '../models/ProfileMappingRequest';
 import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnectionResponse } from '../models/ProvisioningConnectionResponse';
+import { PublicAppleAppSiteWellKnownURI } from '../models/PublicAppleAppSiteWellKnownURI';
+import { PublicAssetLinksWellKnownURI } from '../models/PublicAssetLinksWellKnownURI';
+import { PublicWebauthnSiteWellKnownURI } from '../models/PublicWebauthnSiteWellKnownURI';
 import { PushProvider } from '../models/PushProvider';
 import { RateLimitAdminNotifications } from '../models/RateLimitAdminNotifications';
 import { RateLimitWarningThresholdRequest } from '../models/RateLimitWarningThresholdRequest';
@@ -271,6 +288,7 @@ import { StreamVerificationRequest } from '../models/StreamVerificationRequest';
 import { SubmissionRequest } from '../models/SubmissionRequest';
 import { SubmissionResponse } from '../models/SubmissionResponse';
 import { Subscription } from '../models/Subscription';
+import { TacAuthenticatorEnrollment } from '../models/TacAuthenticatorEnrollment';
 import { TestInfo } from '../models/TestInfo';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThirdPartyAdminSetting } from '../models/ThirdPartyAdminSetting';
@@ -282,6 +300,7 @@ import { UpdateDefaultProvisioningConnectionForApplicationRequest } from '../mod
 import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateFeatureForApplicationRequest } from '../models/UpdateFeatureForApplicationRequest';
+import { UpdateGroupPushMappingRequest } from '../models/UpdateGroupPushMappingRequest';
 import { UpdateIamRoleRequest } from '../models/UpdateIamRoleRequest';
 import { UpdateRealmAssignmentRequest } from '../models/UpdateRealmAssignmentRequest';
 import { UpdateRealmRequest } from '../models/UpdateRealmRequest';
@@ -303,6 +322,7 @@ import { UserFactorSecurityQuestionProfile } from '../models/UserFactorSecurityQ
 import { UserFactorSupported } from '../models/UserFactorSupported';
 import { UserFactorVerifyRequest } from '../models/UserFactorVerifyRequest';
 import { UserFactorVerifyResponse } from '../models/UserFactorVerifyResponse';
+import { UserFactorVerifyResponseWaiting } from '../models/UserFactorVerifyResponseWaiting';
 import { UserFactorYubikeyOtpToken } from '../models/UserFactorYubikeyOtpToken';
 import { UserGetSingleton } from '../models/UserGetSingleton';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
@@ -319,16 +339,19 @@ import { WebAuthnPreregistrationFactor } from '../models/WebAuthnPreregistration
 import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 import { WellKnownSSFMetadata } from '../models/WellKnownSSFMetadata';
+import { WellKnownURIObjectResponse } from '../models/WellKnownURIObjectResponse';
+import { WellKnownURIRequest } from '../models/WellKnownURIRequest';
+import { WellKnownURIsRoot } from '../models/WellKnownURIsRoot';
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export interface AgentPoolsApiActivateAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApiactivateAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApiactivateAgentPoolsUpdate
       */
@@ -336,7 +359,7 @@ export interface AgentPoolsApiActivateAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiCreateAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApicreateAgentPoolsUpdate
       */
@@ -350,13 +373,13 @@ export interface AgentPoolsApiCreateAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiDeactivateAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApideactivateAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApideactivateAgentPoolsUpdate
       */
@@ -364,13 +387,13 @@ export interface AgentPoolsApiDeactivateAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiDeleteAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApideleteAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApideleteAgentPoolsUpdate
       */
@@ -378,13 +401,13 @@ export interface AgentPoolsApiDeleteAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiGetAgentPoolsUpdateInstanceRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApigetAgentPoolsUpdateInstance
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApigetAgentPoolsUpdateInstance
       */
@@ -392,7 +415,7 @@ export interface AgentPoolsApiGetAgentPoolsUpdateInstanceRequest {
 }
 export interface AgentPoolsApiGetAgentPoolsUpdateSettingsRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApigetAgentPoolsUpdateSettings
       */
@@ -400,7 +423,7 @@ export interface AgentPoolsApiGetAgentPoolsUpdateSettingsRequest {
 }
 export interface AgentPoolsApiListAgentPoolsRequest {
     /**
-      * Maximum number of AgentPools being returned
+      * Maximum number of agent pools returned
       * @type number
       * @memberof AgentPoolsApilistAgentPools
       */
@@ -420,13 +443,13 @@ export interface AgentPoolsApiListAgentPoolsRequest {
 }
 export interface AgentPoolsApiListAgentPoolsUpdatesRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApilistAgentPoolsUpdates
       */
     poolId: string;
     /**
-      * Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      * Return only scheduled or ad-hoc updates. If this parameter isn\&#39;t provided, Okta returns the entire list of updates.
       * @type boolean
       * @memberof AgentPoolsApilistAgentPoolsUpdates
       */
@@ -434,13 +457,13 @@ export interface AgentPoolsApiListAgentPoolsUpdatesRequest {
 }
 export interface AgentPoolsApiPauseAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApipauseAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApipauseAgentPoolsUpdate
       */
@@ -448,13 +471,13 @@ export interface AgentPoolsApiPauseAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiResumeAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApiresumeAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApiresumeAgentPoolsUpdate
       */
@@ -462,13 +485,13 @@ export interface AgentPoolsApiResumeAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiRetryAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApiretryAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApiretryAgentPoolsUpdate
       */
@@ -476,13 +499,13 @@ export interface AgentPoolsApiRetryAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiStopAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApistopAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApistopAgentPoolsUpdate
       */
@@ -490,13 +513,13 @@ export interface AgentPoolsApiStopAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiUpdateAgentPoolsUpdateRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApiupdateAgentPoolsUpdate
       */
     poolId: string;
     /**
-      * Id of the update
+      * ID of the update
       * @type string
       * @memberof AgentPoolsApiupdateAgentPoolsUpdate
       */
@@ -510,7 +533,7 @@ export interface AgentPoolsApiUpdateAgentPoolsUpdateRequest {
 }
 export interface AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest {
     /**
-      * Id of the agent pool for which the settings will apply
+      * ID of the agent pool for which the settings apply to
       * @type string
       * @memberof AgentPoolsApiupdateAgentPoolsUpdateSettings
       */
@@ -526,31 +549,31 @@ export declare class ObjectAgentPoolsApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
   /**
-      * Activates scheduled Agent pool update
+      * Activates a scheduled agent pool update
       * Activate an agent pool update
       * @param param the request object
       */
   activateAgentPoolsUpdate(param: AgentPoolsApiActivateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Creates an agent pool update
       * Create an agent pool update
       * @param param the request object
       */
   createAgentPoolsUpdate(param: AgentPoolsApiCreateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Deactivates scheduled Agent pool update
+      * Deactivates scheduled agent pool update
       * Deactivate an agent pool update
       * @param param the request object
       */
   deactivateAgentPoolsUpdate(param: AgentPoolsApiDeactivateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Deletes Agent pool update
+      * Deletes agent pool update
       * Delete an agent pool update
       * @param param the request object
       */
   deleteAgentPoolsUpdate(param: AgentPoolsApiDeleteAgentPoolsUpdateRequest, options?: Configuration): Promise<void>;
   /**
-      * Retrieves Agent pool update from updateId
+      * Retrieves an agent pool update by its `updateId`
       * Retrieve an agent pool update by ID
       * @param param the request object
       */
@@ -574,37 +597,37 @@ export declare class ObjectAgentPoolsApi {
       */
   listAgentPoolsUpdates(param: AgentPoolsApiListAgentPoolsUpdatesRequest, options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
   /**
-      * Pauses running or queued Agent pool update
+      * Pauses a running or queued agent pool update
       * Pause an agent pool update
       * @param param the request object
       */
   pauseAgentPoolsUpdate(param: AgentPoolsApiPauseAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Resumes running or queued Agent pool update
+      * Resumes a running or queued agent pool update
       * Resume an agent pool update
       * @param param the request object
       */
   resumeAgentPoolsUpdate(param: AgentPoolsApiResumeAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Retries Agent pool update
+      * Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
       * Retry an agent pool update
       * @param param the request object
       */
   retryAgentPoolsUpdate(param: AgentPoolsApiRetryAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Stops Agent pool update
+      * Stops an agent pool update
       * Stop an agent pool update
       * @param param the request object
       */
   stopAgentPoolsUpdate(param: AgentPoolsApiStopAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Updates Agent pool update and return latest agent pool update
+      * Updates an agent pool update instance and returns the latest agent pool update
       * Update an agent pool update by ID
       * @param param the request object
       */
   updateAgentPoolsUpdate(param: AgentPoolsApiUpdateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
   /**
-      * Updates an agent pool update settings
+      * Updates an agent pool update instance settings
       * Update an agent pool update settings
       * @param param the request object
       */
@@ -2033,7 +2056,7 @@ export declare class ObjectApplicationApi {
       */
   createOAuth2ClientSecret(param: ApplicationApiCreateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
   /**
-      * Deactivates an active application
+      * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
       * Deactivate an application
       * @param param the request object
       */
@@ -2381,6 +2404,127 @@ export declare class ObjectApplicationApi {
       */
   verifyProvisioningConnectionForOfficeApplication(param: ApplicationApiVerifyProvisioningConnectionForOfficeApplicationRequest, options?: Configuration): Promise<void>;
 }
+import { AssociatedDomainCustomizationsApiRequestFactory, AssociatedDomainCustomizationsApiResponseProcessor } from '../apis/AssociatedDomainCustomizationsApi';
+export interface AssociatedDomainCustomizationsApiGetAllWellKnownURIsRequest {
+    /**
+      * The ID of the brand
+      * @type string
+      * @memberof AssociatedDomainCustomizationsApigetAllWellKnownURIs
+      */
+    brandId: string;
+    /**
+      * Specifies additional metadata to include in the response
+      * @type Array&lt;&#39;all&#39; | &#39;apple-app-site-association&#39; | &#39;assetlinks.json&#39; | &#39;webauthn&#39;&gt;
+      * @memberof AssociatedDomainCustomizationsApigetAllWellKnownURIs
+      */
+    expand?: Array<'all' | 'apple-app-site-association' | 'assetlinks.json' | 'webauthn'>;
+}
+export interface AssociatedDomainCustomizationsApiGetAppleAppSiteAssociationWellKnownURIRequest {
+}
+export interface AssociatedDomainCustomizationsApiGetAssetLinksWellKnownURIRequest {
+}
+export interface AssociatedDomainCustomizationsApiGetBrandWellKnownURIRequest {
+    /**
+      * The ID of the brand
+      * @type string
+      * @memberof AssociatedDomainCustomizationsApigetBrandWellKnownURI
+      */
+    brandId: string;
+    /**
+      * The path of the well-known URI
+      * @type &#39;apple-app-site-association&#39; | &#39;assetlinks.json&#39; | &#39;webauthn&#39;
+      * @memberof AssociatedDomainCustomizationsApigetBrandWellKnownURI
+      */
+    uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn';
+}
+export interface AssociatedDomainCustomizationsApiGetRootBrandWellKnownURIRequest {
+    /**
+      * The ID of the brand
+      * @type string
+      * @memberof AssociatedDomainCustomizationsApigetRootBrandWellKnownURI
+      */
+    brandId: string;
+    /**
+      * The path of the well-known URI
+      * @type &#39;apple-app-site-association&#39; | &#39;assetlinks.json&#39; | &#39;webauthn&#39;
+      * @memberof AssociatedDomainCustomizationsApigetRootBrandWellKnownURI
+      */
+    uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn';
+    /**
+      * Specifies additional metadata to include in the response
+      * @type Array&lt;&#39;customized&#39;&gt;
+      * @memberof AssociatedDomainCustomizationsApigetRootBrandWellKnownURI
+      */
+    expand?: Array<'customized'>;
+}
+export interface AssociatedDomainCustomizationsApiGetWebAuthnWellKnownURIRequest {
+}
+export interface AssociatedDomainCustomizationsApiReplaceBrandWellKnownURIRequest {
+    /**
+      * The ID of the brand
+      * @type string
+      * @memberof AssociatedDomainCustomizationsApireplaceBrandWellKnownURI
+      */
+    brandId: string;
+    /**
+      * The path of the well-known URI
+      * @type &#39;apple-app-site-association&#39; | &#39;assetlinks.json&#39; | &#39;webauthn&#39;
+      * @memberof AssociatedDomainCustomizationsApireplaceBrandWellKnownURI
+      */
+    uriPath: 'apple-app-site-association' | 'assetlinks.json' | 'webauthn';
+    /**
+      *
+      * @type WellKnownURIRequest
+      * @memberof AssociatedDomainCustomizationsApireplaceBrandWellKnownURI
+      */
+    wellKnownURIRequest?: WellKnownURIRequest;
+}
+export declare class ObjectAssociatedDomainCustomizationsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AssociatedDomainCustomizationsApiRequestFactory, responseProcessor?: AssociatedDomainCustomizationsApiResponseProcessor);
+  /**
+      * Retrieves the content from each of the well-known URIs for a specified brand
+      * Retrieve all the well-known URIs
+      * @param param the request object
+      */
+  getAllWellKnownURIs(param: AssociatedDomainCustomizationsApiGetAllWellKnownURIsRequest, options?: Configuration): Promise<WellKnownURIsRoot>;
+  /**
+      * Retrieves the content of the `apple-app-site-assocation` well-known URI  > **Note:**  When serving this URI, Okta adds `authsrv` content to provide a seamless experience for Okta Verify. You can\'t modify the content in the `authsrv` object.
+      * Retrieve the customized apple-app-site-association URI content
+      * @param param the request object
+      */
+  getAppleAppSiteAssociationWellKnownURI(param?: AssociatedDomainCustomizationsApiGetAppleAppSiteAssociationWellKnownURIRequest, options?: Configuration): Promise<PublicAppleAppSiteWellKnownURI>;
+  /**
+      * Retrieves the content of the `assetlinks.json` well-known URI
+      * Retrieve the customized assetlinks.json URI content
+      * @param param the request object
+      */
+  getAssetLinksWellKnownURI(param?: AssociatedDomainCustomizationsApiGetAssetLinksWellKnownURIRequest, options?: Configuration): Promise<PublicAssetLinksWellKnownURI>;
+  /**
+      * Retrieves the customized content of a well-known URI for a specific brand and well-known URI path
+      * Retrieve the customized content of the specified well-known URI
+      * @param param the request object
+      */
+  getBrandWellKnownURI(param: AssociatedDomainCustomizationsApiGetBrandWellKnownURIRequest, options?: Configuration): Promise<WellKnownURIObjectResponse>;
+  /**
+      * Retrieves the well-known URI of a specific brand and well-known URI path
+      * Retrieve the well-known URI of a specific brand
+      * @param param the request object
+      */
+  getRootBrandWellKnownURI(param: AssociatedDomainCustomizationsApiGetRootBrandWellKnownURIRequest, options?: Configuration): Promise<WellKnownURIObjectResponse>;
+  /**
+      * Retrieves the content of the `webauthn` well-known URI
+      * Retrieve the customized webauthn URI content
+      * @param param the request object
+      */
+  getWebAuthnWellKnownURI(param?: AssociatedDomainCustomizationsApiGetWebAuthnWellKnownURIRequest, options?: Configuration): Promise<PublicWebauthnSiteWellKnownURI>;
+  /**
+      * Replaces the content of a customized well-known URI that you specify.  There are endpoint-specific format requirements when you update the content of a customized well-known URI. See [Customize associated domains](https://developer.okta.com/docs/guides/custom-well-known-uri/main/).
+      * Replace the customized well-known URI of the specific path
+      * @param param the request object
+      */
+  replaceBrandWellKnownURI(param: AssociatedDomainCustomizationsApiReplaceBrandWellKnownURIRequest, options?: Configuration): Promise<WellKnownURIObjectResponse>;
+}
 import { AttackProtectionApiRequestFactory, AttackProtectionApiResponseProcessor } from '../apis/AttackProtectionApi';
 export interface AttackProtectionApiGetAuthenticatorSettingsRequest {
 }
@@ -2467,6 +2611,20 @@ export interface AuthenticatorApiCreateAuthenticatorRequest {
       */
     activate?: boolean;
 }
+export interface AuthenticatorApiCreateCustomAAGUIDRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApicreateCustomAAGUID
+      */
+    authenticatorId: string;
+    /**
+      *
+      * @type CustomAAGUIDCreateRequestObject
+      * @memberof AuthenticatorApicreateCustomAAGUID
+      */
+    customAAGUIDCreateRequestObject?: CustomAAGUIDCreateRequestObject;
+}
 export interface AuthenticatorApiDeactivateAuthenticatorRequest {
     /**
       * &#x60;id&#x60; of the authenticator
@@ -2488,6 +2646,20 @@ export interface AuthenticatorApiDeactivateAuthenticatorMethodRequest {
       * @memberof AuthenticatorApideactivateAuthenticatorMethod
       */
     methodType: AuthenticatorMethodType;
+}
+export interface AuthenticatorApiDeleteCustomAAGUIDRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApideleteCustomAAGUID
+      */
+    authenticatorId: string;
+    /**
+      * Unique ID of a custom AAGUID
+      * @type string
+      * @memberof AuthenticatorApideleteCustomAAGUID
+      */
+    aaguid: string;
 }
 export interface AuthenticatorApiGetAuthenticatorRequest {
     /**
@@ -2511,6 +2683,20 @@ export interface AuthenticatorApiGetAuthenticatorMethodRequest {
       */
     methodType: AuthenticatorMethodType;
 }
+export interface AuthenticatorApiGetCustomAAGUIDRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApigetCustomAAGUID
+      */
+    authenticatorId: string;
+    /**
+      * Unique ID of a custom AAGUID
+      * @type string
+      * @memberof AuthenticatorApigetCustomAAGUID
+      */
+    aaguid: string;
+}
 export interface AuthenticatorApiGetWellKnownAppAuthenticatorConfigurationRequest {
     /**
       * Filters app authenticator configurations by &#x60;oauthClientId&#x60;
@@ -2518,6 +2704,14 @@ export interface AuthenticatorApiGetWellKnownAppAuthenticatorConfigurationReques
       * @memberof AuthenticatorApigetWellKnownAppAuthenticatorConfiguration
       */
     oauthClientId: string;
+}
+export interface AuthenticatorApiListAllCustomAAGUIDsRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApilistAllCustomAAGUIDs
+      */
+    authenticatorId: string;
 }
 export interface AuthenticatorApiListAuthenticatorMethodsRequest {
     /**
@@ -2563,6 +2757,46 @@ export interface AuthenticatorApiReplaceAuthenticatorMethodRequest {
       */
     authenticatorMethodBase?: AuthenticatorMethodBase;
 }
+export interface AuthenticatorApiReplaceCustomAAGUIDRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApireplaceCustomAAGUID
+      */
+    authenticatorId: string;
+    /**
+      * Unique ID of a custom AAGUID
+      * @type string
+      * @memberof AuthenticatorApireplaceCustomAAGUID
+      */
+    aaguid: string;
+    /**
+      *
+      * @type CustomAAGUIDUpdateRequestObject
+      * @memberof AuthenticatorApireplaceCustomAAGUID
+      */
+    customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject;
+}
+export interface AuthenticatorApiUpdateCustomAAGUIDRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApiupdateCustomAAGUID
+      */
+    authenticatorId: string;
+    /**
+      * Unique ID of a custom AAGUID
+      * @type string
+      * @memberof AuthenticatorApiupdateCustomAAGUID
+      */
+    aaguid: string;
+    /**
+      *
+      * @type CustomAAGUIDUpdateRequestObject
+      * @memberof AuthenticatorApiupdateCustomAAGUID
+      */
+    customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject;
+}
 export declare class ObjectAuthenticatorApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AuthenticatorApiRequestFactory, responseProcessor?: AuthenticatorApiResponseProcessor);
@@ -2585,6 +2819,12 @@ export declare class ObjectAuthenticatorApi {
       */
   createAuthenticator(param: AuthenticatorApiCreateAuthenticatorRequest, options?: Configuration): Promise<AuthenticatorBase>;
   /**
+      * Creates a custom AAGUID for the WebAuthn authenticator
+      * Create a custom AAGUID
+      * @param param the request object
+      */
+  createCustomAAGUID(param: AuthenticatorApiCreateCustomAAGUIDRequest, options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
       * Deactivates an authenticator by `authenticatorId`
       * Deactivate an authenticator
       * @param param the request object
@@ -2596,6 +2836,12 @@ export declare class ObjectAuthenticatorApi {
       * @param param the request object
       */
   deactivateAuthenticatorMethod(param: AuthenticatorApiDeactivateAuthenticatorMethodRequest, options?: Configuration): Promise<AuthenticatorMethodBase>;
+  /**
+      * Deletes a custom AAGUID  You can only delete custom AAGUIDs that an admin has created.
+      * Delete a custom AAGUID
+      * @param param the request object
+      */
+  deleteCustomAAGUID(param: AuthenticatorApiDeleteCustomAAGUIDRequest, options?: Configuration): Promise<void>;
   /**
       * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an authenticator
@@ -2609,11 +2855,23 @@ export declare class ObjectAuthenticatorApi {
       */
   getAuthenticatorMethod(param: AuthenticatorApiGetAuthenticatorMethodRequest, options?: Configuration): Promise<AuthenticatorMethodBase>;
   /**
+      * Retrieves a custom AAGUID
+      * Retrieve a custom AAGUID
+      * @param param the request object
+      */
+  getCustomAAGUID(param: AuthenticatorApiGetCustomAAGUIDRequest, options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
       * Retrieves the well-known app authenticator configuration. Includes an app authenticator\'s settings, supported methods, and other details.
       * Retrieve the well-known app authenticator configuration
       * @param param the request object
       */
   getWellKnownAppAuthenticatorConfiguration(param: AuthenticatorApiGetWellKnownAppAuthenticatorConfigurationRequest, options?: Configuration): Promise<Collection<WellKnownAppAuthenticatorConfiguration>>;
+  /**
+      * Lists all custom Authenticator Attestation Global Unique Identifiers (AAGUIDs) in the org  Only custom AAGUIDs that an admin has created are returned.
+      * List all custom AAGUIDs
+      * @param param the request object
+      */
+  listAllCustomAAGUIDs(param: AuthenticatorApiListAllCustomAAGUIDsRequest, options?: Configuration): Promise<AllCustomAAGUIDResponseObject>;
   /**
       * Lists all methods of an authenticator identified by `authenticatorId`
       * List all methods of an authenticator
@@ -2638,6 +2896,18 @@ export declare class ObjectAuthenticatorApi {
       * @param param the request object
       */
   replaceAuthenticatorMethod(param: AuthenticatorApiReplaceAuthenticatorMethodRequest, options?: Configuration): Promise<AuthenticatorMethodBase>;
+  /**
+      * Replaces a custom AAGUID for the specified WebAuthn authenticator
+      * Replace a custom AAGUID
+      * @param param the request object
+      */
+  replaceCustomAAGUID(param: AuthenticatorApiReplaceCustomAAGUIDRequest, options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
+      * Updates the properties of a custom AAGUID by the `authenticatorId` and `aaguid` ID
+      * Update a custom AAGUID
+      * @param param the request object
+      */
+  updateCustomAAGUID(param: AuthenticatorApiUpdateCustomAAGUIDRequest, options?: Configuration): Promise<CustomAAGUIDResponseObject>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export interface AuthorizationServerApiActivateAuthorizationServerRequest {
@@ -5077,7 +5347,7 @@ export declare class ObjectCustomizationApi {
       */
   replaceSignOutPageSettings(param: CustomizationApiReplaceSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
   /**
-      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization. 3. The email template’s default content, translated to the current user\'s language.
+      * Sends a test email to the current user\'s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter <x-lifecycle class=\"ea\"></x-lifecycle> If Custom languages for Okta Email Templates is enabled and the `language` parameter is an additional language, the test email uses the customization corresponding to the language. 2. The email template\'s default customization 3. The email template\'s default content, translated to the current user\'s language  > **Note:** Super admins can view customized email templates with the **Send a test email** request. However, when custom email templates are sent to super admins as part of actual email notification flows, the customizations aren\'t applied. Instead, the default email template is used. This only applies to super admins.
       * Send a test email
       * @param param the request object
       */
@@ -6580,6 +6850,147 @@ export declare class ObjectGroupApi {
       */
   unassignUserFromGroup(param: GroupApiUnassignUserFromGroupRequest, options?: Configuration): Promise<void>;
 }
+import { GroupPushMappingApiRequestFactory, GroupPushMappingApiResponseProcessor } from '../apis/GroupPushMappingApi';
+export interface GroupPushMappingApiCreateGroupPushMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof GroupPushMappingApicreateGroupPushMapping
+      */
+    appId: string;
+    /**
+      *
+      * @type CreateGroupPushMappingRequest
+      * @memberof GroupPushMappingApicreateGroupPushMapping
+      */
+    body: CreateGroupPushMappingRequest;
+}
+export interface GroupPushMappingApiDeleteGroupPushMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof GroupPushMappingApideleteGroupPushMapping
+      */
+    appId: string;
+    /**
+      * Group push mapping ID
+      * @type string
+      * @memberof GroupPushMappingApideleteGroupPushMapping
+      */
+    mappingId: string;
+    /**
+      * If set to &#x60;true&#x60;, the target group is also deleted. If set to &#x60;false&#x60;, the target group isn\&#39;t deleted.
+      * @type boolean
+      * @memberof GroupPushMappingApideleteGroupPushMapping
+      */
+    deleteTargetGroup: boolean;
+}
+export interface GroupPushMappingApiGetGroupPushMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof GroupPushMappingApigetGroupPushMapping
+      */
+    appId: string;
+    /**
+      * Group push mapping ID
+      * @type string
+      * @memberof GroupPushMappingApigetGroupPushMapping
+      */
+    mappingId: string;
+}
+export interface GroupPushMappingApiListGroupPushMappingsRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    appId: string;
+    /**
+      * Specifies the pagination cursor for the next page of mappings
+      * @type string
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    after?: string;
+    /**
+      * Specifies the number of results returned
+      * @type number
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    limit?: number;
+    /**
+      * Filters group push mappings by last updated date. The &#x60;lastUpdated&#x60; parameter supports the following format: &#x60;YYYY-MM-DDTHH:mm:ssZ&#x60;. This filters mappings updated on or after the specified date and time in UTC.  If you don\&#39;t specify a value, all group push mappings are returned.
+      * @type string
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    lastUpdated?: string;
+    /**
+      * Filters group push mappings by source group ID. If you don\&#39;t specify a value, all group push mappings are returned.
+      * @type string
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    sourceGroupId?: string;
+    /**
+      * Filters group push mappings by status. If you don\&#39;t specify a value, all group push mappings are returned.
+      * @type GroupPushMappingStatus
+      * @memberof GroupPushMappingApilistGroupPushMappings
+      */
+    status?: GroupPushMappingStatus;
+}
+export interface GroupPushMappingApiUpdateGroupPushMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof GroupPushMappingApiupdateGroupPushMapping
+      */
+    appId: string;
+    /**
+      * Group push mapping ID
+      * @type string
+      * @memberof GroupPushMappingApiupdateGroupPushMapping
+      */
+    mappingId: string;
+    /**
+      *
+      * @type UpdateGroupPushMappingRequest
+      * @memberof GroupPushMappingApiupdateGroupPushMapping
+      */
+    body: UpdateGroupPushMappingRequest;
+}
+export declare class ObjectGroupPushMappingApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: GroupPushMappingApiRequestFactory, responseProcessor?: GroupPushMappingApiResponseProcessor);
+  /**
+      * Creates or links a group push mapping.  **Note:** Either `targetGroupId` or `targetGroupName` must be provided, but not both. If `targetGroupId` is provided, it links to an existing group. If `targetGroupName` is provided, it creates a new group.
+      * Create a group push mapping
+      * @param param the request object
+      */
+  createGroupPushMapping(param: GroupPushMappingApiCreateGroupPushMappingRequest, options?: Configuration): Promise<GroupPushMapping>;
+  /**
+      * Deletes a specific group push mapping. The group push mapping must be in an `INACTIVE` state.
+      * Delete a group push mapping
+      * @param param the request object
+      */
+  deleteGroupPushMapping(param: GroupPushMappingApiDeleteGroupPushMappingRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a group push mapping by ID
+      * Retrieve a group push mapping
+      * @param param the request object
+      */
+  getGroupPushMapping(param: GroupPushMappingApiGetGroupPushMappingRequest, options?: Configuration): Promise<GroupPushMapping>;
+  /**
+      * Lists all group push mappings with pagination support
+      * List all group push mappings
+      * @param param the request object
+      */
+  listGroupPushMappings(param: GroupPushMappingApiListGroupPushMappingsRequest, options?: Configuration): Promise<Collection<GroupPushMapping>>;
+  /**
+      * Updates the status of a group push mapping
+      * Update a group push mapping
+      * @param param the request object
+      */
+  updateGroupPushMapping(param: GroupPushMappingApiUpdateGroupPushMappingRequest, options?: Configuration): Promise<GroupPushMapping>;
+}
 import { HookKeyApiRequestFactory, HookKeyApiResponseProcessor } from '../apis/HookKeyApi';
 export interface HookKeyApiCreateHookKeyRequest {
     /**
@@ -7054,7 +7465,7 @@ export declare class ObjectIdentityProviderApi {
       */
   cloneIdentityProviderKey(param: IdentityProviderApiCloneIdentityProviderKeyRequest, options?: Configuration): Promise<IdPKeyCredential>;
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/) <x-lifecycle class=\"ea\"></x-lifecycle>  * [Incode](https://incode.com/) <x-lifecycle class=\"ea\"></x-lifecycle>
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
       * Create an IdP
       * @param param the request object
       */
@@ -7309,6 +7720,86 @@ export interface IdentitySourceApiUploadIdentitySourceDataForUpsertRequest {
       */
     BulkUpsertRequestBody?: BulkUpsertRequestBody;
 }
+export interface IdentitySourceApiUploadIdentitySourceGroupMembershipsForDeleteRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForDelete
+      */
+    identitySourceId: string;
+    /**
+      * The ID of the identity source session
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForDelete
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkGroupMembershipsDeleteRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForDelete
+      */
+    bulkGroupMembershipsDeleteRequestBody?: BulkGroupMembershipsDeleteRequestBody;
+}
+export interface IdentitySourceApiUploadIdentitySourceGroupMembershipsForUpsertRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForUpsert
+      */
+    identitySourceId: string;
+    /**
+      * The ID of the identity source session
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForUpsert
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkGroupMembershipsUpsertRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupMembershipsForUpsert
+      */
+    bulkGroupMembershipsUpsertRequestBody?: BulkGroupMembershipsUpsertRequestBody;
+}
+export interface IdentitySourceApiUploadIdentitySourceGroupsDataForDeleteRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsDataForDelete
+      */
+    identitySourceId: string;
+    /**
+      * The ID of the identity source session
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsDataForDelete
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkGroupDeleteRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsDataForDelete
+      */
+    bulkGroupDeleteRequestBody?: BulkGroupDeleteRequestBody;
+}
+export interface IdentitySourceApiUploadIdentitySourceGroupsForUpsertRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsForUpsert
+      */
+    identitySourceId: string;
+    /**
+      * The ID of the identity source session
+      * @type string
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsForUpsert
+      */
+    sessionId: string;
+    /**
+      *
+      * @type BulkGroupUpsertRequestBody
+      * @memberof IdentitySourceApiuploadIdentitySourceGroupsForUpsert
+      */
+    bulkGroupUpsertRequestBody?: BulkGroupUpsertRequestBody;
+}
 export declare class ObjectIdentitySourceApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: IdentitySourceApiRequestFactory, responseProcessor?: IdentitySourceApiResponseProcessor);
@@ -7354,6 +7845,30 @@ export declare class ObjectIdentitySourceApi {
       * @param param the request object
       */
   uploadIdentitySourceDataForUpsert(param: IdentitySourceApiUploadIdentitySourceDataForUpsertRequest, options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group memberships that need to be deleted in Okta from the identity source for the given session
+      * Upload the group memberships to be deleted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceGroupMembershipsForDelete(param: IdentitySourceApiUploadIdentitySourceGroupMembershipsForDeleteRequest, options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group memberships to be upserted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceGroupMembershipsForUpsert(param: IdentitySourceApiUploadIdentitySourceGroupMembershipsForUpsertRequest, options?: Configuration): Promise<void>;
+  /**
+      * Uploads external IDs of groups that need to be deleted in Okta from the identity source for the given session
+      * Upload the group external IDs to be deleted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceGroupsDataForDelete(param: IdentitySourceApiUploadIdentitySourceGroupsDataForDeleteRequest, options?: Configuration): Promise<void>;
+  /**
+      * Uploads the group profiles without memberships that need to be inserted or updated in Okta from the identity source for the given session
+      * Upload the group profiles without memberships to be upserted in Okta
+      * @param param the request object
+      */
+  uploadIdentitySourceGroupsForUpsert(param: IdentitySourceApiUploadIdentitySourceGroupsForUpsertRequest, options?: Configuration): Promise<void>;
 }
 import { InlineHookApiRequestFactory, InlineHookApiResponseProcessor } from '../apis/InlineHookApi';
 export interface InlineHookApiActivateInlineHookRequest {
@@ -13323,6 +13838,105 @@ export declare class ObjectUserApi {
       */
   upsertUserRisk(param: UserApiUpsertUserRiskRequest, options?: Configuration): Promise<UserRiskPutResponse>;
 }
+import { UserAuthenticatorEnrollmentsApiRequestFactory, UserAuthenticatorEnrollmentsApiResponseProcessor } from '../apis/UserAuthenticatorEnrollmentsApi';
+export interface UserAuthenticatorEnrollmentsApiCreateAuthenticatorEnrollmentRequest {
+    /**
+      * ID of an existing Okta user
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApicreateAuthenticatorEnrollment
+      */
+    userId: string;
+    /**
+      *
+      * @type AuthenticatorEnrollmentCreateRequest
+      * @memberof UserAuthenticatorEnrollmentsApicreateAuthenticatorEnrollment
+      */
+    authenticator: AuthenticatorEnrollmentCreateRequest;
+}
+export interface UserAuthenticatorEnrollmentsApiCreateTacAuthenticatorEnrollmentRequest {
+    /**
+      * ID of an existing Okta user
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApicreateTacAuthenticatorEnrollment
+      */
+    userId: string;
+    /**
+      *
+      * @type AuthenticatorEnrollmentCreateRequestTac
+      * @memberof UserAuthenticatorEnrollmentsApicreateTacAuthenticatorEnrollment
+      */
+    authenticator: AuthenticatorEnrollmentCreateRequestTac;
+}
+export interface UserAuthenticatorEnrollmentsApiDeleteAuthenticatorEnrollmentRequest {
+    /**
+      * ID of an existing Okta user
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApideleteAuthenticatorEnrollment
+      */
+    userId: string;
+    /**
+      * Unique identifier of an enrollment
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApideleteAuthenticatorEnrollment
+      */
+    enrollmentId: string;
+}
+export interface UserAuthenticatorEnrollmentsApiGetAuthenticatorEnrollmentRequest {
+    /**
+      * ID of an existing Okta user
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApigetAuthenticatorEnrollment
+      */
+    userId: string;
+    /**
+      * Unique identifier of an enrollment
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApigetAuthenticatorEnrollment
+      */
+    enrollmentId: string;
+}
+export interface UserAuthenticatorEnrollmentsApiListAuthenticatorEnrollmentsRequest {
+    /**
+      * ID of an existing Okta user
+      * @type string
+      * @memberof UserAuthenticatorEnrollmentsApilistAuthenticatorEnrollments
+      */
+    userId: string;
+}
+export declare class ObjectUserAuthenticatorEnrollmentsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: UserAuthenticatorEnrollmentsApiRequestFactory, responseProcessor?: UserAuthenticatorEnrollmentsApiResponseProcessor);
+  /**
+      * Creates a Phone authenticator enrollment that\'s automatically activated
+      * Create an auto-activated Phone authenticator enrollment
+      * @param param the request object
+      */
+  createAuthenticatorEnrollment(param: UserAuthenticatorEnrollmentsApiCreateAuthenticatorEnrollmentRequest, options?: Configuration): Promise<AuthenticatorEnrollment>;
+  /**
+      * Creates an auto-activated Temporary access code (TAC) authenticator enrollment
+      * Create an auto-activated TAC authenticator enrollment
+      * @param param the request object
+      */
+  createTacAuthenticatorEnrollment(param: UserAuthenticatorEnrollmentsApiCreateTacAuthenticatorEnrollmentRequest, options?: Configuration): Promise<TacAuthenticatorEnrollment>;
+  /**
+      * Deletes an existing enrollment for the specified user. The user can enroll the authenticator again.
+      * Delete an authenticator enrollment
+      * @param param the request object
+      */
+  deleteAuthenticatorEnrollment(param: UserAuthenticatorEnrollmentsApiDeleteAuthenticatorEnrollmentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a user\'s authenticator enrollment by `enrollmentId`
+      * Retrieve an authenticator enrollment
+      * @param param the request object
+      */
+  getAuthenticatorEnrollment(param: UserAuthenticatorEnrollmentsApiGetAuthenticatorEnrollmentRequest, options?: Configuration): Promise<AuthenticatorEnrollment>;
+  /**
+      * Lists all authenticator enrollments of the specified user
+      * List all authenticator enrollments
+      * @param param the request object
+      */
+  listAuthenticatorEnrollments(param: UserAuthenticatorEnrollmentsApiListAuthenticatorEnrollmentsRequest, options?: Configuration): Promise<AuthenticatorEnrollment>;
+}
 import { UserFactorApiRequestFactory, UserFactorApiResponseProcessor } from '../apis/UserFactorApi';
 export interface UserFactorApiActivateFactorRequest {
     /**
@@ -13724,7 +14338,7 @@ export declare class ObjectUserFactorApi {
       * Verify a factor
       * @param param the request object
       */
-  verifyFactor(param: UserFactorApiVerifyFactorRequest, options?: Configuration): Promise<UserFactorVerifyResponse>;
+  verifyFactor(param: UserFactorApiVerifyFactorRequest, options?: Configuration): Promise<UserFactorVerifyResponse | UserFactorVerifyResponseWaiting>;
 }
 import { UserTypeApiRequestFactory, UserTypeApiResponseProcessor } from '../apis/UserTypeApi';
 export interface UserTypeApiCreateUserTypeRequest {

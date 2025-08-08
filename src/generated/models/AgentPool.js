@@ -26,7 +26,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AgentPool = void 0;
 /**
-* An AgentPool is a collection of agents that serve a common purpose. An AgentPool has a unique ID within an org, and contains a collection of agents disjoint to every other AgentPool (i.e. no two AgentPools share an Agent).
+* An agent pool is a collection of agents that serve a common purpose. An agent pool has a unique ID within an org, and contains a collection of agents disjoint to every other agent pool, meaning that no two agent pools share an agent.
 */
 class AgentPool {
   constructor() {
@@ -45,9 +45,21 @@ AgentPool.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'disruptedAgents',
+    'baseName': 'disruptedAgents',
+    'type': 'number',
+    'format': ''
+  },
+  {
     'name': 'id',
     'baseName': 'id',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'inactiveAgents',
+    'baseName': 'inactiveAgents',
+    'type': 'number',
     'format': ''
   },
   {
@@ -66,6 +78,12 @@ AgentPool.attributeTypeMap = [
     'name': 'type',
     'baseName': 'type',
     'type': 'AgentType',
+    'format': ''
+  },
+  {
+    'name': '_links',
+    'baseName': '_links',
+    'type': 'LinksSelf',
     'format': ''
   }
 ];
