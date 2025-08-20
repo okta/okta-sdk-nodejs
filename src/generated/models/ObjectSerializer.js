@@ -122,6 +122,7 @@ __exportStar(require("./ApplicationSettingsNotifications"), exports);
 __exportStar(require("./ApplicationSettingsNotificationsVpn"), exports);
 __exportStar(require("./ApplicationSettingsNotificationsVpnNetwork"), exports);
 __exportStar(require("./ApplicationSignOnMode"), exports);
+__exportStar(require("./ApplicationSignOnModeSettings"), exports);
 __exportStar(require("./ApplicationType"), exports);
 __exportStar(require("./ApplicationUniversalLogout"), exports);
 __exportStar(require("./ApplicationVisibility"), exports);
@@ -899,6 +900,7 @@ __exportStar(require("./OAuthScopes"), exports);
 __exportStar(require("./OAuthTokenEndpoint"), exports);
 __exportStar(require("./OINApplication"), exports);
 __exportStar(require("./OINSaml11ApplicationSettingsSignOn"), exports);
+__exportStar(require("./OINSaml20ApplicationSettings"), exports);
 __exportStar(require("./OINSaml20ApplicationSettingsSignOn"), exports);
 __exportStar(require("./OSVersion"), exports);
 __exportStar(require("./OSVersionConstraint"), exports);
@@ -1748,6 +1750,7 @@ const ApplicationSettingsNotes_1 = require("../models/ApplicationSettingsNotes")
 const ApplicationSettingsNotifications_1 = require("../models/ApplicationSettingsNotifications");
 const ApplicationSettingsNotificationsVpn_1 = require("../models/ApplicationSettingsNotificationsVpn");
 const ApplicationSettingsNotificationsVpnNetwork_1 = require("../models/ApplicationSettingsNotificationsVpnNetwork");
+const ApplicationSignOnModeSettings_1 = require("../models/ApplicationSignOnModeSettings");
 const ApplicationUniversalLogout_1 = require("../models/ApplicationUniversalLogout");
 const ApplicationVisibility_1 = require("../models/ApplicationVisibility");
 const ApplicationVisibilityHide_1 = require("../models/ApplicationVisibilityHide");
@@ -2403,6 +2406,7 @@ const OAuthScopes_1 = require("../models/OAuthScopes");
 const OAuthTokenEndpoint_1 = require("../models/OAuthTokenEndpoint");
 const OINApplication_1 = require("../models/OINApplication");
 const OINSaml11ApplicationSettingsSignOn_1 = require("../models/OINSaml11ApplicationSettingsSignOn");
+const OINSaml20ApplicationSettings_1 = require("../models/OINSaml20ApplicationSettings");
 const OINSaml20ApplicationSettingsSignOn_1 = require("../models/OINSaml20ApplicationSettingsSignOn");
 const OSVersion_1 = require("../models/OSVersion");
 const OSVersionConstraint_1 = require("../models/OSVersionConstraint");
@@ -3097,6 +3101,9 @@ let enumsMap = new Set([
     'ApplicationSettingsEmOptInStatusEnum',
     'ApplicationSettingsNotificationsVpnNetworkConnectionEnum',
     'ApplicationSignOnMode',
+    'ApplicationSignOnModeSettingsGroupValueFormatEnum',
+    'ApplicationSignOnModeSettingsUsernameAttributeEnum',
+    'ApplicationSignOnModeSettingsEmOptInStatusEnum',
     'ApplicationType',
     'ApplicationUniversalLogoutIdentityStackEnum',
     'ApplicationUniversalLogoutProtocolEnum',
@@ -3652,6 +3659,7 @@ let typeMap = {
     "ApplicationSettingsNotifications": ApplicationSettingsNotifications_1.ApplicationSettingsNotifications,
     "ApplicationSettingsNotificationsVpn": ApplicationSettingsNotificationsVpn_1.ApplicationSettingsNotificationsVpn,
     "ApplicationSettingsNotificationsVpnNetwork": ApplicationSettingsNotificationsVpnNetwork_1.ApplicationSettingsNotificationsVpnNetwork,
+    "ApplicationSignOnModeSettings": ApplicationSignOnModeSettings_1.ApplicationSignOnModeSettingsClass,
     "ApplicationUniversalLogout": ApplicationUniversalLogout_1.ApplicationUniversalLogout,
     "ApplicationVisibility": ApplicationVisibility_1.ApplicationVisibility,
     "ApplicationVisibilityHide": ApplicationVisibilityHide_1.ApplicationVisibilityHide,
@@ -4307,6 +4315,7 @@ let typeMap = {
     "OAuthTokenEndpoint": OAuthTokenEndpoint_1.OAuthTokenEndpoint,
     "OINApplication": OINApplication_1.OINApplication,
     "OINSaml11ApplicationSettingsSignOn": OINSaml11ApplicationSettingsSignOn_1.OINSaml11ApplicationSettingsSignOn,
+    "OINSaml20ApplicationSettings": OINSaml20ApplicationSettings_1.OINSaml20ApplicationSettings,
     "OINSaml20ApplicationSettingsSignOn": OINSaml20ApplicationSettingsSignOn_1.OINSaml20ApplicationSettingsSignOn,
     "OSVersion": OSVersion_1.OSVersion,
     "OSVersionConstraint": OSVersionConstraint_1.OSVersionConstraint,
@@ -4976,6 +4985,14 @@ let typeMap = {
     '__WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
     '__USER_PROVISIONING': UserProvisioningApplicationFeature_1.UserProvisioningApplicationFeature,
     '__INBOUND_PROVISIONING': InboundProvisioningApplicationFeature_1.InboundProvisioningApplicationFeature,
+    '__ApplicationSignOnModeSettings__BOOKMARK': BookmarkApplicationSettingsApplication_1.BookmarkApplicationSettingsApplication,
+    '__ApplicationSignOnModeSettings__AUTO_LOGIN': AutoLoginApplicationSettingsSignOn_1.AutoLoginApplicationSettingsSignOn,
+    '__ApplicationSignOnModeSettings__BASIC_AUTH': BasicApplicationSettingsApplication_1.BasicApplicationSettingsApplication,
+    '__ApplicationSignOnModeSettings__SECURE_PASSWORD_STORE': SecurePasswordStoreApplicationSettingsApplication_1.SecurePasswordStoreApplicationSettingsApplication,
+    '__ApplicationSignOnModeSettings__WS_FEDERATION': WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
+    '__ApplicationSignOnModeSettings__BROWSER_PLUGIN': SwaApplicationSettingsApplication_1.SwaApplicationSettingsApplication,
+    '__ApplicationSignOnModeSettings__SAML_2_0': OINSaml20ApplicationSettings_1.OINSaml20ApplicationSettings,
+    '__ApplicationSignOnModeSettings__OPENID_CONNECT': OpenIdConnectApplicationSettings_1.OpenIdConnectApplicationSettings,
     '__custom_app': AuthenticatorKeyCustomApp_1.AuthenticatorKeyCustomApp,
     '__duo': AuthenticatorKeyDuo_1.AuthenticatorKeyDuo,
     '__okta_email': AuthenticatorKeyEmail_1.AuthenticatorKeyEmail,

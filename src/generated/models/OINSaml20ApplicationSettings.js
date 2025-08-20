@@ -24,63 +24,24 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.SamlApplicationSettings = void 0;
-class SamlApplicationSettings {
+exports.OINSaml20ApplicationSettings = void 0;
+/**
+* Contains SAML 2.0 root level attributes
+*/
+class OINSaml20ApplicationSettings {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return SamlApplicationSettings.attributeTypeMap;
+    return OINSaml20ApplicationSettings.attributeTypeMap;
   }
 }
-exports.SamlApplicationSettings = SamlApplicationSettings;
-SamlApplicationSettings.discriminator = undefined;
-SamlApplicationSettings.attributeTypeMap = [
-  {
-    'name': 'emOptInStatus',
-    'baseName': 'emOptInStatus',
-    'type': 'SamlApplicationSettingsEmOptInStatusEnum',
-    'format': ''
-  },
-  {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'implicitAssignment',
-    'baseName': 'implicitAssignment',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': 'inlineHookId',
-    'baseName': 'inlineHookId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'notes',
-    'baseName': 'notes',
-    'type': 'ApplicationSettingsNotes',
-    'format': ''
-  },
-  {
-    'name': 'notifications',
-    'baseName': 'notifications',
-    'type': 'ApplicationSettingsNotifications',
-    'format': ''
-  },
-  {
-    'name': 'app',
-    'baseName': 'app',
-    'type': '{ [key: string]: any; }',
-    'format': ''
-  },
+exports.OINSaml20ApplicationSettings = OINSaml20ApplicationSettings;
+OINSaml20ApplicationSettings.discriminator = undefined;
+OINSaml20ApplicationSettings.attributeTypeMap = [
   {
     'name': 'signOn',
     'baseName': 'signOn',
-    'type': 'SamlApplicationSettingsSignOn',
+    'type': 'OINSaml20ApplicationSettingsSignOn',
     'format': ''
   }
 ];

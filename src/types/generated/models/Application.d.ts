@@ -28,6 +28,7 @@ import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
 import { ApplicationLinks } from './../models/ApplicationLinks';
 import { ApplicationSignOnMode } from './../models/ApplicationSignOnMode';
+import { ApplicationSignOnModeSettings } from './../models/ApplicationSignOnModeSettings';
 import { ApplicationUniversalLogout } from './../models/ApplicationUniversalLogout';
 import { ApplicationVisibility } from './../models/ApplicationVisibility';
 export declare class Application {
@@ -67,6 +68,7 @@ export declare class Application {
   'status'?: ApplicationLifecycleStatus;
   'universalLogout'?: ApplicationUniversalLogout;
   'visibility'?: ApplicationVisibility;
+  'settings'?: ApplicationSignOnModeSettings;
   '_embedded'?: ApplicationEmbedded;
   '_links'?: ApplicationLinks;
   static readonly discriminator: string | undefined;

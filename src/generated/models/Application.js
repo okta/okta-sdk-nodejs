@@ -126,6 +126,12 @@ Application.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'settings',
+    'baseName': 'settings',
+    'type': 'ApplicationSignOnModeSettings',
+    'format': ''
+  },
+  {
     'name': '_embedded',
     'baseName': '_embedded',
     'type': 'ApplicationEmbedded',

@@ -44,6 +44,9 @@ export declare class SamlApplicationSettings {
   'inlineHookId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: {
+        [key: string]: any;
+    };
   'signOn'?: SamlApplicationSettingsSignOn;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
