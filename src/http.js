@@ -19,7 +19,7 @@ const defaultCacheMiddleware = require('./default-cache-middleware');
 const HttpsProxyAgent = require('https-proxy-agent');
 const { from } = require('./generated/rxjsStub');
 const { ResponseContext } = require('./generated/http/http');
-
+const {generateDpopJwt} = require('./dpop');
 
 /**
  * It's like fetch :) plus some extra convenience methods.
@@ -71,7 +71,13 @@ class Http {
     }
 
     return this.oauth.getAccessToken()
-      .then(accessToken => {
+      .then(async (accessToken) => {
+        if(this.oauth.isDPoP){
+          request.headers.Authorization = `DPoP ${accessToken.access_token}`;
+          request.headers['DPoP'] = await generateDpopJwt(request, this.oauth.client, accessToken.access_token);
+          return;
+        }
+
         request.headers.Authorization = `Bearer ${accessToken.access_token}`;
       });
   }

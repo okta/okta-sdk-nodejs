@@ -47,10 +47,12 @@
     "lodash": "^4.17.20",
     "njwt": "^2.0.1",
     "node-fetch": "^2.6.7",
+    "node-jose": "^2.2.0",
     "parse-link-header": "^2.0.0",
     "rasha": "^1.2.5",
     "safe-flat": "^2.0.2",
-    "url-parse": "^1.5.10"
+    "url-parse": "^1.5.10",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^5.5.3",
