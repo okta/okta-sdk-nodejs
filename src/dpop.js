@@ -16,42 +16,42 @@ const crypto = require('crypto').webcrypto;
 const {getPemAndJwk} = require('./jwt');
 
 // Generate a new DPoP Proof JWT
-async function generateDpopJwt(request , client, accessToken = null, nonce = null) {
-    const { jwk } = await getPemAndJwk(client.privateKey);
-    const privateKey = await jose.JWK.asKey(jwk);
-    const publicJwk = privateKey.toJSON(false);
+async function generateDpopJwt(request, client, accessToken = null, nonce = null) {
+  const { jwk } = await getPemAndJwk(client.privateKey);
+  const privateKey = await jose.JWK.asKey(jwk);
+  const publicJwk = privateKey.toJSON(false);
 
-    const payload = {
-        htm: request ? request.method : 'POST',
-        htu: request ? request.url : `${client.baseUrl}/oauth2/v1/token`,
-        iat: Math.floor(Date.now() / 1000),
-        jti: uuidv4(),
-    };
+  const payload = {
+    htm: request ? request.method : 'POST',
+    htu: request ? request.url.split('?')[0] : `${client.baseUrl}/oauth2/v1/token`,
+    iat: Math.floor(Date.now() / 1000),
+    jti: uuidv4(),
+  };
 
-    if (nonce) {
-        payload.nonce = nonce;
+  if (nonce) {
+    payload.nonce = nonce;
+  }
+
+  if (accessToken) {
+    const encoder = new TextEncoder();
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(accessToken));
+    payload.ath = jose.util.base64url.encode(hashBuffer);
+  }
+
+  const jwt = await jose.JWS.createSign({
+    format: 'compact',
+    fields: {
+      typ: 'dpop+jwt',
+      alg: 'RS256',
+      jwk: publicJwk,
     }
-
-    if (accessToken) {
-        const encoder = new TextEncoder();
-        const hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(accessToken));
-        payload.ath = jose.util.base64url.encode(hashBuffer);
-    }
-
-    const jwt = await jose.JWS.createSign({
-        format: 'compact',
-        fields: {
-            typ: 'dpop+jwt',
-            alg: 'RS256',
-            jwk: publicJwk,
-        }
-    }, privateKey)
+  }, privateKey)
     .update(JSON.stringify(payload))
     .final();
 
-    return jwt;
+  return jwt;
 }
 
 module.exports = {
-    generateDpopJwt
+  generateDpopJwt
 };

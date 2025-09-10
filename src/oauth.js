@@ -41,13 +41,13 @@ class OAuth {
     this.isDPoP = false;
   }
 
-  async getAccessToken(dpop_nonce=null) {
+  async getAccessToken(dpop_nonce = null) {
     if (this.accessToken) {
       return Promise.resolve(this.accessToken);
     }
     
     const endpoint = '/oauth2/v1/token';
-    const dpopJwt = await generateDpopJwt(null, this.client, this.accessToken, dpop_nonce)
+    const dpopJwt = await generateDpopJwt(null, this.client, this.accessToken, dpop_nonce);
 
     return this.getJwt(endpoint)
       .then(jwt => {
@@ -72,7 +72,7 @@ class OAuth {
       .then(async (res) => {
         const parsedResponse = await res.json();
 
-        if(parsedResponse && parsedResponse.error && parsedResponse.error === 'use_dpop_nonce'){
+        if (parsedResponse && parsedResponse.error && parsedResponse.error === 'use_dpop_nonce') {
           this.isDPoP = true;
           return await this.getAccessToken(res.headers.get('dpop-nonce'));
         }

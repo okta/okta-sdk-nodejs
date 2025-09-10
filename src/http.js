@@ -72,7 +72,7 @@ class Http {
 
     return this.oauth.getAccessToken()
       .then(async (accessToken) => {
-        if(this.oauth.isDPoP){
+        if (this.oauth.isDPoP) {
           request.headers.Authorization = `DPoP ${accessToken.access_token}`;
           request.headers['DPoP'] = await generateDpopJwt(request, this.oauth.client, accessToken.access_token);
           return;
