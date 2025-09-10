@@ -45,7 +45,7 @@ class OAuth {
     if (this.accessToken) {
       return Promise.resolve(this.accessToken);
     }
-    
+
     const endpoint = '/oauth2/v1/token';
     const dpopJwt = await generateDpopJwt(null, this.client, this.accessToken, dpop_nonce);
 
