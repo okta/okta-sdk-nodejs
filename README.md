@@ -110,6 +110,7 @@ The `privateKey` can be passed in the following ways:
 
 > Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuation.
 
+> Note: Starting from 7.2.2 the Okta management SDK added support for DPoP. If the SDK detects the application has DPoP enabled, it will silently proceed to obtain a DPoP-bound access token, and will generate a new DPoP Proof JWT for every request. There's no additional configuration required for developers. Visit [Demonstrating Proof-of-Possession](https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/) to learn more about this.
 
 ## Examples
 
