@@ -1,5 +1,3 @@
-
-
 const JWT_STRING = 'fake.jwt.string';
 const FAKE_ACCESS_TOKEN = { access_token: 'fake token' };
 const mockJwt = {
@@ -10,6 +8,12 @@ const JWT = {
     return Promise.resolve(mockJwt);
   })
 };
+const DPOP = {
+  generateDpopJwt: jest.fn().mockImplementation(() => {
+    return '';
+  })
+};
+jest.setMock('../../src/dpop', DPOP);
 jest.setMock('../../src/jwt', JWT);
 const Http = {
   errorFilter: jest.fn().mockImplementation(() => {
@@ -19,7 +23,6 @@ const Http = {
   })
 };
 jest.setMock('../../src/http', Http);
-
 const { OAuth } = require('../../src/oauth');
 
 describe('OAuth', () => {
@@ -36,6 +39,7 @@ describe('OAuth', () => {
       }
     };
     oauth = new OAuth(client);
+    DPOP.generateDpopJwt.mockClear();
     JWT.makeJwt.mockClear();
     mockJwt.compact.mockClear();
   });
@@ -82,7 +86,8 @@ describe('OAuth', () => {
             ].join('&'),
             headers: {
               Accept: 'application/json',
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+              DPoP: '',
             }
           });
           expect(accessToken).toEqual(FAKE_ACCESS_TOKEN);
