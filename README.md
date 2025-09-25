@@ -9,8 +9,8 @@
 
 * [Release status](#release-status)
 * [Need help?](#need-help)
-* [Getting started](#getting-started)
 * [Usage guide](#usage-guide)
+* [Examples](#examples)
 * [Configuration reference](#configuration-reference)
 * [TypeScript usage](#typescript-usage)
 * [Migrating between versions](#migrating-between-versions)
@@ -248,7 +248,7 @@ await collection.each(user => {
 });
 ```
 
-## Groups
+### Groups
 
 #### Create a Group
 
