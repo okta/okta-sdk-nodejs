@@ -81,7 +81,7 @@ const client = new okta.Client({
 
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
-All interactions with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
+All interaction with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
  list of methods please refer to the JsDoc page for the [Client].
 
 ### OAuth 2.0 Authentication
@@ -108,7 +108,7 @@ The `privateKey` can be passed in the following ways:
 - A string in PEM format
 - As a JSON object, in JWK format
 
-> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuation.
+> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuration.
 
 > Note: Starting from 7.2.2 the Okta management SDK added support for DPoP. If the SDK detects the application has DPoP enabled, it will silently proceed to obtain a DPoP-bound access token, and will generate a new DPoP Proof JWT for every request. There's no additional configuration required for developers. Visit [Demonstrating Proof-of-Possession](https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/) to learn more about this.
 
@@ -313,7 +313,7 @@ const appUser = await client.applicationApi.assignUserToApplication({
 console.log('Assigned user to app, app user instance:', appUser);
 ```
 
-An App User is created, which is a new user instance that is specific to this application.  An App User allows you define an application-specific profile for that user.  For more information please see [Applications: User Operations] and [Applications: Application User Profile].
+An App User is created, which is a new user instance that is specific to this application.  An App User allows you to define an application-specific profile for that user.  For more information please see [Applications: User Operations] and [Applications: Application User Profile].
 
 #### Assign a Group to an Application
 
@@ -931,7 +931,7 @@ const application: BookmarkApplication = client.createApplication(applicationOpt
 
 ### 7.x.x
 
-API methods should be called from corresponding API object of `client`. 
+API methods should be called from the corresponding API object of `client`. 
 Params should be passed as a single object. 
 
 See [migration guide](#from-6x-to-70)
@@ -999,13 +999,13 @@ const client: Client = new Client({
 
 #### Breaking changes
 
-Enum types from the spec are accounted for: repspective JS models are converted to enum-like modules.
+Enum types from the spec are accounted for: respective JS models are converted to enum-like modules.
 
 Following Client methods signatures have changed:
  - `listPolicies` returns `Promise<Policy>`
  - `activateNetworkZone` returns `Promise<NetworkZone>`
  - `deactivateNetworkZone` returns `Promise<NetworkZone>`
- - `listGroups` no longer accepts `filter` parameter trhough `queryParameters`
+ - `listGroups` no longer accepts `filter` parameter through `queryParameters`
 
 ### From 4.x to 5.0
 
