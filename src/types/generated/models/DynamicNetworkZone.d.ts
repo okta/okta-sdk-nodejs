@@ -23,15 +23,15 @@
  * Do not edit the class manually.
  */
 import { DynamicNetworkZoneAsns } from './../models/DynamicNetworkZoneAsns';
-import { DynamicNetworkZoneLocations } from './../models/DynamicNetworkZoneLocations';
 import { NetworkZone } from './../models/NetworkZone';
+import { NetworkZoneLocationArray } from './../models/NetworkZoneLocationArray';
 export declare class DynamicNetworkZone extends NetworkZone {
   'asns'?: DynamicNetworkZoneAsns;
   /**
     * The proxy type used for a Dynamic Network Zone
     */
   'proxyType'?: DynamicNetworkZoneProxyTypeEnum;
-  'locations'?: DynamicNetworkZoneLocations;
+  'locations'?: NetworkZoneLocationArray | null;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

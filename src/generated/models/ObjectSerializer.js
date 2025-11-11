@@ -457,7 +457,6 @@ __exportStar(require("./DomainValidationStatus"), exports);
 __exportStar(require("./Duration"), exports);
 __exportStar(require("./DynamicNetworkZone"), exports);
 __exportStar(require("./DynamicNetworkZoneAsns"), exports);
-__exportStar(require("./DynamicNetworkZoneLocations"), exports);
 __exportStar(require("./ECKeyJWK"), exports);
 __exportStar(require("./Email"), exports);
 __exportStar(require("./Email1"), exports);
@@ -2033,7 +2032,6 @@ const DomainResponse_1 = require("../models/DomainResponse");
 const Duration_1 = require("../models/Duration");
 const DynamicNetworkZone_1 = require("../models/DynamicNetworkZone");
 const DynamicNetworkZoneAsns_1 = require("../models/DynamicNetworkZoneAsns");
-const DynamicNetworkZoneLocations_1 = require("../models/DynamicNetworkZoneLocations");
 const ECKeyJWK_1 = require("../models/ECKeyJWK");
 const Email_1 = require("../models/Email");
 const Email1_1 = require("../models/Email1");
@@ -3937,7 +3935,6 @@ let typeMap = {
     "Duration": Duration_1.Duration,
     "DynamicNetworkZone": DynamicNetworkZone_1.DynamicNetworkZone,
     "DynamicNetworkZoneAsns": DynamicNetworkZoneAsns_1.DynamicNetworkZoneAsns,
-    "DynamicNetworkZoneLocations": DynamicNetworkZoneLocations_1.DynamicNetworkZoneLocations,
     "ECKeyJWK": ECKeyJWK_1.ECKeyJWK,
     "Email": Email_1.Email,
     "Email1": Email1_1.Email1,

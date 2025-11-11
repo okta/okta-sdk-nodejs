@@ -53,7 +53,7 @@ DynamicNetworkZone.attributeTypeMap = [
   {
     'name': 'locations',
     'baseName': 'locations',
-    'type': 'DynamicNetworkZoneLocations',
+    'type': 'NetworkZoneLocationArray',
     'format': ''
   }
 ];
