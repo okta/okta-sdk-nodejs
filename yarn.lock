@@ -769,10 +769,10 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node-forge@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@types/node-forge/-/node-forge-1.3.1.tgz"
-  integrity sha512-hvQ7Wav8I0j9amPXJtGqI/Yx70zeF62UKlAYq8JPm0nHzjKKzZvo9iR3YI2MiOghZRlOI+tQ2f6D+G6vVf4V2Q==
+"@types/node-forge@^1.3.2":
+  version "1.3.14"
+  resolved "https://artifactory.es.atko.services/artifactory/api/npm/npm-okta-master/@types/node-forge/-/node-forge-1.3.14.tgz"
+  integrity sha512-mhVF2BnD4BO+jtOp7z1CdzaK4mbuK0LLQYAvdOLqHTavxFNq4zA1EmYkpnFjP8HOUzedfQkRnp0E2ulSAYSzAw==
   dependencies:
     "@types/node" "*"
 
@@ -3465,10 +3465,10 @@ node-fetch@^2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-forge@^1.2.1, node-forge@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/node-forge/-/node-forge-1.3.1.tgz"
-  integrity sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==
+node-forge@^1.2.1, node-forge@^1.3.2:
+  version "1.3.3"
+  resolved "https://artifactory.es.atko.services/artifactory/api/npm/npm-okta-master/node-forge/-/node-forge-1.3.3.tgz"
+  integrity sha512-rLvcdSyRCyouf6jcOIPe/BgwG/d7hKjzMKOas33/pHEr6gbq18IK9zV7DiPvzsz0oBJPme6qr6H6kGZuI9/DZg==
 
 node-int64@^0.4.0:
   version "0.4.0"
