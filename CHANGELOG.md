@@ -4,7 +4,7 @@
 
 ### Fixes
 
-- [#462](https://github.com/okta/okta-sdk-nodejs/pull/462) fix: upgrades `node-forge` version to `1.3.2` and `@types/node-forge` to `1.3.2`
+- [#462](https://github.com/okta/okta-sdk-nodejs/pull/462) fix: upgrades `node-forge` version to `1.3.2`
 
 # 7.2.1
 
