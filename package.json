@@ -94,7 +94,9 @@
     "moment": "^2.29.4",
     "nanoid": "^3.1.31",
     "klaw": "^3.0.0",
-    "form-data": "^4.0.4"
+    "form-data": "^4.0.4",
+    "glob": "^7.2.3",
+    "yargs": "^17.7.2"
   },
   "jest": {
     "restoreMocks": true,
