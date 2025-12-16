@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 7.3.1
+
+### Fixes
+
+- [#462](https://github.com/okta/okta-sdk-nodejs/pull/463) fix: upgrades `node-forge` and `@types/node-forge` version to `1.3.2`
+
 # 7.2.1
 
 ### Fixes
