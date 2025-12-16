@@ -187,7 +187,7 @@ async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | S
 }
 
 async function cleanupUser(client: Client, user: User) {
-  if (!user.profile.login) {
+  if (!user?.profile?.login) {
     return;
   }
 
