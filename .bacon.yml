@@ -16,7 +16,7 @@ test_suites:
     - name: e2e
       script_path: /root/okta/okta-sdk-nodejs/scripts
       sort_order: '1'
-      timeout: '25'
+      timeout: '30'
       script_name: e2e
       criteria: MERGE
       queue_name: ci-queue-productionJenga-AL2023
