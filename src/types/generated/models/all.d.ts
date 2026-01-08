@@ -444,7 +444,6 @@ export * from '../models/DomainValidationStatus';
 export * from '../models/Duration';
 export * from '../models/DynamicNetworkZone';
 export * from '../models/DynamicNetworkZoneAsns';
-export * from '../models/DynamicNetworkZoneLocations';
 export * from '../models/ECKeyJWK';
 export * from '../models/Email';
 export * from '../models/Email1';

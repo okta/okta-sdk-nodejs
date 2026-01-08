@@ -466,7 +466,6 @@ __exportStar(require('../models/DomainValidationStatus'), exports);
 __exportStar(require('../models/Duration'), exports);
 __exportStar(require('../models/DynamicNetworkZone'), exports);
 __exportStar(require('../models/DynamicNetworkZoneAsns'), exports);
-__exportStar(require('../models/DynamicNetworkZoneLocations'), exports);
 __exportStar(require('../models/ECKeyJWK'), exports);
 __exportStar(require('../models/Email'), exports);
 __exportStar(require('../models/Email1'), exports);
