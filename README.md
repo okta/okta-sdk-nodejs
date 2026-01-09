@@ -961,7 +961,7 @@ Default cache middleware is affected by stream internal buffer size limitation i
 The recommended solution is to provide custom cache middleware implementation.
 Alternatively, users can pass custom `highWaterMark` parameter to `node-fetch` by specifying parameter `defaultCacheMiddlewareResponseBufferSize` in the Client config:
 
-```
+```js
 const client: Client = new Client({
   orgUrl: 'https://orgname.okta.com',
   token: 'apiToken',
