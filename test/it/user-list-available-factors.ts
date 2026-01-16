@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor, Policy, UserFactor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, UserFactor, UserFactorSupported } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -58,9 +58,9 @@ describe('User API Tests', () => {
       userId: createdUser.id
     })).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
-    factors.forEach(factor =>
-      expect(factor).to.be.instanceof(UserFactor)
-    );
+    factors.forEach(factor => {
+      expect(factor instanceof UserFactor || factor instanceof UserFactorSupported).to.be.true;
+    });
     return await utils.deleteUser(createdUser, client);
   });
 });

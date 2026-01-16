@@ -20,29 +20,29 @@ import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
  */
 export declare class PrincipalRateLimitApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
-     * Create a Principal Rate Limit
+     * Creates a new principal rate limit entity. Okta only allows one principal rate limit entity per org and principal.
+     * Create a principal rate limit
      * @param entity
      */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
-     * Retrieve a Principal Rate Limit
-     * @param principalRateLimitId id of the Principal Rate Limit
+     * Retrieves a principal rate limit entity by `principalRateLimitId`
+     * Retrieve a principal rate limit
+     * @param principalRateLimitId ID of the principal rate limit
      */
   getPrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all Principal Rate Limit entities considering the provided parameters
-     * List all Principal Rate Limits
-     * @param filter
-     * @param after
-     * @param limit
+     * List all principal rate limits
+     * @param filter Filters the list of principal rate limit entities by the provided principal type (&#x60;principalType&#x60;). For example, &#x60;filter&#x3D;principalType eq \&quot;SSWS_TOKEN\&quot;&#x60; or &#x60;filter&#x3D;principalType eq \&quot;OAUTH_CLIENT\&quot;&#x60;.
+     * @param after The cursor to use for pagination. It\&#39;s an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param limit Specifies the number of items to return in a single response page.
      */
-  listPrincipalRateLimitEntities(filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
+  listPrincipalRateLimitEntities(filter: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces a principal rate limit entity by `principalRateLimitId`
-     * Replace a Principal Rate Limit
-     * @param principalRateLimitId id of the Principal Rate Limit
+     * Replace a principal rate limit
+     * @param principalRateLimitId ID of the principal rate limit
      * @param entity
      */
   replacePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;

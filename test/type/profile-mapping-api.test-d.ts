@@ -2,20 +2,22 @@ import { expectType } from 'tsd';
 import { Client } from '../../src/types/client';
 import type { ProfileMappingProperty } from '../../src/types/generated/models/ProfileMappingProperty';
 import type { ProfileMapping } from '../../src/types/generated/models/ProfileMapping';
+import type { ListProfileMappings } from '../../src/types/generated/models/ListProfileMappings';
+import type { ProfileMappingRequest } from '../../src/types/generated/models/ProfileMappingRequest';
 
 
 const client = new Client();
 (async function () {
   const collection = await client.profileMappingApi.listProfileMappings();
   const { value: mapping } = await collection.next();
-  if (mapping && mapping.properties) {
-    expectType<ProfileMappingProperty[]>(Object.values(mapping.properties));
-
+  if (mapping) {
+    expectType<ListProfileMappings>(mapping);
   }
 
   let profileMapping: ProfileMapping = await client.profileMappingApi.getProfileMapping({mappingId: 'mappingId'});
-  profileMapping = await client.profileMappingApi.updateProfileMapping({mappingId: 'mappingId', profileMapping});
+  const profileMappingRequest = profileMapping as ProfileMappingRequest;
+  profileMapping = await client.profileMappingApi.updateProfileMapping({mappingId: 'mappingId', profileMapping: profileMappingRequest});
   if (profileMapping && profileMapping.properties) {
-    expectType<ProfileMappingProperty[]>(Object.values(profileMapping.properties));
+    expectType<ProfileMappingProperty>(profileMapping.properties);
   }
 }());

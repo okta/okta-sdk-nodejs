@@ -15,47 +15,49 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { UserType } from '../models/UserType';
+import { UserTypePostRequest } from '../models/UserTypePostRequest';
+import { UserTypePutRequest } from '../models/UserTypePutRequest';
 /**
  * no description
  */
 export declare class UserTypeApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-     * Create a User Type
+     * Creates a new user type. Okta automatically creates a `default` user type for your org. You may add up to nine additional user types. > **Note**: New user types are based on the current default schema template. Modifications to this schema do not automatically propagate to previously created user types.
+     * Create a user type
      * @param userType
      */
   createUserType(userType: UserType, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-     * Delete a User Type
+     * Deletes a user type permanently. > **Note**: You can\'t delete the default user type or a user type that is currently assigned to users.
+     * Delete a user type
      * @param typeId
      */
   deleteUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-     * Retrieve a User Type
+     * Retrieves a user type by ID. Use `default` to fetch the default user type.
+     * Retrieve a user type
      * @param typeId
      */
   getUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all User Types in your org
-     * List all User Types
+     * Lists all user types in your org
+     * List all user types
      */
   listUserTypes(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces an existing user type
-     * Replace a User Type
+     * Replaces an existing user type. This operation is a full update. > **Note**: The `name` of an existing user type can\'t be changed, but must be part of the request body. You can only replace the `displayName` and `description` elements.
+     * Replace a user type
      * @param typeId
      * @param userType
      */
-  replaceUserType(typeId: string, userType: UserType, _options?: Configuration): Promise<RequestContext>;
+  replaceUserType(typeId: string, userType?: UserTypePutRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an existing User Type
-     * Update a User Type
+     * Updates an existing user type. This operation is a partial update. > **Note**: You can only update the `displayName` and `description` elements. The `name` of an existing user type can\'t be changed.
+     * Update a user type
      * @param typeId
      * @param userType
      */
-  updateUserType(typeId: string, userType: UserType, _options?: Configuration): Promise<RequestContext>;
+  updateUserType(typeId: string, userType: UserTypePostRequest, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class UserTypeApiResponseProcessor {
   /**

@@ -30,7 +30,7 @@ describe('Group-Member API Tests', () => {
 
     const newGroup = {
       profile: {
-        name: `node-sdk: Group-Member API Test Group ${faker.random.word()}`.substring(0, 49)
+        name: `node-sdk: GroupMember ${faker.random.word()}`.substring(0, 49)
       }
     };
 
@@ -41,14 +41,14 @@ describe('Group-Member API Tests', () => {
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
     const createdGroup = await client.groupApi.createGroup({group: newGroup});
 
-    // 2. Add user to the group and validate user present in group
+    // 2. Add user to the group and validate user present in group (can be delayed!)
     await client.groupApi.assignUserToGroup({groupId: createdGroup.id, userId: createdUser.id});
-    let userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
+    let userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, true);
     expect(userInGroup).to.equal(true);
 
     // 3. Remove user from group and validate user removed
     await client.groupApi.unassignUserFromGroup({groupId: createdGroup.id, userId: createdUser.id});
-    userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
+    userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
     // 4. Delete the group and user

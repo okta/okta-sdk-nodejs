@@ -7,7 +7,8 @@ import {
   DefaultRequestExecutor,
   AssignRoleRequest,
   CreateUserRequest,
-  Group
+  Group,
+  CreateGroupRequest
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -43,7 +44,7 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, newUser, newGroup);
     const queryParameters = { activate : true };
     const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
-    const createdGroup = await client.groupApi.createGroup({group: newGroup});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup as CreateGroupRequest});
 
     // 2. Assign USER_ADMIN role to the user
     const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };

@@ -72,7 +72,8 @@ describe('User API Tests', () => {
     const expiredUser = await client.userApi.getUser({
       userId: createdUser.id
     });
-    expect(jsonResponse.tempPassword).to.not.be.null;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    expect((jsonResponse as any).tempPassword).to.not.be.null;
     expect(expiredUser.status).to.equal('PASSWORD_EXPIRED');
 
     // 4. Delete the user

@@ -14,54 +14,52 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
-import { Brand } from '../models/Brand';
 import { EmailDomain } from '../models/EmailDomain';
-import { EmailDomainListResponse } from '../models/EmailDomainListResponse';
 import { EmailDomainResponse } from '../models/EmailDomainResponse';
+import { EmailDomainResponseWithEmbedded } from '../models/EmailDomainResponseWithEmbedded';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 /**
  * no description
  */
 export declare class EmailDomainApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates an Email Domain in your org, along with associated username and sender display name
-     * Create an Email Domain
+     * Creates an Email Domain in your org
+     * Create an email domain
      * @param emailDomain
+     * @param expand Specifies additional metadata to be included in the response
      */
-  createEmailDomain(emailDomain: EmailDomain, _options?: Configuration): Promise<RequestContext>;
+  createEmailDomain(emailDomain: EmailDomain, expand?: Array<'brands'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes an Email Domain by `emailDomainId`
-     * Delete an Email Domain
+     * Delete an email domain
      * @param emailDomainId
+     * @param expand Specifies additional metadata to be included in the response
      */
-  deleteEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
+  deleteEmailDomain(emailDomainId: string, expand?: Array<'brands'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
-     * Retrieve a Email Domain
+     * Retrieves an Email Domain by `emailDomainId`
+     * Retrieve an email domain
      * @param emailDomainId
+     * @param expand Specifies additional metadata to be included in the response
      */
-  getEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
+  getEmailDomain(emailDomainId: string, expand?: Array<'brands'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all brands linked to an email domain
-     * List all brands linked to an email domain
-     * @param emailDomainId
+     * Lists all the Email Domains in your org
+     * List all email domains
+     * @param expand Specifies additional metadata to be included in the response
      */
-  listEmailDomainBrands(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Lists all the Email Domains in your org, along with associated username and sender display name
-     * List all Email Domains
-     */
-  listEmailDomains(_options?: Configuration): Promise<RequestContext>;
+  listEmailDomains(expand?: Array<'brands'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces associated username and sender display name by `emailDomainId`
-     * Replace an Email Domain
+     * Replace an email domain
      * @param emailDomainId
      * @param updateEmailDomain
+     * @param expand Specifies additional metadata to be included in the response
      */
-  replaceEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Promise<RequestContext>;
+  replaceEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, expand?: Array<'brands'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Verifies an Email Domain by `emailDomainId`
-     * Verify an Email Domain
+     * Verify an email domain
      * @param emailDomainId
      */
   verifyEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
@@ -90,15 +88,7 @@ export declare class EmailDomainApiResponseProcessor {
      * @params response Response returned by the server for a request to getEmailDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getEmailDomain(response: ResponseContext): Promise<EmailDomainResponse>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listEmailDomainBrands
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  listEmailDomainBrands(response: ResponseContext): Promise<Array<Brand>>;
+  getEmailDomain(response: ResponseContext): Promise<EmailDomainResponseWithEmbedded>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -106,7 +96,7 @@ export declare class EmailDomainApiResponseProcessor {
      * @params response Response returned by the server for a request to listEmailDomains
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listEmailDomains(response: ResponseContext): Promise<EmailDomainListResponse>;
+  listEmailDomains(response: ResponseContext): Promise<Array<EmailDomainResponseWithEmbedded>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

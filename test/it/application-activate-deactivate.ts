@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Application } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -21,7 +21,7 @@ describe('Application.activate() / Application.deactivate()', () => {
   it('should allow me to activate/deactivate the application', async () => {
     const application = utils.getBookmarkApplication();
 
-    let createdApplication;
+    let createdApplication: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);

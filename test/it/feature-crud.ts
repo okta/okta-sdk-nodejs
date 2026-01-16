@@ -4,6 +4,7 @@ import {
   Collection,
   DefaultRequestExecutor,
   Feature,
+  EnabledStatus,
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -19,7 +20,7 @@ const client = new Client({
 });
 
 const getFirstNonBetaFeature = async () => {
-  let firstFeatureInList;
+  let firstFeatureInList: Feature;
   await (await client.featureApi.listFeatures()).each((feature) => {
     // Note: Trying to enable feature 'Enforce MFA For Admin Console' will fail with error:
     // Api validation failed: ENFORCE_MFA_FOR_ADMIN_APPS. Cannot enable the feature: To satisfy 2FA assurance, the current admin must have enough enrolled authenticators, and the enrolled authenticators cannot be disabled in authenticator enrollment policy.
@@ -45,7 +46,7 @@ describe('Feature Crud API', () => {
   });
 
   describe('Get Feature', () => {
-    let firstFeatureInList;
+    let firstFeatureInList: Feature;
     beforeEach(async () => {
       firstFeatureInList = (await (await client.featureApi.listFeatures()).next()).value;
     });
@@ -60,8 +61,8 @@ describe('Feature Crud API', () => {
   });
 
   describe('Update Feature lifecycle', () => {
-    let firstFeatureInList;
-    let initialStatus;
+    let firstFeatureInList: Feature;
+    let initialStatus: EnabledStatus;
     beforeEach(async () => {
       // Disabling a BETA feature in a dev org throws 405 error
       // Hence we need a non-BETA feature for testing
@@ -73,7 +74,7 @@ describe('Feature Crud API', () => {
     afterEach(async () => {
       if (firstFeatureInList) {
         try {
-          await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: initialStatus === 'ENABLED' ? 'enable' : 'disable'});
+          await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: initialStatus === 'ENABLED' ? 'ENABLE' : 'DISABLE'});
         } catch (err) {
           if (err.status === 405 && err.status === 400) {
             console.log(err);
@@ -86,7 +87,7 @@ describe('Feature Crud API', () => {
 
     it('should enable feature', async () => {
       if (firstFeatureInList) {
-        const feature = await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: 'enable'});
+        const feature = await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: 'ENABLE'});
         //const feature = await firstFeatureInList.updateLifecycle('enable');
         expect(feature.id).to.equal(firstFeatureInList.id);
         expect(feature.status).to.equal('ENABLED');
@@ -95,7 +96,7 @@ describe('Feature Crud API', () => {
 
     it('should disable feature', async () => {
       if (firstFeatureInList) {
-        const feature = await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: 'disable'});
+        const feature = await client.featureApi.updateFeatureLifecycle({featureId: firstFeatureInList.id, lifecycle: 'DISABLE'});
         expect(feature.id).to.equal(firstFeatureInList.id);
         expect(feature.status).to.equal('DISABLED');
       }
@@ -103,7 +104,7 @@ describe('Feature Crud API', () => {
   });
 
   describe('List feature dependencies', () => {
-    let firstFeatureInList;
+    let firstFeatureInList: Feature;
     beforeEach(async () => {
       firstFeatureInList = await getFirstNonBetaFeature();
     });
@@ -120,7 +121,7 @@ describe('Feature Crud API', () => {
   });
 
   describe('List feature dependencies', () => {
-    let firstFeatureInList;
+    let firstFeatureInList: Feature;
     beforeEach(async () => {
       firstFeatureInList = (await (await client.featureApi.listFeatures()).next()).value;
     });

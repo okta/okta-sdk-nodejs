@@ -23,104 +23,104 @@ import { AgentType } from '../models/AgentType';
  */
 export declare class AgentPoolsApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates scheduled Agent pool update
-     * Activate an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Activates a scheduled agent pool update
+     * Activate an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   activateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
-     * Create an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param AgentPoolUpdate
+     * Creates an agent pool update
+     * Create an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param agentPoolUpdate
      */
-  createAgentPoolsUpdate(poolId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<RequestContext>;
+  createAgentPoolsUpdate(poolId: string, agentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates scheduled Agent pool update
-     * Deactivate an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Deactivates scheduled agent pool update
+     * Deactivate an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   deactivateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes Agent pool update
-     * Delete an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Deletes agent pool update
+     * Delete an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves Agent pool update from updateId
-     * Retrieve an Agent Pool update by id
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Retrieves an agent pool update by its `updateId`
+     * Retrieve an agent pool update by ID
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves the current state of the agent pool update instance settings
-     * Retrieve an Agent Pool update's settings
-     * @param poolId Id of the agent pool for which the settings will apply
+     * Retrieve an agent pool update\'s settings
+     * @param poolId ID of the agent pool for which the settings apply to
      */
   getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all agent pools with pagination support
-     * List all Agent Pools
-     * @param limitPerPoolType Maximum number of AgentPools being returned
+     * List all agent pools
+     * @param limitPerPoolType Maximum number of agent pools returned
      * @param poolType Agent type to search for
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
      */
   listAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all agent pool updates
-     * List all Agent Pool updates
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+     * List all agent pool updates
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param scheduled Return only scheduled or ad-hoc updates. If this parameter isn\&#39;t provided, Okta returns the entire list of updates.
      */
   listAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Pauses running or queued Agent pool update
-     * Pause an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Pauses a running or queued agent pool update
+     * Pause an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   pauseAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Resumes running or queued Agent pool update
-     * Resume an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Resumes a running or queued agent pool update
+     * Resume an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   resumeAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retries Agent pool update
-     * Retry an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
+     * Retry an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Stops Agent pool update
-     * Stop an Agent Pool update
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
+     * Stops an agent pool update
+     * Stop an agent pool update
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
      */
   stopAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates Agent pool update and return latest agent pool update
-     * Update an Agent Pool update by id
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param updateId Id of the update
-     * @param AgentPoolUpdate
+     * Updates an agent pool update instance and returns the latest agent pool update
+     * Update an agent pool update by ID
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param updateId ID of the update
+     * @param agentPoolUpdate
      */
-  updateAgentPoolsUpdate(poolId: string, updateId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<RequestContext>;
+  updateAgentPoolsUpdate(poolId: string, updateId: string, agentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an agent pool update settings
-     * Update an Agent Pool update settings
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param AgentPoolUpdateSetting
+     * Updates an agent pool update instance settings
+     * Update an agent pool update settings
+     * @param poolId ID of the agent pool for which the settings apply to
+     * @param agentPoolUpdateSetting
      */
-  updateAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<RequestContext>;
+  updateAgentPoolsUpdateSettings(poolId: string, agentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AgentPoolsApiResponseProcessor {
   /**

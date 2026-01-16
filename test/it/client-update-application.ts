@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, Application, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -22,7 +22,7 @@ describe('client.updateApplication()', () => {
   it('should allow me to get an application by ID', async () => {
     const application = utils.getBookmarkApplication();
 
-    let createdApplication;
+    let createdApplication: Application;
 
     try {
       await utils.removeAppByLabel(client, application.label);

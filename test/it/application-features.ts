@@ -15,10 +15,9 @@ const client = new Client({
 });
 
 describe('Application API: applicaton features', () => {
-  let application;
+  let application: Application;
   beforeEach(async () => {
     application = await client.applicationApi.createApplication({
-      //TODO: Org2OrgApplication
       application: utils.getOrg2OrgApplicationOptions() as Application
     });
   });
@@ -51,20 +50,24 @@ describe('Application API: applicaton features', () => {
           lifecycleDeactivate: {
             status: 'DISABLED'
           }
-        }
+        },
+        importRules: {},
+        importSettings: {}
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('DISABLED');
+    expect(feature.status).to.equal('DISABLED');
     feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
       CapabilitiesObject: {
         update: {
           lifecycleDeactivate: {
             status: 'ENABLED'
           }
-        }
+        },
+        importRules: {},
+        importSettings: {}
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('ENABLED');
+    expect(feature.status).to.equal('ENABLED');
   });
 
   it('provides method for uploading application logo', async () => {

@@ -46,8 +46,8 @@ describe('client.listApplicationGroupAssignments()', () => {
       await (await client.applicationApi.listApplicationGroupAssignments({appId: createdApplication.id})).each(async (assignment) => {
         // there should be only one assignment
         expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
-        const appLink = assignment._links.app as Record<string, string>;
-        const groupLink = assignment._links.group as Record<string, string>;
+        const appLink = assignment._links.app;
+        const groupLink = assignment._links.group;
         expect(appLink.href).to.contain(createdApplication.id);
         expect(groupLink.href).to.contain(createdGroup.id);
       });

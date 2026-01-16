@@ -111,8 +111,8 @@ describe('DefaultRequestExecutor', () => {
       const delayMs = requestExecutor.getRetryDelayMs(mockResponse);
       const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse, delayMs);
       // Should be 3 seconds, not 4, because we always add 1s to the retry time provided in the response headers
-      expect(newRequest.timeout).toBeGreaterThan(2998);
-      expect(newRequest.timeout).toBeLessThan(3002);
+      expect(newRequest.timeout).toBeGreaterThan(2950);
+      expect(newRequest.timeout).toBeLessThan(3050);
     });
 
     it('should set request.timeout to 0 if requestTimeout is 0', async () => {

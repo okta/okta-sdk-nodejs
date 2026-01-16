@@ -236,7 +236,7 @@ export class {{classname}}ResponseProcessor {
             {{/isBinary}}
             {{^isBinary}}
             const body: {{{returnType}}} = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
+                ObjectSerializer.parse(await response.body.text(), contentType, '{{{returnType}}}'),
                 '{{{returnType}}}', '{{returnFormat}}'
             ) as {{{returnType}}};
             {{/isBinary}}

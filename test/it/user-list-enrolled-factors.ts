@@ -1,10 +1,10 @@
 import utils = require('../utils');
 import {
-  CallUserFactor,
+  UserFactorCall,
   Client,
   DefaultRequestExecutor,
   Policy,
-  SecurityQuestionUserFactor,
+  UserFactorSecurityQuestion,
   User
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
@@ -72,14 +72,14 @@ describe('User API tests', () => {
 
   it('should allow me to list a user\'s enrolled factors', async () => {
     // using Call factor as there appears to be an org limit for SMS factor enrollments
-    const callFactor: CallUserFactor = {
+    const callFactor: UserFactorCall = {
       factorType: 'call',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const securityQuestionFactor: SecurityQuestionUserFactor = {
+    const securityQuestionFactor: UserFactorSecurityQuestion = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -100,7 +100,7 @@ describe('User API tests', () => {
     });
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(CallUserFactor);
-    expect(factors[0]).to.be.instanceof(SecurityQuestionUserFactor);
+    expect(factors[1]).to.be.instanceof(UserFactorCall);
+    expect(factors[0]).to.be.instanceof(UserFactorSecurityQuestion);
   });
 });

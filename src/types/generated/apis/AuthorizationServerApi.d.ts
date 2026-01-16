@@ -14,10 +14,12 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AuthorizationServer } from '../models/AuthorizationServer';
+import { AuthorizationServerJsonWebKey } from '../models/AuthorizationServerJsonWebKey';
 import { AuthorizationServerPolicy } from '../models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from '../models/AuthorizationServerPolicyRule';
-import { JsonWebKey } from '../models/JsonWebKey';
+import { AuthorizationServerPolicyRuleRequest } from '../models/AuthorizationServerPolicyRuleRequest';
 import { JwkUse } from '../models/JwkUse';
 import { OAuth2Claim } from '../models/OAuth2Claim';
 import { OAuth2Client } from '../models/OAuth2Client';
@@ -29,278 +31,309 @@ import { OAuth2Scope } from '../models/OAuth2Scope';
 export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates an authorization server
-     * Activate an Authorization Server
-     * @param authServerId
+     * Activate an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   activateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Activates an authorization server policy
-     * Activate a Policy
-     * @param authServerId
-     * @param policyId
+     * Activate a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   activateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Activates an authorization server policy rule
-     * Activate a Policy Rule
-     * @param authServerId
-     * @param policyId
-     * @param ruleId
+     * Activate a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Creates trusted relationships between the given authorization server and other authorization servers
+     * Create an associated authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param associatedServerMediated
+     */
+  createAssociatedServers(authServerId: string, associatedServerMediated: AssociatedServerMediated, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Creates an authorization server
-     * Create an Authorization Server
+     * Create an authorization server
      * @param authorizationServer
      */
   createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a policy
-     * Create a Policy
-     * @param authServerId
+     * Create a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param policy
      */
   createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a policy rule for the specified Custom Authorization Server and Policy
-     * Create a Policy Rule
-     * @param policyId
-     * @param authServerId
+     * Create a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      * @param policyRule
      */
-  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<RequestContext>;
+  createAuthorizationServerPolicyRule(authServerId: string, policyId: string, policyRule: AuthorizationServerPolicyRuleRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a custom token claim
-     * Create a Custom Token Claim
-     * @param authServerId
+     * Creates a custom token Claim for a custom authorization server
+     * Create a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param oAuth2Claim
      */
   createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a custom token scope
-     * Create a Custom Token Scope
-     * @param authServerId
+     * Create a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param oAuth2Scope
      */
   createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an authorization server
-     * Deactivate an Authorization Server
-     * @param authServerId
+     * Deactivate an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   deactivateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an authorization server policy
-     * Deactivate a Policy
-     * @param authServerId
-     * @param policyId
+     * Deactivate a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an authorization server policy rule
-     * Deactivate a Policy Rule
-     * @param authServerId
-     * @param policyId
-     * @param ruleId
+     * Deactivate a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Deletes an associated Authorization Server
+     * Delete an associated authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param associatedServerId &#x60;id&#x60; of the associated Authorization Server
+     */
+  deleteAssociatedServer(authServerId: string, associatedServerId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Deletes an authorization server
-     * Delete an Authorization Server
-     * @param authServerId
+     * Delete an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   deleteAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a policy
-     * Delete a Policy
-     * @param authServerId
-     * @param policyId
+     * Delete a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
-     * Delete a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Delete a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
-  deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
+  deleteAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a custom token claim
-     * Delete a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Deletes a custom token Claim specified by the `claimId`
+     * Delete a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      */
   deleteOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a custom token scope
-     * Delete a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Delete a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      */
   deleteOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves an authorization server
-     * Retrieve an Authorization Server
-     * @param authServerId
+     * Retrieve an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   getAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Retrieves an Authorization Server Key specified by the `keyId`
+     * Retrieve an authorization server key
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param keyId &#x60;id&#x60; of the certificate key
+     */
+  getAuthorizationServerKey(authServerId: string, keyId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Retrieves a policy
-     * Retrieve a Policy
-     * @param authServerId
-     * @param policyId
+     * Retrieve a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
   getAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a policy rule by `ruleId`
-     * Retrieve a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Retrieve a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      */
-  getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
+  getAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a custom token claim
-     * Retrieve a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Retrieves a custom token Claim by the specified `claimId`
+     * Retrieve a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      */
   getOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a custom token scope
-     * Retrieve a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Retrieve a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      */
   getOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a refresh token for a client
-     * Retrieve a Refresh Token for a Client
-     * @param authServerId
-     * @param clientId
-     * @param tokenId
-     * @param expand
+     * Retrieves a refresh token for a Client
+     * Retrieve a refresh token for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param tokenId &#x60;id&#x60; of Token
+     * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
      */
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all credential keys
-     * List all Credential Keys
-     * @param authServerId
+     * Lists all associated Authorization Servers by trusted type for the given `authServerId`
+     * List all associated authorization servers
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param trusted Searches trusted authorization servers when &#x60;true&#x60; or searches untrusted authorization servers when &#x60;false&#x60;
+     * @param q Searches for the name or audience of the associated authorization servers
+     * @param limit Specifies the number of results for a page
+     * @param after Specifies the pagination cursor for the next page of the associated authorization servers
+     */
+  listAssociatedServersByTrustedType(authServerId: string, trusted?: boolean, q?: string, limit?: number, after?: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all of the current, future, and expired Keys used by the Custom Authorization Server
+     * List all credential keys
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   listAuthorizationServerKeys(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all policies
-     * List all Policies
-     * @param authServerId
+     * List all policies
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   listAuthorizationServerPolicies(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all policy rules for the specified Custom Authorization Server and Policy
-     * List all Policy Rules
-     * @param policyId
-     * @param authServerId
+     * List all policy rules
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      */
-  listAuthorizationServerPolicyRules(policyId: string, authServerId: string, _options?: Configuration): Promise<RequestContext>;
+  listAuthorizationServerPolicyRules(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all authorization servers
-     * List all Authorization Servers
-     * @param q
-     * @param limit
-     * @param after
+     * Lists all custom authorization servers in the org
+     * List all authorization servers
+     * @param q Searches the &#x60;name&#x60; and &#x60;audiences&#x60; of authorization servers for matching values
+     * @param limit Specifies the number of authorization server results on a page. Maximum value: 200
+     * @param after Specifies the pagination cursor for the next page of authorization servers. Treat as an opaque value and obtain through the next link relationship.
      */
   listAuthorizationServers(q?: string, limit?: number, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all custom token claims
-     * List all Custom Token Claims
-     * @param authServerId
+     * Lists all custom token Claims defined for a specified custom authorization server
+     * List all custom token claims
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   listOAuth2Claims(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all clients
-     * List all Clients
-     * @param authServerId
+     * Lists all client resources for which the specified authorization server has tokens.  > **Note:** To list a specific user\'s client resources for which they have tokens or grants, use the [List all clients endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserClients).
+     * List all client resources for an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      */
   listOAuth2ClientsForAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all custom token scopes
-     * List all Custom Token Scopes
-     * @param authServerId
-     * @param q
-     * @param filter
-     * @param cursor
-     * @param limit
+     * List all custom token scopes
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param q Searches the &#x60;name&#x60; of Custom Token Scopes for matching values
+     * @param filter Filter expression for Custom Token Scopes
+     * @param after Specifies the pagination cursor for the next page of scopes. Treat the after cursor as an opaque value and obtain it through the next link relationship. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param limit Specifies the number of objects to return per page. If there are multiple pages of results, the Link header contains a &#x60;next&#x60; link that you need to use as an opaque value (follow it, don\&#39;t parse it). See [Pagination](https://developer.okta.com/docs/api/#pagination).
      */
-  listOAuth2Scopes(authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
+  listOAuth2Scopes(authServerId: string, q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all refresh tokens for a client
-     * List all Refresh Tokens for a Client
-     * @param authServerId
-     * @param clientId
-     * @param expand
-     * @param after
-     * @param limit
+     * Lists all refresh tokens issued by an authorization server for a specific Client
+     * List all refresh tokens for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
+     * @param after Specifies the pagination cursor for the next page of tokens
+     * @param limit The maximum number of tokens to return (maximum 200)
      */
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces an authorization server
-     * Replace an Authorization Server
-     * @param authServerId
+     * Replace an authorization server
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param authorizationServer
      */
   replaceAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces a policy
-     * Replace a Policy
-     * @param authServerId
-     * @param policyId
+     * Replace a policy
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
      * @param policy
      */
   replaceAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
-     * Replace a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
+     * Replace a policy rule
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param policyId &#x60;id&#x60; of the Policy
+     * @param ruleId &#x60;id&#x60; of the policy rule
      * @param policyRule
      */
-  replaceAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<RequestContext>;
+  replaceAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, policyRule: AuthorizationServerPolicyRuleRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a custom token claim
-     * Replace a Custom Token Claim
-     * @param authServerId
-     * @param claimId
+     * Replaces a custom token Claim specified by the `claimId`
+     * Replace a custom token claim
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param claimId &#x60;id&#x60; of Claim
      * @param oAuth2Claim
      */
   replaceOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces a custom token scope
-     * Replace a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
+     * Replace a custom token scope
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param scopeId &#x60;id&#x60; of Scope
      * @param oAuth2Scope
      */
   replaceOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes a refresh token for a client
-     * Revoke a Refresh Token for a Client
-     * @param authServerId
-     * @param clientId
-     * @param tokenId
+     * Revokes a refresh token for a Client
+     * Revoke a refresh token for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
+     * @param tokenId &#x60;id&#x60; of Token
      */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes all refresh tokens for a client
-     * Revoke all Refresh Tokens for a Client
-     * @param authServerId
-     * @param clientId
+     * Revokes all refresh tokens for a Client
+     * Revoke all refresh tokens for a client
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
+     * @param clientId Client app ID
      */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Rotates all credential keys
-     * Rotate all Credential Keys
-     * @param authServerId
+     * Rotates the current Keys for a Custom Authorization Server. If you rotate Keys, the `ACTIVE` Key becomes the `EXPIRED` Key, the `NEXT` Key becomes the `ACTIVE` Key, and the Custom Authorization Server immediately begins using the new active Key to sign tokens.  > **Note:** Okta rotates your Keys automatically in `AUTO` mode. You can rotate Keys yourself in either mode. If Keys are rotated manually, you should invalidate any intermediate cache. and fetch the Keys again using the Keys endpoint.
+     * Rotate all credential keys
+     * @param authServerId &#x60;id&#x60; of the Authorization Server
      * @param use
      */
   rotateAuthorizationServerKeys(authServerId: string, use: JwkUse, _options?: Configuration): Promise<RequestContext>;
@@ -330,6 +363,14 @@ export declare class AuthorizationServerApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activateAuthorizationServerPolicyRule(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to createAssociatedServers
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  createAssociatedServers(response: ResponseContext): Promise<Array<AuthorizationServer>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -398,6 +439,14 @@ export declare class AuthorizationServerApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to deleteAssociatedServer
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteAssociatedServer(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deleteAuthorizationServer
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -446,6 +495,14 @@ export declare class AuthorizationServerApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getAuthorizationServerKey
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getAuthorizationServerKey(response: ResponseContext): Promise<AuthorizationServerJsonWebKey>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getAuthorizationServerPolicy
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -486,10 +543,18 @@ export declare class AuthorizationServerApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to listAssociatedServersByTrustedType
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listAssociatedServersByTrustedType(response: ResponseContext): Promise<Array<AuthorizationServer>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listAuthorizationServerKeys
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listAuthorizationServerKeys(response: ResponseContext): Promise<Array<JsonWebKey>>;
+  listAuthorizationServerKeys(response: ResponseContext): Promise<Array<AuthorizationServerJsonWebKey>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -609,5 +674,5 @@ export declare class AuthorizationServerApiResponseProcessor {
      * @params response Response returned by the server for a request to rotateAuthorizationServerKeys
      * @throws ApiException if the response code was not in [200, 299]
      */
-  rotateAuthorizationServerKeys(response: ResponseContext): Promise<Array<JsonWebKey>>;
+  rotateAuthorizationServerKeys(response: ResponseContext): Promise<Array<AuthorizationServerJsonWebKey>>;
 }

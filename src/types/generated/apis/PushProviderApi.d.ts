@@ -21,32 +21,32 @@ import { PushProvider } from '../models/PushProvider';
  */
 export declare class PushProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new push provider
-     * Create a Push Provider
+     * Creates a new push provider. Each Push Provider must have a unique `name`.
+     * Create a push provider
      * @param pushProvider
      */
   createPushProvider(pushProvider: PushProvider, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
-     * Delete a Push Provider
+     * Delete a push provider
      * @param pushProviderId Id of the push provider
      */
   deletePushProvider(pushProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a push provider by `pushProviderId`
-     * Retrieve a Push Provider
+     * Retrieve a push provider
      * @param pushProviderId Id of the push provider
      */
   getPushProvider(pushProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all push providers
-     * List all Push Providers
+     * List all push providers
      * @param type Filters push providers by &#x60;providerType&#x60;
      */
   listPushProviders(type?: ProviderType, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces a push provider by `pushProviderId`
-     * Replace a Push Provider
+     * Replace a push provider
      * @param pushProviderId Id of the push provider
      * @param pushProvider
      */

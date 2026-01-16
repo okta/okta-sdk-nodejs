@@ -1,6 +1,7 @@
 import {
   Client,
-  Theme,
+  BrandRequest,
+  UpdateThemeRequest,
 } from '@okta/okta-sdk-nodejs';
 
 import { expect } from 'chai';
@@ -23,7 +24,7 @@ describe('Brand API', () => {
     const brand = await client.customizationApi.getBrand({brandId: brands[0].id});
     const originalFlagValue = brand.removePoweredByOkta;
     brand.removePoweredByOkta = !originalFlagValue;
-    const updatedBrand = await client.customizationApi.replaceBrand({brandId: brand.id, brand});
+    const updatedBrand = await client.customizationApi.replaceBrand({brandId: brand.id, brand: brand as BrandRequest});
     expect(updatedBrand.removePoweredByOkta).to.equal(!originalFlagValue);
   });
 
@@ -38,7 +39,7 @@ describe('Brand API', () => {
       const theme = await client.customizationApi.getBrandTheme({brandId: brand.id, themeId: themes[0].id});
       const originalColorValue = theme.primaryColorHex;
       const newColorValue = '#badbed';
-      const themeOptions: Theme = {
+      const themeOptions: UpdateThemeRequest = {
         primaryColorHex: '#ecaffe',
         secondaryColorHex: '#ebebed',
         signInPageTouchPointVariant: 'OKTA_DEFAULT',

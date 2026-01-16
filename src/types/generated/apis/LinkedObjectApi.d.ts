@@ -20,26 +20,26 @@ import { LinkedObject } from '../models/LinkedObject';
  */
 export declare class LinkedObjectApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a linked object definition
-     * Create a Linked Object Definition
+     * Creates a Linked Object definition
+     * Create a linked object definition
      * @param linkedObject
      */
   createLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a linked object definition
-     * Delete a Linked Object Definition
-     * @param linkedObjectName
+     * Deletes the Linked Object definition specified by either the `primary` or `associated` name. The entire definition is removed, regardless of which name that you specify.
+     * Delete a linked object definition
+     * @param linkedObjectName Primary or Associated name
      */
   deleteLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a linked object definition
-     * Retrieve a Linked Object Definition
-     * @param linkedObjectName
+     * Retrieves a Linked Object definition
+     * Retrieve a linked object definition
+     * @param linkedObjectName Primary or Associated name
      */
   getLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all linked object definitions
-     * List all Linked Object Definitions
+     * Lists all Linked Object definitions
+     * List all linked object definitions
      */
   listLinkedObjectDefinitions(_options?: Configuration): Promise<RequestContext>;
 }

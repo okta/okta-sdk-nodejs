@@ -1,5 +1,6 @@
 import { expectType } from 'tsd';
-import { ErrorCause, OktaApiError } from '../../src/types/api-error';
+import { OktaApiError } from '../../src/types/api-error';
+import { ErrorCause } from '../../src/types/generated/models/ErrorCause';
 import { Headers } from 'node-fetch';
 
 

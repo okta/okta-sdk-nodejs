@@ -20,17 +20,17 @@ import { LogEvent } from '../models/LogEvent';
  */
 export declare class SystemLogApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-     * List all System Log Events
-     * @param since
-     * @param until
-     * @param filter
-     * @param q
-     * @param limit
-     * @param sortOrder
-     * @param after
+     * Lists all System Log events  See [System Log query](https://developer.okta.com/docs/reference/system-log-query/) for further details and examples, and [System Log filters and search](https://help.okta.com/okta_help.htm?type=oie&id=csh-syslog-filters) for common use cases.  By default, 100 System Log events are returned. If there are more events, see the [header link](https://developer.okta.com/docs/api/#link-header) for the `next` link, or increase the number of returned objects using the `limit` parameter.  >**Note:** The value of the `clientSecret` property in the System Log is secured by a hashing function, and isn\'t the value used during authentication.
+     * List all System Log events
+     * @param since Filters the lower time bound of the log events &#x60;published&#x60; property for bounded queries or persistence time for polling queries
+     * @param until Filters the upper time bound of the log events &#x60;published&#x60; property for bounded queries or persistence time for polling queries.
+     * @param after Retrieves the next page of results. Okta returns a link in the HTTP Header (&#x60;rel&#x3D;next&#x60;) that includes the after query parameter
+     * @param filter Filter expression that filters the results. All operators except [ ] are supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
+     * @param q Filters log events results by one or more case insensitive keywords.
+     * @param limit Sets the number of results that are returned in the response
+     * @param sortOrder The order of the returned events that are sorted by the &#x60;published&#x60; property
      */
-  listLogEvents(since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
+  listLogEvents(since?: string, until?: string, after?: string, filter?: string, q?: string, limit?: number, sortOrder?: 'ASCENDING' | 'DESCENDING', _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SystemLogApiResponseProcessor {
   /**

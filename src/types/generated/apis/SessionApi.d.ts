@@ -21,31 +21,57 @@ import { Session } from '../models/Session';
  */
 export declare class SessionApiRequestFactory extends BaseAPIRequestFactory {
   /**
+     * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Close the current session
+     * @param cookie
+     */
+  closeCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
-     * Create a Session with session token
+     * Create a session with session token
      * @param createSessionRequest
      */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Retrieve the current session
+     * @param cookie
+     */
+  getCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Retrieves information about the Session specified by the given session ID
-     * Retrieve a Session
-     * @param sessionId &#x60;id&#x60; of a valid Session
+     * Retrieve a session
+     * @param sessionId &#x60;id&#x60; of the Session
      */
   getSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Refresh the current session
+     * @param cookie
+     */
+  refreshCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
-     * Refresh a Session
-     * @param sessionId &#x60;id&#x60; of a valid Session
+     * Refresh a session
+     * @param sessionId &#x60;id&#x60; of the Session
      */
   refreshSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes the specified Session
-     * Revoke a Session
-     * @param sessionId &#x60;id&#x60; of a valid Session
+     * Revoke a session
+     * @param sessionId &#x60;id&#x60; of the Session
      */
   revokeSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SessionApiResponseProcessor {
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to closeCurrentSession
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  closeCurrentSession(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -58,10 +84,26 @@ export declare class SessionApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getCurrentSession
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getCurrentSession(response: ResponseContext): Promise<Session>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getSession
      * @throws ApiException if the response code was not in [200, 299]
      */
   getSession(response: ResponseContext): Promise<Session>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to refreshCurrentSession
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  refreshCurrentSession(response: ResponseContext): Promise<Session>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

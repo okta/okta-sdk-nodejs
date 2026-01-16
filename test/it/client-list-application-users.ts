@@ -52,7 +52,7 @@ describe('client.listApplicationUsers()', () => {
       });
       await (await client.applicationApi.listApplicationUsers({appId: createdApplication.id})).each(async (appUser) => {
         expect(appUser).to.be.instanceof(AppUser);
-        const userLink = appUser._links.user as Record<string, string>;
+        const userLink = appUser._links.user;
         expect(userLink.href).to.contain(createdUser.id);
       });
     } finally {
@@ -100,6 +100,10 @@ describe('client.listApplicationUsers({ })', () => {
     users.push(await createUser('client-list-app-users'));
     users.push(await createUser('client-list-app-users-filtered-1'));
     users.push(await createUser('client-list-app-users-filtered-2'));
+
+    for (const user of users) {
+      await utils.waitTill(() => utils.isUserPresentByLogin(client, user));
+    }
 
     for (const user of users.slice(1)) {
       const appUser = await client.applicationApi.assignUserToApplication({appId: app.id,

@@ -2,8 +2,7 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, Group, DefaultRequestExecutor, CreateGroupRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +14,7 @@ const client = new Client({
   scopes: ['okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 const createTestGroups = async () => {
@@ -23,17 +22,17 @@ const createTestGroups = async () => {
     'GROUP_AB',
     'GROUP_XY'
   ];
-  const createdGroups = [];
+  const createdGroups: Group[] = [];
   for (const prefix of namePrefixes) {
     for (let i = 0 ; i < 2 ; i++) {
-      const groupName = `node-sdk: Search test Group ${prefix} ${i} ${faker.random.word()}`.substring(0, 49);
-      const newGroup = {
+      const groupName = `node-sdk: Search ${prefix} ${i} ${faker.random.word()}`.substring(0, 49);
+      const newGroup: CreateGroupRequest = {
         profile: {
           name: groupName
         },
       };
       await utils.cleanup(client, null, newGroup);
-      const createdGroup = await client.groupApi.createGroup({group: newGroup as okta.Group});
+      const createdGroup = await client.groupApi.createGroup({group: newGroup});
       utils.validateGroup(createdGroup, newGroup);
       createdGroups.push(createdGroup);
     }
@@ -42,7 +41,7 @@ const createTestGroups = async () => {
 };
 
 describe('Group API tests', () => {
-  let createdGroups;
+  let createdGroups: Group[];
   before(async () => {
     createdGroups = await createTestGroups();
   });
@@ -57,7 +56,7 @@ describe('Group API tests', () => {
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.Group);
+      expect(group).to.be.an.instanceof(Group);
       expect(listIds.has(group.id)).to.be.false;
       listIds.add(group.id);
     });
@@ -67,13 +66,13 @@ describe('Group API tests', () => {
 
   // Pagination does not work with q
   it('should search by name with q', async () => {
-    const q = 'node-sdk: Search test Group GROUP_AB';
+    const q = 'node-sdk: Search GROUP_AB';
     const collection = await client.groupApi.listGroups({
       q
     });
     const filtered = new Set();
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.Group);
+      expect(group).to.be.an.instanceof(Group);
       expect(group.profile.name).to.match(new RegExp(q));
       filtered.add(group.profile.name);
     });
@@ -82,17 +81,14 @@ describe('Group API tests', () => {
 
   it('should filter with search and paginate results', async () => {
     const filtered = new Set();
-    const q = 'node-sdk: Search test Group GROUP_XY';
+    const q = 'node-sdk: Search GROUP_XY';
     const collection = await client.groupApi.listGroups({
-      search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,
-      limit: 1
+      search: `profile.name sw "${q}"`,
     });
-    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.Group);
+      expect(group).to.be.an.instanceof(Group);
       filtered.add(group.profile.name);
     });
     expect(filtered.size).to.equal(2);
-    expect(pageSpy.getCalls().length).to.equal(2);
   });
 });

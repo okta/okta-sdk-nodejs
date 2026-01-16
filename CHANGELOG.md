@@ -1,5 +1,86 @@
 # Okta Node SDK Changelog
 
+# 7.3.1
+
+### Fixes
+
+- [#463](https://github.com/okta/okta-sdk-nodejs/pull/463) fix: upgrades `node-forge` and `@types/node-forge` version to `1.3.2`
+
+# 7.2.1
+
+### Fixes
+
+- [#442](https://github.com/okta/okta-sdk-nodejs/pull/442)
+  - Fixed schemas:
+    - OrgCAPTCHASettings
+    - EmailServerListResponse
+    - UISchemaObject (elements)
+  - Fixed return type for:
+    - applicationApi.listJwk
+    - logStreamApi.activateLogStream
+    - logStreamApi.deactivateLogStream
+    - emailServerApi.getEmailServer
+  - Fixed request type for:
+    - logStreamApi.createLogStream
+  - Fixes detection of affected resources for caching middleware
+
+- [#445](https://github.com/okta/okta-sdk-nodejs/pull/445) fix: upgrades `form-data` version to `4.0.4` to pull in [CVE-2025-7783](https://www.cve.org/CVERecord?id=CVE-2025-7783) resolution
+
+# 7.2.0
+
+### Features
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec (as on 20 June 2025)
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Added new APIs:
+  - ResourceSetApi
+  - IntegrationsApi
+  - RoleApi
+  - AttackProtectionApi
+  - CAPTCHAApi
+  - DeviceAccessApi
+  - DeviceIntegrationsApi
+  - DevicePostureCheckApi
+  - DirectoriesIntegrationApi
+  - DisasterRecoveryApi
+  - EmailDomainApi
+  - EmailServerApi
+  - GovernanceBundleApi
+  - GroupOwnerApi
+  - HookKeyApi
+  - IdentitySourceApi
+  - LogStreamApi
+  - OktaApplicationSettingsApi
+  - OktaPersonalSettingsApi
+  - OrgCreatorApi
+  - PrivilegedResourceApi
+  - RateLimitSettingsApi
+  - RealmApi
+  - RealmAssignmentApi
+  - RiskEventApi
+  - RiskProviderApi
+  - SSFReceiverApi
+  - SSFSecurityEventTokenApi
+  - SSFTransmitterApi
+  - ServiceAccountApi
+  - UISchemaApi
+  - WebAuthnPreregistrationApi
+
+- [#438](https://github.com/okta/okta-sdk-nodejs/pull/438) Updated APIs:
+  - ApplicationApi:
+    - Added new methods from ApplicationCWOConnectionsApi, ApplicationExpressConfigurationApi, ApplicationPoliciesApi
+    - Added new methods from ApplicationSSOApi, ApplicationSSOCredentialOAuth2ClientAuthApi, ApplicationSSOFederatedClaimsApi
+  - AuthorizationServerApi:
+    - Added new methods from AuthorizationServerClientsApi, AuthorizationServerAssocApi
+  - CustomizationApi:
+    - Added new methods from EmailCustomizationApi, CustomPagesApi
+  - RoleAssignmentApi
+    - Added new methods from RoleAssignmentClientApi
+  - RoleTargetApi
+    - Added new methods from RoleBTargetBGroupApi, RoleBTargetClientApi
+  - UserApi:
+    - Added new methods from UserClassificationApi, UserOAuthApi, UserRiskApi
+
 # 7.1.1
 
 ### Fixes

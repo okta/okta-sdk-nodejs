@@ -35,7 +35,7 @@ You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodej
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
 
-✔️: The current stable major version series is: 6.x.x
+✔️: The current stable major version series is: 7.x.x
 
 | Version | Status                    |
 | ------- | ------------------------- |
@@ -43,8 +43,8 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 2.x | :x: Retired |
 | 3.x | :x: Retired |
 | 4.x | :x: Retired |
-| 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
-| 6.x | :heavy_check_mark: Stable ([migration guide](#from-5x-to-60)) |
+| 5.x | :x: Retired |
+| 6.x | :x: Retired |
 | 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
 
 The latest release can always be found on the [releases page][github-releases].
@@ -110,6 +110,7 @@ The `privateKey` can be passed in the following ways:
 
 > Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuation.
 
+> Note: Starting from 7.2.2 the Okta management SDK added support for DPoP. If the SDK detects the application has DPoP enabled, it will silently proceed to obtain a DPoP-bound access token, and will generate a new DPoP Proof JWT for every request. There's no additional configuration required for developers. Visit [Demonstrating Proof-of-Possession](https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/) to learn more about this.
 
 ## Examples
 
@@ -1045,8 +1046,8 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 
 ## Building the SDK
 
-- Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml`) and place it under `spec` dir
-- run `yarn build:openapi`
+- Obtain [Open API v3](https://spec.openapis.org/oas/v3.0.3) combined spec (`management.yaml` and `oauth.yaml`) and place it under `spec` dir
+- Install [Docker CLI client](https://docs.docker.com/desktop/)
 - run `yarn build`
 
 ## Contributing

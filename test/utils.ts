@@ -1,14 +1,20 @@
 import {
   Client,
-  User, Group, Role,
+  User, Group, Role, StandardRole, CustomRole,
+  UserGetSingleton,
   UserApiListUsersRequest,
   GroupApiListGroupsRequest,
   RoleType,
   Csr,
+  IdPCsr,
   BookmarkApplication,
+  Org2OrgApplication,
+  OpenIdConnectApplication,
   SamlApplication,
-  OpenIdConnectApplication
+  OAuth2ClientJsonWebKeyRequestBody,
 } from '@okta/okta-sdk-nodejs';
+const Rasha = require('rasha');
+const nJwt = require('njwt');
 import * as forge from 'node-forge';
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
@@ -22,8 +28,8 @@ function delay(t) {
   });
 }
 
-function validateUser(user: User, expectedUser: User) {
-  expect(user).to.be.an.instanceof(User);
+function validateUser(user: User | UserGetSingleton, expectedUser: User) {
+  expect(user instanceof User || user instanceof UserGetSingleton).to.be.true;
   expect(user.profile.firstName).to.equal(expectedUser.profile.firstName);
   expect(user.profile.lastName).to.equal(expectedUser.profile.lastName);
   expect(user.profile.email).to.equal(expectedUser.profile.email);
@@ -85,6 +91,24 @@ async function waitTillUserInGroup(client: Client, user: User, group: Group, con
   return userInGroup;
 }
 
+async function waitTill(condition: () => Promise<boolean>): Promise<boolean> {
+  let currentConditionResult = false;
+  let timeOut = 0;
+  while (!currentConditionResult) {
+    currentConditionResult = await condition();
+    if (currentConditionResult) {
+      return true;
+    }
+
+    await delay(1000);
+    timeOut++;
+    if (timeOut === 30) {
+      break;
+    }
+  }
+  return false;
+}
+
 async function deleteUser(user: User, client: Client) {
   await client.userApi.deactivateUser({
     userId: user.id
@@ -97,6 +121,19 @@ async function deleteUser(user: User, client: Client) {
 async function isUserPresent(client: Client, expectedUser: User, queryParameters: UserApiListUsersRequest) {
   let userPresent = false;
   const collection = await client.userApi.listUsers(queryParameters);
+  await collection.each(user => {
+    expect(user).to.be.an.instanceof(User);
+    if (user.profile.login === expectedUser.profile.login) {
+      userPresent = true;
+      return false;
+    }
+  });
+  return userPresent;
+}
+
+async function isUserPresentByLogin(client: Client, expectedUser: User) {
+  let userPresent = false;
+  const collection = await client.userApi.listUsers({ search: `profile.login eq "${expectedUser.profile.login}"` });
   await collection.each(user => {
     expect(user).to.be.an.instanceof(User);
     if (user.profile.login === expectedUser.profile.login) {
@@ -125,7 +162,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) 
   await (await client.roleAssignmentApi.listAssignedRolesForUser({
     userId: user.id
   })).each(role => {
-    expect(role).to.be.an.instanceof(Role);
+    expect(role instanceof Role || role instanceof StandardRole || role instanceof CustomRole).to.be.true;
     if (role.type === roleType) {
       hasRole = true;
       return false;
@@ -134,7 +171,7 @@ async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) 
   return hasRole;
 }
 
-async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: Client) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role | StandardRole | CustomRole, client: Client) {
   let groupTargetPresent = false;
   const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
     userId: user.id, 
@@ -272,6 +309,41 @@ function getOIDCApplication(): OpenIdConnectApplication {
   };
 }
 
+function getServiceApplication(): OpenIdConnectApplication {
+  return  {
+    name: 'oidc_client',
+    label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
+    signOnMode: 'OPENID_CONNECT',
+    credentials: {
+      oauthClient: {
+        autoKeyRotation: true,
+        token_endpoint_auth_method: 'client_secret_post'
+      }
+    },
+    settings: {
+      oauthClient: {
+        application_type: 'service',
+        client_uri: 'https://example.com/client',
+        grant_types: [
+          'implicit',
+          'authorization_code',
+          'client_credentials'
+        ],
+        logo_uri: 'https://example.com/assets/images/logo-new.png',
+        redirect_uris: [
+          'https://example.com/oauth2/callback',
+          'myapp://callback'
+        ],
+        response_types: [
+          'token',
+          'id_token',
+          'code'
+        ]
+      }
+    }
+  };
+}
+
 function getBookmarkApplication(): BookmarkApplication {
   return {
     name: 'bookmark',
@@ -286,7 +358,7 @@ function getBookmarkApplication(): BookmarkApplication {
   };
 }
 
-function getOrg2OrgApplicationOptions(): SamlApplication {
+function getOrg2OrgApplicationOptions(): Org2OrgApplication {
   return {
     name: 'okta_org2org',
     label: 'node-sdk: Sample Okta Org2Org App',
@@ -296,6 +368,52 @@ function getOrg2OrgApplicationOptions(): SamlApplication {
         acsUrl: 'https://example.atko.com/sso/saml2/exampleid',
         audRestriction: 'https://www.atko.com/saml2/service-provider/exampleid',
         baseUrl: 'https://example.atko.com'
+      }
+    }
+  };
+}
+
+function getSamlApplication(): SamlApplication {
+  return {
+    label: `node-sdk: Example Custom SAML 2.0 App - ${faker.random.word()}`,
+    visibility: {
+      autoSubmitToolbar: false,
+      hide: {
+        iOS: false,
+        web: false
+      }
+    },
+    features: [],
+    signOnMode: 'SAML_2_0',
+    settings: {
+      signOn: {
+        assertionSigned: true,
+        allowMultipleAcsEndpoints: true,
+        attributeStatements: [
+          {
+            type: 'EXPRESSION',
+            name: 'Attribute',
+            namespace: 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
+            values: [
+              'Value'
+            ],
+          }
+        ],
+        audience: 'asdqwe123',
+        authnContextClassRef: 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+        defaultRelayState: '',
+        destination: 'http://testorgone.okta',
+        digestAlgorithm: 'SHA256',
+        honorForceAuthn: true,
+        idpIssuer: 'http://www.okta.com/${org.externalKey}',
+        recipient: 'http://testorgone.okta',
+        requestCompressed: false,
+        responseSigned: true,
+        signatureAlgorithm: 'RSA_SHA256',
+        spIssuer: null,
+        ssoAcsUrl: 'http://testorgone.okta',
+        subjectNameIdFormat: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+        subjectNameIdTemplate: '${user.userName}',
       }
     }
   };
@@ -339,13 +457,13 @@ function bigintToBase64(bi: forge.jsbn.BigInteger) {
   );
 }
 
-function parseCsr(csr: Csr): forge.pki.CertificateRequest {
+function parseCsr(csr: Csr | IdPCsr): forge.pki.CertificateRequest {
   const csrDer = forge.util.decode64(csr.csr);
   const csrAsn1 = forge.asn1.fromDer(csrDer);
   return forge.pki.certificationRequestFromAsn1(csrAsn1) as forge.pki.CertificateRequest;
 }
 
-function createCertFromCsr(csr: Csr, keys: forge.pki.KeyPair) {
+function createCertFromCsr(csr: Csr | IdPCsr, keys: forge.pki.KeyPair) {
   const csrF = parseCsr(csr);
   const certF = forge.pki.createCertificate();
   certF.publicKey = csrF.publicKey;
@@ -371,13 +489,69 @@ function certToBase64(certF: forge.pki.Certificate) {
   return forge.util.encode64(certToDer(certF));
 }
 
-function csrToN(csr: Csr) {
+function csrToN(csr: Csr | IdPCsr) {
   return bigintToBase64((parseCsr(csr).publicKey as forge.pki.rsa.PublicKey).n);
 }
 
 function certToPem(certF: forge.pki.Certificate) {
   return forge.pki.certificateToPem(certF);
 }
+
+async function makeOAuth2ClientJsonWebKeyRequestBody(): Promise<OAuth2ClientJsonWebKeyRequestBody> {
+  const keys = forge.pki.rsa.generateKeyPair(2048);
+  const pem = forge.pki.privateKeyToPem(keys.privateKey);
+  const jwk = await Rasha.import({ pem });
+  const claims = {
+    aud: 'atko'
+  };
+  const alg = jwk.alg || 'RS256';
+  const jwt = nJwt.create(claims, pem, alg);
+  const kid = jwt.body.jti;
+  return {
+    alg,
+    kid,
+    e: jwk.e,
+    kty: jwk.kty,
+    n: jwk.n,
+    use: 'sig',
+  };
+}
+
+const deleteCustomDomains = async (client: Client) => {
+  const emailDomains = await client.emailDomainApi.listEmailDomains({});
+  const emailDomainIds = [];
+  await emailDomains.each(ed => {
+    if (ed.domain.endsWith('example.com') || ed.domain.endsWith('acme.com')) {
+      emailDomainIds.push(ed.id);
+    }
+  });
+  for (const emailDomainId of emailDomainIds) {
+    await client.emailDomainApi.deleteEmailDomain({ emailDomainId: emailDomainId, expand: ['brands'] });
+  }
+
+  const domains = await client.customDomainApi.listCustomDomains();
+  for (const domain of domains.domains) {
+    const canDelete = domain.domain.endsWith('example.com') || domain.domain.endsWith('acme.com');
+    if (canDelete) {
+      await client.customDomainApi.deleteCustomDomain({
+        domainId: domain.id
+      });
+    }
+  }
+
+  const brands = await client.customizationApi.listBrands();
+  const brandIdsToDelete = [];
+  await brands.each(brand => {
+    if (brand.name.startsWith('node-sdk: Brand')) {
+      brandIdsToDelete.push(brand.id);
+    }
+  });
+  for (const brandId of brandIdsToDelete) {
+    await client.customizationApi.deleteBrand({ brandId });
+  }
+
+  await delay(3000);
+};
 
 export {
   delay,
@@ -386,8 +560,10 @@ export {
   validateGroup,
   isUserInGroup,
   waitTillUserInGroup,
+  waitTill,
   deleteUser,
   isUserPresent,
+  isUserPresentByLogin,
   isGroupPresent,
   doesUserHaveRole,
   isGroupTargetPresent,
@@ -400,6 +576,8 @@ export {
   getBookmarkApplication,
   getOrg2OrgApplicationOptions,
   getOIDCApplication,
+  getSamlApplication,
+  getServiceApplication,
   verifyOrgIsOIE,
   getMockImage,
   runWithRetry,
@@ -408,5 +586,6 @@ export {
   certToBase64,
   certToPem,
   csrToN,
-  //getV2Client,
+  makeOAuth2ClientJsonWebKeyRequestBody,
+  deleteCustomDomains,
 };
