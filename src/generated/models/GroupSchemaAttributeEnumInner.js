@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GroupSchemaAttributeEnumInner = void 0;
 class GroupSchemaAttributeEnumInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupSchemaAttributeEnumInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupSchemaAttributeEnumInner = GroupSchemaAttributeEnumInner;

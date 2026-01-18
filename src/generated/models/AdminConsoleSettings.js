@@ -29,10 +29,10 @@ exports.AdminConsoleSettings = void 0;
 * Settings specific to the Okta Admin Console
 */
 class AdminConsoleSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AdminConsoleSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AdminConsoleSettings = AdminConsoleSettings;

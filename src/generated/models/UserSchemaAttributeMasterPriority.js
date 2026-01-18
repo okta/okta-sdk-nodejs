@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserSchemaAttributeMasterPriority = void 0;
 class UserSchemaAttributeMasterPriority {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserSchemaAttributeMasterPriority.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserSchemaAttributeMasterPriority = UserSchemaAttributeMasterPriority;

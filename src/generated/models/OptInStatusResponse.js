@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OptInStatusResponse = void 0;
 class OptInStatusResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OptInStatusResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OptInStatusResponse = OptInStatusResponse;

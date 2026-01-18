@@ -25,4 +25,4 @@
 /**
 * The usage of the Network Zone
 */
-export declare type NetworkZoneUsage = 'BLOCKLIST' | 'POLICY';
+export type NetworkZoneUsage = 'BLOCKLIST' | 'POLICY';

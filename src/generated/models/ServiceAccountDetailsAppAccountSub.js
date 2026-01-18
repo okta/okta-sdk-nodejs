@@ -29,10 +29,10 @@ exports.ServiceAccountDetailsAppAccountSub = void 0;
 * Details for a SaaS app account, which will be managed as a service account
 */
 class ServiceAccountDetailsAppAccountSub {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ServiceAccountDetailsAppAccountSub.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ServiceAccountDetailsAppAccountSub = ServiceAccountDetailsAppAccountSub;

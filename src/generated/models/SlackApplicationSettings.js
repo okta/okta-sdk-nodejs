@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SlackApplicationSettings = void 0;
 class SlackApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SlackApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SlackApplicationSettings = SlackApplicationSettings;

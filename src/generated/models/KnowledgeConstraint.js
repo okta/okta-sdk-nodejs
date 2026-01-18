@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.KnowledgeConstraint = void 0;
 class KnowledgeConstraint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return KnowledgeConstraint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.KnowledgeConstraint = KnowledgeConstraint;

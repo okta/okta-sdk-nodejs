@@ -86,5 +86,5 @@ export declare class WsFederationApplicationSettingsApplication {
     }[];
   constructor();
 }
-export declare type WsFederationApplicationSettingsApplicationGroupValueFormatEnum = 'windowsDomainQualifiedName' | 'samAccountName' | 'dn';
-export declare type WsFederationApplicationSettingsApplicationUsernameAttributeEnum = 'username' | 'upn' | 'upnAndUsername' | 'none';
+export type WsFederationApplicationSettingsApplicationGroupValueFormatEnum = 'windowsDomainQualifiedName' | 'samAccountName' | 'dn';
+export type WsFederationApplicationSettingsApplicationUsernameAttributeEnum = 'username' | 'upn' | 'upnAndUsername' | 'none';

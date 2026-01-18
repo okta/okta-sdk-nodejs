@@ -29,10 +29,10 @@ exports.TelephonyRequestExecute = void 0;
 * Telephony inline hook request body
 */
 class TelephonyRequestExecute {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyRequestExecute.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyRequestExecute = TelephonyRequestExecute;

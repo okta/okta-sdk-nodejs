@@ -48,4 +48,4 @@ export declare class OSVersionConstraint {
     }[];
   constructor();
 }
-export declare type OSVersionConstraintMajorVersionConstraintEnum = 'WINDOWS_11' | 'WINDOWS_10';
+export type OSVersionConstraintMajorVersionConstraintEnum = 'WINDOWS_11' | 'WINDOWS_10';

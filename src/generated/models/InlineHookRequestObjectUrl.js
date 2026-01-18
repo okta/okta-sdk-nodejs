@@ -29,10 +29,10 @@ exports.InlineHookRequestObjectUrl = void 0;
 * The URL of the API endpoint
 */
 class InlineHookRequestObjectUrl {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookRequestObjectUrl.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookRequestObjectUrl = InlineHookRequestObjectUrl;

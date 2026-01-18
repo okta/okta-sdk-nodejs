@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WsFederationApplicationSettingsApplication = void 0;
 class WsFederationApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WsFederationApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WsFederationApplicationSettingsApplication = WsFederationApplicationSettingsApplication;

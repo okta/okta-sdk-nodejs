@@ -61,5 +61,5 @@ export declare class SamlAttributeStatementGroup {
     }[];
   constructor();
 }
-export declare type SamlAttributeStatementGroupFilterTypeEnum = 'STARTS_WITH' | 'EQUALS' | 'CONTAINS' | 'REGEX';
-export declare type SamlAttributeStatementGroupNamespaceEnum = 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified';
+export type SamlAttributeStatementGroupFilterTypeEnum = 'STARTS_WITH' | 'EQUALS' | 'CONTAINS' | 'REGEX';
+export type SamlAttributeStatementGroupNamespaceEnum = 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified';

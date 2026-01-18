@@ -29,10 +29,10 @@ exports.LinksNext = void 0;
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the current status of an application using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. Use the `LinksNext` object for dynamic discovery of related resources and lifecycle operations.
 */
 class LinksNext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksNext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksNext = LinksNext;
@@ -41,7 +41,7 @@ LinksNext.attributeTypeMap = [
   {
     'name': 'next',
     'baseName': 'next',
-    'type': 'HrefObject',
+    'type': 'HrefObjectNextLink',
     'format': ''
   }
 ];

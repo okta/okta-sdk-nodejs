@@ -25,4 +25,4 @@
 /**
 * Array of OAuth 2.0 response type strings
 */
-export declare type OAuthResponseType = 'code' | 'id_token' | 'token';
+export type OAuthResponseType = 'code' | 'id_token' | 'token';

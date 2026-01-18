@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdpPolicyRuleActionMatchCriteria = void 0;
 class IdpPolicyRuleActionMatchCriteria {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdpPolicyRuleActionMatchCriteria.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdpPolicyRuleActionMatchCriteria = IdpPolicyRuleActionMatchCriteria;

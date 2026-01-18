@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BaseToken = void 0;
 class BaseToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseToken = BaseToken;

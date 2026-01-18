@@ -29,10 +29,10 @@ exports.DevicePostureIdP = void 0;
 * Device Posture IdP provider
 */
 class DevicePostureIdP {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureIdP.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureIdP = DevicePostureIdP;

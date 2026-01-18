@@ -29,10 +29,10 @@ exports.AgentPool = void 0;
 * An agent pool is a collection of agents that serve a common purpose. An agent pool has a unique ID within an org, and contains a collection of agents disjoint to every other agent pool, meaning that no two agent pools share an agent.
 */
 class AgentPool {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AgentPool.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AgentPool = AgentPool;

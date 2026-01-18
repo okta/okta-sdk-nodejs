@@ -29,10 +29,10 @@ exports.ImportScheduleObject = void 0;
 * Import schedule configuration
 */
 class ImportScheduleObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ImportScheduleObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ImportScheduleObject = ImportScheduleObject;

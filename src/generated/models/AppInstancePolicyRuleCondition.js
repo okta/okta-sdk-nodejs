@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppInstancePolicyRuleCondition = void 0;
 class AppInstancePolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppInstancePolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppInstancePolicyRuleCondition = AppInstancePolicyRuleCondition;

@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { OpenIdConnectApplicationSettingsClient } from './../models/OpenIdConnectApplicationSettingsClient';
 export declare class OpenIdConnectApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: OpenIdConnectApplicationSettingsEmOptInStatusEnum;
   /**
@@ -60,4 +60,4 @@ export declare class OpenIdConnectApplicationSettings {
     }[];
   constructor();
 }
-export declare type OpenIdConnectApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type OpenIdConnectApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

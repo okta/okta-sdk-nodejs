@@ -57,7 +57,7 @@ export declare class ApplicationUniversalLogout {
     }[];
   constructor();
 }
-export declare type ApplicationUniversalLogoutIdentityStackEnum = 'SHARED' | 'NOT_SHARED';
-export declare type ApplicationUniversalLogoutProtocolEnum = 'PROPRIETARY' | 'GLOBAL_TOKEN_REVOCATION';
-export declare type ApplicationUniversalLogoutStatusEnum = 'ENABLED' | 'DISABLED' | 'UNSUPPORTED';
-export declare type ApplicationUniversalLogoutSupportTypeEnum = 'FULL' | 'PARTIAL';
+export type ApplicationUniversalLogoutIdentityStackEnum = 'SHARED' | 'NOT_SHARED';
+export type ApplicationUniversalLogoutProtocolEnum = 'PROPRIETARY' | 'GLOBAL_TOKEN_REVOCATION';
+export type ApplicationUniversalLogoutStatusEnum = 'ENABLED' | 'DISABLED' | 'UNSUPPORTED';
+export type ApplicationUniversalLogoutSupportTypeEnum = 'FULL' | 'PARTIAL';

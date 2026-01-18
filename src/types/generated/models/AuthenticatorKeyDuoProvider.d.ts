@@ -44,4 +44,4 @@ export declare class AuthenticatorKeyDuoProvider {
     }[];
   constructor();
 }
-export declare type AuthenticatorKeyDuoProviderTypeEnum = 'DUO';
+export type AuthenticatorKeyDuoProviderTypeEnum = 'DUO';

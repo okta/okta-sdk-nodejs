@@ -29,10 +29,10 @@ exports.ProfileMappingProperty = void 0;
 * A target property, in string form, that maps to a valid [JSON Schema Draft](https://tools.ietf.org/html/draft-zyp-json-schema-04) document.
 */
 class ProfileMappingProperty {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProfileMappingProperty.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProfileMappingProperty = ProfileMappingProperty;

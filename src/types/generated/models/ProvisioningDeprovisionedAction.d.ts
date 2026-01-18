@@ -25,4 +25,4 @@
 /**
 * Specifies the action during authentication when an IdP user is linked to a previously deprovisioned Okta user
 */
-export declare type ProvisioningDeprovisionedAction = 'NONE' | 'REACTIVATE';
+export type ProvisioningDeprovisionedAction = 'NONE' | 'REACTIVATE';

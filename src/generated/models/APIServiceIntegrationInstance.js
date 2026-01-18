@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.APIServiceIntegrationInstance = void 0;
 class APIServiceIntegrationInstance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return APIServiceIntegrationInstance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.APIServiceIntegrationInstance = APIServiceIntegrationInstance;

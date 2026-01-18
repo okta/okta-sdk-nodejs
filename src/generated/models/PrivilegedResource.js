@@ -29,11 +29,11 @@ exports.PrivilegedResource = void 0;
 * Base class for PrivilegedResourceRequest and PrivilegedResourceResponse
 */
 class PrivilegedResource {
-  constructor() {
-    // this.resourceType = 'PrivilegedResource';
-  }
   static getAttributeTypeMap() {
     return PrivilegedResource.attributeTypeMap;
+  }
+  constructor() {
+    // this.resourceType = 'PrivilegedResource';
   }
 }
 exports.PrivilegedResource = PrivilegedResource;

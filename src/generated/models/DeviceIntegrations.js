@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceIntegrations = void 0;
 class DeviceIntegrations {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceIntegrations.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceIntegrations = DeviceIntegrations;

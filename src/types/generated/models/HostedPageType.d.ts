@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type HostedPageType = 'EXTERNALLY_HOSTED' | 'OKTA_DEFAULT';
+export type HostedPageType = 'EXTERNALLY_HOSTED' | 'OKTA_DEFAULT';

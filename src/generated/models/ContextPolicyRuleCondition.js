@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ContextPolicyRuleCondition = void 0;
 class ContextPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ContextPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ContextPolicyRuleCondition = ContextPolicyRuleCondition;

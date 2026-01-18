@@ -25,4 +25,4 @@
 /**
 * The underlying technology/scheme used in the credential
 */
-export declare type LogCredentialType = 'ASSERTION' | 'CERTIFICATE' | 'DEVICE_UDID' | 'EMAIL' | 'IWA' | 'JWT' | 'OAuth 2.0' | 'OKTA_CLIENT_SESSION' | 'OTP' | 'PASSWORD' | 'PRE_SHARED_SYMMETRIC_KEY' | 'SMS';
+export type LogCredentialType = 'ASSERTION' | 'CERTIFICATE' | 'DEVICE_UDID' | 'EMAIL' | 'IWA' | 'JWT' | 'OAuth 2.0' | 'OKTA_CLIENT_SESSION' | 'OTP' | 'PASSWORD' | 'PRE_SHARED_SYMMETRIC_KEY' | 'SMS';

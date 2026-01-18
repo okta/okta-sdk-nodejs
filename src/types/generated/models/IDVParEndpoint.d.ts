@@ -28,7 +28,7 @@
 export declare class IDVParEndpoint {
   'binding'?: IDVParEndpointBindingEnum;
   /**
-    * URL of the IDV `par` endpoint
+    * URL of the `par` endpoint of the IDV vendor
     */
   'url'?: string;
   static readonly discriminator: string | undefined;
@@ -46,4 +46,4 @@ export declare class IDVParEndpoint {
     }[];
   constructor();
 }
-export declare type IDVParEndpointBindingEnum = 'HTTP-POST';
+export type IDVParEndpointBindingEnum = 'HTTP-POST';

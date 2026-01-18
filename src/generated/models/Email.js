@@ -29,10 +29,10 @@ exports.Email = void 0;
 * Attempts to activate an `email` factor with the specified passcode
 */
 class Email {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Email.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Email = Email;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Device = void 0;
 class Device {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Device.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Device = Device;

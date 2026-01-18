@@ -29,10 +29,10 @@ exports.ApiTokenNetwork = void 0;
 * The Network Condition of the API Token
 */
 class ApiTokenNetwork {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApiTokenNetwork.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApiTokenNetwork = ApiTokenNetwork;

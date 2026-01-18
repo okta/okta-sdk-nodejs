@@ -29,10 +29,10 @@ exports.PasswordPolicyPasswordSettingsLockout = void 0;
 * Lockout settings
 */
 class PasswordPolicyPasswordSettingsLockout {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyPasswordSettingsLockout.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyPasswordSettingsLockout = PasswordPolicyPasswordSettingsLockout;

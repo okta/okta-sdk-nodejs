@@ -29,10 +29,10 @@ exports.PolicyContextUser = void 0;
 * The user ID for the simulate operation. Only user IDs or Group IDs are allowed, not both.
 */
 class PolicyContextUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyContextUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyContextUser = PolicyContextUser;

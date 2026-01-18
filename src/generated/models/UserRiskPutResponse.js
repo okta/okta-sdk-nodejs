@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserRiskPutResponse = void 0;
 class UserRiskPutResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserRiskPutResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserRiskPutResponse = UserRiskPutResponse;

@@ -37,6 +37,10 @@ export declare class PasswordPolicyPasswordSettingsComplexity {
     */
   'excludeUsername'?: boolean;
   /**
+    * Specifies the maximum number of consecutive repeating characters that can be used in a password
+    */
+  'maxConsecutiveCharacters'?: number;
+  /**
     * Minimum password length
     */
   'minLength'?: number;

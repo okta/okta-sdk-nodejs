@@ -25,4 +25,4 @@
 /**
 * Variant for the error page. You can publish a theme for error page with different combinations of assets. Variants are preset combinations of those assets.
 */
-export declare type ErrorPageTouchPointVariant = 'BACKGROUND_IMAGE' | 'BACKGROUND_SECONDARY_COLOR' | 'OKTA_DEFAULT';
+export type ErrorPageTouchPointVariant = 'BACKGROUND_IMAGE' | 'BACKGROUND_SECONDARY_COLOR' | 'OKTA_DEFAULT';

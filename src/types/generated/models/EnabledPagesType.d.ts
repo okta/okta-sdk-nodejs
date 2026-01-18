@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type EnabledPagesType = 'SIGN_IN' | 'SSPR' | 'SSR';
+export type EnabledPagesType = 'SIGN_IN' | 'SSPR' | 'SSR';

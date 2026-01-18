@@ -13,11 +13,176 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ObservableRoleAssignmentApi = exports.ObservableRiskProviderApi = exports.ObservableRiskEventApi = exports.ObservableResourceSetApi = exports.ObservableRealmAssignmentApi = exports.ObservableRealmApi = exports.ObservableRateLimitSettingsApi = exports.ObservablePushProviderApi = exports.ObservableProfileMappingApi = exports.ObservablePrivilegedResourceApi = exports.ObservablePrincipalRateLimitApi = exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableOrgCreatorApi = exports.ObservableOktaPersonalSettingsApi = exports.ObservableOktaApplicationSettingsApi = exports.ObservableNetworkZoneApi = exports.ObservableLogStreamApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentitySourceApi = exports.ObservableIdentityProviderApi = exports.ObservableHookKeyApi = exports.ObservableGroupPushMappingApi = exports.ObservableGroupApi = exports.ObservableGovernanceBundleApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableEmailServerApi = exports.ObservableEmailDomainApi = exports.ObservableDisasterRecoveryApi = exports.ObservableDirectoriesIntegrationApi = exports.ObservableDevicePostureCheckApi = exports.ObservableDeviceIntegrationsApi = exports.ObservableDeviceAssuranceApi = exports.ObservableDeviceAccessApi = exports.ObservableDeviceApi = exports.ObservableCustomizationApi = exports.ObservableCustomRoleApi = exports.ObservableCustomDomainApi = exports.ObservableCAPTCHAApi = exports.ObservableBehaviorApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableAttackProtectionApi = exports.ObservableAssociatedDomainCustomizationsApi = exports.ObservableApplicationApi = exports.ObservableApiTokenApi = exports.ObservableApiServiceIntegrationsApi = exports.ObservableAgentPoolsApi = void 0;
-exports.ObservableYourOinIntegrationsApi = exports.ObservableWebAuthnPreregistrationApi = exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserAuthenticatorEnrollmentsApi = exports.ObservableUserApi = exports.ObservableUISchemaApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableServiceAccountApi = exports.ObservableSchemaApi = exports.ObservableSSFTransmitterApi = exports.ObservableSSFSecurityEventTokenApi = exports.ObservableSSFReceiverApi = exports.ObservableRoleTargetApi = void 0;
+exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableOrgCreatorApi = exports.ObservableOperationsIntegrationApi = exports.ObservableOktaPersonalSettingsApi = exports.ObservableOktaManagedUserAccountApi = exports.ObservableOktaApplicationSettingsApi = exports.ObservableOAuth2ResourceServerCredentialsKeysApi = exports.ObservableNetworkZoneApi = exports.ObservableLogStreamApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentitySourceApi = exports.ObservableIdentityProviderApi = exports.ObservableHookKeyApi = exports.ObservableGroupPushMappingApi = exports.ObservableGroupApi = exports.ObservableGovernanceBundleApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableEmailServerApi = exports.ObservableEmailDomainApi = exports.ObservableDisasterRecoveryApi = exports.ObservableDirectoriesIntegrationApi = exports.ObservableDevicePostureCheckApi = exports.ObservableDeviceIntegrationsApi = exports.ObservableDeviceAssuranceApi = exports.ObservableDeviceAccessApi = exports.ObservableDeviceApi = exports.ObservableCustomizationApi = exports.ObservableCustomTelephonyProviderApi = exports.ObservableCustomRoleApi = exports.ObservableCustomDomainApi = exports.ObservableCAPTCHAApi = exports.ObservableBehaviorApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableAttackProtectionApi = exports.ObservableAssociatedDomainCustomizationsApi = exports.ObservableApplicationSSOPublicKeysApi = exports.ObservableApplicationInterclientTrustMappingsApi = exports.ObservableApplicationCrossAppAccessConnectionsApi = exports.ObservableApplicationApi = exports.ObservableApiTokenApi = exports.ObservableApiServiceIntegrationsApi = exports.ObservableAgentRegistrationApi = exports.ObservableAgentPublicKeyApi = exports.ObservableAgentPotentialConnectionsApi = exports.ObservableAgentPoolsApi = exports.ObservableAgentConnectionsApi = void 0;
+exports.ObservableYourOinIntegrationsApi = exports.ObservableWebAuthnPreregistrationApi = exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserAuthenticatorEnrollmentsApi = exports.ObservableUserApi = exports.ObservableUnconfirmedUsersApi = exports.ObservableUISchemaApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableServiceAccountApi = exports.ObservableSchemaApi = exports.ObservableSSFTransmitterApi = exports.ObservableSSFSecurityEventTokenApi = exports.ObservableSSFReceiverApi = exports.ObservableRoleTargetApi = exports.ObservableRoleAssignmentApi = exports.ObservableRiskProviderApi = exports.ObservableRiskEventApi = exports.ObservableResourceSetApi = exports.ObservableRealmAssignmentApi = exports.ObservableRealmApi = exports.ObservableRateLimitSettingsApi = exports.ObservablePushProviderApi = exports.ObservableProfileMappingApi = exports.ObservablePrivilegedResourceApi = exports.ObservablePrincipalRateLimitApi = void 0;
 const collection_1 = require('../../collection');
 const rxjsStub_1 = require('../rxjsStub');
 const rxjsStub_2 = require('../rxjsStub');
+const AgentConnectionsApi_1 = require('../apis/AgentConnectionsApi');
+class ObservableAgentConnectionsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AgentConnectionsApi_1.AgentConnectionsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AgentConnectionsApi_1.AgentConnectionsApiResponseProcessor();
+  }
+  /**
+      * Activates a managed connection for the agent
+      * Activate a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  activateManagedConnection(agentId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.activateManagedConnection(agentId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateManagedConnection(rsp)));
+      }));
+  }
+  /**
+      * Creates a managed connection for the agent
+      * Create a managed connection
+      * @param agentId ID of the agent
+      * @param managedConnectionCreatable
+      */
+  createManagedConnection(agentId, managedConnectionCreatable, _options) {
+    const requestContextPromise = this.requestFactory.createManagedConnection(agentId, managedConnectionCreatable, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createManagedConnection(rsp)));
+      }));
+  }
+  /**
+      * Deactivates a managed connection for the agent
+      * Deactivate a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  deactivateManagedConnection(agentId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateManagedConnection(agentId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateManagedConnection(rsp)));
+      }));
+  }
+  /**
+      * Deletes a managed connection for the agent
+      * Delete an agent connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  deleteManagedConnection(agentId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.deleteManagedConnection(agentId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteManagedConnection(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a connection for the agent
+      * Retrieve an agent connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  getManagedConnection(agentId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.getManagedConnection(agentId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getManagedConnection(rsp)));
+      }));
+  }
+  /**
+      * Lists all connections for the agent
+      * List all agent connections
+      * @param agentId ID of the agent
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listConnections(agentId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listConnections(agentId, after, limit, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listConnections(rsp)));
+      }));
+  }
+  /**
+      * Updates a managed connection for the agent
+      * Update a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      * @param managedConnectionPatchable
+      */
+  updateManagedConnection(agentId, connectionId, managedConnectionPatchable, _options) {
+    const requestContextPromise = this.requestFactory.updateManagedConnection(agentId, connectionId, managedConnectionPatchable, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateManagedConnection(rsp)));
+      }));
+  }
+}
+exports.ObservableAgentConnectionsApi = ObservableAgentConnectionsApi;
 const AgentPoolsApi_1 = require('../apis/AgentPoolsApi');
 class ObservableAgentPoolsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -161,7 +326,7 @@ class ObservableAgentPoolsApi {
       * List all agent pools
       * @param limitPerPoolType Maximum number of agent pools returned
       * @param poolType Agent type to search for
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listAgentPools(limitPerPoolType, poolType, after, _options) {
     const requestContextPromise = this.requestFactory.listAgentPools(limitPerPoolType, poolType, after, _options);
@@ -322,6 +487,403 @@ class ObservableAgentPoolsApi {
   }
 }
 exports.ObservableAgentPoolsApi = ObservableAgentPoolsApi;
+const AgentPotentialConnectionsApi_1 = require('../apis/AgentPotentialConnectionsApi');
+class ObservableAgentPotentialConnectionsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AgentPotentialConnectionsApi_1.AgentPotentialConnectionsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AgentPotentialConnectionsApi_1.AgentPotentialConnectionsApiResponseProcessor();
+  }
+  /**
+      * Lists all global resource connections of a specific connection type that an AI agent can potentially connect to  Only resource connections returned from this request are valid for [creating a connection](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentConnections/#tag/AgentConnections/operation/createManagedConnection) with a matching connection-type protocol.  Include the required [`filter`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=filter&t=request) query parameter to return potential connections with a specific `connectionType`. You can also use the [`match`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=match&t=request) query parameter to apply fuzzy-matching on the returned list of potential connections.
+      * List all potential connections
+      * @param filter A required [filter](/#filter) expression to return a specific type of potential connections.  The expression supports the &#x60;eq&#x60; [operator](/#operators) and the following &#x60;connectionType&#x60; values: * &#x60;IDENTITY_ASSERTION_CUSTOM_AS&#x60; * &#x60;STS_VAULT_SECRET&#x60; * &#x60;STS_SERVICE_ACCOUNT&#x60;  You can combine multiple expressions using the &#x60;and&#x60; operator to narrow results. For example, filter by connection type and app instance ORN for &#x60;STS_SERVICE_ACCOUNT&#x60; connections.  **Note:** Query parameter percent encoding is required. See [Special characters](/#special-characters).
+      * @param match A case-insensitive substring for fuzzy-match that\&#39;s prefix-friendly
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listPotentialConnectionsByType(filter, match, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listPotentialConnectionsByType(filter, match, after, limit, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listPotentialConnectionsByType(rsp)));
+      }));
+  }
+}
+exports.ObservableAgentPotentialConnectionsApi = ObservableAgentPotentialConnectionsApi;
+const AgentPublicKeyApi_1 = require('../apis/AgentPublicKeyApi');
+class ObservableAgentPublicKeyApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AgentPublicKeyApi_1.AgentPublicKeyApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AgentPublicKeyApi_1.AgentPublicKeyApiResponseProcessor();
+  }
+  /**
+      * Activates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only have one active encryption key at any given time for an AI agent. When you activate an inactive key, the currently active key is automatically deactivated.
+      * Activate an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  activateAgentJsonWebKey(agentId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.activateAgentJsonWebKey(agentId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateAgentJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Adds a new JSON Web Key (JWK) to the AI agent\'s JWK Set (JWKS)
+      * Add a JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param agentJsonSigningKeyRequest
+      */
+  addAgentJwk(agentId, agentJsonSigningKeyRequest, _options) {
+    const requestContextPromise = this.requestFactory.addAgentJwk(agentId, agentJsonSigningKeyRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addAgentJwk(rsp)));
+      }));
+  }
+  /**
+      * Deactivates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only deactivate signing keys. You can\'t deactivate the active encryption key if the client has ID token encryption enabled. However, you can activate another encryption key, which makes the current key inactive.
+      * Deactivate an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  deactivateAgentJsonWebKey(agentId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateAgentJsonWebKey(agentId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateAgentJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Deletes an AI agent\'s JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  deleteAgentJwk(agentId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deleteAgentJwk(agentId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteAgentJwk(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an AI agent\'s JSON Web Key by `keyId`
+      * Retrieve an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  getAgentJwk(agentId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.getAgentJwk(agentId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAgentJwk(rsp)));
+      }));
+  }
+  /**
+      * Lists all JSON Web Keys (JWK) for an AI agent
+      * List all AI agent JSON Web Keys
+      * @param agentId ID of the AI agent
+      */
+  listAgentJwk(agentId, _options) {
+    const requestContextPromise = this.requestFactory.listAgentJwk(agentId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listAgentJwk(rsp)));
+      }));
+  }
+}
+exports.ObservableAgentPublicKeyApi = ObservableAgentPublicKeyApi;
+const AgentRegistrationApi_1 = require('../apis/AgentRegistrationApi');
+class ObservableAgentRegistrationApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AgentRegistrationApi_1.AgentRegistrationApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AgentRegistrationApi_1.AgentRegistrationApiResponseProcessor();
+  }
+  /**
+      * Activates an AI agent
+      * Activate an AI agent
+      * @param agentId ID of the AI agent
+      */
+  activateAIAgent(agentId, _options) {
+    const requestContextPromise = this.requestFactory.activateAIAgent(agentId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Deactivates an AI agent
+      * Deactivate an AI agent
+      * @param agentId ID of the AI agent
+      */
+  deactivateAIAgent(agentId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateAIAgent(agentId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Deletes an AI agent
+      * Delete an AI agent
+      * @param agentId ID of the AI agent
+      */
+  deleteAIAgent(agentId, _options) {
+    const requestContextPromise = this.requestFactory.deleteAIAgent(agentId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an AI agent
+      * Retrieve an AI agent
+      * @param agentId ID of the AI agent
+      */
+  getAIAgent(agentId, _options) {
+    const requestContextPromise = this.requestFactory.getAIAgent(agentId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an AI agent operation and its status
+      * Retrieve an AI agent operation
+      * @param operationId ID of the AI agent operation
+      */
+  getAIAgentOperation(operationId, _options) {
+    const requestContextPromise = this.requestFactory.getAIAgentOperation(operationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAIAgentOperation(rsp)));
+      }));
+  }
+  /**
+      * Lists all AI agent operations. Operations are sorted in descending order from most recent to oldest by creation time.
+      * List all AI agent operations
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listAIAgentOperations(after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listAIAgentOperations(after, limit, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listAIAgentOperations(rsp)));
+      }));
+  }
+  /**
+      * Lists all AI agents
+      * List all AI agents
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      * @param search Searches for AI agents with a filtering expression that supports: *  &#x60;eq&#x60; operator for the &#x60;status&#x60; and &#x60;appId&#x60; property *  &#x60;sw&#x60;, &#x60;co&#x60; and &#x60;eq&#x60; operator for the &#x60;profile.name&#x60; property  &gt; **Note:** Query parameter percent encoding is required. See [Special characters](https://developer.okta.com/docs/api/#special-characters).
+      */
+  listAIAgents(after, limit, search, _options) {
+    const requestContextPromise = this.requestFactory.listAIAgents(after, limit, search, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listAIAgents(rsp)));
+      }));
+  }
+  /**
+      * Registers an AI agent
+      * Register an AI agent
+      * @param body
+      */
+  registerAIAgent(body, _options) {
+    const requestContextPromise = this.requestFactory.registerAIAgent(body, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.registerAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Replaces an AI agent
+      * Replace an AI agent
+      * @param agentId ID of the AI agent
+      * @param body
+      */
+  replaceAIAgent(agentId, body, _options) {
+    const requestContextPromise = this.requestFactory.replaceAIAgent(agentId, body, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceAIAgent(rsp)));
+      }));
+  }
+  /**
+      * Updates an AI agent. Use this request to perform partial updates on AI agent profile properties.
+      * Update an AI agent
+      * @param agentId ID of the AI agent
+      * @param body
+      */
+  updateAIAgent(agentId, body, _options) {
+    const requestContextPromise = this.requestFactory.updateAIAgent(agentId, body, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAIAgent(rsp)));
+      }));
+  }
+}
+exports.ObservableAgentRegistrationApi = ObservableAgentRegistrationApi;
 const ApiServiceIntegrationsApi_1 = require('../apis/ApiServiceIntegrationsApi');
 class ObservableApiServiceIntegrationsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -496,7 +1058,7 @@ class ObservableApiServiceIntegrationsApi {
   /**
       * Lists all API Service Integration instances with a pagination option
       * List all API service integration instances
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listApiServiceIntegrationInstances(after, _options) {
     const requestContextPromise = this.requestFactory.listApiServiceIntegrationInstances(after, _options);
@@ -665,74 +1227,8 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Activates an OAuth 2.0 Client JSON Web Key by `keyId`
-      * Activate an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  activateOAuth2ClientJsonWebKey(appId, keyId, _options) {
-    const requestContextPromise = this.requestFactory.activateOAuth2ClientJsonWebKey(appId, keyId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOAuth2ClientJsonWebKey(rsp)));
-      }));
-  }
-  /**
-      * Activates an OAuth 2.0 Client Secret by `secretId`
-      * Activate an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  activateOAuth2ClientSecret(appId, secretId, _options) {
-    const requestContextPromise = this.requestFactory.activateOAuth2ClientSecret(appId, secretId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOAuth2ClientSecret(rsp)));
-      }));
-  }
-  /**
-      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOCredentialOAuth2ClientAuth/#tag/ApplicationSSOCredentialOAuth2ClientAuth/operation/deletejwk) and re-add the key with a `kid`.
-      * Add a JSON Web Key
-      * @param appId Application ID
-      * @param oAuth2ClientJsonWebKeyRequestBody
-      */
-  addJwk(appId, oAuth2ClientJsonWebKeyRequestBody, _options) {
-    const requestContextPromise = this.requestFactory.addJwk(appId, oAuth2ClientJsonWebKeyRequestBody, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addJwk(rsp)));
-      }));
-  }
-  /**
-      * Assigns an app to an [authentication policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate authentication policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
-      * Assign an authentication policy
+      * Assigns an app to an [app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate app sign-in policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
+      * Assign an app sign-in policy
       * @param appId Application ID
       * @param policyId &#x60;id&#x60; of the Policy
       */
@@ -866,28 +1362,6 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Creates a CWO connection
-      * Create a CWO connection
-      * @param appId Application ID
-      * @param orgCWOConnection
-      */
-  createCWOConnection(appId, orgCWOConnection, _options) {
-    const requestContextPromise = this.requestFactory.createCWOConnection(appId, orgCWOConnection, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createCWOConnection(rsp)));
-      }));
-  }
-  /**
       * Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
       * Create a federated claim
       * @param appId Application ID
@@ -907,28 +1381,6 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createFederatedClaim(rsp)));
-      }));
-  }
-  /**
-      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
-      * Create an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param oAuth2ClientSecretRequestBody
-      */
-  createOAuth2ClientSecret(appId, oAuth2ClientSecretRequestBody, _options) {
-    const requestContextPromise = this.requestFactory.createOAuth2ClientSecret(appId, oAuth2ClientSecretRequestBody, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createOAuth2ClientSecret(rsp)));
       }));
   }
   /**
@@ -974,50 +1426,6 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Deactivate an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  deactivateOAuth2ClientJsonWebKey(appId, keyId, _options) {
-    const requestContextPromise = this.requestFactory.deactivateOAuth2ClientJsonWebKey(appId, keyId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOAuth2ClientJsonWebKey(rsp)));
-      }));
-  }
-  /**
-      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
-      * Deactivate an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  deactivateOAuth2ClientSecret(appId, secretId, _options) {
-    const requestContextPromise = this.requestFactory.deactivateOAuth2ClientSecret(appId, secretId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOAuth2ClientSecret(rsp)));
-      }));
-  }
-  /**
       * Deletes an inactive application
       * Delete an application
       * @param appId Application ID
@@ -1036,28 +1444,6 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteApplication(rsp)));
-      }));
-  }
-  /**
-      * Deletes a CWO connection
-      * Delete a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      */
-  deleteCWOConnection(appId, connectionId, _options) {
-    const requestContextPromise = this.requestFactory.deleteCWOConnection(appId, connectionId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteCWOConnection(rsp)));
       }));
   }
   /**
@@ -1080,50 +1466,6 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteFederatedClaim(rsp)));
-      }));
-  }
-  /**
-      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
-      * Delete an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  deleteOAuth2ClientSecret(appId, secretId, _options) {
-    const requestContextPromise = this.requestFactory.deleteOAuth2ClientSecret(appId, secretId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteOAuth2ClientSecret(rsp)));
-      }));
-  }
-  /**
-      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
-      * Delete an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  deletejwk(appId, keyId, _options) {
-    const requestContextPromise = this.requestFactory.deletejwk(appId, keyId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deletejwk(rsp)));
       }));
   }
   /**
@@ -1169,20 +1511,6 @@ class ObservableApplicationApi {
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.generateCsrForApplication(rsp)));
       }));
-  }
-  /**
-      * Retrieves inbound and outbound CWO connections for a given app
-      * Retrieve all CWO connections
-      * @param appId Application ID
-      */
-  getAllCWOConnections(appId, _options) {
-    const requestContextPromise = this.requestFactory.getAllCWOConnections(appId, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getAllCWOConnections(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
   }
   /**
       * Retrieves an application from your Okta organization by `id`
@@ -1275,28 +1603,6 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Retrieves a CWO connection for an app
-      * Retrieve a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      */
-  getCWOConnection(appId, connectionId, _options) {
-    const requestContextPromise = this.requestFactory.getCWOConnection(appId, connectionId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCWOConnection(rsp)));
-      }));
-  }
-  /**
       * Retrieves a Certificate Signing Request (CSR) for the app by `csrId`.  Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
       * Retrieve a certificate signing request
       * @param appId Application ID
@@ -1384,28 +1690,6 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Retrieve an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  getJwk(appId, keyId, _options) {
-    const requestContextPromise = this.requestFactory.getJwk(appId, keyId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getJwk(rsp)));
-      }));
-  }
-  /**
       * Retrieves the OAuth 2.0 authorization code from the app\'s authorization server. Use this authorization code to exchange for an access token through another endpoint to enable Express Configuration on behalf of the user.
       * Retrieve the OAuth 2.0 authorization code for Express Configuration.
       * @param appId Application ID
@@ -1426,28 +1710,6 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOAuth2AccessTokenForExpressConfiguration(rsp)));
-      }));
-  }
-  /**
-      * Retrieves an OAuth 2.0 Client Secret by `secretId`
-      * Retrieve an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  getOAuth2ClientSecret(appId, secretId, _options) {
-    const requestContextPromise = this.requestFactory.getOAuth2ClientSecret(appId, secretId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOAuth2ClientSecret(rsp)));
       }));
   }
   /**
@@ -1595,13 +1857,14 @@ class ObservableApplicationApi {
       * @param q Searches for apps with &#x60;name&#x60; or &#x60;label&#x60; properties that starts with the &#x60;q&#x60; value using the &#x60;startsWith&#x60; operation
       * @param after Specifies the [pagination](/#pagination) cursor for the next page of results. Treat this as an opaque value obtained through the &#x60;next&#x60; link relationship.
       * @param useOptimization Specifies whether to use query optimization. If you specify &#x60;useOptimization&#x3D;true&#x60; in the request query, the response contains a subset of app instance properties.
+      * @param alwaysIncludeVpnSettings Specifies whether to include the VPN configuration for existing notifications in the result, regardless of whether VPN notifications are configured
       * @param limit Specifies the number of results per page
-      * @param filter Filters apps by &#x60;status&#x60;, &#x60;user.id&#x60;, &#x60;group.id&#x60;, &#x60;credentials.signing.kid&#x60; or &#x60;name&#x60; expression that supports the &#x60;eq&#x60; operator
+      * @param filter Filters apps with a supported expression for a subset of properties. Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;credentials.signing.kid&#x60;, &#x60;settings.slo.enabled&#x60;, or &#x60;name&#x60;. See [Filter](https://developer.okta.com/docs/api/#filter).
       * @param expand An optional parameter used for link expansion to embed more resources in the response. Only supports &#x60;expand&#x3D;user/{userId}&#x60; and must be used with the &#x60;user.id eq \&quot;{userId}\&quot;&#x60; filter query for the same user. Returns the assigned [application user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/) in the &#x60;_embedded&#x60; property.
       * @param includeNonDeleted Specifies whether to include non-active, but not deleted apps in the results
       */
-  listApplications(q, after, useOptimization, limit, filter, expand, includeNonDeleted, _options) {
-    const requestContextPromise = this.requestFactory.listApplications(q, after, useOptimization, limit, filter, expand, includeNonDeleted, _options);
+  listApplications(q, after, useOptimization, alwaysIncludeVpnSettings, limit, filter, expand, includeNonDeleted, _options) {
+    const requestContextPromise = this.requestFactory.listApplications(q, after, useOptimization, alwaysIncludeVpnSettings, limit, filter, expand, includeNonDeleted, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listApplications(rsp),
     };
@@ -1646,41 +1909,6 @@ class ObservableApplicationApi {
     const requestContextPromise = this.requestFactory.listFederatedClaims(appId, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listFederatedClaims(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Lists all JSON Web Keys for an OAuth 2.0 client app
-      * List all the OAuth 2.0 client JSON Web Keys
-      * @param appId Application ID
-      */
-  listJwk(appId, _options) {
-    const requestContextPromise = this.requestFactory.listJwk(appId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listJwk(rsp)));
-      }));
-  }
-  /**
-      * Lists all client secrets for an OAuth 2.0 client app
-      * List all OAuth 2.0 client secrets
-      * @param appId Application ID
-      */
-  listOAuth2ClientSecrets(appId, _options) {
-    const requestContextPromise = this.requestFactory.listOAuth2ClientSecrets(appId, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listOAuth2ClientSecrets(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
@@ -1964,29 +2192,6 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Updates a CWO connection
-      * Update a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      * @param orgCWOConnectionPatchRequest
-      */
-  updateCWOConnection(appId, connectionId, orgCWOConnectionPatchRequest, _options) {
-    const requestContextPromise = this.requestFactory.updateCWOConnection(appId, connectionId, orgCWOConnectionPatchRequest, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateCWOConnection(rsp)));
-      }));
-  }
-  /**
       * Updates the default provisioning connection for an app
       * Update the default provisioning connection
       * @param appId Application ID
@@ -2149,6 +2354,465 @@ class ObservableApplicationApi {
   }
 }
 exports.ObservableApplicationApi = ObservableApplicationApi;
+const ApplicationCrossAppAccessConnectionsApi_1 = require('../apis/ApplicationCrossAppAccessConnectionsApi');
+class ObservableApplicationCrossAppAccessConnectionsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new ApplicationCrossAppAccessConnectionsApi_1.ApplicationCrossAppAccessConnectionsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new ApplicationCrossAppAccessConnectionsApi_1.ApplicationCrossAppAccessConnectionsApiResponseProcessor();
+  }
+  /**
+      * Creates a Cross App Access connection
+      * Create a Cross App Access connection
+      * @param appId Application ID
+      * @param orgCrossAppAccessConnection
+      */
+  createCrossAppAccessConnection(appId, orgCrossAppAccessConnection, _options) {
+    const requestContextPromise = this.requestFactory.createCrossAppAccessConnection(appId, orgCrossAppAccessConnection, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createCrossAppAccessConnection(rsp)));
+      }));
+  }
+  /**
+      * Deletes a Cross App Access connection with the specified ID
+      * Delete a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      */
+  deleteCrossAppAccessConnection(appId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.deleteCrossAppAccessConnection(appId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteCrossAppAccessConnection(rsp)));
+      }));
+  }
+  /**
+      * Retrieves inbound and outbound Cross App Access connections associated with an app
+      * Retrieve all Cross App Access connections
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of connection results
+      * @param limit Specifies the number of results to return per page. The values:   * -1: Return all results (up to system maximum)   * 0: Return an empty result set   * Positive integer: Return up to that many results (capped at system maximum)
+      */
+  getAllCrossAppAccessConnections(appId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.getAllCrossAppAccessConnections(appId, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.getAllCrossAppAccessConnections(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Retrieves the Cross App Access connection with the specified ID
+      * Retrieve a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      */
+  getCrossAppAccessConnection(appId, connectionId, _options) {
+    const requestContextPromise = this.requestFactory.getCrossAppAccessConnection(appId, connectionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCrossAppAccessConnection(rsp)));
+      }));
+  }
+  /**
+      * Updates the Cross App Access connection with the specified ID
+      * Update a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      * @param orgCrossAppAccessConnectionPatchRequest
+      */
+  updateCrossAppAccessConnection(appId, connectionId, orgCrossAppAccessConnectionPatchRequest, _options) {
+    const requestContextPromise = this.requestFactory.updateCrossAppAccessConnection(appId, connectionId, orgCrossAppAccessConnectionPatchRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateCrossAppAccessConnection(rsp)));
+      }));
+  }
+}
+exports.ObservableApplicationCrossAppAccessConnectionsApi = ObservableApplicationCrossAppAccessConnectionsApi;
+const ApplicationInterclientTrustMappingsApi_1 = require('../apis/ApplicationInterclientTrustMappingsApi');
+class ObservableApplicationInterclientTrustMappingsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new ApplicationInterclientTrustMappingsApi_1.ApplicationInterclientTrustMappingsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new ApplicationInterclientTrustMappingsApi_1.ApplicationInterclientTrustMappingsApiResponseProcessor();
+  }
+  /**
+      * Creates a mapping between the target app and an allowed app for interclient SSO using the interclient token
+      * Create an allowed app mapping for a target app
+      * @param appId Application ID
+      * @param interclientTrustMappingRequestBody
+      */
+  createInterclientTrustMapping(appId, interclientTrustMappingRequestBody, _options) {
+    const requestContextPromise = this.requestFactory.createInterclientTrustMapping(appId, interclientTrustMappingRequestBody, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createInterclientTrustMapping(rsp)));
+      }));
+  }
+  /**
+      * Deletes the mapping between the target app and an allowed app
+      * Delete an interclient trust mapping
+      * @param appId Application ID
+      * @param allowedAppId App ID of the allowed app instance to delete mapping from the target app.
+      */
+  deleteInterclientTrustMapping(appId, allowedAppId, _options) {
+    const requestContextPromise = this.requestFactory.deleteInterclientTrustMapping(appId, allowedAppId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteInterclientTrustMapping(rsp)));
+      }));
+  }
+  /**
+      * Lists all apps allowed by this app to request interclient SSO using the interclient token
+      * List all allowed apps for a target app
+      * @param appId Application ID
+      */
+  listInterclientAllowedApplications(appId, _options) {
+    const requestContextPromise = this.requestFactory.listInterclientAllowedApplications(appId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listInterclientAllowedApplications(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all the target apps that allow this app to request interclient SSO using an interclient token
+      * List all target apps for an allowed app
+      * @param appId Application ID
+      */
+  listInterclientTargetApplications(appId, _options) {
+    const requestContextPromise = this.requestFactory.listInterclientTargetApplications(appId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listInterclientTargetApplications(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+}
+exports.ObservableApplicationInterclientTrustMappingsApi = ObservableApplicationInterclientTrustMappingsApi;
+const ApplicationSSOPublicKeysApi_1 = require('../apis/ApplicationSSOPublicKeysApi');
+class ObservableApplicationSSOPublicKeysApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new ApplicationSSOPublicKeysApi_1.ApplicationSSOPublicKeysApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new ApplicationSSOPublicKeysApi_1.ApplicationSSOPublicKeysApiResponseProcessor();
+  }
+  /**
+      * Activates an OAuth 2.0 Client JSON Web Key by `keyId` > **Note:** You can have only one active encryption key at any given time for app. When you activate an inactive key, the current active key is automatically deactivated.
+      * Activate an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  activateOAuth2ClientJsonWebKey(appId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.activateOAuth2ClientJsonWebKey(appId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOAuth2ClientJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Activates an OAuth 2.0 Client Secret by `secretId`
+      * Activate an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  activateOAuth2ClientSecret(appId, secretId, _options) {
+    const requestContextPromise = this.requestFactory.activateOAuth2ClientSecret(appId, secretId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOAuth2ClientSecret(rsp)));
+      }));
+  }
+  /**
+      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOPublicKeys/#tag/ApplicationSSOPublicKeys/operation/deletejwk) and re-add the key with a `kid`.
+      * Add a JSON Web Key
+      * @param appId Application ID
+      * @param addJwkRequest
+      */
+  addJwk(appId, addJwkRequest, _options) {
+    const requestContextPromise = this.requestFactory.addJwk(appId, addJwkRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addJwk(rsp)));
+      }));
+  }
+  /**
+      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
+      * Create an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param oAuth2ClientSecretRequestBody
+      */
+  createOAuth2ClientSecret(appId, oAuth2ClientSecretRequestBody, _options) {
+    const requestContextPromise = this.requestFactory.createOAuth2ClientSecret(appId, oAuth2ClientSecretRequestBody, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createOAuth2ClientSecret(rsp)));
+      }));
+  }
+  /**
+      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`. > **Note:** You can only deactivate signing keys. Deactivating the active encryption key isn\'t allowed if the client has ID token encryption enabled. You can activate another encryption key, which makes the current key inactive.
+      * Deactivate an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  deactivateOAuth2ClientJsonWebKey(appId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateOAuth2ClientJsonWebKey(appId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOAuth2ClientJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
+      * Deactivate an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  deactivateOAuth2ClientSecret(appId, secretId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateOAuth2ClientSecret(appId, secretId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOAuth2ClientSecret(rsp)));
+      }));
+  }
+  /**
+      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
+      * Delete an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  deleteOAuth2ClientSecret(appId, secretId, _options) {
+    const requestContextPromise = this.requestFactory.deleteOAuth2ClientSecret(appId, secretId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteOAuth2ClientSecret(rsp)));
+      }));
+  }
+  /**
+      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  deletejwk(appId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deletejwk(appId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deletejwk(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
+      * Retrieve an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  getJwk(appId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.getJwk(appId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getJwk(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an OAuth 2.0 Client Secret by `secretId`
+      * Retrieve an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  getOAuth2ClientSecret(appId, secretId, _options) {
+    const requestContextPromise = this.requestFactory.getOAuth2ClientSecret(appId, secretId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOAuth2ClientSecret(rsp)));
+      }));
+  }
+  /**
+      * Lists all JSON Web Keys for an OAuth 2.0 client app
+      * List all the OAuth 2.0 client JSON Web Keys
+      * @param appId Application ID
+      */
+  listJwk(appId, _options) {
+    const requestContextPromise = this.requestFactory.listJwk(appId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listJwk(rsp)));
+      }));
+  }
+  /**
+      * Lists all client secrets for an OAuth 2.0 client app
+      * List all OAuth 2.0 client secrets
+      * @param appId Application ID
+      */
+  listOAuth2ClientSecrets(appId, _options) {
+    const requestContextPromise = this.requestFactory.listOAuth2ClientSecrets(appId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listOAuth2ClientSecrets(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+}
+exports.ObservableApplicationSSOPublicKeysApi = ObservableApplicationSSOPublicKeysApi;
 const AssociatedDomainCustomizationsApi_1 = require('../apis/AssociatedDomainCustomizationsApi');
 class ObservableAssociatedDomainCustomizationsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -2321,12 +2985,19 @@ class ObservableAttackProtectionApi {
       */
   getAuthenticatorSettings(_options) {
     const requestContextPromise = this.requestFactory.getAuthenticatorSettings(_options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getAuthenticatorSettings(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAuthenticatorSettings(rsp)));
+      }));
   }
   /**
       * Retrieves the User Lockout Settings for an org
@@ -2334,12 +3005,19 @@ class ObservableAttackProtectionApi {
       */
   getUserLockoutSettings(_options) {
     const requestContextPromise = this.requestFactory.getUserLockoutSettings(_options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getUserLockoutSettings(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getUserLockoutSettings(rsp)));
+      }));
   }
   /**
       * Replaces the Authenticator Settings for an org
@@ -2760,6 +3438,28 @@ class ObservableAuthenticatorApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateCustomAAGUID(rsp)));
+      }));
+  }
+  /**
+      * Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified WebAuthn authenticator and the specific `webauthn` authenticator method
+      * Verify a Relying Party ID domain
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param webAuthnMethodType Type of authenticator method
+      */
+  verifyRpIdDomain(authenticatorId, webAuthnMethodType, _options) {
+    const requestContextPromise = this.requestFactory.verifyRpIdDomain(authenticatorId, webAuthnMethodType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.verifyRpIdDomain(rsp)));
       }));
   }
 }
@@ -3296,7 +3996,7 @@ class ObservableAuthorizationServerApi {
       * Retrieves a refresh token for a Client
       * Retrieve a refresh token for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       */
@@ -3443,7 +4143,7 @@ class ObservableAuthorizationServerApi {
       * Lists all refresh tokens issued by an authorization server for a specific Client
       * List all refresh tokens for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after Specifies the pagination cursor for the next page of tokens
       * @param limit The maximum number of tokens to return (maximum 200)
@@ -3576,7 +4276,7 @@ class ObservableAuthorizationServerApi {
       * Revokes a refresh token for a Client
       * Revoke a refresh token for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, _options) {
@@ -3599,7 +4299,7 @@ class ObservableAuthorizationServerApi {
       * Revokes all refresh tokens for a Client
       * Revoke all refresh tokens for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, _options) {
     const requestContextPromise = this.requestFactory.revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, _options);
@@ -3644,7 +4344,7 @@ class ObservableBehaviorApi {
   /**
       * Activates a behavior detection rule
       * Activate a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   activateBehaviorDetectionRule(behaviorId, _options) {
     const requestContextPromise = this.requestFactory.activateBehaviorDetectionRule(behaviorId, _options);
@@ -3686,7 +4386,7 @@ class ObservableBehaviorApi {
   /**
       * Deactivates a behavior detection rule
       * Deactivate a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   deactivateBehaviorDetectionRule(behaviorId, _options) {
     const requestContextPromise = this.requestFactory.deactivateBehaviorDetectionRule(behaviorId, _options);
@@ -3707,7 +4407,7 @@ class ObservableBehaviorApi {
   /**
       * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   deleteBehaviorDetectionRule(behaviorId, _options) {
     const requestContextPromise = this.requestFactory.deleteBehaviorDetectionRule(behaviorId, _options);
@@ -3728,7 +4428,7 @@ class ObservableBehaviorApi {
   /**
       * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   getBehaviorDetectionRule(behaviorId, _options) {
     const requestContextPromise = this.requestFactory.getBehaviorDetectionRule(behaviorId, _options);
@@ -3762,7 +4462,7 @@ class ObservableBehaviorApi {
   /**
       * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       * @param rule
       */
   replaceBehaviorDetectionRule(behaviorId, rule, _options) {
@@ -3982,7 +4682,7 @@ class ObservableCustomDomainApi {
   }
   /**
       * Creates your custom domain
-      * Create a Custom Domain
+      * Create a custom domain
       * @param domain
       */
   createCustomDomain(domain, _options) {
@@ -4045,7 +4745,7 @@ class ObservableCustomDomainApi {
   }
   /**
       * Lists all verified custom domains for the org
-      * List all Custom Domains
+      * List all custom domains
       */
   listCustomDomains(_options) {
     const requestContextPromise = this.requestFactory.listCustomDomains(_options);
@@ -4108,7 +4808,7 @@ class ObservableCustomDomainApi {
       }));
   }
   /**
-      * Verifies the custom domain and validity of DNS records by `domainId`. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.
+      * Verifies the custom domain and validity of DNS records by `domainId`. Verify your custom domain to confirm that you own or control the domain and that you have properly configured the required DNS records. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.  Verify your custom domain after you\'ve [created it](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomDomain/#tag/CustomDomain/operation/createCustomDomain) and after you\'ve added your TXT and CNAME records to your domain provider. Okta doesn\'t verify your domain automatically. You must use the API to verify your custom domain if you change your DNS records or if you encounter issues with domain validation.  > **Note:** DNS record changes can take time to propagate. If you recently updated your DNS records, you may need to wait before verifying your custom domain. If you encounter issues with domain verification, double-check your DNS records and ensure that they\'re correctly configured. See [Update your DNS TXT](https://developer.okta.com/docs/guides/custom-url-domain/main/#update-your-dns-txt) for more information about verifying your custom domain.
       * Verify a custom domain
       * @param domainId &#x60;id&#x60; of the Domain
       */
@@ -4291,7 +4991,7 @@ class ObservableCustomRoleApi {
   /**
       * Lists all custom roles with pagination support
       * List all custom roles
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listRoles(after, _options) {
     const requestContextPromise = this.requestFactory.listRoles(after, _options);
@@ -4356,6 +5056,205 @@ class ObservableCustomRoleApi {
   }
 }
 exports.ObservableCustomRoleApi = ObservableCustomRoleApi;
+const CustomTelephonyProviderApi_1 = require('../apis/CustomTelephonyProviderApi');
+class ObservableCustomTelephonyProviderApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new CustomTelephonyProviderApi_1.CustomTelephonyProviderApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new CustomTelephonyProviderApi_1.CustomTelephonyProviderApiResponseProcessor();
+  }
+  /**
+      * Activates a custom telephony provider by its ID. You must activate a provider before it can be used.
+      * Activate a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  activateCustomTelephonyCredential(customTelephonyProviderId, _options) {
+    const requestContextPromise = this.requestFactory.activateCustomTelephonyCredential(customTelephonyProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateCustomTelephonyCredential(rsp)));
+      }));
+  }
+  /**
+      * Creates a custom telephony provider with the provided credentials
+      * Create a custom telephony provider
+      * @param customTelephonyProviderCredentialCreateRequest
+      */
+  createCustomTelephonyProviderCredentials(customTelephonyProviderCredentialCreateRequest, _options) {
+    const requestContextPromise = this.requestFactory.createCustomTelephonyProviderCredentials(customTelephonyProviderCredentialCreateRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createCustomTelephonyProviderCredentials(rsp)));
+      }));
+  }
+  /**
+      * Deactivates a custom telephony provider by its ID. Keep the following points in mind when you deactivate a provider: * You must deactivate a provider before deleting it. * If you have two telephony providers configured, and both are active, you can only deactivate the secondary provider. The second provider is the one that isn\'t set as the primary provider.
+      * Deactivate a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  deactivateCustomTelephonyCredential(customTelephonyProviderId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateCustomTelephonyCredential(customTelephonyProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateCustomTelephonyCredential(rsp)));
+      }));
+  }
+  /**
+      * Deletes a custom telephony provider by its ID.  Before you delete a provider, ensure that it is [deactivated](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTelephonyProvider/#tag/CustomTelephonyProvider/operation/deactivateCustomTelephonyCredential). Consider setting up another telephony provider if you still plan to use telephony in your org. See [Set up an external telephony provider](https://help.okta.com/okta_help.htm?type=oie&id=about-telephony).
+      * Delete a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  deleteCustomTelephonyProviderCredential(customTelephonyProviderId, _options) {
+    const requestContextPromise = this.requestFactory.deleteCustomTelephonyProviderCredential(customTelephonyProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteCustomTelephonyProviderCredential(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the details of a custom telephony provider by its ID
+      * Retrieve a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  getCustomTelephonyProviderCredential(customTelephonyProviderId, _options) {
+    const requestContextPromise = this.requestFactory.getCustomTelephonyProviderCredential(customTelephonyProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCustomTelephonyProviderCredential(rsp)));
+      }));
+  }
+  /**
+      * Lists all custom telephony providers that are configured in your org
+      * List all custom telephony providers
+      */
+  listAllCustomTelephonyProviderCredentials(_options) {
+    const requestContextPromise = this.requestFactory.listAllCustomTelephonyProviderCredentials(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listAllCustomTelephonyProviderCredentials(rsp)));
+      }));
+  }
+  /**
+      * Sends a test message (SMS or call) using the specified custom telephony provider to verify that the provider is configured correctly.  You must provide a valid phone number and country code to send the test message. Send it to a phone number that you have access to so you can confirm that the message was received.
+      * Send a test message from a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      * @param customTelephonyProviderCredentialSendTestRequest
+      */
+  sendTestCustomTelephonyProviderCredential(customTelephonyProviderId, customTelephonyProviderCredentialSendTestRequest, _options) {
+    const requestContextPromise = this.requestFactory.sendTestCustomTelephonyProviderCredential(customTelephonyProviderId, customTelephonyProviderCredentialSendTestRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.sendTestCustomTelephonyProviderCredential(rsp)));
+      }));
+  }
+  /**
+      * Sets a custom telephony provider as the primary telephony provider for the org. You can only set one provider as a primary provider at a time.
+      * Set a custom telephony provider as a primary telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  setAsPrimaryCustomTelephonyCredential(customTelephonyProviderId, _options) {
+    const requestContextPromise = this.requestFactory.setAsPrimaryCustomTelephonyCredential(customTelephonyProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.setAsPrimaryCustomTelephonyCredential(rsp)));
+      }));
+  }
+  /**
+      * Updates the credentials of an existing custom telephony provider
+      * Update a custom telephony provider credential
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      * @param customTelephonyProviderCredentialUpdateRequest
+      */
+  updateCustomTelephonyProviderCredential(customTelephonyProviderId, customTelephonyProviderCredentialUpdateRequest, _options) {
+    const requestContextPromise = this.requestFactory.updateCustomTelephonyProviderCredential(customTelephonyProviderId, customTelephonyProviderCredentialUpdateRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateCustomTelephonyProviderCredential(rsp)));
+      }));
+  }
+}
+exports.ObservableCustomTelephonyProviderApi = ObservableCustomTelephonyProviderApi;
 const CustomizationApi_1 = require('../apis/CustomizationApi');
 class ObservableCustomizationApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -5069,7 +5968,7 @@ class ObservableCustomizationApi {
       * Lists all the brands in your org
       * List all brands
       * @param expand Specifies additional metadata to be included in the response
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param q Searches the records for matching value
       */
@@ -5087,7 +5986,7 @@ class ObservableCustomizationApi {
       * List all email customizations
       * @param brandId The ID of the brand
       * @param templateName The name of the email template
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listEmailCustomizations(brandId, templateName, after, limit, _options) {
@@ -5103,7 +6002,7 @@ class ObservableCustomizationApi {
       * Lists all supported email templates
       * List all email templates
       * @param brandId The ID of the brand
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Specifies additional metadata to be included in the response
       */
@@ -5518,7 +6417,7 @@ class ObservableDeviceApi {
     }));
   }
   /**
-      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request. > **Note:** Listing devices with `search` should not be used as a part of any critical flow, such as authentication or updates, to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
       * List all devices
       * @param after
       * @param limit A limit on the number of objects to return (recommend &#x60;20&#x60;)
@@ -5989,13 +6888,13 @@ class ObservableDirectoriesIntegrationApi {
     this.responseProcessor = responseProcessor || new DirectoriesIntegrationApi_1.DirectoriesIntegrationApiResponseProcessor();
   }
   /**
-      * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-      * Update an Active Directory group membership
-      * @param appInstanceId ID of the Active Directory app instance in Okta
+      * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+      * Update an external directory group membership
+      * @param appInstanceId ID of the Active Directory or LDAP app instance in Okta
       * @param agentAction
       */
-  updateADGroupMembership(appInstanceId, agentAction, _options) {
-    const requestContextPromise = this.requestFactory.updateADGroupMembership(appInstanceId, agentAction, _options);
+  updateGroupMembership(appInstanceId, agentAction, _options) {
+    const requestContextPromise = this.requestFactory.updateGroupMembership(appInstanceId, agentAction, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6007,7 +6906,7 @@ class ObservableDirectoriesIntegrationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateADGroupMembership(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateGroupMembership(rsp)));
       }));
   }
 }
@@ -6645,8 +7544,8 @@ class ObservableGovernanceBundleApi {
     this.responseProcessor = responseProcessor || new GovernanceBundleApi_1.GovernanceBundleApiResponseProcessor();
   }
   /**
-      * Creates a Governance Bundle for the Admin Console in RAMP
-      * Create a governance bundle for the Admin Console in RAMP
+      * Creates a governance bundle of entitlements for the Admin Console
+      * Create a governance bundle
       * @param governanceBundleCreateRequest
       */
   createGovernanceBundle(governanceBundleCreateRequest, _options) {
@@ -6666,8 +7565,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Deletes a Governance Bundle from RAMP
-      * Delete a governance bundle from RAMP
+      * Deletes an Admin Console governance bundle
+      * Delete a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       */
   deleteGovernanceBundle(bundleId, _options) {
@@ -6687,8 +7586,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Retrieves a Governance Bundle from RAMP
-      * Retrieve a governance bundle from RAMP
+      * Retrieves a governance bundle for the Admin Console
+      * Retrieve a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       */
   getGovernanceBundle(bundleId, _options) {
@@ -6708,8 +7607,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Retrieves the opt-in status of the Admin Console from RAMP
-      * Retrieve the opt-in status from RAMP
+      * Retrieves the entitlement management opt-in status for the Admin Console
+      * Retrieve the Admin Console opt-in status
       */
   getOptInStatus(_options) {
     const requestContextPromise = this.requestFactory.getOptInStatus(_options);
@@ -6728,11 +7627,11 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Lists all Entitlement Values specific to a Bundle Entitlement
-      * List all entitlement values for a bundle entitlement
+      * Lists all entitlement values that are specific to a governance bundle entitlement
+      * List all values for a governance bundle entitlement
       * @param bundleId The &#x60;id&#x60; of a bundle
       * @param entitlementId The &#x60;id&#x60; of a bundle entitlement
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listBundleEntitlementValues(bundleId, entitlementId, after, limit, _options) {
@@ -6752,10 +7651,10 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Lists all Entitlements specific to a Governance Bundle
+      * Lists all entitlements specific to a governance bundle
       * List all entitlements for a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listBundleEntitlements(bundleId, after, limit, _options) {
@@ -6775,9 +7674,9 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Lists all Governance Bundles for the Admin Console in your org
-      * List all governance bundles for the Admin Console
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * Lists all governance bundles for the Admin Console in your org
+      * List all governance bundles
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGovernanceBundles(after, limit, _options) {
@@ -6797,8 +7696,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Opts in the Admin Console to RAMP
-      * Opt in the Admin Console to RAMP
+      * Opts in the Admin Console to entitlement management
+      * Opt in the Admin Console to entitlement management
       */
   optIn(_options) {
     const requestContextPromise = this.requestFactory.optIn(_options);
@@ -6817,8 +7716,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Opts out the Admin Console from RAMP
-      * Opt out the Admin Console from RAMP
+      * Opts out the Admin Console from entitlement management
+      * Opt out the Admin Console from entitlement management
       */
   optOut(_options) {
     const requestContextPromise = this.requestFactory.optOut(_options);
@@ -6837,8 +7736,8 @@ class ObservableGovernanceBundleApi {
       }));
   }
   /**
-      * Replaces a Governance Bundle in RAMP
-      * Replace a governance bundle in RAMP
+      * Replaces the properties of a governance bundle for the Admin Console
+      * Replace a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       * @param governanceBundleUpdateRequest
       */
@@ -6954,7 +7853,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Creates a group rule to dynamically add users to the specified group if they match the condition > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
+      * Creates a group rule to dynamically add users to the specified group if they match the condition. > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
       * Create a group rule
       * @param groupRule
       */
@@ -7157,7 +8056,7 @@ class ObservableGroupApi {
       * Lists all users that are a member of a group. The default user limit is set to a very high number due to historical reasons that are no longer valid for most orgs. This will change in a future version of this API. The recommended page limit is now `limit=200`.
       * List all member users
       * @param groupId The &#x60;id&#x60; of the group
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit Specifies the number of user results in a page
       */
   listGroupUsers(groupId, after, limit, _options) {
@@ -7170,16 +8069,16 @@ class ObservableGroupApi {
     }));
   }
   /**
-      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** Results from the filter or query parameter are driven from an eventually consistent datasource. The synchronization lag is typically less than one second.
+      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all groups
-      * @param search Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param filter Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.
+      * @param search Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param filter Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;type&#x60;, &#x60;lastUpdated&#x60;, and &#x60;lastMembershipUpdated&#x60;.  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.  See [Special characters](https://developer.okta.com/docs/api/#special-characters).
       * @param q Finds a group that matches the &#x60;name&#x60; property. &gt; **Note:** Paging and searching are currently mutually exclusive. You can\&#39;t page a query. The default limit for a query is 300 results. Query is intended for an auto-complete picker use case where users refine their search string to constrain the results.
       * @param after Specifies the pagination cursor for the next page of groups. The &#x60;after&#x60; cursor should be treated as an opaque value and obtained through the next link relation. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of group results in a page.  Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).  The Okta default &#x60;Everyone&#x60; group isn\&#39;t returned for users with a group admin role.
       * @param expand If specified, additional metadata is included in the response. Possible values are &#x60;stats&#x60; and &#x60;app&#x60;. This additional metadata is listed in the [&#x60;_embedded&#x60;](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/addGroup!c&#x3D;200&amp;path&#x3D;_embedded&amp;t&#x3D;response) property of the response.  &gt; **Note:** You can use the &#x60;stats&#x60; value to return the number of users within a group. This is listed as the &#x60;_embedded.stats.usersCount&#x60; value in the response. See this [Knowledge Base article](https://support.okta.com/help/s/article/Is-there-an-API-that-returns-the-number-of-users-in-a-group?language&#x3D;en_US) for more information and an example.
-      * @param sortBy Specifies field to sort by **(for search queries only)**. &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;.
-      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;.
+      * @param sortBy Specifies the field to sort by (for search queries only). &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;. Use with &#x60;sortOrder&#x60; to control the order of results.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       */
   listGroups(search, filter, q, after, limit, expand, sortBy, sortOrder, _options) {
     const requestContextPromise = this.requestFactory.listGroups(search, filter, q, after, limit, expand, sortBy, sortOrder, _options);
@@ -7213,7 +8112,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `\'INACTIVE\'`. > > You currently can\'t update the `action` section.
+      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `INACTIVE`. > > You currently can\'t update the `actions` section.
       * Replace a group rule
       * @param ruleId The &#x60;id&#x60; of the group rule
       * @param groupRule
@@ -7556,7 +8455,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification (IDV) vendors work like IdPs, with a few key differences. IDV vendors verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDV vendors (Persona, CLEAR Verified, and Incode) with specific configuration settings and another IDV vendor type (Custom IDV) that lets you create a custom IDV vendor, using a [standardized IDV process](https://developer.okta.com/docs/guides/idv-integration/main/). You can configure each of the IDV vendors as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)  * [Custom IDV](https://help.okta.com/okta_help.htm?type=oie&id=idp-add-custom-idv-vendor)
       * Create an IdP
       * @param identityProvider IdP settings
       */
@@ -7868,7 +8767,7 @@ class ObservableIdentityProviderApi {
       * List all users for IdP
       * @param idpId &#x60;id&#x60; of IdP
       * @param q Searches the records for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Expand user data
       */
@@ -7884,7 +8783,7 @@ class ObservableIdentityProviderApi {
   /**
       * Lists all identity provider (IdP) key credentials
       * List all IdP key credentials
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listIdentityProviderKeys(after, limit, _options) {
@@ -7914,7 +8813,7 @@ class ObservableIdentityProviderApi {
       * Lists all identity provider (IdP) integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all IdPs
       * @param q Searches the &#x60;name&#x60; property of IdPs for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param type Filters IdPs by &#x60;type&#x60;
       */
@@ -8077,6 +8976,51 @@ class ObservableIdentitySourceApi {
     this.responseProcessor = responseProcessor || new IdentitySourceApi_1.IdentitySourceApiResponseProcessor();
   }
   /**
+      * Creates a group in an identity source for the given identity source instance
+      * Create an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupsRequestSchema
+      */
+  createIdentitySourceGroups(identitySourceId, groupsRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.createIdentitySourceGroups(identitySourceId, groupsRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createIdentitySourceGroups(rsp)));
+      }));
+  }
+  /**
+      * Creates the group memberships for the given identity source group
+      * Create the memberships for the given identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param membershipRequestSchema
+      */
+  createIdentitySourceGroupsMemberships(identitySourceId, groupOrExternalId, membershipRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.createIdentitySourceGroupsMemberships(identitySourceId, groupOrExternalId, membershipRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createIdentitySourceGroupsMemberships(rsp)));
+      }));
+  }
+  /**
       * Creates an identity source session for the given identity source instance
       * Create an identity source session
       * @param identitySourceId The ID of the identity source for which the session is created
@@ -8095,6 +9039,73 @@ class ObservableIdentitySourceApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createIdentitySourceSession(rsp)));
+      }));
+  }
+  /**
+      * Creates a user in an identity source for the given identity source instance
+      * Create an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param userRequestSchema
+      */
+  createIdentitySourceUser(identitySourceId, userRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.createIdentitySourceUser(identitySourceId, userRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createIdentitySourceUser(rsp)));
+      }));
+  }
+  /**
+      * Deletes a group in an identity source for a given identity source ID and group ID
+      * Delete an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      */
+  deleteIdentitySourceGroup(identitySourceId, groupOrExternalId, _options) {
+    const requestContextPromise = this.requestFactory.deleteIdentitySourceGroup(identitySourceId, groupOrExternalId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteIdentitySourceGroup(rsp)));
+      }));
+  }
+  /**
+      * Deletes group memberships for the specified identity source group using member external IDs
+      * Delete the memberships for the specified identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param memberExternalId The external ID of the identity source user
+      */
+  deleteIdentitySourceGroupMemberships(identitySourceId, groupOrExternalId, memberExternalId, _options) {
+    const requestContextPromise = this.requestFactory.deleteIdentitySourceGroupMemberships(identitySourceId, groupOrExternalId, memberExternalId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteIdentitySourceGroupMemberships(rsp)));
       }));
   }
   /**
@@ -8120,6 +9131,74 @@ class ObservableIdentitySourceApi {
       }));
   }
   /**
+      * Deletes a user in an identity source for the given identity source instance and external ID
+      * Delete an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      */
+  deleteIdentitySourceUser(identitySourceId, externalId, _options) {
+    const requestContextPromise = this.requestFactory.deleteIdentitySourceUser(identitySourceId, externalId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteIdentitySourceUser(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a group from an identity source for a given identity source ID and group ID or external ID
+      * Retrieve an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      */
+  getIdentitySourceGroup(identitySourceId, groupOrExternalId, _options) {
+    const requestContextPromise = this.requestFactory.getIdentitySourceGroup(identitySourceId, groupOrExternalId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getIdentitySourceGroup(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the group memberships for the given identity source group in the given identity source instance
+      * Retrieve the memberships for the given identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit Specifies the number of group membership results in a page. Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).
+      */
+  getIdentitySourceGroupMemberships(identitySourceId, groupOrExternalId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.getIdentitySourceGroupMemberships(identitySourceId, groupOrExternalId, after, limit, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getIdentitySourceGroupMemberships(rsp)));
+      }));
+  }
+  /**
       * Retrieves an identity source session for a given identity source ID and session ID
       * Retrieve an identity source session
       * @param identitySourceId The ID of the identity source for which the session is created
@@ -8142,6 +9221,28 @@ class ObservableIdentitySourceApi {
       }));
   }
   /**
+      * Retrieves a user by external ID in an identity source for the given identity source instance
+      * Retrieve an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      */
+  getIdentitySourceUser(identitySourceId, externalId, _options) {
+    const requestContextPromise = this.requestFactory.getIdentitySourceUser(identitySourceId, externalId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getIdentitySourceUser(rsp)));
+      }));
+  }
+  /**
       * Lists all identity source sessions for the given identity source instance
       * List all identity source sessions
       * @param identitySourceId The ID of the identity source for which the session is created
@@ -8154,6 +9255,29 @@ class ObservableIdentitySourceApi {
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
+  }
+  /**
+      * Replaces an existing user for the given identity source instance and external ID
+      * Replace an existing identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      * @param userRequestSchema
+      */
+  replaceExistingIdentitySourceUser(identitySourceId, externalId, userRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.replaceExistingIdentitySourceUser(identitySourceId, externalId, userRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceExistingIdentitySourceUser(rsp)));
+      }));
   }
   /**
       * Starts the import from the identity source described by the uploaded bulk operations
@@ -8175,6 +9299,52 @@ class ObservableIdentitySourceApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.startImportFromIdentitySource(rsp)));
+      }));
+  }
+  /**
+      * Updates a group to an identity source for the given identity source instance and group ID
+      * Update an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param groupsRequestSchema
+      */
+  updateIdentitySourceGroups(identitySourceId, groupOrExternalId, groupsRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.updateIdentitySourceGroups(identitySourceId, groupOrExternalId, groupsRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateIdentitySourceGroups(rsp)));
+      }));
+  }
+  /**
+      * Updates a user to an identity source for the given identity source instance and external ID
+      * Update an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      * @param usersUpdateRequestSchema
+      */
+  updateIdentitySourceUsers(identitySourceId, externalId, usersUpdateRequestSchema, _options) {
+    const requestContextPromise = this.requestFactory.updateIdentitySourceUsers(identitySourceId, externalId, usersUpdateRequestSchema, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateIdentitySourceUsers(rsp)));
       }));
   }
   /**
@@ -8711,7 +9881,7 @@ class ObservableLogStreamApi {
   /**
       * Lists all log stream objects in your org. You can request a paginated list or a subset of log streams that match a supported filter expression.
       * List all log streams
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param filter An expression that [filters](/#filter) the returned objects. You can only use the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60; properties in the filter expression.
       */
@@ -8777,7 +9947,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`.
+      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`. > **Note:** To view all properties for an Enhanced Dynamic Network Zone, select `DYNAMIC_V2` from the `type` dropdown list.
       * Create a network zone
       * @param zone
       */
@@ -8900,6 +10070,139 @@ class ObservableNetworkZoneApi {
   }
 }
 exports.ObservableNetworkZoneApi = ObservableNetworkZoneApi;
+const OAuth2ResourceServerCredentialsKeysApi_1 = require('../apis/OAuth2ResourceServerCredentialsKeysApi');
+class ObservableOAuth2ResourceServerCredentialsKeysApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new OAuth2ResourceServerCredentialsKeysApi_1.OAuth2ResourceServerCredentialsKeysApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new OAuth2ResourceServerCredentialsKeysApi_1.OAuth2ResourceServerCredentialsKeysApiResponseProcessor();
+  }
+  /**
+      * Activates a custom authorization server public JSON web key by key `id`. > **Note:** You can have only one active key at any given time for the authorization server. When you activate an inactive key, Okta automatically deactivates the current active key.
+      * Activate a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  activateOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.activateOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOAuth2ResourceServerJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Adds a new JSON Web Key to the custom authorization server`s JSON web keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. Use the [Replace an Authorization Server](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AuthorizationServer/#tag/AuthorizationServer/operation/replaceAuthorizationServer) operation to update the JWKS or [Delete a Custom Authorization Server Public JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/OAuth2ResourceServerCredentialsKeys/#tag/OAuth2ResourceServerCredentialsKeys/operation/deleteOAuth2ResourceServerJsonWebKey) and re-add the key with a `kid`. > **Note:** This API doesn\'t allow you to add a key with an ACTIVE status. You need to add an INACTIVE key first, and then ACTIVATE the key.
+      * Add a JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param oAuth2ResourceServerJsonWebKeyRequestBody
+      */
+  addOAuth2ResourceServerJsonWebKey(authServerId, oAuth2ResourceServerJsonWebKeyRequestBody, _options) {
+    const requestContextPromise = this.requestFactory.addOAuth2ResourceServerJsonWebKey(authServerId, oAuth2ResourceServerJsonWebKeyRequestBody, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addOAuth2ResourceServerJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Deactivates a custom authorization server public JSON web key by key `id`. > **Note:** Deactivating the active key isn\'t allowed if the authorization server has access token encryption enabled. You can activate another key, which makes the current key inactive.
+      * Deactivate a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  deactivateOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOAuth2ResourceServerJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Deletes a custom authorization server public JSON web key by key `id`. You can only delete an inactive key.
+      * Delete a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  deleteOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.deleteOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteOAuth2ResourceServerJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a custom authorization server public JSON web key by key `id`
+      * Retrieve a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  getOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options) {
+    const requestContextPromise = this.requestFactory.getOAuth2ResourceServerJsonWebKey(authServerId, keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOAuth2ResourceServerJsonWebKey(rsp)));
+      }));
+  }
+  /**
+      * Lists all the public keys used by the custom authorization server
+      * List all Custom Authorization Server Public JSON Web Keys
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      */
+  listOAuth2ResourceServerJsonWebKeys(authServerId, _options) {
+    const requestContextPromise = this.requestFactory.listOAuth2ResourceServerJsonWebKeys(authServerId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listOAuth2ResourceServerJsonWebKeys(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+}
+exports.ObservableOAuth2ResourceServerCredentialsKeysApi = ObservableOAuth2ResourceServerCredentialsKeysApi;
 const OktaApplicationSettingsApi_1 = require('../apis/OktaApplicationSettingsApi');
 class ObservableOktaApplicationSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -8952,6 +10255,116 @@ class ObservableOktaApplicationSettingsApi {
   }
 }
 exports.ObservableOktaApplicationSettingsApi = ObservableOktaApplicationSettingsApi;
+const OktaManagedUserAccountApi_1 = require('../apis/OktaManagedUserAccountApi');
+class ObservableOktaManagedUserAccountApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new OktaManagedUserAccountApi_1.OktaManagedUserAccountApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new OktaManagedUserAccountApi_1.OktaManagedUserAccountApiResponseProcessor();
+  }
+  /**
+      * Creates a new Okta managed user account for managing an Okta Universal Directory user as a privileged account.  You must specify an existing Okta user in your org with the `oktaUserId` request parameter. You can\'t modify the user\'s email or username because they\'re retrieved from the Okta user profile.
+      * Create an Okta managed user account
+      * @param body
+      */
+  createOktaManagedUserAccount(body, _options) {
+    const requestContextPromise = this.requestFactory.createOktaManagedUserAccount(body, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createOktaManagedUserAccount(rsp)));
+      }));
+  }
+  /**
+      * Deletes an Okta managed user account specified by ID.  This operation removes the privileged account management for the Okta user, but doesn\'t delete the user from Okta Universal Directory.
+      * Delete an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      */
+  deleteOktaManagedUserAccount(id, _options) {
+    const requestContextPromise = this.requestFactory.deleteOktaManagedUserAccount(id, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteOktaManagedUserAccount(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an Okta managed user account specified by ID
+      * Retrieve an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      */
+  getOktaManagedUserAccount(id, _options) {
+    const requestContextPromise = this.requestFactory.getOktaManagedUserAccount(id, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOktaManagedUserAccount(rsp)));
+      }));
+  }
+  /**
+      * Lists all Okta managed user accounts in your org.  Use the `match` parameter to search for accounts where the account name (`name`), username (`username`),  or email (`email`) contains the specified value.
+      * List all Okta managed user accounts
+      * @param limit A limit on the number of objects to return
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param match Searches for Okta managed user accounts where the account name (&#x60;name&#x60;) or username (&#x60;username&#x60;) contains the given value
+      */
+  listOktaManagedUserAccounts(limit, after, match, _options) {
+    const requestContextPromise = this.requestFactory.listOktaManagedUserAccounts(limit, after, match, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listOktaManagedUserAccounts(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Updates an existing Okta managed user account specified by ID.  You can only update the `name`, `description`, `ownerUserIds`, and `ownerGroupIds` properties. You can\'t modify the `oktaUserId`, `username`, and `email` properties after the account is created.
+      * Update an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      * @param body
+      */
+  updateOktaManagedUserAccount(id, body, _options) {
+    const requestContextPromise = this.requestFactory.updateOktaManagedUserAccount(id, body, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOktaManagedUserAccount(rsp)));
+      }));
+  }
+}
+exports.ObservableOktaManagedUserAccountApi = ObservableOktaManagedUserAccountApi;
 const OktaPersonalSettingsApi_1 = require('../apis/OktaPersonalSettingsApi');
 class ObservableOktaPersonalSettingsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -9023,6 +10436,36 @@ class ObservableOktaPersonalSettingsApi {
   }
 }
 exports.ObservableOktaPersonalSettingsApi = ObservableOktaPersonalSettingsApi;
+const OperationsIntegrationApi_1 = require('../apis/OperationsIntegrationApi');
+class ObservableOperationsIntegrationApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new OperationsIntegrationApi_1.OperationsIntegrationApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new OperationsIntegrationApi_1.OperationsIntegrationApiResponseProcessor();
+  }
+  /**
+      * Retrieves an asynchronous operation and its current status
+      * Retrieve an operation status
+      * @param operationId ID of the asynchronous operation in Okta
+      */
+  getOperationStatus(operationId, _options) {
+    const requestContextPromise = this.requestFactory.getOperationStatus(operationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOperationStatus(rsp)));
+      }));
+  }
+}
+exports.ObservableOperationsIntegrationApi = ObservableOperationsIntegrationApi;
 const OrgCreatorApi_1 = require('../apis/OrgCreatorApi');
 class ObservableOrgCreatorApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -9964,7 +11407,7 @@ class ObservablePolicyApi {
   /**
       * Lists all policies with the specified type
       * List all policies
-      * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60;, and &#x60;ENTITY_RISK&#x60;.
+      * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; &#x60;DEVICE_SIGNAL_COLLECTION&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60; and &#x60;ENTITY_RISK&#x60;.
       * @param status Refines the query by the &#x60;status&#x60; of the policy - &#x60;ACTIVE&#x60; or &#x60;INACTIVE&#x60;
       * @param q Refines the query by policy name prefix (startWith method) passed in as &#x60;q&#x3D;string&#x60;
       * @param expand
@@ -10026,7 +11469,7 @@ class ObservablePolicyApi {
     }));
   }
   /**
-      * Maps a resource to a policy identified by `policyId`
+      * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
       * Map a resource to a policy
       * @param policyId &#x60;id&#x60; of the Policy
       * @param policyMappingRequest
@@ -10762,13 +12205,13 @@ class ObservableRealmApi {
       }));
   }
   /**
-      * Lists all Realms
+      * Lists all realms.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all realms
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;search&#x60; is provided.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param search Searches for realms with a supported filtering expression for most properties.  Searches for realms can be filtered by the contains (&#x60;co&#x60;) operator. You can only use &#x60;co&#x60; with the &#x60;profile.name&#x60; property. See [Operators](https://developer.okta.com/docs/api/#operators).
       * @param sortBy Specifies the field to sort by and can be any single property (for search queries only)
-      * @param sortOrder Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       */
   listRealms(limit, after, search, sortBy, sortOrder, _options) {
     const requestContextPromise = this.requestFactory.listRealms(limit, after, search, sortBy, sortOrder, _options);
@@ -10940,7 +12383,7 @@ class ObservableRealmAssignmentApi {
       * Lists all realm assignment operations. The upper limit is 200 and operations are sorted in descending order from most recent to oldest by ID.
       * List all realm assignment operations
       * @param limit A limit on the number of objects to return
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listRealmAssignmentOperations(limit, after, _options) {
     const requestContextPromise = this.requestFactory.listRealmAssignmentOperations(limit, after, _options);
@@ -11086,7 +12529,7 @@ class ObservableResourceSetApi {
       }));
   }
   /**
-      * Creates a binding for the resource set, custom role, and members (users or groups)
+      * Creates a binding for the resource set, custom role, and members (users or groups)  > **Note:** If you use a custom role with permissions that don\'t apply to the resources in the resource set, it doesn\'t affect the admin role. For example,  the `okta.users.userprofile.manage` permission gives the admin no privileges if it\'s granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`  resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
       * Create a role resource set binding
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param instance
@@ -11264,7 +12707,7 @@ class ObservableResourceSetApi {
       * Lists all bindings for a resource set with pagination support.  The returned `roles` array contains the roles for each binding associated with the specified resource set. If there are more than 100 bindings for the specified resource set, `links.next` provides the resource with pagination for the next list of bindings.
       * List all role resource set bindings
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listBindings(resourceSetId, after, _options) {
     const requestContextPromise = this.requestFactory.listBindings(resourceSetId, after, _options);
@@ -11287,7 +12730,7 @@ class ObservableResourceSetApi {
       * List all role resource set binding members
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options) {
     const requestContextPromise = this.requestFactory.listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options);
@@ -11309,9 +12752,11 @@ class ObservableResourceSetApi {
       * Lists all resources for the resource set
       * List all resource set resources
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
+      * @param after Specifies the pagination cursor for the next page of targets
+      * @param limit Specifies the number of results returned. Defaults to &#x60;100&#x60;.
       */
-  listResourceSetResources(resourceSetId, _options) {
-    const requestContextPromise = this.requestFactory.listResourceSetResources(resourceSetId, _options);
+  listResourceSetResources(resourceSetId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listResourceSetResources(resourceSetId, after, limit, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -11329,7 +12774,7 @@ class ObservableResourceSetApi {
   /**
       * Lists all resource sets with pagination support
       * List all resource sets
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listResourceSets(after, _options) {
     const requestContextPromise = this.requestFactory.listResourceSets(after, _options);
@@ -11348,7 +12793,7 @@ class ObservableResourceSetApi {
       }));
   }
   /**
-      * Replaces the label and description of a resource set
+      * Replaces the label and description of a resource set. See [Supported resources](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#supported-resources).
       * Replace a resource set
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param instance
@@ -11564,7 +13009,7 @@ class ObservableRoleAssignmentApi {
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param assignRoleRequest
       */
   assignRoleToClient(clientId, assignRoleRequest, _options) {
@@ -11632,7 +13077,7 @@ class ObservableRoleAssignmentApi {
   /**
       * Unassigns a role assignment (identified by `roleAssignmentId`) from a client app (identified by `clientId`)
       * Unassign a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       */
   deleteRoleFromClient(clientId, roleAssignmentId, _options) {
@@ -11796,7 +13241,7 @@ class ObservableRoleAssignmentApi {
   /**
       * Lists all roles assigned to a client app identified by `clientId`
       * List all client role assignments
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   listRolesForClient(clientId, _options) {
     const requestContextPromise = this.requestFactory.listRolesForClient(clientId, _options);
@@ -11832,7 +13277,7 @@ class ObservableRoleAssignmentApi {
   /**
       * Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`)
       * Retrieve a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       */
   retrieveClientRole(clientId, roleAssignmentId, _options) {
@@ -11977,7 +13422,7 @@ class ObservableRoleTargetApi {
   /**
       * Assigns an app instance target to an `APP_ADMIN` role assignment to a client. When you assign the first OIN app or app instance target, you reduce the scope of the role assignment. The role no longer applies to all app targets, but applies only to the specified target.  > **Note:** You can target a mixture of both OIN app and app instance targets, but you can\'t assign permissions to manage all instances of an OIN app and then assign a subset of permissions to the same app. For example, you can\'t specify that an admin has access to manage all instances of the Salesforce app and then also manage only specific configurations of the Salesforce app.
       * Assign a client role app instance target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       * @param appId Application ID
@@ -12001,7 +13446,7 @@ class ObservableRoleTargetApi {
   /**
       * Assigns an OIN app target for an `APP_ADMIN` role assignment to a client. When you assign an app target from the OIN catalog, you reduce the scope of the role assignment. The role assignment applies to only app instances that are included in the specified OIN app target.  An assigned OIN app target overrides any existing app instance targets. For example, if a user is assigned to administer a specific Facebook instance, a successful request to add an OIN app target with `facebook` for `appName` makes that user the administrator for all Facebook instances.
       * Assign a client role app target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       */
@@ -12070,7 +13515,7 @@ class ObservableRoleTargetApi {
   /**
       * Assigns a group target to a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app. When you assign the first group target, you reduce the scope of the role assignment. The role no longer applies to all targets, but applies only to the specified target.
       * Assign a client role group target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param groupId The &#x60;id&#x60; of the group
       */
@@ -12142,7 +13587,7 @@ class ObservableRoleTargetApi {
       * @param userId ID of an existing Okta user
       * @param roleIdOrEncodedRoleId The &#x60;id&#x60; of the role or Base32 encoded &#x60;id&#x60; of the role name
       * @param assignmentType Specifies the assignment type of the user
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   getRoleTargetsByUserIdAndRoleId(userId, roleIdOrEncodedRoleId, assignmentType, after, limit, _options) {
@@ -12157,9 +13602,9 @@ class ObservableRoleTargetApi {
   /**
       * Lists all OIN app targets for an `APP_ADMIN` role that\'s assigned to a client (by `clientId`).
       * List all client role app targets
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listAppTargetRoleToClient(clientId, roleAssignmentId, after, limit, _options) {
@@ -12176,7 +13621,7 @@ class ObservableRoleTargetApi {
       * List all group role app targets
       * @param groupId The &#x60;id&#x60; of the group
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
@@ -12193,7 +13638,7 @@ class ObservableRoleTargetApi {
       * List all admin role app targets
       * @param userId ID of an existing Okta user
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
@@ -12208,9 +13653,9 @@ class ObservableRoleTargetApi {
   /**
       * Lists all group targets for a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client. If the role isn\'t scoped to specific group targets, Okta returns an empty array `[]`.
       * List all client role group targets
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetRoleForClient(clientId, roleAssignmentId, after, limit, _options) {
@@ -12227,7 +13672,7 @@ class ObservableRoleTargetApi {
       * List all group role group targets
       * @param groupId The &#x60;id&#x60; of the group
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
@@ -12244,7 +13689,7 @@ class ObservableRoleTargetApi {
       * List all admin role group targets
       * @param userId ID of an existing Okta user
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetsForRole(userId, roleId, after, limit, _options) {
@@ -12259,7 +13704,7 @@ class ObservableRoleTargetApi {
   /**
       * Unassigns an app instance target from a role assignment to a client app  > **Note:** You can\'t remove the last app instance target from a role assignment. > If you need a role assignment that applies to all the apps, delete the role assignment with the instance target and create another one.  See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role app instance target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       * @param appId Application ID
@@ -12283,7 +13728,7 @@ class ObservableRoleTargetApi {
   /**
       * Unassigns an OIN app target for a role assignment to a client app  > **Note:** You can\'t remove the last OIN app target from a role assignment. > If you need a role assignment that applies to all apps, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role app target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       */
@@ -12306,7 +13751,7 @@ class ObservableRoleTargetApi {
   /**
       * Unassigns a Group target from a `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app.  > **Note:** You can\'t remove the last group target from a role assignment. If you need a role assignment that applies to all groups, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role group target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param groupId The &#x60;id&#x60; of the group
       */
@@ -13130,7 +14575,7 @@ class ObservableServiceAccountApi {
       * Lists all app service accounts
       * List all app service accounts
       * @param limit A limit on the number of objects to return
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param match Searches for app service accounts where the account name (&#x60;name&#x60;), username (&#x60;username&#x60;), app instance label (&#x60;containerInstanceName&#x60;), or OIN app key name (&#x60;containerGlobalName&#x60;) contains the given value
       */
   listAppServiceAccounts(limit, after, match, _options) {
@@ -13146,7 +14591,7 @@ class ObservableServiceAccountApi {
       * Lists all service accounts
       * List all service accounts
       * @param limit Specifies the number of results returned
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param q Searches for service accounts where the account name, username, app instance name, or global app name contains the given value
       */
   listServiceAccounts(limit, after, q, _options) {
@@ -13212,7 +14657,7 @@ class ObservableSessionApi {
     this.responseProcessor = responseProcessor || new SessionApi_1.SessionApiResponseProcessor();
   }
   /**
-      * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Closes the session for the user who is currently signed in. Use this method in a browser-based app to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Close the current session
       * @param cookie
       */
@@ -13233,7 +14678,7 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
       * Create a session with session token
       * @param createSessionRequest
       */
@@ -13254,7 +14699,7 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Retrieves session information for the current user. Use this method in a browser-based app to determine if the user is signed in.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Retrieve the current session
       * @param cookie
       */
@@ -13275,9 +14720,9 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Retrieves information about the Session specified by the given session ID
+      * Retrieves information about the session specified by the given session ID
       * Retrieve a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   getSession(sessionId, _options) {
     const requestContextPromise = this.requestFactory.getSession(sessionId, _options);
@@ -13296,7 +14741,7 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Refreshes the session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Refresh the current session
       * @param cookie
       */
@@ -13317,9 +14762,9 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
+      * Refreshes an existing session using the `id` for that session. A successful response contains the refreshed session with an updated `expiresAt` timestamp.
       * Refresh a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   refreshSession(sessionId, _options) {
     const requestContextPromise = this.requestFactory.refreshSession(sessionId, _options);
@@ -13338,9 +14783,9 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Revokes the specified Session
+      * Revokes the specified session
       * Revoke a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   revokeSession(sessionId, _options) {
     const requestContextPromise = this.requestFactory.revokeSession(sessionId, _options);
@@ -13370,7 +14815,7 @@ class ObservableSubscriptionApi {
   /**
       * Lists all subscriptions available to a specified Role
       * List all subscriptions for a role
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       */
   listRoleSubscriptions(roleTypeOrRoleId, _options) {
     const requestContextPromise = this.requestFactory.listRoleSubscriptions(roleTypeOrRoleId, _options);
@@ -13384,7 +14829,7 @@ class ObservableSubscriptionApi {
   /**
       * Retrieves a subscription by `notificationType` for a specified Role
       * Retrieve a subscription for a role
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options) {
@@ -13442,7 +14887,7 @@ class ObservableSubscriptionApi {
   /**
       * Subscribes a Role to a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
       * Subscribe a role to a specific notification type
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {
@@ -13486,7 +14931,7 @@ class ObservableSubscriptionApi {
   /**
       * Unsubscribes a Role from a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
       * Unsubscribe a role from a specific notification type
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {
@@ -14042,6 +15487,38 @@ class ObservableUISchemaApi {
   }
 }
 exports.ObservableUISchemaApi = ObservableUISchemaApi;
+const UnconfirmedUsersApi_1 = require('../apis/UnconfirmedUsersApi');
+class ObservableUnconfirmedUsersApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new UnconfirmedUsersApi_1.UnconfirmedUsersApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new UnconfirmedUsersApi_1.UnconfirmedUsersApiResponseProcessor();
+  }
+  /**
+      * Lists all unconfirmed users for an app
+      * List all unconfirmed users
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of results. Treat this as an opaque value obtained through the next link relationship. See [Pagination](/#pagination).
+      * @param limit Specifies the number of objects to return per page. If there are multiple pages of results, the Link header contains a &#x60;next&#x60; link that you need to use as an opaque value (follow it, don\&#39;t parse it). See [Pagination](/#pagination).
+      */
+  listUnconfirmedUsers(appId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listUnconfirmedUsers(appId, after, limit, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listUnconfirmedUsers(rsp)));
+      }));
+  }
+}
+exports.ObservableUnconfirmedUsersApi = ObservableUnconfirmedUsersApi;
 const UserApi_1 = require('../apis/UserApi');
 class ObservableUserApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -14141,7 +15618,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.
+      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.  > **Note:** Users with the `DEPROVISIONED` status won\'t have their profiles updated when running the [Update a user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/updateUser) endpoint unless you have the **Edit Deactived User Profile Updates** option turned on in the Admin Console. See [Edit deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).
       * Deactivate a user
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param sendEmail Sends a deactivation email to the admin if &#x60;true&#x60;
@@ -14366,7 +15843,7 @@ class ObservableUserApi {
       * Retrieves a refresh token issued for the specified user and client
       * Retrieve a refresh token for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       */
@@ -14515,7 +15992,7 @@ class ObservableUserApi {
       * Lists all grants for a specified user and client
       * List all grants for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of tokens to return
@@ -14534,7 +16011,7 @@ class ObservableUserApi {
       * List all users for IdP
       * @param idpId &#x60;id&#x60; of IdP
       * @param q Searches the records for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Expand user data
       */
@@ -14566,7 +16043,7 @@ class ObservableUserApi {
       * Lists all refresh tokens issued for the specified user and client
       * List all refresh tokens for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of tokens to return
@@ -14684,20 +16161,21 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Note:** This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead.
+      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Notes:**  >  * This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead. >  * The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all users
       * @param contentType Specifies the media type of the resource. Optional &#x60;okta-response&#x60; value can be included for performance optimization.  Complex DelAuth configurations may degrade performance when fetching specific parts of the response, and passing this parameter can omit these parts, bypassing the bottleneck.  Enum values for &#x60;okta-response&#x60;:   * &#x60;omitCredentials&#x60;: Omits the credentials subobject from the response.   * &#x60;omitCredentialsLinks&#x60;: Omits the following HAL links from the response: Update password, Change recovery question, Start forgot password flow, Reset password, Reset factors, Unlock.   * &#x60;omitTransitioningToStatus&#x60;: Omits the &#x60;transitioningToStatus&#x60; field from the response.
-      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for optimal search performance.   &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.   This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;search&#x3D;profile.department eq \&quot;Engineering\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.department%20eq%20%22Engineering%22&#x60;. If you use the special character &#x60;\&quot;&#x60; within a quoted string, it must also be escaped &#x60;\\&#x60; and encoded. For example, &#x60;search&#x3D;profile.lastName eq \&quot;bob\&quot;smith\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.lastName%20eq%20%22bob%5C%22smith%22&#x60;. See [Special Characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param filter Filters users with a supported expression for a subset of properties.   &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param q Finds users who match the specified query. This doesn\&#39;t support pagination.  &gt; **Note:** For optimal performance, use the &#x60;search&#x60; parameter instead.  Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Note:** Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a filter or search query instead.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
-      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
-      * @param sortBy Specifies field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property will be ordered by &#x60;id&#x60;.
-      * @param sortOrder Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn\&#39;t case sensitive. &#x60;sortOrder&#x60; is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.  This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). See [Special characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;   * Properties that have array values  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param filter Filters users with a supported expression for a subset of properties.  &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param q Finds users who match the specified query. Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Notes:**  &gt; * Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a &#x60;filter&#x60; or &#x60;search&#x60; query instead. &gt; * This doesn\&#39;t support pagination, but you can use &#x60;limit&#x60;.  &gt; * This isn\&#39;t designed for large data sets. For optimal performance, use the &#x60;search&#x60; parameter instead.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.  You can use &#x60;limit&#x60; with &#x60;after&#x60; to define the cursor location in the data set and manage the user records per page.
+      * @param sortBy Specifies the field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;. Use with &#x60;sortOrder&#x60; to control the order of results.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param fields Specifies a select set of user properties to query. Any other properties will be filtered out of the returned users. This is often called field projections in APIs, which can reduce payload size, improve performance, and limit unneccessary data exposure.  Requested fields should be comma-separated. Comma-separate the fields and place sub-fields in the profile object inside a &#x60;profile:()&#x60; directive, for example &#x60;profile:(firstName, city)&#x60;. The &#x60;id&#x60; field is always included, regardless of whether it\&#39;s specified in the &#x60;fields&#x60; parameter.
       * @param expand A parameter to include metadata in the &#x60;_embedded&#x60; property. Supported value: &#x60;classification&#x60;.
       */
-  listUsers(contentType, search, filter, q, after, limit, sortBy, sortOrder, expand, _options) {
-    const requestContextPromise = this.requestFactory.listUsers(contentType, search, filter, q, after, limit, sortBy, sortOrder, expand, _options);
+  listUsers(contentType, search, filter, q, after, limit, sortBy, sortOrder, fields, expand, _options) {
+    const requestContextPromise = this.requestFactory.listUsers(contentType, search, filter, q, after, limit, sortBy, sortOrder, fields, expand, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listUsers(rsp),
     };
@@ -14798,7 +16276,7 @@ class ObservableUserApi {
       * Revokes all grants for the specified user and client
       * Revoke all grants for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeGrantsForUserAndClient(userId, clientId, _options) {
     const requestContextPromise = this.requestFactory.revokeGrantsForUserAndClient(userId, clientId, _options);
@@ -14817,10 +16295,10 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Revokes the specified refresh token
+      * Revokes the specified refresh and access tokens
       * Revoke a token for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       */
   revokeTokenForUserAndClient(userId, clientId, tokenId, _options) {
@@ -14843,7 +16321,7 @@ class ObservableUserApi {
       * Revokes all refresh tokens issued for the specified user and client
       * Revoke all refresh tokens for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeTokensForUserAndClient(userId, clientId, _options) {
     const requestContextPromise = this.requestFactory.revokeTokensForUserAndClient(userId, clientId, _options);
@@ -14905,13 +16383,14 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user. > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.  You can also clear the user\'s remembered factors for all devices using the `forgetDevices` parameter. See [forgetDevices](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserSessions/#tag/UserSessions/operation/revokeUserSessions!in=query&path=forgetDevices&t=request). > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
       * Revoke all user sessions
       * @param userId ID of an existing Okta user
-      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
+      * @param oauthTokens Revokes issued OpenID Connect and OAuth refresh and access tokens
+      * @param forgetDevices Clears the user\&#39;s remembered factors for all devices. &gt; **Note:** This parameter defaults to false in Classic Engine.
       */
-  revokeUserSessions(userId, oauthTokens, _options) {
-    const requestContextPromise = this.requestFactory.revokeUserSessions(userId, oauthTokens, _options);
+  revokeUserSessions(userId, oauthTokens, forgetDevices, _options) {
+    const requestContextPromise = this.requestFactory.revokeUserSessions(userId, oauthTokens, forgetDevices, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -15035,7 +16514,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request. > **Note**: Currently, the user type of a user can only be changed via a full replacement PUT operation. If the request parameters of a partial update include the type element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type.  > **Note**: To update a current user\'s profile with partial semantics, the `/api/v1/users/me` endpoint can be invoked. > > A user can only update profile properties for which the user has write access. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification.  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
+      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request.  > **Notes:**  > * Currently, the user type of a user can only be changed using a full replacement `PUT` operation. If the request parameters of a partial update include the `type` element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type. > > * To update a current user\'s profile with partial semantics, you can use the `/api/v1/users/me` endpoint. But, a user can only update profile properties that they have write access for. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification. > > * You can update user profiles of users in the `DEPROVISIONED` status if you have the **Edit Deactivated User Profile Updates** option turned on in the Admin Console. See [deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
       * Update a user
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param user
@@ -15160,9 +16639,10 @@ class ObservableUserAuthenticatorEnrollmentsApi {
       * Retrieve an authenticator enrollment
       * @param userId ID of an existing Okta user
       * @param enrollmentId Unique identifier of an enrollment
+      * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
       */
-  getAuthenticatorEnrollment(userId, enrollmentId, _options) {
-    const requestContextPromise = this.requestFactory.getAuthenticatorEnrollment(userId, enrollmentId, _options);
+  getAuthenticatorEnrollment(userId, enrollmentId, discloseIdentifiers, _options) {
+    const requestContextPromise = this.requestFactory.getAuthenticatorEnrollment(userId, enrollmentId, discloseIdentifiers, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -15181,9 +16661,10 @@ class ObservableUserAuthenticatorEnrollmentsApi {
       * Lists all authenticator enrollments of the specified user
       * List all authenticator enrollments
       * @param userId ID of an existing Okta user
+      * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
       */
-  listAuthenticatorEnrollments(userId, _options) {
-    const requestContextPromise = this.requestFactory.listAuthenticatorEnrollments(userId, _options);
+  listAuthenticatorEnrollments(userId, discloseIdentifiers, _options) {
+    const requestContextPromise = this.requestFactory.listAuthenticatorEnrollments(userId, discloseIdentifiers, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -15799,6 +17280,49 @@ class ObservableYourOinIntegrationsApi {
       }));
   }
   /**
+      * Retrieves all actions for a specific capability in an OIN Integration submission
+      * Retrieve all actions for OIN integration
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      */
+  getSubmissionActions(submissionId, capability, _options) {
+    const requestContextPromise = this.requestFactory.getSubmissionActions(submissionId, capability, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSubmissionActions(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the authentication settings for an OIN Integration submission
+      * Retrieve the authentication settings
+      * @param submissionId OIN Integration ID
+      */
+  getSubmissionAuthSettings(submissionId, _options) {
+    const requestContextPromise = this.requestFactory.getSubmissionAuthSettings(submissionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSubmissionAuthSettings(rsp)));
+      }));
+  }
+  /**
       * Retrieves an OIN Integration by ID
       * Retrieve an OIN integration
       * @param submissionId OIN Integration ID
@@ -15820,6 +17344,27 @@ class ObservableYourOinIntegrationsApi {
       }));
   }
   /**
+      * Retrieves the tenant settings for an OIN Integration submission
+      * Retrieve the tenant settings
+      * @param submissionId OIN Integration ID
+      */
+  getSubmissionTenantSettings(submissionId, _options) {
+    const requestContextPromise = this.requestFactory.getSubmissionTenantSettings(submissionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSubmissionTenantSettings(rsp)));
+      }));
+  }
+  /**
       * Retrieves the testing information for an existing OIN Integration
       * Retrieve an OIN integration testing information
       * @param submissionId OIN Integration ID
@@ -15838,6 +17383,50 @@ class ObservableYourOinIntegrationsApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSubmissionTestInfo(rsp)));
+      }));
+  }
+  /**
+      * Lists all available actions from an actions provider (such as Workflows) for a specific OIN integration
+      * List all available actions for an OIN integration
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param actionsProviderType Actions provider type
+      */
+  listAvailableActions(submissionId, capability, actionsProviderType, _options) {
+    const requestContextPromise = this.requestFactory.listAvailableActions(submissionId, capability, actionsProviderType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listAvailableActions(rsp)));
+      }));
+  }
+  /**
+      * Lists all capabilities for an OIN Integration submission
+      * List all supported capabilities
+      * @param submissionId OIN Integration ID
+      */
+  listSubmissionCapabilities(submissionId, _options) {
+    const requestContextPromise = this.requestFactory.listSubmissionCapabilities(submissionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listSubmissionCapabilities(rsp)));
       }));
   }
   /**
@@ -15899,6 +17488,27 @@ class ObservableYourOinIntegrationsApi {
       }));
   }
   /**
+      * Uploads a default logo to the OIN submission. The image must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
+      * Upload a default logo for an OIN integration
+      * @param file
+      */
+  uploadSubmissionDefaultLogo(file, _options) {
+    const requestContextPromise = this.requestFactory.uploadSubmissionDefaultLogo(file, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.uploadSubmissionDefaultLogo(rsp)));
+      }));
+  }
+  /**
       * Uploads a logo to your org. The image uploaded must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
       * Upload an OIN integration logo
       * @param file
@@ -15917,6 +17527,95 @@ class ObservableYourOinIntegrationsApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.uploadSubmissionLogo(rsp)));
+      }));
+  }
+  /**
+      * Upserts (adds or replaces) actions for a specific capability in an OIN Integration submission
+      * Upsert the submission actions
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param submissionActions
+      */
+  upsertSubmissionActions(submissionId, capability, submissionActions, _options) {
+    const requestContextPromise = this.requestFactory.upsertSubmissionActions(submissionId, capability, submissionActions, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertSubmissionActions(rsp)));
+      }));
+  }
+  /**
+      * Upserts (adds or replaces) authentication settings for an OIN Integration submission
+      * Upsert the submission authentication settings
+      * @param submissionId OIN Integration ID
+      * @param authSettings
+      */
+  upsertSubmissionAuthSettings(submissionId, authSettings, _options) {
+    const requestContextPromise = this.requestFactory.upsertSubmissionAuthSettings(submissionId, authSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertSubmissionAuthSettings(rsp)));
+      }));
+  }
+  /**
+      * Upserts (adds or replaces) capabilities for an OIN Integration submission
+      * Upsert the submission supported capabilities
+      * @param submissionId OIN Integration ID
+      * @param submissionCapabilities
+      */
+  upsertSubmissionCapabilities(submissionId, submissionCapabilities, _options) {
+    const requestContextPromise = this.requestFactory.upsertSubmissionCapabilities(submissionId, submissionCapabilities, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertSubmissionCapabilities(rsp)));
+      }));
+  }
+  /**
+      * Upserts (adds or replaces) tenant settings for an OIN Integration submission
+      * Upsert the submission tenant settings
+      * @param submissionId OIN Integration ID
+      * @param tenantSettings
+      */
+  upsertSubmissionTenantSettings(submissionId, tenantSettings, _options) {
+    const requestContextPromise = this.requestFactory.upsertSubmissionTenantSettings(submissionId, tenantSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertSubmissionTenantSettings(rsp)));
       }));
   }
   /**
@@ -15939,6 +17638,29 @@ class ObservableYourOinIntegrationsApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertSubmissionTestInfo(rsp)));
+      }));
+  }
+  /**
+      * Verifies the submission actions\' correctness with an actions provider, such as Workflows
+      * Verify the submission actions
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param actionsProviderType Actions provider type
+      */
+  verifyActions(submissionId, capability, actionsProviderType, _options) {
+    const requestContextPromise = this.requestFactory.verifyActions(submissionId, capability, actionsProviderType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.verifyActions(rsp)));
       }));
   }
 }

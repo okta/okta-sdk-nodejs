@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationInlineHookSSRData = void 0;
 const RegistrationInlineHookRequest_1 = require('./../models/RegistrationInlineHookRequest');
 class RegistrationInlineHookSSRData extends RegistrationInlineHookRequest_1.RegistrationInlineHookRequest {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(RegistrationInlineHookSSRData.attributeTypeMap);
+  }
   constructor() {
     super();
     this.requestType = 'self.service.registration';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(RegistrationInlineHookSSRData.attributeTypeMap);
   }
 }
 exports.RegistrationInlineHookSSRData = RegistrationInlineHookSSRData;

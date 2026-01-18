@@ -33,7 +33,7 @@ export declare class WebAuthnCredResponse {
   /**
     * Encrypted JSON Web Encryption (JWE) of the credential response from the fulfillment provider
     */
-  'credResponseJWE'?: string;
+  'credResponseJwe'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

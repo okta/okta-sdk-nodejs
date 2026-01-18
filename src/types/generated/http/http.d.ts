@@ -12,6 +12,9 @@
 
 
 /// <reference types="node" />
+/// <reference types="node" />
+/// <reference types="node" />
+/// <reference types="node" />
 import * as FormData from 'form-data';
 import { URLSearchParams } from 'url';
 import * as http from 'http';
@@ -35,7 +38,7 @@ export declare enum HttpMethodEnum {
 /**
  * Represents an HTTP file which will be transferred from or to a server.
  */
-export declare type HttpFile = {
+export type HttpFile = {
     data: Buffer;
     name: string;
 };
@@ -45,7 +48,7 @@ export declare class HttpException extends Error {
 /**
  * Represents the body of an outgoing HTTP request.
  */
-export declare type RequestBody = undefined | string | FormData | URLSearchParams;
+export type RequestBody = undefined | string | FormData | URLSearchParams;
 /**
  * Represents an HTTP request context
  */

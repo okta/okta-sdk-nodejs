@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SalesforceApplicationSettings = void 0;
 class SalesforceApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SalesforceApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SalesforceApplicationSettings = SalesforceApplicationSettings;

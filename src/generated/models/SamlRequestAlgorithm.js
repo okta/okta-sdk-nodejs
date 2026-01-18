@@ -29,15 +29,21 @@ exports.SamlRequestAlgorithm = void 0;
 * Algorithm settings used to secure an `<AuthnRequest>` message
 */
 class SamlRequestAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlRequestAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlRequestAlgorithm = SamlRequestAlgorithm;
 SamlRequestAlgorithm.discriminator = undefined;
 SamlRequestAlgorithm.attributeTypeMap = [
+  {
+    'name': 'digest',
+    'baseName': 'digest',
+    'type': 'SamlRequestDigestAlgorithm',
+    'format': ''
+  },
   {
     'name': 'signature',
     'baseName': 'signature',

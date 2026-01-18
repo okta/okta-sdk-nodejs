@@ -47,4 +47,4 @@ export declare class UserFactorTokenHOTP extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorTokenHOTPProviderEnum = 'CUSTOM';
+export type UserFactorTokenHOTPProviderEnum = 'CUSTOM';

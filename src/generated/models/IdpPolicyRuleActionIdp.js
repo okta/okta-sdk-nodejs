@@ -29,10 +29,10 @@ exports.IdpPolicyRuleActionIdp = void 0;
 * Specifies IdP settings
 */
 class IdpPolicyRuleActionIdp {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdpPolicyRuleActionIdp.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdpPolicyRuleActionIdp = IdpPolicyRuleActionIdp;
@@ -54,6 +54,12 @@ IdpPolicyRuleActionIdp.attributeTypeMap = [
     'name': 'matchCriteria',
     'baseName': 'matchCriteria',
     'type': 'Array<IdpPolicyRuleActionMatchCriteria>',
+    'format': ''
+  },
+  {
+    'name': 'shouldFallBackToOkta',
+    'baseName': 'shouldFallBackToOkta',
+    'type': 'boolean',
     'format': ''
   }
 ];

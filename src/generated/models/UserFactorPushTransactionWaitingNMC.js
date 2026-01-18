@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionWaitingNMC = void 0;
 const UserFactorPushTransaction_1 = require('./../models/UserFactorPushTransaction');
 class UserFactorPushTransactionWaitingNMC extends UserFactorPushTransaction_1.UserFactorPushTransaction {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorPushTransactionWaitingNMC.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorResult = 'WAITING (with number matching challenge)';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorPushTransactionWaitingNMC.attributeTypeMap);
   }
 }
 exports.UserFactorPushTransactionWaitingNMC = UserFactorPushTransactionWaitingNMC;

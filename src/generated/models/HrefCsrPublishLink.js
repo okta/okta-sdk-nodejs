@@ -29,10 +29,10 @@ exports.HrefCsrPublishLink = void 0;
 * Link to publish CSR
 */
 class HrefCsrPublishLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefCsrPublishLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefCsrPublishLink = HrefCsrPublishLink;

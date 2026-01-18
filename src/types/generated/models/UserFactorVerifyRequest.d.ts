@@ -38,7 +38,7 @@ import { Webauthn1 } from './../models/Webauthn1';
  * Type
  * @export
  */
-export declare type UserFactorVerifyRequest = Call1 | Email1 | Push1 | Question | Sms1 | Token | TokenHardware | TokenHotp | TokenSoftwareTotp1 | U2f1 | Webauthn1;
+export type UserFactorVerifyRequest = Call1 | Email1 | Push1 | Question | Sms1 | Token | TokenHardware | TokenHotp | TokenSoftwareTotp1 | U2f1 | Webauthn1;
 /**
 * @type UserFactorVerifyRequestClass
 * @export

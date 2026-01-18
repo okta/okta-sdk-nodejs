@@ -34,6 +34,10 @@ export declare class TestInfoScimTestConfiguration {
     * The Runscope URL to your Okta SCIM CRUD test results. See [Test your Okta SCIM integration](https://developer.okta.com/docs/guides/scim-provisioning-integration-test/main/).
     */
   'crudTestResults': string;
+  /**
+    * The Runscope URL to your entitlements test results
+    */
+  'entitlementsTestResults'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

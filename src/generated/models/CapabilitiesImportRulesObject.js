@@ -29,10 +29,10 @@ exports.CapabilitiesImportRulesObject = void 0;
 * Defines user import rules
 */
 class CapabilitiesImportRulesObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesImportRulesObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesImportRulesObject = CapabilitiesImportRulesObject;

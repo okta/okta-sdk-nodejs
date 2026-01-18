@@ -24,7 +24,7 @@
  */
 import { CaepCredentialChangeEventReasonAdmin } from './../models/CaepCredentialChangeEventReasonAdmin';
 import { CaepCredentialChangeEventReasonUser } from './../models/CaepCredentialChangeEventReasonUser';
-import { SecurityEventSubject } from './../models/SecurityEventSubject';
+import { SsfTransmitterSecurityEventSubject } from './../models/SsfTransmitterSecurityEventSubject';
 /**
 * The credential was created, changed, revoked or deleted
 */
@@ -55,7 +55,7 @@ export declare class CaepCredentialChangeEvent {
   'initiating_entity'?: CaepCredentialChangeEventInitiatingEntityEnum;
   'reason_admin'?: CaepCredentialChangeEventReasonAdmin;
   'reason_user'?: CaepCredentialChangeEventReasonUser;
-  'subject'?: SecurityEventSubject;
+  'subject'?: SsfTransmitterSecurityEventSubject;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -71,6 +71,6 @@ export declare class CaepCredentialChangeEvent {
     }[];
   constructor();
 }
-export declare type CaepCredentialChangeEventChangeTypeEnum = 'create' | 'revoke' | 'update' | 'delete';
-export declare type CaepCredentialChangeEventCredentialTypeEnum = 'password' | 'pin' | 'x509' | 'fido2-platform' | 'fido2-roaming' | 'fido-u2f' | 'verifiable-credential' | 'phone-voice' | 'phone-sms' | 'app' | 'SECURITY_QUESTION' | 'SOFT_TOKEN' | 'OKTA_SOFT_TOKEN' | 'VIP_FACTOR' | 'EMAIL_FACTOR' | 'SECUREID_FACTOR' | 'DUO_SECURITY' | 'OKTA_VERIFY_PUSH' | 'YUBIKEY_OTP_FACTOR' | 'FIDO_WEBAUTHN' | 'CUSTOM_APP_PUSH' | 'CLAIMS_AS_FACTOR' | 'HOTP_FACTOR' | 'SIGNED_NONCE' | 'ALL_FACTORS' | 'TOTP';
-export declare type CaepCredentialChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
+export type CaepCredentialChangeEventChangeTypeEnum = 'create' | 'revoke' | 'update' | 'delete';
+export type CaepCredentialChangeEventCredentialTypeEnum = 'password' | 'pin' | 'x509' | 'fido2-platform' | 'fido2-roaming' | 'fido-u2f' | 'verifiable-credential' | 'phone-voice' | 'phone-sms' | 'app' | 'SECURITY_QUESTION' | 'SOFT_TOKEN' | 'OKTA_SOFT_TOKEN' | 'VIP_FACTOR' | 'EMAIL_FACTOR' | 'SECUREID_FACTOR' | 'DUO_SECURITY' | 'OKTA_VERIFY_PUSH' | 'YUBIKEY_OTP_FACTOR' | 'FIDO_WEBAUTHN' | 'CUSTOM_APP_PUSH' | 'CLAIMS_AS_FACTOR' | 'HOTP_FACTOR' | 'SIGNED_NONCE' | 'ALL_FACTORS' | 'TOTP';
+export type CaepCredentialChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';

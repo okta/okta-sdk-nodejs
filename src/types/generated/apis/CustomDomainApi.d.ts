@@ -25,7 +25,7 @@ import { UpdateDomain } from '../models/UpdateDomain';
 export declare class CustomDomainApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Creates your custom domain
-     * Create a Custom Domain
+     * Create a custom domain
      * @param domain
      */
   createCustomDomain(domain: DomainRequest, _options?: Configuration): Promise<RequestContext>;
@@ -43,7 +43,7 @@ export declare class CustomDomainApiRequestFactory extends BaseAPIRequestFactory
   getCustomDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all verified custom domains for the org
-     * List all Custom Domains
+     * List all custom domains
      */
   listCustomDomains(_options?: Configuration): Promise<RequestContext>;
   /**
@@ -61,7 +61,7 @@ export declare class CustomDomainApiRequestFactory extends BaseAPIRequestFactory
      */
   upsertCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Verifies the custom domain and validity of DNS records by `domainId`. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.
+     * Verifies the custom domain and validity of DNS records by `domainId`. Verify your custom domain to confirm that you own or control the domain and that you have properly configured the required DNS records. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.  Verify your custom domain after you\'ve [created it](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomDomain/#tag/CustomDomain/operation/createCustomDomain) and after you\'ve added your TXT and CNAME records to your domain provider. Okta doesn\'t verify your domain automatically. You must use the API to verify your custom domain if you change your DNS records or if you encounter issues with domain validation.  > **Note:** DNS record changes can take time to propagate. If you recently updated your DNS records, you may need to wait before verifying your custom domain. If you encounter issues with domain verification, double-check your DNS records and ensure that they\'re correctly configured. See [Update your DNS TXT](https://developer.okta.com/docs/guides/custom-url-domain/main/#update-your-dns-txt) for more information about verifying your custom domain.
      * Verify a custom domain
      * @param domainId &#x60;id&#x60; of the Domain
      */

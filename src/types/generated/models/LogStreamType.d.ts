@@ -25,4 +25,4 @@
 /**
 * Specifies the streaming provider used  Supported providers:   * `aws_eventbridge` ([AWS EventBridge](https://aws.amazon.com/eventbridge))   * `splunk_cloud_logstreaming` ([Splunk Cloud](https://www.splunk.com/en_us/software/splunk-cloud-platform.html))  Select the provider type to see provider-specific configurations in the `settings` property:
 */
-export declare type LogStreamType = 'aws_eventbridge' | 'splunk_cloud_logstreaming';
+export type LogStreamType = 'aws_eventbridge' | 'splunk_cloud_logstreaming';

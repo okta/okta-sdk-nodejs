@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DevicePolicyTrustLevel = 'ANY' | 'TRUSTED';
+export type DevicePolicyTrustLevel = 'ANY' | 'TRUSTED';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectUnsuspendLink = void 0;
 class HrefObjectUnsuspendLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectUnsuspendLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectUnsuspendLink = HrefObjectUnsuspendLink;

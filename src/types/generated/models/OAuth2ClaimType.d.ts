@@ -25,4 +25,4 @@
 /**
 * Specifies whether the Claim is for an access token (`RESOURCE`) or an ID token (`IDENTITY`)
 */
-export declare type OAuth2ClaimType = 'IDENTITY' | 'RESOURCE';
+export type OAuth2ClaimType = 'IDENTITY' | 'RESOURCE';

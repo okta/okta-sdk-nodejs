@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResourceSetResourcesLinks = void 0;
 class ResourceSetResourcesLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceSetResourcesLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceSetResourcesLinks = ResourceSetResourcesLinks;
@@ -38,7 +38,7 @@ ResourceSetResourcesLinks.attributeTypeMap = [
   {
     'name': 'next',
     'baseName': 'next',
-    'type': 'HrefObject',
+    'type': 'HrefObjectNextLink',
     'format': ''
   },
   {

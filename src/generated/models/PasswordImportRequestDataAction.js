@@ -29,10 +29,10 @@ exports.PasswordImportRequestDataAction = void 0;
 * This object specifies the default action Okta is set to take. Okta takes this action if your external service sends an empty HTTP 204 response. You can override the default action by returning a commands object in your response specifying the action to take.
 */
 class PasswordImportRequestDataAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordImportRequestDataAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordImportRequestDataAction = PasswordImportRequestDataAction;

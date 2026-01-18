@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksSend = void 0;
 class LinksSend {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksSend.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksSend = LinksSend;

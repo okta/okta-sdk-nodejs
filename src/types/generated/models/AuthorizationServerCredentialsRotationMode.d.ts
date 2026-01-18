@@ -25,4 +25,4 @@
 /**
 * The Key rotation mode for the authorization server
 */
-export declare type AuthorizationServerCredentialsRotationMode = 'AUTO' | 'MANUAL';
+export type AuthorizationServerCredentialsRotationMode = 'AUTO' | 'MANUAL';

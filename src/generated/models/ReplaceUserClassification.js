@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ReplaceUserClassification = void 0;
 class ReplaceUserClassification {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ReplaceUserClassification.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ReplaceUserClassification = ReplaceUserClassification;

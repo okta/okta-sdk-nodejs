@@ -29,10 +29,10 @@ exports.BaseTokenTokenLifetime = void 0;
 * Lifetime of the token
 */
 class BaseTokenTokenLifetime {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseTokenTokenLifetime.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseTokenTokenLifetime = BaseTokenTokenLifetime;

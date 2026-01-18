@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceAssurance = void 0;
 class DeviceAssurance {
-  constructor() {
-    // this.platform = 'DeviceAssurance';
-  }
   static getAttributeTypeMap() {
     return DeviceAssurance.attributeTypeMap;
+  }
+  constructor() {
+    // this.platform = 'DeviceAssurance';
   }
 }
 exports.DeviceAssurance = DeviceAssurance;

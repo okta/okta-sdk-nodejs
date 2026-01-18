@@ -25,4 +25,4 @@
 /**
 * Indicates how severe the event is
 */
-export declare type LogSeverity = 'DEBUG' | 'ERROR' | 'INFO' | 'WARN';
+export type LogSeverity = 'DEBUG' | 'ERROR' | 'INFO' | 'WARN';

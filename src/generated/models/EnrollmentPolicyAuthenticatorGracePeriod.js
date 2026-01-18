@@ -26,20 +26,21 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EnrollmentPolicyAuthenticatorGracePeriod = void 0;
 /**
-* Specifies the time period required to complete an authenticator enrollment or setup
+* Specifies the [grace period](https://developer.okta.com/docs/concepts/policies/#authenticator-enrollment-policies) configuration for completing an authenticator enrollment or setup
 */
 class EnrollmentPolicyAuthenticatorGracePeriod {
-  constructor() {
-    // this.type = 'EnrollmentPolicyAuthenticatorGracePeriod';
-  }
   static getAttributeTypeMap() {
     return EnrollmentPolicyAuthenticatorGracePeriod.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'EnrollmentPolicyAuthenticatorGracePeriod';
   }
 }
 exports.EnrollmentPolicyAuthenticatorGracePeriod = EnrollmentPolicyAuthenticatorGracePeriod;
 EnrollmentPolicyAuthenticatorGracePeriod.discriminator = 'type';
 EnrollmentPolicyAuthenticatorGracePeriod.mapping = {
   'BY_DATE_TIME': 'ByDateTimeAuthenticatorGracePeriodExpiry',
+  'BY_SKIP_COUNT': 'BySkipCountAuthenticatorGracePeriod',
 };
 EnrollmentPolicyAuthenticatorGracePeriod.attributeTypeMap = [
   {

@@ -29,10 +29,10 @@ exports.KeepMeSignedIn = void 0;
 * Controls how often the post-authentication prompt is presented to users
 */
 class KeepMeSignedIn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return KeepMeSignedIn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.KeepMeSignedIn = KeepMeSignedIn;

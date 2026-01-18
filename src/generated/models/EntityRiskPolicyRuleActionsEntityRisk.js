@@ -29,10 +29,10 @@ exports.EntityRiskPolicyRuleActionsEntityRisk = void 0;
 * The object that contains the `actions` array
 */
 class EntityRiskPolicyRuleActionsEntityRisk {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActionsEntityRisk.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleActionsEntityRisk = EntityRiskPolicyRuleActionsEntityRisk;

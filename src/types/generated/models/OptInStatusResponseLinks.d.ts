@@ -23,6 +23,9 @@
  * Do not edit the class manually.
  */
 import { HrefObject } from './../models/HrefObject';
+/**
+* Link relations available
+*/
 export declare class OptInStatusResponseLinks {
   'optInStatus'?: HrefObject;
   static readonly discriminator: string | undefined;

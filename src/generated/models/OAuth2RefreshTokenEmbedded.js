@@ -29,10 +29,10 @@ exports.OAuth2RefreshTokenEmbedded = void 0;
 * The embedded resources related to the object if the `expand` query parameter is specified
 */
 class OAuth2RefreshTokenEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2RefreshTokenEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2RefreshTokenEmbedded = OAuth2RefreshTokenEmbedded;

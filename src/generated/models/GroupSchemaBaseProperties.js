@@ -29,10 +29,10 @@ exports.GroupSchemaBaseProperties = void 0;
 * All Okta-defined profile properties are defined in a profile subschema with the resolution scope `#base`. These properties can\'t be removed or edited, regardless of any attempt to do so.
 */
 class GroupSchemaBaseProperties {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupSchemaBaseProperties.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupSchemaBaseProperties = GroupSchemaBaseProperties;

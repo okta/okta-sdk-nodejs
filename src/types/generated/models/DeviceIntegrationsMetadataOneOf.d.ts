@@ -41,4 +41,4 @@ export declare class DeviceIntegrationsMetadataOneOf {
     }[];
   constructor();
 }
-export declare type DeviceIntegrationsMetadataOneOfTypeEnum = 'CHROME';
+export type DeviceIntegrationsMetadataOneOfTypeEnum = 'CHROME';

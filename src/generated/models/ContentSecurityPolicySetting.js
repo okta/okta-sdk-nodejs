@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ContentSecurityPolicySetting = void 0;
 class ContentSecurityPolicySetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ContentSecurityPolicySetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ContentSecurityPolicySetting = ContentSecurityPolicySetting;

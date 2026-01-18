@@ -29,10 +29,10 @@ exports.LifecycleDeactivateSettingObject = void 0;
 * Determines whether deprovisioning occurs when the app is unassigned
 */
 class LifecycleDeactivateSettingObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LifecycleDeactivateSettingObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LifecycleDeactivateSettingObject = LifecycleDeactivateSettingObject;

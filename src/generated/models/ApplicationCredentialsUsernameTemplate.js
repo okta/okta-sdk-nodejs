@@ -29,10 +29,10 @@ exports.ApplicationCredentialsUsernameTemplate = void 0;
 * The template used to generate the username when the app is assigned through a group or directly to a user
 */
 class ApplicationCredentialsUsernameTemplate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationCredentialsUsernameTemplate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationCredentialsUsernameTemplate = ApplicationCredentialsUsernameTemplate;

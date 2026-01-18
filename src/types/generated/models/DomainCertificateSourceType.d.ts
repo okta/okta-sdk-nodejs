@@ -25,4 +25,4 @@
 /**
 * Certificate source type that indicates whether the certificate is provided by the user or Okta.
 */
-export declare type DomainCertificateSourceType = 'MANUAL' | 'OKTA_MANAGED';
+export type DomainCertificateSourceType = 'MANUAL' | 'OKTA_MANAGED';

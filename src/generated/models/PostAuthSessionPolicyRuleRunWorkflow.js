@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAuthSessionPolicyRuleRunWorkflow = void 0;
 class PostAuthSessionPolicyRuleRunWorkflow {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionPolicyRuleRunWorkflow.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthSessionPolicyRuleRunWorkflow = PostAuthSessionPolicyRuleRunWorkflow;

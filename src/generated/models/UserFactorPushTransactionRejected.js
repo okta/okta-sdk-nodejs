@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionRejected = void 0;
 const UserFactorPushTransaction_1 = require('./../models/UserFactorPushTransaction');
 class UserFactorPushTransactionRejected extends UserFactorPushTransaction_1.UserFactorPushTransaction {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorPushTransactionRejected.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorResult = 'REJECTED';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorPushTransactionRejected.attributeTypeMap);
   }
 }
 exports.UserFactorPushTransactionRejected = UserFactorPushTransactionRejected;

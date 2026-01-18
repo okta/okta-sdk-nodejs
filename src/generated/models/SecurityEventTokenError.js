@@ -29,10 +29,10 @@ exports.SecurityEventTokenError = void 0;
 * Error object thrown when parsing the Security Event Token
 */
 class SecurityEventTokenError {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenError.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenError = SecurityEventTokenError;

@@ -29,10 +29,10 @@ exports.Feature = void 0;
 * Specifies feature release cycle information
 */
 class Feature {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Feature.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Feature = Feature;

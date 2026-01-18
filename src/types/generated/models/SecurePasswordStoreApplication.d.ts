@@ -47,4 +47,4 @@ export declare class SecurePasswordStoreApplication extends Application {
     }[];
   constructor();
 }
-export declare type SecurePasswordStoreApplicationNameEnum = 'template_sps';
+export type SecurePasswordStoreApplicationNameEnum = 'template_sps';

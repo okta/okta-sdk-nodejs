@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorTokenHOTPProfile = void 0;
 class UserFactorTokenHOTPProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorTokenHOTPProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorTokenHOTPProfile = UserFactorTokenHOTPProfile;

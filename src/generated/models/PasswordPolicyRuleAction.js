@@ -29,10 +29,10 @@ exports.PasswordPolicyRuleAction = void 0;
 * Indicates if a password can be changed
 */
 class PasswordPolicyRuleAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyRuleAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyRuleAction = PasswordPolicyRuleAction;

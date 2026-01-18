@@ -29,10 +29,10 @@ exports.ProtocolOidc = void 0;
 * Protocol settings for authentication using the [OpenID Connect Protocol](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 */
 class ProtocolOidc {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProtocolOidc.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProtocolOidc = ProtocolOidc;

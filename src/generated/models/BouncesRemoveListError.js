@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BouncesRemoveListError = void 0;
 class BouncesRemoveListError {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BouncesRemoveListError.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BouncesRemoveListError = BouncesRemoveListError;

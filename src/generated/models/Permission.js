@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Permission = void 0;
 class Permission {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Permission.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Permission = Permission;

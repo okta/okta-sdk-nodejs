@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserActivationToken = void 0;
 class UserActivationToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserActivationToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserActivationToken = UserActivationToken;

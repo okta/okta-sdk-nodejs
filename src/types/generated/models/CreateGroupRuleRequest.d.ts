@@ -47,4 +47,4 @@ export declare class CreateGroupRuleRequest {
     }[];
   constructor();
 }
-export declare type CreateGroupRuleRequestTypeEnum = 'group_rule';
+export type CreateGroupRuleRequestTypeEnum = 'group_rule';

@@ -29,10 +29,10 @@ exports.PolicyAccountLinkFilter = void 0;
 * Specifies filters on which users are available for account linking by an IdP
 */
 class PolicyAccountLinkFilter {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyAccountLinkFilter.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyAccountLinkFilter = PolicyAccountLinkFilter;

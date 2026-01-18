@@ -24,7 +24,7 @@
  */
 import { CaepCredentialChangeEventReasonAdmin } from './../models/CaepCredentialChangeEventReasonAdmin';
 import { CaepCredentialChangeEventReasonUser } from './../models/CaepCredentialChangeEventReasonUser';
-import { SecurityEventSubject } from './../models/SecurityEventSubject';
+import { SsfTransmitterSecurityEventSubject } from './../models/SsfTransmitterSecurityEventSubject';
 export declare class CaepEvent {
   /**
     * The time of the event (UNIX timestamp)
@@ -32,7 +32,7 @@ export declare class CaepEvent {
   'event_timestamp'?: number;
   'reason_admin'?: CaepCredentialChangeEventReasonAdmin;
   'reason_user'?: CaepCredentialChangeEventReasonUser;
-  'subject'?: SecurityEventSubject;
+  'subject'?: SsfTransmitterSecurityEventSubject;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

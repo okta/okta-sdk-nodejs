@@ -29,10 +29,10 @@ exports.UserFactorActivatePush = void 0;
 * Activation requests have a short lifetime and expire if the activation isn\'t completed before the indicated timestamp. If the activation expires, use the returned `activate` link to restart the process.
 */
 class UserFactorActivatePush {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorActivatePush.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorActivatePush = UserFactorActivatePush;

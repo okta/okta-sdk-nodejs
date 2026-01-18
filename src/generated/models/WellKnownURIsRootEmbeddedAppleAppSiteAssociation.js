@@ -29,10 +29,10 @@ exports.WellKnownURIsRootEmbeddedAppleAppSiteAssociation = void 0;
 * Contains the customized well-known URI content and links
 */
 class WellKnownURIsRootEmbeddedAppleAppSiteAssociation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownURIsRootEmbeddedAppleAppSiteAssociation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownURIsRootEmbeddedAppleAppSiteAssociation = WellKnownURIsRootEmbeddedAppleAppSiteAssociation;

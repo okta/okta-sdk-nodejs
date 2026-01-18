@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PreRegistrationInlineHook = void 0;
 class PreRegistrationInlineHook {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PreRegistrationInlineHook.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PreRegistrationInlineHook = PreRegistrationInlineHook;

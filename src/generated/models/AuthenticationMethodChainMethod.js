@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticationMethodChainMethod = void 0;
 const VerificationMethod_1 = require('./../models/VerificationMethod');
 class AuthenticationMethodChainMethod extends VerificationMethod_1.VerificationMethod {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticationMethodChainMethod.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'AUTH_METHOD_CHAIN';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticationMethodChainMethod.attributeTypeMap);
   }
 }
 exports.AuthenticationMethodChainMethod = AuthenticationMethodChainMethod;

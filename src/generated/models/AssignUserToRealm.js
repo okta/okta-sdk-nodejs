@@ -29,10 +29,10 @@ exports.AssignUserToRealm = void 0;
 * Action that assigns a user to a realm
 */
 class AssignUserToRealm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AssignUserToRealm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AssignUserToRealm = AssignUserToRealm;

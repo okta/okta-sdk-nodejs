@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordPolicyDelegationSettingsOptions = void 0;
 class PasswordPolicyDelegationSettingsOptions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyDelegationSettingsOptions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyDelegationSettingsOptions = PasswordPolicyDelegationSettingsOptions;

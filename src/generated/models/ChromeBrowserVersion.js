@@ -29,10 +29,10 @@ exports.ChromeBrowserVersion = void 0;
 * Current version of the Chrome Browser
 */
 class ChromeBrowserVersion {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ChromeBrowserVersion.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ChromeBrowserVersion = ChromeBrowserVersion;

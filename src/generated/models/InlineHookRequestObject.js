@@ -29,10 +29,10 @@ exports.InlineHookRequestObject = void 0;
 * The API request that triggered the inline hook
 */
 class InlineHookRequestObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookRequestObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookRequestObject = InlineHookRequestObject;

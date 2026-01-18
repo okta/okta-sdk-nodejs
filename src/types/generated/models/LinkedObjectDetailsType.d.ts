@@ -25,4 +25,4 @@
 /**
 * The object type for this relationship
 */
-export declare type LinkedObjectDetailsType = 'USER';
+export type LinkedObjectDetailsType = 'USER';

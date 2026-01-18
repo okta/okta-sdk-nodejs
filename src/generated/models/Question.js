@@ -29,10 +29,10 @@ exports.Question = void 0;
 * Verifies an answer to a `question` factor
 */
 class Question {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Question.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Question = Question;

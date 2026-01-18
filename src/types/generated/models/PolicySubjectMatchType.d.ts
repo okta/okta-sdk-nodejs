@@ -25,4 +25,4 @@
 /**
 * Determines the Okta user profile attribute match conditions for account linking and authentication of the transformed IdP username
 */
-export declare type PolicySubjectMatchType = 'CUSTOM_ATTRIBUTE' | 'EMAIL' | 'USERNAME' | 'USERNAME_OR_EMAIL';
+export type PolicySubjectMatchType = 'CUSTOM_ATTRIBUTE' | 'EMAIL' | 'USERNAME' | 'USERNAME_OR_EMAIL';

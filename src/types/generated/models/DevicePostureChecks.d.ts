@@ -28,7 +28,7 @@ import { DevicePostureChecksIncludeInner } from './../models/DevicePostureChecks
 */
 export declare class DevicePostureChecks {
   /**
-    * An array of key value pairs including Device Posture Check `variableNames`
+    * An array of key-value pairs that include the device posture check `variableName` key
     */
   'include'?: Array<DevicePostureChecksIncludeInner>;
   static readonly discriminator: string | undefined;

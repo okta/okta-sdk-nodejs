@@ -29,10 +29,10 @@ exports.JsonPatchOperation = void 0;
 * The update action
 */
 class JsonPatchOperation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return JsonPatchOperation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.JsonPatchOperation = JsonPatchOperation;

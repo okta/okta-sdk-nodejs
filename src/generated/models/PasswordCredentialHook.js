@@ -29,10 +29,10 @@ exports.PasswordCredentialHook = void 0;
 * Specify a [password import inline hook](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/InlineHook/#tag/InlineHook/operation/createPasswordImportInlineHook) to trigger verification of the user\'s password the first time the user signs in. This allows an existing password to be imported into Okta directly from some other store.
 */
 class PasswordCredentialHook {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordCredentialHook.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordCredentialHook = PasswordCredentialHook;

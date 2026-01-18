@@ -57,5 +57,5 @@ export declare class ApplicationCredentialsUsernameTemplate {
     }[];
   constructor();
 }
-export declare type ApplicationCredentialsUsernameTemplatePushStatusEnum = 'PUSH' | 'DONT_PUSH' | 'NOT_CONFIGURED';
-export declare type ApplicationCredentialsUsernameTemplateTypeEnum = 'NONE' | 'BUILT_IN' | 'CUSTOM';
+export type ApplicationCredentialsUsernameTemplatePushStatusEnum = 'PUSH' | 'DONT_PUSH' | 'NOT_CONFIGURED';
+export type ApplicationCredentialsUsernameTemplateTypeEnum = 'NONE' | 'BUILT_IN' | 'CUSTOM';

@@ -25,4 +25,4 @@
 /**
 * Specifies whether to verify responses from the IdP
 */
-export declare type ProtocolAlgorithmResponseScope = 'ANY' | 'RESPONSE' | 'TOKEN';
+export type ProtocolAlgorithmResponseScope = 'ANY' | 'RESPONSE' | 'TOKEN';

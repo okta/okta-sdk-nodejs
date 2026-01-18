@@ -29,10 +29,10 @@ exports.AppAndInstancePolicyRuleCondition = void 0;
 * Specifies apps to include or exclude. If `include` is empty, then the condition is met for all apps.
 */
 class AppAndInstancePolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppAndInstancePolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppAndInstancePolicyRuleCondition = AppAndInstancePolicyRuleCondition;

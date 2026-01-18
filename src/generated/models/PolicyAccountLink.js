@@ -29,10 +29,10 @@ exports.PolicyAccountLink = void 0;
 * Specifies the behavior for linking an IdP user to an existing Okta user
 */
 class PolicyAccountLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyAccountLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyAccountLink = PolicyAccountLink;

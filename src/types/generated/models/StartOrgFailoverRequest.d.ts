@@ -29,7 +29,7 @@ import { FailoverRequestSchema } from './../models/FailoverRequestSchema';
  * Type
  * @export
  */
-export declare type StartOrgFailoverRequest = EmptyRequestSchema | FailoverRequestSchema;
+export type StartOrgFailoverRequest = EmptyRequestSchema | FailoverRequestSchema;
 /**
 * @type StartOrgFailoverRequestClass
 * @export

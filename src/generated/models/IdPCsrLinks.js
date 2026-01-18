@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdPCsrLinks = void 0;
 class IdPCsrLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdPCsrLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdPCsrLinks = IdPCsrLinks;

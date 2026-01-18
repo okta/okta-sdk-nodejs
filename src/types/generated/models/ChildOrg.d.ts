@@ -102,6 +102,6 @@ export declare class ChildOrg {
     }[];
   constructor();
 }
-export declare type ChildOrgEditionEnum = 'SKU';
-export declare type ChildOrgStatusEnum = 'ACTIVE';
-export declare type ChildOrgTokenTypeEnum = 'SSWS';
+export type ChildOrgEditionEnum = 'SKU';
+export type ChildOrgStatusEnum = 'ACTIVE';
+export type ChildOrgTokenTypeEnum = 'SSWS';

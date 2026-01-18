@@ -25,4 +25,4 @@
 /**
 * The protocol used
 */
-export declare type OtpProtocol = 'SYMANTEC' | 'TOTP' | 'YUBICO';
+export type OtpProtocol = 'SYMANTEC' | 'TOTP' | 'YUBICO';

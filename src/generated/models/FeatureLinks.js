@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FeatureLinks = void 0;
 class FeatureLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FeatureLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FeatureLinks = FeatureLinks;

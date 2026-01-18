@@ -29,10 +29,10 @@ exports.ServiceAccountDetailsOktaUserAccountSub = void 0;
 * Details for managing an Okta user as a service account
 */
 class ServiceAccountDetailsOktaUserAccountSub {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ServiceAccountDetailsOktaUserAccountSub.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ServiceAccountDetailsOktaUserAccountSub = ServiceAccountDetailsOktaUserAccountSub;

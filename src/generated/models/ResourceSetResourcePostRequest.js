@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResourceSetResourcePostRequest = void 0;
 class ResourceSetResourcePostRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceSetResourcePostRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceSetResourcePostRequest = ResourceSetResourcePostRequest;

@@ -29,10 +29,10 @@ exports.ProtocolOAuth = void 0;
 * Protocol settings for authentication using the [OAuth 2.0 Authorization Code flow](https://tools.ietf.org/html/rfc6749#section-4.1)
 */
 class ProtocolOAuth {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProtocolOAuth.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProtocolOAuth = ProtocolOAuth;

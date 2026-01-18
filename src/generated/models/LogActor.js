@@ -29,10 +29,10 @@ exports.LogActor = void 0;
 * Describes the user, app, client, or other entity (actor) who performs an action on a target. The actor is dependent on the action that is performed. All events have actors.
 */
 class LogActor {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogActor.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogActor = LogActor;

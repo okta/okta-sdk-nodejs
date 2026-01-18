@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationInlineHookSSRDataData = void 0;
 class RegistrationInlineHookSSRDataData {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationInlineHookSSRDataData.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationInlineHookSSRDataData = RegistrationInlineHookSSRDataData;

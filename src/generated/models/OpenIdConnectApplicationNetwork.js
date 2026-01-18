@@ -29,10 +29,10 @@ exports.OpenIdConnectApplicationNetwork = void 0;
 * The network restrictions of the client
 */
 class OpenIdConnectApplicationNetwork {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationNetwork.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationNetwork = OpenIdConnectApplicationNetwork;

@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Policy = void 0;
 class Policy {
-  constructor() {
-    // this.type = 'Policy';
-  }
   static getAttributeTypeMap() {
     return Policy.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'Policy';
   }
 }
 exports.Policy = Policy;
@@ -44,6 +44,7 @@ Policy.mapping = {
   'PASSWORD': 'PasswordPolicy',
   'POST_AUTH_SESSION': 'PostAuthSessionPolicy',
   'PROFILE_ENROLLMENT': 'ProfileEnrollmentPolicy',
+  'SESSION_VIOLATION_DETECTION': 'SessionViolationDetectionPolicy',
 };
 Policy.attributeTypeMap = [
   {

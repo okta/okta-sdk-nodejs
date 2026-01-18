@@ -25,7 +25,7 @@
 import { IDVCredentialsBearer } from './../models/IDVCredentialsBearer';
 import { IDVCredentialsClient } from './../models/IDVCredentialsClient';
 /**
-* Credentials for verifying requests to the IDV
+* Credentials for verifying requests to the IDV vendor
 */
 export declare class IDVCredentials {
   'bearer'?: IDVCredentialsBearer;

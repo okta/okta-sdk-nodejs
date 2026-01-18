@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CaepDeviceComplianceChangeEventReasonAdmin = void 0;
 class CaepDeviceComplianceChangeEventReasonAdmin {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepDeviceComplianceChangeEventReasonAdmin.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepDeviceComplianceChangeEventReasonAdmin = CaepDeviceComplianceChangeEventReasonAdmin;

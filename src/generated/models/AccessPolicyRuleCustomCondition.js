@@ -29,10 +29,10 @@ exports.AccessPolicyRuleCustomCondition = void 0;
 * Specifies [Okta Expression Language](https://developer.okta.com/docs/reference/okta-expression-language-in-identity-engine/) expressions
 */
 class AccessPolicyRuleCustomCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyRuleCustomCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyRuleCustomCondition = AccessPolicyRuleCustomCondition;

@@ -25,4 +25,4 @@
 /**
 * OAuth 2.0 is used to authenticate with the app.
 */
-export declare type ProvisioningConnectionOauthAuthScheme = 'OAUTH2';
+export type ProvisioningConnectionOauthAuthScheme = 'OAUTH2';

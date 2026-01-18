@@ -22,6 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EntitlementTypes } from './../models/EntitlementTypes';
 import { ScimScimServerConfig } from './../models/ScimScimServerConfig';
 /**
 * SCIM configuration details
@@ -35,6 +36,7 @@ export declare class Scim {
     * The base URL that Okta uses to send outbound calls to your SCIM server. Only the HTTPS protocol is supported. You can use the app-level variables defined in the `config` array for the base URL. For example, if you have a `subdomain` variable defined in the `config` array and the URL to retrieve SCIM users for your integration is `https://${subdomain}.example.com/scim/v2/Users`, then specify the following base URL: `\'https://\' + app.subdomain + \'.example.com/scim/v2\'`.
     */
   'baseUri': string;
+  'entitlementTypes'?: EntitlementTypes;
   'scimServerConfig': ScimScimServerConfig;
   /**
     * The URL to your customer-facing instructions for configuring your SCIM integration. See [Customer configuration document guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#customer-configuration-document-guidelines).

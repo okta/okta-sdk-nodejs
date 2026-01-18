@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type IssuerMode = 'CUSTOM_URL' | 'DYNAMIC' | 'ORG_URL';
+export type IssuerMode = 'CUSTOM_URL' | 'DYNAMIC' | 'ORG_URL';

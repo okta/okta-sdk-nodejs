@@ -29,10 +29,10 @@ exports.PasswordSettingObject = void 0;
 * Determines whether Okta creates and pushes a password in the app for each assigned user
 */
 class PasswordSettingObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordSettingObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordSettingObject = PasswordSettingObject;

@@ -29,10 +29,10 @@ exports.UserImportRequestExecute = void 0;
 * User import inline hook request
 */
 class UserImportRequestExecute {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestExecute.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestExecute = UserImportRequestExecute;

@@ -25,4 +25,4 @@
 /**
 * The type of public key
 */
-export declare type JsonWebKeyType = 'EC' | 'RSA';
+export type JsonWebKeyType = 'RSA';

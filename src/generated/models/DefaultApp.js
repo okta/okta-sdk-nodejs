@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DefaultApp = void 0;
 class DefaultApp {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DefaultApp.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DefaultApp = DefaultApp;

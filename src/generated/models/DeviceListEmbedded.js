@@ -29,10 +29,10 @@ exports.DeviceListEmbedded = void 0;
 * List of associated users for the device if the `expand=user` query parameter is specified in the request. Use `expand=userSummary` to get only a summary of each associated user for the device.
 */
 class DeviceListEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceListEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceListEmbedded = DeviceListEmbedded;

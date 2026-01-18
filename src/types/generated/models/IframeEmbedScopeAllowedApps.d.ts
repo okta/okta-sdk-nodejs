@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type IframeEmbedScopeAllowedApps = 'OKTA_ENDUSER';
+export type IframeEmbedScopeAllowedApps = 'OKTA_ENDUSER';

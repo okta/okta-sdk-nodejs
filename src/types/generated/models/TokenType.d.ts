@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* The type of token for token exchange.
+* The type of token for token exchange. `urn:okta:params:oauth:token-type:interclient_token` is EA.
 */
-export declare type TokenType = 'urn:ietf:params:oauth:token-type:access_token' | 'urn:ietf:params:oauth:token-type:id_token' | 'urn:ietf:params:oauth:token-type:jwt' | 'urn:ietf:params:oauth:token-type:refresh_token' | 'urn:ietf:params:oauth:token-type:saml1' | 'urn:ietf:params:oauth:token-type:saml2' | 'urn:okta:oauth:token-type:web_sso_token' | 'urn:x-oath:params:oauth:token-type:device-secret';
+export type TokenType = 'urn:ietf:params:oauth:token-type:access_token' | 'urn:ietf:params:oauth:token-type:id_token' | 'urn:ietf:params:oauth:token-type:jwt' | 'urn:ietf:params:oauth:token-type:refresh_token' | 'urn:ietf:params:oauth:token-type:saml1' | 'urn:ietf:params:oauth:token-type:saml2' | 'urn:okta:oauth:token-type:web_sso_token' | 'urn:okta:params:oauth:token-type:interclient_token' | 'urn:x-oath:params:oauth:token-type:device-secret';

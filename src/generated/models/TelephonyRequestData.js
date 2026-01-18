@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TelephonyRequestData = void 0;
 class TelephonyRequestData {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyRequestData.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyRequestData = TelephonyRequestData;

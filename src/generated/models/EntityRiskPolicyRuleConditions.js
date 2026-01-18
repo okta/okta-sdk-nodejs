@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntityRiskPolicyRuleConditions = void 0;
 class EntityRiskPolicyRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleConditions = EntityRiskPolicyRuleConditions;

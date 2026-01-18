@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResendUserFactor = void 0;
 class ResendUserFactor {
-  constructor() {
-    // this.factorType = 'ResendUserFactor';
-  }
   static getAttributeTypeMap() {
     return ResendUserFactor.attributeTypeMap;
+  }
+  constructor() {
+    // this.factorType = 'ResendUserFactor';
   }
 }
 exports.ResendUserFactor = ResendUserFactor;

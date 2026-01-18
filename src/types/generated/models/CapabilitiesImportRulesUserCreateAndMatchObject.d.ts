@@ -65,4 +65,4 @@ export declare class CapabilitiesImportRulesUserCreateAndMatchObject {
     }[];
   constructor();
 }
-export declare type CapabilitiesImportRulesUserCreateAndMatchObjectExactMatchCriteriaEnum = 'EMAIL' | 'USERNAME';
+export type CapabilitiesImportRulesUserCreateAndMatchObjectExactMatchCriteriaEnum = 'EMAIL' | 'USERNAME';

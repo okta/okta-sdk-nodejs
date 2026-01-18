@@ -29,10 +29,10 @@ exports.LinksGovernanceResources = void 0;
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the resources using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification.
 */
 class LinksGovernanceResources {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksGovernanceResources.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksGovernanceResources = LinksGovernanceResources;

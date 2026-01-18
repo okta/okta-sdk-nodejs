@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordPolicyRecoveryQuestionComplexity = void 0;
 class PasswordPolicyRecoveryQuestionComplexity {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyRecoveryQuestionComplexity.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyRecoveryQuestionComplexity = PasswordPolicyRecoveryQuestionComplexity;

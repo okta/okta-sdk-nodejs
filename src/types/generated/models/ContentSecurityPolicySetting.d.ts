@@ -41,4 +41,4 @@ export declare class ContentSecurityPolicySetting {
     }[];
   constructor();
 }
-export declare type ContentSecurityPolicySettingModeEnum = 'enforced' | 'report_only';
+export type ContentSecurityPolicySettingModeEnum = 'enforced' | 'report_only';

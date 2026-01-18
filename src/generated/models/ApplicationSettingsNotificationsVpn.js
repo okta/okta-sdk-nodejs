@@ -29,10 +29,10 @@ exports.ApplicationSettingsNotificationsVpn = void 0;
 * Sends customizable messages with conditions to end users when a VPN connection is required
 */
 class ApplicationSettingsNotificationsVpn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationSettingsNotificationsVpn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationSettingsNotificationsVpn = ApplicationSettingsNotificationsVpn;

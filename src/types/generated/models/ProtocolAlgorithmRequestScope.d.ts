@@ -25,4 +25,4 @@
 /**
 * Specifies whether to digitally sign authorization requests to the IdP
 */
-export declare type ProtocolAlgorithmRequestScope = 'NONE' | 'REQUEST';
+export type ProtocolAlgorithmRequestScope = 'NONE' | 'REQUEST';

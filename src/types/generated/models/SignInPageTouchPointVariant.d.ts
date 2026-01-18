@@ -25,4 +25,4 @@
 /**
 * Variant for the Okta sign-in page. You can publish a theme for sign-in page with different combinations of assets. Variants are preset combinations of those assets. > **Note:**  For a non-`OKTA_DEFAULT` variant, `primaryColorHex` is used for button background color and `primaryColorContrastHex` is used to optimize the opacity for button text.
 */
-export declare type SignInPageTouchPointVariant = 'BACKGROUND_IMAGE' | 'BACKGROUND_SECONDARY_COLOR' | 'OKTA_DEFAULT';
+export type SignInPageTouchPointVariant = 'BACKGROUND_IMAGE' | 'BACKGROUND_SECONDARY_COLOR' | 'OKTA_DEFAULT';

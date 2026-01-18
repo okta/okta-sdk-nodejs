@@ -57,4 +57,4 @@ export declare class SamlAttributeStatementExpression {
     }[];
   constructor();
 }
-export declare type SamlAttributeStatementExpressionNamespaceEnum = 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified';
+export type SamlAttributeStatementExpressionNamespaceEnum = 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri' | 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified';

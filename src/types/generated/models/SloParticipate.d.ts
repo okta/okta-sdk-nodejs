@@ -57,4 +57,4 @@ export declare class SloParticipate {
     }[];
   constructor();
 }
-export declare type SloParticipateBindingTypeEnum = 'POST' | 'REDIRECT';
+export type SloParticipateBindingTypeEnum = 'POST' | 'REDIRECT';

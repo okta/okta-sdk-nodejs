@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CustomRoleAssignmentSchema = void 0;
 class CustomRoleAssignmentSchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CustomRoleAssignmentSchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CustomRoleAssignmentSchema = CustomRoleAssignmentSchema;

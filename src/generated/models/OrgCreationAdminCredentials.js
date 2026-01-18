@@ -29,10 +29,10 @@ exports.OrgCreationAdminCredentials = void 0;
 * Specifies primary authentication and recovery credentials for a user. Credential types and requirements vary depending on the provider and security policy of the org.
 */
 class OrgCreationAdminCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCreationAdminCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCreationAdminCredentials = OrgCreationAdminCredentials;

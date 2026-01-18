@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CreateGroupRuleRequest = void 0;
 class CreateGroupRuleRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CreateGroupRuleRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CreateGroupRuleRequest = CreateGroupRuleRequest;

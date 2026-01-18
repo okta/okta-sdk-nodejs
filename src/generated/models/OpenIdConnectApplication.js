@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.OpenIdConnectApplication = void 0;
 const Application_1 = require('./../models/Application');
 class OpenIdConnectApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(OpenIdConnectApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'OPENID_CONNECT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(OpenIdConnectApplication.attributeTypeMap);
   }
 }
 exports.OpenIdConnectApplication = OpenIdConnectApplication;

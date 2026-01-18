@@ -29,10 +29,10 @@ exports.ProtocolSaml = void 0;
 * Protocol settings for the [SAML 2.0 Authentication Request Protocol](http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf)
 */
 class ProtocolSaml {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProtocolSaml.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProtocolSaml = ProtocolSaml;

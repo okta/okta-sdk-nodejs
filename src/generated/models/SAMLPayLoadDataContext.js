@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SAMLPayLoadDataContext = void 0;
 class SAMLPayLoadDataContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataContext = SAMLPayLoadDataContext;

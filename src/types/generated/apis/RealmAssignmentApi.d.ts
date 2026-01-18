@@ -16,8 +16,8 @@ import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { CreateRealmAssignmentRequest } from '../models/CreateRealmAssignmentRequest';
 import { OperationRequest } from '../models/OperationRequest';
-import { OperationResponse } from '../models/OperationResponse';
 import { RealmAssignment } from '../models/RealmAssignment';
+import { RealmAssignmentOperationResponse } from '../models/RealmAssignmentOperationResponse';
 import { UpdateRealmAssignmentRequest } from '../models/UpdateRealmAssignmentRequest';
 /**
  * no description
@@ -63,7 +63,7 @@ export declare class RealmAssignmentApiRequestFactory extends BaseAPIRequestFact
      * Lists all realm assignment operations. The upper limit is 200 and operations are sorted in descending order from most recent to oldest by ID.
      * List all realm assignment operations
      * @param limit A limit on the number of objects to return
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      */
   listRealmAssignmentOperations(limit?: number, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -121,7 +121,7 @@ export declare class RealmAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to executeRealmAssignment
      * @throws ApiException if the response code was not in [200, 299]
      */
-  executeRealmAssignment(response: ResponseContext): Promise<OperationResponse>;
+  executeRealmAssignment(response: ResponseContext): Promise<RealmAssignmentOperationResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -137,7 +137,7 @@ export declare class RealmAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to listRealmAssignmentOperations
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listRealmAssignmentOperations(response: ResponseContext): Promise<Array<OperationResponse>>;
+  listRealmAssignmentOperations(response: ResponseContext): Promise<Array<RealmAssignmentOperationResponse>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

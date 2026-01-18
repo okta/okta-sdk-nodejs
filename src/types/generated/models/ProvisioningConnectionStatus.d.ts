@@ -25,4 +25,4 @@
 /**
 * Provisioning connection status
 */
-export declare type ProvisioningConnectionStatus = 'DISABLED' | 'ENABLED' | 'UNKNOWN';
+export type ProvisioningConnectionStatus = 'DISABLED' | 'ENABLED' | 'UNKNOWN';

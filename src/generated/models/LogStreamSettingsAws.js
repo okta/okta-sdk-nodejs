@@ -29,10 +29,10 @@ exports.LogStreamSettingsAws = void 0;
 * Specifies the configuration for the `aws_eventbridge` log stream type. This configuration can\'t be modified after creation.
 */
 class LogStreamSettingsAws {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogStreamSettingsAws.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogStreamSettingsAws = LogStreamSettingsAws;

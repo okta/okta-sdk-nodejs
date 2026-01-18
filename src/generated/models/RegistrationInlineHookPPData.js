@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationInlineHookPPData = void 0;
 const RegistrationInlineHookRequest_1 = require('./../models/RegistrationInlineHookRequest');
 class RegistrationInlineHookPPData extends RegistrationInlineHookRequest_1.RegistrationInlineHookRequest {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(RegistrationInlineHookPPData.attributeTypeMap);
+  }
   constructor() {
     super();
     this.requestType = 'progressive.profile';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(RegistrationInlineHookPPData.attributeTypeMap);
   }
 }
 exports.RegistrationInlineHookPPData = RegistrationInlineHookPPData;

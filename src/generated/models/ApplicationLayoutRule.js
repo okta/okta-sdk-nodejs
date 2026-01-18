@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ApplicationLayoutRule = void 0;
 class ApplicationLayoutRule {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationLayoutRule.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationLayoutRule = ApplicationLayoutRule;

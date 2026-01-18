@@ -24,7 +24,7 @@
  */
 export declare class UserFactorWebAuthnProfile {
   /**
-    * Human-readable name of the authenticator
+    * Human-readable name of the authenticator  > **Note:** This name is set from the AAGUID metadata during enrollment. It can\'t be changed in the Admin Console or by using any Okta APIs.
     */
   'authenticatorName'?: string;
   /**

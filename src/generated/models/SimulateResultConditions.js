@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SimulateResultConditions = void 0;
 class SimulateResultConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulateResultConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulateResultConditions = SimulateResultConditions;

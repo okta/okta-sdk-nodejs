@@ -23,7 +23,7 @@
  * Do not edit the class manually.
  */
 /**
-* Attributes used for processing Active Directory group membership update
+* Attributes used for processing Active Directory or LDAP group membership update
 */
 export declare class Parameters {
   /**
@@ -31,7 +31,7 @@ export declare class Parameters {
     */
   'action'?: ParametersActionEnum;
   /**
-    * The attribute that tracks group memberships in Active Directory. For Active Directory, use `member`.
+    * The attribute that tracks group memberships in Active Directory or LDAP. For Active Directory, use `member`. For LDAP, use the appropriate attribute found in the LDAP server such as, but not limited to, `uniqueMember` or `member`.
     */
   'attribute'?: string;
   /**
@@ -53,4 +53,4 @@ export declare class Parameters {
     }[];
   constructor();
 }
-export declare type ParametersActionEnum = 'ADD' | 'REMOVE';
+export type ParametersActionEnum = 'ADD' | 'REMOVE';

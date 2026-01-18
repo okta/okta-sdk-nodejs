@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SamlAttributeStatement = void 0;
 class SamlAttributeStatement {
-  constructor() {
-    // this.type = 'SamlAttributeStatement';
-  }
   static getAttributeTypeMap() {
     return SamlAttributeStatement.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'SamlAttributeStatement';
   }
 }
 exports.SamlAttributeStatement = SamlAttributeStatement;

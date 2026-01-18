@@ -51,7 +51,7 @@ export declare class AttackProtectionApiResponseProcessor {
      * @params response Response returned by the server for a request to getAuthenticatorSettings
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getAuthenticatorSettings(response: ResponseContext): Promise<Array<AttackProtectionAuthenticatorSettings>>;
+  getAuthenticatorSettings(response: ResponseContext): Promise<AttackProtectionAuthenticatorSettings>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -59,7 +59,7 @@ export declare class AttackProtectionApiResponseProcessor {
      * @params response Response returned by the server for a request to getUserLockoutSettings
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getUserLockoutSettings(response: ResponseContext): Promise<Array<UserLockoutSettings>>;
+  getUserLockoutSettings(response: ResponseContext): Promise<UserLockoutSettings>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

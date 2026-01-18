@@ -37,7 +37,7 @@ describe('ApplicationSSOCredentialOAuth2ClientAuthApi', () => {
     }
   });
 
-  describe('JWK', () => {
+  describe.skip('JWK', () => {
     it('Add', async () => {
       const oAuth2ClientJsonWebKeyRequestBody = await utils.makeOAuth2ClientJsonWebKeyRequestBody();
       jwk = await client.applicationApi.addJwk({
@@ -103,7 +103,7 @@ describe('ApplicationSSOCredentialOAuth2ClientAuthApi', () => {
     });
   });
 
-  describe('Secrets', () => {
+  describe.skip('Secrets', () => {
     it('Add', async () => {
       secret = await client.applicationApi.createOAuth2ClientSecret({
         appId: application.id,

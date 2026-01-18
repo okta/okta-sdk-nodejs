@@ -29,10 +29,10 @@ exports.OidcRequestSignatureAlgorithm = void 0;
 * Signature Algorithm settings for signing authorization requests sent to the IdP > **Note:**  The `algorithm` property is ignored when you disable request signatures (`scope` set as `NONE`).
 */
 class OidcRequestSignatureAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcRequestSignatureAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcRequestSignatureAlgorithm = OidcRequestSignatureAlgorithm;

@@ -29,10 +29,10 @@ exports.StreamStatus = void 0;
 * Status corresponding to the `stream_id` of the SSF Stream
 */
 class StreamStatus {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StreamStatus.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StreamStatus = StreamStatus;

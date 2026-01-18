@@ -25,4 +25,4 @@
 /**
 * The refresh token rotation mode for the OAuth 2.0 client
 */
-export declare type OpenIdConnectRefreshTokenRotationType = 'ROTATE' | 'STATIC';
+export type OpenIdConnectRefreshTokenRotationType = 'ROTATE' | 'STATIC';

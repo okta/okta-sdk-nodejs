@@ -28,7 +28,7 @@ import { GoogleApplicationSettingsApplication } from './../models/GoogleApplicat
 import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20ApplicationSettingsSignOn';
 export declare class GoogleApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: GoogleApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class GoogleApplicationSettings {
     }[];
   constructor();
 }
-export declare type GoogleApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type GoogleApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

@@ -27,6 +27,7 @@
 */
 export declare class PolicyContextRisk {
   'level'?: PolicyContextRiskLevelEnum;
+  'minRiskLevel'?: PolicyContextRiskMinRiskLevelEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -42,4 +43,5 @@ export declare class PolicyContextRisk {
     }[];
   constructor();
 }
-export declare type PolicyContextRiskLevelEnum = 'LOW' | 'MEDIUM' | 'HIGH';
+export type PolicyContextRiskLevelEnum = 'LOW' | 'MEDIUM' | 'HIGH';
+export type PolicyContextRiskMinRiskLevelEnum = 'LOW' | 'MEDIUM' | 'HIGH';

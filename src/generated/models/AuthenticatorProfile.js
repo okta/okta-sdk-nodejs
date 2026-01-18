@@ -29,10 +29,10 @@ exports.AuthenticatorProfile = void 0;
 * Defines the authenticator specific parameters
 */
 class AuthenticatorProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorProfile = AuthenticatorProfile;

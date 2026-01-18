@@ -25,4 +25,4 @@
 /**
 * Determines whether the generated password is the user\'s Okta password or a randomly generated password
 */
-export declare type SeedEnum = 'OKTA' | 'RANDOM';
+export type SeedEnum = 'OKTA' | 'RANDOM';

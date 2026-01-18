@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodSimple = void 0;
 const AuthenticatorMethodBase_1 = require('./../models/AuthenticatorMethodBase');
 class AuthenticatorMethodSimple extends AuthenticatorMethodBase_1.AuthenticatorMethodBase {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorMethodSimple.attributeTypeMap);
+  }
   constructor() {
     super();
     // this.type = 'AuthenticatorMethodSimple';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorMethodSimple.attributeTypeMap);
   }
 }
 exports.AuthenticatorMethodSimple = AuthenticatorMethodSimple;

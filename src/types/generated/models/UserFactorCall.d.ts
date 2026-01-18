@@ -43,4 +43,4 @@ export declare class UserFactorCall extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorCallProviderEnum = 'OKTA';
+export type UserFactorCallProviderEnum = 'OKTA';

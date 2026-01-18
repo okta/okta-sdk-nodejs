@@ -25,4 +25,4 @@
 /**
 * Purpose of the certificate. The only supported value is `sig`.
 */
-export declare type JwkUseType = 'sig';
+export type JwkUseType = 'sig';

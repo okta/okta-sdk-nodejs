@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ServiceAccount = void 0;
 class ServiceAccount {
-  constructor() {
-    // this.accountType = 'ServiceAccount';
-  }
   static getAttributeTypeMap() {
     return ServiceAccount.attributeTypeMap;
+  }
+  constructor() {
+    // this.accountType = 'ServiceAccount';
   }
 }
 exports.ServiceAccount = ServiceAccount;

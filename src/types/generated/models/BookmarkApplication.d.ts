@@ -47,4 +47,4 @@ export declare class BookmarkApplication extends Application {
     }[];
   constructor();
 }
-export declare type BookmarkApplicationNameEnum = 'bookmark';
+export type BookmarkApplicationNameEnum = 'bookmark';

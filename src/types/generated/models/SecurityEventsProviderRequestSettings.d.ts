@@ -32,7 +32,7 @@ import { SecurityEventsProviderSettingsSSFCompliant } from './../models/Security
  * Type
  * @export
  */
-export declare type SecurityEventsProviderRequestSettings = SecurityEventsProviderSettingsNonSSFCompliant | SecurityEventsProviderSettingsSSFCompliant;
+export type SecurityEventsProviderRequestSettings = SecurityEventsProviderSettingsNonSSFCompliant | SecurityEventsProviderSettingsSSFCompliant;
 /**
 * @type SecurityEventsProviderRequestSettingsClass
     * Information about the Security Events Provider for signal ingestion

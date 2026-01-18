@@ -29,10 +29,10 @@ exports.CapabilitiesCreateObject = void 0;
 * Determines whether Okta assigns a new app account to each user managed by Okta.  Okta doesn\'t create a new account if it detects that the username specified in Okta already exists in the app. The user\'s Okta username is assigned by default.
 */
 class CapabilitiesCreateObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesCreateObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesCreateObject = CapabilitiesCreateObject;

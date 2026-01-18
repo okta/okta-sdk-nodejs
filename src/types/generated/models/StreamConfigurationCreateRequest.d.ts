@@ -48,4 +48,4 @@ export declare class StreamConfigurationCreateRequest {
     }[];
   constructor();
 }
-export declare type StreamConfigurationCreateRequestFormatEnum = 'iss_sub';
+export type StreamConfigurationCreateRequestFormatEnum = 'iss_sub';

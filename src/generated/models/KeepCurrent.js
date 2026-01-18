@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.KeepCurrent = void 0;
 class KeepCurrent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return KeepCurrent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.KeepCurrent = KeepCurrent;

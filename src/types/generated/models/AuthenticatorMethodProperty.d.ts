@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type AuthenticatorMethodProperty = 'DEVICE_BOUND' | 'HARDWARE_PROTECTED' | 'PHISHING_RESISTANT' | 'USER_PRESENCE' | 'USER_VERIFYING';
+export type AuthenticatorMethodProperty = 'DEVICE_BOUND' | 'HARDWARE_PROTECTED' | 'PHISHING_RESISTANT' | 'USER_PRESENCE' | 'USER_VERIFYING';

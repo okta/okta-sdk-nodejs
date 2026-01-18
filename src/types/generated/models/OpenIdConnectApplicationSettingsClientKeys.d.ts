@@ -22,12 +22,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonWebKey1 } from './../models/JsonWebKey1';
+import { ListJwk200ResponseKeysInner } from './../models/ListJwk200ResponseKeysInner';
 /**
-* A [JSON Web Key Set](https://tools.ietf.org/html/rfc7517#section-5) for validating JWTs presented to Okta
+* A [JSON Web Key Set](https://tools.ietf.org/html/rfc7517#section-5) for validating JWTs presented to Okta or for encrypting ID tokens minted by Okta for the client
 */
 export declare class OpenIdConnectApplicationSettingsClientKeys {
-  'keys'?: Array<JsonWebKey1>;
+  'keys'?: Array<ListJwk200ResponseKeysInner>;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

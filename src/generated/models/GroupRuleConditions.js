@@ -29,10 +29,10 @@ exports.GroupRuleConditions = void 0;
 * Defines group rule conditions
 */
 class GroupRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleConditions = GroupRuleConditions;

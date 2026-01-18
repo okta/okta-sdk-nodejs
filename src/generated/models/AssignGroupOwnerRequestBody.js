@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AssignGroupOwnerRequestBody = void 0;
 class AssignGroupOwnerRequestBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AssignGroupOwnerRequestBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AssignGroupOwnerRequestBody = AssignGroupOwnerRequestBody;

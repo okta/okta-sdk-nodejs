@@ -25,4 +25,4 @@
 /**
 * Indicates whether a device has a screen lock set, and the type or complexity of the screen lock  **Note:** This option requires a `screenLockType.include` value.
 */
-export declare type ScreenLockComplexity = 'HIGH' | 'LOW' | 'MEDIUM';
+export type ScreenLockComplexity = 'HIGH' | 'LOW' | 'MEDIUM';

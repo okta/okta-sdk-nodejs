@@ -40,4 +40,4 @@ export declare class DeviceIntegrationsMetadataOneOf2 {
     }[];
   constructor();
 }
-export declare type DeviceIntegrationsMetadataOneOf2TypeEnum = 'DEVICE_IDP';
+export type DeviceIntegrationsMetadataOneOf2TypeEnum = 'DEVICE_IDP';

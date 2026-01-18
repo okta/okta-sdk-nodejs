@@ -29,10 +29,10 @@ exports.TokenProtocolRequest = void 0;
 * Details of the token request
 */
 class TokenProtocolRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenProtocolRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenProtocolRequest = TokenProtocolRequest;

@@ -25,4 +25,4 @@
 /**
 * The type of pattern. For regex, use `EXPRESSION`.
 */
-export declare type UserIdentifierMatchType = 'CONTAINS' | 'EQUALS' | 'EXPRESSION' | 'STARTS_WITH' | 'SUFFIX';
+export type UserIdentifierMatchType = 'CONTAINS' | 'EQUALS' | 'EXPRESSION' | 'STARTS_WITH' | 'SUFFIX';

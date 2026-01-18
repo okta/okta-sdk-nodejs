@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookLinksCreate = void 0;
 class InlineHookLinksCreate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookLinksCreate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookLinksCreate = InlineHookLinksCreate;

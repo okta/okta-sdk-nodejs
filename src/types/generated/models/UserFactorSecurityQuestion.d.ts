@@ -43,4 +43,4 @@ export declare class UserFactorSecurityQuestion extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorSecurityQuestionProviderEnum = 'OKTA';
+export type UserFactorSecurityQuestionProviderEnum = 'OKTA';

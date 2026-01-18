@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SAMLHookResponseCommandsInner = void 0;
 class SAMLHookResponseCommandsInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLHookResponseCommandsInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLHookResponseCommandsInner = SAMLHookResponseCommandsInner;

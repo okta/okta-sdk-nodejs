@@ -26,15 +26,39 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SubmissionResponse = void 0;
 class SubmissionResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SubmissionResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SubmissionResponse = SubmissionResponse;
 SubmissionResponse.discriminator = undefined;
 SubmissionResponse.attributeTypeMap = [
+  {
+    'name': 'actions',
+    'baseName': 'actions',
+    'type': 'Array<SubmissionAction>',
+    'format': ''
+  },
+  {
+    'name': 'appContactDetails',
+    'baseName': 'appContactDetails',
+    'type': 'Array<SubmissionResponseAppContactDetailsInner>',
+    'format': ''
+  },
+  {
+    'name': 'authSettings',
+    'baseName': 'authSettings',
+    'type': 'AuthSettings',
+    'format': ''
+  },
+  {
+    'name': 'capabilities',
+    'baseName': 'capabilities',
+    'type': 'Array<SubmissionCapability>',
+    'format': ''
+  },
   {
     'name': 'config',
     'baseName': 'config',
@@ -42,9 +66,21 @@ SubmissionResponse.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'defaultLogo',
+    'baseName': 'defaultLogo',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
     'name': 'description',
     'baseName': 'description',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'globalTokenRevocation',
+    'baseName': 'globalTokenRevocation',
+    'type': 'SubmissionResponseGlobalTokenRevocation',
     'format': ''
   },
   {

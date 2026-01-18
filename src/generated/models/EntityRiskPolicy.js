@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntityRiskPolicy = void 0;
 const Policy_1 = require('./../models/Policy');
 class EntityRiskPolicy extends Policy_1.Policy {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(EntityRiskPolicy.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ENTITY_RISK';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(EntityRiskPolicy.attributeTypeMap);
   }
 }
 exports.EntityRiskPolicy = EntityRiskPolicy;

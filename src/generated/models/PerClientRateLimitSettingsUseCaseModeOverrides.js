@@ -29,10 +29,10 @@ exports.PerClientRateLimitSettingsUseCaseModeOverrides = void 0;
 * A map of Per-Client Rate Limit Use Case to the applicable PerClientRateLimitMode. Overrides the `defaultMode` property for the specified use cases.
 */
 class PerClientRateLimitSettingsUseCaseModeOverrides {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PerClientRateLimitSettingsUseCaseModeOverrides.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PerClientRateLimitSettingsUseCaseModeOverrides = PerClientRateLimitSettingsUseCaseModeOverrides;

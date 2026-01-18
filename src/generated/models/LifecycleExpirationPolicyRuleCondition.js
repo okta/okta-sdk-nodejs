@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LifecycleExpirationPolicyRuleCondition = void 0;
 class LifecycleExpirationPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LifecycleExpirationPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LifecycleExpirationPolicyRuleCondition = LifecycleExpirationPolicyRuleCondition;

@@ -29,10 +29,10 @@ exports.CatalogApplication = void 0;
 * An app in the OIN catalog
 */
 class CatalogApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CatalogApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CatalogApplication = CatalogApplication;

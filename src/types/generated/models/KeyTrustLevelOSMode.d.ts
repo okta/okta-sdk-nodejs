@@ -25,4 +25,4 @@
 /**
 * Represents the attestation strength used by the Chrome Verified Access API
 */
-export declare type KeyTrustLevelOSMode = 'CHROME_OS_DEVELOPER_MODE' | 'CHROME_OS_VERIFIED_MODE';
+export type KeyTrustLevelOSMode = 'CHROME_OS_DEVELOPER_MODE' | 'CHROME_OS_VERIFIED_MODE';

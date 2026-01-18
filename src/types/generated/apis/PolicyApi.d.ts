@@ -125,7 +125,7 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Lists all policies with the specified type
      * List all policies
-     * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60;, and &#x60;ENTITY_RISK&#x60;.
+     * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; &#x60;DEVICE_SIGNAL_COLLECTION&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60; and &#x60;ENTITY_RISK&#x60;.
      * @param status Refines the query by the &#x60;status&#x60; of the policy - &#x60;ACTIVE&#x60; or &#x60;INACTIVE&#x60;
      * @param q Refines the query by policy name prefix (startWith method) passed in as &#x60;q&#x3D;string&#x60;
      * @param expand
@@ -134,7 +134,7 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
      * @param resourceId Reference to the associated authorization server
      * @param after End page cursor for pagination, see [Pagination](https://developer.okta.com/docs/api/#pagination)
      */
-  listPolicies(type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK', status?: string, q?: string, expand?: string, sortBy?: string, limit?: string, resourceId?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
+  listPolicies(type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'DEVICE_SIGNAL_COLLECTION' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK', status?: string, q?: string, expand?: string, sortBy?: string, limit?: string, resourceId?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all applications mapped to a policy identified by `policyId`  > **Note:** Use [List all resources mapped to a Policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/#tag/Policy/operation/listPolicyMappings) to list all applications mapped to a policy.
      * List all apps mapped to a policy
@@ -155,7 +155,7 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
      */
   listPolicyRules(policyId: string, limit?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Maps a resource to a policy identified by `policyId`
+     * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
      * Map a resource to a policy
      * @param policyId &#x60;id&#x60; of the Policy
      * @param policyMappingRequest

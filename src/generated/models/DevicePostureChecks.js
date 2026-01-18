@@ -29,10 +29,10 @@ exports.DevicePostureChecks = void 0;
 * Represents the Device Posture Checks configuration for the device assurance policy
 */
 class DevicePostureChecks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureChecks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureChecks = DevicePostureChecks;

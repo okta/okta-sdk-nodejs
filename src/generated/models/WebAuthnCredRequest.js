@@ -29,10 +29,10 @@ exports.WebAuthnCredRequest = void 0;
 * Credential request object for the initialized credential, along with the enrollment and key identifiers to associate with the credential
 */
 class WebAuthnCredRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WebAuthnCredRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WebAuthnCredRequest = WebAuthnCredRequest;

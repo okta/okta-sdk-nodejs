@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrgAerialConsentDetails = void 0;
 class OrgAerialConsentDetails {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgAerialConsentDetails.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgAerialConsentDetails = OrgAerialConsentDetails;

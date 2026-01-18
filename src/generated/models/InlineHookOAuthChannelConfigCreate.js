@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookOAuthChannelConfigCreate = void 0;
 class InlineHookOAuthChannelConfigCreate {
-  constructor() {
-    // this.authType = 'InlineHookOAuthChannelConfigCreate';
-  }
   static getAttributeTypeMap() {
     return InlineHookOAuthChannelConfigCreate.attributeTypeMap;
+  }
+  constructor() {
+    // this.authType = 'InlineHookOAuthChannelConfigCreate';
   }
 }
 exports.InlineHookOAuthChannelConfigCreate = InlineHookOAuthChannelConfigCreate;

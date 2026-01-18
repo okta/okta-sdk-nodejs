@@ -30,6 +30,10 @@ export declare class RiskScorePolicyRuleCondition {
     * The level to match
     */
   'level': RiskScorePolicyRuleConditionLevelEnum;
+  /**
+    * The minimum risk level to match. Only used in a Session Violation Detection (`SESSION_VIOLATION_DETECTION`) policy rule.
+    */
+  'minRiskLevel'?: RiskScorePolicyRuleConditionMinRiskLevelEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -45,4 +49,5 @@ export declare class RiskScorePolicyRuleCondition {
     }[];
   constructor();
 }
-export declare type RiskScorePolicyRuleConditionLevelEnum = 'ANY' | 'LOW' | 'MEDIUM' | 'HIGH';
+export type RiskScorePolicyRuleConditionLevelEnum = 'ANY' | 'LOW' | 'MEDIUM' | 'HIGH';
+export type RiskScorePolicyRuleConditionMinRiskLevelEnum = 'LOW' | 'MEDIUM' | 'HIGH';

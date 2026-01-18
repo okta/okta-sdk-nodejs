@@ -27,7 +27,7 @@ class RoleAssignmentApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
      * Assign a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param assignRoleRequest
      */
   async assignRoleToClient(clientId, assignRoleRequest, _options) {
@@ -54,7 +54,7 @@ class RoleAssignmentApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     ], assignRoleRequest);
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(assignRoleRequest, 'AssignRoleToGroupRequest', ''), contentType);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(assignRoleRequest, 'AssignRoleToClientRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
@@ -184,7 +184,7 @@ class RoleAssignmentApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Unassigns a role assignment (identified by `roleAssignmentId`) from a client app (identified by `clientId`)
      * Unassign a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      */
   async deleteRoleFromClient(clientId, roleAssignmentId, _options) {
@@ -530,7 +530,7 @@ class RoleAssignmentApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all roles assigned to a client app identified by `clientId`
      * List all client role assignments
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      */
   async listRolesForClient(clientId, _options) {
     let _config = _options || this.configuration;
@@ -604,7 +604,7 @@ class RoleAssignmentApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`)
      * Retrieve a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      */
   async retrieveClientRole(clientId, roleAssignmentId, _options) {
@@ -740,7 +740,7 @@ class RoleAssignmentApiResponseProcessor {
   async assignRoleToClient(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListRolesForClient200ResponseInner', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -757,7 +757,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListGroupAssignedRoles200ResponseInner'), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListRolesForClient200ResponseInner'), 'ListRolesForClient200ResponseInner', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -772,7 +772,7 @@ class RoleAssignmentApiResponseProcessor {
   async assignRoleToGroup(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AssignRoleToGroup200Response', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
@@ -796,7 +796,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListGroupAssignedRoles200ResponseInner | void'), 'ListGroupAssignedRoles200ResponseInner | void', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void | AssignRoleToGroup200Response'), 'void | AssignRoleToGroup200Response', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -878,7 +878,7 @@ class RoleAssignmentApiResponseProcessor {
   async getGroupAssignedRole(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AssignRoleToGroup200Response', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -895,7 +895,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListGroupAssignedRoles200ResponseInner'), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'AssignRoleToGroup200Response'), 'AssignRoleToGroup200Response', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -974,7 +974,7 @@ class RoleAssignmentApiResponseProcessor {
   async getUserAssignedRole(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AssignRoleToGroup200Response', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -991,7 +991,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListGroupAssignedRoles200ResponseInner'), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'AssignRoleToGroup200Response'), 'AssignRoleToGroup200Response', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1102,7 +1102,7 @@ class RoleAssignmentApiResponseProcessor {
   async listRolesForClient(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<ListGroupAssignedRoles200ResponseInner>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<ListRolesForClient200ResponseInner>', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1119,7 +1119,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'Array<ListGroupAssignedRoles200ResponseInner>'), 'Array<ListGroupAssignedRoles200ResponseInner>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'Array<ListRolesForClient200ResponseInner>'), 'Array<ListRolesForClient200ResponseInner>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1162,7 +1162,7 @@ class RoleAssignmentApiResponseProcessor {
   async retrieveClientRole(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListRolesForClient200ResponseInner', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1179,7 +1179,7 @@ class RoleAssignmentApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListGroupAssignedRoles200ResponseInner'), 'ListGroupAssignedRoles200ResponseInner', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListRolesForClient200ResponseInner'), 'ListRolesForClient200ResponseInner', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

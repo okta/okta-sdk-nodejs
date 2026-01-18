@@ -25,4 +25,4 @@
 /**
 * The type of authentication provider
 */
-export declare type AuthenticationProviderType = 'ACTIVE_DIRECTORY' | 'FEDERATION' | 'IMPORT' | 'LDAP' | 'OKTA' | 'SOCIAL';
+export type AuthenticationProviderType = 'ACTIVE_DIRECTORY' | 'FEDERATION' | 'IMPORT' | 'LDAP' | 'OKTA' | 'SOCIAL';

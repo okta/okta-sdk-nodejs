@@ -29,10 +29,10 @@ exports.SelfServicePasswordResetAction = void 0;
 * Enables or disables users to reset their own password and defines the authenticators and constraints needed to complete the reset
 */
 class SelfServicePasswordResetAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SelfServicePasswordResetAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SelfServicePasswordResetAction = SelfServicePasswordResetAction;

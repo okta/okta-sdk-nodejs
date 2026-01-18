@@ -29,10 +29,10 @@ exports.UIElementOptions = void 0;
 * UI Schema element options object
 */
 class UIElementOptions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UIElementOptions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UIElementOptions = UIElementOptions;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.MDMEnrollmentPolicyRuleCondition = void 0;
 class MDMEnrollmentPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MDMEnrollmentPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MDMEnrollmentPolicyRuleCondition = MDMEnrollmentPolicyRuleCondition;

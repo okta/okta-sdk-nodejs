@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TrustedOriginScope = void 0;
 class TrustedOriginScope {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TrustedOriginScope.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TrustedOriginScope = TrustedOriginScope;

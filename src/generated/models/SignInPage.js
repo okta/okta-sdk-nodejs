@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SignInPage = void 0;
 class SignInPage {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SignInPage.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SignInPage = SignInPage;

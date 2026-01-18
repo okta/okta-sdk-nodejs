@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2ScopeConsentGrantLinks = void 0;
 class OAuth2ScopeConsentGrantLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ScopeConsentGrantLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ScopeConsentGrantLinks = OAuth2ScopeConsentGrantLinks;

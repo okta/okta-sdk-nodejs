@@ -25,4 +25,4 @@
 /**
 * Determines whether the rule should use expression language or a specific IdP
 */
-export declare type IdpSelectionType = 'DYNAMIC' | 'SPECIFIC';
+export type IdpSelectionType = 'DYNAMIC' | 'SPECIFIC';

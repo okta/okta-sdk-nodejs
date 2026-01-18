@@ -45,4 +45,4 @@ export declare class UserFactorPushTransaction {
     }[];
   constructor();
 }
-export declare type UserFactorPushTransactionFactorResultEnum = 'WAITING (with number matching challenge)' | 'WAITING' | 'SUCCESS' | 'REJECTED' | 'TIMEOUT';
+export type UserFactorPushTransactionFactorResultEnum = 'WAITING (with number matching challenge)' | 'WAITING' | 'SUCCESS' | 'REJECTED' | 'TIMEOUT';

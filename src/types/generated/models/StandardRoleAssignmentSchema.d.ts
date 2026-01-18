@@ -24,9 +24,9 @@
  */
 export declare class StandardRoleAssignmentSchema {
   /**
-    * Specify the standard or IAM-based role type. See [standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+    * Specify a [standard admin role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), an [IAM-based standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#iam-based-standard-roles), or `CUSTOM` for a custom role type:
     */
-  'type'?: string;
+  'type': StandardRoleAssignmentSchemaTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -42,3 +42,4 @@ export declare class StandardRoleAssignmentSchema {
     }[];
   constructor();
 }
+export type StandardRoleAssignmentSchemaTypeEnum = 'ACCESS_CERTIFICATIONS_ADMIN' | 'ACCESS_REQUESTS_ADMIN' | 'API_ACCESS_MANAGEMENT_ADMIN' | 'APP_ADMIN' | 'GROUP_MEMBERSHIP_ADMIN' | 'HELP_DESK_ADMIN' | 'ORG_ADMIN' | 'READ_ONLY_ADMIN' | 'REPORT_ADMIN' | 'SUPER_ADMIN' | 'USER_ADMIN' | 'WORKFLOWS_ADMIN';

@@ -24,11 +24,11 @@
  */
 import { DomainResponse } from './../models/DomainResponse';
 /**
-* Defines a list of domains with a subset of the properties for each domain.
+* Defines a list of domains with a subset of the properties for each domain
 */
 export declare class DomainListResponse {
   /**
-    * Each element of the array defines an individual domain.
+    * Each element of the array defines an individual domain
     */
   'domains'?: Array<DomainResponse>;
   static readonly discriminator: string | undefined;

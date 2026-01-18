@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FederatedClaim = void 0;
 class FederatedClaim {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FederatedClaim.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FederatedClaim = FederatedClaim;

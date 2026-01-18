@@ -43,4 +43,4 @@ export declare class UserFactorU2F extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorU2FProviderEnum = 'FIDO';
+export type UserFactorU2FProviderEnum = 'FIDO';

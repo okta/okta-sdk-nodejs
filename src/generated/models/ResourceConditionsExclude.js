@@ -29,10 +29,10 @@ exports.ResourceConditionsExclude = void 0;
 * Specific resources to exclude
 */
 class ResourceConditionsExclude {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceConditionsExclude.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceConditionsExclude = ResourceConditionsExclude;

@@ -33,7 +33,7 @@ import { UserImportRequestExecute } from './../models/UserImportRequestExecute';
  * Type
  * @export
  */
-export declare type ExecuteInlineHookRequest = PasswordImportRequestExecute | RegistrationInlineHookRequest | SAMLPayloadExecute | TelephonyRequestExecute | TokenRequest | UserImportRequestExecute;
+export type ExecuteInlineHookRequest = PasswordImportRequestExecute | RegistrationInlineHookRequest | SAMLPayloadExecute | TelephonyRequestExecute | TokenRequest | UserImportRequestExecute;
 /**
 * @type ExecuteInlineHookRequestClass
 * @export

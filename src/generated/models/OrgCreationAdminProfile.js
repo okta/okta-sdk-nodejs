@@ -29,10 +29,10 @@ exports.OrgCreationAdminProfile = void 0;
 * Specifies the profile attributes for the first super admin user. The minimal set of required attributes are `email`, `firstName`, `lastName`, and `login`. See [profile](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/getUser!c=200&path=profile&t=response) for additional profile attributes.
 */
 class OrgCreationAdminProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCreationAdminProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCreationAdminProfile = OrgCreationAdminProfile;

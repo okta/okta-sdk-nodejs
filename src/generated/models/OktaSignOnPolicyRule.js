@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.OktaSignOnPolicyRule = void 0;
 const PolicyRule_1 = require('./../models/PolicyRule');
 class OktaSignOnPolicyRule extends PolicyRule_1.PolicyRule {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(OktaSignOnPolicyRule.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'SIGN_ON';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(OktaSignOnPolicyRule.attributeTypeMap);
   }
 }
 exports.OktaSignOnPolicyRule = OktaSignOnPolicyRule;

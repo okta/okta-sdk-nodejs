@@ -29,10 +29,10 @@ exports.GroupPolicyRuleCondition = void 0;
 * Specifies a set of groups whose users are to be included or excluded
 */
 class GroupPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupPolicyRuleCondition = GroupPolicyRuleCondition;

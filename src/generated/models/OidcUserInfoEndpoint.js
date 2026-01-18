@@ -29,10 +29,10 @@ exports.OidcUserInfoEndpoint = void 0;
 * Endpoint for getting identity information about the user. For more information on the `/userinfo` endpoint, see [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
 */
 class OidcUserInfoEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcUserInfoEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcUserInfoEndpoint = OidcUserInfoEndpoint;

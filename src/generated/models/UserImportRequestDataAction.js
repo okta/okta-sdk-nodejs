@@ -29,10 +29,10 @@ exports.UserImportRequestDataAction = void 0;
 * The object that specifies the default action Okta is set to take
 */
 class UserImportRequestDataAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataAction = UserImportRequestDataAction;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GroupsLink = void 0;
 class GroupsLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupsLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupsLink = GroupsLink;

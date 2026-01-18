@@ -62,4 +62,4 @@ export declare class DeviceAssurance {
     }[];
   constructor();
 }
-export declare type DeviceAssuranceDisplayRemediationModeEnum = 'HIDE' | 'SHOW';
+export type DeviceAssuranceDisplayRemediationModeEnum = 'HIDE' | 'SHOW';

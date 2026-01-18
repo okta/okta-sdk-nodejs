@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyYubikey = void 0;
 const AuthenticatorSimple_1 = require('./../models/AuthenticatorSimple');
 class AuthenticatorKeyYubikey extends AuthenticatorSimple_1.AuthenticatorSimple {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorKeyYubikey.attributeTypeMap);
+  }
   constructor() {
     super();
     this.key = 'yubikey_token';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorKeyYubikey.attributeTypeMap);
   }
 }
 exports.AuthenticatorKeyYubikey = AuthenticatorKeyYubikey;

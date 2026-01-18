@@ -29,10 +29,10 @@ exports.ECKeyJWK = void 0;
 * Elliptic curve key in JSON Web Key (JWK) format. It\'s used during enrollment to encrypt fulfillment requests to Yubico, or during activation to verify Yubico\'s JWS (JSON Web Signature) objects in fulfillment responses. The currently agreed protocol uses P-384.
 */
 class ECKeyJWK {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ECKeyJWK.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ECKeyJWK = ECKeyJWK;

@@ -15,10 +15,16 @@ import { Collection } from '../../collection';
 import { HttpFile } from '../http/http';
 import { Configuration } from '../configuration';
 import { Observable } from '../rxjsStub';
+import { AIAgent } from '../models/AIAgent';
+import { AIAgentOperationListResponse } from '../models/AIAgentOperationListResponse';
+import { AIAgentOperationResponse } from '../models/AIAgentOperationResponse';
 import { APIServiceIntegrationInstance } from '../models/APIServiceIntegrationInstance';
 import { APIServiceIntegrationInstanceSecret } from '../models/APIServiceIntegrationInstanceSecret';
+import { AddJwkRequest } from '../models/AddJwkRequest';
 import { AdminConsoleSettings } from '../models/AdminConsoleSettings';
 import { AgentAction } from '../models/AgentAction';
+import { AgentJsonSigningKeyRequest } from '../models/AgentJsonSigningKeyRequest';
+import { AgentJsonSigningKeyResponse } from '../models/AgentJsonSigningKeyResponse';
 import { AgentPool } from '../models/AgentPool';
 import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
 import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
@@ -39,24 +45,29 @@ import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment
 import { ApplicationLayout } from '../models/ApplicationLayout';
 import { ApplicationLayouts } from '../models/ApplicationLayouts';
 import { AssignGroupOwnerRequestBody } from '../models/AssignGroupOwnerRequestBody';
+import { AssignRoleToClientRequest } from '../models/AssignRoleToClientRequest';
+import { AssignRoleToGroup200Response } from '../models/AssignRoleToGroup200Response';
 import { AssignRoleToGroupRequest } from '../models/AssignRoleToGroupRequest';
 import { AssignRoleToUser201Response } from '../models/AssignRoleToUser201Response';
 import { AssignRoleToUserRequest } from '../models/AssignRoleToUserRequest';
 import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
+import { AuthSettings } from '../models/AuthSettings';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
 import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
 import { AuthenticatorEnrollmentCreateRequestTac } from '../models/AuthenticatorEnrollmentCreateRequestTac';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
+import { AuthenticatorMethodTypeWebAuthn } from '../models/AuthenticatorMethodTypeWebAuthn';
 import { AuthorizationServer } from '../models/AuthorizationServer';
 import { AuthorizationServerJsonWebKey } from '../models/AuthorizationServerJsonWebKey';
 import { AuthorizationServerPolicy } from '../models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from '../models/AuthorizationServerPolicyRule';
 import { AuthorizationServerPolicyRuleRequest } from '../models/AuthorizationServerPolicyRuleRequest';
 import { AutoAssignAdminAppSetting } from '../models/AutoAssignAdminAppSetting';
+import { AvailableActions } from '../models/AvailableActions';
 import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
@@ -77,6 +88,7 @@ import { CatalogApplication } from '../models/CatalogApplication';
 import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
 import { ChildOrg } from '../models/ChildOrg';
 import { ClientPrivilegesSetting } from '../models/ClientPrivilegesSetting';
+import { CreateAIAgentRequest } from '../models/CreateAIAgentRequest';
 import { CreateBrandRequest } from '../models/CreateBrandRequest';
 import { CreateGroupPushMappingRequest } from '../models/CreateGroupPushMappingRequest';
 import { CreateGroupRequest } from '../models/CreateGroupRequest';
@@ -95,6 +107,11 @@ import { CsrMetadata } from '../models/CsrMetadata';
 import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
 import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
 import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
+import { CustomTelephonyProviderCredentialCreateRequest } from '../models/CustomTelephonyProviderCredentialCreateRequest';
+import { CustomTelephonyProviderCredentialResponse } from '../models/CustomTelephonyProviderCredentialResponse';
+import { CustomTelephonyProviderCredentialSendTestRequest } from '../models/CustomTelephonyProviderCredentialSendTestRequest';
+import { CustomTelephonyProviderCredentialUpdateRequest } from '../models/CustomTelephonyProviderCredentialUpdateRequest';
+import { CustomTelephonyProviderCredentialsResponse } from '../models/CustomTelephonyProviderCredentialsResponse';
 import { DesktopMFAEnforceNumberMatchingChallengeOrgSetting } from '../models/DesktopMFAEnforceNumberMatchingChallengeOrgSetting';
 import { DesktopMFARecoveryPinOrgSetting } from '../models/DesktopMFARecoveryPinOrgSetting';
 import { DetailedHookKeyInstance } from '../models/DetailedHookKeyInstance';
@@ -139,17 +156,21 @@ import { FederatedClaimRequestBody } from '../models/FederatedClaimRequestBody';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { FulfillmentRequest } from '../models/FulfillmentRequest';
 import { GetDRStatus200Response } from '../models/GetDRStatus200Response';
+import { GetJwk200Response } from '../models/GetJwk200Response';
 import { GetSsfStreams200Response } from '../models/GetSsfStreams200Response';
 import { GovernanceBundle } from '../models/GovernanceBundle';
 import { GovernanceBundleCreateRequest } from '../models/GovernanceBundleCreateRequest';
 import { GovernanceBundleUpdateRequest } from '../models/GovernanceBundleUpdateRequest';
 import { GovernanceBundlesResponse } from '../models/GovernanceBundlesResponse';
 import { Group } from '../models/Group';
+import { GroupMembershipsResponseSchema } from '../models/GroupMembershipsResponseSchema';
 import { GroupOwner } from '../models/GroupOwner';
 import { GroupPushMapping } from '../models/GroupPushMapping';
 import { GroupPushMappingStatus } from '../models/GroupPushMappingStatus';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { GroupsRequestSchema } from '../models/GroupsRequestSchema';
+import { GroupsResponseSchema } from '../models/GroupsResponseSchema';
 import { HookKey } from '../models/HookKey';
 import { HostedPage } from '../models/HostedPage';
 import { IamRole } from '../models/IamRole';
@@ -166,33 +187,48 @@ import { InlineHook } from '../models/InlineHook';
 import { InlineHookCreate } from '../models/InlineHookCreate';
 import { InlineHookCreateResponse } from '../models/InlineHookCreateResponse';
 import { InlineHookReplace } from '../models/InlineHookReplace';
+import { InterclientTrustMapping } from '../models/InterclientTrustMapping';
+import { InterclientTrustMappingRequestBody } from '../models/InterclientTrustMappingRequestBody';
 import { JsonPatchOperation } from '../models/JsonPatchOperation';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
 import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
+import { ListAIAgents200Response } from '../models/ListAIAgents200Response';
+import { ListAgentJwk200Response } from '../models/ListAgentJwk200Response';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
 import { ListJwk200Response } from '../models/ListJwk200Response';
+import { ListJwk200ResponseKeysInner } from '../models/ListJwk200ResponseKeysInner';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
+import { ListRolesForClient200ResponseInner } from '../models/ListRolesForClient200ResponseInner';
 import { LogEvent } from '../models/LogEvent';
 import { LogStream } from '../models/LogStream';
 import { LogStreamPutSchema } from '../models/LogStreamPutSchema';
 import { LogStreamSchema } from '../models/LogStreamSchema';
 import { LogStreamType } from '../models/LogStreamType';
+import { ManagedConnection } from '../models/ManagedConnection';
+import { ManagedConnectionCreatable } from '../models/ManagedConnectionCreatable';
+import { ManagedConnectionList } from '../models/ManagedConnectionList';
+import { ManagedConnectionPatchable } from '../models/ManagedConnectionPatchable';
+import { MembershipRequestSchema } from '../models/MembershipRequestSchema';
 import { NetworkZone } from '../models/NetworkZone';
 import { NotificationType } from '../models/NotificationType';
 import { OAuth2Claim } from '../models/OAuth2Claim';
 import { OAuth2Client } from '../models/OAuth2Client';
-import { OAuth2ClientJsonWebKey } from '../models/OAuth2ClientJsonWebKey';
-import { OAuth2ClientJsonWebKeyRequestBody } from '../models/OAuth2ClientJsonWebKeyRequestBody';
+import { OAuth2ClientJsonSigningKeyResponse } from '../models/OAuth2ClientJsonSigningKeyResponse';
 import { OAuth2ClientSecret } from '../models/OAuth2ClientSecret';
 import { OAuth2ClientSecretRequestBody } from '../models/OAuth2ClientSecretRequestBody';
 import { OAuth2RefreshToken } from '../models/OAuth2RefreshToken';
+import { OAuth2ResourceServerJsonWebKey } from '../models/OAuth2ResourceServerJsonWebKey';
+import { OAuth2ResourceServerJsonWebKeyRequestBody } from '../models/OAuth2ResourceServerJsonWebKeyRequestBody';
 import { OAuth2Scope } from '../models/OAuth2Scope';
 import { OAuth2ScopeConsentGrant } from '../models/OAuth2ScopeConsentGrant';
 import { OAuthProvisioningEnabledApp } from '../models/OAuthProvisioningEnabledApp';
+import { OktaManagedUserAccount } from '../models/OktaManagedUserAccount';
+import { OktaManagedUserAccountForUpdate } from '../models/OktaManagedUserAccountForUpdate';
+import { OktaManagedUserAccountRequest } from '../models/OktaManagedUserAccountRequest';
 import { OktaPersonalAdminFeatureSettings } from '../models/OktaPersonalAdminFeatureSettings';
 import { OktaSupportCase } from '../models/OktaSupportCase';
 import { OktaSupportCases } from '../models/OktaSupportCases';
@@ -203,15 +239,16 @@ import { OrgAerialConsent } from '../models/OrgAerialConsent';
 import { OrgAerialConsentDetails } from '../models/OrgAerialConsentDetails';
 import { OrgAerialConsentRevoked } from '../models/OrgAerialConsentRevoked';
 import { OrgCAPTCHASettings } from '../models/OrgCAPTCHASettings';
-import { OrgCWOConnection } from '../models/OrgCWOConnection';
-import { OrgCWOConnectionPatchRequest } from '../models/OrgCWOConnectionPatchRequest';
 import { OrgContactTypeObj } from '../models/OrgContactTypeObj';
 import { OrgContactUser } from '../models/OrgContactUser';
+import { OrgCrossAppAccessConnection } from '../models/OrgCrossAppAccessConnection';
+import { OrgCrossAppAccessConnectionPatchRequest } from '../models/OrgCrossAppAccessConnectionPatchRequest';
 import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetting';
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
 import { PageRoot } from '../models/PageRoot';
+import { PatchAIAgentRequest } from '../models/PatchAIAgentRequest';
 import { PerClientRateLimitSettings } from '../models/PerClientRateLimitSettings';
 import { Permission } from '../models/Permission';
 import { Permissions } from '../models/Permissions';
@@ -223,6 +260,7 @@ import { PolicyMappingRequest } from '../models/PolicyMappingRequest';
 import { PolicyRule } from '../models/PolicyRule';
 import { PostAPIServiceIntegrationInstance } from '../models/PostAPIServiceIntegrationInstance';
 import { PostAPIServiceIntegrationInstanceRequest } from '../models/PostAPIServiceIntegrationInstanceRequest';
+import { PotentialConnectionList } from '../models/PotentialConnectionList';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { PrivilegedResource } from '../models/PrivilegedResource';
 import { PrivilegedResourceAccountAppResponse } from '../models/PrivilegedResourceAccountAppResponse';
@@ -241,6 +279,7 @@ import { RateLimitWarningThresholdRequest } from '../models/RateLimitWarningThre
 import { RateLimitWarningThresholdResponse } from '../models/RateLimitWarningThresholdResponse';
 import { Realm } from '../models/Realm';
 import { RealmAssignment } from '../models/RealmAssignment';
+import { RealmAssignmentOperationResponse } from '../models/RealmAssignmentOperationResponse';
 import { ReplaceUserClassification } from '../models/ReplaceUserClassification';
 import { ResendUserFactor } from '../models/ResendUserFactor';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
@@ -286,10 +325,13 @@ import { StreamConfiguration } from '../models/StreamConfiguration';
 import { StreamConfigurationCreateRequest } from '../models/StreamConfigurationCreateRequest';
 import { StreamStatus } from '../models/StreamStatus';
 import { StreamVerificationRequest } from '../models/StreamVerificationRequest';
+import { SubmissionActions } from '../models/SubmissionActions';
+import { SubmissionCapabilities } from '../models/SubmissionCapabilities';
 import { SubmissionRequest } from '../models/SubmissionRequest';
 import { SubmissionResponse } from '../models/SubmissionResponse';
 import { Subscription } from '../models/Subscription';
 import { TacAuthenticatorEnrollment } from '../models/TacAuthenticatorEnrollment';
+import { TenantSettings } from '../models/TenantSettings';
 import { TestInfo } from '../models/TestInfo';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThirdPartyAdminSetting } from '../models/ThirdPartyAdminSetting';
@@ -297,6 +339,8 @@ import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration
 import { TrustedOrigin } from '../models/TrustedOrigin';
 import { TrustedOriginWrite } from '../models/TrustedOriginWrite';
 import { UISchemasResponseObject } from '../models/UISchemasResponseObject';
+import { UnconfirmedUserResponseSchema } from '../models/UnconfirmedUserResponseSchema';
+import { UpdateAIAgentRequest } from '../models/UpdateAIAgentRequest';
 import { UpdateDefaultProvisioningConnectionForApplicationRequest } from '../models/UpdateDefaultProvisioningConnectionForApplicationRequest';
 import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
@@ -329,6 +373,8 @@ import { UserGetSingleton } from '../models/UserGetSingleton';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
 import { UserLockoutSettings } from '../models/UserLockoutSettings';
 import { UserNextLogin } from '../models/UserNextLogin';
+import { UserRequestSchema } from '../models/UserRequestSchema';
+import { UserResponseSchema } from '../models/UserResponseSchema';
 import { UserRiskGetResponse } from '../models/UserRiskGetResponse';
 import { UserRiskPutResponse } from '../models/UserRiskPutResponse';
 import { UserRiskRequest } from '../models/UserRiskRequest';
@@ -336,6 +382,8 @@ import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { UserTypePostRequest } from '../models/UserTypePostRequest';
 import { UserTypePutRequest } from '../models/UserTypePutRequest';
+import { UsersUpdateRequestSchema } from '../models/UsersUpdateRequestSchema';
+import { VerifyActions200Response } from '../models/VerifyActions200Response';
 import { WebAuthnPreregistrationFactor } from '../models/WebAuthnPreregistrationFactor';
 import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
@@ -343,6 +391,64 @@ import { WellKnownSSFMetadata } from '../models/WellKnownSSFMetadata';
 import { WellKnownURIObjectResponse } from '../models/WellKnownURIObjectResponse';
 import { WellKnownURIRequest } from '../models/WellKnownURIRequest';
 import { WellKnownURIsRoot } from '../models/WellKnownURIsRoot';
+import { AgentConnectionsApiRequestFactory, AgentConnectionsApiResponseProcessor } from '../apis/AgentConnectionsApi';
+export declare class ObservableAgentConnectionsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AgentConnectionsApiRequestFactory, responseProcessor?: AgentConnectionsApiResponseProcessor);
+  /**
+      * Activates a managed connection for the agent
+      * Activate a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  activateManagedConnection(agentId: string, connectionId: string, _options?: Configuration): Observable<ManagedConnection>;
+  /**
+      * Creates a managed connection for the agent
+      * Create a managed connection
+      * @param agentId ID of the agent
+      * @param managedConnectionCreatable
+      */
+  createManagedConnection(agentId: string, managedConnectionCreatable: ManagedConnectionCreatable, _options?: Configuration): Observable<ManagedConnection>;
+  /**
+      * Deactivates a managed connection for the agent
+      * Deactivate a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  deactivateManagedConnection(agentId: string, connectionId: string, _options?: Configuration): Observable<ManagedConnection>;
+  /**
+      * Deletes a managed connection for the agent
+      * Delete an agent connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  deleteManagedConnection(agentId: string, connectionId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a connection for the agent
+      * Retrieve an agent connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      */
+  getManagedConnection(agentId: string, connectionId: string, _options?: Configuration): Observable<ManagedConnection>;
+  /**
+      * Lists all connections for the agent
+      * List all agent connections
+      * @param agentId ID of the agent
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listConnections(agentId: string, after?: string, limit?: number, _options?: Configuration): Observable<ManagedConnectionList>;
+  /**
+      * Updates a managed connection for the agent
+      * Update a managed connection
+      * @param agentId ID of the agent
+      * @param connectionId ID of the connection
+      * @param managedConnectionPatchable
+      */
+  updateManagedConnection(agentId: string, connectionId: string, managedConnectionPatchable: ManagedConnectionPatchable, _options?: Configuration): Observable<ManagedConnection>;
+}
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export declare class ObservableAgentPoolsApi {
   private requestFactory;
@@ -395,7 +501,7 @@ export declare class ObservableAgentPoolsApi {
       * List all agent pools
       * @param limitPerPoolType Maximum number of agent pools returned
       * @param poolType Agent type to search for
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Observable<Collection<AgentPool>>;
   /**
@@ -448,6 +554,142 @@ export declare class ObservableAgentPoolsApi {
       * @param agentPoolUpdateSetting
       */
   updateAgentPoolsUpdateSettings(poolId: string, agentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
+}
+import { AgentPotentialConnectionsApiRequestFactory, AgentPotentialConnectionsApiResponseProcessor } from '../apis/AgentPotentialConnectionsApi';
+export declare class ObservableAgentPotentialConnectionsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AgentPotentialConnectionsApiRequestFactory, responseProcessor?: AgentPotentialConnectionsApiResponseProcessor);
+  /**
+      * Lists all global resource connections of a specific connection type that an AI agent can potentially connect to  Only resource connections returned from this request are valid for [creating a connection](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentConnections/#tag/AgentConnections/operation/createManagedConnection) with a matching connection-type protocol.  Include the required [`filter`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=filter&t=request) query parameter to return potential connections with a specific `connectionType`. You can also use the [`match`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=match&t=request) query parameter to apply fuzzy-matching on the returned list of potential connections.
+      * List all potential connections
+      * @param filter A required [filter](/#filter) expression to return a specific type of potential connections.  The expression supports the &#x60;eq&#x60; [operator](/#operators) and the following &#x60;connectionType&#x60; values: * &#x60;IDENTITY_ASSERTION_CUSTOM_AS&#x60; * &#x60;STS_VAULT_SECRET&#x60; * &#x60;STS_SERVICE_ACCOUNT&#x60;  You can combine multiple expressions using the &#x60;and&#x60; operator to narrow results. For example, filter by connection type and app instance ORN for &#x60;STS_SERVICE_ACCOUNT&#x60; connections.  **Note:** Query parameter percent encoding is required. See [Special characters](/#special-characters).
+      * @param match A case-insensitive substring for fuzzy-match that\&#39;s prefix-friendly
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listPotentialConnectionsByType(filter: string, match?: string, after?: string, limit?: number, _options?: Configuration): Observable<PotentialConnectionList>;
+}
+import { AgentPublicKeyApiRequestFactory, AgentPublicKeyApiResponseProcessor } from '../apis/AgentPublicKeyApi';
+export declare class ObservableAgentPublicKeyApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AgentPublicKeyApiRequestFactory, responseProcessor?: AgentPublicKeyApiResponseProcessor);
+  /**
+      * Activates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only have one active encryption key at any given time for an AI agent. When you activate an inactive key, the currently active key is automatically deactivated.
+      * Activate an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  activateAgentJsonWebKey(agentId: string, keyId: string, _options?: Configuration): Observable<AgentJsonSigningKeyResponse>;
+  /**
+      * Adds a new JSON Web Key (JWK) to the AI agent\'s JWK Set (JWKS)
+      * Add a JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param agentJsonSigningKeyRequest
+      */
+  addAgentJwk(agentId: string, agentJsonSigningKeyRequest: AgentJsonSigningKeyRequest, _options?: Configuration): Observable<AgentJsonSigningKeyResponse>;
+  /**
+      * Deactivates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only deactivate signing keys. You can\'t deactivate the active encryption key if the client has ID token encryption enabled. However, you can activate another encryption key, which makes the current key inactive.
+      * Deactivate an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  deactivateAgentJsonWebKey(agentId: string, keyId: string, _options?: Configuration): Observable<AgentJsonSigningKeyResponse>;
+  /**
+      * Deletes an AI agent\'s JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  deleteAgentJwk(agentId: string, keyId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves an AI agent\'s JSON Web Key by `keyId`
+      * Retrieve an AI agent JSON Web Key
+      * @param agentId ID of the AI agent
+      * @param keyId Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      */
+  getAgentJwk(agentId: string, keyId: string, _options?: Configuration): Observable<AgentJsonSigningKeyResponse>;
+  /**
+      * Lists all JSON Web Keys (JWK) for an AI agent
+      * List all AI agent JSON Web Keys
+      * @param agentId ID of the AI agent
+      */
+  listAgentJwk(agentId: string, _options?: Configuration): Observable<ListAgentJwk200Response>;
+}
+import { AgentRegistrationApiRequestFactory, AgentRegistrationApiResponseProcessor } from '../apis/AgentRegistrationApi';
+export declare class ObservableAgentRegistrationApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AgentRegistrationApiRequestFactory, responseProcessor?: AgentRegistrationApiResponseProcessor);
+  /**
+      * Activates an AI agent
+      * Activate an AI agent
+      * @param agentId ID of the AI agent
+      */
+  activateAIAgent(agentId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deactivates an AI agent
+      * Deactivate an AI agent
+      * @param agentId ID of the AI agent
+      */
+  deactivateAIAgent(agentId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes an AI agent
+      * Delete an AI agent
+      * @param agentId ID of the AI agent
+      */
+  deleteAIAgent(agentId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves an AI agent
+      * Retrieve an AI agent
+      * @param agentId ID of the AI agent
+      */
+  getAIAgent(agentId: string, _options?: Configuration): Observable<AIAgent>;
+  /**
+      * Retrieves an AI agent operation and its status
+      * Retrieve an AI agent operation
+      * @param operationId ID of the AI agent operation
+      */
+  getAIAgentOperation(operationId: string, _options?: Configuration): Observable<AIAgentOperationResponse>;
+  /**
+      * Lists all AI agent operations. Operations are sorted in descending order from most recent to oldest by creation time.
+      * List all AI agent operations
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      */
+  listAIAgentOperations(after?: string, limit?: number, _options?: Configuration): Observable<AIAgentOperationListResponse>;
+  /**
+      * Lists all AI agents
+      * List all AI agents
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit A limit on the number of objects to return
+      * @param search Searches for AI agents with a filtering expression that supports: *  &#x60;eq&#x60; operator for the &#x60;status&#x60; and &#x60;appId&#x60; property *  &#x60;sw&#x60;, &#x60;co&#x60; and &#x60;eq&#x60; operator for the &#x60;profile.name&#x60; property  &gt; **Note:** Query parameter percent encoding is required. See [Special characters](https://developer.okta.com/docs/api/#special-characters).
+      */
+  listAIAgents(after?: string, limit?: number, search?: string, _options?: Configuration): Observable<ListAIAgents200Response>;
+  /**
+      * Registers an AI agent
+      * Register an AI agent
+      * @param body
+      */
+  registerAIAgent(body: CreateAIAgentRequest, _options?: Configuration): Observable<void>;
+  /**
+      * Replaces an AI agent
+      * Replace an AI agent
+      * @param agentId ID of the AI agent
+      * @param body
+      */
+  replaceAIAgent(agentId: string, body: UpdateAIAgentRequest, _options?: Configuration): Observable<void>;
+  /**
+      * Updates an AI agent. Use this request to perform partial updates on AI agent profile properties.
+      * Update an AI agent
+      * @param agentId ID of the AI agent
+      * @param body
+      */
+  updateAIAgent(agentId: string, body: PatchAIAgentRequest, _options?: Configuration): Observable<void>;
 }
 import { ApiServiceIntegrationsApiRequestFactory, ApiServiceIntegrationsApiResponseProcessor } from '../apis/ApiServiceIntegrationsApi';
 export declare class ObservableApiServiceIntegrationsApi {
@@ -509,7 +751,7 @@ export declare class ObservableApiServiceIntegrationsApi {
   /**
       * Lists all API Service Integration instances with a pagination option
       * List all API service integration instances
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listApiServiceIntegrationInstances(after?: string, _options?: Configuration): Observable<Collection<APIServiceIntegrationInstance>>;
 }
@@ -568,29 +810,8 @@ export declare class ObservableApplicationApi {
       */
   activateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Observable<void>;
   /**
-      * Activates an OAuth 2.0 Client JSON Web Key by `keyId`
-      * Activate an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  activateOAuth2ClientJsonWebKey(appId: string, keyId: string, _options?: Configuration): Observable<OAuth2ClientJsonWebKey>;
-  /**
-      * Activates an OAuth 2.0 Client Secret by `secretId`
-      * Activate an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  activateOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
-  /**
-      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOCredentialOAuth2ClientAuth/#tag/ApplicationSSOCredentialOAuth2ClientAuth/operation/deletejwk) and re-add the key with a `kid`.
-      * Add a JSON Web Key
-      * @param appId Application ID
-      * @param oAuth2ClientJsonWebKeyRequestBody
-      */
-  addJwk(appId: string, oAuth2ClientJsonWebKeyRequestBody: OAuth2ClientJsonWebKeyRequestBody, _options?: Configuration): Observable<OAuth2ClientJsonWebKey>;
-  /**
-      * Assigns an app to an [authentication policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate authentication policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
-      * Assign an authentication policy
+      * Assigns an app to an [app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate app sign-in policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
+      * Assign an app sign-in policy
       * @param appId Application ID
       * @param policyId &#x60;id&#x60; of the Policy
       */
@@ -634,26 +855,12 @@ export declare class ObservableApplicationApi {
       */
   createApplication(application: Application, activate?: boolean, oktaAccessGatewayAgent?: string, _options?: Configuration): Observable<Application>;
   /**
-      * Creates a CWO connection
-      * Create a CWO connection
-      * @param appId Application ID
-      * @param orgCWOConnection
-      */
-  createCWOConnection(appId: string, orgCWOConnection: OrgCWOConnection, _options?: Configuration): Observable<OrgCWOConnection>;
-  /**
       * Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
       * Create a federated claim
       * @param appId Application ID
       * @param federatedClaimRequestBody
       */
   createFederatedClaim(appId: string, federatedClaimRequestBody: FederatedClaimRequestBody, _options?: Configuration): Observable<FederatedClaim>;
-  /**
-      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
-      * Create an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param oAuth2ClientSecretRequestBody
-      */
-  createOAuth2ClientSecret(appId: string, oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody, _options?: Configuration): Observable<OAuth2ClientSecret>;
   /**
       * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
       * Deactivate an application
@@ -667,32 +874,11 @@ export declare class ObservableApplicationApi {
       */
   deactivateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Deactivate an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  deactivateOAuth2ClientJsonWebKey(appId: string, keyId: string, _options?: Configuration): Observable<OAuth2ClientJsonWebKey>;
-  /**
-      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
-      * Deactivate an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  deactivateOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
-  /**
       * Deletes an inactive application
       * Delete an application
       * @param appId Application ID
       */
   deleteApplication(appId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Deletes a CWO connection
-      * Delete a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      */
-  deleteCWOConnection(appId: string, connectionId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes a federated claim by `claimId`
       * Delete a federated claim
@@ -700,20 +886,6 @@ export declare class ObservableApplicationApi {
       * @param claimId The unique &#x60;id&#x60; of the federated claim
       */
   deleteFederatedClaim(appId: string, claimId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
-      * Delete an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  deleteOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
-      * Delete an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  deletejwk(appId: string, keyId: string, _options?: Configuration): Observable<void>;
   /**
       * Generates a new X.509 certificate for an app key credential > **Note:** To update an Application with the newly generated key credential, use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) request with the new [credentials.signing.kid](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing/kid&t=request) value in the request body. You can provide just the [Signing Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing&t=request) instead of the entire [Application Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials&t=request).
       * Generate a key credential
@@ -728,12 +900,6 @@ export declare class ObservableApplicationApi {
       * @param metadata
       */
   generateCsrForApplication(appId: string, metadata: CsrMetadata, _options?: Configuration): Observable<string>;
-  /**
-      * Retrieves inbound and outbound CWO connections for a given app
-      * Retrieve all CWO connections
-      * @param appId Application ID
-      */
-  getAllCWOConnections(appId: string, _options?: Configuration): Observable<Collection<OrgCWOConnection>>;
   /**
       * Retrieves an application from your Okta organization by `id`
       * Retrieve an application
@@ -765,13 +931,6 @@ export declare class ObservableApplicationApi {
       */
   getApplicationUser(appId: string, userId: string, expand?: string, _options?: Configuration): Observable<AppUser>;
   /**
-      * Retrieves a CWO connection for an app
-      * Retrieve a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      */
-  getCWOConnection(appId: string, connectionId: string, _options?: Configuration): Observable<OrgCWOConnection>;
-  /**
       * Retrieves a Certificate Signing Request (CSR) for the app by `csrId`.  Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
       * Retrieve a certificate signing request
       * @param appId Application ID
@@ -799,13 +958,6 @@ export declare class ObservableApplicationApi {
       */
   getFederatedClaim(appId: string, claimId: string, _options?: Configuration): Observable<FederatedClaimRequestBody>;
   /**
-      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Retrieve an OAuth 2.0 client JSON Web Key
-      * @param appId Application ID
-      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      */
-  getJwk(appId: string, keyId: string, _options?: Configuration): Observable<OAuth2ClientJsonWebKey>;
-  /**
       * Retrieves the OAuth 2.0 authorization code from the app\'s authorization server. Use this authorization code to exchange for an access token through another endpoint to enable Express Configuration on behalf of the user.
       * Retrieve the OAuth 2.0 authorization code for Express Configuration.
       * @param appId Application ID
@@ -813,13 +965,6 @@ export declare class ObservableApplicationApi {
       * @param capabilityType The capability type (for example, &#x60;SSO&#x60;) for which the user intends to perform Express Configuration.
       */
   getOAuth2AccessTokenForExpressConfiguration(appId: string, token?: string, capabilityType?: CapabilityType, _options?: Configuration): Observable<void>;
-  /**
-      * Retrieves an OAuth 2.0 Client Secret by `secretId`
-      * Retrieve an OAuth 2.0 client secret
-      * @param appId Application ID
-      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      */
-  getOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
   /**
       * Retrieves a refresh token for the specified app
       * Retrieve an application token
@@ -881,12 +1026,13 @@ export declare class ObservableApplicationApi {
       * @param q Searches for apps with &#x60;name&#x60; or &#x60;label&#x60; properties that starts with the &#x60;q&#x60; value using the &#x60;startsWith&#x60; operation
       * @param after Specifies the [pagination](/#pagination) cursor for the next page of results. Treat this as an opaque value obtained through the &#x60;next&#x60; link relationship.
       * @param useOptimization Specifies whether to use query optimization. If you specify &#x60;useOptimization&#x3D;true&#x60; in the request query, the response contains a subset of app instance properties.
+      * @param alwaysIncludeVpnSettings Specifies whether to include the VPN configuration for existing notifications in the result, regardless of whether VPN notifications are configured
       * @param limit Specifies the number of results per page
-      * @param filter Filters apps by &#x60;status&#x60;, &#x60;user.id&#x60;, &#x60;group.id&#x60;, &#x60;credentials.signing.kid&#x60; or &#x60;name&#x60; expression that supports the &#x60;eq&#x60; operator
+      * @param filter Filters apps with a supported expression for a subset of properties. Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;credentials.signing.kid&#x60;, &#x60;settings.slo.enabled&#x60;, or &#x60;name&#x60;. See [Filter](https://developer.okta.com/docs/api/#filter).
       * @param expand An optional parameter used for link expansion to embed more resources in the response. Only supports &#x60;expand&#x3D;user/{userId}&#x60; and must be used with the &#x60;user.id eq \&quot;{userId}\&quot;&#x60; filter query for the same user. Returns the assigned [application user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/) in the &#x60;_embedded&#x60; property.
       * @param includeNonDeleted Specifies whether to include non-active, but not deleted apps in the results
       */
-  listApplications(q?: string, after?: string, useOptimization?: boolean, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Observable<Collection<Application>>;
+  listApplications(q?: string, after?: string, useOptimization?: boolean, alwaysIncludeVpnSettings?: boolean, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Observable<Collection<Application>>;
   /**
       * Lists all Certificate Signing Requests for an application
       * List all certificate signing requests
@@ -905,18 +1051,6 @@ export declare class ObservableApplicationApi {
       * @param appId Application ID
       */
   listFederatedClaims(appId: string, _options?: Configuration): Observable<Collection<FederatedClaim>>;
-  /**
-      * Lists all JSON Web Keys for an OAuth 2.0 client app
-      * List all the OAuth 2.0 client JSON Web Keys
-      * @param appId Application ID
-      */
-  listJwk(appId: string, _options?: Configuration): Observable<ListJwk200Response>;
-  /**
-      * Lists all client secrets for an OAuth 2.0 client app
-      * List all OAuth 2.0 client secrets
-      * @param appId Application ID
-      */
-  listOAuth2ClientSecrets(appId: string, _options?: Configuration): Observable<Collection<OAuth2ClientSecret>>;
   /**
       * Lists all refresh tokens for an app  > **Note:** The results are [paginated](/#pagination) according to the `limit` parameter. > If there are multiple pages of results, the Link header contains a `next` link that you need to use as an opaque value (follow it, don\'t parse it).
       * List all application refresh tokens
@@ -1014,14 +1148,6 @@ export declare class ObservableApplicationApi {
       */
   updateApplicationUser(appId: string, userId: string, appUser: AppUserUpdateRequest, _options?: Configuration): Observable<AppUser>;
   /**
-      * Updates a CWO connection
-      * Update a CWO connection
-      * @param appId Application ID
-      * @param connectionId Connection ID
-      * @param orgCWOConnectionPatchRequest
-      */
-  updateCWOConnection(appId: string, connectionId: string, orgCWOConnectionPatchRequest: OrgCWOConnectionPatchRequest, _options?: Configuration): Observable<OrgCWOConnection>;
-  /**
       * Updates the default provisioning connection for an app
       * Update the default provisioning connection
       * @param appId Application ID
@@ -1077,6 +1203,172 @@ export declare class ObservableApplicationApi {
       * @param state
       */
   verifyProvisioningConnectionForOfficeApplication(appId: string, code?: string, state?: string, _options?: Configuration): Observable<void>;
+}
+import { ApplicationCrossAppAccessConnectionsApiRequestFactory, ApplicationCrossAppAccessConnectionsApiResponseProcessor } from '../apis/ApplicationCrossAppAccessConnectionsApi';
+export declare class ObservableApplicationCrossAppAccessConnectionsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: ApplicationCrossAppAccessConnectionsApiRequestFactory, responseProcessor?: ApplicationCrossAppAccessConnectionsApiResponseProcessor);
+  /**
+      * Creates a Cross App Access connection
+      * Create a Cross App Access connection
+      * @param appId Application ID
+      * @param orgCrossAppAccessConnection
+      */
+  createCrossAppAccessConnection(appId: string, orgCrossAppAccessConnection: OrgCrossAppAccessConnection, _options?: Configuration): Observable<OrgCrossAppAccessConnection>;
+  /**
+      * Deletes a Cross App Access connection with the specified ID
+      * Delete a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      */
+  deleteCrossAppAccessConnection(appId: string, connectionId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves inbound and outbound Cross App Access connections associated with an app
+      * Retrieve all Cross App Access connections
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of connection results
+      * @param limit Specifies the number of results to return per page. The values:   * -1: Return all results (up to system maximum)   * 0: Return an empty result set   * Positive integer: Return up to that many results (capped at system maximum)
+      */
+  getAllCrossAppAccessConnections(appId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<OrgCrossAppAccessConnection>>;
+  /**
+      * Retrieves the Cross App Access connection with the specified ID
+      * Retrieve a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      */
+  getCrossAppAccessConnection(appId: string, connectionId: string, _options?: Configuration): Observable<OrgCrossAppAccessConnection>;
+  /**
+      * Updates the Cross App Access connection with the specified ID
+      * Update a Cross App Access connection
+      * @param appId Application ID
+      * @param connectionId Connection ID
+      * @param orgCrossAppAccessConnectionPatchRequest
+      */
+  updateCrossAppAccessConnection(appId: string, connectionId: string, orgCrossAppAccessConnectionPatchRequest: OrgCrossAppAccessConnectionPatchRequest, _options?: Configuration): Observable<OrgCrossAppAccessConnection>;
+}
+import { ApplicationInterclientTrustMappingsApiRequestFactory, ApplicationInterclientTrustMappingsApiResponseProcessor } from '../apis/ApplicationInterclientTrustMappingsApi';
+export declare class ObservableApplicationInterclientTrustMappingsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: ApplicationInterclientTrustMappingsApiRequestFactory, responseProcessor?: ApplicationInterclientTrustMappingsApiResponseProcessor);
+  /**
+      * Creates a mapping between the target app and an allowed app for interclient SSO using the interclient token
+      * Create an allowed app mapping for a target app
+      * @param appId Application ID
+      * @param interclientTrustMappingRequestBody
+      */
+  createInterclientTrustMapping(appId: string, interclientTrustMappingRequestBody: InterclientTrustMappingRequestBody, _options?: Configuration): Observable<InterclientTrustMapping>;
+  /**
+      * Deletes the mapping between the target app and an allowed app
+      * Delete an interclient trust mapping
+      * @param appId Application ID
+      * @param allowedAppId App ID of the allowed app instance to delete mapping from the target app.
+      */
+  deleteInterclientTrustMapping(appId: string, allowedAppId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Lists all apps allowed by this app to request interclient SSO using the interclient token
+      * List all allowed apps for a target app
+      * @param appId Application ID
+      */
+  listInterclientAllowedApplications(appId: string, _options?: Configuration): Observable<Collection<string>>;
+  /**
+      * Lists all the target apps that allow this app to request interclient SSO using an interclient token
+      * List all target apps for an allowed app
+      * @param appId Application ID
+      */
+  listInterclientTargetApplications(appId: string, _options?: Configuration): Observable<Collection<string>>;
+}
+import { ApplicationSSOPublicKeysApiRequestFactory, ApplicationSSOPublicKeysApiResponseProcessor } from '../apis/ApplicationSSOPublicKeysApi';
+export declare class ObservableApplicationSSOPublicKeysApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: ApplicationSSOPublicKeysApiRequestFactory, responseProcessor?: ApplicationSSOPublicKeysApiResponseProcessor);
+  /**
+      * Activates an OAuth 2.0 Client JSON Web Key by `keyId` > **Note:** You can have only one active encryption key at any given time for app. When you activate an inactive key, the current active key is automatically deactivated.
+      * Activate an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  activateOAuth2ClientJsonWebKey(appId: string, keyId: string, _options?: Configuration): Observable<ListJwk200ResponseKeysInner>;
+  /**
+      * Activates an OAuth 2.0 Client Secret by `secretId`
+      * Activate an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  activateOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
+  /**
+      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOPublicKeys/#tag/ApplicationSSOPublicKeys/operation/deletejwk) and re-add the key with a `kid`.
+      * Add a JSON Web Key
+      * @param appId Application ID
+      * @param addJwkRequest
+      */
+  addJwk(appId: string, addJwkRequest: AddJwkRequest, _options?: Configuration): Observable<ListJwk200ResponseKeysInner>;
+  /**
+      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
+      * Create an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param oAuth2ClientSecretRequestBody
+      */
+  createOAuth2ClientSecret(appId: string, oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody, _options?: Configuration): Observable<OAuth2ClientSecret>;
+  /**
+      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`. > **Note:** You can only deactivate signing keys. Deactivating the active encryption key isn\'t allowed if the client has ID token encryption enabled. You can activate another encryption key, which makes the current key inactive.
+      * Deactivate an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  deactivateOAuth2ClientJsonWebKey(appId: string, keyId: string, _options?: Configuration): Observable<OAuth2ClientJsonSigningKeyResponse>;
+  /**
+      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
+      * Deactivate an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  deactivateOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
+  /**
+      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
+      * Delete an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  deleteOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  deletejwk(appId: string, keyId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
+      * Retrieve an OAuth 2.0 client JSON Web Key
+      * @param appId Application ID
+      * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      */
+  getJwk(appId: string, keyId: string, _options?: Configuration): Observable<GetJwk200Response>;
+  /**
+      * Retrieves an OAuth 2.0 Client Secret by `secretId`
+      * Retrieve an OAuth 2.0 client secret
+      * @param appId Application ID
+      * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      */
+  getOAuth2ClientSecret(appId: string, secretId: string, _options?: Configuration): Observable<OAuth2ClientSecret>;
+  /**
+      * Lists all JSON Web Keys for an OAuth 2.0 client app
+      * List all the OAuth 2.0 client JSON Web Keys
+      * @param appId Application ID
+      */
+  listJwk(appId: string, _options?: Configuration): Observable<ListJwk200Response>;
+  /**
+      * Lists all client secrets for an OAuth 2.0 client app
+      * List all OAuth 2.0 client secrets
+      * @param appId Application ID
+      */
+  listOAuth2ClientSecrets(appId: string, _options?: Configuration): Observable<Collection<OAuth2ClientSecret>>;
 }
 import { AssociatedDomainCustomizationsApiRequestFactory, AssociatedDomainCustomizationsApiResponseProcessor } from '../apis/AssociatedDomainCustomizationsApi';
 export declare class ObservableAssociatedDomainCustomizationsApi {
@@ -1140,12 +1432,12 @@ export declare class ObservableAttackProtectionApi {
       * Retrieves the Authenticator Settings for an org
       * Retrieve the authenticator settings
       */
-  getAuthenticatorSettings(_options?: Configuration): Observable<Collection<AttackProtectionAuthenticatorSettings>>;
+  getAuthenticatorSettings(_options?: Configuration): Observable<AttackProtectionAuthenticatorSettings>;
   /**
       * Retrieves the User Lockout Settings for an org
       * Retrieve the user lockout settings
       */
-  getUserLockoutSettings(_options?: Configuration): Observable<Collection<UserLockoutSettings>>;
+  getUserLockoutSettings(_options?: Configuration): Observable<UserLockoutSettings>;
   /**
       * Replaces the Authenticator Settings for an org
       * Replace the authenticator settings
@@ -1286,6 +1578,13 @@ export declare class ObservableAuthenticatorApi {
       * @param customAAGUIDUpdateRequestObject
       */
   updateCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Observable<CustomAAGUIDResponseObject>;
+  /**
+      * Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified WebAuthn authenticator and the specific `webauthn` authenticator method
+      * Verify a Relying Party ID domain
+      * @param authenticatorId &#x60;id&#x60; of the authenticator
+      * @param webAuthnMethodType Type of authenticator method
+      */
+  verifyRpIdDomain(authenticatorId: string, webAuthnMethodType: AuthenticatorMethodTypeWebAuthn, _options?: Configuration): Observable<void>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export declare class ObservableAuthorizationServerApi {
@@ -1465,7 +1764,7 @@ export declare class ObservableAuthorizationServerApi {
       * Retrieves a refresh token for a Client
       * Retrieve a refresh token for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       */
@@ -1533,7 +1832,7 @@ export declare class ObservableAuthorizationServerApi {
       * Lists all refresh tokens issued by an authorization server for a specific Client
       * List all refresh tokens for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after Specifies the pagination cursor for the next page of tokens
       * @param limit The maximum number of tokens to return (maximum 200)
@@ -1583,7 +1882,7 @@ export declare class ObservableAuthorizationServerApi {
       * Revokes a refresh token for a Client
       * Revoke a refresh token for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Observable<void>;
@@ -1591,7 +1890,7 @@ export declare class ObservableAuthorizationServerApi {
       * Revokes all refresh tokens for a Client
       * Revoke all refresh tokens for a client
       * @param authServerId &#x60;id&#x60; of the Authorization Server
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Observable<void>;
   /**
@@ -1611,7 +1910,7 @@ export declare class ObservableBehaviorApi {
   /**
       * Activates a behavior detection rule
       * Activate a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
@@ -1623,19 +1922,19 @@ export declare class ObservableBehaviorApi {
   /**
       * Deactivates a behavior detection rule
       * Deactivate a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
       * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<void>;
   /**
       * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       */
   getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
@@ -1646,7 +1945,7 @@ export declare class ObservableBehaviorApi {
   /**
       * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a behavior detection rule
-      * @param behaviorId id of the Behavior Detection Rule
+      * @param behaviorId ID of the Behavior Detection Rule
       * @param rule
       */
   replaceBehaviorDetectionRule(behaviorId: string, rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
@@ -1719,7 +2018,7 @@ export declare class ObservableCustomDomainApi {
   constructor(configuration: Configuration, requestFactory?: CustomDomainApiRequestFactory, responseProcessor?: CustomDomainApiResponseProcessor);
   /**
       * Creates your custom domain
-      * Create a Custom Domain
+      * Create a custom domain
       * @param domain
       */
   createCustomDomain(domain: DomainRequest, _options?: Configuration): Observable<DomainResponse>;
@@ -1737,7 +2036,7 @@ export declare class ObservableCustomDomainApi {
   getCustomDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
   /**
       * Lists all verified custom domains for the org
-      * List all Custom Domains
+      * List all custom domains
       */
   listCustomDomains(_options?: Configuration): Observable<DomainListResponse>;
   /**
@@ -1755,7 +2054,7 @@ export declare class ObservableCustomDomainApi {
       */
   upsertCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Observable<void>;
   /**
-      * Verifies the custom domain and validity of DNS records by `domainId`. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.
+      * Verifies the custom domain and validity of DNS records by `domainId`. Verify your custom domain to confirm that you own or control the domain and that you have properly configured the required DNS records. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.  Verify your custom domain after you\'ve [created it](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomDomain/#tag/CustomDomain/operation/createCustomDomain) and after you\'ve added your TXT and CNAME records to your domain provider. Okta doesn\'t verify your domain automatically. You must use the API to verify your custom domain if you change your DNS records or if you encounter issues with domain validation.  > **Note:** DNS record changes can take time to propagate. If you recently updated your DNS records, you may need to wait before verifying your custom domain. If you encounter issues with domain verification, double-check your DNS records and ensure that they\'re correctly configured. See [Update your DNS TXT](https://developer.okta.com/docs/guides/custom-url-domain/main/#update-your-dns-txt) for more information about verifying your custom domain.
       * Verify a custom domain
       * @param domainId &#x60;id&#x60; of the Domain
       */
@@ -1816,7 +2115,7 @@ export declare class ObservableCustomRoleApi {
   /**
       * Lists all custom roles with pagination support
       * List all custom roles
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listRoles(after?: string, _options?: Configuration): Observable<IamRoles>;
   /**
@@ -1834,6 +2133,68 @@ export declare class ObservableCustomRoleApi {
       * @param instance
       */
   replaceRolePermission(roleIdOrLabel: string, permissionType: string, instance?: CreateUpdateIamRolePermissionRequest, _options?: Configuration): Observable<Permission>;
+}
+import { CustomTelephonyProviderApiRequestFactory, CustomTelephonyProviderApiResponseProcessor } from '../apis/CustomTelephonyProviderApi';
+export declare class ObservableCustomTelephonyProviderApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: CustomTelephonyProviderApiRequestFactory, responseProcessor?: CustomTelephonyProviderApiResponseProcessor);
+  /**
+      * Activates a custom telephony provider by its ID. You must activate a provider before it can be used.
+      * Activate a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  activateCustomTelephonyCredential(customTelephonyProviderId: string, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Creates a custom telephony provider with the provided credentials
+      * Create a custom telephony provider
+      * @param customTelephonyProviderCredentialCreateRequest
+      */
+  createCustomTelephonyProviderCredentials(customTelephonyProviderCredentialCreateRequest: CustomTelephonyProviderCredentialCreateRequest, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Deactivates a custom telephony provider by its ID. Keep the following points in mind when you deactivate a provider: * You must deactivate a provider before deleting it. * If you have two telephony providers configured, and both are active, you can only deactivate the secondary provider. The second provider is the one that isn\'t set as the primary provider.
+      * Deactivate a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  deactivateCustomTelephonyCredential(customTelephonyProviderId: string, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Deletes a custom telephony provider by its ID.  Before you delete a provider, ensure that it is [deactivated](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTelephonyProvider/#tag/CustomTelephonyProvider/operation/deactivateCustomTelephonyCredential). Consider setting up another telephony provider if you still plan to use telephony in your org. See [Set up an external telephony provider](https://help.okta.com/okta_help.htm?type=oie&id=about-telephony).
+      * Delete a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  deleteCustomTelephonyProviderCredential(customTelephonyProviderId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves the details of a custom telephony provider by its ID
+      * Retrieve a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  getCustomTelephonyProviderCredential(customTelephonyProviderId: string, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Lists all custom telephony providers that are configured in your org
+      * List all custom telephony providers
+      */
+  listAllCustomTelephonyProviderCredentials(_options?: Configuration): Observable<CustomTelephonyProviderCredentialsResponse>;
+  /**
+      * Sends a test message (SMS or call) using the specified custom telephony provider to verify that the provider is configured correctly.  You must provide a valid phone number and country code to send the test message. Send it to a phone number that you have access to so you can confirm that the message was received.
+      * Send a test message from a custom telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      * @param customTelephonyProviderCredentialSendTestRequest
+      */
+  sendTestCustomTelephonyProviderCredential(customTelephonyProviderId: string, customTelephonyProviderCredentialSendTestRequest: CustomTelephonyProviderCredentialSendTestRequest, _options?: Configuration): Observable<void>;
+  /**
+      * Sets a custom telephony provider as the primary telephony provider for the org. You can only set one provider as a primary provider at a time.
+      * Set a custom telephony provider as a primary telephony provider
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      */
+  setAsPrimaryCustomTelephonyCredential(customTelephonyProviderId: string, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Updates the credentials of an existing custom telephony provider
+      * Update a custom telephony provider credential
+      * @param customTelephonyProviderId The ID of the custom telephony provider
+      * @param customTelephonyProviderCredentialUpdateRequest
+      */
+  updateCustomTelephonyProviderCredential(customTelephonyProviderId: string, customTelephonyProviderCredentialUpdateRequest: CustomTelephonyProviderCredentialUpdateRequest, _options?: Configuration): Observable<CustomTelephonyProviderCredentialResponse>;
 }
 import { CustomizationApiRequestFactory, CustomizationApiResponseProcessor } from '../apis/CustomizationApi';
 export declare class ObservableCustomizationApi {
@@ -2066,7 +2427,7 @@ export declare class ObservableCustomizationApi {
       * Lists all the brands in your org
       * List all brands
       * @param expand Specifies additional metadata to be included in the response
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param q Searches the records for matching value
       */
@@ -2076,7 +2437,7 @@ export declare class ObservableCustomizationApi {
       * List all email customizations
       * @param brandId The ID of the brand
       * @param templateName The name of the email template
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listEmailCustomizations(brandId: string, templateName: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<EmailCustomization>>;
@@ -2084,7 +2445,7 @@ export declare class ObservableCustomizationApi {
       * Lists all supported email templates
       * List all email templates
       * @param brandId The ID of the brand
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Specifies additional metadata to be included in the response
       */
@@ -2226,7 +2587,7 @@ export declare class ObservableDeviceApi {
       */
   listDeviceUsers(deviceId: string, _options?: Configuration): Observable<Collection<DeviceUser>>;
   /**
-      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request. > **Note:** Listing devices with `search` should not be used as a part of any critical flow, such as authentication or updates, to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
       * List all devices
       * @param after
       * @param limit A limit on the number of objects to return (recommend &#x60;20&#x60;)
@@ -2392,12 +2753,12 @@ export declare class ObservableDirectoriesIntegrationApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: DirectoriesIntegrationApiRequestFactory, responseProcessor?: DirectoriesIntegrationApiResponseProcessor);
   /**
-      * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-      * Update an Active Directory group membership
-      * @param appInstanceId ID of the Active Directory app instance in Okta
+      * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+      * Update an external directory group membership
+      * @param appInstanceId ID of the Active Directory or LDAP app instance in Okta
       * @param agentAction
       */
-  updateADGroupMembership(appInstanceId: string, agentAction: AgentAction, _options?: Configuration): Observable<void>;
+  updateGroupMembership(appInstanceId: string, agentAction: AgentAction, _options?: Configuration): Observable<void>;
 }
 import { DisasterRecoveryApiRequestFactory, DisasterRecoveryApiResponseProcessor } from '../apis/DisasterRecoveryApi';
 export declare class ObservableDisasterRecoveryApi {
@@ -2621,65 +2982,65 @@ export declare class ObservableGovernanceBundleApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: GovernanceBundleApiRequestFactory, responseProcessor?: GovernanceBundleApiResponseProcessor);
   /**
-      * Creates a Governance Bundle for the Admin Console in RAMP
-      * Create a governance bundle for the Admin Console in RAMP
+      * Creates a governance bundle of entitlements for the Admin Console
+      * Create a governance bundle
       * @param governanceBundleCreateRequest
       */
   createGovernanceBundle(governanceBundleCreateRequest: GovernanceBundleCreateRequest, _options?: Configuration): Observable<GovernanceBundle>;
   /**
-      * Deletes a Governance Bundle from RAMP
-      * Delete a governance bundle from RAMP
+      * Deletes an Admin Console governance bundle
+      * Delete a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       */
   deleteGovernanceBundle(bundleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Retrieves a Governance Bundle from RAMP
-      * Retrieve a governance bundle from RAMP
+      * Retrieves a governance bundle for the Admin Console
+      * Retrieve a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       */
   getGovernanceBundle(bundleId: string, _options?: Configuration): Observable<GovernanceBundle>;
   /**
-      * Retrieves the opt-in status of the Admin Console from RAMP
-      * Retrieve the opt-in status from RAMP
+      * Retrieves the entitlement management opt-in status for the Admin Console
+      * Retrieve the Admin Console opt-in status
       */
   getOptInStatus(_options?: Configuration): Observable<OptInStatusResponse>;
   /**
-      * Lists all Entitlement Values specific to a Bundle Entitlement
-      * List all entitlement values for a bundle entitlement
+      * Lists all entitlement values that are specific to a governance bundle entitlement
+      * List all values for a governance bundle entitlement
       * @param bundleId The &#x60;id&#x60; of a bundle
       * @param entitlementId The &#x60;id&#x60; of a bundle entitlement
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listBundleEntitlementValues(bundleId: string, entitlementId: string, after?: string, limit?: number, _options?: Configuration): Observable<EntitlementValuesResponse>;
   /**
-      * Lists all Entitlements specific to a Governance Bundle
+      * Lists all entitlements specific to a governance bundle
       * List all entitlements for a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listBundleEntitlements(bundleId: string, after?: string, limit?: number, _options?: Configuration): Observable<BundleEntitlementsResponse>;
   /**
-      * Lists all Governance Bundles for the Admin Console in your org
-      * List all governance bundles for the Admin Console
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * Lists all governance bundles for the Admin Console in your org
+      * List all governance bundles
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGovernanceBundles(after?: string, limit?: number, _options?: Configuration): Observable<GovernanceBundlesResponse>;
   /**
-      * Opts in the Admin Console to RAMP
-      * Opt in the Admin Console to RAMP
+      * Opts in the Admin Console to entitlement management
+      * Opt in the Admin Console to entitlement management
       */
   optIn(_options?: Configuration): Observable<OptInStatusResponse>;
   /**
-      * Opts out the Admin Console from RAMP
-      * Opt out the Admin Console from RAMP
+      * Opts out the Admin Console from entitlement management
+      * Opt out the Admin Console from entitlement management
       */
   optOut(_options?: Configuration): Observable<OptInStatusResponse>;
   /**
-      * Replaces a Governance Bundle in RAMP
-      * Replace a governance bundle in RAMP
+      * Replaces the properties of a governance bundle for the Admin Console
+      * Replace a governance bundle
       * @param bundleId The &#x60;id&#x60; of a bundle
       * @param governanceBundleUpdateRequest
       */
@@ -2718,7 +3079,7 @@ export declare class ObservableGroupApi {
       */
   createGroup(group: CreateGroupRequest, _options?: Configuration): Observable<Group>;
   /**
-      * Creates a group rule to dynamically add users to the specified group if they match the condition > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
+      * Creates a group rule to dynamically add users to the specified group if they match the condition. > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
       * Create a group rule
       * @param groupRule
       */
@@ -2792,21 +3153,21 @@ export declare class ObservableGroupApi {
       * Lists all users that are a member of a group. The default user limit is set to a very high number due to historical reasons that are no longer valid for most orgs. This will change in a future version of this API. The recommended page limit is now `limit=200`.
       * List all member users
       * @param groupId The &#x60;id&#x60; of the group
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit Specifies the number of user results in a page
       */
   listGroupUsers(groupId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<User>>;
   /**
-      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** Results from the filter or query parameter are driven from an eventually consistent datasource. The synchronization lag is typically less than one second.
+      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all groups
-      * @param search Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param filter Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.
+      * @param search Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param filter Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;type&#x60;, &#x60;lastUpdated&#x60;, and &#x60;lastMembershipUpdated&#x60;.  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.  See [Special characters](https://developer.okta.com/docs/api/#special-characters).
       * @param q Finds a group that matches the &#x60;name&#x60; property. &gt; **Note:** Paging and searching are currently mutually exclusive. You can\&#39;t page a query. The default limit for a query is 300 results. Query is intended for an auto-complete picker use case where users refine their search string to constrain the results.
       * @param after Specifies the pagination cursor for the next page of groups. The &#x60;after&#x60; cursor should be treated as an opaque value and obtained through the next link relation. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of group results in a page.  Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).  The Okta default &#x60;Everyone&#x60; group isn\&#39;t returned for users with a group admin role.
       * @param expand If specified, additional metadata is included in the response. Possible values are &#x60;stats&#x60; and &#x60;app&#x60;. This additional metadata is listed in the [&#x60;_embedded&#x60;](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/addGroup!c&#x3D;200&amp;path&#x3D;_embedded&amp;t&#x3D;response) property of the response.  &gt; **Note:** You can use the &#x60;stats&#x60; value to return the number of users within a group. This is listed as the &#x60;_embedded.stats.usersCount&#x60; value in the response. See this [Knowledge Base article](https://support.okta.com/help/s/article/Is-there-an-API-that-returns-the-number-of-users-in-a-group?language&#x3D;en_US) for more information and an example.
-      * @param sortBy Specifies field to sort by **(for search queries only)**. &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;.
-      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;.
+      * @param sortBy Specifies the field to sort by (for search queries only). &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;. Use with &#x60;sortOrder&#x60; to control the order of results.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       */
   listGroups(search?: string, filter?: string, q?: string, after?: string, limit?: number, expand?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<Group>>;
   /**
@@ -2817,7 +3178,7 @@ export declare class ObservableGroupApi {
       */
   replaceGroup(groupId: string, group: CreateGroupRequest, _options?: Configuration): Observable<Group>;
   /**
-      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `\'INACTIVE\'`. > > You currently can\'t update the `action` section.
+      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `INACTIVE`. > > You currently can\'t update the `actions` section.
       * Replace a group rule
       * @param ruleId The &#x60;id&#x60; of the group rule
       * @param groupRule
@@ -2943,7 +3304,7 @@ export declare class ObservableIdentityProviderApi {
       */
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Observable<IdPKeyCredential>;
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification (IDV) vendors work like IdPs, with a few key differences. IDV vendors verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDV vendors (Persona, CLEAR Verified, and Incode) with specific configuration settings and another IDV vendor type (Custom IDV) that lets you create a custom IDV vendor, using a [standardized IDV process](https://developer.okta.com/docs/guides/idv-integration/main/). You can configure each of the IDV vendors as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)  * [Custom IDV](https://help.okta.com/okta_help.htm?type=oie&id=idp-add-custom-idv-vendor)
       * Create an IdP
       * @param identityProvider IdP settings
       */
@@ -3044,7 +3405,7 @@ export declare class ObservableIdentityProviderApi {
       * List all users for IdP
       * @param idpId &#x60;id&#x60; of IdP
       * @param q Searches the records for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Expand user data
       */
@@ -3052,7 +3413,7 @@ export declare class ObservableIdentityProviderApi {
   /**
       * Lists all identity provider (IdP) key credentials
       * List all IdP key credentials
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listIdentityProviderKeys(after?: string, limit?: number, _options?: Configuration): Observable<Collection<IdPKeyCredential>>;
@@ -3066,7 +3427,7 @@ export declare class ObservableIdentityProviderApi {
       * Lists all identity provider (IdP) integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all IdPs
       * @param q Searches the &#x60;name&#x60; property of IdPs for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param type Filters IdPs by &#x60;type&#x60;
       */
@@ -3128,11 +3489,48 @@ export declare class ObservableIdentitySourceApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: IdentitySourceApiRequestFactory, responseProcessor?: IdentitySourceApiResponseProcessor);
   /**
+      * Creates a group in an identity source for the given identity source instance
+      * Create an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupsRequestSchema
+      */
+  createIdentitySourceGroups(identitySourceId: string, groupsRequestSchema?: GroupsRequestSchema, _options?: Configuration): Observable<GroupsResponseSchema>;
+  /**
+      * Creates the group memberships for the given identity source group
+      * Create the memberships for the given identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param membershipRequestSchema
+      */
+  createIdentitySourceGroupsMemberships(identitySourceId: string, groupOrExternalId: string, membershipRequestSchema?: MembershipRequestSchema, _options?: Configuration): Observable<void>;
+  /**
       * Creates an identity source session for the given identity source instance
       * Create an identity source session
       * @param identitySourceId The ID of the identity source for which the session is created
       */
   createIdentitySourceSession(identitySourceId: string, _options?: Configuration): Observable<IdentitySourceSession>;
+  /**
+      * Creates a user in an identity source for the given identity source instance
+      * Create an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param userRequestSchema
+      */
+  createIdentitySourceUser(identitySourceId: string, userRequestSchema?: UserRequestSchema, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a group in an identity source for a given identity source ID and group ID
+      * Delete an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      */
+  deleteIdentitySourceGroup(identitySourceId: string, groupOrExternalId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes group memberships for the specified identity source group using member external IDs
+      * Delete the memberships for the specified identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param memberExternalId The external ID of the identity source user
+      */
+  deleteIdentitySourceGroupMemberships(identitySourceId: string, groupOrExternalId: string, memberExternalId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes an identity source session for a given identity source ID and session Id
       * Delete an identity source session
@@ -3141,6 +3539,29 @@ export declare class ObservableIdentitySourceApi {
       */
   deleteIdentitySourceSession(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<void>;
   /**
+      * Deletes a user in an identity source for the given identity source instance and external ID
+      * Delete an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      */
+  deleteIdentitySourceUser(identitySourceId: string, externalId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a group from an identity source for a given identity source ID and group ID or external ID
+      * Retrieve an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      */
+  getIdentitySourceGroup(identitySourceId: string, groupOrExternalId: string, _options?: Configuration): Observable<GroupsResponseSchema>;
+  /**
+      * Retrieves the group memberships for the given identity source group in the given identity source instance
+      * Retrieve the memberships for the given identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit Specifies the number of group membership results in a page. Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).
+      */
+  getIdentitySourceGroupMemberships(identitySourceId: string, groupOrExternalId: string, after?: string, limit?: number, _options?: Configuration): Observable<GroupMembershipsResponseSchema>;
+  /**
       * Retrieves an identity source session for a given identity source ID and session ID
       * Retrieve an identity source session
       * @param identitySourceId The ID of the identity source for which the session is created
@@ -3148,11 +3569,26 @@ export declare class ObservableIdentitySourceApi {
       */
   getIdentitySourceSession(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<IdentitySourceSession>;
   /**
+      * Retrieves a user by external ID in an identity source for the given identity source instance
+      * Retrieve an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      */
+  getIdentitySourceUser(identitySourceId: string, externalId: string, _options?: Configuration): Observable<UserResponseSchema>;
+  /**
       * Lists all identity source sessions for the given identity source instance
       * List all identity source sessions
       * @param identitySourceId The ID of the identity source for which the session is created
       */
   listIdentitySourceSessions(identitySourceId: string, _options?: Configuration): Observable<Collection<IdentitySourceSession>>;
+  /**
+      * Replaces an existing user for the given identity source instance and external ID
+      * Replace an existing identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      * @param userRequestSchema
+      */
+  replaceExistingIdentitySourceUser(identitySourceId: string, externalId: string, userRequestSchema?: UserRequestSchema, _options?: Configuration): Observable<UserResponseSchema>;
   /**
       * Starts the import from the identity source described by the uploaded bulk operations
       * Start the import from the identity source
@@ -3160,6 +3596,22 @@ export declare class ObservableIdentitySourceApi {
       * @param sessionId The ID of the identity source session
       */
   startImportFromIdentitySource(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<IdentitySourceSession>;
+  /**
+      * Updates a group to an identity source for the given identity source instance and group ID
+      * Update an identity source group
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param groupOrExternalId The Okta group ID or external ID of the identity source group
+      * @param groupsRequestSchema
+      */
+  updateIdentitySourceGroups(identitySourceId: string, groupOrExternalId: string, groupsRequestSchema?: GroupsRequestSchema, _options?: Configuration): Observable<GroupsResponseSchema>;
+  /**
+      * Updates a user to an identity source for the given identity source instance and external ID
+      * Update an identity source user
+      * @param identitySourceId The ID of the identity source for which the session is created
+      * @param externalId The external ID of the user
+      * @param usersUpdateRequestSchema
+      */
+  updateIdentitySourceUsers(identitySourceId: string, externalId: string, usersUpdateRequestSchema?: UsersUpdateRequestSchema, _options?: Configuration): Observable<UserResponseSchema>;
   /**
       * Uploads external IDs of entities that need to be deleted in Okta from the identity source for the given session
       * Upload the data to be deleted in Okta
@@ -3342,7 +3794,7 @@ export declare class ObservableLogStreamApi {
   /**
       * Lists all log stream objects in your org. You can request a paginated list or a subset of log streams that match a supported filter expression.
       * List all log streams
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param filter An expression that [filters](/#filter) the returned objects. You can only use the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60; properties in the filter expression.
       */
@@ -3368,7 +3820,7 @@ export declare class ObservableNetworkZoneApi {
       */
   activateNetworkZone(zoneId: string, _options?: Configuration): Observable<NetworkZone>;
   /**
-      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`.
+      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`. > **Note:** To view all properties for an Enhanced Dynamic Network Zone, select `DYNAMIC_V2` from the `type` dropdown list.
       * Create a network zone
       * @param zone
       */
@@ -3407,6 +3859,54 @@ export declare class ObservableNetworkZoneApi {
       */
   replaceNetworkZone(zoneId: string, zone: NetworkZone, _options?: Configuration): Observable<NetworkZone>;
 }
+import { OAuth2ResourceServerCredentialsKeysApiRequestFactory, OAuth2ResourceServerCredentialsKeysApiResponseProcessor } from '../apis/OAuth2ResourceServerCredentialsKeysApi';
+export declare class ObservableOAuth2ResourceServerCredentialsKeysApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: OAuth2ResourceServerCredentialsKeysApiRequestFactory, responseProcessor?: OAuth2ResourceServerCredentialsKeysApiResponseProcessor);
+  /**
+      * Activates a custom authorization server public JSON web key by key `id`. > **Note:** You can have only one active key at any given time for the authorization server. When you activate an inactive key, Okta automatically deactivates the current active key.
+      * Activate a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  activateOAuth2ResourceServerJsonWebKey(authServerId: string, keyId: string, _options?: Configuration): Observable<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Adds a new JSON Web Key to the custom authorization server`s JSON web keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. Use the [Replace an Authorization Server](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AuthorizationServer/#tag/AuthorizationServer/operation/replaceAuthorizationServer) operation to update the JWKS or [Delete a Custom Authorization Server Public JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/OAuth2ResourceServerCredentialsKeys/#tag/OAuth2ResourceServerCredentialsKeys/operation/deleteOAuth2ResourceServerJsonWebKey) and re-add the key with a `kid`. > **Note:** This API doesn\'t allow you to add a key with an ACTIVE status. You need to add an INACTIVE key first, and then ACTIVATE the key.
+      * Add a JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param oAuth2ResourceServerJsonWebKeyRequestBody
+      */
+  addOAuth2ResourceServerJsonWebKey(authServerId: string, oAuth2ResourceServerJsonWebKeyRequestBody: OAuth2ResourceServerJsonWebKeyRequestBody, _options?: Configuration): Observable<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Deactivates a custom authorization server public JSON web key by key `id`. > **Note:** Deactivating the active key isn\'t allowed if the authorization server has access token encryption enabled. You can activate another key, which makes the current key inactive.
+      * Deactivate a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  deactivateOAuth2ResourceServerJsonWebKey(authServerId: string, keyId: string, _options?: Configuration): Observable<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Deletes a custom authorization server public JSON web key by key `id`. You can only delete an inactive key.
+      * Delete a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  deleteOAuth2ResourceServerJsonWebKey(authServerId: string, keyId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a custom authorization server public JSON web key by key `id`
+      * Retrieve a Custom Authorization Server Public JSON Web Key
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      * @param keyId Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      */
+  getOAuth2ResourceServerJsonWebKey(authServerId: string, keyId: string, _options?: Configuration): Observable<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Lists all the public keys used by the custom authorization server
+      * List all Custom Authorization Server Public JSON Web Keys
+      * @param authServerId &#x60;id&#x60; of the Authorization Server
+      */
+  listOAuth2ResourceServerJsonWebKeys(authServerId: string, _options?: Configuration): Observable<Collection<OAuth2ResourceServerJsonWebKey>>;
+}
 import { OktaApplicationSettingsApiRequestFactory, OktaApplicationSettingsApiResponseProcessor } from '../apis/OktaApplicationSettingsApi';
 export declare class ObservableOktaApplicationSettingsApi {
   private requestFactory;
@@ -3426,6 +3926,46 @@ export declare class ObservableOktaApplicationSettingsApi {
       * @param adminConsoleSettings
       */
   replaceFirstPartyAppSettings(appName: string, adminConsoleSettings: AdminConsoleSettings, _options?: Configuration): Observable<AdminConsoleSettings>;
+}
+import { OktaManagedUserAccountApiRequestFactory, OktaManagedUserAccountApiResponseProcessor } from '../apis/OktaManagedUserAccountApi';
+export declare class ObservableOktaManagedUserAccountApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: OktaManagedUserAccountApiRequestFactory, responseProcessor?: OktaManagedUserAccountApiResponseProcessor);
+  /**
+      * Creates a new Okta managed user account for managing an Okta Universal Directory user as a privileged account.  You must specify an existing Okta user in your org with the `oktaUserId` request parameter. You can\'t modify the user\'s email or username because they\'re retrieved from the Okta user profile.
+      * Create an Okta managed user account
+      * @param body
+      */
+  createOktaManagedUserAccount(body: OktaManagedUserAccountRequest, _options?: Configuration): Observable<OktaManagedUserAccount>;
+  /**
+      * Deletes an Okta managed user account specified by ID.  This operation removes the privileged account management for the Okta user, but doesn\'t delete the user from Okta Universal Directory.
+      * Delete an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      */
+  deleteOktaManagedUserAccount(id: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves an Okta managed user account specified by ID
+      * Retrieve an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      */
+  getOktaManagedUserAccount(id: string, _options?: Configuration): Observable<OktaManagedUserAccount>;
+  /**
+      * Lists all Okta managed user accounts in your org.  Use the `match` parameter to search for accounts where the account name (`name`), username (`username`),  or email (`email`) contains the specified value.
+      * List all Okta managed user accounts
+      * @param limit A limit on the number of objects to return
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param match Searches for Okta managed user accounts where the account name (&#x60;name&#x60;) or username (&#x60;username&#x60;) contains the given value
+      */
+  listOktaManagedUserAccounts(limit?: number, after?: string, match?: string, _options?: Configuration): Observable<Collection<OktaManagedUserAccount>>;
+  /**
+      * Updates an existing Okta managed user account specified by ID.  You can only update the `name`, `description`, `ownerUserIds`, and `ownerGroupIds` properties. You can\'t modify the `oktaUserId`, `username`, and `email` properties after the account is created.
+      * Update an Okta managed user account
+      * @param id ID of an existing Okta managed user account
+      * @param body
+      */
+  updateOktaManagedUserAccount(id: string, body?: OktaManagedUserAccountForUpdate, _options?: Configuration): Observable<OktaManagedUserAccount>;
 }
 import { OktaPersonalSettingsApiRequestFactory, OktaPersonalSettingsApiResponseProcessor } from '../apis/OktaPersonalSettingsApi';
 export declare class ObservableOktaPersonalSettingsApi {
@@ -3450,6 +3990,19 @@ export declare class ObservableOktaPersonalSettingsApi {
       * @param oktaPersonalAdminFeatureSettings
       */
   replaceOktaPersonalAdminSettings(oktaPersonalAdminFeatureSettings: OktaPersonalAdminFeatureSettings, _options?: Configuration): Observable<void>;
+}
+import { OperationsIntegrationApiRequestFactory, OperationsIntegrationApiResponseProcessor } from '../apis/OperationsIntegrationApi';
+export declare class ObservableOperationsIntegrationApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: OperationsIntegrationApiRequestFactory, responseProcessor?: OperationsIntegrationApiResponseProcessor);
+  /**
+      * Retrieves an asynchronous operation and its current status
+      * Retrieve an operation status
+      * @param operationId ID of the asynchronous operation in Okta
+      */
+  getOperationStatus(operationId: string, _options?: Configuration): Observable<OperationResponse>;
 }
 import { OrgCreatorApiRequestFactory, OrgCreatorApiResponseProcessor } from '../apis/OrgCreatorApi';
 export declare class ObservableOrgCreatorApi {
@@ -3734,7 +4287,7 @@ export declare class ObservablePolicyApi {
   /**
       * Lists all policies with the specified type
       * List all policies
-      * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60;, and &#x60;ENTITY_RISK&#x60;.
+      * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; &#x60;DEVICE_SIGNAL_COLLECTION&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60; and &#x60;ENTITY_RISK&#x60;.
       * @param status Refines the query by the &#x60;status&#x60; of the policy - &#x60;ACTIVE&#x60; or &#x60;INACTIVE&#x60;
       * @param q Refines the query by policy name prefix (startWith method) passed in as &#x60;q&#x3D;string&#x60;
       * @param expand
@@ -3743,7 +4296,7 @@ export declare class ObservablePolicyApi {
       * @param resourceId Reference to the associated authorization server
       * @param after End page cursor for pagination, see [Pagination](https://developer.okta.com/docs/api/#pagination)
       */
-  listPolicies(type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK', status?: string, q?: string, expand?: string, sortBy?: string, limit?: string, resourceId?: string, after?: string, _options?: Configuration): Observable<Collection<Policy>>;
+  listPolicies(type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'DEVICE_SIGNAL_COLLECTION' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK', status?: string, q?: string, expand?: string, sortBy?: string, limit?: string, resourceId?: string, after?: string, _options?: Configuration): Observable<Collection<Policy>>;
   /**
       * Lists all applications mapped to a policy identified by `policyId`  > **Note:** Use [List all resources mapped to a Policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/#tag/Policy/operation/listPolicyMappings) to list all applications mapped to a policy.
       * List all apps mapped to a policy
@@ -3764,7 +4317,7 @@ export declare class ObservablePolicyApi {
       */
   listPolicyRules(policyId: string, limit?: string, _options?: Configuration): Observable<Collection<PolicyRule>>;
   /**
-      * Maps a resource to a policy identified by `policyId`
+      * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
       * Map a resource to a policy
       * @param policyId &#x60;id&#x60; of the Policy
       * @param policyMappingRequest
@@ -4021,13 +4574,13 @@ export declare class ObservableRealmApi {
       */
   getRealm(realmId: string, _options?: Configuration): Observable<Realm>;
   /**
-      * Lists all Realms
+      * Lists all realms.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all realms
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;search&#x60; is provided.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param search Searches for realms with a supported filtering expression for most properties.  Searches for realms can be filtered by the contains (&#x60;co&#x60;) operator. You can only use &#x60;co&#x60; with the &#x60;profile.name&#x60; property. See [Operators](https://developer.okta.com/docs/api/#operators).
       * @param sortBy Specifies the field to sort by and can be any single property (for search queries only)
-      * @param sortOrder Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       */
   listRealms(limit?: number, after?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<Realm>>;
   /**
@@ -4073,7 +4626,7 @@ export declare class ObservableRealmAssignmentApi {
       * Execute a realm assignment
       * @param body
       */
-  executeRealmAssignment(body: OperationRequest, _options?: Configuration): Observable<OperationResponse>;
+  executeRealmAssignment(body: OperationRequest, _options?: Configuration): Observable<RealmAssignmentOperationResponse>;
   /**
       * Retrieves a realm assignment
       * Retrieve a realm assignment
@@ -4084,9 +4637,9 @@ export declare class ObservableRealmAssignmentApi {
       * Lists all realm assignment operations. The upper limit is 200 and operations are sorted in descending order from most recent to oldest by ID.
       * List all realm assignment operations
       * @param limit A limit on the number of objects to return
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
-  listRealmAssignmentOperations(limit?: number, after?: string, _options?: Configuration): Observable<Collection<OperationResponse>>;
+  listRealmAssignmentOperations(limit?: number, after?: string, _options?: Configuration): Observable<Collection<RealmAssignmentOperationResponse>>;
   /**
       * Lists all realm assignments
       * List all realm assignments
@@ -4137,7 +4690,7 @@ export declare class ObservableResourceSetApi {
       */
   createResourceSet(instance: CreateResourceSetRequest, _options?: Configuration): Observable<ResourceSet>;
   /**
-      * Creates a binding for the resource set, custom role, and members (users or groups)
+      * Creates a binding for the resource set, custom role, and members (users or groups)  > **Note:** If you use a custom role with permissions that don\'t apply to the resources in the resource set, it doesn\'t affect the admin role. For example,  the `okta.users.userprofile.manage` permission gives the admin no privileges if it\'s granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`  resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
       * Create a role resource set binding
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param instance
@@ -4195,7 +4748,7 @@ export declare class ObservableResourceSetApi {
       * Lists all bindings for a resource set with pagination support.  The returned `roles` array contains the roles for each binding associated with the specified resource set. If there are more than 100 bindings for the specified resource set, `links.next` provides the resource with pagination for the next list of bindings.
       * List all role resource set bindings
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listBindings(resourceSetId: string, after?: string, _options?: Configuration): Observable<ResourceSetBindings>;
   /**
@@ -4203,23 +4756,25 @@ export declare class ObservableResourceSetApi {
       * List all role resource set binding members
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listMembersOfBinding(resourceSetId: string, roleIdOrLabel: string, after?: string, _options?: Configuration): Observable<ResourceSetBindingMembers>;
   /**
       * Lists all resources for the resource set
       * List all resource set resources
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
+      * @param after Specifies the pagination cursor for the next page of targets
+      * @param limit Specifies the number of results returned. Defaults to &#x60;100&#x60;.
       */
-  listResourceSetResources(resourceSetId: string, _options?: Configuration): Observable<ResourceSetResources>;
+  listResourceSetResources(resourceSetId: string, after?: string, limit?: number, _options?: Configuration): Observable<ResourceSetResources>;
   /**
       * Lists all resource sets with pagination support
       * List all resource sets
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       */
   listResourceSets(after?: string, _options?: Configuration): Observable<ResourceSets>;
   /**
-      * Replaces the label and description of a resource set
+      * Replaces the label and description of a resource set. See [Supported resources](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#supported-resources).
       * Replace a resource set
       * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
       * @param instance
@@ -4301,10 +4856,10 @@ export declare class ObservableRoleAssignmentApi {
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param assignRoleRequest
       */
-  assignRoleToClient(clientId: string, assignRoleRequest: AssignRoleToGroupRequest, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner>;
+  assignRoleToClient(clientId: string, assignRoleRequest: AssignRoleToClientRequest, _options?: Configuration): Observable<ListRolesForClient200ResponseInner>;
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a group.  You can also assign a custom role to a group, but the preferred method to assign a custom role to a group is to create a binding between the custom role, the resource set, and the group. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a role to a group
@@ -4312,7 +4867,7 @@ export declare class ObservableRoleAssignmentApi {
       * @param assignRoleRequest
       * @param disableNotifications Grants the group third-party admin status when set to &#x60;true&#x60;
       */
-  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleToGroupRequest, disableNotifications?: boolean, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner | void>;
+  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleToGroupRequest, disableNotifications?: boolean, _options?: Configuration): Observable<void | AssignRoleToGroup200Response>;
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a user.  You can also assign a custom role to a user, but the preferred method to assign a custom role to a user is to create a binding between the custom role, the resource set, and the user. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a user role
@@ -4324,7 +4879,7 @@ export declare class ObservableRoleAssignmentApi {
   /**
       * Unassigns a role assignment (identified by `roleAssignmentId`) from a client app (identified by `clientId`)
       * Unassign a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       */
   deleteRoleFromClient(clientId: string, roleAssignmentId: string, _options?: Configuration): Observable<void>;
@@ -4334,7 +4889,7 @@ export declare class ObservableRoleAssignmentApi {
       * @param groupId The &#x60;id&#x60; of the group
       * @param roleId The &#x60;id&#x60; of the role assignment
       */
-  getGroupAssignedRole(groupId: string, roleId: string, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner>;
+  getGroupAssignedRole(groupId: string, roleId: string, _options?: Configuration): Observable<AssignRoleToGroup200Response>;
   /**
       * Retrieves a governance source (identified by `grantId`) for a role (identified by `roleAssignmentId`) that\'s assigned to a user (identified by `userId`)
       * Retrieve a user role governance source
@@ -4357,7 +4912,7 @@ export declare class ObservableRoleAssignmentApi {
       * @param userId ID of an existing Okta user
       * @param roleId The &#x60;id&#x60; of the role assignment
       */
-  getUserAssignedRole(userId: string, roleId: string, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner>;
+  getUserAssignedRole(userId: string, roleId: string, _options?: Configuration): Observable<AssignRoleToGroup200Response>;
   /**
       * Retrieves the governance sources of a role (identified by `roleAssignmentId`) that\'s assigned to a user (identified by `userId`)
       * Retrieve all user role governance sources
@@ -4382,9 +4937,9 @@ export declare class ObservableRoleAssignmentApi {
   /**
       * Lists all roles assigned to a client app identified by `clientId`
       * List all client role assignments
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
-  listRolesForClient(clientId: string, _options?: Configuration): Observable<Collection<ListGroupAssignedRoles200ResponseInner>>;
+  listRolesForClient(clientId: string, _options?: Configuration): Observable<Collection<ListRolesForClient200ResponseInner>>;
   /**
       * Lists all users with role assignments
       * List all users with role assignments
@@ -4395,10 +4950,10 @@ export declare class ObservableRoleAssignmentApi {
   /**
       * Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`)
       * Retrieve a client role
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       */
-  retrieveClientRole(clientId: string, roleAssignmentId: string, _options?: Configuration): Observable<ListGroupAssignedRoles200ResponseInner>;
+  retrieveClientRole(clientId: string, roleAssignmentId: string, _options?: Configuration): Observable<ListRolesForClient200ResponseInner>;
   /**
       * Unassigns a role assignment (identified by `roleAssignmentId`) from a group (identified by the `groupId`)
       * Unassign a group role
@@ -4448,7 +5003,7 @@ export declare class ObservableRoleTargetApi {
   /**
       * Assigns an app instance target to an `APP_ADMIN` role assignment to a client. When you assign the first OIN app or app instance target, you reduce the scope of the role assignment. The role no longer applies to all app targets, but applies only to the specified target.  > **Note:** You can target a mixture of both OIN app and app instance targets, but you can\'t assign permissions to manage all instances of an OIN app and then assign a subset of permissions to the same app. For example, you can\'t specify that an admin has access to manage all instances of the Salesforce app and then also manage only specific configurations of the Salesforce app.
       * Assign a client role app instance target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       * @param appId Application ID
@@ -4457,7 +5012,7 @@ export declare class ObservableRoleTargetApi {
   /**
       * Assigns an OIN app target for an `APP_ADMIN` role assignment to a client. When you assign an app target from the OIN catalog, you reduce the scope of the role assignment. The role assignment applies to only app instances that are included in the specified OIN app target.  An assigned OIN app target overrides any existing app instance targets. For example, if a user is assigned to administer a specific Facebook instance, a successful request to add an OIN app target with `facebook` for `appName` makes that user the administrator for all Facebook instances.
       * Assign a client role app target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       */
@@ -4481,7 +5036,7 @@ export declare class ObservableRoleTargetApi {
   /**
       * Assigns a group target to a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app. When you assign the first group target, you reduce the scope of the role assignment. The role no longer applies to all targets, but applies only to the specified target.
       * Assign a client role group target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param groupId The &#x60;id&#x60; of the group
       */
@@ -4508,16 +5063,16 @@ export declare class ObservableRoleTargetApi {
       * @param userId ID of an existing Okta user
       * @param roleIdOrEncodedRoleId The &#x60;id&#x60; of the role or Base32 encoded &#x60;id&#x60; of the role name
       * @param assignmentType Specifies the assignment type of the user
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   getRoleTargetsByUserIdAndRoleId(userId: string, roleIdOrEncodedRoleId: string, assignmentType?: 'USER' | 'GROUP', after?: string, limit?: number, _options?: Configuration): Observable<Collection<RoleTarget>>;
   /**
       * Lists all OIN app targets for an `APP_ADMIN` role that\'s assigned to a client (by `clientId`).
       * List all client role app targets
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listAppTargetRoleToClient(clientId: string, roleAssignmentId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
@@ -4526,7 +5081,7 @@ export declare class ObservableRoleTargetApi {
       * List all group role app targets
       * @param groupId The &#x60;id&#x60; of the group
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
@@ -4535,16 +5090,16 @@ export declare class ObservableRoleTargetApi {
       * List all admin role app targets
       * @param userId ID of an existing Okta user
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
   /**
       * Lists all group targets for a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client. If the role isn\'t scoped to specific group targets, Okta returns an empty array `[]`.
       * List all client role group targets
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetRoleForClient(clientId: string, roleAssignmentId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
@@ -4553,7 +5108,7 @@ export declare class ObservableRoleTargetApi {
       * List all group role group targets
       * @param groupId The &#x60;id&#x60; of the group
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetsForGroupRole(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
@@ -4562,14 +5117,14 @@ export declare class ObservableRoleTargetApi {
       * List all admin role group targets
       * @param userId ID of an existing Okta user
       * @param roleId The &#x60;id&#x60; of the role assignment
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       */
   listGroupTargetsForRole(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
   /**
       * Unassigns an app instance target from a role assignment to a client app  > **Note:** You can\'t remove the last app instance target from a role assignment. > If you need a role assignment that applies to all the apps, delete the role assignment with the instance target and create another one.  See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role app instance target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       * @param appId Application ID
@@ -4578,7 +5133,7 @@ export declare class ObservableRoleTargetApi {
   /**
       * Unassigns an OIN app target for a role assignment to a client app  > **Note:** You can\'t remove the last OIN app target from a role assignment. > If you need a role assignment that applies to all apps, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role app target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param appName Name of the app definition (the OIN catalog app key name)
       */
@@ -4586,7 +5141,7 @@ export declare class ObservableRoleTargetApi {
   /**
       * Unassigns a Group target from a `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app.  > **Note:** You can\'t remove the last group target from a role assignment. If you need a role assignment that applies to all groups, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
       * Unassign a client role group target
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
       * @param groupId The &#x60;id&#x60; of the group
       */
@@ -4859,7 +5414,7 @@ export declare class ObservableServiceAccountApi {
       * Lists all app service accounts
       * List all app service accounts
       * @param limit A limit on the number of objects to return
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param match Searches for app service accounts where the account name (&#x60;name&#x60;), username (&#x60;username&#x60;), app instance label (&#x60;containerInstanceName&#x60;), or OIN app key name (&#x60;containerGlobalName&#x60;) contains the given value
       */
   listAppServiceAccounts(limit?: number, after?: string, match?: string, _options?: Configuration): Observable<Collection<AppServiceAccount>>;
@@ -4867,7 +5422,7 @@ export declare class ObservableServiceAccountApi {
       * Lists all service accounts
       * List all service accounts
       * @param limit Specifies the number of results returned
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param q Searches for service accounts where the account name, username, app instance name, or global app name contains the given value
       */
   listServiceAccounts(limit?: number, after?: string, q?: string, _options?: Configuration): Observable<Collection<ServiceAccount>>;
@@ -4893,45 +5448,45 @@ export declare class ObservableSessionApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: SessionApiRequestFactory, responseProcessor?: SessionApiResponseProcessor);
   /**
-      * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Closes the session for the user who is currently signed in. Use this method in a browser-based app to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Close the current session
       * @param cookie
       */
   closeCurrentSession(cookie?: string, _options?: Configuration): Observable<void>;
   /**
-      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
       * Create a session with session token
       * @param createSessionRequest
       */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Observable<Session>;
   /**
-      * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Retrieves session information for the current user. Use this method in a browser-based app to determine if the user is signed in.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Retrieve the current session
       * @param cookie
       */
   getCurrentSession(cookie?: string, _options?: Configuration): Observable<Session>;
   /**
-      * Retrieves information about the Session specified by the given session ID
+      * Retrieves information about the session specified by the given session ID
       * Retrieve a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   getSession(sessionId: string, _options?: Configuration): Observable<Session>;
   /**
-      * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Refreshes the session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Refresh the current session
       * @param cookie
       */
   refreshCurrentSession(cookie?: string, _options?: Configuration): Observable<Session>;
   /**
-      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
+      * Refreshes an existing session using the `id` for that session. A successful response contains the refreshed session with an updated `expiresAt` timestamp.
       * Refresh a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   refreshSession(sessionId: string, _options?: Configuration): Observable<Session>;
   /**
-      * Revokes the specified Session
+      * Revokes the specified session
       * Revoke a session
-      * @param sessionId &#x60;id&#x60; of the Session
+      * @param sessionId &#x60;id&#x60; of the session
       */
   revokeSession(sessionId: string, _options?: Configuration): Observable<void>;
 }
@@ -4944,13 +5499,13 @@ export declare class ObservableSubscriptionApi {
   /**
       * Lists all subscriptions available to a specified Role
       * List all subscriptions for a role
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       */
   listRoleSubscriptions(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, _options?: Configuration): Observable<Collection<Subscription>>;
   /**
       * Retrieves a subscription by `notificationType` for a specified Role
       * Retrieve a subscription for a role
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   listRoleSubscriptionsByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Observable<Subscription>;
@@ -4970,7 +5525,7 @@ export declare class ObservableSubscriptionApi {
   /**
       * Subscribes a Role to a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
       * Subscribe a role to a specific notification type
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Observable<void>;
@@ -4984,7 +5539,7 @@ export declare class ObservableSubscriptionApi {
   /**
       * Unsubscribes a Role from a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
       * Unsubscribe a role from a specific notification type
-      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @param notificationType
       */
   unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: ListRoleSubscriptionsRoleTypeOrRoleIdParameter, notificationType: NotificationType, _options?: Configuration): Observable<void>;
@@ -5182,6 +5737,21 @@ export declare class ObservableUISchemaApi {
       */
   replaceUISchemas(id: string, updateUISchemaBody: UpdateUISchema, _options?: Configuration): Observable<UISchemasResponseObject>;
 }
+import { UnconfirmedUsersApiRequestFactory, UnconfirmedUsersApiResponseProcessor } from '../apis/UnconfirmedUsersApi';
+export declare class ObservableUnconfirmedUsersApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: UnconfirmedUsersApiRequestFactory, responseProcessor?: UnconfirmedUsersApiResponseProcessor);
+  /**
+      * Lists all unconfirmed users for an app
+      * List all unconfirmed users
+      * @param appId Application ID
+      * @param after Specifies the pagination cursor for the next page of results. Treat this as an opaque value obtained through the next link relationship. See [Pagination](/#pagination).
+      * @param limit Specifies the number of objects to return per page. If there are multiple pages of results, the Link header contains a &#x60;next&#x60; link that you need to use as an opaque value (follow it, don\&#39;t parse it). See [Pagination](/#pagination).
+      */
+  listUnconfirmedUsers(appId: string, after?: string, limit?: number, _options?: Configuration): Observable<UnconfirmedUserResponseSchema>;
+}
 import { UserApiRequestFactory, UserApiResponseProcessor } from '../apis/UserApi';
 export declare class ObservableUserApi {
   private requestFactory;
@@ -5220,7 +5790,7 @@ export declare class ObservableUserApi {
       */
   createUser(body: CreateUserRequest, activate?: boolean, provider?: boolean, nextLogin?: UserNextLogin, _options?: Configuration): Observable<User>;
   /**
-      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.
+      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.  > **Note:** Users with the `DEPROVISIONED` status won\'t have their profiles updated when running the [Update a user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/updateUser) endpoint unless you have the **Edit Deactived User Profile Updates** option turned on in the Admin Console. See [Edit deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).
       * Deactivate a user
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param sendEmail Sends a deactivation email to the admin if &#x60;true&#x60;
@@ -5295,7 +5865,7 @@ export declare class ObservableUserApi {
       * Retrieves a refresh token issued for the specified user and client
       * Retrieve a refresh token for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       */
@@ -5346,7 +5916,7 @@ export declare class ObservableUserApi {
       * Lists all grants for a specified user and client
       * List all grants for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of tokens to return
@@ -5357,7 +5927,7 @@ export declare class ObservableUserApi {
       * List all users for IdP
       * @param idpId &#x60;id&#x60; of IdP
       * @param q Searches the records for matching value
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @param limit A limit on the number of objects to return
       * @param expand Expand user data
       */
@@ -5373,7 +5943,7 @@ export declare class ObservableUserApi {
       * Lists all refresh tokens issued for the specified user and client
       * List all refresh tokens for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
       * @param limit Specifies the number of tokens to return
@@ -5427,19 +5997,20 @@ export declare class ObservableUserApi {
       */
   listUserIdentityProviders(userId: string, _options?: Configuration): Observable<Collection<IdentityProvider>>;
   /**
-      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Note:** This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead.
+      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Notes:**  >  * This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead. >  * The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all users
       * @param contentType Specifies the media type of the resource. Optional &#x60;okta-response&#x60; value can be included for performance optimization.  Complex DelAuth configurations may degrade performance when fetching specific parts of the response, and passing this parameter can omit these parts, bypassing the bottleneck.  Enum values for &#x60;okta-response&#x60;:   * &#x60;omitCredentials&#x60;: Omits the credentials subobject from the response.   * &#x60;omitCredentialsLinks&#x60;: Omits the following HAL links from the response: Update password, Change recovery question, Start forgot password flow, Reset password, Reset factors, Unlock.   * &#x60;omitTransitioningToStatus&#x60;: Omits the &#x60;transitioningToStatus&#x60; field from the response.
-      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for optimal search performance.   &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.   This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;search&#x3D;profile.department eq \&quot;Engineering\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.department%20eq%20%22Engineering%22&#x60;. If you use the special character &#x60;\&quot;&#x60; within a quoted string, it must also be escaped &#x60;\\&#x60; and encoded. For example, &#x60;search&#x3D;profile.lastName eq \&quot;bob\&quot;smith\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.lastName%20eq%20%22bob%5C%22smith%22&#x60;. See [Special Characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param filter Filters users with a supported expression for a subset of properties.   &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
-      * @param q Finds users who match the specified query. This doesn\&#39;t support pagination.  &gt; **Note:** For optimal performance, use the &#x60;search&#x60; parameter instead.  Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Note:** Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a filter or search query instead.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
-      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
-      * @param sortBy Specifies field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property will be ordered by &#x60;id&#x60;.
-      * @param sortOrder Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn\&#39;t case sensitive. &#x60;sortOrder&#x60; is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.  This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). See [Special characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;   * Properties that have array values  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param filter Filters users with a supported expression for a subset of properties.  &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
+      * @param q Finds users who match the specified query. Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Notes:**  &gt; * Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a &#x60;filter&#x60; or &#x60;search&#x60; query instead. &gt; * This doesn\&#39;t support pagination, but you can use &#x60;limit&#x60;.  &gt; * This isn\&#39;t designed for large data sets. For optimal performance, use the &#x60;search&#x60; parameter instead.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.  You can use &#x60;limit&#x60; with &#x60;after&#x60; to define the cursor location in the data set and manage the user records per page.
+      * @param sortBy Specifies the field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;. Use with &#x60;sortOrder&#x60; to control the order of results.
+      * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * @param fields Specifies a select set of user properties to query. Any other properties will be filtered out of the returned users. This is often called field projections in APIs, which can reduce payload size, improve performance, and limit unneccessary data exposure.  Requested fields should be comma-separated. Comma-separate the fields and place sub-fields in the profile object inside a &#x60;profile:()&#x60; directive, for example &#x60;profile:(firstName, city)&#x60;. The &#x60;id&#x60; field is always included, regardless of whether it\&#39;s specified in the &#x60;fields&#x60; parameter.
       * @param expand A parameter to include metadata in the &#x60;_embedded&#x60; property. Supported value: &#x60;classification&#x60;.
       */
-  listUsers(contentType?: string, search?: string, filter?: string, q?: string, after?: string, limit?: number, sortBy?: string, sortOrder?: string, expand?: string, _options?: Configuration): Observable<Collection<User>>;
+  listUsers(contentType?: string, search?: string, filter?: string, q?: string, after?: string, limit?: number, sortBy?: string, sortOrder?: string, fields?: string, expand?: string, _options?: Configuration): Observable<Collection<User>>;
   /**
       * Reactivates a user.  Perform this operation only on users with a `PROVISIONED` or `RECOVERY` [status](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!c=200&path=status&t=response). This operation restarts the activation workflow if for some reason the user activation wasn\'t completed when using the `activationToken` from [Activate User](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserLifecycle/#tag/UserLifecycle/operation/activateUser).  Users that don\'t have a password must complete the flow by completing the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword) flow and MFA enrollment steps to transition the user to `ACTIVE` status.  If `sendEmail` is `false`, returns an activation link for the user to set up their account. The activation token can be used to create a custom activation link.
       * Reactivate a user
@@ -5473,14 +6044,14 @@ export declare class ObservableUserApi {
       * Revokes all grants for the specified user and client
       * Revoke all grants for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeGrantsForUserAndClient(userId: string, clientId: string, _options?: Configuration): Observable<void>;
   /**
-      * Revokes the specified refresh token
+      * Revokes the specified refresh and access tokens
       * Revoke a token for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       * @param tokenId &#x60;id&#x60; of Token
       */
   revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string, _options?: Configuration): Observable<void>;
@@ -5488,7 +6059,7 @@ export declare class ObservableUserApi {
       * Revokes all refresh tokens issued for the specified user and client
       * Revoke all refresh tokens for a client
       * @param userId ID of an existing Okta user
-      * @param clientId Client app ID
+      * @param clientId &#x60;client_id&#x60; of the app
       */
   revokeTokensForUserAndClient(userId: string, clientId: string, _options?: Configuration): Observable<void>;
   /**
@@ -5505,12 +6076,13 @@ export declare class ObservableUserApi {
       */
   revokeUserGrants(userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user. > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.  You can also clear the user\'s remembered factors for all devices using the `forgetDevices` parameter. See [forgetDevices](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserSessions/#tag/UserSessions/operation/revokeUserSessions!in=query&path=forgetDevices&t=request). > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
       * Revoke all user sessions
       * @param userId ID of an existing Okta user
-      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
+      * @param oauthTokens Revokes issued OpenID Connect and OAuth refresh and access tokens
+      * @param forgetDevices Clears the user\&#39;s remembered factors for all devices. &gt; **Note:** This parameter defaults to false in Classic Engine.
       */
-  revokeUserSessions(userId: string, oauthTokens?: boolean, _options?: Configuration): Observable<void>;
+  revokeUserSessions(userId: string, oauthTokens?: boolean, forgetDevices?: boolean, _options?: Configuration): Observable<void>;
   /**
       * Assigns the first user as the `associated` and the second user as the `primary` for the specified relationship.  If the first user is already associated with a different `primary` for this relationship, the previous link is removed. A linked object relationship can specify only one primary user for an associated user.
       * Assign a linked object value for primary
@@ -5545,7 +6117,7 @@ export declare class ObservableUserApi {
       */
   unsuspendUser(userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request. > **Note**: Currently, the user type of a user can only be changed via a full replacement PUT operation. If the request parameters of a partial update include the type element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type.  > **Note**: To update a current user\'s profile with partial semantics, the `/api/v1/users/me` endpoint can be invoked. > > A user can only update profile properties for which the user has write access. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification.  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
+      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request.  > **Notes:**  > * Currently, the user type of a user can only be changed using a full replacement `PUT` operation. If the request parameters of a partial update include the `type` element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type. > > * To update a current user\'s profile with partial semantics, you can use the `/api/v1/users/me` endpoint. But, a user can only update profile properties that they have write access for. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification. > > * You can update user profiles of users in the `DEPROVISIONED` status if you have the **Edit Deactivated User Profile Updates** option turned on in the Admin Console. See [deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
       * Update a user
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param user
@@ -5593,14 +6165,16 @@ export declare class ObservableUserAuthenticatorEnrollmentsApi {
       * Retrieve an authenticator enrollment
       * @param userId ID of an existing Okta user
       * @param enrollmentId Unique identifier of an enrollment
+      * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
       */
-  getAuthenticatorEnrollment(userId: string, enrollmentId: string, _options?: Configuration): Observable<AuthenticatorEnrollment>;
+  getAuthenticatorEnrollment(userId: string, enrollmentId: string, discloseIdentifiers?: Array<'phone'>, _options?: Configuration): Observable<AuthenticatorEnrollment>;
   /**
       * Lists all authenticator enrollments of the specified user
       * List all authenticator enrollments
       * @param userId ID of an existing Okta user
+      * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
       */
-  listAuthenticatorEnrollments(userId: string, _options?: Configuration): Observable<AuthenticatorEnrollment>;
+  listAuthenticatorEnrollments(userId: string, discloseIdentifiers?: Array<'phone'>, _options?: Configuration): Observable<AuthenticatorEnrollment>;
 }
 import { UserFactorApiRequestFactory, UserFactorApiResponseProcessor } from '../apis/UserFactorApi';
 export declare class ObservableUserFactorApi {
@@ -5831,17 +6405,50 @@ export declare class ObservableYourOinIntegrationsApi {
       */
   createSubmission(submissionRequest?: SubmissionRequest, _options?: Configuration): Observable<SubmissionResponse>;
   /**
+      * Retrieves all actions for a specific capability in an OIN Integration submission
+      * Retrieve all actions for OIN integration
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      */
+  getSubmissionActions(submissionId: string, capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared', _options?: Configuration): Observable<SubmissionActions>;
+  /**
+      * Retrieves the authentication settings for an OIN Integration submission
+      * Retrieve the authentication settings
+      * @param submissionId OIN Integration ID
+      */
+  getSubmissionAuthSettings(submissionId: string, _options?: Configuration): Observable<AuthSettings>;
+  /**
       * Retrieves an OIN Integration by ID
       * Retrieve an OIN integration
       * @param submissionId OIN Integration ID
       */
   getSubmissionByOperationId(submissionId: string, _options?: Configuration): Observable<SubmissionResponse>;
   /**
+      * Retrieves the tenant settings for an OIN Integration submission
+      * Retrieve the tenant settings
+      * @param submissionId OIN Integration ID
+      */
+  getSubmissionTenantSettings(submissionId: string, _options?: Configuration): Observable<TenantSettings>;
+  /**
       * Retrieves the testing information for an existing OIN Integration
       * Retrieve an OIN integration testing information
       * @param submissionId OIN Integration ID
       */
   getSubmissionTestInfo(submissionId: string, _options?: Configuration): Observable<TestInfo>;
+  /**
+      * Lists all available actions from an actions provider (such as Workflows) for a specific OIN integration
+      * List all available actions for an OIN integration
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param actionsProviderType Actions provider type
+      */
+  listAvailableActions(submissionId: string, capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared', actionsProviderType: 'workflows', _options?: Configuration): Observable<AvailableActions>;
+  /**
+      * Lists all capabilities for an OIN Integration submission
+      * List all supported capabilities
+      * @param submissionId OIN Integration ID
+      */
+  listSubmissionCapabilities(submissionId: string, _options?: Configuration): Observable<SubmissionCapabilities>;
   /**
       * Lists all OIN Integration submissions created through the org
       * List all OIN integrations
@@ -5863,11 +6470,46 @@ export declare class ObservableYourOinIntegrationsApi {
       */
   submitSubmission(submissionId: string, _options?: Configuration): Observable<void>;
   /**
+      * Uploads a default logo to the OIN submission. The image must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
+      * Upload a default logo for an OIN integration
+      * @param file
+      */
+  uploadSubmissionDefaultLogo(file?: HttpFile, _options?: Configuration): Observable<void>;
+  /**
       * Uploads a logo to your org. The image uploaded must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
       * Upload an OIN integration logo
       * @param file
       */
   uploadSubmissionLogo(file?: HttpFile, _options?: Configuration): Observable<void>;
+  /**
+      * Upserts (adds or replaces) actions for a specific capability in an OIN Integration submission
+      * Upsert the submission actions
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param submissionActions
+      */
+  upsertSubmissionActions(submissionId: string, capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared', submissionActions?: SubmissionActions, _options?: Configuration): Observable<SubmissionActions>;
+  /**
+      * Upserts (adds or replaces) authentication settings for an OIN Integration submission
+      * Upsert the submission authentication settings
+      * @param submissionId OIN Integration ID
+      * @param authSettings
+      */
+  upsertSubmissionAuthSettings(submissionId: string, authSettings?: AuthSettings, _options?: Configuration): Observable<AuthSettings>;
+  /**
+      * Upserts (adds or replaces) capabilities for an OIN Integration submission
+      * Upsert the submission supported capabilities
+      * @param submissionId OIN Integration ID
+      * @param submissionCapabilities
+      */
+  upsertSubmissionCapabilities(submissionId: string, submissionCapabilities?: SubmissionCapabilities, _options?: Configuration): Observable<SubmissionCapabilities>;
+  /**
+      * Upserts (adds or replaces) tenant settings for an OIN Integration submission
+      * Upsert the submission tenant settings
+      * @param submissionId OIN Integration ID
+      * @param tenantSettings
+      */
+  upsertSubmissionTenantSettings(submissionId: string, tenantSettings?: TenantSettings, _options?: Configuration): Observable<TenantSettings>;
   /**
       * Upserts (adds or replaces) testing information for an OIN Integration
       * Upsert an OIN integration testing information
@@ -5875,4 +6517,12 @@ export declare class ObservableYourOinIntegrationsApi {
       * @param testInfo
       */
   upsertSubmissionTestInfo(submissionId: string, testInfo?: TestInfo, _options?: Configuration): Observable<TestInfo>;
+  /**
+      * Verifies the submission actions\' correctness with an actions provider, such as Workflows
+      * Verify the submission actions
+      * @param submissionId OIN Integration ID
+      * @param capability Capability
+      * @param actionsProviderType Actions provider type
+      */
+  verifyActions(submissionId: string, capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared', actionsProviderType: 'workflows', _options?: Configuration): Observable<VerifyActions200Response>;
 }

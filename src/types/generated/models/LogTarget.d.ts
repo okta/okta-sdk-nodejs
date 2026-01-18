@@ -23,9 +23,6 @@
  * Do not edit the class manually.
  */
 import { LogTargetChangeDetails } from './../models/LogTargetChangeDetails';
-/**
-* The entity that an actor performs an action on. Targets can be anything, such as an app user, a sign-in token, or anything else.
-*/
 export declare class LogTarget {
   /**
     * The alternate ID of the target

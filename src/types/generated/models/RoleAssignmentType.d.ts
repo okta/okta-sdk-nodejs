@@ -25,4 +25,4 @@
 /**
 * Role assignment type
 */
-export declare type RoleAssignmentType = 'CLIENT' | 'GROUP' | 'USER';
+export type RoleAssignmentType = 'CLIENT' | 'GROUP' | 'USER';

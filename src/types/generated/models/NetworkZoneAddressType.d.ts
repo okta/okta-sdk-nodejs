@@ -25,4 +25,4 @@
 /**
 * Format of the IP addresses
 */
-export declare type NetworkZoneAddressType = 'CIDR' | 'RANGE';
+export type NetworkZoneAddressType = 'CIDR' | 'RANGE';

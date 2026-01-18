@@ -24,7 +24,7 @@
  */
 export declare class UserFactorEmailProfile {
   /**
-    * Email address of the user. This must be either the primary or secondary email address associated with the Okta user account.
+    * Email address of the user. This must be either the primary or secondary email address associated with the Okta user account.  > **Note:** For Identity Engine orgs, you can only enroll the primary email address of the user.
     */
   'email'?: string;
   static readonly discriminator: string | undefined;

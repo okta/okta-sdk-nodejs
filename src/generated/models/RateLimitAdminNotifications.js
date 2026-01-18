@@ -29,10 +29,10 @@ exports.RateLimitAdminNotifications = void 0;
 *
 */
 class RateLimitAdminNotifications {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RateLimitAdminNotifications.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RateLimitAdminNotifications = RateLimitAdminNotifications;

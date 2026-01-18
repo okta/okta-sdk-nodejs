@@ -29,10 +29,10 @@ exports.TokenHardware = void 0;
 * Verifies an OTP for a `token:hardware` factor
 */
 class TokenHardware {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenHardware.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenHardware = TokenHardware;

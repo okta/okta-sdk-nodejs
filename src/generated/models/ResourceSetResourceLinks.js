@@ -29,10 +29,10 @@ exports.ResourceSetResourceLinks = void 0;
 * Related discoverable resources
 */
 class ResourceSetResourceLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceSetResourceLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceSetResourceLinks = ResourceSetResourceLinks;

@@ -25,25 +25,16 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BundleEntitlementsResponseLinks = void 0;
-/**
-* Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification
-*/
 class BundleEntitlementsResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BundleEntitlementsResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BundleEntitlementsResponseLinks = BundleEntitlementsResponseLinks;
 BundleEntitlementsResponseLinks.discriminator = undefined;
 BundleEntitlementsResponseLinks.attributeTypeMap = [
-  {
-    'name': 'next',
-    'baseName': 'next',
-    'type': 'HrefObject',
-    'format': ''
-  },
   {
     'name': 'self',
     'baseName': 'self',
@@ -51,9 +42,15 @@ BundleEntitlementsResponseLinks.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'next',
+    'baseName': 'next',
+    'type': 'HrefObjectNextLink',
+    'format': ''
+  },
+  {
     'name': 'bundle',
     'baseName': 'bundle',
-    'type': 'HrefObject',
+    'type': 'BundleLink',
     'format': ''
   }
 ];

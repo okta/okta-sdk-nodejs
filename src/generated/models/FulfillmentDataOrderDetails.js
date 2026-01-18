@@ -29,10 +29,10 @@ exports.FulfillmentDataOrderDetails = void 0;
 * Information about the fulfillment order that includes the factor’s make and model, the custom configuration of the factor, and inventory details.
 */
 class FulfillmentDataOrderDetails {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FulfillmentDataOrderDetails.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FulfillmentDataOrderDetails = FulfillmentDataOrderDetails;

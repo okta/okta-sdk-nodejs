@@ -65,5 +65,5 @@ export declare class GoogleApplication {
     }[];
   constructor();
 }
-export declare type GoogleApplicationNameEnum = 'google';
-export declare type GoogleApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';
+export type GoogleApplicationNameEnum = 'google';
+export type GoogleApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';

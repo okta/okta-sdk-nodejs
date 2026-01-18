@@ -29,10 +29,10 @@ exports.PolicyRuleAuthContextCondition = void 0;
 * Specifies an authentication entry point
 */
 class PolicyRuleAuthContextCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyRuleAuthContextCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyRuleAuthContextCondition = PolicyRuleAuthContextCondition;

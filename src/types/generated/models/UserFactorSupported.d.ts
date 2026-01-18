@@ -60,4 +60,4 @@ export declare class UserFactorSupported {
     }[];
   constructor();
 }
-export declare type UserFactorSupportedEnrollmentEnum = 'OPTIONAL' | 'REQUIRED';
+export type UserFactorSupportedEnrollmentEnum = 'OPTIONAL' | 'REQUIRED';

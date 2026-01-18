@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Csr = void 0;
 class Csr {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Csr.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Csr = Csr;

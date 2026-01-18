@@ -42,4 +42,4 @@ export declare class EntityRiskPolicyRuleActionsObject {
     }[];
   constructor();
 }
-export declare type EntityRiskPolicyRuleActionsObjectActionEnum = 'RUN_WORKFLOW' | 'TERMINATE_ALL_SESSIONS';
+export type EntityRiskPolicyRuleActionsObjectActionEnum = 'RUN_WORKFLOW' | 'TERMINATE_ALL_SESSIONS';

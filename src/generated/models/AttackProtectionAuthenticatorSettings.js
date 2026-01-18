@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AttackProtectionAuthenticatorSettings = void 0;
 class AttackProtectionAuthenticatorSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AttackProtectionAuthenticatorSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AttackProtectionAuthenticatorSettings = AttackProtectionAuthenticatorSettings;

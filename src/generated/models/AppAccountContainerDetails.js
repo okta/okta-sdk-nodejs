@@ -29,10 +29,10 @@ exports.AppAccountContainerDetails = void 0;
 * Container details for resource type APP_ACCOUNT
 */
 class AppAccountContainerDetails {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppAccountContainerDetails.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppAccountContainerDetails = AppAccountContainerDetails;

@@ -64,4 +64,4 @@ export declare class APIServiceIntegrationInstanceSecret {
     }[];
   constructor();
 }
-export declare type APIServiceIntegrationInstanceSecretStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type APIServiceIntegrationInstanceSecretStatusEnum = 'ACTIVE' | 'INACTIVE';

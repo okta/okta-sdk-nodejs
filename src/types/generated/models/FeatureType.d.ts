@@ -25,4 +25,4 @@
 /**
 * Type of feature
 */
-export declare type FeatureType = 'self-service';
+export type FeatureType = 'self-service';

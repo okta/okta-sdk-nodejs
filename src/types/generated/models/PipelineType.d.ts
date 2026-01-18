@@ -25,4 +25,4 @@
 /**
 * The Okta authentication pipeline of the org
 */
-export declare type PipelineType = 'idx' | 'v1';
+export type PipelineType = 'idx' | 'v1';

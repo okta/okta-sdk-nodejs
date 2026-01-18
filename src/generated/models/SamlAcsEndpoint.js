@@ -29,10 +29,10 @@ exports.SamlAcsEndpoint = void 0;
 * Okta\'s `SPSSODescriptor` endpoint where the IdP sends a `<SAMLResponse>` message
 */
 class SamlAcsEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlAcsEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlAcsEndpoint = SamlAcsEndpoint;

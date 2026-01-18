@@ -25,4 +25,4 @@
 /**
 * User type source that granted consent
 */
-export declare type OAuth2ScopeConsentGrantSource = 'ADMIN' | 'END_USER';
+export type OAuth2ScopeConsentGrantSource = 'ADMIN' | 'END_USER';

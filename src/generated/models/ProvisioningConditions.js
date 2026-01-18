@@ -29,10 +29,10 @@ exports.ProvisioningConditions = void 0;
 * Conditional behaviors for an IdP user during authentication
 */
 class ProvisioningConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningConditions = ProvisioningConditions;

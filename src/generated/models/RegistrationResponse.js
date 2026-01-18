@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationResponse = void 0;
 class RegistrationResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationResponse = RegistrationResponse;

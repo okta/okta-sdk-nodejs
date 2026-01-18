@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorEnrollmentPolicyAuthenticatorSettings = void 0;
 class AuthenticatorEnrollmentPolicyAuthenticatorSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyAuthenticatorSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyAuthenticatorSettings = AuthenticatorEnrollmentPolicyAuthenticatorSettings;
@@ -45,6 +45,12 @@ AuthenticatorEnrollmentPolicyAuthenticatorSettings.attributeTypeMap = [
     'name': 'enroll',
     'baseName': 'enroll',
     'type': 'AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll',
+    'format': ''
+  },
+  {
+    'name': 'id',
+    'baseName': 'id',
+    'type': 'string',
     'format': ''
   },
   {

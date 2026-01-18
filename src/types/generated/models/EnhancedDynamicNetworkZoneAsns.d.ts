@@ -22,12 +22,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EnhancedDynamicNetworkZoneAsnsExclude } from './../models/EnhancedDynamicNetworkZoneAsnsExclude';
 import { EnhancedDynamicNetworkZoneAsnsInclude } from './../models/EnhancedDynamicNetworkZoneAsnsInclude';
 /**
 * The list of ASNs associated with an Enhanced Dynamic Network Zone
 */
 export declare class EnhancedDynamicNetworkZoneAsns {
   'include'?: EnhancedDynamicNetworkZoneAsnsInclude;
+  'exclude'?: EnhancedDynamicNetworkZoneAsnsExclude;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

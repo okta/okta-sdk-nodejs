@@ -29,10 +29,10 @@ exports.SlackApplicationSettingsApplication = void 0;
 * Slack app instance properties
 */
 class SlackApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SlackApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SlackApplicationSettingsApplication = SlackApplicationSettingsApplication;

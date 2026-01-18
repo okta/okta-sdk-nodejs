@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorLinks = void 0;
 class UserFactorLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorLinks = UserFactorLinks;

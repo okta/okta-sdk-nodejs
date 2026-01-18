@@ -29,10 +29,10 @@ exports.UserImportRequestDataContextApplication = void 0;
 * Details of the app from which the user is being imported
 */
 class UserImportRequestDataContextApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataContextApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataContextApplication = UserImportRequestDataContextApplication;

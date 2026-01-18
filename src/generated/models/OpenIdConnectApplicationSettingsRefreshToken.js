@@ -29,10 +29,10 @@ exports.OpenIdConnectApplicationSettingsRefreshToken = void 0;
 * Refresh token configuration for an OAuth 2.0 client  When you create or update an OAuth 2.0 client, you can configure refresh token rotation by setting the `rotation_type` and `leeway` properties. If you don\'t set these properties when you create an app integration, the default values are used. When you update an app integration, your previously configured values are used.
 */
 class OpenIdConnectApplicationSettingsRefreshToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationSettingsRefreshToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationSettingsRefreshToken = OpenIdConnectApplicationSettingsRefreshToken;

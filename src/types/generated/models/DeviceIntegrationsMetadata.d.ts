@@ -33,7 +33,7 @@ import { DeviceIntegrationsMetadataOneOf2 } from './../models/DeviceIntegrations
  * Type
  * @export
  */
-export declare type DeviceIntegrationsMetadata = DeviceIntegrationsMetadataOneOf | DeviceIntegrationsMetadataOneOf1 | DeviceIntegrationsMetadataOneOf2;
+export type DeviceIntegrationsMetadata = DeviceIntegrationsMetadataOneOf | DeviceIntegrationsMetadataOneOf1 | DeviceIntegrationsMetadataOneOf2;
 /**
 * @type DeviceIntegrationsMetadataClass
     * The metadata of the device integration

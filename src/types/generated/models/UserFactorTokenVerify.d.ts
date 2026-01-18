@@ -29,7 +29,7 @@ import { UserFactorTokenVerifySymantec } from './../models/UserFactorTokenVerify
  * Type
  * @export
  */
-export declare type UserFactorTokenVerify = UserFactorTokenVerifyRSA | UserFactorTokenVerifySymantec;
+export type UserFactorTokenVerify = UserFactorTokenVerifyRSA | UserFactorTokenVerifySymantec;
 /**
 * @type UserFactorTokenVerifyClass
 * @export

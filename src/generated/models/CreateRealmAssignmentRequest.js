@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CreateRealmAssignmentRequest = void 0;
 class CreateRealmAssignmentRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CreateRealmAssignmentRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CreateRealmAssignmentRequest = CreateRealmAssignmentRequest;

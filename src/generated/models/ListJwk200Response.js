@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ListJwk200Response = void 0;
 class ListJwk200Response {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ListJwk200Response.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ListJwk200Response = ListJwk200Response;
@@ -38,7 +38,7 @@ ListJwk200Response.attributeTypeMap = [
   {
     'name': 'keys',
     'baseName': 'keys',
-    'type': 'Array<OAuth2ClientJsonWebKey>',
+    'type': 'Array<ListJwk200ResponseKeysInner>',
     'format': ''
   }
 ];

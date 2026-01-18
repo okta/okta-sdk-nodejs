@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleAnomalousIP = void 0;
 const BehaviorRule_1 = require('./../models/BehaviorRule');
 class BehaviorRuleAnomalousIP extends BehaviorRule_1.BehaviorRule {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BehaviorRuleAnomalousIP.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ANOMALOUS_IP';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BehaviorRuleAnomalousIP.attributeTypeMap);
   }
 }
 exports.BehaviorRuleAnomalousIP = BehaviorRuleAnomalousIP;

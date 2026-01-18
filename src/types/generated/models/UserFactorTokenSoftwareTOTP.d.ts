@@ -43,4 +43,4 @@ export declare class UserFactorTokenSoftwareTOTP extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorTokenSoftwareTOTPProviderEnum = 'OKTA' | 'GOOGLE';
+export type UserFactorTokenSoftwareTOTPProviderEnum = 'OKTA' | 'GOOGLE';

@@ -29,7 +29,7 @@ import { StandardRole } from './../models/StandardRole';
  * Type
  * @export
  */
-export declare type ListGroupAssignedRoles200ResponseInner = CustomRole | StandardRole;
+export type ListGroupAssignedRoles200ResponseInner = CustomRole | StandardRole;
 /**
 * @type ListGroupAssignedRoles200ResponseInnerClass
 * @export

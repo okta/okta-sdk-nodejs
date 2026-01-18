@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type EmailDomainStatus = 'DELETED' | 'ERROR' | 'NOT_STARTED' | 'POLLING' | 'VERIFIED';
+export type EmailDomainStatus = 'DELETED' | 'ERROR' | 'NOT_STARTED' | 'POLLING' | 'VERIFIED';

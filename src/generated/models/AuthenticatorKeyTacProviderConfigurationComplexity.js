@@ -29,10 +29,10 @@ exports.AuthenticatorKeyTacProviderConfigurationComplexity = void 0;
 * Define the complexity of the TAC
 */
 class AuthenticatorKeyTacProviderConfigurationComplexity {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyTacProviderConfigurationComplexity.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyTacProviderConfigurationComplexity = AuthenticatorKeyTacProviderConfigurationComplexity;

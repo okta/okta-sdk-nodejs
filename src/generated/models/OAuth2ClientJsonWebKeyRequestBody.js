@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2ClientJsonWebKeyRequestBody = void 0;
 class OAuth2ClientJsonWebKeyRequestBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ClientJsonWebKeyRequestBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ClientJsonWebKeyRequestBody = OAuth2ClientJsonWebKeyRequestBody;

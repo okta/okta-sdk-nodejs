@@ -25,4 +25,4 @@
 /**
 * Type of policy configuration object  <x-lifecycle class=\"oie\"></x-lifecycle> The `type` property in the policy `settings` is only applicable to the authenticator enrollment policy available in Identity Engine.
 */
-export declare type AuthenticatorEnrollmentPolicySettingsType = 'AUTHENTICATORS' | 'FACTORS';
+export type AuthenticatorEnrollmentPolicySettingsType = 'AUTHENTICATORS' | 'FACTORS';

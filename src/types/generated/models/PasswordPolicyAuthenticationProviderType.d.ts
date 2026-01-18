@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PasswordPolicyAuthenticationProviderType = 'ACTIVE_DIRECTORY' | 'ANY' | 'LDAP' | 'OKTA';
+export type PasswordPolicyAuthenticationProviderType = 'ACTIVE_DIRECTORY' | 'ANY' | 'LDAP' | 'OKTA';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookOAuthClientSecretConfig = void 0;
 class InlineHookOAuthClientSecretConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookOAuthClientSecretConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookOAuthClientSecretConfig = InlineHookOAuthClientSecretConfig;

@@ -25,4 +25,4 @@
 /**
 * Indicates the release state of the feature
 */
-export declare type FeatureStageState = 'CLOSED' | 'OPEN';
+export type FeatureStageState = 'CLOSED' | 'OPEN';

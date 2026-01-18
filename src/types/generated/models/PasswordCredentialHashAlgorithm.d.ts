@@ -25,4 +25,4 @@
 /**
 * The algorithm used to generate the hash using the password (and salt, when applicable).
 */
-export declare type PasswordCredentialHashAlgorithm = 'BCRYPT' | 'MD5' | 'PBKDF2' | 'SHA-1' | 'SHA-256' | 'SHA-512';
+export type PasswordCredentialHashAlgorithm = 'BCRYPT' | 'MD5' | 'PBKDF2' | 'SHA-1' | 'SHA-256' | 'SHA-512';

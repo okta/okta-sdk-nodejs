@@ -29,10 +29,10 @@ exports.UserTypeCondition = void 0;
 * <x-lifecycle class=\"oie\"></x-lifecycle> Specifies which user types to include and/or exclude
 */
 class UserTypeCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserTypeCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserTypeCondition = UserTypeCondition;

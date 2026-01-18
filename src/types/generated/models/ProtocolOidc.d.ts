@@ -61,4 +61,4 @@ export declare class ProtocolOidc {
     }[];
   constructor();
 }
-export declare type ProtocolOidcTypeEnum = 'OIDC';
+export type ProtocolOidcTypeEnum = 'OIDC';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogOutcome = void 0;
 class LogOutcome {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogOutcome.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogOutcome = LogOutcome;

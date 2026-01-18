@@ -25,4 +25,4 @@
 /**
 * Verification method type
 */
-export declare type PolicyRuleVerificationMethodType = 'ASSURANCE' | 'AUTH_METHOD_CHAIN' | 'ID_PROOFING';
+export type PolicyRuleVerificationMethodType = 'ASSURANCE' | 'AUTH_METHOD_CHAIN' | 'ID_PROOFING';

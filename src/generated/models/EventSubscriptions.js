@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EventSubscriptions = void 0;
 class EventSubscriptions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EventSubscriptions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EventSubscriptions = EventSubscriptions;

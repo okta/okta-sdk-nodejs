@@ -29,10 +29,10 @@ exports.ApplicationSettingsNotifications = void 0;
 * Specifies notifications settings for the app
 */
 class ApplicationSettingsNotifications {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationSettingsNotifications.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationSettingsNotifications = ApplicationSettingsNotifications;

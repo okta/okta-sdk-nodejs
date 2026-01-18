@@ -23,10 +23,11 @@
  * Do not edit the class manually.
  */
 import { HrefObject } from './../models/HrefObject';
+import { HrefObjectNextLink } from './../models/HrefObjectNextLink';
 import { HrefObjectSelfLink } from './../models/HrefObjectSelfLink';
 export declare class IdentityProviderApplicationUserLinks {
   'self'?: HrefObjectSelfLink;
-  'next'?: HrefObject;
+  'next'?: HrefObjectNextLink;
   /**
     * The IdP instance
     */

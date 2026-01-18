@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserImportResponseCommandsInner = void 0;
 class UserImportResponseCommandsInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportResponseCommandsInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportResponseCommandsInner = UserImportResponseCommandsInner;

@@ -29,10 +29,10 @@ exports.AppProperties = void 0;
 * App instance properties
 */
 class AppProperties {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppProperties.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppProperties = AppProperties;

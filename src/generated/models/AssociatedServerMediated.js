@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AssociatedServerMediated = void 0;
 class AssociatedServerMediated {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AssociatedServerMediated.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AssociatedServerMediated = AssociatedServerMediated;

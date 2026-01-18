@@ -14,10 +14,13 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { AssignRoleToClientRequest } from '../models/AssignRoleToClientRequest';
+import { AssignRoleToGroup200Response } from '../models/AssignRoleToGroup200Response';
 import { AssignRoleToGroupRequest } from '../models/AssignRoleToGroupRequest';
 import { AssignRoleToUser201Response } from '../models/AssignRoleToUser201Response';
 import { AssignRoleToUserRequest } from '../models/AssignRoleToUserRequest';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
+import { ListRolesForClient200ResponseInner } from '../models/ListRolesForClient200ResponseInner';
 import { RoleAssignedUsers } from '../models/RoleAssignedUsers';
 import { RoleGovernance } from '../models/RoleGovernance';
 import { RoleGovernanceResources } from '../models/RoleGovernanceResources';
@@ -29,10 +32,10 @@ export declare class RoleAssignmentApiRequestFactory extends BaseAPIRequestFacto
   /**
      * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
      * Assign a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param assignRoleRequest
      */
-  assignRoleToClient(clientId: string, assignRoleRequest: AssignRoleToGroupRequest, _options?: Configuration): Promise<RequestContext>;
+  assignRoleToClient(clientId: string, assignRoleRequest: AssignRoleToClientRequest, _options?: Configuration): Promise<RequestContext>;
   /**
      * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a group.  You can also assign a custom role to a group, but the preferred method to assign a custom role to a group is to create a binding between the custom role, the resource set, and the group. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
      * Assign a role to a group
@@ -52,7 +55,7 @@ export declare class RoleAssignmentApiRequestFactory extends BaseAPIRequestFacto
   /**
      * Unassigns a role assignment (identified by `roleAssignmentId`) from a client app (identified by `clientId`)
      * Unassign a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      */
   deleteRoleFromClient(clientId: string, roleAssignmentId: string, _options?: Configuration): Promise<RequestContext>;
@@ -110,7 +113,7 @@ export declare class RoleAssignmentApiRequestFactory extends BaseAPIRequestFacto
   /**
      * Lists all roles assigned to a client app identified by `clientId`
      * List all client role assignments
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      */
   listRolesForClient(clientId: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -123,7 +126,7 @@ export declare class RoleAssignmentApiRequestFactory extends BaseAPIRequestFacto
   /**
      * Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`)
      * Retrieve a client role
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      */
   retrieveClientRole(clientId: string, roleAssignmentId: string, _options?: Configuration): Promise<RequestContext>;
@@ -150,7 +153,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to assignRoleToClient
      * @throws ApiException if the response code was not in [200, 299]
      */
-  assignRoleToClient(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner>;
+  assignRoleToClient(response: ResponseContext): Promise<ListRolesForClient200ResponseInner>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -158,7 +161,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to assignRoleToGroup
      * @throws ApiException if the response code was not in [200, 299]
      */
-  assignRoleToGroup(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner | void>;
+  assignRoleToGroup(response: ResponseContext): Promise<void | AssignRoleToGroup200Response>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -182,7 +185,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to getGroupAssignedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getGroupAssignedRole(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner>;
+  getGroupAssignedRole(response: ResponseContext): Promise<AssignRoleToGroup200Response>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -206,7 +209,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to getUserAssignedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getUserAssignedRole(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner>;
+  getUserAssignedRole(response: ResponseContext): Promise<AssignRoleToGroup200Response>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -238,7 +241,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to listRolesForClient
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listRolesForClient(response: ResponseContext): Promise<Array<ListGroupAssignedRoles200ResponseInner>>;
+  listRolesForClient(response: ResponseContext): Promise<Array<ListRolesForClient200ResponseInner>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -254,7 +257,7 @@ export declare class RoleAssignmentApiResponseProcessor {
      * @params response Response returned by the server for a request to retrieveClientRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-  retrieveClientRole(response: ResponseContext): Promise<ListGroupAssignedRoles200ResponseInner>;
+  retrieveClientRole(response: ResponseContext): Promise<ListRolesForClient200ResponseInner>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -29,10 +29,10 @@ exports.WebAuthnPreregistrationFactor = void 0;
 * User factor variant used for WebAuthn preregistration factors
 */
 class WebAuthnPreregistrationFactor {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WebAuthnPreregistrationFactor.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WebAuthnPreregistrationFactor = WebAuthnPreregistrationFactor;

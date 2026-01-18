@@ -25,20 +25,20 @@ const util_1 = require('../util');
  */
 class DirectoriesIntegrationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-     * Update an Active Directory group membership
-     * @param appInstanceId ID of the Active Directory app instance in Okta
+     * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+     * Update an external directory group membership
+     * @param appInstanceId ID of the Active Directory or LDAP app instance in Okta
      * @param agentAction
      */
-  async updateADGroupMembership(appInstanceId, agentAction, _options) {
+  async updateGroupMembership(appInstanceId, agentAction, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'appInstanceId' is not null or undefined
     if (appInstanceId === null || appInstanceId === undefined) {
-      throw new baseapi_1.RequiredError('DirectoriesIntegrationApi', 'updateADGroupMembership', 'appInstanceId');
+      throw new baseapi_1.RequiredError('DirectoriesIntegrationApi', 'updateGroupMembership', 'appInstanceId');
     }
     // verify required parameter 'agentAction' is not null or undefined
     if (agentAction === null || agentAction === undefined) {
-      throw new baseapi_1.RequiredError('DirectoriesIntegrationApi', 'updateADGroupMembership', 'agentAction');
+      throw new baseapi_1.RequiredError('DirectoriesIntegrationApi', 'updateGroupMembership', 'agentAction');
     }
     // Path Params
     const path = '/api/v1/directories/{appInstanceId}/groups/modify';
@@ -75,10 +75,10 @@ class DirectoriesIntegrationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateADGroupMembership
+     * @params response Response returned by the server for a request to updateGroupMembership
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updateADGroupMembership(response) {
+  async updateGroupMembership(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       return;

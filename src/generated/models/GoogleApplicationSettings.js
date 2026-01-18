@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GoogleApplicationSettings = void 0;
 class GoogleApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GoogleApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GoogleApplicationSettings = GoogleApplicationSettings;

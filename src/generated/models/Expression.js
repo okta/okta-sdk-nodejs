@@ -29,10 +29,10 @@ exports.Expression = void 0;
 * Conditional expression
 */
 class Expression {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Expression.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Expression = Expression;

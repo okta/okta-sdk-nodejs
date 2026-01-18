@@ -22,6 +22,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LogIpDetails } from './../models/LogIpDetails';
+import { LogRisk } from './../models/LogRisk';
+import { LogUserBehavior } from './../models/LogUserBehavior';
 /**
 * The `securityContext` object provides security information that is directly related to the evaluation of the event\'s IP reputation. IP reputation is a trustworthiness rating that evaluates how likely a sender is to be malicious and is based on the sender\'s IP address. As the name implies, the `securityContext` object is useful for security applications-flagging and inspecting suspicious events.
 */
@@ -29,23 +32,29 @@ export declare class LogSecurityContext {
   /**
     * The [Autonomous system](https://docs.telemetry.mozilla.org/datasets/other/asn_aggregates/reference) number that\'s associated with the autonomous system the event request was sourced to
     */
-  'asNumber'?: number;
+  'asNumber'?: number | null;
   /**
     * The organization that is associated with the autonomous system that the event request is sourced to
     */
-  'asOrg'?: string;
+  'asOrg'?: string | null;
   /**
     * The domain name that\'s associated with the IP address of the inbound event request
     */
-  'domain'?: string;
+  'domain'?: string | null;
+  'ipDetails'?: LogIpDetails | null;
   /**
     * The Internet service provider that\'s used to send the event\'s request
     */
-  'isp'?: string;
+  'isp'?: string | null;
   /**
     * Specifies whether an event\'s request is from a known proxy
     */
-  'isProxy'?: boolean;
+  'isProxy'?: boolean | null;
+  'risk'?: LogRisk | null;
+  /**
+    * The result of the user behavior detection models associated with the event
+    */
+  'userBehaviors'?: Array<LogUserBehavior> | null;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

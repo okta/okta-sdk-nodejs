@@ -65,5 +65,5 @@ export declare class Org2OrgApplication {
     }[];
   constructor();
 }
-export declare type Org2OrgApplicationNameEnum = 'okta_org2org';
-export declare type Org2OrgApplicationSignOnModeEnum = 'SAML_2_0' | 'AUTO_LOGIN';
+export type Org2OrgApplicationNameEnum = 'okta_org2org';
+export type Org2OrgApplicationSignOnModeEnum = 'SAML_2_0' | 'AUTO_LOGIN';

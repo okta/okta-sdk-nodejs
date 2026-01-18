@@ -23,13 +23,13 @@
  * Do not edit the class manually.
  */
 import { AppAndInstancePolicyRuleCondition } from './../models/AppAndInstancePolicyRuleCondition';
-import { PlatformPolicyRuleCondition } from './../models/PlatformPolicyRuleCondition';
+import { IdpDiscoveryPlatformPolicyRuleCondition } from './../models/IdpDiscoveryPlatformPolicyRuleCondition';
 import { PolicyNetworkCondition } from './../models/PolicyNetworkCondition';
 import { UserIdentifierPolicyRuleCondition } from './../models/UserIdentifierPolicyRuleCondition';
 export declare class IdpDiscoveryPolicyRuleCondition {
   'app'?: AppAndInstancePolicyRuleCondition;
   'network'?: PolicyNetworkCondition;
-  'platform'?: PlatformPolicyRuleCondition;
+  'platform'?: IdpDiscoveryPlatformPolicyRuleCondition;
   'userIdentifier'?: UserIdentifierPolicyRuleCondition;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

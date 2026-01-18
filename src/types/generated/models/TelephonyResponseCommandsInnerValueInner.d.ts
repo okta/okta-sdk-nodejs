@@ -54,4 +54,4 @@ export declare class TelephonyResponseCommandsInnerValueInner {
     }[];
   constructor();
 }
-export declare type TelephonyResponseCommandsInnerValueInnerStatusEnum = 'SUCCESSFUL' | 'PENDING' | 'FAILED';
+export type TelephonyResponseCommandsInnerValueInnerStatusEnum = 'SUCCESSFUL' | 'PENDING' | 'FAILED';

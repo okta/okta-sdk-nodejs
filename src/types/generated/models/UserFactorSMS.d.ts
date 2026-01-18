@@ -43,4 +43,4 @@ export declare class UserFactorSMS extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorSMSProviderEnum = 'OKTA';
+export type UserFactorSMSProviderEnum = 'OKTA';

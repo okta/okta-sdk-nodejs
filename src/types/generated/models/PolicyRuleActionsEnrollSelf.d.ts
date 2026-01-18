@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PolicyRuleActionsEnrollSelf = 'CHALLENGE' | 'LOGIN' | 'NEVER';
+export type PolicyRuleActionsEnrollSelf = 'CHALLENGE' | 'LOGIN' | 'NEVER';

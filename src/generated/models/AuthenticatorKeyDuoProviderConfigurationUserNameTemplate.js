@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyDuoProviderConfigurationUserNameTemplate = void 0;
 class AuthenticatorKeyDuoProviderConfigurationUserNameTemplate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyDuoProviderConfigurationUserNameTemplate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyDuoProviderConfigurationUserNameTemplate = AuthenticatorKeyDuoProviderConfigurationUserNameTemplate;

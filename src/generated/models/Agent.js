@@ -29,10 +29,10 @@ exports.Agent = void 0;
 * Agent details
 */
 class Agent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Agent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Agent = Agent;
@@ -59,8 +59,8 @@ Agent.attributeTypeMap = [
   {
     'name': 'lastConnection',
     'baseName': 'lastConnection',
-    'type': 'Date',
-    'format': 'date-time'
+    'type': 'number',
+    'format': 'int64'
   },
   {
     'name': 'name',

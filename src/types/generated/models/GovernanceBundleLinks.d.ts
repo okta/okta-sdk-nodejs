@@ -22,9 +22,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HrefObject } from './../models/HrefObject';
+import { EntitlementsLink } from './../models/EntitlementsLink';
+import { HrefObjectSelfLink } from './../models/HrefObjectSelfLink';
+/**
+* Link relations available
+*/
 export declare class GovernanceBundleLinks {
-  'entitlements'?: HrefObject;
+  'entitlements'?: EntitlementsLink;
+  'self'?: HrefObjectSelfLink;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

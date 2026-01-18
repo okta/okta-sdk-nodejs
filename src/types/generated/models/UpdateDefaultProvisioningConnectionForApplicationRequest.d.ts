@@ -29,7 +29,7 @@ import { ProvisioningConnectionTokenRequest } from './../models/ProvisioningConn
  * Type
  * @export
  */
-export declare type UpdateDefaultProvisioningConnectionForApplicationRequest = ProvisioningConnectionOauthRequest | ProvisioningConnectionTokenRequest;
+export type UpdateDefaultProvisioningConnectionForApplicationRequest = ProvisioningConnectionOauthRequest | ProvisioningConnectionTokenRequest;
 /**
 * @type UpdateDefaultProvisioningConnectionForApplicationRequestClass
 * @export

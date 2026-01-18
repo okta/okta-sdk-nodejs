@@ -29,10 +29,10 @@ exports.OidcSloEndpoint = void 0;
 * OIDC IdP logout endpoint
 */
 class OidcSloEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcSloEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcSloEndpoint = OidcSloEndpoint;

@@ -29,10 +29,10 @@ exports.PasswordPolicyPasswordSettingsComplexity = void 0;
 * Complexity settings
 */
 class PasswordPolicyPasswordSettingsComplexity {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyPasswordSettingsComplexity.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyPasswordSettingsComplexity = PasswordPolicyPasswordSettingsComplexity;
@@ -54,6 +54,12 @@ PasswordPolicyPasswordSettingsComplexity.attributeTypeMap = [
     'name': 'excludeUsername',
     'baseName': 'excludeUsername',
     'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'maxConsecutiveCharacters',
+    'baseName': 'maxConsecutiveCharacters',
+    'type': 'number',
     'format': ''
   },
   {

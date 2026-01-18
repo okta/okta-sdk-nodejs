@@ -29,10 +29,10 @@ exports.SingleLogout = void 0;
 * Determines if the app supports Single Logout (SLO)
 */
 class SingleLogout {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SingleLogout.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SingleLogout = SingleLogout;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksActivate = void 0;
 class LinksActivate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksActivate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksActivate = LinksActivate;

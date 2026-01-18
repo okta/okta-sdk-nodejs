@@ -29,10 +29,10 @@ exports.Scim = void 0;
 * SCIM configuration details
 */
 class Scim {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Scim.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Scim = Scim;
@@ -49,6 +49,12 @@ Scim.attributeTypeMap = [
     'baseName': 'baseUri',
     'type': 'string',
     'format': 'uri'
+  },
+  {
+    'name': 'entitlementTypes',
+    'baseName': 'entitlementTypes',
+    'type': 'EntitlementTypes',
+    'format': ''
   },
   {
     'name': 'scimServerConfig',

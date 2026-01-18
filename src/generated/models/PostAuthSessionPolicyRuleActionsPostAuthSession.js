@@ -29,10 +29,10 @@ exports.PostAuthSessionPolicyRuleActionsPostAuthSession = void 0;
 * This object contains a `failureActions` array that defines the specific action to take when the session protection policy detects a failure
 */
 class PostAuthSessionPolicyRuleActionsPostAuthSession {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionPolicyRuleActionsPostAuthSession.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthSessionPolicyRuleActionsPostAuthSession = PostAuthSessionPolicyRuleActionsPostAuthSession;

@@ -29,10 +29,10 @@ exports.OrgBillingContactType = void 0;
 * Org billing contact
 */
 class OrgBillingContactType {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgBillingContactType.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgBillingContactType = OrgBillingContactType;

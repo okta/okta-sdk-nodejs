@@ -29,10 +29,10 @@ exports.CapabilitiesObject = void 0;
 * Defines the configurations for the USER_PROVISIONING feature
 */
 class CapabilitiesObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesObject = CapabilitiesObject;

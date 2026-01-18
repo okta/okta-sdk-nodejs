@@ -28,7 +28,7 @@
 export declare class IDVAuthorizationEndpoint {
   'binding'?: IDVAuthorizationEndpointBindingEnum;
   /**
-    * URL of the IDV `authorization` endpoint
+    * URL of the `authorization` endpoint of the IDV vendor
     */
   'url'?: string;
   static readonly discriminator: string | undefined;
@@ -46,4 +46,4 @@ export declare class IDVAuthorizationEndpoint {
     }[];
   constructor();
 }
-export declare type IDVAuthorizationEndpointBindingEnum = 'HTTP-REDIRECT';
+export type IDVAuthorizationEndpointBindingEnum = 'HTTP-REDIRECT';

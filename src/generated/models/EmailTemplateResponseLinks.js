@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EmailTemplateResponseLinks = void 0;
 class EmailTemplateResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EmailTemplateResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EmailTemplateResponseLinks = EmailTemplateResponseLinks;

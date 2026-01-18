@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GovernanceBundleCreateRequest = void 0;
+/**
+* Request to create a governance bundle
+*/
 class GovernanceBundleCreateRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GovernanceBundleCreateRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GovernanceBundleCreateRequest = GovernanceBundleCreateRequest;

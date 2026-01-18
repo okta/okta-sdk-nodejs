@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type CodeChallengeMethod = 'S256';
+export type CodeChallengeMethod = 'S256';

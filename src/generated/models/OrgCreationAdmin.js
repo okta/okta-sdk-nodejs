@@ -29,10 +29,10 @@ exports.OrgCreationAdmin = void 0;
 * Profile and credential information for the first super admin user of the child org. If you plan to configure and manage the org programmatically, create a system user with a dedicated email address and a strong password. > **Note:** If you don\'t provide `credentials`, the super admin user is prompted to set up their credentials when they sign in to the org for the first time.
 */
 class OrgCreationAdmin {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCreationAdmin.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCreationAdmin = OrgCreationAdmin;

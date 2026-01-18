@@ -65,5 +65,5 @@ export declare class ZoomUsApplication {
     }[];
   constructor();
 }
-export declare type ZoomUsApplicationNameEnum = 'zoomus';
-export declare type ZoomUsApplicationSignOnModeEnum = 'SAML_2_0';
+export type ZoomUsApplicationNameEnum = 'zoomus';
+export type ZoomUsApplicationSignOnModeEnum = 'SAML_2_0';

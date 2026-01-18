@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.InboundProvisioningApplicationFeature = void 0;
 const ApplicationFeature_1 = require('./../models/ApplicationFeature');
 class InboundProvisioningApplicationFeature extends ApplicationFeature_1.ApplicationFeature {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(InboundProvisioningApplicationFeature.attributeTypeMap);
+  }
   constructor() {
     super();
     this.name = 'INBOUND_PROVISIONING';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(InboundProvisioningApplicationFeature.attributeTypeMap);
   }
 }
 exports.InboundProvisioningApplicationFeature = InboundProvisioningApplicationFeature;

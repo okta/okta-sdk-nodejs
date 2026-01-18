@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* Describes the current status of an app service account
+* Describes the current status of a service account
 */
-export declare type ServiceAccountStatus = 'ALERT' | 'ERROR' | 'INFO' | 'NO_ISSUES' | 'UNSECURED';
+export type ServiceAccountStatus = 'ALERT' | 'ERROR' | 'INFO' | 'NO_ISSUES' | 'UNSECURED';

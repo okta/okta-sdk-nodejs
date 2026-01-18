@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentityProviderLinks = void 0;
 class IdentityProviderLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentityProviderLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentityProviderLinks = IdentityProviderLinks;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdProofingMethod = void 0;
 const VerificationMethod_1 = require('./../models/VerificationMethod');
 class IdProofingMethod extends VerificationMethod_1.VerificationMethod {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(IdProofingMethod.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ID_PROOFING';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(IdProofingMethod.attributeTypeMap);
   }
 }
 exports.IdProofingMethod = IdProofingMethod;

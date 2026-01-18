@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DomainListResponse = void 0;
 /**
-* Defines a list of domains with a subset of the properties for each domain.
+* Defines a list of domains with a subset of the properties for each domain
 */
 class DomainListResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainListResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainListResponse = DomainListResponse;

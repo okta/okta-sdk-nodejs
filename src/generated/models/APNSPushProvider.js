@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.APNSPushProvider = void 0;
 const PushProvider_1 = require('./../models/PushProvider');
 class APNSPushProvider extends PushProvider_1.PushProvider {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(APNSPushProvider.attributeTypeMap);
+  }
   constructor() {
     super();
     this.providerType = 'APNS';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(APNSPushProvider.attributeTypeMap);
   }
 }
 exports.APNSPushProvider = APNSPushProvider;

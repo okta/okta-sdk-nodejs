@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntitlementValue = void 0;
 class EntitlementValue {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntitlementValue.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntitlementValue = EntitlementValue;

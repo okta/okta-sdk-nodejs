@@ -29,10 +29,10 @@ exports.DeviceAssuranceChromeOSPlatformThirdPartySignalProviders = void 0;
 * Settings for third-party signal providers (based on the `CHROMEOS` platform)
 */
 class DeviceAssuranceChromeOSPlatformThirdPartySignalProviders {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceChromeOSPlatformThirdPartySignalProviders.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceChromeOSPlatformThirdPartySignalProviders = DeviceAssuranceChromeOSPlatformThirdPartySignalProviders;

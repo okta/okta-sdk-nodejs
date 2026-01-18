@@ -29,10 +29,10 @@ exports.OAuth2ClaimConditions = void 0;
 * Specifies the scopes for the Claim
 */
 class OAuth2ClaimConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ClaimConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ClaimConditions = OAuth2ClaimConditions;

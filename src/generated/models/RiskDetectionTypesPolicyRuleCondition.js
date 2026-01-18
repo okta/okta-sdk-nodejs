@@ -29,10 +29,10 @@ exports.RiskDetectionTypesPolicyRuleCondition = void 0;
 * <x-lifecycle class=\"oie\"></x-lifecycle> An object that references detected risk events. This object can have an `include` parameter or an `exclude` parameter, but not both.
 */
 class RiskDetectionTypesPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RiskDetectionTypesPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RiskDetectionTypesPolicyRuleCondition = RiskDetectionTypesPolicyRuleCondition;

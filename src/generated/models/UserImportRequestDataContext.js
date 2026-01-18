@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserImportRequestDataContext = void 0;
 class UserImportRequestDataContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataContext = UserImportRequestDataContext;

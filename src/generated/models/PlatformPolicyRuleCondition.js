@@ -29,10 +29,10 @@ exports.PlatformPolicyRuleCondition = void 0;
 * Specifies a particular platform or device to match on
 */
 class PlatformPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PlatformPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PlatformPolicyRuleCondition = PlatformPolicyRuleCondition;

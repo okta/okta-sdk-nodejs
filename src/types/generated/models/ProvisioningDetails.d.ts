@@ -47,4 +47,4 @@ export declare class ProvisioningDetails {
     }[];
   constructor();
 }
-export declare type ProvisioningDetailsFeaturesEnum = 'CREATE_USER' | 'READ_USER' | 'UPDATE_USER' | 'DEACTIVATE_USER' | 'CREATE_GROUP' | 'READ_GROUP' | 'UPDATE_GROUP' | 'DEACTIVATE_GROUP';
+export type ProvisioningDetailsFeaturesEnum = 'CREATE_USER' | 'READ_USER' | 'UPDATE_USER' | 'DEACTIVATE_USER' | 'CREATE_GROUP' | 'READ_GROUP' | 'UPDATE_GROUP' | 'DEACTIVATE_GROUP';

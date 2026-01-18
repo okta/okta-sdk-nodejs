@@ -29,10 +29,10 @@ exports.SimulatePolicyBody = void 0;
 * The request body required for a simulate policy operation
 */
 class SimulatePolicyBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulatePolicyBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulatePolicyBody = SimulatePolicyBody;

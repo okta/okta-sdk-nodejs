@@ -29,10 +29,10 @@ exports.DeviceDisplayName = void 0;
 * Display name of the device
 */
 class DeviceDisplayName {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceDisplayName.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceDisplayName = DeviceDisplayName;

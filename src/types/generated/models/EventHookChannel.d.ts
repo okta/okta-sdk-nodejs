@@ -28,7 +28,7 @@ export declare class EventHookChannel {
   'config': EventHookChannelConfig;
   'type': EventHookChannelType;
   /**
-    * Version of the channel. Currently the only supported version is `1.0.0``.
+    * Version of the channel. Currently the only supported version is `1.0.0`.
     */
   'version': string;
   static readonly discriminator: string | undefined;

@@ -29,10 +29,10 @@ exports.AutoAssignAdminAppSetting = void 0;
 * The org setting that automatically assigns the Okta Admin Console when an admin role is assigned
 */
 class AutoAssignAdminAppSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AutoAssignAdminAppSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AutoAssignAdminAppSetting = AutoAssignAdminAppSetting;

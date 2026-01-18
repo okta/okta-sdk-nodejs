@@ -29,10 +29,10 @@ exports.SecurityEventTokenJwtHeader = void 0;
 * JSON Web Token header for a Security Event Token sent by the SSF Transmitter
 */
 class SecurityEventTokenJwtHeader {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenJwtHeader.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenJwtHeader = SecurityEventTokenJwtHeader;

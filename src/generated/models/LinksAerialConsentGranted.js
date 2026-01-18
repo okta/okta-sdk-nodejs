@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksAerialConsentGranted = void 0;
 class LinksAerialConsentGranted {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksAerialConsentGranted.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksAerialConsentGranted = LinksAerialConsentGranted;

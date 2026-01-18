@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BrowserPluginApplication = void 0;
 const Application_1 = require('./../models/Application');
 class BrowserPluginApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BrowserPluginApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'BROWSER_PLUGIN';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BrowserPluginApplication.attributeTypeMap);
   }
 }
 exports.BrowserPluginApplication = BrowserPluginApplication;

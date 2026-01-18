@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ImportScheduleSettings = void 0;
 class ImportScheduleSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ImportScheduleSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ImportScheduleSettings = ImportScheduleSettings;

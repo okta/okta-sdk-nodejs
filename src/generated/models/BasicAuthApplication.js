@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BasicAuthApplication = void 0;
 const Application_1 = require('./../models/Application');
 class BasicAuthApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BasicAuthApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'BASIC_AUTH';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BasicAuthApplication.attributeTypeMap);
   }
 }
 exports.BasicAuthApplication = BasicAuthApplication;

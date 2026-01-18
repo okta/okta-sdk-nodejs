@@ -22,6 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { GracePeriodRequiredSoon } from './../models/GracePeriodRequiredSoon';
 import { PostAuthKeepMeSignedInPrompt } from './../models/PostAuthKeepMeSignedInPrompt';
 import { WidgetGeneration } from './../models/WidgetGeneration';
 export declare class SignInPageWidgetCustomizations {
@@ -111,6 +112,7 @@ export declare class SignInPageWidgetCustomizations {
     * The title of the footer link on the sign-in page. Only applicable for Classic Engine orgs.
     */
   'classicFooterHelpTitle'?: string;
+  'gracePeriodRequiredSoon'?: GracePeriodRequiredSoon;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DomainLinksCertificate = void 0;
 class DomainLinksCertificate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainLinksCertificate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainLinksCertificate = DomainLinksCertificate;

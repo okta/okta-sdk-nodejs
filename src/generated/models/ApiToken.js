@@ -29,10 +29,10 @@ exports.ApiToken = void 0;
 * An API token for an Okta User. This token is NOT scoped any further and can be used for any API the user has permissions to call.
 */
 class ApiToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApiToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApiToken = ApiToken;

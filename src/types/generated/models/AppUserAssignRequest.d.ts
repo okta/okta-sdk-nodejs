@@ -86,4 +86,4 @@ export declare class AppUserAssignRequest {
     }[];
   constructor();
 }
-export declare type AppUserAssignRequestScopeEnum = 'USER' | 'GROUP';
+export type AppUserAssignRequestScopeEnum = 'USER' | 'GROUP';

@@ -29,10 +29,10 @@ exports.OktaUserGroupProfile = void 0;
 * Profile for any group that is not imported from Active Directory. Specifies the standard and custom profile properties for a group.  The `objectClass` for these groups is `okta:user_group`.
 */
 class OktaUserGroupProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaUserGroupProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaUserGroupProfile = OktaUserGroupProfile;

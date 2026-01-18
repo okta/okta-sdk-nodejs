@@ -25,4 +25,4 @@
 /**
 * Release channel for auto-update
 */
-export declare type ReleaseChannel = 'BETA' | 'EA' | 'GA' | 'TEST';
+export type ReleaseChannel = 'BETA' | 'EA' | 'GA' | 'TEST';

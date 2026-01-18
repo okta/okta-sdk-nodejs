@@ -29,10 +29,10 @@ exports.LogSecurityContext = void 0;
 * The `securityContext` object provides security information that is directly related to the evaluation of the event\'s IP reputation. IP reputation is a trustworthiness rating that evaluates how likely a sender is to be malicious and is based on the sender\'s IP address. As the name implies, the `securityContext` object is useful for security applications-flagging and inspecting suspicious events.
 */
 class LogSecurityContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogSecurityContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogSecurityContext = LogSecurityContext;
@@ -57,6 +57,12 @@ LogSecurityContext.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'ipDetails',
+    'baseName': 'ipDetails',
+    'type': 'LogIpDetails',
+    'format': ''
+  },
+  {
     'name': 'isp',
     'baseName': 'isp',
     'type': 'string',
@@ -66,6 +72,18 @@ LogSecurityContext.attributeTypeMap = [
     'name': 'isProxy',
     'baseName': 'isProxy',
     'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'risk',
+    'baseName': 'risk',
+    'type': 'LogRisk',
+    'format': ''
+  },
+  {
+    'name': 'userBehaviors',
+    'baseName': 'userBehaviors',
+    'type': 'Array<LogUserBehavior>',
     'format': ''
   }
 ];

@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OptInStatusResponseLinks = void 0;
+/**
+* Link relations available
+*/
 class OptInStatusResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OptInStatusResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OptInStatusResponseLinks = OptInStatusResponseLinks;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.MetadataLink = void 0;
 class MetadataLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MetadataLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MetadataLink = MetadataLink;

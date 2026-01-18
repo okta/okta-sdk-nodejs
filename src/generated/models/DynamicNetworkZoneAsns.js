@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DynamicNetworkZoneAsns = void 0;
 class DynamicNetworkZoneAsns {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DynamicNetworkZoneAsns.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DynamicNetworkZoneAsns = DynamicNetworkZoneAsns;

@@ -62,7 +62,7 @@ export declare class ResourceSetApiRequestFactory extends BaseAPIRequestFactory 
      */
   createResourceSet(instance: CreateResourceSetRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a binding for the resource set, custom role, and members (users or groups)
+     * Creates a binding for the resource set, custom role, and members (users or groups)  > **Note:** If you use a custom role with permissions that don\'t apply to the resources in the resource set, it doesn\'t affect the admin role. For example,  the `okta.users.userprofile.manage` permission gives the admin no privileges if it\'s granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`  resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
      * Create a role resource set binding
      * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
      * @param instance
@@ -120,7 +120,7 @@ export declare class ResourceSetApiRequestFactory extends BaseAPIRequestFactory 
      * Lists all bindings for a resource set with pagination support.  The returned `roles` array contains the roles for each binding associated with the specified resource set. If there are more than 100 bindings for the specified resource set, `links.next` provides the resource with pagination for the next list of bindings.
      * List all role resource set bindings
      * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      */
   listBindings(resourceSetId: string, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -128,23 +128,25 @@ export declare class ResourceSetApiRequestFactory extends BaseAPIRequestFactory 
      * List all role resource set binding members
      * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      */
   listMembersOfBinding(resourceSetId: string, roleIdOrLabel: string, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all resources for the resource set
      * List all resource set resources
      * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
+     * @param after Specifies the pagination cursor for the next page of targets
+     * @param limit Specifies the number of results returned. Defaults to &#x60;100&#x60;.
      */
-  listResourceSetResources(resourceSetId: string, _options?: Configuration): Promise<RequestContext>;
+  listResourceSetResources(resourceSetId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all resource sets with pagination support
      * List all resource sets
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      */
   listResourceSets(after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the label and description of a resource set
+     * Replaces the label and description of a resource set. See [Supported resources](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#supported-resources).
      * Replace a resource set
      * @param resourceSetId &#x60;id&#x60; or &#x60;label&#x60; of the resource set
      * @param instance

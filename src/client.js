@@ -46,8 +46,17 @@ const {
   CustomDomainApi,
   DeviceApi,
 
+  AgentConnectionsApi,
+  AgentPotentialConnectionsApi,
+  AgentPublicKeyApi,
+  AgentRegistrationApi,
+  ApplicationCrossAppAccessConnectionsApi,
+  ApplicationInterclientTrustMappingsApi,
+  ApplicationSSOPublicKeysApi,
+  AssociatedDomainCustomizationsApi,
   AttackProtectionApi,
   CAPTCHAApi,
+  CustomTelephonyProviderApi,
   DeviceAccessApi,
   DeviceIntegrationsApi,
   DevicePostureCheckApi,
@@ -56,11 +65,15 @@ const {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
+  GroupPushMappingApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
+  OAuth2ResourceServerCredentialsKeysApi,
   OktaApplicationSettingsApi,
+  OktaManagedUserAccountApi,
   OktaPersonalSettingsApi,
+  OperationsIntegrationApi,
   OrgCreatorApi,
   PrivilegedResourceApi,
   RateLimitSettingsApi,
@@ -73,6 +86,8 @@ const {
   SSFTransmitterApi,
   ServiceAccountApi,
   UISchemaApi,
+  UnconfirmedUsersApi,
+  UserAuthenticatorEnrollmentsApi,
   WebAuthnPreregistrationApi,
   ApiServiceIntegrationsApi,
   YourOinIntegrationsApi,
@@ -204,8 +219,17 @@ class Client {
     this.customDomainApi = new CustomDomainApi(configuration);
     this.deviceApi = new DeviceApi(configuration);
 
+    this.agentConnectionsApi = new AgentConnectionsApi(configuration);
+    this.agentPotentialConnectionsApi = new AgentPotentialConnectionsApi(configuration);
+    this.agentPublicKeyApi = new AgentPublicKeyApi(configuration);
+    this.agentRegistrationApi = new AgentRegistrationApi(configuration);
+    this.applicationCrossAppAccessConnectionsApi = new ApplicationCrossAppAccessConnectionsApi(configuration);
+    this.applicationInterclientTrustMappingsApi = new ApplicationInterclientTrustMappingsApi(configuration);
+    this.applicationSSOPublicKeysApi = new ApplicationSSOPublicKeysApi(configuration);
+    this.associatedDomainCustomizationsApi = new AssociatedDomainCustomizationsApi(configuration);
     this.attackProtectionApi = new AttackProtectionApi(configuration);
     this.captchaApi = new CAPTCHAApi(configuration);
+    this.customTelephonyProviderApi = new CustomTelephonyProviderApi(configuration);
     this.deviceAccessApi = new DeviceAccessApi(configuration);
     this.deviceIntegrationsApi = new DeviceIntegrationsApi(configuration);
     this.devicePostureCheckApi = new DevicePostureCheckApi(configuration);
@@ -214,11 +238,15 @@ class Client {
     this.emailDomainApi = new EmailDomainApi(configuration);
     this.emailServerApi = new EmailServerApi(configuration);
     this.governanceBundleApi = new GovernanceBundleApi(configuration);
+    this.groupPushMappingApi = new GroupPushMappingApi(configuration);
     this.hookKeyApi = new HookKeyApi(configuration);
     this.identitySourceApi = new IdentitySourceApi(configuration);
     this.logStreamApi = new LogStreamApi(configuration);
+    this.oauth2ResourceServerCredentialsKeysApi = new OAuth2ResourceServerCredentialsKeysApi(configuration);
     this.oktaApplicationSettingsApi = new OktaApplicationSettingsApi(configuration);
+    this.oktaManagedUserAccountApi = new OktaManagedUserAccountApi(configuration);
     this.oktaPersonalSettingsApi = new OktaPersonalSettingsApi(configuration);
+    this.operationsIntegrationApi = new OperationsIntegrationApi(configuration);
     this.orgCreatorApi = new OrgCreatorApi(configuration);
     this.privilegedResourceApi = new PrivilegedResourceApi(configuration);
     this.rateLimitSettingsApi = new RateLimitSettingsApi(configuration);
@@ -231,6 +259,8 @@ class Client {
     this.ssfTransmitterApi = new SSFTransmitterApi(configuration);
     this.serviceAccountApi = new ServiceAccountApi(configuration);
     this.uiSchemaApi = new UISchemaApi(configuration);
+    this.unconfirmedUsersApi = new UnconfirmedUsersApi(configuration);
+    this.userAuthenticatorEnrollmentsApi = new UserAuthenticatorEnrollmentsApi(configuration);
     this.webAuthnPreregistrationApi = new WebAuthnPreregistrationApi(configuration);
     this.apiServiceIntegrationsApi = new ApiServiceIntegrationsApi(configuration);
     this.yourOinIntegrationsApi = new YourOinIntegrationsApi(configuration);

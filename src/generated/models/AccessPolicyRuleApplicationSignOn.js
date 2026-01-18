@@ -29,10 +29,10 @@ exports.AccessPolicyRuleApplicationSignOn = void 0;
 * Specifies the results when a user attempts to sign in
 */
 class AccessPolicyRuleApplicationSignOn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyRuleApplicationSignOn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyRuleApplicationSignOn = AccessPolicyRuleApplicationSignOn;

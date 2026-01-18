@@ -29,10 +29,10 @@ exports.Oidc = void 0;
 * OIDC configuration details
 */
 class Oidc {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Oidc.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Oidc = Oidc;

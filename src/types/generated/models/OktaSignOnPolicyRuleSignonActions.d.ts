@@ -63,4 +63,4 @@ export declare class OktaSignOnPolicyRuleSignonActions {
     }[];
   constructor();
 }
-export declare type OktaSignOnPolicyRuleSignonActionsAccessEnum = 'ALLOW' | 'DENY';
+export type OktaSignOnPolicyRuleSignonActionsAccessEnum = 'ALLOW' | 'DENY';
