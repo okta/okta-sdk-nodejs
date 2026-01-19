@@ -14,7 +14,7 @@ const client = new Client();
     type: 'AD',
     isHidden: false,
     isLatestGAedVersion: true,
-    lastConnection: new Date(),
+    lastConnection: Date.now(),
     operationalStatus: 'OPERATIONAL',
     poolId: 'testPoolId',
     updateMessage: 'testMessage',
