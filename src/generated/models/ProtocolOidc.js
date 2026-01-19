@@ -57,6 +57,12 @@ ProtocolOidc.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'issuer',
+    'baseName': 'issuer',
+    'type': 'Object',
+    'format': ''
+  },
+  {
     'name': 'oktaIdpOrgUrl',
     'baseName': 'oktaIdpOrgUrl',
     'type': 'string',

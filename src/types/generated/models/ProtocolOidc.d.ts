@@ -33,6 +33,7 @@ export declare class ProtocolOidc {
   'algorithms'?: OidcAlgorithms;
   'credentials'?: OAuthCredentials;
   'endpoints'?: OAuthEndpoints;
+  'issuer'?: { url?: string; binding?: string };
   /**
     * URL of the IdP org
     */
