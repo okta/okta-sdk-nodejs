@@ -29,10 +29,10 @@ exports.Office365ProvisioningSettings = void 0;
 * Settings required for the Microsoft Office 365 provisioning connection
 */
 class Office365ProvisioningSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Office365ProvisioningSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Office365ProvisioningSettings = Office365ProvisioningSettings;

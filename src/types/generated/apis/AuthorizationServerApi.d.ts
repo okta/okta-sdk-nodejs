@@ -201,7 +201,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      * Retrieves a refresh token for a Client
      * Retrieve a refresh token for a client
      * @param authServerId &#x60;id&#x60; of the Authorization Server
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param tokenId &#x60;id&#x60; of Token
      * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
      */
@@ -269,7 +269,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      * Lists all refresh tokens issued by an authorization server for a specific Client
      * List all refresh tokens for a client
      * @param authServerId &#x60;id&#x60; of the Authorization Server
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param expand Valid value: &#x60;scope&#x60;. If specified, scope details are included in the &#x60;_embedded&#x60; attribute.
      * @param after Specifies the pagination cursor for the next page of tokens
      * @param limit The maximum number of tokens to return (maximum 200)
@@ -319,7 +319,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      * Revokes a refresh token for a Client
      * Revoke a refresh token for a client
      * @param authServerId &#x60;id&#x60; of the Authorization Server
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param tokenId &#x60;id&#x60; of Token
      */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Promise<RequestContext>;
@@ -327,7 +327,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      * Revokes all refresh tokens for a Client
      * Revoke all refresh tokens for a client
      * @param authServerId &#x60;id&#x60; of the Authorization Server
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Promise<RequestContext>;
   /**

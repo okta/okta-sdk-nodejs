@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OSVersionConstraint = void 0;
 class OSVersionConstraint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OSVersionConstraint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OSVersionConstraint = OSVersionConstraint;

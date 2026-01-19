@@ -22,7 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DNSRecord } from './../models/DNSRecord';
+import { DNSRecordDomains } from './../models/DNSRecordDomains';
 import { DomainCertificateMetadata } from './../models/DomainCertificateMetadata';
 import { DomainCertificateSourceType } from './../models/DomainCertificateSourceType';
 import { DomainLinks } from './../models/DomainLinks';
@@ -36,7 +36,7 @@ export declare class DomainResponse {
     */
   'brandId'?: string;
   'certificateSourceType'?: DomainCertificateSourceType;
-  'dnsRecords'?: Array<DNSRecord>;
+  'dnsRecords'?: Array<DNSRecordDomains>;
   /**
     * Custom domain name
     */

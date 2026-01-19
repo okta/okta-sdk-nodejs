@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EventHook = void 0;
 class EventHook {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EventHook.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EventHook = EventHook;

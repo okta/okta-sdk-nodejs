@@ -29,7 +29,7 @@ import { CapabilitiesObject } from './../models/CapabilitiesObject';
  * Type
  * @export
  */
-export declare type UpdateFeatureForApplicationRequest = CapabilitiesInboundProvisioningObject | CapabilitiesObject;
+export type UpdateFeatureForApplicationRequest = CapabilitiesInboundProvisioningObject | CapabilitiesObject;
 /**
 * @type UpdateFeatureForApplicationRequestClass
 * @export

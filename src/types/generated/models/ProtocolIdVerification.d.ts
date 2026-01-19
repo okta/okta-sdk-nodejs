@@ -26,7 +26,7 @@ import { IDVCredentials } from './../models/IDVCredentials';
 import { IDVEndpoints } from './../models/IDVEndpoints';
 import { OAuthScopes } from './../models/OAuthScopes';
 /**
-* Protocol settings for the IDV
+* Protocol settings for the IDV vendor
 */
 export declare class ProtocolIdVerification {
   'credentials'?: IDVCredentials;
@@ -51,4 +51,4 @@ export declare class ProtocolIdVerification {
     }[];
   constructor();
 }
-export declare type ProtocolIdVerificationTypeEnum = 'ID_PROOFING';
+export type ProtocolIdVerificationTypeEnum = 'ID_PROOFING';

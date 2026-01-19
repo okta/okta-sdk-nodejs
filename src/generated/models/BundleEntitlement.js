@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BundleEntitlement = void 0;
+/**
+* An entitlement in a governance bundle
+*/
 class BundleEntitlement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BundleEntitlement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BundleEntitlement = BundleEntitlement;

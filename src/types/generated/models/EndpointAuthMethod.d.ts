@@ -25,4 +25,4 @@
 /**
 * Requested authentication method for OAuth 2.0 endpoints.
 */
-export declare type EndpointAuthMethod = 'client_secret_basic' | 'client_secret_jwt' | 'client_secret_post' | 'none' | 'private_key_jwt';
+export type EndpointAuthMethod = 'client_secret_basic' | 'client_secret_jwt' | 'client_secret_post' | 'none' | 'private_key_jwt';

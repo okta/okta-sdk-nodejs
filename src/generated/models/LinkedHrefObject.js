@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinkedHrefObject = void 0;
 class LinkedHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinkedHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinkedHrefObject = LinkedHrefObject;

@@ -29,10 +29,10 @@ exports.PublicWebauthnSiteWellKnownURI = void 0;
 * The well-known URI content in JSON object format
 */
 class PublicWebauthnSiteWellKnownURI {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PublicWebauthnSiteWellKnownURI.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PublicWebauthnSiteWellKnownURI = PublicWebauthnSiteWellKnownURI;

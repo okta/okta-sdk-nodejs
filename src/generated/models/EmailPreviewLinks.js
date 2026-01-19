@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EmailPreviewLinks = void 0;
 class EmailPreviewLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EmailPreviewLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EmailPreviewLinks = EmailPreviewLinks;

@@ -29,10 +29,10 @@ exports.TokenPayLoadDataContextPolicy = void 0;
 * The authorization server policy used to mint the token
 */
 class TokenPayLoadDataContextPolicy {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextPolicy.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextPolicy = TokenPayLoadDataContextPolicy;

@@ -25,13 +25,15 @@
 import { IDVAuthorizationEndpoint } from './../models/IDVAuthorizationEndpoint';
 import { IDVParEndpoint } from './../models/IDVParEndpoint';
 import { IDVTokenEndpoint } from './../models/IDVTokenEndpoint';
+import { OidcJwksEndpoint } from './../models/OidcJwksEndpoint';
 /**
-* Contains the endpoints for the IDV
+* Contains endpoints for the IDV vendor. When you create an `IDV_STANDARD` IdP, you must include the `par`, `authorization`, `token`, and `jwks` endpoints in the request body.
 */
 export declare class IDVEndpoints {
-  'authorization'?: IDVAuthorizationEndpoint;
-  'par'?: IDVParEndpoint;
-  'token'?: IDVTokenEndpoint;
+  'authorization': IDVAuthorizationEndpoint;
+  'jwks': OidcJwksEndpoint;
+  'par': IDVParEndpoint;
+  'token': IDVTokenEndpoint;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

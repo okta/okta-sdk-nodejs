@@ -25,4 +25,4 @@
 /**
 * A token is used to authenticate with the app. This property is only returned for the `TOKEN` authentication scheme.
 */
-export declare type ProvisioningConnectionTokenAuthScheme = 'TOKEN';
+export type ProvisioningConnectionTokenAuthScheme = 'TOKEN';

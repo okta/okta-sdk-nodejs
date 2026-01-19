@@ -25,4 +25,4 @@
 /**
 * The type of registration hook. Use either `self.service.registration` or `progressive.profile`.
 */
-export declare type RegistrationInlineHookRequestType = 'progressive.profile' | 'self.service.registration';
+export type RegistrationInlineHookRequestType = 'progressive.profile' | 'self.service.registration';

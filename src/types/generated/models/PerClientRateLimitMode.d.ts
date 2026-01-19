@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PerClientRateLimitMode = 'DISABLE' | 'ENFORCE' | 'PREVIEW';
+export type PerClientRateLimitMode = 'DISABLE' | 'ENFORCE' | 'PREVIEW';

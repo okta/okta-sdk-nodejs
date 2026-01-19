@@ -39,4 +39,4 @@ export declare class OAuth2RefreshTokenLinksRevokeHints {
     }[];
   constructor();
 }
-export declare type OAuth2RefreshTokenLinksRevokeHintsAllowEnum = 'DELETE';
+export type OAuth2RefreshTokenLinksRevokeHintsAllowEnum = 'DELETE';

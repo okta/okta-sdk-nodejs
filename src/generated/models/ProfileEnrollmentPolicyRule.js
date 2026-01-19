@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.ProfileEnrollmentPolicyRule = void 0;
 const PolicyRule_1 = require('./../models/PolicyRule');
 class ProfileEnrollmentPolicyRule extends PolicyRule_1.PolicyRule {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(ProfileEnrollmentPolicyRule.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'PROFILE_ENROLLMENT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(ProfileEnrollmentPolicyRule.attributeTypeMap);
   }
 }
 exports.ProfileEnrollmentPolicyRule = ProfileEnrollmentPolicyRule;

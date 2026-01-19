@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyOktaVerifySettings = void 0;
 class AuthenticatorKeyOktaVerifySettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyOktaVerifySettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyOktaVerifySettings = AuthenticatorKeyOktaVerifySettings;

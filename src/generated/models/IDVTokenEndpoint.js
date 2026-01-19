@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IDVTokenEndpoint = void 0;
 /**
-* IDV token endpoint
+* Token endpoint of the IDV vendor
 */
 class IDVTokenEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVTokenEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVTokenEndpoint = IDVTokenEndpoint;

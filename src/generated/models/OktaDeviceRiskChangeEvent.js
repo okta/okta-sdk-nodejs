@@ -29,10 +29,10 @@ exports.OktaDeviceRiskChangeEvent = void 0;
 * The device risk level changed
 */
 class OktaDeviceRiskChangeEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaDeviceRiskChangeEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaDeviceRiskChangeEvent = OktaDeviceRiskChangeEvent;

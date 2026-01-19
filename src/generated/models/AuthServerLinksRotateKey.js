@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthServerLinksRotateKey = void 0;
 class AuthServerLinksRotateKey {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthServerLinksRotateKey.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthServerLinksRotateKey = AuthServerLinksRotateKey;

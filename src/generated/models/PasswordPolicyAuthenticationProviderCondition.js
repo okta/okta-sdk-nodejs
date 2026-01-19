@@ -29,10 +29,10 @@ exports.PasswordPolicyAuthenticationProviderCondition = void 0;
 * Specifies an authentication provider that\'s the source of some or all users
 */
 class PasswordPolicyAuthenticationProviderCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyAuthenticationProviderCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyAuthenticationProviderCondition = PasswordPolicyAuthenticationProviderCondition;

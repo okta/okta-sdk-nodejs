@@ -28,7 +28,7 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { SlackApplicationSettingsApplication } from './../models/SlackApplicationSettingsApplication';
 export declare class SlackApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: SlackApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class SlackApplicationSettings {
     }[];
   constructor();
 }
-export declare type SlackApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type SlackApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

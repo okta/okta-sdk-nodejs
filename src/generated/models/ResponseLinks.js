@@ -29,10 +29,10 @@ exports.ResponseLinks = void 0;
 * Link objects
 */
 class ResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResponseLinks = ResponseLinks;

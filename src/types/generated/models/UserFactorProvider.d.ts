@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type UserFactorProvider = 'CUSTOM' | 'DUO' | 'FIDO' | 'GOOGLE' | 'OKTA' | 'RSA' | 'SYMANTEC' | 'YUBICO';
+export type UserFactorProvider = 'CUSTOM' | 'DUO' | 'FIDO' | 'GOOGLE' | 'OKTA' | 'RSA' | 'SYMANTEC' | 'YUBICO';

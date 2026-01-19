@@ -41,4 +41,4 @@ export declare class PostAuthSessionPolicyRuleRunWorkflow {
     }[];
   constructor();
 }
-export declare type PostAuthSessionPolicyRuleRunWorkflowActionEnum = 'RUN_WORKFLOW';
+export type PostAuthSessionPolicyRuleRunWorkflowActionEnum = 'RUN_WORKFLOW';

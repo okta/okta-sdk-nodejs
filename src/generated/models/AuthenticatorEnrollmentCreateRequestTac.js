@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorEnrollmentCreateRequestTac = void 0;
 class AuthenticatorEnrollmentCreateRequestTac {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentCreateRequestTac.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentCreateRequestTac = AuthenticatorEnrollmentCreateRequestTac;

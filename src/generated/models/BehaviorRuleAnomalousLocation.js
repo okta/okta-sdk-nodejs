@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleAnomalousLocation = void 0;
 const BehaviorRule_1 = require('./../models/BehaviorRule');
 class BehaviorRuleAnomalousLocation extends BehaviorRule_1.BehaviorRule {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BehaviorRuleAnomalousLocation.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ANOMALOUS_LOCATION';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BehaviorRuleAnomalousLocation.attributeTypeMap);
   }
 }
 exports.BehaviorRuleAnomalousLocation = BehaviorRuleAnomalousLocation;

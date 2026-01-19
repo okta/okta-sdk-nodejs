@@ -21,45 +21,45 @@ import { Session } from '../models/Session';
  */
 export declare class SessionApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Closes the session for the user who is currently signed in. Use this method in a browser-based app to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
      * Close the current session
      * @param cookie
      */
   closeCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+     * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
      * Create a session with session token
      * @param createSessionRequest
      */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Retrieves session information for the current user. Use this method in a browser-based app to determine if the user is signed in.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
      * Retrieve the current session
      * @param cookie
      */
   getCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves information about the Session specified by the given session ID
+     * Retrieves information about the session specified by the given session ID
      * Retrieve a session
-     * @param sessionId &#x60;id&#x60; of the Session
+     * @param sessionId &#x60;id&#x60; of the session
      */
   getSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+     * Refreshes the session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
      * Refresh the current session
      * @param cookie
      */
   refreshCurrentSession(cookie?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
+     * Refreshes an existing session using the `id` for that session. A successful response contains the refreshed session with an updated `expiresAt` timestamp.
      * Refresh a session
-     * @param sessionId &#x60;id&#x60; of the Session
+     * @param sessionId &#x60;id&#x60; of the session
      */
   refreshSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes the specified Session
+     * Revokes the specified session
      * Revoke a session
-     * @param sessionId &#x60;id&#x60; of the Session
+     * @param sessionId &#x60;id&#x60; of the session
      */
   revokeSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
 }

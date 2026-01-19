@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ErrorCause = void 0;
 class ErrorCause {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ErrorCause.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ErrorCause = ErrorCause;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PolicyMapping = void 0;
 class PolicyMapping {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyMapping.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyMapping = PolicyMapping;

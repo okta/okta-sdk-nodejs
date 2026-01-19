@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodOtp = void 0;
 const AuthenticatorMethodWithVerifiableProperties_1 = require('./../models/AuthenticatorMethodWithVerifiableProperties');
 class AuthenticatorMethodOtp extends AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorMethodOtp.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'otp';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorMethodOtp.attributeTypeMap);
   }
 }
 exports.AuthenticatorMethodOtp = AuthenticatorMethodOtp;

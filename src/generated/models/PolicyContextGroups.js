@@ -29,10 +29,10 @@ exports.PolicyContextGroups = void 0;
 * An array of Group IDs for the simulate operation. Only user IDs or Group IDs are allowed, not both.
 */
 class PolicyContextGroups {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyContextGroups.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyContextGroups = PolicyContextGroups;

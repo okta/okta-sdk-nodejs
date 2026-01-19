@@ -25,4 +25,4 @@
 /**
 * Status of Okta Support Settings
 */
-export declare type OrgOktaSupportSetting = 'DISABLED' | 'ENABLED';
+export type OrgOktaSupportSetting = 'DISABLED' | 'ENABLED';

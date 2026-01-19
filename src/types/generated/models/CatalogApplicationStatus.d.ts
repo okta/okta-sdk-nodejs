@@ -25,4 +25,4 @@
 /**
 * App status
 */
-export declare type CatalogApplicationStatus = 'ACTIVE' | 'INACTIVE';
+export type CatalogApplicationStatus = 'ACTIVE' | 'INACTIVE';

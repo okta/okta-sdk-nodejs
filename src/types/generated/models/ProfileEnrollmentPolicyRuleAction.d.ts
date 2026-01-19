@@ -78,6 +78,6 @@ export declare class ProfileEnrollmentPolicyRuleAction {
     }[];
   constructor();
 }
-export declare type ProfileEnrollmentPolicyRuleActionAccessEnum = 'ALLOW' | 'DENY';
-export declare type ProfileEnrollmentPolicyRuleActionProgressiveProfilingActionEnum = 'ENABLED' | 'DISABLED';
-export declare type ProfileEnrollmentPolicyRuleActionUnknownUserActionEnum = 'DENY' | 'REGISTER';
+export type ProfileEnrollmentPolicyRuleActionAccessEnum = 'ALLOW' | 'DENY';
+export type ProfileEnrollmentPolicyRuleActionProgressiveProfilingActionEnum = 'ENABLED' | 'DISABLED';
+export type ProfileEnrollmentPolicyRuleActionUnknownUserActionEnum = 'DENY' | 'REGISTER';

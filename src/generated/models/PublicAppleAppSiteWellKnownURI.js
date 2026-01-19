@@ -29,10 +29,10 @@ exports.PublicAppleAppSiteWellKnownURI = void 0;
 * The well-known URI content in JSON object format
 */
 class PublicAppleAppSiteWellKnownURI {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PublicAppleAppSiteWellKnownURI.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PublicAppleAppSiteWellKnownURI = PublicAppleAppSiteWellKnownURI;

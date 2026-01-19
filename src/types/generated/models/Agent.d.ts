@@ -43,9 +43,9 @@ export declare class Agent {
     */
   'isLatestGAedVersion'?: boolean;
   /**
-    * Timestamp when the agent last connected to Okta
+    * Unix timestamp in milliseconds when the agent last connected to Okta
     */
-  'lastConnection'?: Date;
+  'lastConnection'?: number;
   /**
     * Agent name
     */

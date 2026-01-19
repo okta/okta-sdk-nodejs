@@ -42,4 +42,4 @@ export declare class UserRiskRequest {
     }[];
   constructor();
 }
-export declare type UserRiskRequestRiskLevelEnum = 'HIGH' | 'LOW';
+export type UserRiskRequestRiskLevelEnum = 'HIGH' | 'LOW';

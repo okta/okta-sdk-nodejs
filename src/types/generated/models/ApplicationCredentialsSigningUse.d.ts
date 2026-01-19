@@ -25,4 +25,4 @@
 /**
 * Specifies the intended use of the key
 */
-export declare type ApplicationCredentialsSigningUse = 'sig';
+export type ApplicationCredentialsSigningUse = 'sig';

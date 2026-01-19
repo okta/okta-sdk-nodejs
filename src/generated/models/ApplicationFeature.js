@@ -29,11 +29,11 @@ exports.ApplicationFeature = void 0;
 * The Feature object is used to configure app feature settings.
 */
 class ApplicationFeature {
-  constructor() {
-    // this.name = 'ApplicationFeature';
-  }
   static getAttributeTypeMap() {
     return ApplicationFeature.attributeTypeMap;
+  }
+  constructor() {
+    // this.name = 'ApplicationFeature';
   }
 }
 exports.ApplicationFeature = ApplicationFeature;

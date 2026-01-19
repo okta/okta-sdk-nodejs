@@ -25,4 +25,4 @@
 /**
 * Variant for the Okta End-User Dashboard. You can publish a theme for end-user dashboard with different combinations of assets. Variants are preset combinations of those assets.
 */
-export declare type EndUserDashboardTouchPointVariant = 'FULL_THEME' | 'LOGO_ON_FULL_WHITE_BACKGROUND' | 'OKTA_DEFAULT' | 'WHITE_LOGO_BACKGROUND';
+export type EndUserDashboardTouchPointVariant = 'FULL_THEME' | 'LOGO_ON_FULL_WHITE_BACKGROUND' | 'OKTA_DEFAULT' | 'WHITE_LOGO_BACKGROUND';

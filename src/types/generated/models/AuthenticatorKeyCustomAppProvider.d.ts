@@ -44,4 +44,4 @@ export declare class AuthenticatorKeyCustomAppProvider {
     }[];
   constructor();
 }
-export declare type AuthenticatorKeyCustomAppProviderTypeEnum = 'PUSH';
+export type AuthenticatorKeyCustomAppProviderTypeEnum = 'PUSH';

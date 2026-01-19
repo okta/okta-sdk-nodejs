@@ -25,4 +25,4 @@
 /**
 * Type of contact
 */
-export declare type OrgContactType = 'BILLING' | 'TECHNICAL';
+export type OrgContactType = 'BILLING' | 'TECHNICAL';

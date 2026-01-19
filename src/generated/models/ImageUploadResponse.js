@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ImageUploadResponse = void 0;
 class ImageUploadResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ImageUploadResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ImageUploadResponse = ImageUploadResponse;

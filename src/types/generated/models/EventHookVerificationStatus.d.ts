@@ -25,4 +25,4 @@
 /**
 * Verification status of the event hook. `UNVERIFIED` event hooks won\'t receive any events.
 */
-export declare type EventHookVerificationStatus = 'UNVERIFIED' | 'VERIFIED';
+export type EventHookVerificationStatus = 'UNVERIFIED' | 'VERIFIED';

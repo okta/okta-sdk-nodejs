@@ -65,6 +65,6 @@ export declare class ECKeyJWK {
     }[];
   constructor();
 }
-export declare type ECKeyJWKCrvEnum = 'P-384';
-export declare type ECKeyJWKKtyEnum = 'EC';
-export declare type ECKeyJWKUseEnum = 'enc' | 'sig';
+export type ECKeyJWKCrvEnum = 'P-384';
+export type ECKeyJWKKtyEnum = 'EC';
+export type ECKeyJWKUseEnum = 'enc' | 'sig';

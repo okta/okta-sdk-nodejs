@@ -29,10 +29,10 @@ exports.OpenIdConnectApplicationIdpInitiatedLogin = void 0;
 * The type of IdP-initiated sign-in flow that the client supports
 */
 class OpenIdConnectApplicationIdpInitiatedLogin {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationIdpInitiatedLogin.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationIdpInitiatedLogin = OpenIdConnectApplicationIdpInitiatedLogin;

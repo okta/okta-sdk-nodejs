@@ -25,4 +25,4 @@
 /**
 * The type of Network Zone
 */
-export declare type NetworkZoneType = 'DYNAMIC' | 'IP' | 'DYNAMIC_V2';
+export type NetworkZoneType = 'DYNAMIC' | 'IP' | 'DYNAMIC_V2';

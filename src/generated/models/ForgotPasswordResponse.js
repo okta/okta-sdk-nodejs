@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ForgotPasswordResponse = void 0;
 class ForgotPasswordResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ForgotPasswordResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ForgotPasswordResponse = ForgotPasswordResponse;

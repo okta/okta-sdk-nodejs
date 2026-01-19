@@ -29,10 +29,10 @@ exports.CAPTCHAInstance = void 0;
 *
 */
 class CAPTCHAInstance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CAPTCHAInstance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CAPTCHAInstance = CAPTCHAInstance;

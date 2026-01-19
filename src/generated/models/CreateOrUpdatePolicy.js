@@ -26,17 +26,18 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CreateOrUpdatePolicy = void 0;
 class CreateOrUpdatePolicy {
-  constructor() {
-    // this.type = 'CreateOrUpdatePolicy';
-  }
   static getAttributeTypeMap() {
     return CreateOrUpdatePolicy.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'CreateOrUpdatePolicy';
   }
 }
 exports.CreateOrUpdatePolicy = CreateOrUpdatePolicy;
 CreateOrUpdatePolicy.discriminator = 'type';
 CreateOrUpdatePolicy.mapping = {
   'ACCESS_POLICY': 'AccessPolicy',
+  'DEVICE_SIGNAL_COLLECTION': 'DeviceSignalCollectionPolicy',
   'MFA_ENROLL': 'AuthenticatorEnrollmentPolicy',
   'OKTA_SIGN_ON': 'OktaSignOnPolicy',
   'PASSWORD': 'PasswordPolicy',

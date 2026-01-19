@@ -29,10 +29,10 @@ exports.DomainCertificateMetadata = void 0;
 * Certificate metadata for the domain
 */
 class DomainCertificateMetadata {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainCertificateMetadata.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainCertificateMetadata = DomainCertificateMetadata;

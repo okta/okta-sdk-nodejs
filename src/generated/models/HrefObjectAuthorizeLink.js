@@ -29,10 +29,10 @@ exports.HrefObjectAuthorizeLink = void 0;
 * Link to authorize scopes
 */
 class HrefObjectAuthorizeLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectAuthorizeLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectAuthorizeLink = HrefObjectAuthorizeLink;

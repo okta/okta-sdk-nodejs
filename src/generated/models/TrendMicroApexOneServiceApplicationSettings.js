@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TrendMicroApexOneServiceApplicationSettings = void 0;
 class TrendMicroApexOneServiceApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TrendMicroApexOneServiceApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TrendMicroApexOneServiceApplicationSettings = TrendMicroApexOneServiceApplicationSettings;

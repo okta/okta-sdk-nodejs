@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UpdateDomain = void 0;
 class UpdateDomain {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UpdateDomain.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UpdateDomain = UpdateDomain;

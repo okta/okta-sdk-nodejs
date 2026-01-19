@@ -29,7 +29,7 @@ import { StandardRole } from './../models/StandardRole';
  * Type
  * @export
  */
-export declare type AssignRoleToUser201Response = CustomRole | StandardRole;
+export type AssignRoleToUser201Response = CustomRole | StandardRole;
 /**
 * @type AssignRoleToUser201ResponseClass
 * @export

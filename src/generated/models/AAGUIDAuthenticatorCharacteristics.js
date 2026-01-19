@@ -29,10 +29,10 @@ exports.AAGUIDAuthenticatorCharacteristics = void 0;
 * Contains additional properties about custom AAGUID.
 */
 class AAGUIDAuthenticatorCharacteristics {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AAGUIDAuthenticatorCharacteristics.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AAGUIDAuthenticatorCharacteristics = AAGUIDAuthenticatorCharacteristics;

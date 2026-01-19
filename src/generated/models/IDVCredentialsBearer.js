@@ -29,10 +29,10 @@ exports.IDVCredentialsBearer = void 0;
 * Client credential for `IDV_PERSONA` IdP type
 */
 class IDVCredentialsBearer {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVCredentialsBearer.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVCredentialsBearer = IDVCredentialsBearer;

@@ -29,10 +29,10 @@ exports.TokenRequest = void 0;
 * Token inline hook request
 */
 class TokenRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenRequest = TokenRequest;

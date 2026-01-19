@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GroupSchemaAttribute = void 0;
 class GroupSchemaAttribute {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupSchemaAttribute.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupSchemaAttribute = GroupSchemaAttribute;

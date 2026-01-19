@@ -25,4 +25,4 @@
 /**
 * The format used to generate the `relayState` in the SAML request. The `FROM_URL` format is used if this value is null.
 */
-export declare type SamlRelayStateFormat = 'FROM_URL' | 'OPAQUE';
+export type SamlRelayStateFormat = 'FROM_URL' | 'OPAQUE';

@@ -26,34 +26,28 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SecurityEventSubject = void 0;
 /**
-* The event subject
+* The event subjects
 */
 class SecurityEventSubject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventSubject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventSubject = SecurityEventSubject;
 SecurityEventSubject.discriminator = undefined;
 SecurityEventSubject.attributeTypeMap = [
   {
-    'name': 'format',
-    'baseName': 'format',
-    'type': 'string',
+    'name': 'device',
+    'baseName': 'device',
+    'type': 'any',
     'format': ''
   },
   {
-    'name': 'iss',
-    'baseName': 'iss',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'sub',
-    'baseName': 'sub',
-    'type': 'string',
+    'name': 'user',
+    'baseName': 'user',
+    'type': 'any',
     'format': ''
   }
 ];

@@ -25,4 +25,4 @@
 /**
 * SAML 2.0 Name Identifier formats
 */
-export declare type SamlNameIdFormat = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+export type SamlNameIdFormat = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';

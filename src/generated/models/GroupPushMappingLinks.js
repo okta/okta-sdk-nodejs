@@ -29,10 +29,10 @@ exports.GroupPushMappingLinks = void 0;
 * Discoverable resources related to the group push mapping
 */
 class GroupPushMappingLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupPushMappingLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupPushMappingLinks = GroupPushMappingLinks;

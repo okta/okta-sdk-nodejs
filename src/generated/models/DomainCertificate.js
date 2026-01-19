@@ -29,10 +29,10 @@ exports.DomainCertificate = void 0;
 * Defines the properties of the certificate
 */
 class DomainCertificate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainCertificate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainCertificate = DomainCertificate;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksSelfAndRoles = void 0;
 class LinksSelfAndRoles {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksSelfAndRoles.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksSelfAndRoles = LinksSelfAndRoles;

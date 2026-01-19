@@ -29,10 +29,10 @@ exports.BaseTokenToken = void 0;
 * The token
 */
 class BaseTokenToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseTokenToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseTokenToken = BaseTokenToken;

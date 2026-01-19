@@ -25,4 +25,4 @@
 /**
 * HMAC algorithm
 */
-export declare type OtpTotpAlgorithm = 'HMacSHA1' | 'HMacSHA256' | 'HMacSHA512';
+export type OtpTotpAlgorithm = 'HMacSHA1' | 'HMacSHA256' | 'HMacSHA512';

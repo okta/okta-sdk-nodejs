@@ -41,8 +41,17 @@ import {
   CustomDomainApi,
   DeviceApi,
 
+  AgentConnectionsApi,
+  AgentPotentialConnectionsApi,
+  AgentPublicKeyApi,
+  AgentRegistrationApi,
+  ApplicationCrossAppAccessConnectionsApi,
+  ApplicationInterclientTrustMappingsApi,
+  ApplicationSSOPublicKeysApi,
+  AssociatedDomainCustomizationsApi,
   AttackProtectionApi,
   CAPTCHAApi,
+  CustomTelephonyProviderApi,
   DeviceAccessApi,
   DeviceIntegrationsApi,
   DevicePostureCheckApi,
@@ -51,11 +60,15 @@ import {
   EmailDomainApi,
   EmailServerApi,
   GovernanceBundleApi,
+  GroupPushMappingApi,
   HookKeyApi,
   IdentitySourceApi,
   LogStreamApi,
+  OAuth2ResourceServerCredentialsKeysApi,
   OktaApplicationSettingsApi,
+  OktaManagedUserAccountApi,
   OktaPersonalSettingsApi,
+  OperationsIntegrationApi,
   OrgCreatorApi,
   PrivilegedResourceApi,
   RateLimitSettingsApi,
@@ -68,6 +81,8 @@ import {
   SSFTransmitterApi,
   ServiceAccountApi,
   UISchemaApi,
+  UnconfirmedUsersApi,
+  UserAuthenticatorEnrollmentsApi,
   WebAuthnPreregistrationApi,
   ApiServiceIntegrationsApi,
   YourOinIntegrationsApi,
@@ -139,8 +154,17 @@ export declare class Client {
   customDomainApi: CustomDomainApi;
   deviceApi: DeviceApi;
 
+  agentConnectionsApi: AgentConnectionsApi;
+  agentPotentialConnectionsApi: AgentPotentialConnectionsApi;
+  agentPublicKeyApi: AgentPublicKeyApi;
+  agentRegistrationApi: AgentRegistrationApi;
+  applicationCrossAppAccessConnectionsApi: ApplicationCrossAppAccessConnectionsApi;
+  applicationInterclientTrustMappingsApi: ApplicationInterclientTrustMappingsApi;
+  applicationSSOPublicKeysApi: ApplicationSSOPublicKeysApi;
+  associatedDomainCustomizationsApi: AssociatedDomainCustomizationsApi;
   attackProtectionApi: AttackProtectionApi;
   captchaApi: CAPTCHAApi;
+  customTelephonyProviderApi: CustomTelephonyProviderApi;
   deviceAccessApi: DeviceAccessApi;
   deviceIntegrationsApi: DeviceIntegrationsApi;
   devicePostureCheckApi: DevicePostureCheckApi;
@@ -149,11 +173,15 @@ export declare class Client {
   emailDomainApi: EmailDomainApi;
   emailServerApi: EmailServerApi;
   governanceBundleApi: GovernanceBundleApi;
+  groupPushMappingApi: GroupPushMappingApi;
   hookKeyApi: HookKeyApi;
   identitySourceApi: IdentitySourceApi;
   logStreamApi: LogStreamApi;
+  oauth2ResourceServerCredentialsKeysApi: OAuth2ResourceServerCredentialsKeysApi;
   oktaApplicationSettingsApi: OktaApplicationSettingsApi;
+  oktaManagedUserAccountApi: OktaManagedUserAccountApi;
   oktaPersonalSettingsApi: OktaPersonalSettingsApi;
+  operationsIntegrationApi: OperationsIntegrationApi;
   orgCreatorApi: OrgCreatorApi;
   privilegedResourceApi: PrivilegedResourceApi;
   rateLimitSettingsApi: RateLimitSettingsApi;
@@ -166,6 +194,8 @@ export declare class Client {
   ssfTransmitterApi: SSFTransmitterApi;
   serviceAccountApi: ServiceAccountApi;
   uiSchemaApi: UISchemaApi;
+  unconfirmedUsersApi: UnconfirmedUsersApi;
+  userAuthenticatorEnrollmentsApi: UserAuthenticatorEnrollmentsApi;
   webAuthnPreregistrationApi: WebAuthnPreregistrationApi;
   apiServiceIntegrationsApi: ApiServiceIntegrationsApi;
   yourOinIntegrationsApi: YourOinIntegrationsApi;

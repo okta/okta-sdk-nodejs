@@ -25,4 +25,4 @@
 /**
 * Type of the Template
 */
-export declare type SmsTemplateType = 'SMS_VERIFY_CODE';
+export type SmsTemplateType = 'SMS_VERIFY_CODE';

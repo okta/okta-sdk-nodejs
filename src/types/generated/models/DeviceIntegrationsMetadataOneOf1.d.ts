@@ -42,4 +42,4 @@ export declare class DeviceIntegrationsMetadataOneOf1 {
     }[];
   constructor();
 }
-export declare type DeviceIntegrationsMetadataOneOf1TypeEnum = 'WORKSPACE_ONE';
+export type DeviceIntegrationsMetadataOneOf1TypeEnum = 'WORKSPACE_ONE';

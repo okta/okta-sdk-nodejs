@@ -25,4 +25,4 @@
 /**
 * Indicates how well a device can enforce app integrity
 */
-export declare type DeviceIntegrity = 'MEETS_BASIC_INTEGRITY' | 'MEETS_DEVICE_INTEGRITY' | 'MEETS_STRONG_INTEGRITY';
+export type DeviceIntegrity = 'MEETS_BASIC_INTEGRITY' | 'MEETS_DEVICE_INTEGRITY' | 'MEETS_STRONG_INTEGRITY';

@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IDVEndpoints = void 0;
 /**
-* Contains the endpoints for the IDV
+* Contains endpoints for the IDV vendor. When you create an `IDV_STANDARD` IdP, you must include the `par`, `authorization`, `token`, and `jwks` endpoints in the request body.
 */
 class IDVEndpoints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVEndpoints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVEndpoints = IDVEndpoints;
@@ -42,6 +42,12 @@ IDVEndpoints.attributeTypeMap = [
     'name': 'authorization',
     'baseName': 'authorization',
     'type': 'IDVAuthorizationEndpoint',
+    'format': ''
+  },
+  {
+    'name': 'jwks',
+    'baseName': 'jwks',
+    'type': 'OidcJwksEndpoint',
     'format': ''
   },
   {

@@ -29,10 +29,10 @@ exports.PersonalAppsBlockList = void 0;
 * Defines a list of email domains with a subset of the properties for each domain
 */
 class PersonalAppsBlockList {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PersonalAppsBlockList.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PersonalAppsBlockList = PersonalAppsBlockList;

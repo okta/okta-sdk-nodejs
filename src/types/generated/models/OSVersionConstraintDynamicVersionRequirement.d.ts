@@ -53,4 +53,4 @@ export declare class OSVersionConstraintDynamicVersionRequirement {
     }[];
   constructor();
 }
-export declare type OSVersionConstraintDynamicVersionRequirementTypeEnum = 'MINIMUM' | 'EXACT' | 'EXACT_ANY_SUPPORTED' | 'NOT_ALLOWED';
+export type OSVersionConstraintDynamicVersionRequirementTypeEnum = 'MINIMUM' | 'EXACT' | 'EXACT_ANY_SUPPORTED' | 'NOT_ALLOWED';

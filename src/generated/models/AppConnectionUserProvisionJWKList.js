@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppConnectionUserProvisionJWKList = void 0;
 class AppConnectionUserProvisionJWKList {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppConnectionUserProvisionJWKList.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppConnectionUserProvisionJWKList = AppConnectionUserProvisionJWKList;

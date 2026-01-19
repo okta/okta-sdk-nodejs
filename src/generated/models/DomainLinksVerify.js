@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DomainLinksVerify = void 0;
 class DomainLinksVerify {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainLinksVerify.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainLinksVerify = DomainLinksVerify;

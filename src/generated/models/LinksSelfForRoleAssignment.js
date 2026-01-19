@@ -29,10 +29,10 @@ exports.LinksSelfForRoleAssignment = void 0;
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. This object is used for dynamic discovery of related resources.
 */
 class LinksSelfForRoleAssignment {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksSelfForRoleAssignment.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksSelfForRoleAssignment = LinksSelfForRoleAssignment;

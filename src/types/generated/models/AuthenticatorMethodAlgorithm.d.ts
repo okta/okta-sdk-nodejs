@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type AuthenticatorMethodAlgorithm = 'ES256' | 'RS256';
+export type AuthenticatorMethodAlgorithm = 'ES256' | 'RS256';

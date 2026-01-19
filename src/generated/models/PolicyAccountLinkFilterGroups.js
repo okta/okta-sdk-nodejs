@@ -29,10 +29,10 @@ exports.PolicyAccountLinkFilterGroups = void 0;
 * Group memberships used to determine link candidates
 */
 class PolicyAccountLinkFilterGroups {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyAccountLinkFilterGroups.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyAccountLinkFilterGroups = PolicyAccountLinkFilterGroups;

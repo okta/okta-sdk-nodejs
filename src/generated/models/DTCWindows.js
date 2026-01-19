@@ -29,15 +29,21 @@ exports.DTCWindows = void 0;
 * Google Chrome Device Trust Connector provider
 */
 class DTCWindows {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DTCWindows.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DTCWindows = DTCWindows;
 DTCWindows.discriminator = undefined;
 DTCWindows.attributeTypeMap = [
+  {
+    'name': 'antivirusEnabled',
+    'baseName': 'antivirusEnabled',
+    'type': 'boolean',
+    'format': ''
+  },
   {
     'name': 'browserVersion',
     'baseName': 'browserVersion',

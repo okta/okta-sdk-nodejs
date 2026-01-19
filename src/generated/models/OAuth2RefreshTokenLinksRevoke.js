@@ -29,10 +29,10 @@ exports.OAuth2RefreshTokenLinksRevoke = void 0;
 * Link to revoke the refresh Token
 */
 class OAuth2RefreshTokenLinksRevoke {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2RefreshTokenLinksRevoke.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2RefreshTokenLinksRevoke = OAuth2RefreshTokenLinksRevoke;

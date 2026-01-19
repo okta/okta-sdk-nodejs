@@ -25,4 +25,4 @@
 /**
 * The synchronization state for the application user. The application user\'s `syncState` depends on whether the `PROFILE_MASTERING` feature is enabled for the app.  > **Note:** User provisioning currently must be configured through the Admin Console.
 */
-export declare type AppUserSyncState = 'DISABLED' | 'ERROR' | 'OUT_OF_SYNC' | 'SYNCHRONIZED' | 'SYNCING';
+export type AppUserSyncState = 'DISABLED' | 'ERROR' | 'OUT_OF_SYNC' | 'SYNCHRONIZED' | 'SYNCING';

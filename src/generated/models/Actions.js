@@ -29,10 +29,10 @@ exports.Actions = void 0;
 * Action to apply to a user
 */
 class Actions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Actions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Actions = Actions;

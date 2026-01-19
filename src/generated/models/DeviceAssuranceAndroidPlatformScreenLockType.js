@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceAssuranceAndroidPlatformScreenLockType = void 0;
 class DeviceAssuranceAndroidPlatformScreenLockType {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceAndroidPlatformScreenLockType.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceAndroidPlatformScreenLockType = DeviceAssuranceAndroidPlatformScreenLockType;

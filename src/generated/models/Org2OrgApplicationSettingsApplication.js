@@ -29,10 +29,10 @@ exports.Org2OrgApplicationSettingsApplication = void 0;
 * Org2Org app instance properties
 */
 class Org2OrgApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Org2OrgApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Org2OrgApplicationSettingsApplication = Org2OrgApplicationSettingsApplication;

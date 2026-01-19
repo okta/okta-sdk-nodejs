@@ -29,10 +29,10 @@ exports.PrivilegedResourceCredentials = void 0;
 * Credentials for the privileged resource
 */
 class PrivilegedResourceCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PrivilegedResourceCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PrivilegedResourceCredentials = PrivilegedResourceCredentials;

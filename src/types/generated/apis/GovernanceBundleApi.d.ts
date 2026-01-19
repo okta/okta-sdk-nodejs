@@ -26,65 +26,65 @@ import { OptInStatusResponse } from '../models/OptInStatusResponse';
  */
 export declare class GovernanceBundleApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a Governance Bundle for the Admin Console in RAMP
-     * Create a governance bundle for the Admin Console in RAMP
+     * Creates a governance bundle of entitlements for the Admin Console
+     * Create a governance bundle
      * @param governanceBundleCreateRequest
      */
   createGovernanceBundle(governanceBundleCreateRequest: GovernanceBundleCreateRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Governance Bundle from RAMP
-     * Delete a governance bundle from RAMP
+     * Deletes an Admin Console governance bundle
+     * Delete a governance bundle
      * @param bundleId The &#x60;id&#x60; of a bundle
      */
   deleteGovernanceBundle(bundleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a Governance Bundle from RAMP
-     * Retrieve a governance bundle from RAMP
+     * Retrieves a governance bundle for the Admin Console
+     * Retrieve a governance bundle
      * @param bundleId The &#x60;id&#x60; of a bundle
      */
   getGovernanceBundle(bundleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the opt-in status of the Admin Console from RAMP
-     * Retrieve the opt-in status from RAMP
+     * Retrieves the entitlement management opt-in status for the Admin Console
+     * Retrieve the Admin Console opt-in status
      */
   getOptInStatus(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Entitlement Values specific to a Bundle Entitlement
-     * List all entitlement values for a bundle entitlement
+     * Lists all entitlement values that are specific to a governance bundle entitlement
+     * List all values for a governance bundle entitlement
      * @param bundleId The &#x60;id&#x60; of a bundle
      * @param entitlementId The &#x60;id&#x60; of a bundle entitlement
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   listBundleEntitlementValues(bundleId: string, entitlementId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Entitlements specific to a Governance Bundle
+     * Lists all entitlements specific to a governance bundle
      * List all entitlements for a governance bundle
      * @param bundleId The &#x60;id&#x60; of a bundle
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   listBundleEntitlements(bundleId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Governance Bundles for the Admin Console in your org
-     * List all governance bundles for the Admin Console
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * Lists all governance bundles for the Admin Console in your org
+     * List all governance bundles
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   listGovernanceBundles(after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Opts in the Admin Console to RAMP
-     * Opt in the Admin Console to RAMP
+     * Opts in the Admin Console to entitlement management
+     * Opt in the Admin Console to entitlement management
      */
   optIn(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Opts out the Admin Console from RAMP
-     * Opt out the Admin Console from RAMP
+     * Opts out the Admin Console from entitlement management
+     * Opt out the Admin Console from entitlement management
      */
   optOut(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a Governance Bundle in RAMP
-     * Replace a governance bundle in RAMP
+     * Replaces the properties of a governance bundle for the Admin Console
+     * Replace a governance bundle
      * @param bundleId The &#x60;id&#x60; of a bundle
      * @param governanceBundleUpdateRequest
      */

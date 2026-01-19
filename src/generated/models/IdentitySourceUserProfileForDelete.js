@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentitySourceUserProfileForDelete = void 0;
 class IdentitySourceUserProfileForDelete {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentitySourceUserProfileForDelete.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentitySourceUserProfileForDelete = IdentitySourceUserProfileForDelete;

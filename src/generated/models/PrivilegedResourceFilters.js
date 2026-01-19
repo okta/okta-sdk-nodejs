@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PrivilegedResourceFilters = void 0;
 class PrivilegedResourceFilters {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PrivilegedResourceFilters.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PrivilegedResourceFilters = PrivilegedResourceFilters;

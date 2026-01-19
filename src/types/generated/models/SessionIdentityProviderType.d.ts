@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type SessionIdentityProviderType = 'ACTIVE_DIRECTORY' | 'FEDERATION' | 'LDAP' | 'OKTA' | 'SOCIAL';
+export type SessionIdentityProviderType = 'ACTIVE_DIRECTORY' | 'FEDERATION' | 'LDAP' | 'OKTA' | 'SOCIAL';

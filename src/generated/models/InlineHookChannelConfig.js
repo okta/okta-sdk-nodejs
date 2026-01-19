@@ -29,10 +29,10 @@ exports.InlineHookChannelConfig = void 0;
 * Properties of the communications channel that are used to contact your external service
 */
 class InlineHookChannelConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookChannelConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookChannelConfig = InlineHookChannelConfig;

@@ -29,10 +29,10 @@ exports.OrgTechnicalContactType = void 0;
 * Org technical contact
 */
 class OrgTechnicalContactType {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgTechnicalContactType.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgTechnicalContactType = OrgTechnicalContactType;

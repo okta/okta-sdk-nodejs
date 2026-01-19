@@ -29,10 +29,10 @@ exports.GoogleApplicationSettingsApplication = void 0;
 * Google app instance properties
 */
 class GoogleApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GoogleApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GoogleApplicationSettingsApplication = GoogleApplicationSettingsApplication;

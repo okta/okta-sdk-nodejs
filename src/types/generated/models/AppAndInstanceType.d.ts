@@ -25,4 +25,4 @@
 /**
 * Type of app
 */
-export declare type AppAndInstanceType = 'APP' | 'APP_TYPE';
+export type AppAndInstanceType = 'APP' | 'APP_TYPE';

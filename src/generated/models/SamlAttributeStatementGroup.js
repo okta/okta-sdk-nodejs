@@ -29,10 +29,10 @@ exports.SamlAttributeStatementGroup = void 0;
 * `GROUP` attribute statements
 */
 class SamlAttributeStatementGroup {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlAttributeStatementGroup.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlAttributeStatementGroup = SamlAttributeStatementGroup;

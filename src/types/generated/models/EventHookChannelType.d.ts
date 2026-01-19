@@ -25,4 +25,4 @@
 /**
 * The channel type. Currently supports `HTTP`.
 */
-export declare type EventHookChannelType = 'HTTP';
+export type EventHookChannelType = 'HTTP';

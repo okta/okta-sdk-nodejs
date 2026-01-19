@@ -23,13 +23,13 @@
  * Do not edit the class manually.
  */
 import { CaepCredentialChangeEvent } from './../models/CaepCredentialChangeEvent';
-import { CaepSessionRevokedEvent } from './../models/CaepSessionRevokedEvent';
+import { SsfTransmitterCaepSessionRevokedEvent } from './../models/SsfTransmitterCaepSessionRevokedEvent';
 /**
 * A non-empty set of events. Expected size is 1 for each SET
 */
 export declare class SecurityEventTokenJwtEvents {
   'https___schemas_openid_net_secevent_caep_event_type_credential_change'?: CaepCredentialChangeEvent;
-  'https___schemas_openid_net_secevent_caep_event_type_session_revoked'?: CaepSessionRevokedEvent;
+  'https___schemas_openid_net_secevent_caep_event_type_session_revoked'?: SsfTransmitterCaepSessionRevokedEvent;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

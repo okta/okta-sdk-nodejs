@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RiskProvider = void 0;
 class RiskProvider {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RiskProvider.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RiskProvider = RiskProvider;

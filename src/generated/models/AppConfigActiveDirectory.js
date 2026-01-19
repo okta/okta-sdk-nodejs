@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppConfigActiveDirectory = void 0;
 const AppConfig_1 = require('./../models/AppConfig');
 class AppConfigActiveDirectory extends AppConfig_1.AppConfig {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AppConfigActiveDirectory.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ACTIVE_DIRECTORY';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AppConfigActiveDirectory.attributeTypeMap);
   }
 }
 exports.AppConfigActiveDirectory = AppConfigActiveDirectory;

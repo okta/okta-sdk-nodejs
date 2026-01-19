@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UpdateThemeRequest = void 0;
 class UpdateThemeRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UpdateThemeRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UpdateThemeRequest = UpdateThemeRequest;

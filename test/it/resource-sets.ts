@@ -8,7 +8,7 @@ import {
   ResourceSetResourcePostRequest,
   Group,
   ResourceSetBindingEditResponse,
-  CustomRole,
+  IamRole,
   OrgSetting,
   ResourceSetBindingCreateRequest,
   CreateIamRoleRequest,
@@ -166,7 +166,7 @@ describe('Resource Sets API', () => {
   describe('Bindings', () => {
     let resourceSet: ResourceSet;
     let groups: Group[];
-    let customRole: CustomRole;
+    let customRole: IamRole;
 
     before(async () => {
       // create resource set

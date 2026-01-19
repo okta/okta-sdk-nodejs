@@ -29,10 +29,10 @@ exports.MtlsSsoEndpoint = void 0;
 * The Single Sign-On (SSO) endpoint is the IdP\'s `SingleSignOnService` endpoint
 */
 class MtlsSsoEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MtlsSsoEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MtlsSsoEndpoint = MtlsSsoEndpoint;

@@ -29,10 +29,10 @@ exports.NumberFactorChallengeEmbeddedLinksChallenge = void 0;
 * Number matching challenge for a `push` factor
 */
 class NumberFactorChallengeEmbeddedLinksChallenge {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return NumberFactorChallengeEmbeddedLinksChallenge.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.NumberFactorChallengeEmbeddedLinksChallenge = NumberFactorChallengeEmbeddedLinksChallenge;

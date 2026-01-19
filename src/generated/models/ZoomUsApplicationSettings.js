@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ZoomUsApplicationSettings = void 0;
 class ZoomUsApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ZoomUsApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ZoomUsApplicationSettings = ZoomUsApplicationSettings;

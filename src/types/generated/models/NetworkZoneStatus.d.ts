@@ -25,4 +25,4 @@
 /**
 * Network Zone status
 */
-export declare type NetworkZoneStatus = 'ACTIVE' | 'INACTIVE';
+export type NetworkZoneStatus = 'ACTIVE' | 'INACTIVE';

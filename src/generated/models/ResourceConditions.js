@@ -29,10 +29,10 @@ exports.ResourceConditions = void 0;
 * Conditions for further restricting a resource.
 */
 class ResourceConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceConditions = ResourceConditions;

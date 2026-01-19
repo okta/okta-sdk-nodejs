@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleVelocity = void 0;
 const BehaviorRule_1 = require('./../models/BehaviorRule');
 class BehaviorRuleVelocity extends BehaviorRule_1.BehaviorRule {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BehaviorRuleVelocity.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'VELOCITY';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BehaviorRuleVelocity.attributeTypeMap);
   }
 }
 exports.BehaviorRuleVelocity = BehaviorRuleVelocity;

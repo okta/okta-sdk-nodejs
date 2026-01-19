@@ -29,10 +29,10 @@ exports.EnrollmentActivationResponse = void 0;
 * Enrollment initialization response
 */
 class EnrollmentActivationResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnrollmentActivationResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnrollmentActivationResponse = EnrollmentActivationResponse;

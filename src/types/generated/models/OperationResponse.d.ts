@@ -22,47 +22,31 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LinksSelf } from './../models/LinksSelf';
-import { OperationResponseAssignmentOperation } from './../models/OperationResponseAssignmentOperation';
 export declare class OperationResponse {
-  'assignmentOperation'?: OperationResponseAssignmentOperation;
   /**
-    * Timestamp when the realm assignment operation completed
+    * Timestamp of when the operation completed
     */
   'completed'?: Date;
   /**
-    * Timestamp when the realm assignment operation was created
+    * Timestamp of when the operation was created
     */
-  'created'?: Date;
+  'created': Date;
   /**
-    * ID of the realm
+    * ID of the asynchronous operation
     */
-  'id'?: string;
+  'id': string;
   /**
-    * Number of users moved
-    */
-  'numUserMoved'?: number;
-  /**
-    * ID of the realm
-    */
-  'realmId'?: string;
-  /**
-    * Name of the realm
-    */
-  'realmName'?: string;
-  /**
-    * Timestamp when the realm assignment operation started
+    * Timestamp of when the operation started
     */
   'started'?: Date;
   /**
-    * Current status of the operation
+    * The status of the asynchronous operation
     */
-  'status'?: OperationResponseStatusEnum;
+  'status': OperationResponseStatusEnum;
   /**
-    * Realm type
+    * The operation type
     */
-  'type'?: string;
-  '_links'?: LinksSelf;
+  'type': string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -78,4 +62,4 @@ export declare class OperationResponse {
     }[];
   constructor();
 }
-export declare type OperationResponseStatusEnum = 'COMPLETED' | 'SCHEDULED' | 'IN_PROGRESS' | 'FAILED';
+export type OperationResponseStatusEnum = 'COMPLETED' | 'SCHEDULED' | 'IN_PROGRESS' | 'FAILED';

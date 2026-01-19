@@ -46,4 +46,4 @@ export declare class Subject {
     }[];
   constructor();
 }
-export declare type SubjectFormatEnum = 'opaque';
+export type SubjectFormatEnum = 'opaque';

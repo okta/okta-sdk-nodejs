@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SwaApplicationSettings = void 0;
 class SwaApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SwaApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SwaApplicationSettings = SwaApplicationSettings;

@@ -29,10 +29,10 @@ exports.ProfileEnrollmentPolicyRuleActivationRequirement = void 0;
 * Contains a single Boolean property that indicates whether `emailVerification` should occur (`true`) or not (`false`, default)
 */
 class ProfileEnrollmentPolicyRuleActivationRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProfileEnrollmentPolicyRuleActivationRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProfileEnrollmentPolicyRuleActivationRequirement = ProfileEnrollmentPolicyRuleActivationRequirement;

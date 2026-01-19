@@ -27,7 +27,7 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all subscriptions available to a specified Role
      * List all subscriptions for a role
-     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      */
   async listRoleSubscriptions(roleTypeOrRoleId, _options) {
     let _config = _options || this.configuration;
@@ -63,7 +63,7 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Retrieves a subscription by `notificationType` for a specified Role
      * Retrieve a subscription for a role
-     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
   async listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options) {
@@ -183,7 +183,7 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Subscribes a Role to a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
      * Subscribe a role to a specific notification type
-     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
   async subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {
@@ -267,7 +267,7 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Unsubscribes a Role from a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
      * Unsubscribe a role from a specific notification type
-     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+     * @param roleTypeOrRoleId A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
      * @param notificationType
      */
   async unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {

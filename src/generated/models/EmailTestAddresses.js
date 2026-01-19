@@ -26,24 +26,24 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EmailTestAddresses = void 0;
 class EmailTestAddresses {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EmailTestAddresses.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EmailTestAddresses = EmailTestAddresses;
 EmailTestAddresses.discriminator = undefined;
 EmailTestAddresses.attributeTypeMap = [
   {
-    'name': '_from',
-    'baseName': 'from',
+    'name': 'fromAddress',
+    'baseName': 'fromAddress',
     'type': 'string',
     'format': ''
   },
   {
-    'name': 'to',
-    'baseName': 'to',
+    'name': 'toAddress',
+    'baseName': 'toAddress',
     'type': 'string',
     'format': ''
   }

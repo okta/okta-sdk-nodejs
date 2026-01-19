@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.SecurePasswordStoreApplication = void 0;
 const Application_1 = require('./../models/Application');
 class SecurePasswordStoreApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(SecurePasswordStoreApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'SECURE_PASSWORD_STORE';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(SecurePasswordStoreApplication.attributeTypeMap);
   }
 }
 exports.SecurePasswordStoreApplication = SecurePasswordStoreApplication;

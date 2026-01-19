@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppAccountContainerLink = void 0;
 class AppAccountContainerLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppAccountContainerLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppAccountContainerLink = AppAccountContainerLink;

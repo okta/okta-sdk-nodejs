@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ProvisioningConnectionResponseProfile = void 0;
 class ProvisioningConnectionResponseProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningConnectionResponseProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningConnectionResponseProfile = ProvisioningConnectionResponseProfile;

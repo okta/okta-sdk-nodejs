@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertionAuthentication = void 0;
 * Provides a JSON representation of the `<saml:AuthnStatement>` element of the SAML assertion
 */
 class SAMLPayLoadDataAssertionAuthentication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionAuthentication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionAuthentication = SAMLPayLoadDataAssertionAuthentication;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdpDiscoveryPolicy = void 0;
 const Policy_1 = require('./../models/Policy');
 class IdpDiscoveryPolicy extends Policy_1.Policy {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(IdpDiscoveryPolicy.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'IDP_DISCOVERY';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(IdpDiscoveryPolicy.attributeTypeMap);
   }
 }
 exports.IdpDiscoveryPolicy = IdpDiscoveryPolicy;

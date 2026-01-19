@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ModelError = void 0;
 class ModelError {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ModelError.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ModelError = ModelError;

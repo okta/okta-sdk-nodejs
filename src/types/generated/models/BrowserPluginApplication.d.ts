@@ -47,4 +47,4 @@ export declare class BrowserPluginApplication extends Application {
     }[];
   constructor();
 }
-export declare type BrowserPluginApplicationNameEnum = 'template_swa' | 'template_swa3field';
+export type BrowserPluginApplicationNameEnum = 'template_swa' | 'template_swa3field';

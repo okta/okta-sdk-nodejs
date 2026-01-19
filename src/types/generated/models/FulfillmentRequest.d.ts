@@ -51,4 +51,4 @@ export declare class FulfillmentRequest {
     }[];
   constructor();
 }
-export declare type FulfillmentRequestFulfillmentProviderEnum = 'yubico';
+export type FulfillmentRequestFulfillmentProviderEnum = 'yubico';

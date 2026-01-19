@@ -57,6 +57,9 @@ export declare class LogEvent {
   'request'?: LogRequest;
   'securityContext'?: LogSecurityContext;
   'severity'?: LogSeverity;
+  /**
+    * The entity that an actor performs an action on. Targets can be anything, such as an app user, a sign-in token, or anything else.  > **Note:** When searching the target array, search for a given `type` rather than the array location. Target types, such as `User` and `AppInstance`, for a given `eventType` are not always in the same array location.
+    */
   'target'?: Array<LogTarget>;
   'transaction'?: LogTransaction;
   /**

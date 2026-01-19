@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PlatformConditionEvaluatorPlatformOperatingSystemVersion = void 0;
 class PlatformConditionEvaluatorPlatformOperatingSystemVersion {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PlatformConditionEvaluatorPlatformOperatingSystemVersion.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PlatformConditionEvaluatorPlatformOperatingSystemVersion = PlatformConditionEvaluatorPlatformOperatingSystemVersion;

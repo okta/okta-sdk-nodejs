@@ -29,10 +29,10 @@ exports.OktaSupportCaseImpersonation = void 0;
 * Allows the Okta Support team to sign in to your org as an admin and troubleshoot issues
 */
 class OktaSupportCaseImpersonation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSupportCaseImpersonation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSupportCaseImpersonation = OktaSupportCaseImpersonation;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TokenAuthorizationServerPolicyRuleActionInlineHook = void 0;
 class TokenAuthorizationServerPolicyRuleActionInlineHook {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenAuthorizationServerPolicyRuleActionInlineHook.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenAuthorizationServerPolicyRuleActionInlineHook = TokenAuthorizationServerPolicyRuleActionInlineHook;

@@ -29,10 +29,10 @@ exports.SecurityEventTokenJwtEvents = void 0;
 * A non-empty set of events. Expected size is 1 for each SET
 */
 class SecurityEventTokenJwtEvents {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenJwtEvents.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenJwtEvents = SecurityEventTokenJwtEvents;
@@ -47,7 +47,7 @@ SecurityEventTokenJwtEvents.attributeTypeMap = [
   {
     'name': 'https___schemas_openid_net_secevent_caep_event_type_session_revoked',
     'baseName': 'https://schemas.openid.net/secevent/caep/event-type/session-revoked',
-    'type': 'CaepSessionRevokedEvent',
+    'type': 'SsfTransmitterCaepSessionRevokedEvent',
     'format': ''
   }
 ];

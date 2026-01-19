@@ -86,4 +86,4 @@ export declare class UserGetSingleton {
     }[];
   constructor();
 }
-export declare type UserGetSingletonTransitioningToStatusEnum = 'ACTIVE' | 'DEPROVISIONED' | 'PROVISIONED';
+export type UserGetSingletonTransitioningToStatusEnum = 'ACTIVE' | 'DEPROVISIONED' | 'PROVISIONED';

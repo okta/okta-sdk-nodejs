@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.StartOrgFailback200Response = void 0;
 class StartOrgFailback200Response {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StartOrgFailback200Response.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StartOrgFailback200Response = StartOrgFailback200Response;

@@ -29,10 +29,10 @@ exports.SalesforceApplication = void 0;
 * Schema for the Salesforce app (key name: `salesforce`)  To create a Salesforce app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Note:** The Salesforce app only supports `BROWSER_PLUGIN`, `BOOKMARK`, and `SAML_2_0` sign-on modes.
 */
 class SalesforceApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SalesforceApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SalesforceApplication = SalesforceApplication;

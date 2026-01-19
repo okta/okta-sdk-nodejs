@@ -25,4 +25,4 @@
 /**
 * The grant type
 */
-export declare type GovernanceSourceType = 'CUSTOM' | 'ENTITLEMENT-BUNDLE';
+export type GovernanceSourceType = 'CUSTOM' | 'ENTITLEMENT-BUNDLE';

@@ -29,7 +29,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 */
 export declare class ApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: ApplicationSettingsEmOptInStatusEnum;
   /**
@@ -61,4 +61,4 @@ export declare class ApplicationSettings {
     }[];
   constructor();
 }
-export declare type ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

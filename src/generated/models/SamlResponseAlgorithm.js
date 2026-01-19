@@ -29,10 +29,10 @@ exports.SamlResponseAlgorithm = void 0;
 * Algorithm settings for verifying `<SAMLResponse>` messages and `<Assertion>` elements from the IdP
 */
 class SamlResponseAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlResponseAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlResponseAlgorithm = SamlResponseAlgorithm;

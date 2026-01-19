@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.NetworkZoneLocation = void 0;
 class NetworkZoneLocation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return NetworkZoneLocation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.NetworkZoneLocation = NetworkZoneLocation;

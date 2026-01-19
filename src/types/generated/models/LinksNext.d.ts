@@ -22,12 +22,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HrefObject } from './../models/HrefObject';
+import { HrefObjectNextLink } from './../models/HrefObjectNextLink';
 /**
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the current status of an application using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. Use the `LinksNext` object for dynamic discovery of related resources and lifecycle operations.
 */
 export declare class LinksNext {
-  'next'?: HrefObject;
+  'next'?: HrefObjectNextLink;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

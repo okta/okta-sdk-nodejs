@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ChannelBinding = void 0;
 class ChannelBinding {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ChannelBinding.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ChannelBinding = ChannelBinding;

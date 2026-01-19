@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntitlementValuesResponseLinks = void 0;
 class EntitlementValuesResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntitlementValuesResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntitlementValuesResponseLinks = EntitlementValuesResponseLinks;
@@ -42,21 +42,21 @@ EntitlementValuesResponseLinks.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'next',
-    'baseName': 'next',
-    'type': 'HrefObject',
-    'format': ''
-  },
-  {
     'name': 'bundle',
     'baseName': 'bundle',
-    'type': 'HrefObject',
+    'type': 'BundleLink',
     'format': ''
   },
   {
     'name': 'entitlements',
     'baseName': 'entitlements',
-    'type': 'HrefObject',
+    'type': 'EntitlementsLink',
+    'format': ''
+  },
+  {
+    'name': 'next',
+    'baseName': 'next',
+    'type': 'HrefObjectNextLink',
     'format': ''
   }
 ];

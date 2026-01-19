@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Duration = void 0;
 class Duration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Duration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Duration = Duration;

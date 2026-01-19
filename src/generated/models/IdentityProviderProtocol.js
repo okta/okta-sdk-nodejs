@@ -33,5 +33,11 @@ exports.IdentityProviderProtocolClass = void 0;
 class IdentityProviderProtocolClass {
 }
 exports.IdentityProviderProtocolClass = IdentityProviderProtocolClass;
-IdentityProviderProtocolClass.discriminator = undefined;
-IdentityProviderProtocolClass.mapping = undefined;
+IdentityProviderProtocolClass.discriminator = 'type';
+IdentityProviderProtocolClass.mapping = {
+  'ID_PROOFING': 'ProtocolIdVerification',
+  'MTLS': 'ProtocolMtls',
+  'OAUTH2': 'ProtocolOAuth',
+  'OIDC': 'ProtocolOidc',
+  'SAML2': 'ProtocolSaml',
+};

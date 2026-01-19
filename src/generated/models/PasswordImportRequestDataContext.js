@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordImportRequestDataContext = void 0;
 class PasswordImportRequestDataContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordImportRequestDataContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordImportRequestDataContext = PasswordImportRequestDataContext;

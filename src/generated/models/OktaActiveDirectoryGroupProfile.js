@@ -29,10 +29,10 @@ exports.OktaActiveDirectoryGroupProfile = void 0;
 * Profile for a group that is imported from Active Directory.  The `objectClass` for such groups is `okta:windows_security_principal`.
 */
 class OktaActiveDirectoryGroupProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaActiveDirectoryGroupProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaActiveDirectoryGroupProfile = OktaActiveDirectoryGroupProfile;

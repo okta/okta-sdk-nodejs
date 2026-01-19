@@ -29,10 +29,10 @@ exports.Sms = void 0;
 * Attempts to activate an `sms` factor with the specified passcode
 */
 class Sms {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Sms.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Sms = Sms;

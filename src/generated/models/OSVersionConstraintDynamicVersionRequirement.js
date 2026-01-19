@@ -29,10 +29,10 @@ exports.OSVersionConstraintDynamicVersionRequirement = void 0;
 * Contains the necessary properties for a dynamic Windows version requirement
 */
 class OSVersionConstraintDynamicVersionRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OSVersionConstraintDynamicVersionRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OSVersionConstraintDynamicVersionRequirement = OSVersionConstraintDynamicVersionRequirement;

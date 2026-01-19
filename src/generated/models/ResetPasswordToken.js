@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResetPasswordToken = void 0;
 class ResetPasswordToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResetPasswordToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResetPasswordToken = ResetPasswordToken;

@@ -29,10 +29,10 @@ exports.DeviceAccessPolicyRuleCondition = void 0;
 * <x-lifecycle class=\"oie\"></x-lifecycle> Specifies the device condition to match on
 */
 class DeviceAccessPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAccessPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAccessPolicyRuleCondition = DeviceAccessPolicyRuleCondition;

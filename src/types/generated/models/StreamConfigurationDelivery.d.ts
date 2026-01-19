@@ -53,4 +53,4 @@ export declare class StreamConfigurationDelivery {
     }[];
   constructor();
 }
-export declare type StreamConfigurationDeliveryMethodEnum = 'https://schemas.openid.net/secevent/risc/delivery-method/push' | 'urn:ietf:rfc:8935';
+export type StreamConfigurationDeliveryMethodEnum = 'https://schemas.openid.net/secevent/risc/delivery-method/push' | 'urn:ietf:rfc:8935';

@@ -29,10 +29,10 @@ exports.TrendMicroApexOneServiceApplication = void 0;
 * Schema for Trend Micro Apex One as a Service app (key name: `trendmicroapexoneservice`)  To create a Trend Micro Apex One as a Service app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Note:** The Trend Micro Apex One as a Service app only supports `SAML_2_0` sign-on mode.
 */
 class TrendMicroApexOneServiceApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TrendMicroApexOneServiceApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TrendMicroApexOneServiceApplication = TrendMicroApexOneServiceApplication;

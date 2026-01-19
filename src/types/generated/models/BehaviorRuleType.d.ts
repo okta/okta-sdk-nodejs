@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type BehaviorRuleType = 'ANOMALOUS_DEVICE' | 'ANOMALOUS_IP' | 'ANOMALOUS_LOCATION' | 'VELOCITY';
+export type BehaviorRuleType = 'ANOMALOUS_DEVICE' | 'ANOMALOUS_IP' | 'ANOMALOUS_LOCATION' | 'VELOCITY' | 'ANOMALOUS_ASN';

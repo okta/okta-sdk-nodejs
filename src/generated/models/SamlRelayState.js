@@ -29,10 +29,10 @@ exports.SamlRelayState = void 0;
 * Relay state settings for IdP
 */
 class SamlRelayState {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlRelayState.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlRelayState = SamlRelayState;

@@ -29,10 +29,10 @@ exports.GroupAssignmentProfile = void 0;
 * Specifies the profile properties applied to [application users](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/) that are assigned to the app through group membership.  Some reference properties are imported from the target app and can\'t be configured. See [profile](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/getUser!c=200&path=profile&t=response).
 */
 class GroupAssignmentProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupAssignmentProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupAssignmentProfile = GroupAssignmentProfile;

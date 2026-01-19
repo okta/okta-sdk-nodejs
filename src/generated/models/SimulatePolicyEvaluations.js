@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SimulatePolicyEvaluations = void 0;
 class SimulatePolicyEvaluations {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulatePolicyEvaluations.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulatePolicyEvaluations = SimulatePolicyEvaluations;

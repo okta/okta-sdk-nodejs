@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicySettings = void 0;
 * Specifies the policy level settings  > **Note:** In Identity Engine, the Multifactor (MFA) Enrollment policy name has changed to authenticator enrollment policy. The policy type of `MFA_ENROLL` remains unchanged. However, the `settings` data is updated for authenticators. Policy `settings` are included only for those authenticators that are enabled.
 */
 class AuthenticatorEnrollmentPolicySettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicySettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicySettings = AuthenticatorEnrollmentPolicySettings;

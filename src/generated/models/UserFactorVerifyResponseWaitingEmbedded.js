@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorVerifyResponseWaitingEmbedded = void 0;
 class UserFactorVerifyResponseWaitingEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorVerifyResponseWaitingEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorVerifyResponseWaitingEmbedded = UserFactorVerifyResponseWaitingEmbedded;

@@ -29,10 +29,10 @@ exports.FeatureLinksDependents = void 0;
 * Link to feature dependents
 */
 class FeatureLinksDependents {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FeatureLinksDependents.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FeatureLinksDependents = FeatureLinksDependents;

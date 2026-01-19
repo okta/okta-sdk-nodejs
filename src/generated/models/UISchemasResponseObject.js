@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UISchemasResponseObject = void 0;
 class UISchemasResponseObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UISchemasResponseObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UISchemasResponseObject = UISchemasResponseObject;

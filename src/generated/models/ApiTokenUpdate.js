@@ -29,10 +29,10 @@ exports.ApiTokenUpdate = void 0;
 * An API Token Update Object for an Okta user. This token is NOT scoped any further and can be used for any API that the user has permissions to call.
 */
 class ApiTokenUpdate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApiTokenUpdate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApiTokenUpdate = ApiTokenUpdate;

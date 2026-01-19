@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationResponseErrorErrorCausesInner = void 0;
 class RegistrationResponseErrorErrorCausesInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationResponseErrorErrorCausesInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationResponseErrorErrorCausesInner = RegistrationResponseErrorErrorCausesInner;

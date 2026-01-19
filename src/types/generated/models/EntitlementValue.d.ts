@@ -24,8 +24,17 @@
  */
 import { EntitlementValueLinks } from './../models/EntitlementValueLinks';
 export declare class EntitlementValue {
+  /**
+    * Entitlement value ID
+    */
   'id'?: string;
+  /**
+    * The entitlement value resource name
+    */
   'name'?: string;
+  /**
+    * The entitlement value resource [ORN](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#okta-resource-name-orn)
+    */
   'value'?: string;
   '_links'?: EntitlementValueLinks;
   static readonly discriminator: string | undefined;

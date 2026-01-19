@@ -32,7 +32,7 @@ export declare class CreateRealmAssignmentRequest {
     */
   'name'?: string;
   /**
-    * The priority of the realm assignment. The lower the number, the higher the priority. This helps resolve conflicts between realm assignments.  > **Note:** When you create realm assignments in bulk, realm assignment priorities must be unique.
+    * The priority of the realm assignment. The lower the number, the higher the priority. This helps resolve conflicts between realm assignments. > **Note:** When you create realm assignments in bulk, realm assignment priorities must be unique.
     */
   'priority'?: number;
   static readonly discriminator: string | undefined;

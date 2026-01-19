@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BeforeScheduledActionPolicyRuleCondition = void 0;
 class BeforeScheduledActionPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BeforeScheduledActionPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BeforeScheduledActionPolicyRuleCondition = BeforeScheduledActionPolicyRuleCondition;

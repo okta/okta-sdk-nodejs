@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DevicePolicyRuleConditionPlatform = void 0;
 class DevicePolicyRuleConditionPlatform {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePolicyRuleConditionPlatform.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePolicyRuleConditionPlatform = DevicePolicyRuleConditionPlatform;

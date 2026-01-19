@@ -29,10 +29,10 @@ exports.OrgContactUserLinks = void 0;
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the contact type user object using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification
 */
 class OrgContactUserLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgContactUserLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgContactUserLinks = OrgContactUserLinks;

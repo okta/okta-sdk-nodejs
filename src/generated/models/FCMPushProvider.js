@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.FCMPushProvider = void 0;
 const PushProvider_1 = require('./../models/PushProvider');
 class FCMPushProvider extends PushProvider_1.PushProvider {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(FCMPushProvider.attributeTypeMap);
+  }
   constructor() {
     super();
     this.providerType = 'FCM';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(FCMPushProvider.attributeTypeMap);
   }
 }
 exports.FCMPushProvider = FCMPushProvider;

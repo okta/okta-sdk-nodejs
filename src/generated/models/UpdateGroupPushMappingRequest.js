@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UpdateGroupPushMappingRequest = void 0;
 class UpdateGroupPushMappingRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UpdateGroupPushMappingRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UpdateGroupPushMappingRequest = UpdateGroupPushMappingRequest;

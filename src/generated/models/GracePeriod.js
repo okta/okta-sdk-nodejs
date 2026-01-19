@@ -29,10 +29,10 @@ exports.GracePeriod = void 0;
 * Represents the Grace Period configuration for the device assurance policy
 */
 class GracePeriod {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GracePeriod.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GracePeriod = GracePeriod;

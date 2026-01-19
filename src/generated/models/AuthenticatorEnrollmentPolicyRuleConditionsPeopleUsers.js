@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyRuleConditionsPeopleUsers = void 0;
 * Specifies a set of users to be included or excluded
 */
 class AuthenticatorEnrollmentPolicyRuleConditionsPeopleUsers {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyRuleConditionsPeopleUsers.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyRuleConditionsPeopleUsers = AuthenticatorEnrollmentPolicyRuleConditionsPeopleUsers;

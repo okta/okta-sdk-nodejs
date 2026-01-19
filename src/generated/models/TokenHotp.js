@@ -29,10 +29,10 @@ exports.TokenHotp = void 0;
 * Verifies an OTP for a `token:hotp` factor
 */
 class TokenHotp {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenHotp.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenHotp = TokenHotp;

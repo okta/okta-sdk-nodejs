@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserStatusPolicyRuleCondition = void 0;
 class UserStatusPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserStatusPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserStatusPolicyRuleCondition = UserStatusPolicyRuleCondition;

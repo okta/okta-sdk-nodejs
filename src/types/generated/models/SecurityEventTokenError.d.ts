@@ -49,4 +49,4 @@ export declare class SecurityEventTokenError {
     }[];
   constructor();
 }
-export declare type SecurityEventTokenErrorErrEnum = 'authentication_failed' | 'invalid_audience' | 'invalid_issuer' | 'invalid_key' | 'invalid_request';
+export type SecurityEventTokenErrorErrEnum = 'authentication_failed' | 'invalid_audience' | 'invalid_issuer' | 'invalid_key' | 'invalid_request';

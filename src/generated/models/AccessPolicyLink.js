@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AccessPolicyLink = void 0;
 class AccessPolicyLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyLink = AccessPolicyLink;

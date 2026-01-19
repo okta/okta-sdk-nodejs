@@ -25,4 +25,4 @@
 /**
 * The type of the app configuration
 */
-export declare type AppConfigType = 'ACTIVE_DIRECTORY';
+export type AppConfigType = 'ACTIVE_DIRECTORY';

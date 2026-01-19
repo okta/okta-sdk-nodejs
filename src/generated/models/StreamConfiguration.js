@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.StreamConfiguration = void 0;
 class StreamConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StreamConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StreamConfiguration = StreamConfiguration;

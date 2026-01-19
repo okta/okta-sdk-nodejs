@@ -29,10 +29,10 @@ exports.SsprPrimaryRequirement = void 0;
 * Defines the authenticators permitted for the initial authentication step of password recovery
 */
 class SsprPrimaryRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SsprPrimaryRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SsprPrimaryRequirement = SsprPrimaryRequirement;

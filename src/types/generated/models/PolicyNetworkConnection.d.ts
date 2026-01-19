@@ -25,4 +25,4 @@
 /**
 * Network selection mode
 */
-export declare type PolicyNetworkConnection = 'ANYWHERE' | 'ZONE';
+export type PolicyNetworkConnection = 'ANYWHERE' | 'ZONE';

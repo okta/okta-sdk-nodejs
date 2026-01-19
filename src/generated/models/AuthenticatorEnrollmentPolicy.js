@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorEnrollmentPolicy = void 0;
 const Policy_1 = require('./../models/Policy');
 class AuthenticatorEnrollmentPolicy extends Policy_1.Policy {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorEnrollmentPolicy.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'MFA_ENROLL';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorEnrollmentPolicy.attributeTypeMap);
   }
 }
 exports.AuthenticatorEnrollmentPolicy = AuthenticatorEnrollmentPolicy;

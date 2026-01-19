@@ -41,4 +41,4 @@ export declare class ChannelBinding {
     }[];
   constructor();
 }
-export declare type ChannelBindingStyleEnum = 'NUMBER_CHALLENGE';
+export type ChannelBindingStyleEnum = 'NUMBER_CHALLENGE';

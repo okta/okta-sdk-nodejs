@@ -23,10 +23,25 @@
  * Do not edit the class manually.
  */
 import { BundleEntitlementLinks } from './../models/BundleEntitlementLinks';
+/**
+* An entitlement in a governance bundle
+*/
 export declare class BundleEntitlement {
+  /**
+    * The description of the role
+    */
   'description'?: string;
+  /**
+    * Entitlement ID
+    */
   'id'?: string;
+  /**
+    * The name of the role
+    */
   'name'?: string;
+  /**
+    * The role key
+    */
   'role'?: string;
   '_links'?: BundleEntitlementLinks;
   static readonly discriminator: string | undefined;

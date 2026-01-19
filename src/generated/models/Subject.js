@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Subject = void 0;
 class Subject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Subject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Subject = Subject;

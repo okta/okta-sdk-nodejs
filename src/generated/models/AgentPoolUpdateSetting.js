@@ -29,10 +29,10 @@ exports.AgentPoolUpdateSetting = void 0;
 * Setting for auto-update
 */
 class AgentPoolUpdateSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AgentPoolUpdateSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AgentPoolUpdateSetting = AgentPoolUpdateSetting;

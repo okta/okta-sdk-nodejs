@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.WsFederationApplication = void 0;
 const Application_1 = require('./../models/Application');
 class WsFederationApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(WsFederationApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'WS_FEDERATION';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(WsFederationApplication.attributeTypeMap);
   }
 }
 exports.WsFederationApplication = WsFederationApplication;

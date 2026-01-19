@@ -29,10 +29,10 @@ exports.UserPolicyRuleCondition = void 0;
 * Specifies a set of Users to be included or excluded
 */
 class UserPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserPolicyRuleCondition = UserPolicyRuleCondition;

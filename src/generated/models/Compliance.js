@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Compliance = void 0;
 class Compliance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Compliance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Compliance = Compliance;

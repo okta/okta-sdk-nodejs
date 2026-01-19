@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type SessionStatus = 'ACTIVE' | 'MFA_ENROLL' | 'MFA_REQUIRED';
+export type SessionStatus = 'ACTIVE' | 'MFA_ENROLL' | 'MFA_REQUIRED';

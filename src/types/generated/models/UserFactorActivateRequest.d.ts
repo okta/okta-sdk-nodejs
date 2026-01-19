@@ -34,7 +34,7 @@ import { Webauthn } from './../models/Webauthn';
  * Type
  * @export
  */
-export declare type UserFactorActivateRequest = Call | Email | Push | Sms | TokenSoftwareTotp | U2f | Webauthn;
+export type UserFactorActivateRequest = Call | Email | Push | Sms | TokenSoftwareTotp | U2f | Webauthn;
 /**
 * @type UserFactorActivateRequestClass
 * @export

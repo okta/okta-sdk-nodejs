@@ -46,4 +46,4 @@ export declare class OAuth2ClientSecretRequestBody {
     }[];
   constructor();
 }
-export declare type OAuth2ClientSecretRequestBodyStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type OAuth2ClientSecretRequestBodyStatusEnum = 'ACTIVE' | 'INACTIVE';

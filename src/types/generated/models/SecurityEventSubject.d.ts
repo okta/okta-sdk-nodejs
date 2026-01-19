@@ -23,21 +23,17 @@
  * Do not edit the class manually.
  */
 /**
-* The event subject
+* The event subjects
 */
 export declare class SecurityEventSubject {
   /**
-    * The format of the subject
+    * The device involved with the event
     */
-  'format'?: string;
+  'device'?: any;
   /**
-    * An identifier of the actor
+    * The user involved with the event
     */
-  'iss'?: string;
-  /**
-    * An identifier for the subject that was acted on
-    */
-  'sub'?: string;
+  'user'?: any;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

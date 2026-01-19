@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodSignedNonce = void 0;
 const AuthenticatorMethodBase_1 = require('./../models/AuthenticatorMethodBase');
 class AuthenticatorMethodSignedNonce extends AuthenticatorMethodBase_1.AuthenticatorMethodBase {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorMethodSignedNonce.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'signed_nonce';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorMethodSignedNonce.attributeTypeMap);
   }
 }
 exports.AuthenticatorMethodSignedNonce = AuthenticatorMethodSignedNonce;

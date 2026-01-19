@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type AssuranceMethodFactorMode = '1FA' | '2FA';
+export type AssuranceMethodFactorMode = '1FA' | '2FA';

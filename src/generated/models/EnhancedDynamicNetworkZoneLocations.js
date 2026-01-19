@@ -29,10 +29,10 @@ exports.EnhancedDynamicNetworkZoneLocations = void 0;
 * The list of geolocations to include or exclude for an Enhanced Dynamic Network Zone
 */
 class EnhancedDynamicNetworkZoneLocations {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnhancedDynamicNetworkZoneLocations.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnhancedDynamicNetworkZoneLocations = EnhancedDynamicNetworkZoneLocations;

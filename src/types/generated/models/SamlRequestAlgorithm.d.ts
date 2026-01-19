@@ -22,11 +22,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SamlRequestDigestAlgorithm } from './../models/SamlRequestDigestAlgorithm';
 import { SamlRequestSignatureAlgorithm } from './../models/SamlRequestSignatureAlgorithm';
 /**
 * Algorithm settings used to secure an `<AuthnRequest>` message
 */
 export declare class SamlRequestAlgorithm {
+  'digest'?: SamlRequestDigestAlgorithm;
   'signature'?: SamlRequestSignatureAlgorithm;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

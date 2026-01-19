@@ -29,10 +29,10 @@ exports.TelephonyResponse = void 0;
 * Telephony inline hook response
 */
 class TelephonyResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyResponse = TelephonyResponse;

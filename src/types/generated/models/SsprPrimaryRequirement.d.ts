@@ -50,4 +50,4 @@ export declare class SsprPrimaryRequirement {
     }[];
   constructor();
 }
-export declare type SsprPrimaryRequirementMethodsEnum = 'push' | 'sms' | 'voice' | 'email' | 'otp';
+export type SsprPrimaryRequirementMethodsEnum = 'push' | 'sms' | 'voice' | 'email' | 'otp';

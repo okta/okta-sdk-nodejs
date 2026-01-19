@@ -74,4 +74,4 @@ export declare class EventHook {
     }[];
   constructor();
 }
-export declare type EventHookStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type EventHookStatusEnum = 'ACTIVE' | 'INACTIVE';

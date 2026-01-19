@@ -29,10 +29,10 @@ exports.PinRequest = void 0;
 * Pin request
 */
 class PinRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PinRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PinRequest = PinRequest;

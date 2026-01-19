@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* Status of group rule
+* Status of group rule. You can\'t update the status of a rule from `INACTIVE` to `ACTIVE`. You must use the activate and deactivate lifecycle operations.
 */
-export declare type GroupRuleStatus = 'ACTIVE' | 'INACTIVE' | 'INVALID';
+export type GroupRuleStatus = 'ACTIVE' | 'INACTIVE' | 'INVALID';

@@ -29,10 +29,10 @@ exports.Saml = void 0;
 * SAML configuration details
 */
 class Saml {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Saml.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Saml = Saml;

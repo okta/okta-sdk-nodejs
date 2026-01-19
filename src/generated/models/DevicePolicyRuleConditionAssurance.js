@@ -29,10 +29,10 @@ exports.DevicePolicyRuleConditionAssurance = void 0;
 * Specifies [device assurance policies](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/DeviceAssurance/) in the policy rule
 */
 class DevicePolicyRuleConditionAssurance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePolicyRuleConditionAssurance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePolicyRuleConditionAssurance = DevicePolicyRuleConditionAssurance;

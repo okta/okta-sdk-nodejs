@@ -29,10 +29,10 @@ exports.AndroidDeviceTrust = void 0;
 * Android Device Trust integration provider
 */
 class AndroidDeviceTrust {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AndroidDeviceTrust.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AndroidDeviceTrust = AndroidDeviceTrust;

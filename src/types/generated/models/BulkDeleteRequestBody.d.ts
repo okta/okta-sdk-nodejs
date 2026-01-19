@@ -47,4 +47,4 @@ export declare class BulkDeleteRequestBody {
     }[];
   constructor();
 }
-export declare type BulkDeleteRequestBodyEntityTypeEnum = 'USERS';
+export type BulkDeleteRequestBodyEntityTypeEnum = 'USERS';

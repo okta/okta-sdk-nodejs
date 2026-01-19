@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.MtlsTrustCredentials = void 0;
 class MtlsTrustCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MtlsTrustCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MtlsTrustCredentials = MtlsTrustCredentials;

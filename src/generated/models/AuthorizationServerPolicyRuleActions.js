@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthorizationServerPolicyRuleActions = void 0;
 class AuthorizationServerPolicyRuleActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServerPolicyRuleActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServerPolicyRuleActions = AuthorizationServerPolicyRuleActions;

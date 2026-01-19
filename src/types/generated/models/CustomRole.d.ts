@@ -25,6 +25,7 @@
 import { LifecycleStatus } from './../models/LifecycleStatus';
 import { LinksCustomRoleResponse } from './../models/LinksCustomRoleResponse';
 import { RoleAssignmentType } from './../models/RoleAssignmentType';
+import { RoleType } from './../models/RoleType';
 export declare class CustomRole {
   'assignmentType'?: RoleAssignmentType;
   /**
@@ -36,7 +37,7 @@ export declare class CustomRole {
     */
   'id'?: string;
   /**
-    * Label for the custom role assignment
+    * Label for the role assignment
     */
   'label'?: string;
   /**
@@ -48,14 +49,11 @@ export declare class CustomRole {
     */
   'resource_set'?: string;
   /**
-    * Custom role ID
+    * Role ID
     */
   'role'?: string;
   'status'?: LifecycleStatus;
-  /**
-    * CUSTOM for a custom role
-    */
-  'type'?: CustomRoleTypeEnum;
+  'type': RoleType;
   '_links'?: LinksCustomRoleResponse;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
@@ -72,4 +70,3 @@ export declare class CustomRole {
     }[];
   constructor();
 }
-export declare type CustomRoleTypeEnum = 'CUSTOM';
