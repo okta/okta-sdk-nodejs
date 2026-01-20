@@ -35,7 +35,7 @@ You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodej
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
 
-✔️: The current stable major version series is: 7.x.x
+✔️: The current stable major version series is: 8.x.x
 
 | Version | Status                    |
 | ------- | ------------------------- |
@@ -45,7 +45,8 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 4.x | :x: Retired |
 | 5.x | :x: Retired |
 | 6.x | :x: Retired |
-| 7.x | :heavy_check_mark: Stable ([migration guide](#from-6x-to-70)) |
+| 7.x | :x: Retired |
+| 8.x | :heavy_check_mark: Stable ([migration guide](#from-7x-to-80)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
@@ -57,7 +58,7 @@ If you run into problems using the SDK, you can
 * Post [issues][github-issues] here on GitHub (for code errors)
 Node.js API Client for the [Okta Platform API].
 
-Requires Node.js version 12.0.0 or higher.
+Requires Node.js version 14.0.0 or higher.
 
 
 ```sh
@@ -973,6 +974,50 @@ const client: Client = new Client({
 > Note: this workaround should be used with caution as it relies on `node-fetch`'s internal detail which can change its implementation.
 
 ## Migrating between versions
+
+### From 7.x to 8.0
+
+#### New APIs Added
+
+Version 8.0 introduces several new API endpoints:
+
+- **AgentConnectionsApi** - Manage agent connections
+- **AgentPotentialConnectionsApi** - Discover potential agent connections
+- **AgentPublicKeyApi** - Manage agent public keys
+- **AgentRegistrationApi** - Handle agent registration
+- **ApplicationCrossAppAccessConnectionsApi** - Manage cross-app access connections
+- **ApplicationInterclientTrustMappingsApi** - Configure interclient trust mappings
+- **ApplicationSSOPublicKeysApi** - Manage application SSO public keys
+- **AssociatedDomainCustomizationsApi** - Customize associated domains
+- **CustomTelephonyProviderApi** - Configure custom telephony providers
+- **GroupPushMappingApi** - Manage group push mappings
+- **OAuth2ResourceServerCredentialsKeysApi** - Manage OAuth2 resource server credentials
+- **OktaManagedUserAccountApi** - Manage Okta managed user accounts
+- **OperationsIntegrationApi** - Handle operations integrations
+- **UnconfirmedUsersApi** - Manage unconfirmed users
+- **UserAuthenticatorEnrollmentsApi** - Manage user authenticator enrollments
+
+#### API Enhancements
+
+- **ApplicationApi** - Enhanced with additional methods for improved application management
+- **AuthenticatorApi** - Expanded authenticator management capabilities
+- **IdentitySourceApi** - Significantly enhanced with extensive new methods for identity source operations
+- **YourOinIntegrationsApi** - Enhanced integration management features
+
+To use the new APIs:
+
+```javascript
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.okta.com',
+  token: 'YOUR_API_TOKEN'
+});
+
+// Example: Use the new AgentConnectionsApi
+const connections = await client.agentConnectionsApi.listAgentConnections({ poolId: 'poolId' });
+
+// Example: Use the new UnconfirmedUsersApi
+const unconfirmedUsers = await client.unconfirmedUsersApi.listUnconfirmedUsers();
+```
 
 ### From 6.x to 7.0
 
