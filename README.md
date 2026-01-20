@@ -158,7 +158,6 @@ const newUser = {
     }
   }
 };
-
 const user = await client.userApi.createUser({ body: newUser });
 console.log('Created user', user);
 ```
