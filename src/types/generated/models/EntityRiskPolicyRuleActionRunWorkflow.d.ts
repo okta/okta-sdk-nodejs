@@ -41,4 +41,4 @@ export declare class EntityRiskPolicyRuleActionRunWorkflow {
     }[];
   constructor();
 }
-export declare type EntityRiskPolicyRuleActionRunWorkflowActionEnum = 'RUN_WORKFLOW';
+export type EntityRiskPolicyRuleActionRunWorkflowActionEnum = 'RUN_WORKFLOW';

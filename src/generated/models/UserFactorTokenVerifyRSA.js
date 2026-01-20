@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorTokenVerifyRSA = void 0;
 class UserFactorTokenVerifyRSA {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorTokenVerifyRSA.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorTokenVerifyRSA = UserFactorTokenVerifyRSA;

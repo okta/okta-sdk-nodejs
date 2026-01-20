@@ -29,10 +29,10 @@ exports.ApplicationCredentials = void 0;
 * Credentials for the specified `signOnMode`
 */
 class ApplicationCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationCredentials = ApplicationCredentials;

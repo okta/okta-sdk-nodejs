@@ -29,10 +29,10 @@ exports.AuthorizationServerPolicyRuleGroupCondition = void 0;
 * Specifies a set of Groups whose Users are to be included
 */
 class AuthorizationServerPolicyRuleGroupCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServerPolicyRuleGroupCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServerPolicyRuleGroupCondition = AuthorizationServerPolicyRuleGroupCondition;

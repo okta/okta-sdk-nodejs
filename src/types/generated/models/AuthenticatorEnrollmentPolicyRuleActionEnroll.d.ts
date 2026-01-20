@@ -42,4 +42,4 @@ export declare class AuthenticatorEnrollmentPolicyRuleActionEnroll {
     }[];
   constructor();
 }
-export declare type AuthenticatorEnrollmentPolicyRuleActionEnrollSelfEnum = 'CHALLENGE' | 'LOGIN' | 'NEVER';
+export type AuthenticatorEnrollmentPolicyRuleActionEnrollSelfEnum = 'CHALLENGE' | 'LOGIN' | 'NEVER';

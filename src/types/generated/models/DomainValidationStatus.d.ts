@@ -25,4 +25,4 @@
 /**
 * Status of the domain
 */
-export declare type DomainValidationStatus = 'COMPLETED' | 'IN_PROGRESS' | 'NOT_STARTED' | 'VERIFIED';
+export type DomainValidationStatus = 'COMPLETED' | 'IN_PROGRESS' | 'NOT_STARTED' | 'VERIFIED';

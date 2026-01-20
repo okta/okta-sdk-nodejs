@@ -29,10 +29,10 @@ exports.SimulatePolicyEvaluationsUndefined = void 0;
 * A list of undefined but not matched policies and rules
 */
 class SimulatePolicyEvaluationsUndefined {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulatePolicyEvaluationsUndefined.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulatePolicyEvaluationsUndefined = SimulatePolicyEvaluationsUndefined;

@@ -76,5 +76,5 @@ export declare class AuthorizationServerPolicyRule {
     }[];
   constructor();
 }
-export declare type AuthorizationServerPolicyRuleStatusEnum = 'ACTIVE' | 'INACTIVE';
-export declare type AuthorizationServerPolicyRuleTypeEnum = 'RESOURCE_ACCESS';
+export type AuthorizationServerPolicyRuleStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type AuthorizationServerPolicyRuleTypeEnum = 'RESOURCE_ACCESS';

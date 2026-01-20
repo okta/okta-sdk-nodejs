@@ -29,10 +29,10 @@ exports.LogGeolocation = void 0;
 * The latitude and longitude of the geolocation where an action was performed. The object is formatted according to the [ISO 6709](https://www.iso.org/obp/ui/fr/#iso:std:iso:6709:ed-3:v1:en) standard.
 */
 class LogGeolocation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogGeolocation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogGeolocation = LogGeolocation;

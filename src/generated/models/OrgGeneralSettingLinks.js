@@ -29,10 +29,10 @@ exports.OrgGeneralSettingLinks = void 0;
 * Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the org using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification
 */
 class OrgGeneralSettingLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgGeneralSettingLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgGeneralSettingLinks = OrgGeneralSettingLinks;

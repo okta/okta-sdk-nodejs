@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll = void 0;
 * Enrollment requirements for the authenticator
 */
 class AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll = AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll;

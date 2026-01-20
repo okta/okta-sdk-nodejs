@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrgContactUser = void 0;
 class OrgContactUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgContactUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgContactUser = OrgContactUser;

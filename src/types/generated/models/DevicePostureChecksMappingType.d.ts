@@ -25,4 +25,4 @@
 /**
 * Represents how the device posture check is rendered in device assurance policies
 */
-export declare type DevicePostureChecksMappingType = 'CHECKBOX' | 'TEXTBOX';
+export type DevicePostureChecksMappingType = 'CHECKBOX' | 'TEXTBOX';

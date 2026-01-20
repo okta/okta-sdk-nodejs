@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ChallengeType = 'http://auth0.com/oauth/grant-type/mfa-oob' | 'http://auth0.com/oauth/grant-type/mfa-otp';
+export type ChallengeType = 'http://auth0.com/oauth/grant-type/mfa-oob' | 'http://auth0.com/oauth/grant-type/mfa-otp';

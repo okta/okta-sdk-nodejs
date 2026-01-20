@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PolicyUserStatus = 'ACTIVATING' | 'ACTIVE' | 'DELETED' | 'DELETING' | 'EXPIRED_PASSWORD' | 'INACTIVE' | 'PENDING' | 'SUSPENDED';
+export type PolicyUserStatus = 'ACTIVATING' | 'ACTIVE' | 'DELETED' | 'DELETING' | 'EXPIRED_PASSWORD' | 'INACTIVE' | 'PENDING' | 'SUSPENDED';

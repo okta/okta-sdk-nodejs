@@ -29,10 +29,10 @@ exports.IdPCsr = void 0;
 * Defines a CSR for a signature or decryption credential for an IdP
 */
 class IdPCsr {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdPCsr.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdPCsr = IdPCsr;

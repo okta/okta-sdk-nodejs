@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AttestationRootCertificatesResponseInner = void 0;
 class AttestationRootCertificatesResponseInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AttestationRootCertificatesResponseInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AttestationRootCertificatesResponseInner = AttestationRootCertificatesResponseInner;

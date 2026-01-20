@@ -47,4 +47,4 @@ export declare class UserFactorActivateResponse {
     }[];
   constructor();
 }
-export declare type UserFactorActivateResponseFactorTypeEnum = 'call' | 'email' | 'sms' | 'push' | 'token:software:totp' | 'u2f' | 'webauthn';
+export type UserFactorActivateResponseFactorTypeEnum = 'call' | 'email' | 'sms' | 'push' | 'token:software:totp' | 'u2f' | 'webauthn';

@@ -282,7 +282,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all agent pools
      * @param limitPerPoolType Maximum number of agent pools returned
      * @param poolType Agent type to search for
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      */
   async listAgentPools(limitPerPoolType, poolType, after, _options) {
     let _config = _options || this.configuration;

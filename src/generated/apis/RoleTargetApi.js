@@ -177,7 +177,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Assigns an app instance target to an `APP_ADMIN` role assignment to a client. When you assign the first OIN app or app instance target, you reduce the scope of the role assignment. The role no longer applies to all app targets, but applies only to the specified target.  > **Note:** You can target a mixture of both OIN app and app instance targets, but you can\'t assign permissions to manage all instances of an OIN app and then assign a subset of permissions to the same app. For example, you can\'t specify that an admin has access to manage all instances of the Salesforce app and then also manage only specific configurations of the Salesforce app.
      * Assign a client role app instance target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param appName Name of the app definition (the OIN catalog app key name)
      * @param appId Application ID
@@ -231,7 +231,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Assigns an OIN app target for an `APP_ADMIN` role assignment to a client. When you assign an app target from the OIN catalog, you reduce the scope of the role assignment. The role assignment applies to only app instances that are included in the specified OIN app target.  An assigned OIN app target overrides any existing app instance targets. For example, if a user is assigned to administer a specific Facebook instance, a successful request to add an OIN app target with `facebook` for `appName` makes that user the administrator for all Facebook instances.
      * Assign a client role app target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param appName Name of the app definition (the OIN catalog app key name)
      */
@@ -375,7 +375,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Assigns a group target to a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app. When you assign the first group target, you reduce the scope of the role assignment. The role no longer applies to all targets, but applies only to the specified target.
      * Assign a client role group target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param groupId The &#x60;id&#x60; of the group
      */
@@ -522,7 +522,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * @param userId ID of an existing Okta user
      * @param roleIdOrEncodedRoleId The &#x60;id&#x60; of the role or Base32 encoded &#x60;id&#x60; of the role name
      * @param assignmentType Specifies the assignment type of the user
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async getRoleTargetsByUserIdAndRoleId(userId, roleIdOrEncodedRoleId, assignmentType, after, limit, _options) {
@@ -576,9 +576,9 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all OIN app targets for an `APP_ADMIN` role that\'s assigned to a client (by `clientId`).
      * List all client role app targets
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listAppTargetRoleToClient(clientId, roleAssignmentId, after, limit, _options) {
@@ -630,7 +630,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all group role app targets
      * @param groupId The &#x60;id&#x60; of the group
      * @param roleId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
@@ -682,7 +682,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all admin role app targets
      * @param userId ID of an existing Okta user
      * @param roleId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
@@ -732,9 +732,9 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all group targets for a [`USER_ADMIN`](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client. If the role isn\'t scoped to specific group targets, Okta returns an empty array `[]`.
      * List all client role group targets
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listGroupTargetRoleForClient(clientId, roleAssignmentId, after, limit, _options) {
@@ -786,7 +786,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all group role group targets
      * @param groupId The &#x60;id&#x60; of the group
      * @param roleId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
@@ -838,7 +838,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all admin role group targets
      * @param userId ID of an existing Okta user
      * @param roleId The &#x60;id&#x60; of the role assignment
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listGroupTargetsForRole(userId, roleId, after, limit, _options) {
@@ -888,7 +888,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Unassigns an app instance target from a role assignment to a client app  > **Note:** You can\'t remove the last app instance target from a role assignment. > If you need a role assignment that applies to all the apps, delete the role assignment with the instance target and create another one.  See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
      * Unassign a client role app instance target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param appName Name of the app definition (the OIN catalog app key name)
      * @param appId Application ID
@@ -942,7 +942,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Unassigns an OIN app target for a role assignment to a client app  > **Note:** You can\'t remove the last OIN app target from a role assignment. > If you need a role assignment that applies to all apps, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
      * Unassign a client role app target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param appName Name of the app definition (the OIN catalog app key name)
      */
@@ -990,7 +990,7 @@ class RoleTargetApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Unassigns a Group target from a `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a client app.  > **Note:** You can\'t remove the last group target from a role assignment. If you need a role assignment that applies to all groups, delete the role assignment with the target and create another one. See [Unassign a client role](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleAssignmentClient/#tag/RoleAssignmentClient/operation/deleteRoleFromClient).
      * Unassign a client role group target
-     * @param clientId Client app ID
+     * @param clientId &#x60;client_id&#x60; of the app
      * @param roleAssignmentId The &#x60;id&#x60; of the role assignment
      * @param groupId The &#x60;id&#x60; of the group
      */

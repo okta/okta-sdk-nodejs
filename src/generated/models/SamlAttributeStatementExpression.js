@@ -29,10 +29,10 @@ exports.SamlAttributeStatementExpression = void 0;
 * Generic `EXPRESSION` attribute statements
 */
 class SamlAttributeStatementExpression {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlAttributeStatementExpression.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlAttributeStatementExpression = SamlAttributeStatementExpression;

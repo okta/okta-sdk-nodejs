@@ -29,10 +29,10 @@ exports.ApplicationEmbedded = void 0;
 * Embedded resources related to the app using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. If the `expand=user/{userId}` query parameter is specified, then the assigned [Application User](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/) is embedded.
 */
 class ApplicationEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationEmbedded = ApplicationEmbedded;

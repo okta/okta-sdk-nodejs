@@ -29,10 +29,10 @@ exports.CreateUISchema = void 0;
 * The request body properties for the new UI Schema
 */
 class CreateUISchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CreateUISchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CreateUISchema = CreateUISchema;

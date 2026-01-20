@@ -25,4 +25,4 @@
 /**
 * The risk level associated with the IP
 */
-export declare type RiskEventSubjectRiskLevel = 'HIGH' | 'LOW' | 'MEDIUM';
+export type RiskEventSubjectRiskLevel = 'HIGH' | 'LOW' | 'MEDIUM';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PlatformConditionEvaluatorPlatform = void 0;
 class PlatformConditionEvaluatorPlatform {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PlatformConditionEvaluatorPlatform.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PlatformConditionEvaluatorPlatform = PlatformConditionEvaluatorPlatform;

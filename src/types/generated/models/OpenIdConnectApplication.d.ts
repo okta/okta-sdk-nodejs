@@ -47,4 +47,4 @@ export declare class OpenIdConnectApplication extends Application {
     }[];
   constructor();
 }
-export declare type OpenIdConnectApplicationNameEnum = 'oidc_client';
+export type OpenIdConnectApplicationNameEnum = 'oidc_client';

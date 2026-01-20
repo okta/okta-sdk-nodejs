@@ -29,10 +29,10 @@ exports.Error409 = void 0;
 * Conflict error object
 */
 class Error409 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Error409.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Error409 = Error409;

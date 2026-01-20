@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorTokenVerifySymantec = void 0;
 class UserFactorTokenVerifySymantec {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorTokenVerifySymantec.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorTokenVerifySymantec = UserFactorTokenVerifySymantec;

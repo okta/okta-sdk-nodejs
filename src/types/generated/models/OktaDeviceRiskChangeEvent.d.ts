@@ -63,6 +63,6 @@ export declare class OktaDeviceRiskChangeEvent {
     }[];
   constructor();
 }
-export declare type OktaDeviceRiskChangeEventCurrentLevelEnum = 'low' | 'medium' | 'high' | 'secure' | 'none';
-export declare type OktaDeviceRiskChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
-export declare type OktaDeviceRiskChangeEventPreviousLevelEnum = 'low' | 'medium' | 'high' | 'secure' | 'none';
+export type OktaDeviceRiskChangeEventCurrentLevelEnum = 'low' | 'medium' | 'high' | 'secure' | 'none';
+export type OktaDeviceRiskChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
+export type OktaDeviceRiskChangeEventPreviousLevelEnum = 'low' | 'medium' | 'high' | 'secure' | 'none';

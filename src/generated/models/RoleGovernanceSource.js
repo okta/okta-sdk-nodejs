@@ -29,10 +29,10 @@ exports.RoleGovernanceSource = void 0;
 * User role governance source
 */
 class RoleGovernanceSource {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RoleGovernanceSource.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RoleGovernanceSource = RoleGovernanceSource;

@@ -31,6 +31,10 @@ import { SafeBrowsingProtectionLevel } from './../models/SafeBrowsingProtectionL
 * Google Chrome Device Trust Connector provider
 */
 export declare class DTCWindows {
+  /**
+    * Indicates whether antivirus software is enabled
+    */
+  'antivirusEnabled'?: boolean;
   'browserVersion'?: ChromeBrowserVersion;
   /**
     * Indicates if a software stack is used to communicate with the DNS server

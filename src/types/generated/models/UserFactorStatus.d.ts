@@ -25,4 +25,4 @@
 /**
 * Status of the factor
 */
-export declare type UserFactorStatus = 'ACTIVE' | 'DISABLED' | 'ENROLLED' | 'EXPIRED' | 'INACTIVE' | 'NOT_SETUP' | 'PENDING_ACTIVATION';
+export type UserFactorStatus = 'ACTIVE' | 'DISABLED' | 'ENROLLED' | 'EXPIRED' | 'INACTIVE' | 'NOT_SETUP' | 'PENDING_ACTIVATION';

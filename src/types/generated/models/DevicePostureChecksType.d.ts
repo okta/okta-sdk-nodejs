@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DevicePostureChecksType = 'BUILTIN' | 'CUSTOM';
+export type DevicePostureChecksType = 'BUILTIN' | 'CUSTOM';

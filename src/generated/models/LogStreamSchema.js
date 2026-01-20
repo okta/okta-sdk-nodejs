@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogStreamSchema = void 0;
 class LogStreamSchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogStreamSchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogStreamSchema = LogStreamSchema;

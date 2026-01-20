@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OpenIdConnectApplicationSettings = void 0;
 class OpenIdConnectApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationSettings = OpenIdConnectApplicationSettings;

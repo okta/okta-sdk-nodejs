@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type UserSchemaAttributeFormat = 'country-code' | 'date-time' | 'email' | 'encrypted' | 'hashed' | 'language-code' | 'locale' | 'ref-id' | 'timezone' | 'uri';
+export type UserSchemaAttributeFormat = 'country-code' | 'date-time' | 'email' | 'encrypted' | 'hashed' | 'language-code' | 'locale' | 'ref-id' | 'timezone' | 'uri';

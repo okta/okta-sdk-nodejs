@@ -25,4 +25,4 @@
 /**
 * The signing key rotation setting for the provisioning connection
 */
-export declare type ConnectionsSigningRotationMode = 'AUTO' | 'MANUAL';
+export type ConnectionsSigningRotationMode = 'AUTO' | 'MANUAL';

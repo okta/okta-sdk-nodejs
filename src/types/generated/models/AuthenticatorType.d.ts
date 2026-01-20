@@ -25,4 +25,4 @@
 /**
 * The type of authenticator
 */
-export declare type AuthenticatorType = 'app' | 'email' | 'federated' | 'password' | 'phone' | 'security_key' | 'security_question' | 'tac';
+export type AuthenticatorType = 'app' | 'email' | 'federated' | 'password' | 'phone' | 'security_key' | 'security_question' | 'tac';

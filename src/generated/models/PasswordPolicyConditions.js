@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordPolicyConditions = void 0;
 class PasswordPolicyConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyConditions = PasswordPolicyConditions;

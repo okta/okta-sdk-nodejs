@@ -29,10 +29,10 @@ exports.OidcRequestAlgorithm = void 0;
 * Algorithm settings used to sign an authorization request
 */
 class OidcRequestAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcRequestAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcRequestAlgorithm = OidcRequestAlgorithm;

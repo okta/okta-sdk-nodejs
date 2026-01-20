@@ -29,10 +29,10 @@ exports.ApplicationVisibility = void 0;
 * Specifies visibility settings for the app
 */
 class ApplicationVisibility {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationVisibility.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationVisibility = ApplicationVisibility;

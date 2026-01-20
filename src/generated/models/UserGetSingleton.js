@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserGetSingleton = void 0;
 class UserGetSingleton {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserGetSingleton.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserGetSingleton = UserGetSingleton;

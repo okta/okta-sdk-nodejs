@@ -22,20 +22,40 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CaepCredentialChangeEventReasonAdmin } from './../models/CaepCredentialChangeEventReasonAdmin';
-import { CaepCredentialChangeEventReasonUser } from './../models/CaepCredentialChangeEventReasonUser';
+import { CaepDeviceComplianceChangeEventReasonAdmin } from './../models/CaepDeviceComplianceChangeEventReasonAdmin';
+import { CaepDeviceComplianceChangeEventReasonUser } from './../models/CaepDeviceComplianceChangeEventReasonUser';
 import { SecurityEventSubject } from './../models/SecurityEventSubject';
 /**
 * The session of the subject was revoked
 */
 export declare class CaepSessionRevokedEvent {
   /**
+    * Current IP of the session
+    */
+  'current_ip'?: string;
+  /**
+    * Current User Agent of the session
+    */
+  'current_user_agent'?: string;
+  /**
     * The time of the event (UNIX timestamp)
     */
-  'event_timestamp'?: number;
-  'reason_admin'?: CaepCredentialChangeEventReasonAdmin;
-  'reason_user'?: CaepCredentialChangeEventReasonUser;
-  'subject'?: SecurityEventSubject;
+  'event_timestamp': number;
+  /**
+    * The entity that initiated the event
+    */
+  'initiating_entity'?: CaepSessionRevokedEventInitiatingEntityEnum;
+  /**
+    * Last known IP of the session
+    */
+  'last_known_ip'?: string;
+  /**
+    * Last known User Agent of the session
+    */
+  'last_known_user_agent'?: string;
+  'reason_admin'?: CaepDeviceComplianceChangeEventReasonAdmin;
+  'reason_user'?: CaepDeviceComplianceChangeEventReasonUser;
+  'subject': SecurityEventSubject;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -51,3 +71,4 @@ export declare class CaepSessionRevokedEvent {
     }[];
   constructor();
 }
+export type CaepSessionRevokedEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';

@@ -29,10 +29,10 @@ exports.UserCredentials = void 0;
 * Specifies primary authentication and recovery credentials for a user. Credential types and requirements vary depending on the provider and security policy of the org.
 */
 class UserCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserCredentials = UserCredentials;

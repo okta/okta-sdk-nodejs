@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HostedPage = void 0;
 class HostedPage {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HostedPage.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HostedPage = HostedPage;

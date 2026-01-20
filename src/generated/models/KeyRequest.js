@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.KeyRequest = void 0;
 class KeyRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return KeyRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.KeyRequest = KeyRequest;

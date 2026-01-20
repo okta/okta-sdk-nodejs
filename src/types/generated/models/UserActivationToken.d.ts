@@ -28,7 +28,7 @@ export declare class UserActivationToken {
     */
   'activationToken'?: string;
   /**
-    * If `sendEmail` is `false`, returns an activation link for the user to set up their account. The activation token can be used to create a custom activation link.
+    * If `sendEmail` is `false`, returns an activation link for the user to set up their account. You can use the activation token to create a custom activation link.  > **Note:** The `activationUrl` varies depending on if you are on a Classic or Identity Engine org. > - For Identity Engine orgs, the activation link is in this format: `https://{yourOktaDomain}/tokens/{activationToken}/verify` > - For Classic orgs, the activation link is in this format: `https://{yourOktaDomain}/welcome/{activationToken}`
     */
   'activationUrl'?: string;
   static readonly discriminator: string | undefined;

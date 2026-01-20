@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppPropertiesValue = void 0;
 class AppPropertiesValue {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppPropertiesValue.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppPropertiesValue = AppPropertiesValue;

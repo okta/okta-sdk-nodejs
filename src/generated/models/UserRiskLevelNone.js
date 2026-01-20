@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserRiskLevelNone = void 0;
 const UserRiskGetResponse_1 = require('./../models/UserRiskGetResponse');
 class UserRiskLevelNone extends UserRiskGetResponse_1.UserRiskGetResponse {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserRiskLevelNone.attributeTypeMap);
+  }
   constructor() {
     super();
     this.riskLevel = 'NONE';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserRiskLevelNone.attributeTypeMap);
   }
 }
 exports.UserRiskLevelNone = UserRiskLevelNone;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordExpirationPolicyRuleCondition = void 0;
 class PasswordExpirationPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordExpirationPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordExpirationPolicyRuleCondition = PasswordExpirationPolicyRuleCondition;

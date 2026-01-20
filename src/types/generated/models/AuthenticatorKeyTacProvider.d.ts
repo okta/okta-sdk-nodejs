@@ -47,4 +47,4 @@ export declare class AuthenticatorKeyTacProvider {
     }[];
   constructor();
 }
-export declare type AuthenticatorKeyTacProviderTypeEnum = 'tac';
+export type AuthenticatorKeyTacProviderTypeEnum = 'tac';

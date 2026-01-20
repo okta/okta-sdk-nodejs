@@ -40,13 +40,13 @@ export declare class RealmApiRequestFactory extends BaseAPIRequestFactory {
      */
   getRealm(realmId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Realms
+     * Lists all realms.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
      * List all realms
      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;search&#x60; is provided.
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param search Searches for realms with a supported filtering expression for most properties.  Searches for realms can be filtered by the contains (&#x60;co&#x60;) operator. You can only use &#x60;co&#x60; with the &#x60;profile.name&#x60; property. See [Operators](https://developer.okta.com/docs/api/#operators).
      * @param sortBy Specifies the field to sort by and can be any single property (for search queries only)
-     * @param sortOrder Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+     * @param sortOrder Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
      */
   listRealms(limit?: number, after?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
   /**

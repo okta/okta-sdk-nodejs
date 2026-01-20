@@ -29,10 +29,10 @@ exports.ClientPolicyCondition = void 0;
 * Specifies which clients are included in the Policy
 */
 class ClientPolicyCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ClientPolicyCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ClientPolicyCondition = ClientPolicyCondition;

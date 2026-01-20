@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorActivateResponse = void 0;
 class UserFactorActivateResponse {
-  constructor() {
-    // this.factorType = 'UserFactorActivateResponse';
-  }
   static getAttributeTypeMap() {
     return UserFactorActivateResponse.attributeTypeMap;
+  }
+  constructor() {
+    // this.factorType = 'UserFactorActivateResponse';
   }
 }
 exports.UserFactorActivateResponse = UserFactorActivateResponse;

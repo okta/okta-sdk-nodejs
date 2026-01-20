@@ -29,10 +29,10 @@ exports.Push = void 0;
 * Sends an asynchronous push notification to the device for approval by the user. You must poll the transaction to determine the state of the verification. See [Retrieve a factor transaction status](./#tag/UserFactor/operation/getFactorTransactionStatus).  Activations have a short lifetime of several minutes and return a `TIMEOUT` if not completed before the timestamp specified in the `expiresAt` param. Use the published activate link to restart the activation process if the activation expires.
 */
 class Push {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Push.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Push = Push;

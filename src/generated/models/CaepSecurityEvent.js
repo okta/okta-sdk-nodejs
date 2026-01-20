@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CaepSecurityEvent = void 0;
 class CaepSecurityEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepSecurityEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepSecurityEvent = CaepSecurityEvent;

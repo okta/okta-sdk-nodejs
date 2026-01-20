@@ -29,10 +29,10 @@ exports.EventHookChannelConfigAuthScheme = void 0;
 * The authentication scheme used for this request.  To use Basic Auth for authentication, set `type` to `HEADER`, `key` to `Authorization`, and `value` to the Base64-encoded string of \"username:password\". Ensure that you include the scheme (including space) as part of the `value` parameter. For example, `Basic YWRtaW46c3VwZXJzZWNyZXQ=`.
 */
 class EventHookChannelConfigAuthScheme {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EventHookChannelConfigAuthScheme.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EventHookChannelConfigAuthScheme = EventHookChannelConfigAuthScheme;

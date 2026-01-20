@@ -25,4 +25,4 @@
 /**
 * The allowed types of uses for the authenticator
 */
-export declare type AllowedForEnum = 'any' | 'none' | 'recovery' | 'sso';
+export type AllowedForEnum = 'any' | 'none' | 'recovery' | 'sso';

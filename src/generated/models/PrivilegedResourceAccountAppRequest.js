@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.PrivilegedResourceAccountAppRequest = void 0;
 const PrivilegedResource_1 = require('./../models/PrivilegedResource');
 class PrivilegedResourceAccountAppRequest extends PrivilegedResource_1.PrivilegedResource {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(PrivilegedResourceAccountAppRequest.attributeTypeMap);
+  }
   constructor() {
     super();
     this.resourceType = 'APP_ACCOUNT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(PrivilegedResourceAccountAppRequest.attributeTypeMap);
   }
 }
 exports.PrivilegedResourceAccountAppRequest = PrivilegedResourceAccountAppRequest;

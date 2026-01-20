@@ -25,4 +25,4 @@
 /**
 * Okta Support access approval status for self-assigned cases
 */
-export declare type SelfAssignedStatus = 'APPROVED' | 'NOT_REQUIRED' | 'REQUESTED';
+export type SelfAssignedStatus = 'APPROVED' | 'NOT_REQUIRED' | 'REQUESTED';

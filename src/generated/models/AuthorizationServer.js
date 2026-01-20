@@ -26,15 +26,21 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthorizationServer = void 0;
 class AuthorizationServer {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServer.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServer = AuthorizationServer;
 AuthorizationServer.discriminator = undefined;
 AuthorizationServer.attributeTypeMap = [
+  {
+    'name': 'accessTokenEncryptedResponseAlgorithm',
+    'baseName': 'accessTokenEncryptedResponseAlgorithm',
+    'type': 'AccessTokenKeyEncryptionAlgorithm',
+    'format': ''
+  },
   {
     'name': 'audiences',
     'baseName': 'audiences',
@@ -74,6 +80,18 @@ AuthorizationServer.attributeTypeMap = [
   {
     'name': 'issuerMode',
     'baseName': 'issuerMode',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'jwks',
+    'baseName': 'jwks',
+    'type': 'ResourceServerJsonWebKeys',
+    'format': ''
+  },
+  {
+    'name': 'jwks_uri',
+    'baseName': 'jwks_uri',
     'type': 'string',
     'format': ''
   },

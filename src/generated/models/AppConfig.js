@@ -29,11 +29,11 @@ exports.AppConfig = void 0;
 * Additional app configuration for group push mappings. Currently only required for Active Directory.
 */
 class AppConfig {
-  constructor() {
-    // this.type = 'AppConfig';
-  }
   static getAttributeTypeMap() {
     return AppConfig.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'AppConfig';
   }
 }
 exports.AppConfig = AppConfig;

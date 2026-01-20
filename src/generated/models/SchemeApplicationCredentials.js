@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SchemeApplicationCredentials = void 0;
 class SchemeApplicationCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SchemeApplicationCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SchemeApplicationCredentials = SchemeApplicationCredentials;

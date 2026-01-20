@@ -25,4 +25,4 @@
 /**
 * The status of the subscription
 */
-export declare type SubscriptionStatus = 'subscribed' | 'unsubscribed';
+export type SubscriptionStatus = 'subscribed' | 'unsubscribed';

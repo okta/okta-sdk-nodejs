@@ -29,10 +29,10 @@ exports.U2f = void 0;
 * Activates a `u2f` factor with the specified client and registration information from the U2F token
 */
 class U2f {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return U2f.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.U2f = U2f;

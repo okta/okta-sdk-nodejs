@@ -25,4 +25,4 @@
 /**
 * The intended use of the public key
 */
-export declare type JsonWebKeyUse = 'enc' | 'sig';
+export type JsonWebKeyUse = 'enc';

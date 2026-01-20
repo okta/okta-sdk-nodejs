@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type FipsEnum = 'OPTIONAL' | 'REQUIRED';
+export type FipsEnum = 'OPTIONAL' | 'REQUIRED';

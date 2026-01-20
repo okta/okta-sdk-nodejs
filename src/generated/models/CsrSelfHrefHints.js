@@ -29,10 +29,10 @@ exports.CsrSelfHrefHints = void 0;
 * Describes allowed HTTP verbs for the `href`
 */
 class CsrSelfHrefHints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CsrSelfHrefHints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CsrSelfHrefHints = CsrSelfHrefHints;

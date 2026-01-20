@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppConnectionUserProvisionJWKResponse = void 0;
 class AppConnectionUserProvisionJWKResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppConnectionUserProvisionJWKResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppConnectionUserProvisionJWKResponse = AppConnectionUserProvisionJWKResponse;

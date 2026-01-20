@@ -29,10 +29,10 @@ exports.LifecycleCreateSettingObject = void 0;
 * Determines whether to update a user in the app when a user in Okta is updated
 */
 class LifecycleCreateSettingObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LifecycleCreateSettingObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LifecycleCreateSettingObject = LifecycleCreateSettingObject;

@@ -29,10 +29,10 @@ exports.CaepCredentialChangeEvent = void 0;
 * The credential was created, changed, revoked or deleted
 */
 class CaepCredentialChangeEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepCredentialChangeEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepCredentialChangeEvent = CaepCredentialChangeEvent;
@@ -89,7 +89,7 @@ CaepCredentialChangeEvent.attributeTypeMap = [
   {
     'name': 'subject',
     'baseName': 'subject',
-    'type': 'SecurityEventSubject',
+    'type': 'SsfTransmitterSecurityEventSubject',
     'format': ''
   }
 ];

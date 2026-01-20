@@ -29,10 +29,10 @@ exports.StandardRoleEmbeddedTargets = void 0;
 * Targets configured for the role assignment
 */
 class StandardRoleEmbeddedTargets {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StandardRoleEmbeddedTargets.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StandardRoleEmbeddedTargets = StandardRoleEmbeddedTargets;

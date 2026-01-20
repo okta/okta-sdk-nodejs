@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WellKnownURIArrayResponse = void 0;
 class WellKnownURIArrayResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownURIArrayResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownURIArrayResponse = WellKnownURIArrayResponse;

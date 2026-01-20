@@ -42,4 +42,4 @@ export declare class CsrSelfHrefHints {
     }[];
   constructor();
 }
-export declare type CsrSelfHrefHintsAllowEnum = 'GET' | 'DELETE';
+export type CsrSelfHrefHintsAllowEnum = 'GET' | 'DELETE';

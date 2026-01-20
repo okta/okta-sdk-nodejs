@@ -29,10 +29,10 @@ exports.PasswordPolicySettings = void 0;
 * Specifies the policy level settings
 */
 class PasswordPolicySettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicySettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicySettings = PasswordPolicySettings;

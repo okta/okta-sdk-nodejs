@@ -29,10 +29,10 @@ exports.SamlApplicationSettingsSignOn = void 0;
 * SAML 2.0 sign-on attributes. > **Note:** Set either `destinationOverride` or `ssoAcsUrl` to configure any other SAML 2.0 attributes in this section.
 */
 class SamlApplicationSettingsSignOn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlApplicationSettingsSignOn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlApplicationSettingsSignOn = SamlApplicationSettingsSignOn;

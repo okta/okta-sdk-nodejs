@@ -29,10 +29,10 @@ exports.OAuthCredentials = void 0;
 * Client authentication credentials for an [OAuth 2.0 Authorization Server](https://tools.ietf.org/html/rfc6749#section-2.3)
 */
 class OAuthCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthCredentials = OAuthCredentials;

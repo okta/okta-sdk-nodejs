@@ -65,5 +65,5 @@ export declare class SalesforceApplication {
     }[];
   constructor();
 }
-export declare type SalesforceApplicationNameEnum = 'salesforce';
-export declare type SalesforceApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'BOOKMARK' | 'SAML_2_0';
+export type SalesforceApplicationNameEnum = 'salesforce';
+export type SalesforceApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'BOOKMARK' | 'SAML_2_0';

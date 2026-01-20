@@ -29,10 +29,10 @@ exports.AppUser = void 0;
 * The application user object defines a user\'s app-specific profile and credentials for an app
 */
 class AppUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUser = AppUser;

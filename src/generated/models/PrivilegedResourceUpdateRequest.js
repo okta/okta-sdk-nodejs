@@ -29,10 +29,10 @@ exports.PrivilegedResourceUpdateRequest = void 0;
 * Update request for a privileged resource
 */
 class PrivilegedResourceUpdateRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PrivilegedResourceUpdateRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PrivilegedResourceUpdateRequest = PrivilegedResourceUpdateRequest;

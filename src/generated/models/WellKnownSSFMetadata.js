@@ -29,10 +29,10 @@ exports.WellKnownSSFMetadata = void 0;
 * Metadata about Okta as a transmitter and relevant information for configuration.
 */
 class WellKnownSSFMetadata {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownSSFMetadata.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownSSFMetadata = WellKnownSSFMetadata;

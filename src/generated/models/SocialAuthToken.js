@@ -29,10 +29,10 @@ exports.SocialAuthToken = void 0;
 * The social authentication token object provides the tokens and associated metadata provided by social providers during social authentication.
 */
 class SocialAuthToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SocialAuthToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SocialAuthToken = SocialAuthToken;

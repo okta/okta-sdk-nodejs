@@ -46,4 +46,4 @@ export declare class LogStreamDeactivateLink {
     }[];
   constructor();
 }
-export declare type LogStreamDeactivateLinkMethodEnum = 'GET' | 'POST';
+export type LogStreamDeactivateLinkMethodEnum = 'GET' | 'POST';

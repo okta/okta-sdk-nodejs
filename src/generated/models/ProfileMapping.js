@@ -29,10 +29,10 @@ exports.ProfileMapping = void 0;
 * The profile mapping object describes a mapping between an Okta user\'s and an app user\'s properties using [JSON Schema Draft 4](https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04).  > **Note:** Same type source/target mappings aren\'t supported by this API. Profile mappings must be between Okta and an app.
 */
 class ProfileMapping {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProfileMapping.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProfileMapping = ProfileMapping;

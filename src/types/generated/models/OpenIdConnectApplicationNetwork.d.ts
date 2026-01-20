@@ -53,4 +53,4 @@ export declare class OpenIdConnectApplicationNetwork {
     }[];
   constructor();
 }
-export declare type OpenIdConnectApplicationNetworkConnectionEnum = 'ANYWHERE' | 'ZONE';
+export type OpenIdConnectApplicationNetworkConnectionEnum = 'ANYWHERE' | 'ZONE';

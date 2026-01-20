@@ -29,10 +29,10 @@ exports.Call1 = void 0;
 * Verifies an OTP sent by a `call` factor challenge. If you omit `passCode` in the request, a new OTP is sent to the phone.
 */
 class Call1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Call1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Call1 = Call1;

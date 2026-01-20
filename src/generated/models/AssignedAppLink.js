@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AssignedAppLink = void 0;
 class AssignedAppLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AssignedAppLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AssignedAppLink = AssignedAppLink;

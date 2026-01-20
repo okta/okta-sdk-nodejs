@@ -29,10 +29,10 @@ exports.StandardRoleEmbeddedTargetsCatalog = void 0;
 * App targets
 */
 class StandardRoleEmbeddedTargetsCatalog {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StandardRoleEmbeddedTargetsCatalog.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StandardRoleEmbeddedTargetsCatalog = StandardRoleEmbeddedTargetsCatalog;

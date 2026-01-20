@@ -42,4 +42,4 @@ export declare class UserFactorPush extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorPushProviderEnum = 'OKTA';
+export type UserFactorPushProviderEnum = 'OKTA';

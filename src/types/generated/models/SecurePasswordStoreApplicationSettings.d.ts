@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { SecurePasswordStoreApplicationSettingsApplication } from './../models/SecurePasswordStoreApplicationSettingsApplication';
 export declare class SecurePasswordStoreApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: SecurePasswordStoreApplicationSettingsEmOptInStatusEnum;
   /**
@@ -60,4 +60,4 @@ export declare class SecurePasswordStoreApplicationSettings {
     }[];
   constructor();
 }
-export declare type SecurePasswordStoreApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type SecurePasswordStoreApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

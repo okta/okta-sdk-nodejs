@@ -13,12 +13,75 @@
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObjectRoleAssignmentApi = exports.ObjectRiskProviderApi = exports.ObjectRiskEventApi = exports.ObjectResourceSetApi = exports.ObjectRealmAssignmentApi = exports.ObjectRealmApi = exports.ObjectRateLimitSettingsApi = exports.ObjectPushProviderApi = exports.ObjectProfileMappingApi = exports.ObjectPrivilegedResourceApi = exports.ObjectPrincipalRateLimitApi = exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectOrgCreatorApi = exports.ObjectOktaPersonalSettingsApi = exports.ObjectOktaApplicationSettingsApi = exports.ObjectNetworkZoneApi = exports.ObjectLogStreamApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentitySourceApi = exports.ObjectIdentityProviderApi = exports.ObjectHookKeyApi = exports.ObjectGroupPushMappingApi = exports.ObjectGroupApi = exports.ObjectGovernanceBundleApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectEmailServerApi = exports.ObjectEmailDomainApi = exports.ObjectDisasterRecoveryApi = exports.ObjectDirectoriesIntegrationApi = exports.ObjectDevicePostureCheckApi = exports.ObjectDeviceIntegrationsApi = exports.ObjectDeviceAssuranceApi = exports.ObjectDeviceAccessApi = exports.ObjectDeviceApi = exports.ObjectCustomizationApi = exports.ObjectCustomRoleApi = exports.ObjectCustomDomainApi = exports.ObjectCAPTCHAApi = exports.ObjectBehaviorApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectAttackProtectionApi = exports.ObjectAssociatedDomainCustomizationsApi = exports.ObjectApplicationApi = exports.ObjectApiTokenApi = exports.ObjectApiServiceIntegrationsApi = exports.ObjectAgentPoolsApi = void 0;
-exports.ObjectYourOinIntegrationsApi = exports.ObjectWebAuthnPreregistrationApi = exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserAuthenticatorEnrollmentsApi = exports.ObjectUserApi = exports.ObjectUISchemaApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectServiceAccountApi = exports.ObjectSchemaApi = exports.ObjectSSFTransmitterApi = exports.ObjectSSFSecurityEventTokenApi = exports.ObjectSSFReceiverApi = exports.ObjectRoleTargetApi = void 0;
+exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectOrgCreatorApi = exports.ObjectOperationsIntegrationApi = exports.ObjectOktaPersonalSettingsApi = exports.ObjectOktaManagedUserAccountApi = exports.ObjectOktaApplicationSettingsApi = exports.ObjectOAuth2ResourceServerCredentialsKeysApi = exports.ObjectNetworkZoneApi = exports.ObjectLogStreamApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentitySourceApi = exports.ObjectIdentityProviderApi = exports.ObjectHookKeyApi = exports.ObjectGroupPushMappingApi = exports.ObjectGroupApi = exports.ObjectGovernanceBundleApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectEmailServerApi = exports.ObjectEmailDomainApi = exports.ObjectDisasterRecoveryApi = exports.ObjectDirectoriesIntegrationApi = exports.ObjectDevicePostureCheckApi = exports.ObjectDeviceIntegrationsApi = exports.ObjectDeviceAssuranceApi = exports.ObjectDeviceAccessApi = exports.ObjectDeviceApi = exports.ObjectCustomizationApi = exports.ObjectCustomTelephonyProviderApi = exports.ObjectCustomRoleApi = exports.ObjectCustomDomainApi = exports.ObjectCAPTCHAApi = exports.ObjectBehaviorApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectAttackProtectionApi = exports.ObjectAssociatedDomainCustomizationsApi = exports.ObjectApplicationSSOPublicKeysApi = exports.ObjectApplicationInterclientTrustMappingsApi = exports.ObjectApplicationCrossAppAccessConnectionsApi = exports.ObjectApplicationApi = exports.ObjectApiTokenApi = exports.ObjectApiServiceIntegrationsApi = exports.ObjectAgentRegistrationApi = exports.ObjectAgentPublicKeyApi = exports.ObjectAgentPotentialConnectionsApi = exports.ObjectAgentPoolsApi = exports.ObjectAgentConnectionsApi = void 0;
+exports.ObjectYourOinIntegrationsApi = exports.ObjectWebAuthnPreregistrationApi = exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserAuthenticatorEnrollmentsApi = exports.ObjectUserApi = exports.ObjectUnconfirmedUsersApi = exports.ObjectUISchemaApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectServiceAccountApi = exports.ObjectSchemaApi = exports.ObjectSSFTransmitterApi = exports.ObjectSSFSecurityEventTokenApi = exports.ObjectSSFReceiverApi = exports.ObjectRoleTargetApi = exports.ObjectRoleAssignmentApi = exports.ObjectRiskProviderApi = exports.ObjectRiskEventApi = exports.ObjectResourceSetApi = exports.ObjectRealmAssignmentApi = exports.ObjectRealmApi = exports.ObjectRateLimitSettingsApi = exports.ObjectPushProviderApi = exports.ObjectProfileMappingApi = exports.ObjectPrivilegedResourceApi = exports.ObjectPrincipalRateLimitApi = void 0;
 const ObservableAPI_1 = require("./ObservableAPI");
+class ObjectAgentConnectionsApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_1.ObservableAgentConnectionsApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates a managed connection for the agent
+      * Activate a managed connection
+      * @param param the request object
+      */
+    activateManagedConnection(param, options) {
+        return this.api.activateManagedConnection(param.agentId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Creates a managed connection for the agent
+      * Create a managed connection
+      * @param param the request object
+      */
+    createManagedConnection(param, options) {
+        return this.api.createManagedConnection(param.agentId, param.managedConnectionCreatable, options).toPromise();
+    }
+    /**
+      * Deactivates a managed connection for the agent
+      * Deactivate a managed connection
+      * @param param the request object
+      */
+    deactivateManagedConnection(param, options) {
+        return this.api.deactivateManagedConnection(param.agentId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Deletes a managed connection for the agent
+      * Delete an agent connection
+      * @param param the request object
+      */
+    deleteManagedConnection(param, options) {
+        return this.api.deleteManagedConnection(param.agentId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Retrieves a connection for the agent
+      * Retrieve an agent connection
+      * @param param the request object
+      */
+    getManagedConnection(param, options) {
+        return this.api.getManagedConnection(param.agentId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Lists all connections for the agent
+      * List all agent connections
+      * @param param the request object
+      */
+    listConnections(param, options) {
+        return this.api.listConnections(param.agentId, param.after, param.limit, options).toPromise();
+    }
+    /**
+      * Updates a managed connection for the agent
+      * Update a managed connection
+      * @param param the request object
+      */
+    updateManagedConnection(param, options) {
+        return this.api.updateManagedConnection(param.agentId, param.connectionId, param.managedConnectionPatchable, options).toPromise();
+    }
+}
+exports.ObjectAgentConnectionsApi = ObjectAgentConnectionsApi;
+const ObservableAPI_2 = require("./ObservableAPI");
 class ObjectAgentPoolsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_1.ObservableAgentPoolsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_2.ObservableAgentPoolsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a scheduled agent pool update
@@ -134,10 +197,167 @@ class ObjectAgentPoolsApi {
     }
 }
 exports.ObjectAgentPoolsApi = ObjectAgentPoolsApi;
-const ObservableAPI_2 = require("./ObservableAPI");
+const ObservableAPI_3 = require("./ObservableAPI");
+class ObjectAgentPotentialConnectionsApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_3.ObservableAgentPotentialConnectionsApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Lists all global resource connections of a specific connection type that an AI agent can potentially connect to  Only resource connections returned from this request are valid for [creating a connection](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentConnections/#tag/AgentConnections/operation/createManagedConnection) with a matching connection-type protocol.  Include the required [`filter`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=filter&t=request) query parameter to return potential connections with a specific `connectionType`. You can also use the [`match`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=match&t=request) query parameter to apply fuzzy-matching on the returned list of potential connections.
+      * List all potential connections
+      * @param param the request object
+      */
+    listPotentialConnectionsByType(param, options) {
+        return this.api.listPotentialConnectionsByType(param.filter, param.match, param.after, param.limit, options).toPromise();
+    }
+}
+exports.ObjectAgentPotentialConnectionsApi = ObjectAgentPotentialConnectionsApi;
+const ObservableAPI_4 = require("./ObservableAPI");
+class ObjectAgentPublicKeyApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_4.ObservableAgentPublicKeyApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only have one active encryption key at any given time for an AI agent. When you activate an inactive key, the currently active key is automatically deactivated.
+      * Activate an AI agent JSON Web Key
+      * @param param the request object
+      */
+    activateAgentJsonWebKey(param, options) {
+        return this.api.activateAgentJsonWebKey(param.agentId, param.keyId, options).toPromise();
+    }
+    /**
+      * Adds a new JSON Web Key (JWK) to the AI agent\'s JWK Set (JWKS)
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+    addAgentJwk(param, options) {
+        return this.api.addAgentJwk(param.agentId, param.agentJsonSigningKeyRequest, options).toPromise();
+    }
+    /**
+      * Deactivates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only deactivate signing keys. You can\'t deactivate the active encryption key if the client has ID token encryption enabled. However, you can activate another encryption key, which makes the current key inactive.
+      * Deactivate an AI agent JSON Web Key
+      * @param param the request object
+      */
+    deactivateAgentJsonWebKey(param, options) {
+        return this.api.deactivateAgentJsonWebKey(param.agentId, param.keyId, options).toPromise();
+    }
+    /**
+      * Deletes an AI agent\'s JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an AI agent JSON Web Key
+      * @param param the request object
+      */
+    deleteAgentJwk(param, options) {
+        return this.api.deleteAgentJwk(param.agentId, param.keyId, options).toPromise();
+    }
+    /**
+      * Retrieves an AI agent\'s JSON Web Key by `keyId`
+      * Retrieve an AI agent JSON Web Key
+      * @param param the request object
+      */
+    getAgentJwk(param, options) {
+        return this.api.getAgentJwk(param.agentId, param.keyId, options).toPromise();
+    }
+    /**
+      * Lists all JSON Web Keys (JWK) for an AI agent
+      * List all AI agent JSON Web Keys
+      * @param param the request object
+      */
+    listAgentJwk(param, options) {
+        return this.api.listAgentJwk(param.agentId, options).toPromise();
+    }
+}
+exports.ObjectAgentPublicKeyApi = ObjectAgentPublicKeyApi;
+const ObservableAPI_5 = require("./ObservableAPI");
+class ObjectAgentRegistrationApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_5.ObservableAgentRegistrationApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates an AI agent
+      * Activate an AI agent
+      * @param param the request object
+      */
+    activateAIAgent(param, options) {
+        return this.api.activateAIAgent(param.agentId, options).toPromise();
+    }
+    /**
+      * Deactivates an AI agent
+      * Deactivate an AI agent
+      * @param param the request object
+      */
+    deactivateAIAgent(param, options) {
+        return this.api.deactivateAIAgent(param.agentId, options).toPromise();
+    }
+    /**
+      * Deletes an AI agent
+      * Delete an AI agent
+      * @param param the request object
+      */
+    deleteAIAgent(param, options) {
+        return this.api.deleteAIAgent(param.agentId, options).toPromise();
+    }
+    /**
+      * Retrieves an AI agent
+      * Retrieve an AI agent
+      * @param param the request object
+      */
+    getAIAgent(param, options) {
+        return this.api.getAIAgent(param.agentId, options).toPromise();
+    }
+    /**
+      * Retrieves an AI agent operation and its status
+      * Retrieve an AI agent operation
+      * @param param the request object
+      */
+    getAIAgentOperation(param, options) {
+        return this.api.getAIAgentOperation(param.operationId, options).toPromise();
+    }
+    /**
+      * Lists all AI agent operations. Operations are sorted in descending order from most recent to oldest by creation time.
+      * List all AI agent operations
+      * @param param the request object
+      */
+    listAIAgentOperations(param = {}, options) {
+        return this.api.listAIAgentOperations(param.after, param.limit, options).toPromise();
+    }
+    /**
+      * Lists all AI agents
+      * List all AI agents
+      * @param param the request object
+      */
+    listAIAgents(param = {}, options) {
+        return this.api.listAIAgents(param.after, param.limit, param.search, options).toPromise();
+    }
+    /**
+      * Registers an AI agent
+      * Register an AI agent
+      * @param param the request object
+      */
+    registerAIAgent(param, options) {
+        return this.api.registerAIAgent(param.body, options).toPromise();
+    }
+    /**
+      * Replaces an AI agent
+      * Replace an AI agent
+      * @param param the request object
+      */
+    replaceAIAgent(param, options) {
+        return this.api.replaceAIAgent(param.agentId, param.body, options).toPromise();
+    }
+    /**
+      * Updates an AI agent. Use this request to perform partial updates on AI agent profile properties.
+      * Update an AI agent
+      * @param param the request object
+      */
+    updateAIAgent(param, options) {
+        return this.api.updateAIAgent(param.agentId, param.body, options).toPromise();
+    }
+}
+exports.ObjectAgentRegistrationApi = ObjectAgentRegistrationApi;
+const ObservableAPI_6 = require("./ObservableAPI");
 class ObjectApiServiceIntegrationsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_2.ObservableApiServiceIntegrationsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_6.ObservableApiServiceIntegrationsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an API Service Integration instance Secret by `secretId`
@@ -213,10 +433,10 @@ class ObjectApiServiceIntegrationsApi {
     }
 }
 exports.ObjectApiServiceIntegrationsApi = ObjectApiServiceIntegrationsApi;
-const ObservableAPI_3 = require("./ObservableAPI");
+const ObservableAPI_7 = require("./ObservableAPI");
 class ObjectApiTokenApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_3.ObservableApiTokenApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_7.ObservableApiTokenApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the metadata for an active API token by `apiTokenId`
@@ -260,10 +480,10 @@ class ObjectApiTokenApi {
     }
 }
 exports.ObjectApiTokenApi = ObjectApiTokenApi;
-const ObservableAPI_4 = require("./ObservableAPI");
+const ObservableAPI_8 = require("./ObservableAPI");
 class ObjectApplicationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_4.ObservableApplicationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_8.ObservableApplicationApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an inactive application
@@ -282,32 +502,8 @@ class ObjectApplicationApi {
         return this.api.activateDefaultProvisioningConnectionForApplication(param.appId, options).toPromise();
     }
     /**
-      * Activates an OAuth 2.0 Client JSON Web Key by `keyId`
-      * Activate an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-    activateOAuth2ClientJsonWebKey(param, options) {
-        return this.api.activateOAuth2ClientJsonWebKey(param.appId, param.keyId, options).toPromise();
-    }
-    /**
-      * Activates an OAuth 2.0 Client Secret by `secretId`
-      * Activate an OAuth 2.0 client secret
-      * @param param the request object
-      */
-    activateOAuth2ClientSecret(param, options) {
-        return this.api.activateOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
-    }
-    /**
-      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOCredentialOAuth2ClientAuth/#tag/ApplicationSSOCredentialOAuth2ClientAuth/operation/deletejwk) and re-add the key with a `kid`.
-      * Add a JSON Web Key
-      * @param param the request object
-      */
-    addJwk(param, options) {
-        return this.api.addJwk(param.appId, param.oAuth2ClientJsonWebKeyRequestBody, options).toPromise();
-    }
-    /**
-      * Assigns an app to an [authentication policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate authentication policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
-      * Assign an authentication policy
+      * Assigns an app to an [app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate app sign-in policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
+      * Assign an app sign-in policy
       * @param param the request object
       */
     assignApplicationPolicy(param, options) {
@@ -354,28 +550,12 @@ class ObjectApplicationApi {
         return this.api.createApplication(param.application, param.activate, param.oktaAccessGatewayAgent, options).toPromise();
     }
     /**
-      * Creates a CWO connection
-      * Create a CWO connection
-      * @param param the request object
-      */
-    createCWOConnection(param, options) {
-        return this.api.createCWOConnection(param.appId, param.orgCWOConnection, options).toPromise();
-    }
-    /**
       * Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
       * Create a federated claim
       * @param param the request object
       */
     createFederatedClaim(param, options) {
         return this.api.createFederatedClaim(param.appId, param.federatedClaimRequestBody, options).toPromise();
-    }
-    /**
-      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
-      * Create an OAuth 2.0 client secret
-      * @param param the request object
-      */
-    createOAuth2ClientSecret(param, options) {
-        return this.api.createOAuth2ClientSecret(param.appId, param.oAuth2ClientSecretRequestBody, options).toPromise();
     }
     /**
       * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
@@ -394,22 +574,6 @@ class ObjectApplicationApi {
         return this.api.deactivateDefaultProvisioningConnectionForApplication(param.appId, options).toPromise();
     }
     /**
-      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Deactivate an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-    deactivateOAuth2ClientJsonWebKey(param, options) {
-        return this.api.deactivateOAuth2ClientJsonWebKey(param.appId, param.keyId, options).toPromise();
-    }
-    /**
-      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
-      * Deactivate an OAuth 2.0 client secret
-      * @param param the request object
-      */
-    deactivateOAuth2ClientSecret(param, options) {
-        return this.api.deactivateOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
-    }
-    /**
       * Deletes an inactive application
       * Delete an application
       * @param param the request object
@@ -418,36 +582,12 @@ class ObjectApplicationApi {
         return this.api.deleteApplication(param.appId, options).toPromise();
     }
     /**
-      * Deletes a CWO connection
-      * Delete a CWO connection
-      * @param param the request object
-      */
-    deleteCWOConnection(param, options) {
-        return this.api.deleteCWOConnection(param.appId, param.connectionId, options).toPromise();
-    }
-    /**
       * Deletes a federated claim by `claimId`
       * Delete a federated claim
       * @param param the request object
       */
     deleteFederatedClaim(param, options) {
         return this.api.deleteFederatedClaim(param.appId, param.claimId, options).toPromise();
-    }
-    /**
-      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
-      * Delete an OAuth 2.0 client secret
-      * @param param the request object
-      */
-    deleteOAuth2ClientSecret(param, options) {
-        return this.api.deleteOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
-    }
-    /**
-      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
-      * Delete an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-    deletejwk(param, options) {
-        return this.api.deletejwk(param.appId, param.keyId, options).toPromise();
     }
     /**
       * Generates a new X.509 certificate for an app key credential > **Note:** To update an Application with the newly generated key credential, use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) request with the new [credentials.signing.kid](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing/kid&t=request) value in the request body. You can provide just the [Signing Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing&t=request) instead of the entire [Application Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials&t=request).
@@ -464,14 +604,6 @@ class ObjectApplicationApi {
       */
     generateCsrForApplication(param, options) {
         return this.api.generateCsrForApplication(param.appId, param.metadata, options).toPromise();
-    }
-    /**
-      * Retrieves inbound and outbound CWO connections for a given app
-      * Retrieve all CWO connections
-      * @param param the request object
-      */
-    getAllCWOConnections(param, options) {
-        return this.api.getAllCWOConnections(param.appId, options).toPromise();
     }
     /**
       * Retrieves an application from your Okta organization by `id`
@@ -506,14 +638,6 @@ class ObjectApplicationApi {
         return this.api.getApplicationUser(param.appId, param.userId, param.expand, options).toPromise();
     }
     /**
-      * Retrieves a CWO connection for an app
-      * Retrieve a CWO connection
-      * @param param the request object
-      */
-    getCWOConnection(param, options) {
-        return this.api.getCWOConnection(param.appId, param.connectionId, options).toPromise();
-    }
-    /**
       * Retrieves a Certificate Signing Request (CSR) for the app by `csrId`.  Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
       * Retrieve a certificate signing request
       * @param param the request object
@@ -546,28 +670,12 @@ class ObjectApplicationApi {
         return this.api.getFederatedClaim(param.appId, param.claimId, options).toPromise();
     }
     /**
-      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Retrieve an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-    getJwk(param, options) {
-        return this.api.getJwk(param.appId, param.keyId, options).toPromise();
-    }
-    /**
       * Retrieves the OAuth 2.0 authorization code from the app\'s authorization server. Use this authorization code to exchange for an access token through another endpoint to enable Express Configuration on behalf of the user.
       * Retrieve the OAuth 2.0 authorization code for Express Configuration.
       * @param param the request object
       */
     getOAuth2AccessTokenForExpressConfiguration(param, options) {
         return this.api.getOAuth2AccessTokenForExpressConfiguration(param.appId, param.token, param.capabilityType, options).toPromise();
-    }
-    /**
-      * Retrieves an OAuth 2.0 Client Secret by `secretId`
-      * Retrieve an OAuth 2.0 client secret
-      * @param param the request object
-      */
-    getOAuth2ClientSecret(param, options) {
-        return this.api.getOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
     }
     /**
       * Retrieves a refresh token for the specified app
@@ -631,7 +739,7 @@ class ObjectApplicationApi {
       * @param param the request object
       */
     listApplications(param = {}, options) {
-        return this.api.listApplications(param.q, param.after, param.useOptimization, param.limit, param.filter, param.expand, param.includeNonDeleted, options).toPromise();
+        return this.api.listApplications(param.q, param.after, param.useOptimization, param.alwaysIncludeVpnSettings, param.limit, param.filter, param.expand, param.includeNonDeleted, options).toPromise();
     }
     /**
       * Lists all Certificate Signing Requests for an application
@@ -656,22 +764,6 @@ class ObjectApplicationApi {
       */
     listFederatedClaims(param, options) {
         return this.api.listFederatedClaims(param.appId, options).toPromise();
-    }
-    /**
-      * Lists all JSON Web Keys for an OAuth 2.0 client app
-      * List all the OAuth 2.0 client JSON Web Keys
-      * @param param the request object
-      */
-    listJwk(param, options) {
-        return this.api.listJwk(param.appId, options).toPromise();
-    }
-    /**
-      * Lists all client secrets for an OAuth 2.0 client app
-      * List all OAuth 2.0 client secrets
-      * @param param the request object
-      */
-    listOAuth2ClientSecrets(param, options) {
-        return this.api.listOAuth2ClientSecrets(param.appId, options).toPromise();
     }
     /**
       * Lists all refresh tokens for an app  > **Note:** The results are [paginated](/#pagination) according to the `limit` parameter. > If there are multiple pages of results, the Link header contains a `next` link that you need to use as an opaque value (follow it, don\'t parse it).
@@ -778,14 +870,6 @@ class ObjectApplicationApi {
         return this.api.updateApplicationUser(param.appId, param.userId, param.appUser, options).toPromise();
     }
     /**
-      * Updates a CWO connection
-      * Update a CWO connection
-      * @param param the request object
-      */
-    updateCWOConnection(param, options) {
-        return this.api.updateCWOConnection(param.appId, param.connectionId, param.orgCWOConnectionPatchRequest, options).toPromise();
-    }
-    /**
       * Updates the default provisioning connection for an app
       * Update the default provisioning connection
       * @param param the request object
@@ -843,10 +927,199 @@ class ObjectApplicationApi {
     }
 }
 exports.ObjectApplicationApi = ObjectApplicationApi;
-const ObservableAPI_5 = require("./ObservableAPI");
+const ObservableAPI_9 = require("./ObservableAPI");
+class ObjectApplicationCrossAppAccessConnectionsApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_9.ObservableApplicationCrossAppAccessConnectionsApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Creates a Cross App Access connection
+      * Create a Cross App Access connection
+      * @param param the request object
+      */
+    createCrossAppAccessConnection(param, options) {
+        return this.api.createCrossAppAccessConnection(param.appId, param.orgCrossAppAccessConnection, options).toPromise();
+    }
+    /**
+      * Deletes a Cross App Access connection with the specified ID
+      * Delete a Cross App Access connection
+      * @param param the request object
+      */
+    deleteCrossAppAccessConnection(param, options) {
+        return this.api.deleteCrossAppAccessConnection(param.appId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Retrieves inbound and outbound Cross App Access connections associated with an app
+      * Retrieve all Cross App Access connections
+      * @param param the request object
+      */
+    getAllCrossAppAccessConnections(param, options) {
+        return this.api.getAllCrossAppAccessConnections(param.appId, param.after, param.limit, options).toPromise();
+    }
+    /**
+      * Retrieves the Cross App Access connection with the specified ID
+      * Retrieve a Cross App Access connection
+      * @param param the request object
+      */
+    getCrossAppAccessConnection(param, options) {
+        return this.api.getCrossAppAccessConnection(param.appId, param.connectionId, options).toPromise();
+    }
+    /**
+      * Updates the Cross App Access connection with the specified ID
+      * Update a Cross App Access connection
+      * @param param the request object
+      */
+    updateCrossAppAccessConnection(param, options) {
+        return this.api.updateCrossAppAccessConnection(param.appId, param.connectionId, param.orgCrossAppAccessConnectionPatchRequest, options).toPromise();
+    }
+}
+exports.ObjectApplicationCrossAppAccessConnectionsApi = ObjectApplicationCrossAppAccessConnectionsApi;
+const ObservableAPI_10 = require("./ObservableAPI");
+class ObjectApplicationInterclientTrustMappingsApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_10.ObservableApplicationInterclientTrustMappingsApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Creates a mapping between the target app and an allowed app for interclient SSO using the interclient token
+      * Create an allowed app mapping for a target app
+      * @param param the request object
+      */
+    createInterclientTrustMapping(param, options) {
+        return this.api.createInterclientTrustMapping(param.appId, param.interclientTrustMappingRequestBody, options).toPromise();
+    }
+    /**
+      * Deletes the mapping between the target app and an allowed app
+      * Delete an interclient trust mapping
+      * @param param the request object
+      */
+    deleteInterclientTrustMapping(param, options) {
+        return this.api.deleteInterclientTrustMapping(param.appId, param.allowedAppId, options).toPromise();
+    }
+    /**
+      * Lists all apps allowed by this app to request interclient SSO using the interclient token
+      * List all allowed apps for a target app
+      * @param param the request object
+      */
+    listInterclientAllowedApplications(param, options) {
+        return this.api.listInterclientAllowedApplications(param.appId, options).toPromise();
+    }
+    /**
+      * Lists all the target apps that allow this app to request interclient SSO using an interclient token
+      * List all target apps for an allowed app
+      * @param param the request object
+      */
+    listInterclientTargetApplications(param, options) {
+        return this.api.listInterclientTargetApplications(param.appId, options).toPromise();
+    }
+}
+exports.ObjectApplicationInterclientTrustMappingsApi = ObjectApplicationInterclientTrustMappingsApi;
+const ObservableAPI_11 = require("./ObservableAPI");
+class ObjectApplicationSSOPublicKeysApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_11.ObservableApplicationSSOPublicKeysApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates an OAuth 2.0 Client JSON Web Key by `keyId` > **Note:** You can have only one active encryption key at any given time for app. When you activate an inactive key, the current active key is automatically deactivated.
+      * Activate an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+    activateOAuth2ClientJsonWebKey(param, options) {
+        return this.api.activateOAuth2ClientJsonWebKey(param.appId, param.keyId, options).toPromise();
+    }
+    /**
+      * Activates an OAuth 2.0 Client Secret by `secretId`
+      * Activate an OAuth 2.0 client secret
+      * @param param the request object
+      */
+    activateOAuth2ClientSecret(param, options) {
+        return this.api.activateOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
+    }
+    /**
+      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOPublicKeys/#tag/ApplicationSSOPublicKeys/operation/deletejwk) and re-add the key with a `kid`.
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+    addJwk(param, options) {
+        return this.api.addJwk(param.appId, param.addJwkRequest, options).toPromise();
+    }
+    /**
+      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
+      * Create an OAuth 2.0 client secret
+      * @param param the request object
+      */
+    createOAuth2ClientSecret(param, options) {
+        return this.api.createOAuth2ClientSecret(param.appId, param.oAuth2ClientSecretRequestBody, options).toPromise();
+    }
+    /**
+      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`. > **Note:** You can only deactivate signing keys. Deactivating the active encryption key isn\'t allowed if the client has ID token encryption enabled. You can activate another encryption key, which makes the current key inactive.
+      * Deactivate an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+    deactivateOAuth2ClientJsonWebKey(param, options) {
+        return this.api.deactivateOAuth2ClientJsonWebKey(param.appId, param.keyId, options).toPromise();
+    }
+    /**
+      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
+      * Deactivate an OAuth 2.0 client secret
+      * @param param the request object
+      */
+    deactivateOAuth2ClientSecret(param, options) {
+        return this.api.deactivateOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
+    }
+    /**
+      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
+      * Delete an OAuth 2.0 client secret
+      * @param param the request object
+      */
+    deleteOAuth2ClientSecret(param, options) {
+        return this.api.deleteOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
+    }
+    /**
+      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+    deletejwk(param, options) {
+        return this.api.deletejwk(param.appId, param.keyId, options).toPromise();
+    }
+    /**
+      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
+      * Retrieve an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+    getJwk(param, options) {
+        return this.api.getJwk(param.appId, param.keyId, options).toPromise();
+    }
+    /**
+      * Retrieves an OAuth 2.0 Client Secret by `secretId`
+      * Retrieve an OAuth 2.0 client secret
+      * @param param the request object
+      */
+    getOAuth2ClientSecret(param, options) {
+        return this.api.getOAuth2ClientSecret(param.appId, param.secretId, options).toPromise();
+    }
+    /**
+      * Lists all JSON Web Keys for an OAuth 2.0 client app
+      * List all the OAuth 2.0 client JSON Web Keys
+      * @param param the request object
+      */
+    listJwk(param, options) {
+        return this.api.listJwk(param.appId, options).toPromise();
+    }
+    /**
+      * Lists all client secrets for an OAuth 2.0 client app
+      * List all OAuth 2.0 client secrets
+      * @param param the request object
+      */
+    listOAuth2ClientSecrets(param, options) {
+        return this.api.listOAuth2ClientSecrets(param.appId, options).toPromise();
+    }
+}
+exports.ObjectApplicationSSOPublicKeysApi = ObjectApplicationSSOPublicKeysApi;
+const ObservableAPI_12 = require("./ObservableAPI");
 class ObjectAssociatedDomainCustomizationsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_5.ObservableAssociatedDomainCustomizationsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_12.ObservableAssociatedDomainCustomizationsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the content from each of the well-known URIs for a specified brand
@@ -906,10 +1179,10 @@ class ObjectAssociatedDomainCustomizationsApi {
     }
 }
 exports.ObjectAssociatedDomainCustomizationsApi = ObjectAssociatedDomainCustomizationsApi;
-const ObservableAPI_6 = require("./ObservableAPI");
+const ObservableAPI_13 = require("./ObservableAPI");
 class ObjectAttackProtectionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_6.ObservableAttackProtectionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_13.ObservableAttackProtectionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the Authenticator Settings for an org
@@ -945,10 +1218,10 @@ class ObjectAttackProtectionApi {
     }
 }
 exports.ObjectAttackProtectionApi = ObjectAttackProtectionApi;
-const ObservableAPI_7 = require("./ObservableAPI");
+const ObservableAPI_14 = require("./ObservableAPI");
 class ObjectAuthenticatorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_7.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_14.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an authenticator by `authenticatorId`
@@ -1094,12 +1367,20 @@ class ObjectAuthenticatorApi {
     updateCustomAAGUID(param, options) {
         return this.api.updateCustomAAGUID(param.authenticatorId, param.aaguid, param.customAAGUIDUpdateRequestObject, options).toPromise();
     }
+    /**
+      * Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified WebAuthn authenticator and the specific `webauthn` authenticator method
+      * Verify a Relying Party ID domain
+      * @param param the request object
+      */
+    verifyRpIdDomain(param, options) {
+        return this.api.verifyRpIdDomain(param.authenticatorId, param.webAuthnMethodType, options).toPromise();
+    }
 }
 exports.ObjectAuthenticatorApi = ObjectAuthenticatorApi;
-const ObservableAPI_8 = require("./ObservableAPI");
+const ObservableAPI_15 = require("./ObservableAPI");
 class ObjectAuthorizationServerApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_8.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_15.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an authorization server
@@ -1439,10 +1720,10 @@ class ObjectAuthorizationServerApi {
     }
 }
 exports.ObjectAuthorizationServerApi = ObjectAuthorizationServerApi;
-const ObservableAPI_9 = require("./ObservableAPI");
+const ObservableAPI_16 = require("./ObservableAPI");
 class ObjectBehaviorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_9.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_16.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a behavior detection rule
@@ -1502,10 +1783,10 @@ class ObjectBehaviorApi {
     }
 }
 exports.ObjectBehaviorApi = ObjectBehaviorApi;
-const ObservableAPI_10 = require("./ObservableAPI");
+const ObservableAPI_17 = require("./ObservableAPI");
 class ObjectCAPTCHAApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_10.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_17.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new CAPTCHA instance. Currently, an org can only configure a single CAPTCHA instance.
@@ -1581,14 +1862,14 @@ class ObjectCAPTCHAApi {
     }
 }
 exports.ObjectCAPTCHAApi = ObjectCAPTCHAApi;
-const ObservableAPI_11 = require("./ObservableAPI");
+const ObservableAPI_18 = require("./ObservableAPI");
 class ObjectCustomDomainApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_11.ObservableCustomDomainApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_18.ObservableCustomDomainApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates your custom domain
-      * Create a Custom Domain
+      * Create a custom domain
       * @param param the request object
       */
     createCustomDomain(param, options) {
@@ -1612,7 +1893,7 @@ class ObjectCustomDomainApi {
     }
     /**
       * Lists all verified custom domains for the org
-      * List all Custom Domains
+      * List all custom domains
       * @param param the request object
       */
     listCustomDomains(param = {}, options) {
@@ -1635,7 +1916,7 @@ class ObjectCustomDomainApi {
         return this.api.upsertCertificate(param.domainId, param.certificate, options).toPromise();
     }
     /**
-      * Verifies the custom domain and validity of DNS records by `domainId`. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.
+      * Verifies the custom domain and validity of DNS records by `domainId`. Verify your custom domain to confirm that you own or control the domain and that you have properly configured the required DNS records. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.  Verify your custom domain after you\'ve [created it](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomDomain/#tag/CustomDomain/operation/createCustomDomain) and after you\'ve added your TXT and CNAME records to your domain provider. Okta doesn\'t verify your domain automatically. You must use the API to verify your custom domain if you change your DNS records or if you encounter issues with domain validation.  > **Note:** DNS record changes can take time to propagate. If you recently updated your DNS records, you may need to wait before verifying your custom domain. If you encounter issues with domain verification, double-check your DNS records and ensure that they\'re correctly configured. See [Update your DNS TXT](https://developer.okta.com/docs/guides/custom-url-domain/main/#update-your-dns-txt) for more information about verifying your custom domain.
       * Verify a custom domain
       * @param param the request object
       */
@@ -1644,10 +1925,10 @@ class ObjectCustomDomainApi {
     }
 }
 exports.ObjectCustomDomainApi = ObjectCustomDomainApi;
-const ObservableAPI_12 = require("./ObservableAPI");
+const ObservableAPI_19 = require("./ObservableAPI");
 class ObjectCustomRoleApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_12.ObservableCustomRoleApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_19.ObservableCustomRoleApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a custom role
@@ -1731,10 +2012,89 @@ class ObjectCustomRoleApi {
     }
 }
 exports.ObjectCustomRoleApi = ObjectCustomRoleApi;
-const ObservableAPI_13 = require("./ObservableAPI");
+const ObservableAPI_20 = require("./ObservableAPI");
+class ObjectCustomTelephonyProviderApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_20.ObservableCustomTelephonyProviderApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates a custom telephony provider by its ID. You must activate a provider before it can be used.
+      * Activate a custom telephony provider
+      * @param param the request object
+      */
+    activateCustomTelephonyCredential(param, options) {
+        return this.api.activateCustomTelephonyCredential(param.customTelephonyProviderId, options).toPromise();
+    }
+    /**
+      * Creates a custom telephony provider with the provided credentials
+      * Create a custom telephony provider
+      * @param param the request object
+      */
+    createCustomTelephonyProviderCredentials(param, options) {
+        return this.api.createCustomTelephonyProviderCredentials(param.customTelephonyProviderCredentialCreateRequest, options).toPromise();
+    }
+    /**
+      * Deactivates a custom telephony provider by its ID. Keep the following points in mind when you deactivate a provider: * You must deactivate a provider before deleting it. * If you have two telephony providers configured, and both are active, you can only deactivate the secondary provider. The second provider is the one that isn\'t set as the primary provider.
+      * Deactivate a custom telephony provider
+      * @param param the request object
+      */
+    deactivateCustomTelephonyCredential(param, options) {
+        return this.api.deactivateCustomTelephonyCredential(param.customTelephonyProviderId, options).toPromise();
+    }
+    /**
+      * Deletes a custom telephony provider by its ID.  Before you delete a provider, ensure that it is [deactivated](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTelephonyProvider/#tag/CustomTelephonyProvider/operation/deactivateCustomTelephonyCredential). Consider setting up another telephony provider if you still plan to use telephony in your org. See [Set up an external telephony provider](https://help.okta.com/okta_help.htm?type=oie&id=about-telephony).
+      * Delete a custom telephony provider
+      * @param param the request object
+      */
+    deleteCustomTelephonyProviderCredential(param, options) {
+        return this.api.deleteCustomTelephonyProviderCredential(param.customTelephonyProviderId, options).toPromise();
+    }
+    /**
+      * Retrieves the details of a custom telephony provider by its ID
+      * Retrieve a custom telephony provider
+      * @param param the request object
+      */
+    getCustomTelephonyProviderCredential(param, options) {
+        return this.api.getCustomTelephonyProviderCredential(param.customTelephonyProviderId, options).toPromise();
+    }
+    /**
+      * Lists all custom telephony providers that are configured in your org
+      * List all custom telephony providers
+      * @param param the request object
+      */
+    listAllCustomTelephonyProviderCredentials(param = {}, options) {
+        return this.api.listAllCustomTelephonyProviderCredentials(options).toPromise();
+    }
+    /**
+      * Sends a test message (SMS or call) using the specified custom telephony provider to verify that the provider is configured correctly.  You must provide a valid phone number and country code to send the test message. Send it to a phone number that you have access to so you can confirm that the message was received.
+      * Send a test message from a custom telephony provider
+      * @param param the request object
+      */
+    sendTestCustomTelephonyProviderCredential(param, options) {
+        return this.api.sendTestCustomTelephonyProviderCredential(param.customTelephonyProviderId, param.customTelephonyProviderCredentialSendTestRequest, options).toPromise();
+    }
+    /**
+      * Sets a custom telephony provider as the primary telephony provider for the org. You can only set one provider as a primary provider at a time.
+      * Set a custom telephony provider as a primary telephony provider
+      * @param param the request object
+      */
+    setAsPrimaryCustomTelephonyCredential(param, options) {
+        return this.api.setAsPrimaryCustomTelephonyCredential(param.customTelephonyProviderId, options).toPromise();
+    }
+    /**
+      * Updates the credentials of an existing custom telephony provider
+      * Update a custom telephony provider credential
+      * @param param the request object
+      */
+    updateCustomTelephonyProviderCredential(param, options) {
+        return this.api.updateCustomTelephonyProviderCredential(param.customTelephonyProviderId, param.customTelephonyProviderCredentialUpdateRequest, options).toPromise();
+    }
+}
+exports.ObjectCustomTelephonyProviderApi = ObjectCustomTelephonyProviderApi;
+const ObservableAPI_21 = require("./ObservableAPI");
 class ObjectCustomizationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_13.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_21.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Removes emails from an email service bounce list.  The emails submitted in this operation are removed from the bounce list by an asynchronous job. Any email address that passes validation is accepted for the removal process, even if there are other email addresses in the request that failed validation.  > **Note:** If there are validation errors for all email addresses, a `200 OK` HTTP status is still returned.
@@ -2130,10 +2490,10 @@ class ObjectCustomizationApi {
     }
 }
 exports.ObjectCustomizationApi = ObjectCustomizationApi;
-const ObservableAPI_14 = require("./ObservableAPI");
+const ObservableAPI_22 = require("./ObservableAPI");
 class ObjectDeviceApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_14.ObservableDeviceApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_22.ObservableDeviceApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a device by setting its status to `ACTIVE` by `deviceId`. Activated devices are used to create and delete device user links.
@@ -2176,7 +2536,7 @@ class ObjectDeviceApi {
         return this.api.listDeviceUsers(param.deviceId, options).toPromise();
     }
     /**
-      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request. > **Note:** Listing devices with `search` should not be used as a part of any critical flow, such as authentication or updates, to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
       * List all devices
       * @param param the request object
       */
@@ -2201,10 +2561,10 @@ class ObjectDeviceApi {
     }
 }
 exports.ObjectDeviceApi = ObjectDeviceApi;
-const ObservableAPI_15 = require("./ObservableAPI");
+const ObservableAPI_23 = require("./ObservableAPI");
 class ObjectDeviceAccessApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_15.ObservableDeviceAccessApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_23.ObservableDeviceAccessApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the status of the Desktop MFA Enforce Number Matching Challenge push notifications feature. That is, whether or not the feature is enabled for your org.
@@ -2240,10 +2600,10 @@ class ObjectDeviceAccessApi {
     }
 }
 exports.ObjectDeviceAccessApi = ObjectDeviceAccessApi;
-const ObservableAPI_16 = require("./ObservableAPI");
+const ObservableAPI_24 = require("./ObservableAPI");
 class ObjectDeviceAssuranceApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_16.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_24.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new device assurance policy
@@ -2287,10 +2647,10 @@ class ObjectDeviceAssuranceApi {
     }
 }
 exports.ObjectDeviceAssuranceApi = ObjectDeviceAssuranceApi;
-const ObservableAPI_17 = require("./ObservableAPI");
+const ObservableAPI_25 = require("./ObservableAPI");
 class ObjectDeviceIntegrationsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_17.ObservableDeviceIntegrationsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_25.ObservableDeviceIntegrationsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a device integration and populates the related configurations by `deviceIntegrationId`
@@ -2326,10 +2686,10 @@ class ObjectDeviceIntegrationsApi {
     }
 }
 exports.ObjectDeviceIntegrationsApi = ObjectDeviceIntegrationsApi;
-const ObservableAPI_18 = require("./ObservableAPI");
+const ObservableAPI_26 = require("./ObservableAPI");
 class ObjectDevicePostureCheckApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_18.ObservableDevicePostureCheckApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_26.ObservableDevicePostureCheckApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a device posture check
@@ -2381,25 +2741,25 @@ class ObjectDevicePostureCheckApi {
     }
 }
 exports.ObjectDevicePostureCheckApi = ObjectDevicePostureCheckApi;
-const ObservableAPI_19 = require("./ObservableAPI");
+const ObservableAPI_27 = require("./ObservableAPI");
 class ObjectDirectoriesIntegrationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_19.ObservableDirectoriesIntegrationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_27.ObservableDirectoriesIntegrationApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-      * Update an Active Directory group membership
+      * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+      * Update an external directory group membership
       * @param param the request object
       */
-    updateADGroupMembership(param, options) {
-        return this.api.updateADGroupMembership(param.appInstanceId, param.agentAction, options).toPromise();
+    updateGroupMembership(param, options) {
+        return this.api.updateGroupMembership(param.appInstanceId, param.agentAction, options).toPromise();
     }
 }
 exports.ObjectDirectoriesIntegrationApi = ObjectDirectoriesIntegrationApi;
-const ObservableAPI_20 = require("./ObservableAPI");
+const ObservableAPI_28 = require("./ObservableAPI");
 class ObjectDisasterRecoveryApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_20.ObservableDisasterRecoveryApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_28.ObservableDisasterRecoveryApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the failover or failback status for all the domains for your org
@@ -2435,10 +2795,10 @@ class ObjectDisasterRecoveryApi {
     }
 }
 exports.ObjectDisasterRecoveryApi = ObjectDisasterRecoveryApi;
-const ObservableAPI_21 = require("./ObservableAPI");
+const ObservableAPI_29 = require("./ObservableAPI");
 class ObjectEmailDomainApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_21.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_29.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates an Email Domain in your org
@@ -2490,10 +2850,10 @@ class ObjectEmailDomainApi {
     }
 }
 exports.ObjectEmailDomainApi = ObjectEmailDomainApi;
-const ObservableAPI_22 = require("./ObservableAPI");
+const ObservableAPI_30 = require("./ObservableAPI");
 class ObjectEmailServerApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_22.ObservableEmailServerApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_30.ObservableEmailServerApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a custom email SMTP server configuration for your org
@@ -2545,10 +2905,10 @@ class ObjectEmailServerApi {
     }
 }
 exports.ObjectEmailServerApi = ObjectEmailServerApi;
-const ObservableAPI_23 = require("./ObservableAPI");
+const ObservableAPI_31 = require("./ObservableAPI");
 class ObjectEventHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_23.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_31.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates the event hook that matches the provided `id`
@@ -2616,10 +2976,10 @@ class ObjectEventHookApi {
     }
 }
 exports.ObjectEventHookApi = ObjectEventHookApi;
-const ObservableAPI_24 = require("./ObservableAPI");
+const ObservableAPI_32 = require("./ObservableAPI");
 class ObjectFeatureApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_24.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_32.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves a feature by ID
@@ -2663,53 +3023,53 @@ class ObjectFeatureApi {
     }
 }
 exports.ObjectFeatureApi = ObjectFeatureApi;
-const ObservableAPI_25 = require("./ObservableAPI");
+const ObservableAPI_33 = require("./ObservableAPI");
 class ObjectGovernanceBundleApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_25.ObservableGovernanceBundleApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_33.ObservableGovernanceBundleApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Creates a Governance Bundle for the Admin Console in RAMP
-      * Create a governance bundle for the Admin Console in RAMP
+      * Creates a governance bundle of entitlements for the Admin Console
+      * Create a governance bundle
       * @param param the request object
       */
     createGovernanceBundle(param, options) {
         return this.api.createGovernanceBundle(param.governanceBundleCreateRequest, options).toPromise();
     }
     /**
-      * Deletes a Governance Bundle from RAMP
-      * Delete a governance bundle from RAMP
+      * Deletes an Admin Console governance bundle
+      * Delete a governance bundle
       * @param param the request object
       */
     deleteGovernanceBundle(param, options) {
         return this.api.deleteGovernanceBundle(param.bundleId, options).toPromise();
     }
     /**
-      * Retrieves a Governance Bundle from RAMP
-      * Retrieve a governance bundle from RAMP
+      * Retrieves a governance bundle for the Admin Console
+      * Retrieve a governance bundle
       * @param param the request object
       */
     getGovernanceBundle(param, options) {
         return this.api.getGovernanceBundle(param.bundleId, options).toPromise();
     }
     /**
-      * Retrieves the opt-in status of the Admin Console from RAMP
-      * Retrieve the opt-in status from RAMP
+      * Retrieves the entitlement management opt-in status for the Admin Console
+      * Retrieve the Admin Console opt-in status
       * @param param the request object
       */
     getOptInStatus(param = {}, options) {
         return this.api.getOptInStatus(options).toPromise();
     }
     /**
-      * Lists all Entitlement Values specific to a Bundle Entitlement
-      * List all entitlement values for a bundle entitlement
+      * Lists all entitlement values that are specific to a governance bundle entitlement
+      * List all values for a governance bundle entitlement
       * @param param the request object
       */
     listBundleEntitlementValues(param, options) {
         return this.api.listBundleEntitlementValues(param.bundleId, param.entitlementId, param.after, param.limit, options).toPromise();
     }
     /**
-      * Lists all Entitlements specific to a Governance Bundle
+      * Lists all entitlements specific to a governance bundle
       * List all entitlements for a governance bundle
       * @param param the request object
       */
@@ -2717,32 +3077,32 @@ class ObjectGovernanceBundleApi {
         return this.api.listBundleEntitlements(param.bundleId, param.after, param.limit, options).toPromise();
     }
     /**
-      * Lists all Governance Bundles for the Admin Console in your org
-      * List all governance bundles for the Admin Console
+      * Lists all governance bundles for the Admin Console in your org
+      * List all governance bundles
       * @param param the request object
       */
     listGovernanceBundles(param = {}, options) {
         return this.api.listGovernanceBundles(param.after, param.limit, options).toPromise();
     }
     /**
-      * Opts in the Admin Console to RAMP
-      * Opt in the Admin Console to RAMP
+      * Opts in the Admin Console to entitlement management
+      * Opt in the Admin Console to entitlement management
       * @param param the request object
       */
     optIn(param = {}, options) {
         return this.api.optIn(options).toPromise();
     }
     /**
-      * Opts out the Admin Console from RAMP
-      * Opt out the Admin Console from RAMP
+      * Opts out the Admin Console from entitlement management
+      * Opt out the Admin Console from entitlement management
       * @param param the request object
       */
     optOut(param = {}, options) {
         return this.api.optOut(options).toPromise();
     }
     /**
-      * Replaces a Governance Bundle in RAMP
-      * Replace a governance bundle in RAMP
+      * Replaces the properties of a governance bundle for the Admin Console
+      * Replace a governance bundle
       * @param param the request object
       */
     replaceGovernanceBundle(param, options) {
@@ -2750,10 +3110,10 @@ class ObjectGovernanceBundleApi {
     }
 }
 exports.ObjectGovernanceBundleApi = ObjectGovernanceBundleApi;
-const ObservableAPI_26 = require("./ObservableAPI");
+const ObservableAPI_34 = require("./ObservableAPI");
 class ObjectGroupApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_26.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_34.ObservableGroupApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a specific group rule by ID from your org
@@ -2788,7 +3148,7 @@ class ObjectGroupApi {
         return this.api.createGroup(param.group, options).toPromise();
     }
     /**
-      * Creates a group rule to dynamically add users to the specified group if they match the condition > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
+      * Creates a group rule to dynamically add users to the specified group if they match the condition. > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
       * Create a group rule
       * @param param the request object
       */
@@ -2876,7 +3236,7 @@ class ObjectGroupApi {
         return this.api.listGroupUsers(param.groupId, param.after, param.limit, options).toPromise();
     }
     /**
-      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** Results from the filter or query parameter are driven from an eventually consistent datasource. The synchronization lag is typically less than one second.
+      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all groups
       * @param param the request object
       */
@@ -2892,7 +3252,7 @@ class ObjectGroupApi {
         return this.api.replaceGroup(param.groupId, param.group, options).toPromise();
     }
     /**
-      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `\'INACTIVE\'`. > > You currently can\'t update the `action` section.
+      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `INACTIVE`. > > You currently can\'t update the `actions` section.
       * Replace a group rule
       * @param param the request object
       */
@@ -2909,10 +3269,10 @@ class ObjectGroupApi {
     }
 }
 exports.ObjectGroupApi = ObjectGroupApi;
-const ObservableAPI_27 = require("./ObservableAPI");
+const ObservableAPI_35 = require("./ObservableAPI");
 class ObjectGroupPushMappingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_27.ObservableGroupPushMappingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_35.ObservableGroupPushMappingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates or links a group push mapping.  **Note:** Either `targetGroupId` or `targetGroupName` must be provided, but not both. If `targetGroupId` is provided, it links to an existing group. If `targetGroupName` is provided, it creates a new group.
@@ -2956,10 +3316,10 @@ class ObjectGroupPushMappingApi {
     }
 }
 exports.ObjectGroupPushMappingApi = ObjectGroupPushMappingApi;
-const ObservableAPI_28 = require("./ObservableAPI");
+const ObservableAPI_36 = require("./ObservableAPI");
 class ObjectHookKeyApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_28.ObservableHookKeyApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_36.ObservableHookKeyApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a key for use with other parts of the application, such as inline hooks  > **Note:**  Use the key name to access this key for inline hook operations.  The total number of keys that you can create in an Okta org is limited to 50.   The response is a [Key object](https://developer.okta.com/docs/reference/api/hook-keys/#key-object) that represents the   key that you create. The `id` property in the response serves as the unique ID for the key, which you can specify when   invoking other CRUD operations. The `keyId` provided in the response is the alias of the public key that you can use to get   details of the public key data in a separate call.  > **Note:** The keyId is the alias of the public key that you can use to retrieve the public key.
@@ -3011,10 +3371,10 @@ class ObjectHookKeyApi {
     }
 }
 exports.ObjectHookKeyApi = ObjectHookKeyApi;
-const ObservableAPI_29 = require("./ObservableAPI");
+const ObservableAPI_37 = require("./ObservableAPI");
 class ObjectIdentityProviderApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_29.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_37.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an inactive identity provider (IdP)
@@ -3033,7 +3393,7 @@ class ObjectIdentityProviderApi {
         return this.api.cloneIdentityProviderKey(param.idpId, param.keyId, param.targetIdpId, options).toPromise();
     }
     /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification (IDV) vendors work like IdPs, with a few key differences. IDV vendors verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDV vendors (Persona, CLEAR Verified, and Incode) with specific configuration settings and another IDV vendor type (Custom IDV) that lets you create a custom IDV vendor, using a [standardized IDV process](https://developer.okta.com/docs/guides/idv-integration/main/). You can configure each of the IDV vendors as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)  * [Custom IDV](https://help.okta.com/okta_help.htm?type=oie&id=idp-add-custom-idv-vendor)
       * Create an IdP
       * @param param the request object
       */
@@ -3242,10 +3602,26 @@ class ObjectIdentityProviderApi {
     }
 }
 exports.ObjectIdentityProviderApi = ObjectIdentityProviderApi;
-const ObservableAPI_30 = require("./ObservableAPI");
+const ObservableAPI_38 = require("./ObservableAPI");
 class ObjectIdentitySourceApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_30.ObservableIdentitySourceApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_38.ObservableIdentitySourceApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Creates a group in an identity source for the given identity source instance
+      * Create an identity source group
+      * @param param the request object
+      */
+    createIdentitySourceGroups(param, options) {
+        return this.api.createIdentitySourceGroups(param.identitySourceId, param.groupsRequestSchema, options).toPromise();
+    }
+    /**
+      * Creates the group memberships for the given identity source group
+      * Create the memberships for the given identity source group
+      * @param param the request object
+      */
+    createIdentitySourceGroupsMemberships(param, options) {
+        return this.api.createIdentitySourceGroupsMemberships(param.identitySourceId, param.groupOrExternalId, param.membershipRequestSchema, options).toPromise();
     }
     /**
       * Creates an identity source session for the given identity source instance
@@ -3256,12 +3632,60 @@ class ObjectIdentitySourceApi {
         return this.api.createIdentitySourceSession(param.identitySourceId, options).toPromise();
     }
     /**
+      * Creates a user in an identity source for the given identity source instance
+      * Create an identity source user
+      * @param param the request object
+      */
+    createIdentitySourceUser(param, options) {
+        return this.api.createIdentitySourceUser(param.identitySourceId, param.userRequestSchema, options).toPromise();
+    }
+    /**
+      * Deletes a group in an identity source for a given identity source ID and group ID
+      * Delete an identity source group
+      * @param param the request object
+      */
+    deleteIdentitySourceGroup(param, options) {
+        return this.api.deleteIdentitySourceGroup(param.identitySourceId, param.groupOrExternalId, options).toPromise();
+    }
+    /**
+      * Deletes group memberships for the specified identity source group using member external IDs
+      * Delete the memberships for the specified identity source group
+      * @param param the request object
+      */
+    deleteIdentitySourceGroupMemberships(param, options) {
+        return this.api.deleteIdentitySourceGroupMemberships(param.identitySourceId, param.groupOrExternalId, param.memberExternalId, options).toPromise();
+    }
+    /**
       * Deletes an identity source session for a given identity source ID and session Id
       * Delete an identity source session
       * @param param the request object
       */
     deleteIdentitySourceSession(param, options) {
         return this.api.deleteIdentitySourceSession(param.identitySourceId, param.sessionId, options).toPromise();
+    }
+    /**
+      * Deletes a user in an identity source for the given identity source instance and external ID
+      * Delete an identity source user
+      * @param param the request object
+      */
+    deleteIdentitySourceUser(param, options) {
+        return this.api.deleteIdentitySourceUser(param.identitySourceId, param.externalId, options).toPromise();
+    }
+    /**
+      * Retrieves a group from an identity source for a given identity source ID and group ID or external ID
+      * Retrieve an identity source group
+      * @param param the request object
+      */
+    getIdentitySourceGroup(param, options) {
+        return this.api.getIdentitySourceGroup(param.identitySourceId, param.groupOrExternalId, options).toPromise();
+    }
+    /**
+      * Retrieves the group memberships for the given identity source group in the given identity source instance
+      * Retrieve the memberships for the given identity source group
+      * @param param the request object
+      */
+    getIdentitySourceGroupMemberships(param, options) {
+        return this.api.getIdentitySourceGroupMemberships(param.identitySourceId, param.groupOrExternalId, param.after, param.limit, options).toPromise();
     }
     /**
       * Retrieves an identity source session for a given identity source ID and session ID
@@ -3272,6 +3696,14 @@ class ObjectIdentitySourceApi {
         return this.api.getIdentitySourceSession(param.identitySourceId, param.sessionId, options).toPromise();
     }
     /**
+      * Retrieves a user by external ID in an identity source for the given identity source instance
+      * Retrieve an identity source user
+      * @param param the request object
+      */
+    getIdentitySourceUser(param, options) {
+        return this.api.getIdentitySourceUser(param.identitySourceId, param.externalId, options).toPromise();
+    }
+    /**
       * Lists all identity source sessions for the given identity source instance
       * List all identity source sessions
       * @param param the request object
@@ -3280,12 +3712,36 @@ class ObjectIdentitySourceApi {
         return this.api.listIdentitySourceSessions(param.identitySourceId, options).toPromise();
     }
     /**
+      * Replaces an existing user for the given identity source instance and external ID
+      * Replace an existing identity source user
+      * @param param the request object
+      */
+    replaceExistingIdentitySourceUser(param, options) {
+        return this.api.replaceExistingIdentitySourceUser(param.identitySourceId, param.externalId, param.userRequestSchema, options).toPromise();
+    }
+    /**
       * Starts the import from the identity source described by the uploaded bulk operations
       * Start the import from the identity source
       * @param param the request object
       */
     startImportFromIdentitySource(param, options) {
         return this.api.startImportFromIdentitySource(param.identitySourceId, param.sessionId, options).toPromise();
+    }
+    /**
+      * Updates a group to an identity source for the given identity source instance and group ID
+      * Update an identity source group
+      * @param param the request object
+      */
+    updateIdentitySourceGroups(param, options) {
+        return this.api.updateIdentitySourceGroups(param.identitySourceId, param.groupOrExternalId, param.groupsRequestSchema, options).toPromise();
+    }
+    /**
+      * Updates a user to an identity source for the given identity source instance and external ID
+      * Update an identity source user
+      * @param param the request object
+      */
+    updateIdentitySourceUsers(param, options) {
+        return this.api.updateIdentitySourceUsers(param.identitySourceId, param.externalId, param.usersUpdateRequestSchema, options).toPromise();
     }
     /**
       * Uploads external IDs of entities that need to be deleted in Okta from the identity source for the given session
@@ -3337,10 +3793,10 @@ class ObjectIdentitySourceApi {
     }
 }
 exports.ObjectIdentitySourceApi = ObjectIdentitySourceApi;
-const ObservableAPI_31 = require("./ObservableAPI");
+const ObservableAPI_39 = require("./ObservableAPI");
 class ObjectInlineHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_31.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_39.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates the inline hook by `inlineHookId`
@@ -3416,10 +3872,10 @@ class ObjectInlineHookApi {
     }
 }
 exports.ObjectInlineHookApi = ObjectInlineHookApi;
-const ObservableAPI_32 = require("./ObservableAPI");
+const ObservableAPI_40 = require("./ObservableAPI");
 class ObjectLinkedObjectApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_32.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_40.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a Linked Object definition
@@ -3455,10 +3911,10 @@ class ObjectLinkedObjectApi {
     }
 }
 exports.ObjectLinkedObjectApi = ObjectLinkedObjectApi;
-const ObservableAPI_33 = require("./ObservableAPI");
+const ObservableAPI_41 = require("./ObservableAPI");
 class ObjectLogStreamApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_33.ObservableLogStreamApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_41.ObservableLogStreamApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a log stream by `logStreamId`
@@ -3518,10 +3974,10 @@ class ObjectLogStreamApi {
     }
 }
 exports.ObjectLogStreamApi = ObjectLogStreamApi;
-const ObservableAPI_34 = require("./ObservableAPI");
+const ObservableAPI_42 = require("./ObservableAPI");
 class ObjectNetworkZoneApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_34.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_42.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a Network Zone by `zoneId`
@@ -3532,7 +3988,7 @@ class ObjectNetworkZoneApi {
         return this.api.activateNetworkZone(param.zoneId, options).toPromise();
     }
     /**
-      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`.
+      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`. > **Note:** To view all properties for an Enhanced Dynamic Network Zone, select `DYNAMIC_V2` from the `type` dropdown list.
       * Create a network zone
       * @param param the request object
       */
@@ -3581,10 +4037,65 @@ class ObjectNetworkZoneApi {
     }
 }
 exports.ObjectNetworkZoneApi = ObjectNetworkZoneApi;
-const ObservableAPI_35 = require("./ObservableAPI");
+const ObservableAPI_43 = require("./ObservableAPI");
+class ObjectOAuth2ResourceServerCredentialsKeysApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_43.ObservableOAuth2ResourceServerCredentialsKeysApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates a custom authorization server public JSON web key by key `id`. > **Note:** You can have only one active key at any given time for the authorization server. When you activate an inactive key, Okta automatically deactivates the current active key.
+      * Activate a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+    activateOAuth2ResourceServerJsonWebKey(param, options) {
+        return this.api.activateOAuth2ResourceServerJsonWebKey(param.authServerId, param.keyId, options).toPromise();
+    }
+    /**
+      * Adds a new JSON Web Key to the custom authorization server`s JSON web keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. Use the [Replace an Authorization Server](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AuthorizationServer/#tag/AuthorizationServer/operation/replaceAuthorizationServer) operation to update the JWKS or [Delete a Custom Authorization Server Public JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/OAuth2ResourceServerCredentialsKeys/#tag/OAuth2ResourceServerCredentialsKeys/operation/deleteOAuth2ResourceServerJsonWebKey) and re-add the key with a `kid`. > **Note:** This API doesn\'t allow you to add a key with an ACTIVE status. You need to add an INACTIVE key first, and then ACTIVATE the key.
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+    addOAuth2ResourceServerJsonWebKey(param, options) {
+        return this.api.addOAuth2ResourceServerJsonWebKey(param.authServerId, param.oAuth2ResourceServerJsonWebKeyRequestBody, options).toPromise();
+    }
+    /**
+      * Deactivates a custom authorization server public JSON web key by key `id`. > **Note:** Deactivating the active key isn\'t allowed if the authorization server has access token encryption enabled. You can activate another key, which makes the current key inactive.
+      * Deactivate a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+    deactivateOAuth2ResourceServerJsonWebKey(param, options) {
+        return this.api.deactivateOAuth2ResourceServerJsonWebKey(param.authServerId, param.keyId, options).toPromise();
+    }
+    /**
+      * Deletes a custom authorization server public JSON web key by key `id`. You can only delete an inactive key.
+      * Delete a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+    deleteOAuth2ResourceServerJsonWebKey(param, options) {
+        return this.api.deleteOAuth2ResourceServerJsonWebKey(param.authServerId, param.keyId, options).toPromise();
+    }
+    /**
+      * Retrieves a custom authorization server public JSON web key by key `id`
+      * Retrieve a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+    getOAuth2ResourceServerJsonWebKey(param, options) {
+        return this.api.getOAuth2ResourceServerJsonWebKey(param.authServerId, param.keyId, options).toPromise();
+    }
+    /**
+      * Lists all the public keys used by the custom authorization server
+      * List all Custom Authorization Server Public JSON Web Keys
+      * @param param the request object
+      */
+    listOAuth2ResourceServerJsonWebKeys(param, options) {
+        return this.api.listOAuth2ResourceServerJsonWebKeys(param.authServerId, options).toPromise();
+    }
+}
+exports.ObjectOAuth2ResourceServerCredentialsKeysApi = ObjectOAuth2ResourceServerCredentialsKeysApi;
+const ObservableAPI_44 = require("./ObservableAPI");
 class ObjectOktaApplicationSettingsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_35.ObservableOktaApplicationSettingsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_44.ObservableOktaApplicationSettingsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the settings for an Okta app (also known as an Okta first-party app)
@@ -3604,10 +4115,57 @@ class ObjectOktaApplicationSettingsApi {
     }
 }
 exports.ObjectOktaApplicationSettingsApi = ObjectOktaApplicationSettingsApi;
-const ObservableAPI_36 = require("./ObservableAPI");
+const ObservableAPI_45 = require("./ObservableAPI");
+class ObjectOktaManagedUserAccountApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_45.ObservableOktaManagedUserAccountApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Creates a new Okta managed user account for managing an Okta Universal Directory user as a privileged account.  You must specify an existing Okta user in your org with the `oktaUserId` request parameter. You can\'t modify the user\'s email or username because they\'re retrieved from the Okta user profile.
+      * Create an Okta managed user account
+      * @param param the request object
+      */
+    createOktaManagedUserAccount(param, options) {
+        return this.api.createOktaManagedUserAccount(param.body, options).toPromise();
+    }
+    /**
+      * Deletes an Okta managed user account specified by ID.  This operation removes the privileged account management for the Okta user, but doesn\'t delete the user from Okta Universal Directory.
+      * Delete an Okta managed user account
+      * @param param the request object
+      */
+    deleteOktaManagedUserAccount(param, options) {
+        return this.api.deleteOktaManagedUserAccount(param.id, options).toPromise();
+    }
+    /**
+      * Retrieves an Okta managed user account specified by ID
+      * Retrieve an Okta managed user account
+      * @param param the request object
+      */
+    getOktaManagedUserAccount(param, options) {
+        return this.api.getOktaManagedUserAccount(param.id, options).toPromise();
+    }
+    /**
+      * Lists all Okta managed user accounts in your org.  Use the `match` parameter to search for accounts where the account name (`name`), username (`username`),  or email (`email`) contains the specified value.
+      * List all Okta managed user accounts
+      * @param param the request object
+      */
+    listOktaManagedUserAccounts(param = {}, options) {
+        return this.api.listOktaManagedUserAccounts(param.limit, param.after, param.match, options).toPromise();
+    }
+    /**
+      * Updates an existing Okta managed user account specified by ID.  You can only update the `name`, `description`, `ownerUserIds`, and `ownerGroupIds` properties. You can\'t modify the `oktaUserId`, `username`, and `email` properties after the account is created.
+      * Update an Okta managed user account
+      * @param param the request object
+      */
+    updateOktaManagedUserAccount(param, options) {
+        return this.api.updateOktaManagedUserAccount(param.id, param.body, options).toPromise();
+    }
+}
+exports.ObjectOktaManagedUserAccountApi = ObjectOktaManagedUserAccountApi;
+const ObservableAPI_46 = require("./ObservableAPI");
 class ObjectOktaPersonalSettingsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_36.ObservableOktaPersonalSettingsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_46.ObservableOktaPersonalSettingsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Lists all blocked email domains which are excluded from app migration
@@ -3635,10 +4193,25 @@ class ObjectOktaPersonalSettingsApi {
     }
 }
 exports.ObjectOktaPersonalSettingsApi = ObjectOktaPersonalSettingsApi;
-const ObservableAPI_37 = require("./ObservableAPI");
+const ObservableAPI_47 = require("./ObservableAPI");
+class ObjectOperationsIntegrationApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_47.ObservableOperationsIntegrationApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Retrieves an asynchronous operation and its current status
+      * Retrieve an operation status
+      * @param param the request object
+      */
+    getOperationStatus(param, options) {
+        return this.api.getOperationStatus(param.operationId, options).toPromise();
+    }
+}
+exports.ObjectOperationsIntegrationApi = ObjectOperationsIntegrationApi;
+const ObservableAPI_48 = require("./ObservableAPI");
 class ObjectOrgCreatorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_37.ObservableOrgCreatorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_48.ObservableOrgCreatorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates an org (child org) that has the same features as the current requesting org (parent org). A child org inherits any new features added to the parent org, but new features added to the child org aren\'t propagated back to the parent org. > **Notes:** > * Some features associated with products, such as Atspoke, Workflows, and Okta Identity Governance, aren\'t propagated to the child org. > * Wait at least 30 seconds after a 201-Created response before you make API requests to the new child org. > * For rate limits, see [Org creation rate limits](https://developer.okta.com/docs/reference/rl-additional-limits/#org-creation-rate-limits).
@@ -3650,10 +4223,10 @@ class ObjectOrgCreatorApi {
     }
 }
 exports.ObjectOrgCreatorApi = ObjectOrgCreatorApi;
-const ObservableAPI_38 = require("./ObservableAPI");
+const ObservableAPI_49 = require("./ObservableAPI");
 class ObjectOrgSettingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_38.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_49.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Assigns the [Super Admin role](https://help.okta.com/okta_help.htm?type=oie&id=ext_superadmin) as the default role for new public client apps
@@ -3889,10 +4462,10 @@ class ObjectOrgSettingApi {
     }
 }
 exports.ObjectOrgSettingApi = ObjectOrgSettingApi;
-const ObservableAPI_39 = require("./ObservableAPI");
+const ObservableAPI_50 = require("./ObservableAPI");
 class ObjectPolicyApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_39.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_50.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a policy
@@ -4039,7 +4612,7 @@ class ObjectPolicyApi {
         return this.api.listPolicyRules(param.policyId, param.limit, options).toPromise();
     }
     /**
-      * Maps a resource to a policy identified by `policyId`
+      * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
       * Map a resource to a policy
       * @param param the request object
       */
@@ -4064,10 +4637,10 @@ class ObjectPolicyApi {
     }
 }
 exports.ObjectPolicyApi = ObjectPolicyApi;
-const ObservableAPI_40 = require("./ObservableAPI");
+const ObservableAPI_51 = require("./ObservableAPI");
 class ObjectPrincipalRateLimitApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_40.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_51.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new principal rate limit entity. Okta only allows one principal rate limit entity per org and principal.
@@ -4103,10 +4676,10 @@ class ObjectPrincipalRateLimitApi {
     }
 }
 exports.ObjectPrincipalRateLimitApi = ObjectPrincipalRateLimitApi;
-const ObservableAPI_41 = require("./ObservableAPI");
+const ObservableAPI_52 = require("./ObservableAPI");
 class ObjectPrivilegedResourceApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_41.ObservablePrivilegedResourceApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_52.ObservablePrivilegedResourceApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Claims a specified privileged resource for management. This also marks the `status` as `ACTIVE`.
@@ -4182,10 +4755,10 @@ class ObjectPrivilegedResourceApi {
     }
 }
 exports.ObjectPrivilegedResourceApi = ObjectPrivilegedResourceApi;
-const ObservableAPI_42 = require("./ObservableAPI");
+const ObservableAPI_53 = require("./ObservableAPI");
 class ObjectProfileMappingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_42.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_53.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves a single profile mapping referenced by its ID
@@ -4213,10 +4786,10 @@ class ObjectProfileMappingApi {
     }
 }
 exports.ObjectProfileMappingApi = ObjectProfileMappingApi;
-const ObservableAPI_43 = require("./ObservableAPI");
+const ObservableAPI_54 = require("./ObservableAPI");
 class ObjectPushProviderApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_43.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_54.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new push provider. Each Push Provider must have a unique `name`.
@@ -4260,10 +4833,10 @@ class ObjectPushProviderApi {
     }
 }
 exports.ObjectPushProviderApi = ObjectPushProviderApi;
-const ObservableAPI_44 = require("./ObservableAPI");
+const ObservableAPI_55 = require("./ObservableAPI");
 class ObjectRateLimitSettingsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_44.ObservableRateLimitSettingsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_55.ObservableRateLimitSettingsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the currently configured Rate Limit Admin Notification Settings
@@ -4315,10 +4888,10 @@ class ObjectRateLimitSettingsApi {
     }
 }
 exports.ObjectRateLimitSettingsApi = ObjectRateLimitSettingsApi;
-const ObservableAPI_45 = require("./ObservableAPI");
+const ObservableAPI_56 = require("./ObservableAPI");
 class ObjectRealmApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_45.ObservableRealmApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_56.ObservableRealmApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new realm
@@ -4345,7 +4918,7 @@ class ObjectRealmApi {
         return this.api.getRealm(param.realmId, options).toPromise();
     }
     /**
-      * Lists all Realms
+      * Lists all realms.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all realms
       * @param param the request object
       */
@@ -4362,10 +4935,10 @@ class ObjectRealmApi {
     }
 }
 exports.ObjectRealmApi = ObjectRealmApi;
-const ObservableAPI_46 = require("./ObservableAPI");
+const ObservableAPI_57 = require("./ObservableAPI");
 class ObjectRealmAssignmentApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_46.ObservableRealmAssignmentApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_57.ObservableRealmAssignmentApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a realm assignment
@@ -4441,10 +5014,10 @@ class ObjectRealmAssignmentApi {
     }
 }
 exports.ObjectRealmAssignmentApi = ObjectRealmAssignmentApi;
-const ObservableAPI_47 = require("./ObservableAPI");
+const ObservableAPI_58 = require("./ObservableAPI");
 class ObjectResourceSetApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_47.ObservableResourceSetApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_58.ObservableResourceSetApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Adds more members to a role resource set binding
@@ -4479,7 +5052,7 @@ class ObjectResourceSetApi {
         return this.api.createResourceSet(param.instance, options).toPromise();
     }
     /**
-      * Creates a binding for the resource set, custom role, and members (users or groups)
+      * Creates a binding for the resource set, custom role, and members (users or groups)  > **Note:** If you use a custom role with permissions that don\'t apply to the resources in the resource set, it doesn\'t affect the admin role. For example,  the `okta.users.userprofile.manage` permission gives the admin no privileges if it\'s granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`  resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
       * Create a role resource set binding
       * @param param the request object
       */
@@ -4564,7 +5137,7 @@ class ObjectResourceSetApi {
       * @param param the request object
       */
     listResourceSetResources(param, options) {
-        return this.api.listResourceSetResources(param.resourceSetId, options).toPromise();
+        return this.api.listResourceSetResources(param.resourceSetId, param.after, param.limit, options).toPromise();
     }
     /**
       * Lists all resource sets with pagination support
@@ -4575,7 +5148,7 @@ class ObjectResourceSetApi {
         return this.api.listResourceSets(param.after, options).toPromise();
     }
     /**
-      * Replaces the label and description of a resource set
+      * Replaces the label and description of a resource set. See [Supported resources](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#supported-resources).
       * Replace a resource set
       * @param param the request object
       */
@@ -4600,10 +5173,10 @@ class ObjectResourceSetApi {
     }
 }
 exports.ObjectResourceSetApi = ObjectResourceSetApi;
-const ObservableAPI_48 = require("./ObservableAPI");
+const ObservableAPI_59 = require("./ObservableAPI");
 class ObjectRiskEventApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_48.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_59.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
@@ -4615,10 +5188,10 @@ class ObjectRiskEventApi {
     }
 }
 exports.ObjectRiskEventApi = ObjectRiskEventApi;
-const ObservableAPI_49 = require("./ObservableAPI");
+const ObservableAPI_60 = require("./ObservableAPI");
 class ObjectRiskProviderApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_49.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_60.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a risk provider object. You can create a maximum of three risk provider objects.
@@ -4662,10 +5235,10 @@ class ObjectRiskProviderApi {
     }
 }
 exports.ObjectRiskProviderApi = ObjectRiskProviderApi;
-const ObservableAPI_50 = require("./ObservableAPI");
+const ObservableAPI_61 = require("./ObservableAPI");
 class ObjectRoleAssignmentApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_50.ObservableRoleAssignmentApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_61.ObservableRoleAssignmentApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a client app.  You can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
@@ -4797,10 +5370,10 @@ class ObjectRoleAssignmentApi {
     }
 }
 exports.ObjectRoleAssignmentApi = ObjectRoleAssignmentApi;
-const ObservableAPI_51 = require("./ObservableAPI");
+const ObservableAPI_62 = require("./ObservableAPI");
 class ObjectRoleTargetApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_51.ObservableRoleTargetApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_62.ObservableRoleTargetApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Assigns all apps as target to an `APP_ADMIN` role
@@ -5012,10 +5585,10 @@ class ObjectRoleTargetApi {
     }
 }
 exports.ObjectRoleTargetApi = ObjectRoleTargetApi;
-const ObservableAPI_52 = require("./ObservableAPI");
+const ObservableAPI_63 = require("./ObservableAPI");
 class ObjectSSFReceiverApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_52.ObservableSSFReceiverApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_63.ObservableSSFReceiverApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a Security Events Provider instance by setting its status to `ACTIVE`. This operation resumes the flow of events from the Security Events Provider to Okta.
@@ -5075,10 +5648,10 @@ class ObjectSSFReceiverApi {
     }
 }
 exports.ObjectSSFReceiverApi = ObjectSSFReceiverApi;
-const ObservableAPI_53 = require("./ObservableAPI");
+const ObservableAPI_64 = require("./ObservableAPI");
 class ObjectSSFSecurityEventTokenApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_53.ObservableSSFSecurityEventTokenApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_64.ObservableSSFSecurityEventTokenApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Publishes a Security Event Token (SET) sent by a Security Events Provider. After the token is verified, Okta ingests the event and performs any appropriate action.
@@ -5090,10 +5663,10 @@ class ObjectSSFSecurityEventTokenApi {
     }
 }
 exports.ObjectSSFSecurityEventTokenApi = ObjectSSFSecurityEventTokenApi;
-const ObservableAPI_54 = require("./ObservableAPI");
+const ObservableAPI_65 = require("./ObservableAPI");
 class ObjectSSFTransmitterApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_54.ObservableSSFTransmitterApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_65.ObservableSSFTransmitterApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates an SSF Stream for an event receiver to start receiving security events in the form of Security Event Tokens (SETs) from Okta.  An SSF Stream is associated with the Client ID of the OAuth 2.0 access token used to create the stream. The Client ID is provided by Okta for an [OAuth 2.0 app integration](https://help.okta.com/okta_help.htm?id=ext_Apps_App_Integration_Wizard-oidc). One SSF Stream is allowed for each Client ID, hence, one SSF Stream is allowed for each app integration in Okta.  A maximum of 10 SSF Stream configurations can be created for one org.
@@ -5161,10 +5734,10 @@ class ObjectSSFTransmitterApi {
     }
 }
 exports.ObjectSSFTransmitterApi = ObjectSSFTransmitterApi;
-const ObservableAPI_55 = require("./ObservableAPI");
+const ObservableAPI_66 = require("./ObservableAPI");
 class ObjectSchemaApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_55.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_66.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the default schema for an app user.  The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to apps. All users assigned to a given app use the same app user schema. Therefore, unlike the user schema operations, the app user schema operations all specify `default` and don\'t accept a schema ID.
@@ -5232,10 +5805,10 @@ class ObjectSchemaApi {
     }
 }
 exports.ObjectSchemaApi = ObjectSchemaApi;
-const ObservableAPI_56 = require("./ObservableAPI");
+const ObservableAPI_67 = require("./ObservableAPI");
 class ObjectServiceAccountApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_56.ObservableServiceAccountApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_67.ObservableServiceAccountApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new app service account for managing an app account
@@ -5319,13 +5892,13 @@ class ObjectServiceAccountApi {
     }
 }
 exports.ObjectServiceAccountApi = ObjectServiceAccountApi;
-const ObservableAPI_57 = require("./ObservableAPI");
+const ObservableAPI_68 = require("./ObservableAPI");
 class ObjectSessionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_57.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_68.ObservableSessionApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Closes the session for the user who is currently signed in. Use this method in a browser-based app to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Close the current session
       * @param param the request object
       */
@@ -5333,7 +5906,7 @@ class ObjectSessionApi {
         return this.api.closeCurrentSession(param.cookie, options).toPromise();
     }
     /**
-      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
       * Create a session with session token
       * @param param the request object
       */
@@ -5341,7 +5914,7 @@ class ObjectSessionApi {
         return this.api.createSession(param.createSessionRequest, options).toPromise();
     }
     /**
-      * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Retrieves session information for the current user. Use this method in a browser-based app to determine if the user is signed in.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Retrieve the current session
       * @param param the request object
       */
@@ -5349,7 +5922,7 @@ class ObjectSessionApi {
         return this.api.getCurrentSession(param.cookie, options).toPromise();
     }
     /**
-      * Retrieves information about the Session specified by the given session ID
+      * Retrieves information about the session specified by the given session ID
       * Retrieve a session
       * @param param the request object
       */
@@ -5357,7 +5930,7 @@ class ObjectSessionApi {
         return this.api.getSession(param.sessionId, options).toPromise();
     }
     /**
-      * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Refreshes the session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Refresh the current session
       * @param param the request object
       */
@@ -5365,7 +5938,7 @@ class ObjectSessionApi {
         return this.api.refreshCurrentSession(param.cookie, options).toPromise();
     }
     /**
-      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
+      * Refreshes an existing session using the `id` for that session. A successful response contains the refreshed session with an updated `expiresAt` timestamp.
       * Refresh a session
       * @param param the request object
       */
@@ -5373,7 +5946,7 @@ class ObjectSessionApi {
         return this.api.refreshSession(param.sessionId, options).toPromise();
     }
     /**
-      * Revokes the specified Session
+      * Revokes the specified session
       * Revoke a session
       * @param param the request object
       */
@@ -5382,10 +5955,10 @@ class ObjectSessionApi {
     }
 }
 exports.ObjectSessionApi = ObjectSessionApi;
-const ObservableAPI_58 = require("./ObservableAPI");
+const ObservableAPI_69 = require("./ObservableAPI");
 class ObjectSubscriptionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_58.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_69.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Lists all subscriptions available to a specified Role
@@ -5453,10 +6026,10 @@ class ObjectSubscriptionApi {
     }
 }
 exports.ObjectSubscriptionApi = ObjectSubscriptionApi;
-const ObservableAPI_59 = require("./ObservableAPI");
+const ObservableAPI_70 = require("./ObservableAPI");
 class ObjectSystemLogApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_59.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_70.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Lists all System Log events  See [System Log query](https://developer.okta.com/docs/reference/system-log-query/) for further details and examples, and [System Log filters and search](https://help.okta.com/okta_help.htm?type=oie&id=csh-syslog-filters) for common use cases.  By default, 100 System Log events are returned. If there are more events, see the [header link](https://developer.okta.com/docs/api/#link-header) for the `next` link, or increase the number of returned objects using the `limit` parameter.  >**Note:** The value of the `clientSecret` property in the System Log is secured by a hashing function, and isn\'t the value used during authentication.
@@ -5468,10 +6041,10 @@ class ObjectSystemLogApi {
     }
 }
 exports.ObjectSystemLogApi = ObjectSystemLogApi;
-const ObservableAPI_60 = require("./ObservableAPI");
+const ObservableAPI_71 = require("./ObservableAPI");
 class ObjectTemplateApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_60.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_71.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new custom SMS template
@@ -5523,10 +6096,10 @@ class ObjectTemplateApi {
     }
 }
 exports.ObjectTemplateApi = ObjectTemplateApi;
-const ObservableAPI_61 = require("./ObservableAPI");
+const ObservableAPI_72 = require("./ObservableAPI");
 class ObjectThreatInsightApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_61.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_72.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Retrieves the ThreatInsight configuration for the org
@@ -5546,10 +6119,10 @@ class ObjectThreatInsightApi {
     }
 }
 exports.ObjectThreatInsightApi = ObjectThreatInsightApi;
-const ObservableAPI_62 = require("./ObservableAPI");
+const ObservableAPI_73 = require("./ObservableAPI");
 class ObjectTrustedOriginApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_62.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_73.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a trusted origin. Sets the `status` to `ACTIVE`.
@@ -5609,10 +6182,10 @@ class ObjectTrustedOriginApi {
     }
 }
 exports.ObjectTrustedOriginApi = ObjectTrustedOriginApi;
-const ObservableAPI_63 = require("./ObservableAPI");
+const ObservableAPI_74 = require("./ObservableAPI");
 class ObjectUISchemaApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_63.ObservableUISchemaApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_74.ObservableUISchemaApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates an input for an enrollment form
@@ -5672,10 +6245,25 @@ class ObjectUISchemaApi {
     }
 }
 exports.ObjectUISchemaApi = ObjectUISchemaApi;
-const ObservableAPI_64 = require("./ObservableAPI");
+const ObservableAPI_75 = require("./ObservableAPI");
+class ObjectUnconfirmedUsersApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_75.ObservableUnconfirmedUsersApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Lists all unconfirmed users for an app
+      * List all unconfirmed users
+      * @param param the request object
+      */
+    listUnconfirmedUsers(param, options) {
+        return this.api.listUnconfirmedUsers(param.appId, param.after, param.limit, options).toPromise();
+    }
+}
+exports.ObjectUnconfirmedUsersApi = ObjectUnconfirmedUsersApi;
+const ObservableAPI_76 = require("./ObservableAPI");
 class ObjectUserApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_64.ObservableUserApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_76.ObservableUserApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a user.  Perform this operation only on users with a `STAGED` or `DEPROVISIONED` status. Activation of a user is an asynchronous operation. * The user has the `transitioningToStatus` property with an `ACTIVE` value during activation. This indicates that the user hasn\'t completed the asynchronous operation. * The user has an `ACTIVE` status when the activation process completes.  Users who don\'t have a password must complete the welcome flow by visiting the activation link to complete the transition to `ACTIVE` status.  > **Note:** If you want to send a branded user activation email, change the subdomain of your request to the custom domain that\'s associated with the brand. > For example, change `subdomain.okta.com` to `custom.domain.one`. See [Multibrand and custom domains](https://developer.okta.com/docs/concepts/brands/#multibrand-and-custom-domains).  > **Note:** If you have optional password enabled, visiting the activation link is optional for users who aren\'t required to enroll a password. > See [Create user with optional password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#create-user-with-optional-password).  > **Legal disclaimer** > After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, > you agreed not to use Okta\'s service/product to spam and/or send unsolicited messages. > Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all > liability associated with, the activation email\'s content. You, and you alone, bear responsibility for the emails sent to any recipients.
@@ -5710,7 +6298,7 @@ class ObjectUserApi {
         return this.api.createUser(param.body, param.activate, param.provider, param.nextLogin, options).toPromise();
     }
     /**
-      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.
+      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.  > **Note:** Users with the `DEPROVISIONED` status won\'t have their profiles updated when running the [Update a user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/updateUser) endpoint unless you have the **Edit Deactived User Profile Updates** option turned on in the Admin Console. See [Edit deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).
       * Deactivate a user
       * @param param the request object
       */
@@ -5934,12 +6522,12 @@ class ObjectUserApi {
         return this.api.listUserIdentityProviders(param.userId, options).toPromise();
     }
     /**
-      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Note:** This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead.
+      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Notes:**  >  * This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead. >  * The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all users
       * @param param the request object
       */
     listUsers(param = {}, options) {
-        return this.api.listUsers(param.contentType, param.search, param.filter, param.q, param.after, param.limit, param.sortBy, param.sortOrder, param.expand, options).toPromise();
+        return this.api.listUsers(param.contentType, param.search, param.filter, param.q, param.after, param.limit, param.sortBy, param.sortOrder, param.fields, param.expand, options).toPromise();
     }
     /**
       * Reactivates a user.  Perform this operation only on users with a `PROVISIONED` or `RECOVERY` [status](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!c=200&path=status&t=response). This operation restarts the activation workflow if for some reason the user activation wasn\'t completed when using the `activationToken` from [Activate User](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserLifecycle/#tag/UserLifecycle/operation/activateUser).  Users that don\'t have a password must complete the flow by completing the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword) flow and MFA enrollment steps to transition the user to `ACTIVE` status.  If `sendEmail` is `false`, returns an activation link for the user to set up their account. The activation token can be used to create a custom activation link.
@@ -5982,7 +6570,7 @@ class ObjectUserApi {
         return this.api.revokeGrantsForUserAndClient(param.userId, param.clientId, options).toPromise();
     }
     /**
-      * Revokes the specified refresh token
+      * Revokes the specified refresh and access tokens
       * Revoke a token for a client
       * @param param the request object
       */
@@ -6014,12 +6602,12 @@ class ObjectUserApi {
         return this.api.revokeUserGrants(param.userId, options).toPromise();
     }
     /**
-      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user. > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.  You can also clear the user\'s remembered factors for all devices using the `forgetDevices` parameter. See [forgetDevices](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserSessions/#tag/UserSessions/operation/revokeUserSessions!in=query&path=forgetDevices&t=request). > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
       * Revoke all user sessions
       * @param param the request object
       */
     revokeUserSessions(param, options) {
-        return this.api.revokeUserSessions(param.userId, param.oauthTokens, options).toPromise();
+        return this.api.revokeUserSessions(param.userId, param.oauthTokens, param.forgetDevices, options).toPromise();
     }
     /**
       * Assigns the first user as the `associated` and the second user as the `primary` for the specified relationship.  If the first user is already associated with a different `primary` for this relationship, the previous link is removed. A linked object relationship can specify only one primary user for an associated user.
@@ -6062,7 +6650,7 @@ class ObjectUserApi {
         return this.api.unsuspendUser(param.userId, options).toPromise();
     }
     /**
-      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request. > **Note**: Currently, the user type of a user can only be changed via a full replacement PUT operation. If the request parameters of a partial update include the type element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type.  > **Note**: To update a current user\'s profile with partial semantics, the `/api/v1/users/me` endpoint can be invoked. > > A user can only update profile properties for which the user has write access. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification.  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
+      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request.  > **Notes:**  > * Currently, the user type of a user can only be changed using a full replacement `PUT` operation. If the request parameters of a partial update include the `type` element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type. > > * To update a current user\'s profile with partial semantics, you can use the `/api/v1/users/me` endpoint. But, a user can only update profile properties that they have write access for. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification. > > * You can update user profiles of users in the `DEPROVISIONED` status if you have the **Edit Deactivated User Profile Updates** option turned on in the Admin Console. See [deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
       * Update a user
       * @param param the request object
       */
@@ -6079,10 +6667,10 @@ class ObjectUserApi {
     }
 }
 exports.ObjectUserApi = ObjectUserApi;
-const ObservableAPI_65 = require("./ObservableAPI");
+const ObservableAPI_77 = require("./ObservableAPI");
 class ObjectUserAuthenticatorEnrollmentsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_65.ObservableUserAuthenticatorEnrollmentsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_77.ObservableUserAuthenticatorEnrollmentsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a Phone authenticator enrollment that\'s automatically activated
@@ -6114,7 +6702,7 @@ class ObjectUserAuthenticatorEnrollmentsApi {
       * @param param the request object
       */
     getAuthenticatorEnrollment(param, options) {
-        return this.api.getAuthenticatorEnrollment(param.userId, param.enrollmentId, options).toPromise();
+        return this.api.getAuthenticatorEnrollment(param.userId, param.enrollmentId, param.discloseIdentifiers, options).toPromise();
     }
     /**
       * Lists all authenticator enrollments of the specified user
@@ -6122,14 +6710,14 @@ class ObjectUserAuthenticatorEnrollmentsApi {
       * @param param the request object
       */
     listAuthenticatorEnrollments(param, options) {
-        return this.api.listAuthenticatorEnrollments(param.userId, options).toPromise();
+        return this.api.listAuthenticatorEnrollments(param.userId, param.discloseIdentifiers, options).toPromise();
     }
 }
 exports.ObjectUserAuthenticatorEnrollmentsApi = ObjectUserAuthenticatorEnrollmentsApi;
-const ObservableAPI_66 = require("./ObservableAPI");
+const ObservableAPI_78 = require("./ObservableAPI");
 class ObjectUserFactorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_66.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_78.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a factor. Some factors (`call`, `email`, `push`, `sms`, `token:software:totp`, `u2f`, and `webauthn`) require activation to complete the enrollment process.  Okta enforces a rate limit of five activation attempts within five minutes. After a user exceeds the rate limit, Okta returns an error message.  > **Notes:**  > * If the user exceeds their SMS, call, or email factor activation rate limit, then an [OTP resend request](./#tag/UserFactor/operation/resendEnrollFactor) isn\'t allowed for the same factor. > * You can\'t use the Factors API to activate Okta Fastpass (`signed_nonce`) for a user. See [Configure Okta Fastpass](https://help.okta.com/okta_help.htm?type=oie&id=ext-fp-configure).
@@ -6237,10 +6825,10 @@ class ObjectUserFactorApi {
     }
 }
 exports.ObjectUserFactorApi = ObjectUserFactorApi;
-const ObservableAPI_67 = require("./ObservableAPI");
+const ObservableAPI_79 = require("./ObservableAPI");
 class ObjectUserTypeApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_67.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_79.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new user type. Okta automatically creates a `default` user type for your org. You may add up to nine additional user types. > **Note**: New user types are based on the current default schema template. Modifications to this schema do not automatically propagate to previously created user types.
@@ -6292,10 +6880,10 @@ class ObjectUserTypeApi {
     }
 }
 exports.ObjectUserTypeApi = ObjectUserTypeApi;
-const ObservableAPI_68 = require("./ObservableAPI");
+const ObservableAPI_80 = require("./ObservableAPI");
 class ObjectWebAuthnPreregistrationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_68.ObservableWebAuthnPreregistrationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_80.ObservableWebAuthnPreregistrationApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a preregistered WebAuthn factor. As part of this operation, Okta first decrypts and verifies the factor PIN and enrollment data sent by the fulfillment provider.
@@ -6355,10 +6943,10 @@ class ObjectWebAuthnPreregistrationApi {
     }
 }
 exports.ObjectWebAuthnPreregistrationApi = ObjectWebAuthnPreregistrationApi;
-const ObservableAPI_69 = require("./ObservableAPI");
+const ObservableAPI_81 = require("./ObservableAPI");
 class ObjectYourOinIntegrationsApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_69.ObservableYourOinIntegrationsApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_81.ObservableYourOinIntegrationsApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates an OIN Integration submission for verification and publication
@@ -6369,6 +6957,22 @@ class ObjectYourOinIntegrationsApi {
         return this.api.createSubmission(param.submissionRequest, options).toPromise();
     }
     /**
+      * Retrieves all actions for a specific capability in an OIN Integration submission
+      * Retrieve all actions for OIN integration
+      * @param param the request object
+      */
+    getSubmissionActions(param, options) {
+        return this.api.getSubmissionActions(param.submissionId, param.capability, options).toPromise();
+    }
+    /**
+      * Retrieves the authentication settings for an OIN Integration submission
+      * Retrieve the authentication settings
+      * @param param the request object
+      */
+    getSubmissionAuthSettings(param, options) {
+        return this.api.getSubmissionAuthSettings(param.submissionId, options).toPromise();
+    }
+    /**
       * Retrieves an OIN Integration by ID
       * Retrieve an OIN integration
       * @param param the request object
@@ -6377,12 +6981,36 @@ class ObjectYourOinIntegrationsApi {
         return this.api.getSubmissionByOperationId(param.submissionId, options).toPromise();
     }
     /**
+      * Retrieves the tenant settings for an OIN Integration submission
+      * Retrieve the tenant settings
+      * @param param the request object
+      */
+    getSubmissionTenantSettings(param, options) {
+        return this.api.getSubmissionTenantSettings(param.submissionId, options).toPromise();
+    }
+    /**
       * Retrieves the testing information for an existing OIN Integration
       * Retrieve an OIN integration testing information
       * @param param the request object
       */
     getSubmissionTestInfo(param, options) {
         return this.api.getSubmissionTestInfo(param.submissionId, options).toPromise();
+    }
+    /**
+      * Lists all available actions from an actions provider (such as Workflows) for a specific OIN integration
+      * List all available actions for an OIN integration
+      * @param param the request object
+      */
+    listAvailableActions(param, options) {
+        return this.api.listAvailableActions(param.submissionId, param.capability, param.actionsProviderType, options).toPromise();
+    }
+    /**
+      * Lists all capabilities for an OIN Integration submission
+      * List all supported capabilities
+      * @param param the request object
+      */
+    listSubmissionCapabilities(param, options) {
+        return this.api.listSubmissionCapabilities(param.submissionId, options).toPromise();
     }
     /**
       * Lists all OIN Integration submissions created through the org
@@ -6409,6 +7037,14 @@ class ObjectYourOinIntegrationsApi {
         return this.api.submitSubmission(param.submissionId, options).toPromise();
     }
     /**
+      * Uploads a default logo to the OIN submission. The image must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
+      * Upload a default logo for an OIN integration
+      * @param param the request object
+      */
+    uploadSubmissionDefaultLogo(param = {}, options) {
+        return this.api.uploadSubmissionDefaultLogo(param.file, options).toPromise();
+    }
+    /**
       * Uploads a logo to your org. The image uploaded must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
       * Upload an OIN integration logo
       * @param param the request object
@@ -6417,12 +7053,52 @@ class ObjectYourOinIntegrationsApi {
         return this.api.uploadSubmissionLogo(param.file, options).toPromise();
     }
     /**
+      * Upserts (adds or replaces) actions for a specific capability in an OIN Integration submission
+      * Upsert the submission actions
+      * @param param the request object
+      */
+    upsertSubmissionActions(param, options) {
+        return this.api.upsertSubmissionActions(param.submissionId, param.capability, param.submissionActions, options).toPromise();
+    }
+    /**
+      * Upserts (adds or replaces) authentication settings for an OIN Integration submission
+      * Upsert the submission authentication settings
+      * @param param the request object
+      */
+    upsertSubmissionAuthSettings(param, options) {
+        return this.api.upsertSubmissionAuthSettings(param.submissionId, param.authSettings, options).toPromise();
+    }
+    /**
+      * Upserts (adds or replaces) capabilities for an OIN Integration submission
+      * Upsert the submission supported capabilities
+      * @param param the request object
+      */
+    upsertSubmissionCapabilities(param, options) {
+        return this.api.upsertSubmissionCapabilities(param.submissionId, param.submissionCapabilities, options).toPromise();
+    }
+    /**
+      * Upserts (adds or replaces) tenant settings for an OIN Integration submission
+      * Upsert the submission tenant settings
+      * @param param the request object
+      */
+    upsertSubmissionTenantSettings(param, options) {
+        return this.api.upsertSubmissionTenantSettings(param.submissionId, param.tenantSettings, options).toPromise();
+    }
+    /**
       * Upserts (adds or replaces) testing information for an OIN Integration
       * Upsert an OIN integration testing information
       * @param param the request object
       */
     upsertSubmissionTestInfo(param, options) {
         return this.api.upsertSubmissionTestInfo(param.submissionId, param.testInfo, options).toPromise();
+    }
+    /**
+      * Verifies the submission actions\' correctness with an actions provider, such as Workflows
+      * Verify the submission actions
+      * @param param the request object
+      */
+    verifyActions(param, options) {
+        return this.api.verifyActions(param.submissionId, param.capability, param.actionsProviderType, options).toPromise();
     }
 }
 exports.ObjectYourOinIntegrationsApi = ObjectYourOinIntegrationsApi;

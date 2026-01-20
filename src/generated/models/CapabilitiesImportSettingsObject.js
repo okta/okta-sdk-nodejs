@@ -29,10 +29,10 @@ exports.CapabilitiesImportSettingsObject = void 0;
 * Defines import settings
 */
 class CapabilitiesImportSettingsObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesImportSettingsObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesImportSettingsObject = CapabilitiesImportSettingsObject;

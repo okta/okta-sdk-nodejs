@@ -29,10 +29,10 @@ exports.AcsEndpoint = void 0;
 * An array of ACS endpoints. You can configure a maximum of 100 endpoints.
 */
 class AcsEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AcsEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AcsEndpoint = AcsEndpoint;

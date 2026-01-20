@@ -65,5 +65,5 @@ export declare class Office365Application {
     }[];
   constructor();
 }
-export declare type Office365ApplicationNameEnum = 'office365';
-export declare type Office365ApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_1_1';
+export type Office365ApplicationNameEnum = 'office365';
+export type Office365ApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_1_1';

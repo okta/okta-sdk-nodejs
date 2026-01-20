@@ -29,10 +29,10 @@ exports.PasswordPolicyRuleConditions = void 0;
 * Specifies conditions that must be met during policy evaluation to apply the rule. All policy conditions and conditions for at least one rule must be met to apply the settings specified in the policy and the associated rule.
 */
 class PasswordPolicyRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyRuleConditions = PasswordPolicyRuleConditions;

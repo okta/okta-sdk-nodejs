@@ -45,4 +45,4 @@ export declare class UserFactorToken extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorTokenProviderEnum = 'RSA' | 'SYMANTEC';
+export type UserFactorTokenProviderEnum = 'RSA' | 'SYMANTEC';

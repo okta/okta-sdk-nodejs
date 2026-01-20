@@ -29,10 +29,10 @@ exports.AuthenticatorKeyTacProvider = void 0;
 * Settings for the TAC authenticator
 */
 class AuthenticatorKeyTacProvider {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyTacProvider.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyTacProvider = AuthenticatorKeyTacProvider;

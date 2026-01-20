@@ -25,4 +25,4 @@
 /**
 * Status
 */
-export declare type GrantOrTokenStatus = 'ACTIVE' | 'REVOKED';
+export type GrantOrTokenStatus = 'ACTIVE' | 'REVOKED';

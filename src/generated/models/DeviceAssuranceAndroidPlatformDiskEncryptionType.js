@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceAssuranceAndroidPlatformDiskEncryptionType = void 0;
 class DeviceAssuranceAndroidPlatformDiskEncryptionType {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceAndroidPlatformDiskEncryptionType.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceAndroidPlatformDiskEncryptionType = DeviceAssuranceAndroidPlatformDiskEncryptionType;

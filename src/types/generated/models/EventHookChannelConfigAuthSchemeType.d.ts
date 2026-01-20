@@ -25,4 +25,4 @@
 /**
 * The authentication scheme type. Currently only supports `HEADER`.
 */
-export declare type EventHookChannelConfigAuthSchemeType = 'HEADER';
+export type EventHookChannelConfigAuthSchemeType = 'HEADER';

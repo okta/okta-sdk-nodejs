@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type UserSchemaAttributeType = 'array' | 'boolean' | 'integer' | 'number' | 'string';
+export type UserSchemaAttributeType = 'array' | 'boolean' | 'integer' | 'number' | 'string';

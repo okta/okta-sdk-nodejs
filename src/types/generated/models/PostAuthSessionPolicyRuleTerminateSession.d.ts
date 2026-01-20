@@ -42,4 +42,4 @@ export declare class PostAuthSessionPolicyRuleTerminateSession {
     }[];
   constructor();
 }
-export declare type PostAuthSessionPolicyRuleTerminateSessionActionEnum = 'TERMINATE_SESSION';
+export type PostAuthSessionPolicyRuleTerminateSessionActionEnum = 'TERMINATE_SESSION';

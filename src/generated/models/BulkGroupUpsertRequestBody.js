@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BulkGroupUpsertRequestBody = void 0;
 class BulkGroupUpsertRequestBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BulkGroupUpsertRequestBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BulkGroupUpsertRequestBody = BulkGroupUpsertRequestBody;

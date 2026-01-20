@@ -33,7 +33,7 @@ import { UserImportResponse } from './../models/UserImportResponse';
  * Type
  * @export
  */
-export declare type ExecuteInlineHook200Response = PasswordImportResponse | RegistrationInlineHookResponse | SAMLHookResponse | TelephonyResponse | TokenHookResponse | UserImportResponse;
+export type ExecuteInlineHook200Response = PasswordImportResponse | RegistrationInlineHookResponse | SAMLHookResponse | TelephonyResponse | TokenHookResponse | UserImportResponse;
 /**
 * @type ExecuteInlineHook200ResponseClass
 * @export

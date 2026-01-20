@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogStreamSelfLink = void 0;
 class LogStreamSelfLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogStreamSelfLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogStreamSelfLink = LogStreamSelfLink;

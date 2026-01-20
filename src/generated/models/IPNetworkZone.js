@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.IPNetworkZone = void 0;
 const NetworkZone_1 = require('./../models/NetworkZone');
 class IPNetworkZone extends NetworkZone_1.NetworkZone {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(IPNetworkZone.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'IP';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(IPNetworkZone.attributeTypeMap);
   }
 }
 exports.IPNetworkZone = IPNetworkZone;

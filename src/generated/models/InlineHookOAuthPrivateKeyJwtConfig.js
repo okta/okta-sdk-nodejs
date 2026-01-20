@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookOAuthPrivateKeyJwtConfig = void 0;
 class InlineHookOAuthPrivateKeyJwtConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookOAuthPrivateKeyJwtConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookOAuthPrivateKeyJwtConfig = InlineHookOAuthPrivateKeyJwtConfig;

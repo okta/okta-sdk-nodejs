@@ -63,5 +63,5 @@ export declare class KnowledgeConstraint {
     }[];
   constructor();
 }
-export declare type KnowledgeConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
-export declare type KnowledgeConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';
+export type KnowledgeConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
+export type KnowledgeConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';

@@ -25,4 +25,4 @@
 /**
 * Requested authentication method for the token endpoint
 */
-export declare type OAuthEndpointAuthenticationMethod = 'client_secret_basic' | 'client_secret_jwt' | 'client_secret_post' | 'none' | 'private_key_jwt';
+export type OAuthEndpointAuthenticationMethod = 'client_secret_basic' | 'client_secret_jwt' | 'client_secret_post' | 'none' | 'private_key_jwt';

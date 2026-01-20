@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.ByDateTimeAuthenticatorGracePeriodExpiry = void 0;
 const EnrollmentPolicyAuthenticatorGracePeriod_1 = require('./../models/EnrollmentPolicyAuthenticatorGracePeriod');
 class ByDateTimeAuthenticatorGracePeriodExpiry extends EnrollmentPolicyAuthenticatorGracePeriod_1.EnrollmentPolicyAuthenticatorGracePeriod {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(ByDateTimeAuthenticatorGracePeriodExpiry.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'BY_DATE_TIME';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(ByDateTimeAuthenticatorGracePeriodExpiry.attributeTypeMap);
   }
 }
 exports.ByDateTimeAuthenticatorGracePeriodExpiry = ByDateTimeAuthenticatorGracePeriodExpiry;

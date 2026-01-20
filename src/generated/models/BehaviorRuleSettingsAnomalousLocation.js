@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleSettingsAnomalousLocation = void 0;
 class BehaviorRuleSettingsAnomalousLocation {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BehaviorRuleSettingsAnomalousLocation.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BehaviorRuleSettingsAnomalousLocation = BehaviorRuleSettingsAnomalousLocation;

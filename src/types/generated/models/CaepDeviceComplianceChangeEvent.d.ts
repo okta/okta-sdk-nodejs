@@ -63,6 +63,6 @@ export declare class CaepDeviceComplianceChangeEvent {
     }[];
   constructor();
 }
-export declare type CaepDeviceComplianceChangeEventCurrentStatusEnum = 'compliant' | 'not-compliant';
-export declare type CaepDeviceComplianceChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
-export declare type CaepDeviceComplianceChangeEventPreviousStatusEnum = 'compliant' | 'not-compliant';
+export type CaepDeviceComplianceChangeEventCurrentStatusEnum = 'compliant' | 'not-compliant';
+export type CaepDeviceComplianceChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
+export type CaepDeviceComplianceChangeEventPreviousStatusEnum = 'compliant' | 'not-compliant';

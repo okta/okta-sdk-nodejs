@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppAndInstanceConditionEvaluatorAppOrInstance = void 0;
 class AppAndInstanceConditionEvaluatorAppOrInstance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppAndInstanceConditionEvaluatorAppOrInstance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppAndInstanceConditionEvaluatorAppOrInstance = AppAndInstanceConditionEvaluatorAppOrInstance;

@@ -25,4 +25,4 @@
 /**
 * Specifies how the user is authenticated
 */
-export declare type PolicyRuleAuthContextType = 'ANY' | 'LDAP_INTERFACE' | 'RADIUS';
+export type PolicyRuleAuthContextType = 'ANY' | 'LDAP_INTERFACE' | 'RADIUS';

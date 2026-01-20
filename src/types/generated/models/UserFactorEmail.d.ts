@@ -43,4 +43,4 @@ export declare class UserFactorEmail extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorEmailProviderEnum = 'OKTA';
+export type UserFactorEmailProviderEnum = 'OKTA';

@@ -47,4 +47,4 @@ export declare class GracePeriod {
     }[];
   constructor();
 }
-export declare type GracePeriodTypeEnum = 'BY_DATE_TIME' | 'BY_DURATION';
+export type GracePeriodTypeEnum = 'BY_DATE_TIME' | 'BY_DURATION';

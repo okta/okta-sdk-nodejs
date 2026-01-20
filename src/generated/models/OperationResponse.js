@@ -26,21 +26,15 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OperationResponse = void 0;
 class OperationResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OperationResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OperationResponse = OperationResponse;
 OperationResponse.discriminator = undefined;
 OperationResponse.attributeTypeMap = [
-  {
-    'name': 'assignmentOperation',
-    'baseName': 'assignmentOperation',
-    'type': 'OperationResponseAssignmentOperation',
-    'format': ''
-  },
   {
     'name': 'completed',
     'baseName': 'completed',
@@ -60,24 +54,6 @@ OperationResponse.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'numUserMoved',
-    'baseName': 'numUserMoved',
-    'type': 'number',
-    'format': ''
-  },
-  {
-    'name': 'realmId',
-    'baseName': 'realmId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'realmName',
-    'baseName': 'realmName',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'started',
     'baseName': 'started',
     'type': 'Date',
@@ -93,12 +69,6 @@ OperationResponse.attributeTypeMap = [
     'name': 'type',
     'baseName': 'type',
     'type': 'string',
-    'format': ''
-  },
-  {
-    'name': '_links',
-    'baseName': '_links',
-    'type': 'LinksSelf',
     'format': ''
   }
 ];

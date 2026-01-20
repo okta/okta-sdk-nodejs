@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdPCertificateCredential = void 0;
 class IdPCertificateCredential {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdPCertificateCredential.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdPCertificateCredential = IdPCertificateCredential;

@@ -25,4 +25,4 @@
 /**
 * Status for one agent regarding the status to auto-update that agent
 */
-export declare type AgentUpdateInstanceStatus = 'Cancelled' | 'Failed' | 'InProgress' | 'PendingCompletion' | 'Scheduled' | 'Success';
+export type AgentUpdateInstanceStatus = 'Cancelled' | 'Failed' | 'InProgress' | 'PendingCompletion' | 'Scheduled' | 'Success';

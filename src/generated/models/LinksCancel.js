@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksCancel = void 0;
 class LinksCancel {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksCancel.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksCancel = LinksCancel;

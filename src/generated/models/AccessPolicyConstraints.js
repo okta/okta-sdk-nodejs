@@ -29,10 +29,10 @@ exports.AccessPolicyConstraints = void 0;
 * Specifies constraints for the authenticator. Constraints are logically evaluated such that only one constraint object needs to be satisfied. But, within a constraint object, each constraint property must be satisfied.
 */
 class AccessPolicyConstraints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyConstraints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyConstraints = AccessPolicyConstraints;

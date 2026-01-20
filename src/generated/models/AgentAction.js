@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AgentAction = void 0;
 /**
-* Details about the Active Directory group membership update
+* Details about the Active Directory or LDAP group membership update
 */
 class AgentAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AgentAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AgentAction = AgentAction;

@@ -25,4 +25,4 @@
 /**
 * Determines whether a change in a user\'s password also updates the user\'s password in the app
 */
-export declare type ChangeEnum = 'CHANGE' | 'KEEP_EXISTING';
+export type ChangeEnum = 'CHANGE' | 'KEEP_EXISTING';

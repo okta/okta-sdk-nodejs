@@ -25,4 +25,4 @@
 /**
 * Indicates whether you must use a hardware key store
 */
-export declare type PushMethodKeyProtection = 'ANY' | 'HARDWARE';
+export type PushMethodKeyProtection = 'ANY' | 'HARDWARE';

@@ -29,10 +29,10 @@ exports.InlineHookReplace = void 0;
 * An inline hook object that specifies the details of the inline hook
 */
 class InlineHookReplace {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookReplace.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookReplace = InlineHookReplace;

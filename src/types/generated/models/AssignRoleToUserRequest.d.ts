@@ -29,7 +29,7 @@ import { StandardRoleAssignmentSchema } from './../models/StandardRoleAssignment
  * Type
  * @export
  */
-export declare type AssignRoleToUserRequest = CustomRoleAssignmentSchema | StandardRoleAssignmentSchema;
+export type AssignRoleToUserRequest = CustomRoleAssignmentSchema | StandardRoleAssignmentSchema;
 /**
 * @type AssignRoleToUserRequestClass
 * @export

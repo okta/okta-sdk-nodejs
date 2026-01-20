@@ -29,10 +29,10 @@ exports.UserIdentifierPolicyRuleCondition = void 0;
 * Specifies a user identifier condition to match on
 */
 class UserIdentifierPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserIdentifierPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserIdentifierPolicyRuleCondition = UserIdentifierPolicyRuleCondition;

@@ -29,10 +29,10 @@ exports.GroupRuleGroupAssignment = void 0;
 * Contains the `groupIds` array
 */
 class GroupRuleGroupAssignment {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleGroupAssignment.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleGroupAssignment = GroupRuleGroupAssignment;

@@ -25,4 +25,4 @@
 /**
 * App instance status
 */
-export declare type ApplicationLifecycleStatus = 'ACTIVE' | 'DELETED' | 'INACTIVE';
+export type ApplicationLifecycleStatus = 'ACTIVE' | 'DELETED' | 'INACTIVE';

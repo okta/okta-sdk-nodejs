@@ -25,4 +25,4 @@
 /**
 * A credential provider is a software service that manages identities and their associated credentials. When authentication occurs through credentials provided by a credential provider, the credential provider is recorded here.
 */
-export declare type LogCredentialProvider = 'DUO' | 'GOOGLE' | 'OKTA_AUTHENTICATION_PROVIDER' | 'OKTA_CREDENTIAL_PROVIDER' | 'RSA' | 'SYMANTEC' | 'YUBIKEY';
+export type LogCredentialProvider = 'DUO' | 'GOOGLE' | 'OKTA_AUTHENTICATION_PROVIDER' | 'OKTA_CREDENTIAL_PROVIDER' | 'RSA' | 'SYMANTEC' | 'YUBIKEY';

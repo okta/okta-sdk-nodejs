@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyRuleConditions = void 0;
 * Specifies conditions that must be met during policy evaluation to apply the rule. All policy conditions and conditions for at least one rule must be met to apply the settings specified in the policy and the associated rule.
 */
 class AuthenticatorEnrollmentPolicyRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyRuleConditions = AuthenticatorEnrollmentPolicyRuleConditions;

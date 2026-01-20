@@ -25,4 +25,4 @@
 /**
 * Requirements for the user-initiated enrollment
 */
-export declare type AuthenticatorEnrollmentPolicyAuthenticatorStatus = 'NOT_ALLOWED' | 'OPTIONAL' | 'REQUIRED';
+export type AuthenticatorEnrollmentPolicyAuthenticatorStatus = 'NOT_ALLOWED' | 'OPTIONAL' | 'REQUIRED';

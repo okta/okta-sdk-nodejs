@@ -29,10 +29,10 @@ exports.UIElement = void 0;
 * Specifies the configuration of an input field on an enrollment form
 */
 class UIElement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UIElement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UIElement = UIElement;

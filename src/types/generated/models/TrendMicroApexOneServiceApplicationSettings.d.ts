@@ -28,7 +28,7 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { TrendMicroApexOneServiceApplicationSettingsApplication } from './../models/TrendMicroApexOneServiceApplicationSettingsApplication';
 export declare class TrendMicroApexOneServiceApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: TrendMicroApexOneServiceApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class TrendMicroApexOneServiceApplicationSettings {
     }[];
   constructor();
 }
-export declare type TrendMicroApexOneServiceApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type TrendMicroApexOneServiceApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

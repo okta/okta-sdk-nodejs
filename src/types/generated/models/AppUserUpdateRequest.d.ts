@@ -29,7 +29,7 @@ import { AppUserProfileRequestPayload } from './../models/AppUserProfileRequestP
  * Type
  * @export
  */
-export declare type AppUserUpdateRequest = AppUserCredentialsRequestPayload | AppUserProfileRequestPayload;
+export type AppUserUpdateRequest = AppUserCredentialsRequestPayload | AppUserProfileRequestPayload;
 /**
 * @type AppUserUpdateRequestClass
 * @export

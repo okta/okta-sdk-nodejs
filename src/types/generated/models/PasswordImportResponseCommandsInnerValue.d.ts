@@ -42,4 +42,4 @@ export declare class PasswordImportResponseCommandsInnerValue {
     }[];
   constructor();
 }
-export declare type PasswordImportResponseCommandsInnerValueCredentialEnum = 'UNVERIFIED' | 'VERIFIED';
+export type PasswordImportResponseCommandsInnerValueCredentialEnum = 'UNVERIFIED' | 'VERIFIED';

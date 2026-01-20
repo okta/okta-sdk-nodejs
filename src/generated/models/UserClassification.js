@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserClassification = void 0;
 class UserClassification {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserClassification.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserClassification = UserClassification;

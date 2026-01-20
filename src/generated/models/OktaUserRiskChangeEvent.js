@@ -29,10 +29,10 @@ exports.OktaUserRiskChangeEvent = void 0;
 * The user risk level changed
 */
 class OktaUserRiskChangeEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaUserRiskChangeEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaUserRiskChangeEvent = OktaUserRiskChangeEvent;

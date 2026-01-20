@@ -89,4 +89,4 @@ export declare class AppUser {
     }[];
   constructor();
 }
-export declare type AppUserScopeEnum = 'USER' | 'GROUP';
+export type AppUserScopeEnum = 'USER' | 'GROUP';

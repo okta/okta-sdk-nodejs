@@ -57,5 +57,5 @@ export declare class SalesforceApplicationSettingsApplication {
     }[];
   constructor();
 }
-export declare type SalesforceApplicationSettingsApplicationInstanceTypeEnum = 'SANDBOX' | 'PRODUCTION' | 'GOVERNMENT';
-export declare type SalesforceApplicationSettingsApplicationIntegrationTypeEnum = 'STANDARD' | 'PORTAL' | 'COMMUNITY';
+export type SalesforceApplicationSettingsApplicationInstanceTypeEnum = 'SANDBOX' | 'PRODUCTION' | 'GOVERNMENT';
+export type SalesforceApplicationSettingsApplicationIntegrationTypeEnum = 'STANDARD' | 'PORTAL' | 'COMMUNITY';

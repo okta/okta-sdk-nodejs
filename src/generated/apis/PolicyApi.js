@@ -615,7 +615,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists all policies with the specified type
      * List all policies
-     * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60;, and &#x60;ENTITY_RISK&#x60;.
+     * @param type Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; &#x60;DEVICE_SIGNAL_COLLECTION&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60; and &#x60;ENTITY_RISK&#x60;.
      * @param status Refines the query by the &#x60;status&#x60; of the policy - &#x60;ACTIVE&#x60; or &#x60;INACTIVE&#x60;
      * @param q Refines the query by policy name prefix (startWith method) passed in as &#x60;q&#x3D;string&#x60;
      * @param expand
@@ -637,7 +637,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (type !== undefined) {
-      requestContext.setQueryParam('type', ObjectSerializer_1.ObjectSerializer.serialize(type, '\'OKTA_SIGN_ON\' | \'PASSWORD\' | \'MFA_ENROLL\' | \'IDP_DISCOVERY\' | \'ACCESS_POLICY\' | \'PROFILE_ENROLLMENT\' | \'POST_AUTH_SESSION\' | \'ENTITY_RISK\'', ''));
+      requestContext.setQueryParam('type', ObjectSerializer_1.ObjectSerializer.serialize(type, '\'OKTA_SIGN_ON\' | \'PASSWORD\' | \'MFA_ENROLL\' | \'IDP_DISCOVERY\' | \'ACCESS_POLICY\' | \'DEVICE_SIGNAL_COLLECTION\' | \'PROFILE_ENROLLMENT\' | \'POST_AUTH_SESSION\' | \'ENTITY_RISK\'', ''));
     }
     // Query Params
     if (status !== undefined) {
@@ -798,7 +798,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Maps a resource to a policy identified by `policyId`
+     * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
      * Map a resource to a policy
      * @param policyId &#x60;id&#x60; of the Policy
      * @param policyMappingRequest

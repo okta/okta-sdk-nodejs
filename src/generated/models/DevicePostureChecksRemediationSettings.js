@@ -29,10 +29,10 @@ exports.DevicePostureChecksRemediationSettings = void 0;
 * Represents the remediation instructions shown to the end user when the device posture check fails
 */
 class DevicePostureChecksRemediationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureChecksRemediationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureChecksRemediationSettings = DevicePostureChecksRemediationSettings;

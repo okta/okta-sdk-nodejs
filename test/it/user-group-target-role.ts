@@ -5,7 +5,7 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  AssignRoleRequest,
+  StandardRoleAssignmentSchema,
   CreateUserRequest,
   Group,
   CreateGroupRequest
@@ -47,7 +47,7 @@ describe('User Role API Tests', () => {
     const createdGroup = await client.groupApi.createGroup({group: newGroup as CreateGroupRequest});
 
     // 2. Assign USER_ADMIN role to the user
-    const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
+    const assignRoleRequest: StandardRoleAssignmentSchema = { type: 'USER_ADMIN'  };
     const role = await client.roleAssignmentApi.assignRoleToUser({
       userId: createdUser.id,
       assignRoleRequest

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.StandardRoleAssignmentSchema = void 0;
 class StandardRoleAssignmentSchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StandardRoleAssignmentSchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StandardRoleAssignmentSchema = StandardRoleAssignmentSchema;
@@ -38,7 +38,7 @@ StandardRoleAssignmentSchema.attributeTypeMap = [
   {
     'name': 'type',
     'baseName': 'type',
-    'type': 'string',
+    'type': 'StandardRoleAssignmentSchemaTypeEnum',
     'format': ''
   }
 ];

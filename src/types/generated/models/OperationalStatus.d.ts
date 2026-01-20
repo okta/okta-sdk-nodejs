@@ -25,4 +25,4 @@
 /**
 * Operational status of a given agent
 */
-export declare type OperationalStatus = 'DEGRADED' | 'DISRUPTED' | 'INACTIVE' | 'OPERATIONAL';
+export type OperationalStatus = 'DEGRADED' | 'DISRUPTED' | 'INACTIVE' | 'OPERATIONAL';

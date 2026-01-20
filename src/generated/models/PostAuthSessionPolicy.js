@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAuthSessionPolicy = void 0;
 const Policy_1 = require('./../models/Policy');
 class PostAuthSessionPolicy extends Policy_1.Policy {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(PostAuthSessionPolicy.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'POST_AUTH_SESSION';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(PostAuthSessionPolicy.attributeTypeMap);
   }
 }
 exports.PostAuthSessionPolicy = PostAuthSessionPolicy;

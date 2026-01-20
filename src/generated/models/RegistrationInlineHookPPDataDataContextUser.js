@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationInlineHookPPDataDataContextUser = void 0;
 class RegistrationInlineHookPPDataDataContextUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationInlineHookPPDataDataContextUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationInlineHookPPDataDataContextUser = RegistrationInlineHookPPDataDataContextUser;

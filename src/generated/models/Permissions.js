@@ -29,10 +29,10 @@ exports.Permissions = void 0;
 * Permissions assigned to the role
 */
 class Permissions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Permissions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Permissions = Permissions;

@@ -25,4 +25,4 @@
 /**
 * OS platform of the device
 */
-export declare type DevicePlatform = 'ANDROID' | 'IOS' | 'MACOS' | 'WINDOWS';
+export type DevicePlatform = 'ANDROID' | 'IOS' | 'MACOS' | 'WINDOWS';

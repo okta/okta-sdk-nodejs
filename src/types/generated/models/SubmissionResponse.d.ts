@@ -22,18 +22,41 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AuthSettings } from './../models/AuthSettings';
 import { ProvisioningDetails } from './../models/ProvisioningDetails';
 import { Sso } from './../models/Sso';
+import { SubmissionAction } from './../models/SubmissionAction';
+import { SubmissionCapability } from './../models/SubmissionCapability';
+import { SubmissionResponseAppContactDetailsInner } from './../models/SubmissionResponseAppContactDetailsInner';
 import { SubmissionResponseConfigInner } from './../models/SubmissionResponseConfigInner';
+import { SubmissionResponseGlobalTokenRevocation } from './../models/SubmissionResponseGlobalTokenRevocation';
 export declare class SubmissionResponse {
+  /**
+    * List of actions supported by this integration
+    */
+  'actions'?: Array<SubmissionAction>;
+  /**
+    * List of contact details for the app integration
+    */
+  'appContactDetails'?: Array<SubmissionResponseAppContactDetailsInner>;
+  'authSettings'?: AuthSettings;
+  /**
+    * List of capabilities supported by this integration
+    */
+  'capabilities'?: Array<SubmissionCapability>;
   /**
     * List of org-level variables for the customer per-tenant configuration. For example, a `subdomain` variable can be used in the ACS URL: `https://${org.subdomain}.example.com/saml/login`
     */
   'config'?: Array<SubmissionResponseConfigInner>;
   /**
+    * Indicates whether the app submission uses a default logo or a custom-uploaded logo: * If `true`: Uses the default Okta-provided placeholder logo. * If `false`: Uses a custom logo type other than the default logo.
+    */
+  'defaultLogo'?: boolean;
+  /**
     * A general description of your application and the benefits provided to your customers
     */
   'description'?: string;
+  'globalTokenRevocation'?: SubmissionResponseGlobalTokenRevocation;
   /**
     * OIN Integration ID
     */

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WellKnownURIsRootLinks = void 0;
 class WellKnownURIsRootLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownURIsRootLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownURIsRootLinks = WellKnownURIsRootLinks;

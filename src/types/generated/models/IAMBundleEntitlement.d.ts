@@ -22,9 +22,21 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+/**
+* An entitlement in a governance bundle
+*/
 export declare class IAMBundleEntitlement {
+  /**
+    * List of resource set IDs for the custom role
+    */
   'resourceSets'?: Array<string>;
+  /**
+    * The role
+    */
   'role'?: string;
+  /**
+    * List of target resource IDs to scope the entitlement with the role
+    */
   'targets'?: Array<string>;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

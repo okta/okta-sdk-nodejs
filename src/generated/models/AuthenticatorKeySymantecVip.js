@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeySymantecVip = void 0;
 const AuthenticatorSimple_1 = require('./../models/AuthenticatorSimple');
 class AuthenticatorKeySymantecVip extends AuthenticatorSimple_1.AuthenticatorSimple {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorKeySymantecVip.attributeTypeMap);
+  }
   constructor() {
     super();
     this.key = 'symantec_vip';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorKeySymantecVip.attributeTypeMap);
   }
 }
 exports.AuthenticatorKeySymantecVip = AuthenticatorKeySymantecVip;

@@ -25,4 +25,4 @@
 /**
 * The scope of the group in Active Directory
 */
-export declare type ActiveDirectoryGroupScope = 'DOMAIN_LOCAL' | 'GLOBAL' | 'UNIVERSAL';
+export type ActiveDirectoryGroupScope = 'DOMAIN_LOCAL' | 'GLOBAL' | 'UNIVERSAL';

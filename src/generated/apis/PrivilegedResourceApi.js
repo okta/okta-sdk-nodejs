@@ -584,6 +584,10 @@ class PrivilegedResourceApiResponseProcessor {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
+    if ((0, util_1.isCodeInRange)('409', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(409, 'Conflict', body, response.headers);
+    }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
@@ -619,6 +623,10 @@ class PrivilegedResourceApiResponseProcessor {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
+    if ((0, util_1.isCodeInRange)('409', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(409, 'Conflict', body, response.headers);
+    }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
@@ -653,6 +661,10 @@ class PrivilegedResourceApiResponseProcessor {
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('409', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
+      throw new exception_1.ApiException(409, 'Conflict', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');

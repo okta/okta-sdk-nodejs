@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyPassword = void 0;
 const AuthenticatorSimple_1 = require('./../models/AuthenticatorSimple');
 class AuthenticatorKeyPassword extends AuthenticatorSimple_1.AuthenticatorSimple {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorKeyPassword.attributeTypeMap);
+  }
   constructor() {
     super();
     this.key = 'okta_password';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorKeyPassword.attributeTypeMap);
   }
 }
 exports.AuthenticatorKeyPassword = AuthenticatorKeyPassword;

@@ -25,10 +25,23 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BrandDomains = void 0;
-class BrandDomains extends Array {
+/**
+* Defines a list of domains with a subset of the properties for each domain
+*/
+class BrandDomains {
+  static getAttributeTypeMap() {
+    return BrandDomains.attributeTypeMap;
+  }
   constructor() {
-    super();
   }
 }
 exports.BrandDomains = BrandDomains;
 BrandDomains.discriminator = undefined;
+BrandDomains.attributeTypeMap = [
+  {
+    'name': 'domains',
+    'baseName': 'domains',
+    'type': 'Array<DomainResponse>',
+    'format': ''
+  }
+];

@@ -29,10 +29,10 @@ exports.TokenPayLoadDataContextProtocolIssuer = void 0;
 * The authorization server\'s issuer identifier
 */
 class TokenPayLoadDataContextProtocolIssuer {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextProtocolIssuer.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextProtocolIssuer = TokenPayLoadDataContextProtocolIssuer;

@@ -24,10 +24,25 @@
  */
 import { GovernanceBundleLinks } from './../models/GovernanceBundleLinks';
 export declare class GovernanceBundle {
+  /**
+    * Description of the governance bundle
+    */
   'description'?: string;
+  /**
+    * Governance bundle ID
+    */
   'id'?: string;
+  /**
+    * Name of the governance bundle
+    */
   'name'?: string;
+  /**
+    * The governance bundle resource, in [ORN format](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#okta-resource-name-orn)
+    */
   'orn'?: string;
+  /**
+    * Status of the governance bundle
+    */
   'status'?: string;
   '_links'?: GovernanceBundleLinks;
   static readonly discriminator: string | undefined;

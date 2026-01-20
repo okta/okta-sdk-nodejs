@@ -29,10 +29,10 @@ exports.CapabilitiesImportRulesUserCreateAndMatchObject = void 0;
 * Rules for matching and creating users
 */
 class CapabilitiesImportRulesUserCreateAndMatchObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesImportRulesUserCreateAndMatchObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesImportRulesUserCreateAndMatchObject = CapabilitiesImportRulesUserCreateAndMatchObject;

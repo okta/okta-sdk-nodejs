@@ -29,10 +29,10 @@ exports.LogDevice = void 0;
 * The entity that describes a device enrolled with passwordless authentication using Okta Verify.
 */
 class LogDevice {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogDevice.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogDevice = LogDevice;

@@ -29,10 +29,10 @@ exports.PrincipalRateLimitEntity = void 0;
 *
 */
 class PrincipalRateLimitEntity {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PrincipalRateLimitEntity.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PrincipalRateLimitEntity = PrincipalRateLimitEntity;

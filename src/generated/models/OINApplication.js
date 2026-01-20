@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OINApplication = void 0;
 class OINApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OINApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OINApplication = OINApplication;

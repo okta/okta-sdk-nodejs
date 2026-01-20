@@ -29,10 +29,10 @@ exports.SlackApplication = void 0;
 * Schema for the Slack app (key name: `slack`)  To create a Slack app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Note:** The Slack app only supports `BROWSER_PLUGIN` and `SAML_2_0` sign-on modes.
 */
 class SlackApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SlackApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SlackApplication = SlackApplication;

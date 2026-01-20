@@ -1,5 +1,42 @@
 # Okta Node SDK Changelog
 
+# 8.0.0
+
+### Features
+
+- SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec
+
+- Added new APIs:
+  - AgentConnectionsApi
+  - AgentPotentialConnectionsApi
+  - AgentPublicKeyApi
+  - AgentRegistrationApi
+  - ApplicationCrossAppAccessConnectionsApi
+  - ApplicationInterclientTrustMappingsApi
+  - ApplicationSSOPublicKeysApi
+  - AssociatedDomainCustomizationsApi
+  - CustomTelephonyProviderApi
+  - GroupPushMappingApi
+  - OAuth2ResourceServerCredentialsKeysApi
+  - OktaManagedUserAccountApi
+  - OperationsIntegrationApi
+  - UnconfirmedUsersApi
+  - UserAuthenticatorEnrollmentsApi
+
+- Updated APIs:
+  - ApplicationApi:
+    - Enhanced methods for application management
+  - AuthenticatorApi:
+    - Added new methods for authenticator management
+  - IdentitySourceApi:
+    - Significantly expanded with new methods for identity source operations
+  - YourOinIntegrationsApi:
+    - Enhanced with additional integration methods
+
+### Breaking changes
+
+- Minimum Node.js version is now 14.0.0 (previously 12.0.0)
+
 # 7.3.1
 
 ### Fixes

@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints = void 0;
 * Constraints for the authenticator
 */
 class AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints = AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints;

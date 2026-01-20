@@ -25,4 +25,4 @@
 /**
 * Result of a factor activation
 */
-export declare type UserFactorActivatePushResult = 'CANCELLED' | 'ERROR' | 'TIMEOUT' | 'WAITING';
+export type UserFactorActivatePushResult = 'CANCELLED' | 'ERROR' | 'TIMEOUT' | 'WAITING';

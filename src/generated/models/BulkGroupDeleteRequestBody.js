@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BulkGroupDeleteRequestBody = void 0;
 class BulkGroupDeleteRequestBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BulkGroupDeleteRequestBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BulkGroupDeleteRequestBody = BulkGroupDeleteRequestBody;

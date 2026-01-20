@@ -29,10 +29,10 @@ exports.SmsTemplateTranslations = void 0;
 * - Template translations are optionally provided when you want to localize the SMS messages. Translations are provided as an object that contains `key:value` pairs: the language and the translated Template text. The key portion is a two-letter country code that conforms to [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php). The value is the translated SMS Template. - Just like with regular SMS Templates, the length of the SMS message can\'t exceed 160 characters.
 */
 class SmsTemplateTranslations {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SmsTemplateTranslations.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SmsTemplateTranslations = SmsTemplateTranslations;

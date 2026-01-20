@@ -29,10 +29,10 @@ exports.RateLimitWarningThresholdRequest = void 0;
 *
 */
 class RateLimitWarningThresholdRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RateLimitWarningThresholdRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RateLimitWarningThresholdRequest = RateLimitWarningThresholdRequest;

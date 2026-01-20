@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyPhone = void 0;
 const AuthenticatorSimple_1 = require('./../models/AuthenticatorSimple');
 class AuthenticatorKeyPhone extends AuthenticatorSimple_1.AuthenticatorSimple {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorKeyPhone.attributeTypeMap);
+  }
   constructor() {
     super();
     this.key = 'phone_number';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorKeyPhone.attributeTypeMap);
   }
 }
 exports.AuthenticatorKeyPhone = AuthenticatorKeyPhone;

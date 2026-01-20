@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrgPreferences = void 0;
 class OrgPreferences {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgPreferences.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgPreferences = OrgPreferences;

@@ -22,15 +22,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HrefObject } from './../models/HrefObject';
+import { BundleLink } from './../models/BundleLink';
+import { HrefObjectNextLink } from './../models/HrefObjectNextLink';
 import { HrefObjectSelfLink } from './../models/HrefObjectSelfLink';
-/**
-* Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification
-*/
 export declare class BundleEntitlementsResponseLinks {
-  'next'?: HrefObject;
   'self'?: HrefObjectSelfLink;
-  'bundle'?: HrefObject;
+  'next'?: HrefObjectNextLink;
+  'bundle'?: BundleLink;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

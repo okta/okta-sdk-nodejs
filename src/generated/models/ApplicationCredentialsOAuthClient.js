@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ApplicationCredentialsOAuthClient = void 0;
 class ApplicationCredentialsOAuthClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationCredentialsOAuthClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationCredentialsOAuthClient = ApplicationCredentialsOAuthClient;

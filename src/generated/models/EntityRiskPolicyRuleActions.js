@@ -29,10 +29,10 @@ exports.EntityRiskPolicyRuleActions = void 0;
 * The action to take based on the risk event
 */
 class EntityRiskPolicyRuleActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleActions = EntityRiskPolicyRuleActions;

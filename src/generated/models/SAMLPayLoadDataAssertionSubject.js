@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertionSubject = void 0;
 * Provides a JSON representation of the `<saml:Subject>` element of the SAML assertion
 */
 class SAMLPayLoadDataAssertionSubject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionSubject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionSubject = SAMLPayLoadDataAssertionSubject;

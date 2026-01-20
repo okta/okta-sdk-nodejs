@@ -29,10 +29,10 @@ exports.TokenHookResponseError = void 0;
 * When an error object is returned, it causes Okta to return an OAuth 2.0 error to the requester of the token. In the error response, the value of `error` is `server_error`, and the value of `error_description` is the string that you supplied in the `errorSummary` property of the `error` object that you returned.
 */
 class TokenHookResponseError {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenHookResponseError.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenHookResponseError = TokenHookResponseError;

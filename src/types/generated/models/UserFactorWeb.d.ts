@@ -43,4 +43,4 @@ export declare class UserFactorWeb extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorWebProviderEnum = 'DUO';
+export type UserFactorWebProviderEnum = 'DUO';

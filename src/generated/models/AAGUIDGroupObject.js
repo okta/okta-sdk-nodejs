@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AAGUIDGroupObject = void 0;
 class AAGUIDGroupObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AAGUIDGroupObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AAGUIDGroupObject = AAGUIDGroupObject;

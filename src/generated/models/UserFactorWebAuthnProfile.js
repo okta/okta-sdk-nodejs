@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorWebAuthnProfile = void 0;
 class UserFactorWebAuthnProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorWebAuthnProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorWebAuthnProfile = UserFactorWebAuthnProfile;

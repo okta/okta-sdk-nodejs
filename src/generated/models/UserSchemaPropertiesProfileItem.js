@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserSchemaPropertiesProfileItem = void 0;
 class UserSchemaPropertiesProfileItem {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserSchemaPropertiesProfileItem.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserSchemaPropertiesProfileItem = UserSchemaPropertiesProfileItem;

@@ -29,10 +29,10 @@ exports.AutoUpdateSchedule = void 0;
 * The schedule of auto-update configured by the admin
 */
 class AutoUpdateSchedule {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AutoUpdateSchedule.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AutoUpdateSchedule = AutoUpdateSchedule;

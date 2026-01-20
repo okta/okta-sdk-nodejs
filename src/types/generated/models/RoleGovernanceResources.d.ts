@@ -22,14 +22,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ListAIAgents200ResponseLinks } from './../models/ListAIAgents200ResponseLinks';
 import { RoleGovernanceResource } from './../models/RoleGovernanceResource';
-import { RoleGovernanceResourcesLinks } from './../models/RoleGovernanceResourcesLinks';
 /**
 * The resources of a grant
 */
 export declare class RoleGovernanceResources {
   'resources'?: Array<RoleGovernanceResource>;
-  '_links'?: RoleGovernanceResourcesLinks;
+  '_links'?: ListAIAgents200ResponseLinks;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

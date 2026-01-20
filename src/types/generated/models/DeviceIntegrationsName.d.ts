@@ -25,4 +25,4 @@
 /**
 * The namespace of the device integration
 */
-export declare type DeviceIntegrationsName = 'com.android.zero.trust' | 'com.crowdstrike.zta' | 'com.google.dtc' | 'com.okta.device.osquery' | 'com.okta.deviceidp' | 'com.okta.windowssecuritycenter' | 'com.okta.workspaceone';
+export type DeviceIntegrationsName = 'com.android.zero.trust' | 'com.crowdstrike.zta' | 'com.google.dtc' | 'com.okta.device.osquery' | 'com.okta.deviceidp' | 'com.okta.windowssecuritycenter' | 'com.okta.workspaceone';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ApplicationGroupAssignmentLinks = void 0;
 class ApplicationGroupAssignmentLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationGroupAssignmentLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationGroupAssignmentLinks = ApplicationGroupAssignmentLinks;

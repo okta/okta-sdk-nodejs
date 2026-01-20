@@ -29,10 +29,10 @@ exports.ZscalerbyzApplicationSettingsApplication = void 0;
 * Zscaler app instance properties
 */
 class ZscalerbyzApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ZscalerbyzApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ZscalerbyzApplicationSettingsApplication = ZscalerbyzApplicationSettingsApplication;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionRejectedProfile = void 0;
 class UserFactorPushTransactionRejectedProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorPushTransactionRejectedProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorPushTransactionRejectedProfile = UserFactorPushTransactionRejectedProfile;

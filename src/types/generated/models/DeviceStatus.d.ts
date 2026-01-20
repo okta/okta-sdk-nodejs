@@ -25,4 +25,4 @@
 /**
 * The state object of the device
 */
-export declare type DeviceStatus = 'ACTIVE' | 'DEACTIVATED' | 'SUSPENDED' | 'UNSUSPENDED';
+export type DeviceStatus = 'ACTIVE' | 'DEACTIVATED' | 'SUSPENDED' | 'UNSUSPENDED';

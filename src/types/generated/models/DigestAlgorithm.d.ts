@@ -25,4 +25,4 @@
 /**
 * Algorithm used to generate the key. Only required for the PBKDF2 algorithm.
 */
-export declare type DigestAlgorithm = 'SHA256_HMAC' | 'SHA512_HMAC';
+export type DigestAlgorithm = 'SHA256_HMAC' | 'SHA512_HMAC';

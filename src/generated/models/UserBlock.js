@@ -29,10 +29,10 @@ exports.UserBlock = void 0;
 * Describes how the account is blocked from access. If `appliesTo` is `ANY_DEVICES`, then the account is blocked for all devices. If `appliesTo` is `UNKNOWN_DEVICES`, then the account is only blocked for unknown devices.
 */
 class UserBlock {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserBlock.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserBlock = UserBlock;

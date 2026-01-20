@@ -29,10 +29,10 @@ exports.SupportedMethods = void 0;
 * The supported methods of an authenticator
 */
 class SupportedMethods {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SupportedMethods.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SupportedMethods = SupportedMethods;

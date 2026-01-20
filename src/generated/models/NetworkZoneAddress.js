@@ -29,10 +29,10 @@ exports.NetworkZoneAddress = void 0;
 * Specifies the value of an IP address expressed using either `range` or `CIDR` form.
 */
 class NetworkZoneAddress {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return NetworkZoneAddress.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.NetworkZoneAddress = NetworkZoneAddress;

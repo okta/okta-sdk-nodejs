@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Saml11ApplicationSettings = void 0;
 class Saml11ApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Saml11ApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Saml11ApplicationSettings = Saml11ApplicationSettings;

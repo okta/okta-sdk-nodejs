@@ -1355,7 +1355,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Lists all the brands in your org
      * List all brands
      * @param expand Specifies additional metadata to be included in the response
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      * @param q Searches the records for matching value
      */
@@ -1404,7 +1404,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * List all email customizations
      * @param brandId The ID of the brand
      * @param templateName The name of the email template
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      */
   async listEmailCustomizations(brandId, templateName, after, limit, _options) {
@@ -1455,7 +1455,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Lists all supported email templates
      * List all email templates
      * @param brandId The ID of the brand
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param limit A limit on the number of objects to return
      * @param expand Specifies additional metadata to be included in the response
      */

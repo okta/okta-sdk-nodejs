@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type InlineHookChannelType = 'HTTP' | 'OAUTH';
+export type InlineHookChannelType = 'HTTP' | 'OAUTH';

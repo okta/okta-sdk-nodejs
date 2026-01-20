@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodBase = void 0;
 class AuthenticatorMethodBase {
-  constructor() {
-    // this.type = 'AuthenticatorMethodBase';
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodBase.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'AuthenticatorMethodBase';
   }
 }
 exports.AuthenticatorMethodBase = AuthenticatorMethodBase;

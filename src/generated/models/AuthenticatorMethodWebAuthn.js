@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodWebAuthn = void 0;
 const AuthenticatorMethodBase_1 = require('./../models/AuthenticatorMethodBase');
 class AuthenticatorMethodWebAuthn extends AuthenticatorMethodBase_1.AuthenticatorMethodBase {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorMethodWebAuthn.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'webauthn';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorMethodWebAuthn.attributeTypeMap);
   }
 }
 exports.AuthenticatorMethodWebAuthn = AuthenticatorMethodWebAuthn;

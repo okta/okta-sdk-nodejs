@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SubmissionResponseConfigInner = void 0;
 class SubmissionResponseConfigInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SubmissionResponseConfigInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SubmissionResponseConfigInner = SubmissionResponseConfigInner;

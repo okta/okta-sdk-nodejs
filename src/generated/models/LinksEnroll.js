@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksEnroll = void 0;
 class LinksEnroll {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksEnroll.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksEnroll = LinksEnroll;

@@ -29,10 +29,10 @@ exports.ProtocolMtls = void 0;
 * Protocol settings for the [MTLS Protocol](https://tools.ietf.org/html/rfc5246#section-7.4.4)
 */
 class ProtocolMtls {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProtocolMtls.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProtocolMtls = ProtocolMtls;

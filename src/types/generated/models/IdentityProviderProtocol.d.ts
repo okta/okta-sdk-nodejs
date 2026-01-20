@@ -35,7 +35,7 @@ import { ProtocolSaml } from './../models/ProtocolSaml';
  * Type
  * @export
  */
-export declare type IdentityProviderProtocol = ProtocolIdVerification | ProtocolMtls | ProtocolOAuth | ProtocolOidc | ProtocolSaml;
+export type IdentityProviderProtocol = ProtocolIdVerification | ProtocolMtls | ProtocolOAuth | ProtocolOidc | ProtocolSaml;
 /**
 * @type IdentityProviderProtocolClass
     * IdP-specific protocol settings for endpoints, bindings, and algorithms used to connect with the IdP and validate messages

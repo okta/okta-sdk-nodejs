@@ -29,10 +29,10 @@ exports.IdentitySourceGroupProfileForUpsert = void 0;
 * Contains a set of external group attributes and their values that are mapped to Okta standard properties. See the group [`profile` object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/getGroup!c=200&path=profile&t=response) and Declaration of a Custom Identity Source Schema in [Using anything as a source](https://help.okta.com/okta_help.htm?type=oie&id=ext-anything-as-a-source). > **Note:** Profile attributes can only be of the string type.
 */
 class IdentitySourceGroupProfileForUpsert {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentitySourceGroupProfileForUpsert.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentitySourceGroupProfileForUpsert = IdentitySourceGroupProfileForUpsert;

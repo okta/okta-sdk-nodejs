@@ -42,4 +42,4 @@ export declare class EntityRiskScorePolicyRuleCondition {
     }[];
   constructor();
 }
-export declare type EntityRiskScorePolicyRuleConditionLevelEnum = 'ANY' | 'LOW' | 'MEDIUM' | 'HIGH';
+export type EntityRiskScorePolicyRuleConditionLevelEnum = 'ANY' | 'LOW' | 'MEDIUM' | 'HIGH';

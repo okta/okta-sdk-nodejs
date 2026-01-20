@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FailoverRequestSchema = void 0;
 class FailoverRequestSchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FailoverRequestSchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FailoverRequestSchema = FailoverRequestSchema;

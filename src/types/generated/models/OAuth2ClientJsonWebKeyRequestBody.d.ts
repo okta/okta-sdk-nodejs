@@ -66,4 +66,4 @@ export declare class OAuth2ClientJsonWebKeyRequestBody {
     }[];
   constructor();
 }
-export declare type OAuth2ClientJsonWebKeyRequestBodyStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type OAuth2ClientJsonWebKeyRequestBodyStatusEnum = 'ACTIVE' | 'INACTIVE';

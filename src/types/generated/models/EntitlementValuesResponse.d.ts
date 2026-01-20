@@ -25,6 +25,9 @@
 import { EntitlementValue } from './../models/EntitlementValue';
 import { EntitlementValuesResponseLinks } from './../models/EntitlementValuesResponseLinks';
 export declare class EntitlementValuesResponse {
+  /**
+    * List of entitlement values for a bundle entitlement
+    */
   'entitlementValues'?: Array<EntitlementValue>;
   '_links'?: EntitlementValuesResponseLinks;
   static readonly discriminator: string | undefined;

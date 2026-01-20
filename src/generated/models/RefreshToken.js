@@ -29,10 +29,10 @@ exports.RefreshToken = void 0;
 * The refresh token
 */
 class RefreshToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RefreshToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RefreshToken = RefreshToken;

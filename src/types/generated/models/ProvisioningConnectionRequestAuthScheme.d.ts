@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ProvisioningConnectionRequestAuthScheme = 'OAUTH2' | 'TOKEN';
+export type ProvisioningConnectionRequestAuthScheme = 'OAUTH2' | 'TOKEN';

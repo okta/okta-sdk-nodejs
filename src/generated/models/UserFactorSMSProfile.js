@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorSMSProfile = void 0;
 class UserFactorSMSProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorSMSProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorSMSProfile = UserFactorSMSProfile;

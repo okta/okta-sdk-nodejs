@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ProvisioningConnectionRequest = void 0;
 class ProvisioningConnectionRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningConnectionRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningConnectionRequest = ProvisioningConnectionRequest;

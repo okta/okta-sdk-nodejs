@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GroupOwner = void 0;
 class GroupOwner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupOwner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupOwner = GroupOwner;

@@ -25,4 +25,4 @@
 /**
 * Indicates whether the Password Protection Warning feature is enabled
 */
-export declare type PasswordProtectionWarningTrigger = 'PASSWORD_PROTECTION_OFF' | 'PASSWORD_REUSE' | 'PHISHING_REUSE';
+export type PasswordProtectionWarningTrigger = 'PASSWORD_PROTECTION_OFF' | 'PASSWORD_REUSE' | 'PHISHING_REUSE';

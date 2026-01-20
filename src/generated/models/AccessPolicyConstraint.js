@@ -29,10 +29,10 @@ exports.AccessPolicyConstraint = void 0;
 * Consists of a `POSSESSION` constraint, a `KNOWLEDGE` constraint, or both. You can\'t configure an `INHERENCE` constraint, but an inherence factor can satisfy the second part of a 2FA assurance if no other constraints are specified. Constraints are logically evaluated such that only one `constraint` object needs to be satisfied, but within a `constraint` object, each `constraint` property must be satisfied.
 */
 class AccessPolicyConstraint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyConstraint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyConstraint = AccessPolicyConstraint;

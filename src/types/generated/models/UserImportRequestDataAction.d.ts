@@ -45,4 +45,4 @@ export declare class UserImportRequestDataAction {
     }[];
   constructor();
 }
-export declare type UserImportRequestDataActionResultEnum = 'CREATE_USER' | 'LINK_USER';
+export type UserImportRequestDataActionResultEnum = 'CREATE_USER' | 'LINK_USER';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UpdateUserRequest = void 0;
 class UpdateUserRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UpdateUserRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UpdateUserRequest = UpdateUserRequest;
@@ -51,6 +51,12 @@ UpdateUserRequest.attributeTypeMap = [
     'name': 'realmId',
     'baseName': 'realmId',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'type',
+    'baseName': 'type',
+    'type': 'UpdateUserRequestType',
     'format': ''
   }
 ];

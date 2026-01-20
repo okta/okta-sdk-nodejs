@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SecurePasswordStoreApplicationSettingsApplication = void 0;
 class SecurePasswordStoreApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurePasswordStoreApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurePasswordStoreApplicationSettingsApplication = SecurePasswordStoreApplicationSettingsApplication;

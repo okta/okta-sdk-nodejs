@@ -25,4 +25,4 @@
 /**
 * Variant for email templates. You can publish a theme for email templates with different combinations of assets. Variants are preset combinations of those assets.
 */
-export declare type EmailTemplateTouchPointVariant = 'FULL_THEME' | 'OKTA_DEFAULT';
+export type EmailTemplateTouchPointVariant = 'FULL_THEME' | 'OKTA_DEFAULT';

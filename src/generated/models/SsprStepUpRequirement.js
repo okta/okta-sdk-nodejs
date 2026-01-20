@@ -29,10 +29,10 @@ exports.SsprStepUpRequirement = void 0;
 * Defines the secondary authenticators needed for password reset if `required` is true. The following are three valid configurations: * `required`=false * `required`=true with no methods to use any SSO authenticator * `required`=true with `security_question` as the method
 */
 class SsprStepUpRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SsprStepUpRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SsprStepUpRequirement = SsprStepUpRequirement;

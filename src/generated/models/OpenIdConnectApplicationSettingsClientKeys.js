@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OpenIdConnectApplicationSettingsClientKeys = void 0;
 /**
-* A [JSON Web Key Set](https://tools.ietf.org/html/rfc7517#section-5) for validating JWTs presented to Okta
+* A [JSON Web Key Set](https://tools.ietf.org/html/rfc7517#section-5) for validating JWTs presented to Okta or for encrypting ID tokens minted by Okta for the client
 */
 class OpenIdConnectApplicationSettingsClientKeys {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationSettingsClientKeys.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationSettingsClientKeys = OpenIdConnectApplicationSettingsClientKeys;
@@ -41,7 +41,7 @@ OpenIdConnectApplicationSettingsClientKeys.attributeTypeMap = [
   {
     'name': 'keys',
     'baseName': 'keys',
-    'type': 'Array<JsonWebKey1>',
+    'type': 'Array<ListJwk200ResponseKeysInner>',
     'format': ''
   }
 ];

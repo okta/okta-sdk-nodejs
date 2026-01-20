@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.JsonWebKey = void 0;
 class JsonWebKey {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return JsonWebKey.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.JsonWebKey = JsonWebKey;

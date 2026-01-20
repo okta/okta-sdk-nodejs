@@ -43,4 +43,4 @@ export declare class UserFactorWebAuthn extends UserFactor {
     }[];
   constructor();
 }
-export declare type UserFactorWebAuthnProviderEnum = 'FIDO';
+export type UserFactorWebAuthnProviderEnum = 'FIDO';

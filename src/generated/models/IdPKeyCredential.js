@@ -29,10 +29,10 @@ exports.IdPKeyCredential = void 0;
 * A [JSON Web Key](https://tools.ietf.org/html/rfc7517) for a signature or encryption credential for an IdP
 */
 class IdPKeyCredential {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdPKeyCredential.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdPKeyCredential = IdPKeyCredential;

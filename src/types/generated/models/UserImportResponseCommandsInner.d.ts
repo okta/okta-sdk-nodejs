@@ -48,4 +48,4 @@ export declare class UserImportResponseCommandsInner {
     }[];
   constructor();
 }
-export declare type UserImportResponseCommandsInnerTypeEnum = 'com.okta.appUser.profile.update' | 'com.okta.user.profile.update' | 'com.okta.action.update' | 'com.okta.user.update';
+export type UserImportResponseCommandsInnerTypeEnum = 'com.okta.appUser.profile.update' | 'com.okta.user.profile.update' | 'com.okta.action.update' | 'com.okta.user.update';

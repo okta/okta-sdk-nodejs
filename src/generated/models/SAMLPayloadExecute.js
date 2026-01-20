@@ -29,10 +29,10 @@ exports.SAMLPayloadExecute = void 0;
 * SAML assertion inline hook request
 */
 class SAMLPayloadExecute {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayloadExecute.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayloadExecute = SAMLPayloadExecute;

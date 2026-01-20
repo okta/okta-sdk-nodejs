@@ -49,4 +49,4 @@ export declare class SupportedMethods {
     }[];
   constructor();
 }
-export declare type SupportedMethodsTypeEnum = 'push';
+export type SupportedMethodsTypeEnum = 'push';

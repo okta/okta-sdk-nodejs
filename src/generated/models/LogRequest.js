@@ -29,10 +29,10 @@ exports.LogRequest = void 0;
 * The `Request` object describes details that are related to the HTTP request that triggers this event, if available. When the event isn\'t sourced to an HTTP request, such as an automatic update on the Okta servers, the `Request` object still exists, but the `ipChain` field is empty.
 */
 class LogRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogRequest = LogRequest;

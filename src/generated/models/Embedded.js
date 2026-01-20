@@ -29,10 +29,10 @@ exports.Embedded = void 0;
 * The Public Key Details are defined in the `_embedded` property of the Key object.
 */
 class Embedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Embedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Embedded = Embedded;

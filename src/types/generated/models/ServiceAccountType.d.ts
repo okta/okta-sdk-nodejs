@@ -25,4 +25,4 @@
 /**
 * The type of service account
 */
-export declare type ServiceAccountType = 'APP_ACCOUNT' | 'OKTA_USER_ACCOUNT';
+export type ServiceAccountType = 'APP_ACCOUNT' | 'OKTA_USER_ACCOUNT';

@@ -49,4 +49,4 @@ export declare class KeepMeSignedIn {
     }[];
   constructor();
 }
-export declare type KeepMeSignedInPostAuthEnum = 'ALLOWED' | 'NOT_ALLOWED';
+export type KeepMeSignedInPostAuthEnum = 'ALLOWED' | 'NOT_ALLOWED';

@@ -29,10 +29,10 @@ exports.GrantTypePolicyRuleCondition = void 0;
 * Array of grant types that this condition includes. Determines the mechanism that Okta uses to authorize the creation of the tokens.
 */
 class GrantTypePolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GrantTypePolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GrantTypePolicyRuleCondition = GrantTypePolicyRuleCondition;

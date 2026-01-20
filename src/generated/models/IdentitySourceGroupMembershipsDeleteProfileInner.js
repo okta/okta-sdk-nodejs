@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentitySourceGroupMembershipsDeleteProfileInner = void 0;
 class IdentitySourceGroupMembershipsDeleteProfileInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentitySourceGroupMembershipsDeleteProfileInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentitySourceGroupMembershipsDeleteProfileInner = IdentitySourceGroupMembershipsDeleteProfileInner;

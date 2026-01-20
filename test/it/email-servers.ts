@@ -54,8 +54,8 @@ describe('EmailServerApi', () => {
     await client.emailServerApi.testEmailServer({
       emailServerId: emailServer.id,
       emailTestAddresses: {
-        _from: from,
-        to,
+        fromAddress: from,
+        toAddress: to,
       }
     });
   });

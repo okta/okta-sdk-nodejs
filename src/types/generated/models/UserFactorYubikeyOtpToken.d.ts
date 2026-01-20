@@ -69,4 +69,4 @@ export declare class UserFactorYubikeyOtpToken {
     }[];
   constructor();
 }
-export declare type UserFactorYubikeyOtpTokenStatusEnum = 'BLOCKED' | 'UNASSIGNED' | 'ACTIVE' | 'REVOKED' | 'DELETED' | 'INACTIVE';
+export type UserFactorYubikeyOtpTokenStatusEnum = 'BLOCKED' | 'UNASSIGNED' | 'ACTIVE' | 'REVOKED' | 'DELETED' | 'INACTIVE';

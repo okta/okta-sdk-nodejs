@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WellKnownSSFMetadataSpecUrn = void 0;
 class WellKnownSSFMetadataSpecUrn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownSSFMetadataSpecUrn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownSSFMetadataSpecUrn = WellKnownSSFMetadataSpecUrn;

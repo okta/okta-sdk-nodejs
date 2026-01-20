@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DevicePolicyPlatformType = 'ANDROID' | 'IOS' | 'OSX' | 'WINDOWS';
+export type DevicePolicyPlatformType = 'ANDROID' | 'IOS' | 'OSX' | 'WINDOWS';

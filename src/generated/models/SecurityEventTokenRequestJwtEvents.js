@@ -29,10 +29,10 @@ exports.SecurityEventTokenRequestJwtEvents = void 0;
 * A non-empty collection of events
 */
 class SecurityEventTokenRequestJwtEvents {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenRequestJwtEvents.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenRequestJwtEvents = SecurityEventTokenRequestJwtEvents;

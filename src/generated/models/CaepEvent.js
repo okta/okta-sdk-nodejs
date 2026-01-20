@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CaepEvent = void 0;
 class CaepEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepEvent = CaepEvent;
@@ -56,7 +56,7 @@ CaepEvent.attributeTypeMap = [
   {
     'name': 'subject',
     'baseName': 'subject',
-    'type': 'SecurityEventSubject',
+    'type': 'SsfTransmitterSecurityEventSubject',
     'format': ''
   }
 ];

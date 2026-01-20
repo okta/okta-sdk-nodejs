@@ -29,10 +29,10 @@ exports.OktaSignOnPolicyRuleSignonSessionActions = void 0;
 * Properties governing the user\'s session lifetime
 */
 class OktaSignOnPolicyRuleSignonSessionActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSignOnPolicyRuleSignonSessionActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSignOnPolicyRuleSignonSessionActions = OktaSignOnPolicyRuleSignonSessionActions;

@@ -27,11 +27,11 @@
 */
 export declare class IDVCredentialsClient {
   /**
-    * The client ID that you generate in your IDV
+    * The client ID that you generate in your IDV vendor
     */
   'client_id': string;
   /**
-    * The client secret that you generate in your IDV
+    * The client secret that you generate in your IDV vendor
     */
   'client_secret': string;
   static readonly discriminator: string | undefined;

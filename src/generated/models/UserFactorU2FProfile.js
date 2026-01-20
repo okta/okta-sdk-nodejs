@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorU2FProfile = void 0;
 class UserFactorU2FProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorU2FProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorU2FProfile = UserFactorU2FProfile;

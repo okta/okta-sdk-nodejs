@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Office365ApplicationSettings = void 0;
 class Office365ApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Office365ApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Office365ApplicationSettings = Office365ApplicationSettings;

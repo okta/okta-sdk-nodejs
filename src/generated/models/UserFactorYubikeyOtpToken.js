@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorYubikeyOtpToken = void 0;
 class UserFactorYubikeyOtpToken {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorYubikeyOtpToken.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorYubikeyOtpToken = UserFactorYubikeyOtpToken;

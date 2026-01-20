@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ErrorPage = void 0;
 class ErrorPage {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ErrorPage.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ErrorPage = ErrorPage;

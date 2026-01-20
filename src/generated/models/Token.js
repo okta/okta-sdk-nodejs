@@ -29,10 +29,10 @@ exports.Token = void 0;
 * Verifies an OTP for a `token` factor
 */
 class Token {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Token.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Token = Token;

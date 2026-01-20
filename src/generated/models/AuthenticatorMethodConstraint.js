@@ -29,10 +29,10 @@ exports.AuthenticatorMethodConstraint = void 0;
 * Limits the authenticators that can be used for a given method. Currently, only the `otp` method supports constraints, and Google authenticator (key : \'google_otp\') is the only allowed authenticator.
 */
 class AuthenticatorMethodConstraint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodConstraint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodConstraint = AuthenticatorMethodConstraint;

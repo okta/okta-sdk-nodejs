@@ -29,10 +29,10 @@ exports.HrefCsrSelfLink = void 0;
 * Link to the resource (self)
 */
 class HrefCsrSelfLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefCsrSelfLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefCsrSelfLink = HrefCsrSelfLink;

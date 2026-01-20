@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.MtlsEndpoints = void 0;
 class MtlsEndpoints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MtlsEndpoints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MtlsEndpoints = MtlsEndpoints;
