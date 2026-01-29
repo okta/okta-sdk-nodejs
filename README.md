@@ -976,6 +976,86 @@ const client: Client = new Client({
 
 ### From 7.x to 8.0
 
+#### Breaking Changes
+
+Version 8.0 includes several breaking changes due to updates in the Okta OpenAPI specification:
+
+##### 1. Email Server API - Property Renamed
+
+The `EmailTestAddresses` model has been updated with renamed properties:
+
+**Old (v7.x):**
+```javascript
+await client.emailServerApi.testEmailServer({
+  emailServerId: emailServer.id,
+  emailTestAddresses: {
+    _from: 'test@example.com',
+    to: 'recipient@example.com'
+  }
+});
+```
+
+**New (v8.0):**
+```javascript
+await client.emailServerApi.testEmailServer({
+  emailServerId: emailServer.id,
+  emailTestAddresses: {
+    fromAddress: 'test@example.com',  // Changed from '_from'
+    to: 'recipient@example.com'
+  }
+});
+```
+
+##### 2. Custom Role API - Model Renamed
+
+The `CustomRole` model has been renamed to `IamRole`:
+
+**Old (v7.x):**
+```javascript
+import { CustomRole } from '@okta/okta-sdk-nodejs';
+
+let customRole: CustomRole;
+```
+
+**New (v8.0):**
+```javascript
+import { IamRole } from '@okta/okta-sdk-nodejs';
+
+let customRole: IamRole;  // Changed from CustomRole
+```
+
+##### 3. Role Assignment API - Model Renamed
+
+The `AssignRoleRequest` model has been renamed to `StandardRoleAssignmentSchema`:
+
+**Old (v7.x):**
+```javascript
+import { AssignRoleRequest } from '@okta/okta-sdk-nodejs';
+
+const roleRequest: AssignRoleRequest = {
+  type: 'USER_ADMIN'
+};
+
+await client.userApi.assignRoleToUser({
+  userId: user.id,
+  assignRoleRequest: roleRequest
+});
+```
+
+**New (v8.0):**
+```javascript
+import { StandardRoleAssignmentSchema } from '@okta/okta-sdk-nodejs';
+
+const roleRequest: StandardRoleAssignmentSchema = {  // Changed from AssignRoleRequest
+  type: 'USER_ADMIN'
+};
+
+await client.userApi.assignRoleToUser({
+  userId: user.id,
+  assignRoleRequest: roleRequest
+});
+```
+
 #### New APIs Added
 
 Version 8.0 introduces several new API endpoints:

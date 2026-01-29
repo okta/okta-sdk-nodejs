@@ -81,31 +81,31 @@ describe('Group API tests', () => {
 
   it('should filter with search and paginate results', async () => {
     const q = 'node-sdk: Search GROUP_XY';
-
+    
     // Retry logic to handle eventual consistency in Okta's search index
     let filtered = new Set();
     let attempts = 0;
     const maxAttempts = 5;
-
+    
     while (filtered.size < 2 && attempts < maxAttempts) {
       if (attempts > 0) {
         // Wait before retry to allow search index to catch up
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
-
+      
       filtered = new Set();
       const collection = await client.groupApi.listGroups({
         search: `profile.name sw "${q}"`,
       });
-
+      
       await collection.each(async group => {
         expect(group).to.be.an.instanceof(Group);
         filtered.add(group.profile.name);
       });
-
+      
       attempts++;
     }
-
+    
     expect(filtered.size).to.equal(2);
   });
 });
