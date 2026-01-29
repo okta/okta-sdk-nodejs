@@ -29,10 +29,10 @@ exports.CapabilitiesUpdateObject = void 0;
 * Determines whether updates to a user\'s profile are pushed to the app
 */
 class CapabilitiesUpdateObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesUpdateObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesUpdateObject = CapabilitiesUpdateObject;

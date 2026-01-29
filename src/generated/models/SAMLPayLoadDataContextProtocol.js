@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataContextProtocol = void 0;
 * Details of the assertion protocol being used
 */
 class SAMLPayLoadDataContextProtocol {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataContextProtocol.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataContextProtocol = SAMLPayLoadDataContextProtocol;

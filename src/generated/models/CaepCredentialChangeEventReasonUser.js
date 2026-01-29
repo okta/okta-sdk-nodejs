@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CaepCredentialChangeEventReasonUser = void 0;
 class CaepCredentialChangeEventReasonUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepCredentialChangeEventReasonUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepCredentialChangeEventReasonUser = CaepCredentialChangeEventReasonUser;

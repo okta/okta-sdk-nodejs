@@ -29,10 +29,10 @@ exports.SamlRequestSignatureAlgorithm = void 0;
 * XML digital Signature Algorithm settings for signing `<AuthnRequest>` messages sent to the IdP > **Note:**  The `algorithm` property is ignored when you disable request signatures (`scope` set as `NONE`).
 */
 class SamlRequestSignatureAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlRequestSignatureAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlRequestSignatureAlgorithm = SamlRequestSignatureAlgorithm;

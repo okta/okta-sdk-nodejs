@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IDVCredentials = void 0;
 /**
-* Credentials for verifying requests to the IDV
+* Credentials for verifying requests to the IDV vendor
 */
 class IDVCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVCredentials = IDVCredentials;

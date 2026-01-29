@@ -29,10 +29,10 @@ exports.LogTargetChangeDetails = void 0;
 * Details on the target\'s changes. Not all event types support the `changeDetails` property, and not all `target` objects contain the `changeDetails` property.  > **Note:** You can\'t run queries on `changeDetails` or the object\'s `to` or `from` properties.
 */
 class LogTargetChangeDetails {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogTargetChangeDetails.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogTargetChangeDetails = LogTargetChangeDetails;

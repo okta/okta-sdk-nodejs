@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Subscription = void 0;
 class Subscription {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Subscription.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Subscription = Subscription;

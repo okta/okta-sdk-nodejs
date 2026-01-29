@@ -22,8 +22,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { AuthorizationServerPolicyConditions } from './../models/AuthorizationServerPolicyConditions';
 import { AuthorizationServerPolicyLinks } from './../models/AuthorizationServerPolicyLinks';
+import { AuthorizationServerPolicyConditions } from './../models/AuthorizationServerPolicyConditions';
 export declare class AuthorizationServerPolicy {
   /**
     * ID of the Policy
@@ -78,5 +78,5 @@ export declare class AuthorizationServerPolicy {
     }[];
   constructor();
 }
-export declare type AuthorizationServerPolicyTypeEnum = 'OAUTH_AUTHORIZATION_POLICY';
-export declare type AuthorizationServerPolicyStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type AuthorizationServerPolicyTypeEnum = 'OAUTH_AUTHORIZATION_POLICY';
+export type AuthorizationServerPolicyStatusEnum = 'ACTIVE' | 'INACTIVE';

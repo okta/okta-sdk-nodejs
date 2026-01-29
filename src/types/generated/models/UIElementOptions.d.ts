@@ -45,4 +45,4 @@ export declare class UIElementOptions {
     }[];
   constructor();
 }
-export declare type UIElementOptionsFormatEnum = 'text' | 'radio' | 'select' | 'checkbox' | 'radio_yes_no' | 'radio_true_false';
+export type UIElementOptionsFormatEnum = 'text' | 'radio' | 'select' | 'checkbox' | 'radio_yes_no' | 'radio_true_false';

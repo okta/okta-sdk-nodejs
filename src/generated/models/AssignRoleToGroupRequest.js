@@ -34,6 +34,17 @@ class AssignRoleToGroupRequestClass {
 exports.AssignRoleToGroupRequestClass = AssignRoleToGroupRequestClass;
 AssignRoleToGroupRequestClass.discriminator = 'type';
 AssignRoleToGroupRequestClass.mapping = {
-  '*': 'StandardRoleAssignmentSchema',
+  'ACCESS_CERTIFICATIONS_ADMIN': 'StandardRoleAssignmentSchema',
+  'ACCESS_REQUESTS_ADMIN': 'StandardRoleAssignmentSchema',
+  'API_ACCESS_MANAGEMENT_ADMIN': 'StandardRoleAssignmentSchema',
+  'APP_ADMIN': 'StandardRoleAssignmentSchema',
   'CUSTOM': 'CustomRoleAssignmentSchema',
+  'GROUP_MEMBERSHIP_ADMIN': 'StandardRoleAssignmentSchema',
+  'HELP_DESK_ADMIN': 'StandardRoleAssignmentSchema',
+  'ORG_ADMIN': 'StandardRoleAssignmentSchema',
+  'READ_ONLY_ADMIN': 'StandardRoleAssignmentSchema',
+  'REPORT_ADMIN': 'StandardRoleAssignmentSchema',
+  'SUPER_ADMIN': 'StandardRoleAssignmentSchema',
+  'USER_ADMIN': 'StandardRoleAssignmentSchema',
+  'WORKFLOWS_ADMIN': 'StandardRoleAssignmentSchema',
 };

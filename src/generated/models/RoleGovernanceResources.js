@@ -29,10 +29,10 @@ exports.RoleGovernanceResources = void 0;
 * The resources of a grant
 */
 class RoleGovernanceResources {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RoleGovernanceResources.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RoleGovernanceResources = RoleGovernanceResources;
@@ -47,7 +47,7 @@ RoleGovernanceResources.attributeTypeMap = [
   {
     'name': '_links',
     'baseName': '_links',
-    'type': 'RoleGovernanceResourcesLinks',
+    'type': 'ListAIAgents200ResponseLinks',
     'format': ''
   }
 ];

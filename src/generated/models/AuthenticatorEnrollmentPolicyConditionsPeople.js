@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyConditionsPeople = void 0;
 * Identifies users and groups that are used together
 */
 class AuthenticatorEnrollmentPolicyConditionsPeople {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyConditionsPeople.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyConditionsPeople = AuthenticatorEnrollmentPolicyConditionsPeople;

@@ -29,10 +29,10 @@ exports.RoleGovernanceResource = void 0;
 * The resource of a grant
 */
 class RoleGovernanceResource {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RoleGovernanceResource.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RoleGovernanceResource = RoleGovernanceResource;

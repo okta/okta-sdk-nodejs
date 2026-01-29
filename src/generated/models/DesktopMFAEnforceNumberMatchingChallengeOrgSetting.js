@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DesktopMFAEnforceNumberMatchingChallengeOrgSetting = void 0;
 class DesktopMFAEnforceNumberMatchingChallengeOrgSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DesktopMFAEnforceNumberMatchingChallengeOrgSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DesktopMFAEnforceNumberMatchingChallengeOrgSetting = DesktopMFAEnforceNumberMatchingChallengeOrgSetting;

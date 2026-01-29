@@ -47,4 +47,4 @@ export declare class DynamicNetworkZone extends NetworkZone {
     }[];
   constructor();
 }
-export declare type DynamicNetworkZoneProxyTypeEnum = 'null' | 'Any' | 'Tor' | 'NotTorAnonymizer';
+export type DynamicNetworkZoneProxyTypeEnum = 'null' | 'Any' | 'Tor' | 'NotTorAnonymizer';

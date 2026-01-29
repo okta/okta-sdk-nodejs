@@ -29,10 +29,10 @@ exports.AppUserProfile = void 0;
 * Specifies the default and custom profile properties for a user. Properties that are visible in the Admin Console for an app assignment can also be assigned through the API. Some properties are reference properties that are imported from the target app and can\'t be configured. See [profile](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/getUser!c=200&path=profile&t=response).
 */
 class AppUserProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUserProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUserProfile = AppUserProfile;

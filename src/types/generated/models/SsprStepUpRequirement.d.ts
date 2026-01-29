@@ -46,4 +46,4 @@ export declare class SsprStepUpRequirement {
     }[];
   constructor();
 }
-export declare type SsprStepUpRequirementMethodsEnum = 'security_question';
+export type SsprStepUpRequirementMethodsEnum = 'security_question';

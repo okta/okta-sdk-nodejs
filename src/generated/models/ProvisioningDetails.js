@@ -29,10 +29,10 @@ exports.ProvisioningDetails = void 0;
 * Supported provisioning configurations for your integration
 */
 class ProvisioningDetails {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningDetails.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningDetails = ProvisioningDetails;

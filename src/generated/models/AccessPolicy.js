@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AccessPolicy = void 0;
 const Policy_1 = require('./../models/Policy');
 class AccessPolicy extends Policy_1.Policy {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AccessPolicy.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ACCESS_POLICY';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AccessPolicy.attributeTypeMap);
   }
 }
 exports.AccessPolicy = AccessPolicy;

@@ -29,10 +29,10 @@ exports.OidcJwksEndpoint = void 0;
 * Endpoint for the JSON Web Key Set (JWKS) document. This document contains signing keys that are used to validate the signatures from the provider. For more information on JWKS, see [JSON Web Key](https://tools.ietf.org/html/rfc7517).
 */
 class OidcJwksEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcJwksEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcJwksEndpoint = OidcJwksEndpoint;

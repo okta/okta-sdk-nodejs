@@ -29,7 +29,7 @@ import { StandardRoleAssignmentSchema } from './../models/StandardRoleAssignment
  * Type
  * @export
  */
-export declare type AssignRoleToGroupRequest = CustomRoleAssignmentSchema | StandardRoleAssignmentSchema;
+export type AssignRoleToGroupRequest = CustomRoleAssignmentSchema | StandardRoleAssignmentSchema;
 /**
 * @type AssignRoleToGroupRequestClass
 * @export

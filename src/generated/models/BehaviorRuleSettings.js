@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleSettings = void 0;
 class BehaviorRuleSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BehaviorRuleSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BehaviorRuleSettings = BehaviorRuleSettings;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HelpLink = void 0;
 class HelpLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HelpLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HelpLink = HelpLink;

@@ -29,10 +29,10 @@ exports.ApplicationSettingsNotificationsVpnNetwork = void 0;
 * Defines network zones for VPN notification
 */
 class ApplicationSettingsNotificationsVpnNetwork {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationSettingsNotificationsVpnNetwork.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationSettingsNotificationsVpnNetwork = ApplicationSettingsNotificationsVpnNetwork;

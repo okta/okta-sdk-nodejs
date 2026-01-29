@@ -51,4 +51,4 @@ export declare class ProtocolOAuth {
     }[];
   constructor();
 }
-export declare type ProtocolOAuthTypeEnum = 'OAUTH2';
+export type ProtocolOAuthTypeEnum = 'OAUTH2';

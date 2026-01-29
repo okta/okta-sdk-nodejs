@@ -29,10 +29,10 @@ exports.WellKnownOrgMetadataSettings = void 0;
 * Org settings
 */
 class WellKnownOrgMetadataSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownOrgMetadataSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownOrgMetadataSettings = WellKnownOrgMetadataSettings;

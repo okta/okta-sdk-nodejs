@@ -29,10 +29,10 @@ exports.OSVersion = void 0;
 * Specifies the OS requirement for the policy.  There are two types of OS requirements:  * **Static**: A specific OS version requirement that doesn\'t change until you update the policy. A static OS requirement is specified with the `osVersion.minimum` property. * **Dynamic**: An OS version requirement that is relative to the latest major OS release and security patch. A dynamic OS requirement is specified with the `osVersion.dynamicVersionRequirement` property. > **Note:** Dynamic OS requirements are available only if the **Dynamic OS version compliance** [self-service EA](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature is enabled. You can\'t specify both `osVersion.minimum` and `osVersion.dynamicVersionRequirement` properties at the same time.
 */
 class OSVersion {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OSVersion.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OSVersion = OSVersion;

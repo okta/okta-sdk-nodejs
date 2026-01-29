@@ -22,6 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UpdateUserRequestType } from './../models/UpdateUserRequestType';
 import { UserCredentials } from './../models/UserCredentials';
 import { UserProfile } from './../models/UserProfile';
 export declare class UpdateUserRequest {
@@ -31,6 +32,7 @@ export declare class UpdateUserRequest {
     * The ID of the realm in which the user is residing. See [Realms](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Realm/).
     */
   'realmId'?: string;
+  'type'?: UpdateUserRequestType;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

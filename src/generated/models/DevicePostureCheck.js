@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DevicePostureCheck = void 0;
 class DevicePostureCheck {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureCheck.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureCheck = DevicePostureCheck;

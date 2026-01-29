@@ -29,10 +29,10 @@ exports.TokenSoftwareTotp1 = void 0;
 * Verifies an OTP for a `token:software:totp` factor
 */
 class TokenSoftwareTotp1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenSoftwareTotp1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenSoftwareTotp1 = TokenSoftwareTotp1;

@@ -29,10 +29,10 @@ exports.AuthenticatorIdentity = void 0;
 * Represents a particular authenticator serving as a constraint on a method
 */
 class AuthenticatorIdentity {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorIdentity.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorIdentity = AuthenticatorIdentity;

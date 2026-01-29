@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodTac = void 0;
 class AuthenticatorMethodTac {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodTac.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodTac = AuthenticatorMethodTac;

@@ -29,10 +29,10 @@ exports.PostAuthSessionPolicyRuleActions = void 0;
 * The action to take in response to a failure of the reevaluated global session policy or authentication polices
 */
 class PostAuthSessionPolicyRuleActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionPolicyRuleActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthSessionPolicyRuleActions = PostAuthSessionPolicyRuleActions;

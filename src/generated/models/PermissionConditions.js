@@ -29,10 +29,10 @@ exports.PermissionConditions = void 0;
 * Conditions for further restricting a permission. See [Permission conditions](https://help.okta.com/okta_help.htm?type=oie&id=ext-permission-conditions).
 */
 class PermissionConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PermissionConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PermissionConditions = PermissionConditions;

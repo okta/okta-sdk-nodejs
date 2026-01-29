@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* Indicates if the User should be challenged for a second factor (MFA) based on the device being used, a Factor session lifetime, or on every sign-in attempt  > **Note:** Required only if `requireFactor` is set to `true`.
+* Indicates if the user is challenged for a second factor (MFA) based on the device used, a factor session lifetime expiration, or on every sign-in attempt.  If the [Behavior](https://help.okta.com/okta_help.htm?type=oie&id=behavior-detection-type) of the global session policy includes the **New Device** behavior type, then `requireFactor` must be `false` or `factorPromptMode` must be `ALWAYS`.  > **Note:** Required only if `requireFactor` is set to `true`.
 */
-export declare type OktaSignOnPolicyFactorPromptMode = 'ALWAYS' | 'DEVICE' | 'SESSION';
+export type OktaSignOnPolicyFactorPromptMode = 'ALWAYS' | 'DEVICE' | 'SESSION';

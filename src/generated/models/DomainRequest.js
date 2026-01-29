@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DomainRequest = void 0;
 class DomainRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainRequest = DomainRequest;

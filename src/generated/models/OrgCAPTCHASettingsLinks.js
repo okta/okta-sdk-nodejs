@@ -29,10 +29,10 @@ exports.OrgCAPTCHASettingsLinks = void 0;
 * Link relations for the CAPTCHA settings object
 */
 class OrgCAPTCHASettingsLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCAPTCHASettingsLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCAPTCHASettingsLinks = OrgCAPTCHASettingsLinks;

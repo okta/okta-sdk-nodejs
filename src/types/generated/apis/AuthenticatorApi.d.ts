@@ -18,6 +18,7 @@ import { AllCustomAAGUIDResponseObject } from '../models/AllCustomAAGUIDResponse
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
+import { AuthenticatorMethodTypeWebAuthn } from '../models/AuthenticatorMethodTypeWebAuthn';
 import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
 import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
 import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
@@ -147,6 +148,13 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      * @param customAAGUIDUpdateRequestObject
      */
   updateCustomAAGUID(authenticatorId: string, aaguid: string, customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified WebAuthn authenticator and the specific `webauthn` authenticator method
+     * Verify a Relying Party ID domain
+     * @param authenticatorId &#x60;id&#x60; of the authenticator
+     * @param webAuthnMethodType Type of authenticator method
+     */
+  verifyRpIdDomain(authenticatorId: string, webAuthnMethodType: AuthenticatorMethodTypeWebAuthn, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AuthenticatorApiResponseProcessor {
   /**
@@ -293,4 +301,12 @@ export declare class AuthenticatorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   updateCustomAAGUID(response: ResponseContext): Promise<CustomAAGUIDResponseObject>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to verifyRpIdDomain
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  verifyRpIdDomain(response: ResponseContext): Promise<void>;
 }

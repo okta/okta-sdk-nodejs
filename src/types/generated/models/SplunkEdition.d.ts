@@ -25,4 +25,4 @@
 /**
 * Edition of the Splunk Cloud instance
 */
-export declare type SplunkEdition = 'aws' | 'aws_govcloud' | 'gcp';
+export type SplunkEdition = 'aws' | 'aws_govcloud' | 'gcp';

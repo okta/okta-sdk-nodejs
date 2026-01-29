@@ -29,10 +29,10 @@ exports.DTCMacOS = void 0;
 * Google Chrome Device Trust Connector provider
 */
 class DTCMacOS {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DTCMacOS.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DTCMacOS = DTCMacOS;

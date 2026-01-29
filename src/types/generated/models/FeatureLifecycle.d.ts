@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type FeatureLifecycle = 'DISABLE' | 'ENABLE';
+export type FeatureLifecycle = 'DISABLE' | 'ENABLE';

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogStreamSplunkPutSchema = void 0;
 const LogStreamPutSchema_1 = require('./../models/LogStreamPutSchema');
 class LogStreamSplunkPutSchema extends LogStreamPutSchema_1.LogStreamPutSchema {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(LogStreamSplunkPutSchema.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'splunk_cloud_logstreaming';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(LogStreamSplunkPutSchema.attributeTypeMap);
   }
 }
 exports.LogStreamSplunkPutSchema = LogStreamSplunkPutSchema;

@@ -457,10 +457,10 @@ function bigintToBase64(bi: forge.jsbn.BigInteger) {
   );
 }
 
-function parseCsr(csr: Csr | IdPCsr): forge.pki.CertificateRequest {
+function parseCsr(csr: Csr | IdPCsr): forge.pki.CertificateSigningRequest {
   const csrDer = forge.util.decode64(csr.csr);
   const csrAsn1 = forge.asn1.fromDer(csrDer);
-  return forge.pki.certificationRequestFromAsn1(csrAsn1) as forge.pki.CertificateRequest;
+  return forge.pki.certificationRequestFromAsn1(csrAsn1);
 }
 
 function createCertFromCsr(csr: Csr | IdPCsr, keys: forge.pki.KeyPair) {
@@ -475,7 +475,7 @@ function createCertFromCsr(csr: Csr | IdPCsr, keys: forge.pki.KeyPair) {
   certF.setIssuer(csrF.subject.attributes);
   const extensions = csrF.getAttribute({name: 'extensionRequest'}).extensions;
   certF.setExtensions(extensions);
-  certF.sign(keys.privateKey, forge.md.sha256.create());
+  certF.sign(keys.privateKey as forge.pki.rsa.PrivateKey, forge.md.sha256.create());
   return certF;
 }
 

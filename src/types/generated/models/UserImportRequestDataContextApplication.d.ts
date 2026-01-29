@@ -57,4 +57,4 @@ export declare class UserImportRequestDataContextApplication {
     }[];
   constructor();
 }
-export declare type UserImportRequestDataContextApplicationStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type UserImportRequestDataContextApplicationStatusEnum = 'ACTIVE' | 'INACTIVE';

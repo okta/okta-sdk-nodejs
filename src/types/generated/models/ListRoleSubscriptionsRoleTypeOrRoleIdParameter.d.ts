@@ -28,7 +28,7 @@ import { RoleType } from './../models/RoleType';
  * Type
  * @export
  */
-export declare type ListRoleSubscriptionsRoleTypeOrRoleIdParameter = RoleType | string;
+export type ListRoleSubscriptionsRoleTypeOrRoleIdParameter = RoleType | string;
 /**
 * @type ListRoleSubscriptionsRoleTypeOrRoleIdParameterClass
 * @export

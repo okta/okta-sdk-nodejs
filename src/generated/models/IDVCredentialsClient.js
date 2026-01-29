@@ -29,10 +29,10 @@ exports.IDVCredentialsClient = void 0;
 * Client credentials for `IDV_CLEAR` and `IDV_INCODE` IdP types
 */
 class IDVCredentialsClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVCredentialsClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVCredentialsClient = IDVCredentialsClient;

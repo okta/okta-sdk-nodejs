@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TacAuthenticatorEnrollment = void 0;
 class TacAuthenticatorEnrollment {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TacAuthenticatorEnrollment.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TacAuthenticatorEnrollment = TacAuthenticatorEnrollment;

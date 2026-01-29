@@ -29,10 +29,10 @@ exports.BaseContext = void 0;
 * This object contains a number of sub-objects, each of which provide some type of contextual information.
 */
 class BaseContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseContext = BaseContext;

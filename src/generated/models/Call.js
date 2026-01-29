@@ -29,10 +29,10 @@ exports.Call = void 0;
 * Attempts to activate a `call` factor with the specified passcode
 */
 class Call {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Call.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Call = Call;

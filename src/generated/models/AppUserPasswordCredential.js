@@ -29,10 +29,10 @@ exports.AppUserPasswordCredential = void 0;
 * The user\'s password. This is a write-only property. An empty `password` object is returned to indicate that a password value exists.
 */
 class AppUserPasswordCredential {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUserPasswordCredential.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUserPasswordCredential = AppUserPasswordCredential;

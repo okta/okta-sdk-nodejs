@@ -29,10 +29,10 @@ exports.DTCChromeOS = void 0;
 * Google Chrome Device Trust Connector provider
 */
 class DTCChromeOS {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DTCChromeOS.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DTCChromeOS = DTCChromeOS;

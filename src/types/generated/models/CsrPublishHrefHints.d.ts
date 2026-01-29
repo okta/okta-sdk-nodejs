@@ -42,4 +42,4 @@ export declare class CsrPublishHrefHints {
     }[];
   constructor();
 }
-export declare type CsrPublishHrefHintsAllowEnum = 'POST';
+export type CsrPublishHrefHintsAllowEnum = 'POST';

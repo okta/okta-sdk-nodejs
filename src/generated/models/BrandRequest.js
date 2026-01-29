@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BrandRequest = void 0;
 class BrandRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BrandRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BrandRequest = BrandRequest;

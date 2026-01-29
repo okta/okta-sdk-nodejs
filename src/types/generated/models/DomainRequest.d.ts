@@ -26,7 +26,7 @@ import { DomainCertificateSourceType } from './../models/DomainCertificateSource
 export declare class DomainRequest {
   'certificateSourceType': DomainCertificateSourceType;
   /**
-    * Custom domain name
+    * Custom domain name  > **Note:** You can\'t use the reserved `drapp.{yourOrgSubDomain}.okta.com` domain.
     */
   'domain': string;
   static readonly discriminator: string | undefined;

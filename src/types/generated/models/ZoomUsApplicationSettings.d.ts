@@ -28,7 +28,7 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { ZoomUsApplicationSettingsApplication } from './../models/ZoomUsApplicationSettingsApplication';
 export declare class ZoomUsApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: ZoomUsApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class ZoomUsApplicationSettings {
     }[];
   constructor();
 }
-export declare type ZoomUsApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type ZoomUsApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

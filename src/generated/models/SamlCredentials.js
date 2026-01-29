@@ -29,10 +29,10 @@ exports.SamlCredentials = void 0;
 * Federation Trust Credentials for verifying assertions from the IdP and signing requests to the IdP
 */
 class SamlCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlCredentials = SamlCredentials;

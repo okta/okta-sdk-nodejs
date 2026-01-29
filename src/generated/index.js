@@ -16,9 +16,13 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
   if (k2 === undefined) {
     k2 = k;
   }
-  Object.defineProperty(o, k2, { enumerable: true, get: function () {
-    return m[k];
-  } });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+  if (!desc || ('get' in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = { enumerable: true, get: function () {
+      return m[k];
+    } };
+  }
+  Object.defineProperty(o, k2, desc);
 }) : (function (o, m, k, k2) {
   if (k2 === undefined) {
     k2 = k;
@@ -33,8 +37,8 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.RiskEventApi = exports.ResourceSetApi = exports.RealmAssignmentApi = exports.RealmApi = exports.RateLimitSettingsApi = exports.PushProviderApi = exports.ProfileMappingApi = exports.PrivilegedResourceApi = exports.PrincipalRateLimitApi = exports.PolicyApi = exports.OrgSettingApi = exports.OrgCreatorApi = exports.OktaPersonalSettingsApi = exports.OktaApplicationSettingsApi = exports.NetworkZoneApi = exports.LogStreamApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentitySourceApi = exports.IdentityProviderApi = exports.HookKeyApi = exports.GroupPushMappingApi = exports.GroupApi = exports.GovernanceBundleApi = exports.FeatureApi = exports.EventHookApi = exports.EmailServerApi = exports.EmailDomainApi = exports.DisasterRecoveryApi = exports.DirectoriesIntegrationApi = exports.DevicePostureCheckApi = exports.DeviceIntegrationsApi = exports.DeviceAssuranceApi = exports.DeviceAccessApi = exports.DeviceApi = exports.CustomizationApi = exports.CustomRoleApi = exports.CustomDomainApi = exports.CAPTCHAApi = exports.BehaviorApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.AttackProtectionApi = exports.AssociatedDomainCustomizationsApi = exports.ApplicationApi = exports.ApiTokenApi = exports.ApiServiceIntegrationsApi = exports.AgentPoolsApi = exports.okta = exports.createConfiguration = void 0;
-exports.YourOinIntegrationsApi = exports.WebAuthnPreregistrationApi = exports.UserTypeApi = exports.UserFactorApi = exports.UserAuthenticatorEnrollmentsApi = exports.UserApi = exports.UISchemaApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.ServiceAccountApi = exports.SchemaApi = exports.SSFTransmitterApi = exports.SSFSecurityEventTokenApi = exports.SSFReceiverApi = exports.RoleTargetApi = exports.RoleAssignmentApi = exports.RiskProviderApi = void 0;
+exports.OrgCreatorApi = exports.OperationsIntegrationApi = exports.OktaPersonalSettingsApi = exports.OktaManagedUserAccountApi = exports.OktaApplicationSettingsApi = exports.OAuth2ResourceServerCredentialsKeysApi = exports.NetworkZoneApi = exports.LogStreamApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentitySourceApi = exports.IdentityProviderApi = exports.HookKeyApi = exports.GroupPushMappingApi = exports.GroupApi = exports.GovernanceBundleApi = exports.FeatureApi = exports.EventHookApi = exports.EmailServerApi = exports.EmailDomainApi = exports.DisasterRecoveryApi = exports.DirectoriesIntegrationApi = exports.DevicePostureCheckApi = exports.DeviceIntegrationsApi = exports.DeviceAssuranceApi = exports.DeviceAccessApi = exports.DeviceApi = exports.CustomizationApi = exports.CustomTelephonyProviderApi = exports.CustomRoleApi = exports.CustomDomainApi = exports.CAPTCHAApi = exports.BehaviorApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.AttackProtectionApi = exports.AssociatedDomainCustomizationsApi = exports.ApplicationSSOPublicKeysApi = exports.ApplicationInterclientTrustMappingsApi = exports.ApplicationCrossAppAccessConnectionsApi = exports.ApplicationApi = exports.ApiTokenApi = exports.ApiServiceIntegrationsApi = exports.AgentRegistrationApi = exports.AgentPublicKeyApi = exports.AgentPotentialConnectionsApi = exports.AgentPoolsApi = exports.AgentConnectionsApi = exports.okta = exports.createConfiguration = void 0;
+exports.YourOinIntegrationsApi = exports.WebAuthnPreregistrationApi = exports.UserTypeApi = exports.UserFactorApi = exports.UserAuthenticatorEnrollmentsApi = exports.UserApi = exports.UnconfirmedUsersApi = exports.UISchemaApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.ServiceAccountApi = exports.SchemaApi = exports.SSFTransmitterApi = exports.SSFSecurityEventTokenApi = exports.SSFReceiverApi = exports.RoleTargetApi = exports.RoleAssignmentApi = exports.RiskProviderApi = exports.RiskEventApi = exports.ResourceSetApi = exports.RealmAssignmentApi = exports.RealmApi = exports.RateLimitSettingsApi = exports.PushProviderApi = exports.ProfileMappingApi = exports.PrivilegedResourceApi = exports.PrincipalRateLimitApi = exports.PolicyApi = exports.OrgSettingApi = void 0;
 __exportStar(require('./http/http'), exports);
 __exportStar(require('./auth/auth'), exports);
 __exportStar(require('./models/all'), exports);
@@ -46,8 +50,20 @@ __exportStar(require('./apis/exception'), exports);
 __exportStar(require('./servers'), exports);
 exports.okta = require('./');
 var ObjectParamAPI_1 = require('./types/ObjectParamAPI');
+Object.defineProperty(exports, 'AgentConnectionsApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectAgentConnectionsApi;
+} });
 Object.defineProperty(exports, 'AgentPoolsApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectAgentPoolsApi;
+} });
+Object.defineProperty(exports, 'AgentPotentialConnectionsApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectAgentPotentialConnectionsApi;
+} });
+Object.defineProperty(exports, 'AgentPublicKeyApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectAgentPublicKeyApi;
+} });
+Object.defineProperty(exports, 'AgentRegistrationApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectAgentRegistrationApi;
 } });
 Object.defineProperty(exports, 'ApiServiceIntegrationsApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectApiServiceIntegrationsApi;
@@ -57,6 +73,15 @@ Object.defineProperty(exports, 'ApiTokenApi', { enumerable: true, get: function 
 } });
 Object.defineProperty(exports, 'ApplicationApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectApplicationApi;
+} });
+Object.defineProperty(exports, 'ApplicationCrossAppAccessConnectionsApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectApplicationCrossAppAccessConnectionsApi;
+} });
+Object.defineProperty(exports, 'ApplicationInterclientTrustMappingsApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectApplicationInterclientTrustMappingsApi;
+} });
+Object.defineProperty(exports, 'ApplicationSSOPublicKeysApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectApplicationSSOPublicKeysApi;
 } });
 Object.defineProperty(exports, 'AssociatedDomainCustomizationsApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectAssociatedDomainCustomizationsApi;
@@ -81,6 +106,9 @@ Object.defineProperty(exports, 'CustomDomainApi', { enumerable: true, get: funct
 } });
 Object.defineProperty(exports, 'CustomRoleApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectCustomRoleApi;
+} });
+Object.defineProperty(exports, 'CustomTelephonyProviderApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectCustomTelephonyProviderApi;
 } });
 Object.defineProperty(exports, 'CustomizationApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectCustomizationApi;
@@ -148,11 +176,20 @@ Object.defineProperty(exports, 'LogStreamApi', { enumerable: true, get: function
 Object.defineProperty(exports, 'NetworkZoneApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectNetworkZoneApi;
 } });
+Object.defineProperty(exports, 'OAuth2ResourceServerCredentialsKeysApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectOAuth2ResourceServerCredentialsKeysApi;
+} });
 Object.defineProperty(exports, 'OktaApplicationSettingsApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectOktaApplicationSettingsApi;
 } });
+Object.defineProperty(exports, 'OktaManagedUserAccountApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectOktaManagedUserAccountApi;
+} });
 Object.defineProperty(exports, 'OktaPersonalSettingsApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectOktaPersonalSettingsApi;
+} });
+Object.defineProperty(exports, 'OperationsIntegrationApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectOperationsIntegrationApi;
 } });
 Object.defineProperty(exports, 'OrgCreatorApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectOrgCreatorApi;
@@ -234,6 +271,9 @@ Object.defineProperty(exports, 'TrustedOriginApi', { enumerable: true, get: func
 } });
 Object.defineProperty(exports, 'UISchemaApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectUISchemaApi;
+} });
+Object.defineProperty(exports, 'UnconfirmedUsersApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectUnconfirmedUsersApi;
 } });
 Object.defineProperty(exports, 'UserApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectUserApi;

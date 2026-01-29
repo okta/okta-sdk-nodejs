@@ -28,7 +28,7 @@ import { TokenProtocolRequest } from './../models/TokenProtocolRequest';
 * Information about the original token request used to get the refresh token being used, when in a refresh token request
 */
 export declare class TokenPayLoadDataContextProtocolOriginalGrant {
-  'request'?: TokenProtocolRequest;
+  'authorization'?: TokenProtocolRequest;
   'refresh_token'?: RefreshToken;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

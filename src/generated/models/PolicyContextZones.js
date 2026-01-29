@@ -29,10 +29,10 @@ exports.PolicyContextZones = void 0;
 * The zone ID under the network rule condition.
 */
 class PolicyContextZones {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyContextZones.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyContextZones = PolicyContextZones;

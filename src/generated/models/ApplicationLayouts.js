@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ApplicationLayouts = void 0;
 class ApplicationLayouts {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationLayouts.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationLayouts = ApplicationLayouts;

@@ -14,7 +14,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -26,6 +30,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectSerializer = void 0;
 __exportStar(require("./AAGUIDAuthenticatorCharacteristics"), exports);
 __exportStar(require("./AAGUIDGroupObject"), exports);
+__exportStar(require("./AIAgent"), exports);
+__exportStar(require("./AIAgentOperationListResponse"), exports);
+__exportStar(require("./AIAgentOperationResponse"), exports);
+__exportStar(require("./AIAgentProfile"), exports);
+__exportStar(require("./AIAgentResource"), exports);
 __exportStar(require("./APIServiceIntegrationInstance"), exports);
 __exportStar(require("./APIServiceIntegrationInstanceSecret"), exports);
 __exportStar(require("./APIServiceIntegrationLinks"), exports);
@@ -43,16 +52,31 @@ __exportStar(require("./AccessPolicyRuleApplicationSignOn"), exports);
 __exportStar(require("./AccessPolicyRuleApplicationSignOnAccess"), exports);
 __exportStar(require("./AccessPolicyRuleConditions"), exports);
 __exportStar(require("./AccessPolicyRuleCustomCondition"), exports);
+__exportStar(require("./AccessTokenKeyEncryptionAlgorithm"), exports);
 __exportStar(require("./AcsEndpoint"), exports);
+__exportStar(require("./ActionProvider"), exports);
+__exportStar(require("./ActionProviderPayloadType"), exports);
+__exportStar(require("./ActionProviderType"), exports);
 __exportStar(require("./Actions"), exports);
 __exportStar(require("./ActiveDirectoryGroupScope"), exports);
 __exportStar(require("./ActiveDirectoryGroupType"), exports);
+__exportStar(require("./AddJwkRequest"), exports);
 __exportStar(require("./AdminConsoleSettings"), exports);
 __exportStar(require("./Agent"), exports);
 __exportStar(require("./AgentAction"), exports);
+__exportStar(require("./AgentJsonSigningKeyCommon"), exports);
+__exportStar(require("./AgentJsonSigningKeyRequest"), exports);
+__exportStar(require("./AgentJsonSigningKeyResponse"), exports);
+__exportStar(require("./AgentJsonWebKeyECRequest"), exports);
+__exportStar(require("./AgentJsonWebKeyECResponse"), exports);
+__exportStar(require("./AgentJsonWebKeyRequestBase"), exports);
+__exportStar(require("./AgentJsonWebKeyResponseBase"), exports);
+__exportStar(require("./AgentJsonWebKeyRsaRequest"), exports);
+__exportStar(require("./AgentJsonWebKeyRsaResponse"), exports);
 __exportStar(require("./AgentPool"), exports);
 __exportStar(require("./AgentPoolUpdate"), exports);
 __exportStar(require("./AgentPoolUpdateSetting"), exports);
+__exportStar(require("./AgentSecretLinks"), exports);
 __exportStar(require("./AgentType"), exports);
 __exportStar(require("./AgentUpdateInstanceStatus"), exports);
 __exportStar(require("./AgentUpdateJobStatus"), exports);
@@ -75,8 +99,11 @@ __exportStar(require("./AppConnectionUserProvisionJWKResponse"), exports);
 __exportStar(require("./AppCustomHrefObject"), exports);
 __exportStar(require("./AppCustomHrefObjectHints"), exports);
 __exportStar(require("./AppGroup"), exports);
+__exportStar(require("./AppInstanceAuthorizationServer"), exports);
 __exportStar(require("./AppInstanceContainerStatus"), exports);
+__exportStar(require("./AppInstanceLinks"), exports);
 __exportStar(require("./AppInstancePolicyRuleCondition"), exports);
+__exportStar(require("./AppInstanceProperty"), exports);
 __exportStar(require("./AppProperties"), exports);
 __exportStar(require("./AppPropertiesValue"), exports);
 __exportStar(require("./AppResourceHrefObject"), exports);
@@ -96,6 +123,7 @@ __exportStar(require("./AppUserUpdateRequest"), exports);
 __exportStar(require("./AppleClientSigning"), exports);
 __exportStar(require("./Application"), exports);
 __exportStar(require("./ApplicationAccessibility"), exports);
+__exportStar(require("./ApplicationCapability"), exports);
 __exportStar(require("./ApplicationCredentials"), exports);
 __exportStar(require("./ApplicationCredentialsOAuthClient"), exports);
 __exportStar(require("./ApplicationCredentialsScheme"), exports);
@@ -103,6 +131,7 @@ __exportStar(require("./ApplicationCredentialsSigning"), exports);
 __exportStar(require("./ApplicationCredentialsSigningUse"), exports);
 __exportStar(require("./ApplicationCredentialsUsernameTemplate"), exports);
 __exportStar(require("./ApplicationEmbedded"), exports);
+__exportStar(require("./ApplicationExpressConfiguration"), exports);
 __exportStar(require("./ApplicationFeature"), exports);
 __exportStar(require("./ApplicationFeatureType"), exports);
 __exportStar(require("./ApplicationGroupAssignment"), exports);
@@ -128,6 +157,8 @@ __exportStar(require("./ApplicationVisibility"), exports);
 __exportStar(require("./ApplicationVisibilityHide"), exports);
 __exportStar(require("./AssignGroupOwnerRequestBody"), exports);
 __exportStar(require("./AssignRoleRequest"), exports);
+__exportStar(require("./AssignRoleToClientRequest"), exports);
+__exportStar(require("./AssignRoleToGroup200Response"), exports);
 __exportStar(require("./AssignRoleToGroupRequest"), exports);
 __exportStar(require("./AssignRoleToUser201Response"), exports);
 __exportStar(require("./AssignRoleToUserRequest"), exports);
@@ -146,6 +177,8 @@ __exportStar(require("./AuthServerLinksClaims"), exports);
 __exportStar(require("./AuthServerLinksPolicies"), exports);
 __exportStar(require("./AuthServerLinksRotateKey"), exports);
 __exportStar(require("./AuthServerLinksScopes"), exports);
+__exportStar(require("./AuthSettings"), exports);
+__exportStar(require("./AuthType"), exports);
 __exportStar(require("./AuthenticationMethod"), exports);
 __exportStar(require("./AuthenticationMethodChain"), exports);
 __exportStar(require("./AuthenticationMethodChainMethod"), exports);
@@ -183,6 +216,7 @@ __exportStar(require("./AuthenticatorKeyCustomAppProviderConfiguration"), export
 __exportStar(require("./AuthenticatorKeyCustomAppProviderConfigurationApns"), exports);
 __exportStar(require("./AuthenticatorKeyCustomAppProviderConfigurationFcm"), exports);
 __exportStar(require("./AuthenticatorKeyCustomAppSettings"), exports);
+__exportStar(require("./AuthenticatorKeyCustomOtp"), exports);
 __exportStar(require("./AuthenticatorKeyDuo"), exports);
 __exportStar(require("./AuthenticatorKeyDuoProvider"), exports);
 __exportStar(require("./AuthenticatorKeyDuoProviderConfiguration"), exports);
@@ -224,6 +258,7 @@ __exportStar(require("./AuthenticatorMethodTotp"), exports);
 __exportStar(require("./AuthenticatorMethodTotpSettings"), exports);
 __exportStar(require("./AuthenticatorMethodTransactionType"), exports);
 __exportStar(require("./AuthenticatorMethodType"), exports);
+__exportStar(require("./AuthenticatorMethodTypeWebAuthn"), exports);
 __exportStar(require("./AuthenticatorMethodWebAuthn"), exports);
 __exportStar(require("./AuthenticatorMethodWebAuthnSettings"), exports);
 __exportStar(require("./AuthenticatorMethodWithVerifiableProperties"), exports);
@@ -238,9 +273,10 @@ __exportStar(require("./AuthorizationServerCredentialsRotationMode"), exports);
 __exportStar(require("./AuthorizationServerCredentialsSigningConfig"), exports);
 __exportStar(require("./AuthorizationServerCredentialsUse"), exports);
 __exportStar(require("./AuthorizationServerJsonWebKey"), exports);
+__exportStar(require("./AuthorizationServerLinks"), exports);
 __exportStar(require("./AuthorizationServerPolicy"), exports);
-__exportStar(require("./AuthorizationServerPolicyConditions"), exports);
 __exportStar(require("./AuthorizationServerPolicyLinks"), exports);
+__exportStar(require("./AuthorizationServerPolicyConditions"), exports);
 __exportStar(require("./AuthorizationServerPolicyPeopleCondition"), exports);
 __exportStar(require("./AuthorizationServerPolicyRule"), exports);
 __exportStar(require("./AuthorizationServerPolicyRuleActions"), exports);
@@ -254,6 +290,9 @@ __exportStar(require("./AutoLoginApplication"), exports);
 __exportStar(require("./AutoLoginApplicationSettings"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsSignOn"), exports);
 __exportStar(require("./AutoUpdateSchedule"), exports);
+__exportStar(require("./AvailableAction"), exports);
+__exportStar(require("./AvailableActionProvider"), exports);
+__exportStar(require("./AvailableActions"), exports);
 __exportStar(require("./AwsRegion"), exports);
 __exportStar(require("./BaseContext"), exports);
 __exportStar(require("./BaseContextSession"), exports);
@@ -270,10 +309,12 @@ __exportStar(require("./BasicApplicationSettingsApplication"), exports);
 __exportStar(require("./BasicAuthApplication"), exports);
 __exportStar(require("./BeforeScheduledActionPolicyRuleCondition"), exports);
 __exportStar(require("./BehaviorRule"), exports);
+__exportStar(require("./BehaviorRuleASN"), exports);
 __exportStar(require("./BehaviorRuleAnomalousDevice"), exports);
 __exportStar(require("./BehaviorRuleAnomalousIP"), exports);
 __exportStar(require("./BehaviorRuleAnomalousLocation"), exports);
 __exportStar(require("./BehaviorRuleSettings"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousASN"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousDevice"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousIP"), exports);
 __exportStar(require("./BehaviorRuleSettingsAnomalousLocation"), exports);
@@ -305,9 +346,11 @@ __exportStar(require("./BundleEntitlement"), exports);
 __exportStar(require("./BundleEntitlementLinks"), exports);
 __exportStar(require("./BundleEntitlementsResponse"), exports);
 __exportStar(require("./BundleEntitlementsResponseLinks"), exports);
+__exportStar(require("./BundleLink"), exports);
 __exportStar(require("./ByDateTimeAuthenticatorGracePeriodExpiry"), exports);
 __exportStar(require("./ByDateTimeExpiry"), exports);
 __exportStar(require("./ByDurationExpiry"), exports);
+__exportStar(require("./BySkipCountAuthenticatorGracePeriod"), exports);
 __exportStar(require("./CAPTCHAInstance"), exports);
 __exportStar(require("./CAPTCHAType"), exports);
 __exportStar(require("./CSRLinks"), exports);
@@ -329,6 +372,7 @@ __exportStar(require("./CapabilitiesImportSettingsObject"), exports);
 __exportStar(require("./CapabilitiesInboundProvisioningObject"), exports);
 __exportStar(require("./CapabilitiesObject"), exports);
 __exportStar(require("./CapabilitiesUpdateObject"), exports);
+__exportStar(require("./Capability"), exports);
 __exportStar(require("./CapabilityType"), exports);
 __exportStar(require("./CatalogApplication"), exports);
 __exportStar(require("./CatalogApplicationLinks"), exports);
@@ -344,12 +388,20 @@ __exportStar(require("./ChromeBrowserVersion"), exports);
 __exportStar(require("./ClassificationType"), exports);
 __exportStar(require("./ClientPolicyCondition"), exports);
 __exportStar(require("./ClientPrivilegesSetting"), exports);
+__exportStar(require("./ClientUpdatePolicy"), exports);
+__exportStar(require("./ClientUpdatePolicyRule"), exports);
+__exportStar(require("./ClientUpdatePolicyRuleActionsObject"), exports);
+__exportStar(require("./ClientUpdatePolicyRuleActions"), exports);
+__exportStar(require("./ClientUpdatePolicyRuleActionsUpdateControls"), exports);
 __exportStar(require("./CodeChallengeMethod"), exports);
 __exportStar(require("./Compliance"), exports);
 __exportStar(require("./Conditions"), exports);
+__exportStar(require("./ConnectionScopes"), exports);
+__exportStar(require("./ConnectionType"), exports);
 __exportStar(require("./ConnectionsSigningRotationMode"), exports);
 __exportStar(require("./ContentSecurityPolicySetting"), exports);
 __exportStar(require("./ContextPolicyRuleCondition"), exports);
+__exportStar(require("./CreateAIAgentRequest"), exports);
 __exportStar(require("./CreateBrandRequest"), exports);
 __exportStar(require("./CreateGroupPushMappingRequest"), exports);
 __exportStar(require("./CreateGroupRequest"), exports);
@@ -376,11 +428,28 @@ __exportStar(require("./CustomAAGUIDCreateRequestObject"), exports);
 __exportStar(require("./CustomAAGUIDResponseObject"), exports);
 __exportStar(require("./CustomAAGUIDUpdateRequestObject"), exports);
 __exportStar(require("./CustomAppUserVerificationEnum"), exports);
+__exportStar(require("./CustomAuthSettings"), exports);
 __exportStar(require("./CustomRole"), exports);
 __exportStar(require("./CustomRoleAssignmentSchema"), exports);
+__exportStar(require("./CustomTelephonyProviderCredentialCreateRequest"), exports);
+__exportStar(require("./CustomTelephonyProviderCredentialResponse"), exports);
+__exportStar(require("./CustomTelephonyProviderCredentialSendTestRequest"), exports);
+__exportStar(require("./CustomTelephonyProviderCredentialUpdateRequest"), exports);
+__exportStar(require("./CustomTelephonyProviderCredentialsResponse"), exports);
+__exportStar(require("./CustomTelephonyProviderSettings"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsCall"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsSms"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTelesignServiceCall"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTelesignServiceSms"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTwilioCallerId"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTwilioMessagingService"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTwilioPhoneNumber"), exports);
+__exportStar(require("./CustomTelephonyProviderSettingsTwilioVerify"), exports);
 __exportStar(require("./CustomizablePage"), exports);
-__exportStar(require("./DNSRecord"), exports);
-__exportStar(require("./DNSRecordType"), exports);
+__exportStar(require("./DNSRecordAuthenticators"), exports);
+__exportStar(require("./DNSRecordDomains"), exports);
+__exportStar(require("./DNSRecordTypeAuthenticators"), exports);
+__exportStar(require("./DNSRecordTypeDomains"), exports);
 __exportStar(require("./DRStatusItem"), exports);
 __exportStar(require("./DTCChromeOS"), exports);
 __exportStar(require("./DTCMacOS"), exports);
@@ -406,6 +475,7 @@ __exportStar(require("./DeviceAssuranceMacOSPlatformDiskEncryptionType"), export
 __exportStar(require("./DeviceAssuranceMacOSPlatformThirdPartySignalProviders"), exports);
 __exportStar(require("./DeviceAssuranceWindowsPlatform"), exports);
 __exportStar(require("./DeviceAssuranceWindowsPlatformThirdPartySignalProviders"), exports);
+__exportStar(require("./DeviceContextProvider"), exports);
 __exportStar(require("./DeviceDisplayName"), exports);
 __exportStar(require("./DeviceIntegrations"), exports);
 __exportStar(require("./DeviceIntegrationsMetadata"), exports);
@@ -436,6 +506,16 @@ __exportStar(require("./DevicePostureChecksRemediationSettingsMessage"), exports
 __exportStar(require("./DevicePostureChecksType"), exports);
 __exportStar(require("./DevicePostureIdP"), exports);
 __exportStar(require("./DeviceProfile"), exports);
+__exportStar(require("./DeviceSignalCollectionPlatformConditionEvaluatorPlatform"), exports);
+__exportStar(require("./DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem"), exports);
+__exportStar(require("./DeviceSignalCollectionPlatformPolicyRuleCondition"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicy"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyPlatformOperatingSystemType"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyPlatformType"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyRule"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyRuleActions"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyRuleConditions"), exports);
+__exportStar(require("./DeviceSignalCollectionPolicyRuleDeviceSignalCollection"), exports);
 __exportStar(require("./DeviceStatus"), exports);
 __exportStar(require("./DeviceUser"), exports);
 __exportStar(require("./DigestAlgorithm"), exports);
@@ -493,6 +573,7 @@ __exportStar(require("./EndUserDashboardTouchPointVariant"), exports);
 __exportStar(require("./EndpointAuthMethod"), exports);
 __exportStar(require("./EnhancedDynamicNetworkZone"), exports);
 __exportStar(require("./EnhancedDynamicNetworkZoneAsns"), exports);
+__exportStar(require("./EnhancedDynamicNetworkZoneAsnsExclude"), exports);
 __exportStar(require("./EnhancedDynamicNetworkZoneAsnsInclude"), exports);
 __exportStar(require("./EnhancedDynamicNetworkZoneIpServiceCategories"), exports);
 __exportStar(require("./EnhancedDynamicNetworkZoneLocations"), exports);
@@ -503,11 +584,15 @@ __exportStar(require("./EnrollmentActivationResponse"), exports);
 __exportStar(require("./EnrollmentInitializationRequest"), exports);
 __exportStar(require("./EnrollmentInitializationResponse"), exports);
 __exportStar(require("./EnrollmentPolicyAuthenticatorGracePeriod"), exports);
+__exportStar(require("./EntitlementTypes"), exports);
+__exportStar(require("./EntitlementTypesInner"), exports);
+__exportStar(require("./EntitlementTypesInnerAttributes"), exports);
+__exportStar(require("./EntitlementTypesInnerMappings"), exports);
 __exportStar(require("./EntitlementValue"), exports);
 __exportStar(require("./EntitlementValueLinks"), exports);
 __exportStar(require("./EntitlementValuesResponse"), exports);
 __exportStar(require("./EntitlementValuesResponseLinks"), exports);
-__exportStar(require("./EntitlementValuesResponseLinksAnyOf"), exports);
+__exportStar(require("./EntitlementsLink"), exports);
 __exportStar(require("./EntityRiskPolicy"), exports);
 __exportStar(require("./EntityRiskPolicyRule"), exports);
 __exportStar(require("./EntityRiskPolicyRuleActionRunWorkflow"), exports);
@@ -520,6 +605,7 @@ __exportStar(require("./EntityRiskPolicyRuleConditions"), exports);
 __exportStar(require("./EntityRiskScorePolicyRuleCondition"), exports);
 __exportStar(require("./Error409"), exports);
 __exportStar(require("./ErrorCause"), exports);
+__exportStar(require("./ErrorDetails"), exports);
 __exportStar(require("./ErrorPage"), exports);
 __exportStar(require("./ErrorPageTouchPointVariant"), exports);
 __exportStar(require("./EventHook"), exports);
@@ -562,6 +648,7 @@ __exportStar(require("./FulfillmentData"), exports);
 __exportStar(require("./FulfillmentDataOrderDetails"), exports);
 __exportStar(require("./FulfillmentRequest"), exports);
 __exportStar(require("./GetDRStatus200Response"), exports);
+__exportStar(require("./GetJwk200Response"), exports);
 __exportStar(require("./GetSsfStreams200Response"), exports);
 __exportStar(require("./GoogleApplication"), exports);
 __exportStar(require("./GoogleApplicationSettings"), exports);
@@ -575,6 +662,7 @@ __exportStar(require("./GovernanceBundlesResponseLinks"), exports);
 __exportStar(require("./GovernanceSourceType"), exports);
 __exportStar(require("./GracePeriod"), exports);
 __exportStar(require("./GracePeriodExpiry"), exports);
+__exportStar(require("./GracePeriodRequiredSoon"), exports);
 __exportStar(require("./GrantOrTokenStatus"), exports);
 __exportStar(require("./GrantResourcesHrefObject"), exports);
 __exportStar(require("./GrantType"), exports);
@@ -582,7 +670,12 @@ __exportStar(require("./GrantTypePolicyRuleCondition"), exports);
 __exportStar(require("./Group"), exports);
 __exportStar(require("./GroupAssignmentProfile"), exports);
 __exportStar(require("./GroupCondition"), exports);
+__exportStar(require("./GroupEmbedded"), exports);
+__exportStar(require("./GroupEmbeddedApp"), exports);
+__exportStar(require("./GroupEmbeddedStats"), exports);
 __exportStar(require("./GroupLinks"), exports);
+__exportStar(require("./GroupMembershipsRequestSchema"), exports);
+__exportStar(require("./GroupMembershipsResponseSchema"), exports);
 __exportStar(require("./GroupOwner"), exports);
 __exportStar(require("./GroupOwnerOriginType"), exports);
 __exportStar(require("./GroupOwnerType"), exports);
@@ -610,6 +703,9 @@ __exportStar(require("./GroupSchemaCustom"), exports);
 __exportStar(require("./GroupSchemaDefinitions"), exports);
 __exportStar(require("./GroupType"), exports);
 __exportStar(require("./GroupsLink"), exports);
+__exportStar(require("./GroupsRequestSchema"), exports);
+__exportStar(require("./GroupsResponseSchema"), exports);
+__exportStar(require("./GroupsResponseSchemaProfile"), exports);
 __exportStar(require("./HelpLink"), exports);
 __exportStar(require("./HookKey"), exports);
 __exportStar(require("./HostedPage"), exports);
@@ -635,6 +731,7 @@ __exportStar(require("./HrefObjectLogoLink"), exports);
 __exportStar(require("./HrefObjectMappingsLink"), exports);
 __exportStar(require("./HrefObjectMemberLink"), exports);
 __exportStar(require("./HrefObjectMembersLink"), exports);
+__exportStar(require("./HrefObjectNextLink"), exports);
 __exportStar(require("./HrefObjectPermissionsLink"), exports);
 __exportStar(require("./HrefObjectResourceSetLink"), exports);
 __exportStar(require("./HrefObjectResourceSetResourcesLink"), exports);
@@ -646,6 +743,7 @@ __exportStar(require("./HrefObjectSelfLink"), exports);
 __exportStar(require("./HrefObjectSuspendLink"), exports);
 __exportStar(require("./HrefObjectUnsuspendLink"), exports);
 __exportStar(require("./HrefObjectUserLink"), exports);
+__exportStar(require("./HrefObjectWebLink"), exports);
 __exportStar(require("./HttpMethod"), exports);
 __exportStar(require("./IAMBundleEntitlement"), exports);
 __exportStar(require("./IDVAuthorizationEndpoint"), exports);
@@ -665,6 +763,13 @@ __exportStar(require("./IdPCsr"), exports);
 __exportStar(require("./IdPCsrLinks"), exports);
 __exportStar(require("./IdPKeyCredential"), exports);
 __exportStar(require("./IdProofingMethod"), exports);
+__exportStar(require("./IdTokenKeyEncryptionAlgorithm"), exports);
+__exportStar(require("./IdentityAssertionAppInstanceConnection"), exports);
+__exportStar(require("./IdentityAssertionAppInstanceConnectionCreatable"), exports);
+__exportStar(require("./IdentityAssertionAppInstanceConnectionCreatableApp"), exports);
+__exportStar(require("./IdentityAssertionCustomASConnection"), exports);
+__exportStar(require("./IdentityAssertionCustomASConnectionCreatable"), exports);
+__exportStar(require("./IdentityAssertionCustomASConnectionCreatableAuthorizationServer"), exports);
 __exportStar(require("./IdentityProvider"), exports);
 __exportStar(require("./IdentityProviderApplicationUser"), exports);
 __exportStar(require("./IdentityProviderApplicationUserLinks"), exports);
@@ -674,6 +779,7 @@ __exportStar(require("./IdentityProviderPolicy"), exports);
 __exportStar(require("./IdentityProviderPolicyProvider"), exports);
 __exportStar(require("./IdentityProviderPolicyRuleCondition"), exports);
 __exportStar(require("./IdentityProviderProperties"), exports);
+__exportStar(require("./IdentityProviderPropertiesIdvMetadata"), exports);
 __exportStar(require("./IdentityProviderProtocol"), exports);
 __exportStar(require("./IdentityProviderType"), exports);
 __exportStar(require("./IdentitySourceGroupMembershipsDeleteProfile"), exports);
@@ -685,7 +791,12 @@ __exportStar(require("./IdentitySourceSession"), exports);
 __exportStar(require("./IdentitySourceSessionStatus"), exports);
 __exportStar(require("./IdentitySourceUserProfileForDelete"), exports);
 __exportStar(require("./IdentitySourceUserProfileForUpsert"), exports);
+__exportStar(require("./IdentitySourceUserProfileForUpsertRequired"), exports);
+__exportStar(require("./IdpDiscoveryPlatformConditionEvaluatorPlatform"), exports);
+__exportStar(require("./IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem"), exports);
+__exportStar(require("./IdpDiscoveryPlatformPolicyRuleCondition"), exports);
 __exportStar(require("./IdpDiscoveryPolicy"), exports);
+__exportStar(require("./IdpDiscoveryPolicyPlatformOperatingSystemType"), exports);
 __exportStar(require("./IdpDiscoveryPolicyRule"), exports);
 __exportStar(require("./IdpDiscoveryPolicyRuleCondition"), exports);
 __exportStar(require("./IdpPolicyRuleAction"), exports);
@@ -735,12 +846,11 @@ __exportStar(require("./InlineHookResponseCommandValue"), exports);
 __exportStar(require("./InlineHookResponseCommands"), exports);
 __exportStar(require("./InlineHookStatus"), exports);
 __exportStar(require("./InlineHookType"), exports);
+__exportStar(require("./InterclientTrustMapping"), exports);
+__exportStar(require("./InterclientTrustMappingRequestBody"), exports);
 __exportStar(require("./IssuerMode"), exports);
 __exportStar(require("./JsonPatchOperation"), exports);
 __exportStar(require("./JsonWebKey"), exports);
-__exportStar(require("./JsonWebKey1"), exports);
-__exportStar(require("./JsonWebKeyEC"), exports);
-__exportStar(require("./JsonWebKeyRsa"), exports);
 __exportStar(require("./JsonWebKeyStatus"), exports);
 __exportStar(require("./JsonWebKeyType"), exports);
 __exportStar(require("./JsonWebKeyUse"), exports);
@@ -787,13 +897,19 @@ __exportStar(require("./LinksSelfAndRoles"), exports);
 __exportStar(require("./LinksSelfForRoleAssignment"), exports);
 __exportStar(require("./LinksSelfLifecycleAndAuthorize"), exports);
 __exportStar(require("./LinksSend"), exports);
-__exportStar(require("./LinksUser"), exports);
+__exportStar(require("./LinksUserAuthenticators"), exports);
+__exportStar(require("./LinksUserFactors"), exports);
 __exportStar(require("./LinksUserRef"), exports);
 __exportStar(require("./LinksVerify"), exports);
+__exportStar(require("./ListAIAgents200Response"), exports);
+__exportStar(require("./ListAIAgents200ResponseLinks"), exports);
+__exportStar(require("./ListAgentJwk200Response"), exports);
 __exportStar(require("./ListGroupAssignedRoles200ResponseInner"), exports);
 __exportStar(require("./ListJwk200Response"), exports);
+__exportStar(require("./ListJwk200ResponseKeysInner"), exports);
 __exportStar(require("./ListProfileMappings"), exports);
 __exportStar(require("./ListRoleSubscriptionsRoleTypeOrRoleIdParameter"), exports);
+__exportStar(require("./ListRolesForClient200ResponseInner"), exports);
 __exportStar(require("./LoadingPageTouchPointVariant"), exports);
 __exportStar(require("./LocationGranularity"), exports);
 __exportStar(require("./LogActor"), exports);
@@ -809,9 +925,12 @@ __exportStar(require("./LogEvent"), exports);
 __exportStar(require("./LogGeographicalContext"), exports);
 __exportStar(require("./LogGeolocation"), exports);
 __exportStar(require("./LogIpAddress"), exports);
+__exportStar(require("./LogIpDetails"), exports);
+__exportStar(require("./LogIpServiceCategory"), exports);
 __exportStar(require("./LogIssuer"), exports);
 __exportStar(require("./LogOutcome"), exports);
 __exportStar(require("./LogRequest"), exports);
+__exportStar(require("./LogRisk"), exports);
 __exportStar(require("./LogScreenLockType"), exports);
 __exportStar(require("./LogSecurityContext"), exports);
 __exportStar(require("./LogSeverity"), exports);
@@ -835,8 +954,23 @@ __exportStar(require("./LogTarget"), exports);
 __exportStar(require("./LogTargetChangeDetails"), exports);
 __exportStar(require("./LogTransaction"), exports);
 __exportStar(require("./LogUserAgent"), exports);
+__exportStar(require("./LogUserBehavior"), exports);
 __exportStar(require("./MDMEnrollmentPolicyEnrollment"), exports);
 __exportStar(require("./MDMEnrollmentPolicyRuleCondition"), exports);
+__exportStar(require("./ManagedConnection"), exports);
+__exportStar(require("./ManagedConnectionAppInstance"), exports);
+__exportStar(require("./ManagedConnectionCreatable"), exports);
+__exportStar(require("./ManagedConnectionCustomAuthorizationServer"), exports);
+__exportStar(require("./ManagedConnectionLinks"), exports);
+__exportStar(require("./ManagedConnectionList"), exports);
+__exportStar(require("./ManagedConnectionListLinks"), exports);
+__exportStar(require("./ManagedConnectionPatchable"), exports);
+__exportStar(require("./ManagedConnectionPatchableScopeCondition"), exports);
+__exportStar(require("./ManagedConnectionPatchableScopes"), exports);
+__exportStar(require("./ManagedConnectionServiceAccount"), exports);
+__exportStar(require("./ManagedConnectionStatus"), exports);
+__exportStar(require("./ManagedConnectionVaultedSecret"), exports);
+__exportStar(require("./MembershipRequestSchema"), exports);
 __exportStar(require("./MetadataLink"), exports);
 __exportStar(require("./ModelError"), exports);
 __exportStar(require("./MtlsCredentials"), exports);
@@ -863,8 +997,17 @@ __exportStar(require("./OAuth2ClaimGroupFilterType"), exports);
 __exportStar(require("./OAuth2ClaimType"), exports);
 __exportStar(require("./OAuth2ClaimValueType"), exports);
 __exportStar(require("./OAuth2Client"), exports);
-__exportStar(require("./OAuth2ClientJsonWebKey"), exports);
+__exportStar(require("./OAuth2ClientJsonEncryptionKeyRequest"), exports);
+__exportStar(require("./OAuth2ClientJsonEncryptionKeyResponse"), exports);
+__exportStar(require("./OAuth2ClientJsonSigningKeyRequest"), exports);
+__exportStar(require("./OAuth2ClientJsonSigningKeyResponse"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyECRequest"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyECResponse"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyRequestBase"), exports);
 __exportStar(require("./OAuth2ClientJsonWebKeyRequestBody"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyResponseBase"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyRsaRequest"), exports);
+__exportStar(require("./OAuth2ClientJsonWebKeyRsaResponse"), exports);
 __exportStar(require("./OAuth2ClientLinks"), exports);
 __exportStar(require("./OAuth2ClientSecret"), exports);
 __exportStar(require("./OAuth2ClientSecretRequestBody"), exports);
@@ -875,6 +1018,8 @@ __exportStar(require("./OAuth2RefreshTokenLinksRevoke"), exports);
 __exportStar(require("./OAuth2RefreshTokenLinksRevokeHints"), exports);
 __exportStar(require("./OAuth2RefreshTokenScope"), exports);
 __exportStar(require("./OAuth2RefreshTokenScopeLinks"), exports);
+__exportStar(require("./OAuth2ResourceServerJsonWebKey"), exports);
+__exportStar(require("./OAuth2ResourceServerJsonWebKeyRequestBody"), exports);
 __exportStar(require("./OAuth2Scope"), exports);
 __exportStar(require("./OAuth2ScopeConsentGrant"), exports);
 __exportStar(require("./OAuth2ScopeConsentGrantEmbedded"), exports);
@@ -884,6 +1029,7 @@ __exportStar(require("./OAuth2ScopeConsentGrantSource"), exports);
 __exportStar(require("./OAuth2ScopeConsentType"), exports);
 __exportStar(require("./OAuth2ScopeMetadataPublish"), exports);
 __exportStar(require("./OAuth2ScopesMediationPolicyRuleCondition"), exports);
+__exportStar(require("./OAuth2Settings"), exports);
 __exportStar(require("./OAuth2Token"), exports);
 __exportStar(require("./OAuthApplicationCredentials"), exports);
 __exportStar(require("./OAuthAuthorizationEndpoint"), exports);
@@ -894,6 +1040,7 @@ __exportStar(require("./OAuthEndpointAuthenticationMethod"), exports);
 __exportStar(require("./OAuthEndpoints"), exports);
 __exportStar(require("./OAuthMetadata"), exports);
 __exportStar(require("./OAuthProvisioningEnabledApp"), exports);
+__exportStar(require("./OAuthResourceServerKeyLinks"), exports);
 __exportStar(require("./OAuthResponseType"), exports);
 __exportStar(require("./OAuthScopes"), exports);
 __exportStar(require("./OAuthTokenEndpoint"), exports);
@@ -923,6 +1070,9 @@ __exportStar(require("./OidcUserInfoEndpoint"), exports);
 __exportStar(require("./OktaActiveDirectoryGroupProfile"), exports);
 __exportStar(require("./OktaDeviceRiskChangeEvent"), exports);
 __exportStar(require("./OktaIpChangeEvent"), exports);
+__exportStar(require("./OktaManagedUserAccount"), exports);
+__exportStar(require("./OktaManagedUserAccountForUpdate"), exports);
+__exportStar(require("./OktaManagedUserAccountRequest"), exports);
 __exportStar(require("./OktaPersonalAdminFeatureSettings"), exports);
 __exportStar(require("./OktaSignOnPolicy"), exports);
 __exportStar(require("./OktaSignOnPolicyConditions"), exports);
@@ -954,10 +1104,6 @@ __exportStar(require("./OpenIdConnectApplicationType"), exports);
 __exportStar(require("./OpenIdConnectRefreshTokenRotationType"), exports);
 __exportStar(require("./OperationRequest"), exports);
 __exportStar(require("./OperationResponse"), exports);
-__exportStar(require("./OperationResponseAssignmentOperation"), exports);
-__exportStar(require("./OperationResponseAssignmentOperationConfiguration"), exports);
-__exportStar(require("./OperationResponseAssignmentOperationConfigurationActions"), exports);
-__exportStar(require("./OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm"), exports);
 __exportStar(require("./OperationalStatus"), exports);
 __exportStar(require("./OptInStatusResponse"), exports);
 __exportStar(require("./OptInStatusResponseLinks"), exports);
@@ -973,8 +1119,6 @@ __exportStar(require("./OrgBillingContactType"), exports);
 __exportStar(require("./OrgBillingContactTypeLinks"), exports);
 __exportStar(require("./OrgCAPTCHASettings"), exports);
 __exportStar(require("./OrgCAPTCHASettingsLinks"), exports);
-__exportStar(require("./OrgCWOConnection"), exports);
-__exportStar(require("./OrgCWOConnectionPatchRequest"), exports);
 __exportStar(require("./OrgContactType"), exports);
 __exportStar(require("./OrgContactTypeObj"), exports);
 __exportStar(require("./OrgContactUser"), exports);
@@ -983,6 +1127,8 @@ __exportStar(require("./OrgCreationAdmin"), exports);
 __exportStar(require("./OrgCreationAdminCredentials"), exports);
 __exportStar(require("./OrgCreationAdminCredentialsPassword"), exports);
 __exportStar(require("./OrgCreationAdminProfile"), exports);
+__exportStar(require("./OrgCrossAppAccessConnection"), exports);
+__exportStar(require("./OrgCrossAppAccessConnectionPatchRequest"), exports);
 __exportStar(require("./OrgGeneralSettingLinks"), exports);
 __exportStar(require("./OrgOktaCommunicationSetting"), exports);
 __exportStar(require("./OrgOktaCommunicationSettingLinks"), exports);
@@ -1045,6 +1191,8 @@ __exportStar(require("./PasswordPolicyRuleConditions"), exports);
 __exportStar(require("./PasswordPolicySettings"), exports);
 __exportStar(require("./PasswordProtectionWarningTrigger"), exports);
 __exportStar(require("./PasswordSettingObject"), exports);
+__exportStar(require("./PatchAIAgentProfile"), exports);
+__exportStar(require("./PatchAIAgentRequest"), exports);
 __exportStar(require("./PatchAction"), exports);
 __exportStar(require("./PerClientRateLimitMode"), exports);
 __exportStar(require("./PerClientRateLimitSettings"), exports);
@@ -1114,6 +1262,17 @@ __exportStar(require("./PostAuthSessionPolicyRuleActionsPostAuthSession"), expor
 __exportStar(require("./PostAuthSessionPolicyRuleConditions"), exports);
 __exportStar(require("./PostAuthSessionPolicyRuleRunWorkflow"), exports);
 __exportStar(require("./PostAuthSessionPolicyRuleTerminateSession"), exports);
+__exportStar(require("./PotentialConnection"), exports);
+__exportStar(require("./PotentialConnectionAppInstance"), exports);
+__exportStar(require("./PotentialConnectionCustomAuthorizationServer"), exports);
+__exportStar(require("./PotentialConnectionList"), exports);
+__exportStar(require("./PotentialConnectionListLinks"), exports);
+__exportStar(require("./PotentialConnectionServiceAccount"), exports);
+__exportStar(require("./PotentialConnectionVaultedSecret"), exports);
+__exportStar(require("./PotentialIdentityAssertionAppInstanceConnection"), exports);
+__exportStar(require("./PotentialIdentityAssertionCustomASConnection"), exports);
+__exportStar(require("./PotentialSTSServiceAccountConnection"), exports);
+__exportStar(require("./PotentialSTSVaultSecretConnection"), exports);
 __exportStar(require("./PreRegistrationInlineHook"), exports);
 __exportStar(require("./PrincipalRateLimitEntity"), exports);
 __exportStar(require("./PrincipalType"), exports);
@@ -1140,6 +1299,7 @@ __exportStar(require("./ProfileMappingRequest"), exports);
 __exportStar(require("./ProfileMappingSource"), exports);
 __exportStar(require("./ProfileMappingTarget"), exports);
 __exportStar(require("./ProfileSettingObject"), exports);
+__exportStar(require("./Protocol"), exports);
 __exportStar(require("./ProtocolAlgorithmRequestScope"), exports);
 __exportStar(require("./ProtocolAlgorithmResponseScope"), exports);
 __exportStar(require("./ProtocolEndpointBinding"), exports);
@@ -1185,6 +1345,11 @@ __exportStar(require("./RateLimitWarningThresholdRequest"), exports);
 __exportStar(require("./RateLimitWarningThresholdResponse"), exports);
 __exportStar(require("./Realm"), exports);
 __exportStar(require("./RealmAssignment"), exports);
+__exportStar(require("./RealmAssignmentOperationResponse"), exports);
+__exportStar(require("./RealmAssignmentOperationResponseAssignmentOperation"), exports);
+__exportStar(require("./RealmAssignmentOperationResponseAssignmentOperationConfiguration"), exports);
+__exportStar(require("./RealmAssignmentOperationResponseAssignmentOperationConfigurationActions"), exports);
+__exportStar(require("./RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm"), exports);
 __exportStar(require("./RealmProfile"), exports);
 __exportStar(require("./RecoveryQuestionCredential"), exports);
 __exportStar(require("./RefreshToken"), exports);
@@ -1211,6 +1376,8 @@ __exportStar(require("./ResendUserFactor"), exports);
 __exportStar(require("./ResetPasswordToken"), exports);
 __exportStar(require("./ResourceConditions"), exports);
 __exportStar(require("./ResourceConditionsExclude"), exports);
+__exportStar(require("./ResourceServerJsonWebKey"), exports);
+__exportStar(require("./ResourceServerJsonWebKeys"), exports);
 __exportStar(require("./ResourceSet"), exports);
 __exportStar(require("./ResourceSetBindingAddMembersRequest"), exports);
 __exportStar(require("./ResourceSetBindingCreateRequest"), exports);
@@ -1255,7 +1422,6 @@ __exportStar(require("./RoleAssignmentType"), exports);
 __exportStar(require("./RoleGovernance"), exports);
 __exportStar(require("./RoleGovernanceResource"), exports);
 __exportStar(require("./RoleGovernanceResources"), exports);
-__exportStar(require("./RoleGovernanceResourcesLinks"), exports);
 __exportStar(require("./RoleGovernanceSource"), exports);
 __exportStar(require("./RoleGovernanceSourceLinks"), exports);
 __exportStar(require("./RoleTarget"), exports);
@@ -1284,6 +1450,12 @@ __exportStar(require("./SAMLPayLoadDataContext"), exports);
 __exportStar(require("./SAMLPayLoadDataContextProtocol"), exports);
 __exportStar(require("./SAMLPayLoadDataContextProtocolIssuer"), exports);
 __exportStar(require("./SAMLPayloadExecute"), exports);
+__exportStar(require("./STSServiceAccountConnection"), exports);
+__exportStar(require("./STSServiceAccountConnectionCreatable"), exports);
+__exportStar(require("./STSServiceAccountConnectionCreatableServiceAccount"), exports);
+__exportStar(require("./STSVaultSecretConnection"), exports);
+__exportStar(require("./STSVaultSecretConnectionCreatable"), exports);
+__exportStar(require("./STSVaultSecretConnectionCreatableSecret"), exports);
 __exportStar(require("./SafeBrowsingProtectionLevel"), exports);
 __exportStar(require("./SalesforceApplication"), exports);
 __exportStar(require("./SalesforceApplicationSettings"), exports);
@@ -1310,6 +1482,7 @@ __exportStar(require("./SamlNameIdFormat"), exports);
 __exportStar(require("./SamlRelayState"), exports);
 __exportStar(require("./SamlRelayStateFormat"), exports);
 __exportStar(require("./SamlRequestAlgorithm"), exports);
+__exportStar(require("./SamlRequestDigestAlgorithm"), exports);
 __exportStar(require("./SamlRequestSignatureAlgorithm"), exports);
 __exportStar(require("./SamlResponseAlgorithm"), exports);
 __exportStar(require("./SamlResponseSignatureAlgorithm"), exports);
@@ -1326,6 +1499,7 @@ __exportStar(require("./Scim"), exports);
 __exportStar(require("./ScimScimServerConfig"), exports);
 __exportStar(require("./ScimScimServerConfigChangePassword"), exports);
 __exportStar(require("./ScimScimServerConfigPatch"), exports);
+__exportStar(require("./ScopeCondition"), exports);
 __exportStar(require("./ScopeResourceHrefObject"), exports);
 __exportStar(require("./ScreenLockComplexity"), exports);
 __exportStar(require("./ScreenLockType"), exports);
@@ -1357,6 +1531,7 @@ __exportStar(require("./ServiceAccountDetailsAppAccountSub"), exports);
 __exportStar(require("./ServiceAccountDetailsOktaUserAccount"), exports);
 __exportStar(require("./ServiceAccountDetailsOktaUserAccountSub"), exports);
 __exportStar(require("./ServiceAccountForUpdate"), exports);
+__exportStar(require("./ServiceAccountLinks"), exports);
 __exportStar(require("./ServiceAccountStatus"), exports);
 __exportStar(require("./ServiceAccountStatusDetail"), exports);
 __exportStar(require("./ServiceAccountType"), exports);
@@ -1365,6 +1540,12 @@ __exportStar(require("./SessionAuthenticationMethod"), exports);
 __exportStar(require("./SessionIdentityProvider"), exports);
 __exportStar(require("./SessionIdentityProviderType"), exports);
 __exportStar(require("./SessionStatus"), exports);
+__exportStar(require("./SessionViolationDetectionPolicy"), exports);
+__exportStar(require("./SessionViolationDetectionPolicyEvaluation"), exports);
+__exportStar(require("./SessionViolationDetectionPolicyRule"), exports);
+__exportStar(require("./SessionViolationDetectionPolicyRuleActions"), exports);
+__exportStar(require("./SessionViolationDetectionPolicyRuleActionsSessionViolationDetection"), exports);
+__exportStar(require("./SessionViolationDetectionPolicyRuleConditions"), exports);
 __exportStar(require("./ShowSignInWithOV"), exports);
 __exportStar(require("./SignInPage"), exports);
 __exportStar(require("./SignInPageWidgetCustomizations"), exports);
@@ -1396,6 +1577,8 @@ __exportStar(require("./SocialAuthToken"), exports);
 __exportStar(require("./SourceLinks"), exports);
 __exportStar(require("./SourceLinksSchema"), exports);
 __exportStar(require("./SplunkEdition"), exports);
+__exportStar(require("./SsfTransmitterCaepSessionRevokedEvent"), exports);
+__exportStar(require("./SsfTransmitterSecurityEventSubject"), exports);
 __exportStar(require("./Sso"), exports);
 __exportStar(require("./SsprPrimaryRequirement"), exports);
 __exportStar(require("./SsprRequirement"), exports);
@@ -1419,9 +1602,15 @@ __exportStar(require("./StreamStatus"), exports);
 __exportStar(require("./StreamVerificationRequest"), exports);
 __exportStar(require("./Subject"), exports);
 __exportStar(require("./SubjectType"), exports);
+__exportStar(require("./SubmissionAction"), exports);
+__exportStar(require("./SubmissionActions"), exports);
+__exportStar(require("./SubmissionCapabilities"), exports);
+__exportStar(require("./SubmissionCapability"), exports);
 __exportStar(require("./SubmissionRequest"), exports);
 __exportStar(require("./SubmissionResponse"), exports);
+__exportStar(require("./SubmissionResponseAppContactDetailsInner"), exports);
 __exportStar(require("./SubmissionResponseConfigInner"), exports);
+__exportStar(require("./SubmissionResponseGlobalTokenRevocation"), exports);
 __exportStar(require("./Subscription"), exports);
 __exportStar(require("./SubscriptionLinks"), exports);
 __exportStar(require("./SubscriptionStatus"), exports);
@@ -1439,6 +1628,7 @@ __exportStar(require("./TelephonyResponse"), exports);
 __exportStar(require("./TelephonyResponseCommandsInner"), exports);
 __exportStar(require("./TelephonyResponseCommandsInnerValueInner"), exports);
 __exportStar(require("./TempPassword"), exports);
+__exportStar(require("./TenantSettings"), exports);
 __exportStar(require("./TestInfo"), exports);
 __exportStar(require("./TestInfoOidcTestConfiguration"), exports);
 __exportStar(require("./TestInfoSamlTestConfiguration"), exports);
@@ -1490,6 +1680,9 @@ __exportStar(require("./UIElement"), exports);
 __exportStar(require("./UIElementOptions"), exports);
 __exportStar(require("./UISchemaObject"), exports);
 __exportStar(require("./UISchemasResponseObject"), exports);
+__exportStar(require("./UnconfirmedUserResponseSchema"), exports);
+__exportStar(require("./UnconfirmedUserResponseSchemaUsersInner"), exports);
+__exportStar(require("./UpdateAIAgentRequest"), exports);
 __exportStar(require("./UpdateDefaultProvisioningConnectionForApplicationRequest"), exports);
 __exportStar(require("./UpdateDomain"), exports);
 __exportStar(require("./UpdateEmailDomain"), exports);
@@ -1501,6 +1694,7 @@ __exportStar(require("./UpdateRealmRequest"), exports);
 __exportStar(require("./UpdateThemeRequest"), exports);
 __exportStar(require("./UpdateUISchema"), exports);
 __exportStar(require("./UpdateUserRequest"), exports);
+__exportStar(require("./UpdateUserRequestType"), exports);
 __exportStar(require("./UploadYubikeyOtpTokenSeedRequest"), exports);
 __exportStar(require("./User"), exports);
 __exportStar(require("./UserActivationToken"), exports);
@@ -1594,7 +1788,9 @@ __exportStar(require("./UserNextLogin"), exports);
 __exportStar(require("./UserPolicyRuleCondition"), exports);
 __exportStar(require("./UserProfile"), exports);
 __exportStar(require("./UserProvisioningApplicationFeature"), exports);
+__exportStar(require("./UserRequestSchema"), exports);
 __exportStar(require("./UserResourceHrefObject"), exports);
+__exportStar(require("./UserResponseSchema"), exports);
 __exportStar(require("./UserRiskGetResponse"), exports);
 __exportStar(require("./UserRiskGetResponseLinks"), exports);
 __exportStar(require("./UserRiskLevelAll"), exports);
@@ -1632,12 +1828,22 @@ __exportStar(require("./UserTypeLinksSchema"), exports);
 __exportStar(require("./UserTypePostRequest"), exports);
 __exportStar(require("./UserTypePutRequest"), exports);
 __exportStar(require("./UserVerificationEnum"), exports);
+__exportStar(require("./UserVerificationEnumEnrollment"), exports);
+__exportStar(require("./UserVerificationEnumForVerify"), exports);
 __exportStar(require("./UsersLink"), exports);
+__exportStar(require("./UsersUpdateRequestSchema"), exports);
+__exportStar(require("./ValidationDetail"), exports);
+__exportStar(require("./ValidationDetailProvider"), exports);
+__exportStar(require("./VaultedSecretLinks"), exports);
 __exportStar(require("./VerificationMethod"), exports);
-__exportStar(require("./WebAuthnAttachment"), exports);
+__exportStar(require("./VerifyActions200Response"), exports);
+__exportStar(require("./WebAuthnAttachmentEnum"), exports);
 __exportStar(require("./WebAuthnCredRequest"), exports);
 __exportStar(require("./WebAuthnCredResponse"), exports);
 __exportStar(require("./WebAuthnPreregistrationFactor"), exports);
+__exportStar(require("./WebAuthnRpId"), exports);
+__exportStar(require("./WebAuthnRpIdDomain"), exports);
+__exportStar(require("./WebAuthnSettingResidentKeyRequirement"), exports);
 __exportStar(require("./Webauthn"), exports);
 __exportStar(require("./Webauthn1"), exports);
 __exportStar(require("./WellKnownAppAuthenticatorConfiguration"), exports);
@@ -1657,6 +1863,10 @@ __exportStar(require("./WellKnownURIsRootEmbeddedAppleAppSiteAssociation"), expo
 __exportStar(require("./WellKnownURIsRootEmbeddedAssetlinksJson"), exports);
 __exportStar(require("./WellKnownURIsRootLinks"), exports);
 __exportStar(require("./WidgetGeneration"), exports);
+__exportStar(require("./WorkflowActionProvider"), exports);
+__exportStar(require("./WorkflowAvailableActionProvider"), exports);
+__exportStar(require("./WorkflowsValidationDetailProvider"), exports);
+__exportStar(require("./WorkflowsValidationErrorType"), exports);
 __exportStar(require("./WsFederationApplication"), exports);
 __exportStar(require("./WsFederationApplicationSettings"), exports);
 __exportStar(require("./WsFederationApplicationSettingsApplication"), exports);
@@ -1669,6 +1879,11 @@ __exportStar(require("./ZscalerbyzApplicationSettings"), exports);
 __exportStar(require("./ZscalerbyzApplicationSettingsApplication"), exports);
 const AAGUIDAuthenticatorCharacteristics_1 = require("../models/AAGUIDAuthenticatorCharacteristics");
 const AAGUIDGroupObject_1 = require("../models/AAGUIDGroupObject");
+const AIAgent_1 = require("../models/AIAgent");
+const AIAgentOperationListResponse_1 = require("../models/AIAgentOperationListResponse");
+const AIAgentOperationResponse_1 = require("../models/AIAgentOperationResponse");
+const AIAgentProfile_1 = require("../models/AIAgentProfile");
+const AIAgentResource_1 = require("../models/AIAgentResource");
 const APIServiceIntegrationInstance_1 = require("../models/APIServiceIntegrationInstance");
 const APIServiceIntegrationInstanceSecret_1 = require("../models/APIServiceIntegrationInstanceSecret");
 const APIServiceIntegrationLinks_1 = require("../models/APIServiceIntegrationLinks");
@@ -1686,13 +1901,25 @@ const AccessPolicyRuleApplicationSignOn_1 = require("../models/AccessPolicyRuleA
 const AccessPolicyRuleConditions_1 = require("../models/AccessPolicyRuleConditions");
 const AccessPolicyRuleCustomCondition_1 = require("../models/AccessPolicyRuleCustomCondition");
 const AcsEndpoint_1 = require("../models/AcsEndpoint");
+const ActionProvider_1 = require("../models/ActionProvider");
 const Actions_1 = require("../models/Actions");
+const AddJwkRequest_1 = require("../models/AddJwkRequest");
 const AdminConsoleSettings_1 = require("../models/AdminConsoleSettings");
 const Agent_1 = require("../models/Agent");
 const AgentAction_1 = require("../models/AgentAction");
+const AgentJsonSigningKeyCommon_1 = require("../models/AgentJsonSigningKeyCommon");
+const AgentJsonSigningKeyRequest_1 = require("../models/AgentJsonSigningKeyRequest");
+const AgentJsonSigningKeyResponse_1 = require("../models/AgentJsonSigningKeyResponse");
+const AgentJsonWebKeyECRequest_1 = require("../models/AgentJsonWebKeyECRequest");
+const AgentJsonWebKeyECResponse_1 = require("../models/AgentJsonWebKeyECResponse");
+const AgentJsonWebKeyRequestBase_1 = require("../models/AgentJsonWebKeyRequestBase");
+const AgentJsonWebKeyResponseBase_1 = require("../models/AgentJsonWebKeyResponseBase");
+const AgentJsonWebKeyRsaRequest_1 = require("../models/AgentJsonWebKeyRsaRequest");
+const AgentJsonWebKeyRsaResponse_1 = require("../models/AgentJsonWebKeyRsaResponse");
 const AgentPool_1 = require("../models/AgentPool");
 const AgentPoolUpdate_1 = require("../models/AgentPoolUpdate");
 const AgentPoolUpdateSetting_1 = require("../models/AgentPoolUpdateSetting");
+const AgentSecretLinks_1 = require("../models/AgentSecretLinks");
 const AllCustomAAGUIDResponseObject_1 = require("../models/AllCustomAAGUIDResponseObject");
 const AndroidDeviceTrust_1 = require("../models/AndroidDeviceTrust");
 const ApiToken_1 = require("../models/ApiToken");
@@ -1709,7 +1936,10 @@ const AppConnectionUserProvisionJWKResponse_1 = require("../models/AppConnection
 const AppCustomHrefObject_1 = require("../models/AppCustomHrefObject");
 const AppCustomHrefObjectHints_1 = require("../models/AppCustomHrefObjectHints");
 const AppGroup_1 = require("../models/AppGroup");
+const AppInstanceAuthorizationServer_1 = require("../models/AppInstanceAuthorizationServer");
+const AppInstanceLinks_1 = require("../models/AppInstanceLinks");
 const AppInstancePolicyRuleCondition_1 = require("../models/AppInstancePolicyRuleCondition");
+const AppInstanceProperty_1 = require("../models/AppInstanceProperty");
 const AppProperties_1 = require("../models/AppProperties");
 const AppPropertiesValue_1 = require("../models/AppPropertiesValue");
 const AppResourceHrefObject_1 = require("../models/AppResourceHrefObject");
@@ -1732,6 +1962,7 @@ const ApplicationCredentialsOAuthClient_1 = require("../models/ApplicationCreden
 const ApplicationCredentialsSigning_1 = require("../models/ApplicationCredentialsSigning");
 const ApplicationCredentialsUsernameTemplate_1 = require("../models/ApplicationCredentialsUsernameTemplate");
 const ApplicationEmbedded_1 = require("../models/ApplicationEmbedded");
+const ApplicationExpressConfiguration_1 = require("../models/ApplicationExpressConfiguration");
 const ApplicationFeature_1 = require("../models/ApplicationFeature");
 const ApplicationGroupAssignment_1 = require("../models/ApplicationGroupAssignment");
 const ApplicationGroupAssignmentLinks_1 = require("../models/ApplicationGroupAssignmentLinks");
@@ -1753,6 +1984,8 @@ const ApplicationVisibility_1 = require("../models/ApplicationVisibility");
 const ApplicationVisibilityHide_1 = require("../models/ApplicationVisibilityHide");
 const AssignGroupOwnerRequestBody_1 = require("../models/AssignGroupOwnerRequestBody");
 const AssignRoleRequest_1 = require("../models/AssignRoleRequest");
+const AssignRoleToClientRequest_1 = require("../models/AssignRoleToClientRequest");
+const AssignRoleToGroup200Response_1 = require("../models/AssignRoleToGroup200Response");
 const AssignRoleToGroupRequest_1 = require("../models/AssignRoleToGroupRequest");
 const AssignRoleToUser201Response_1 = require("../models/AssignRoleToUser201Response");
 const AssignRoleToUserRequest_1 = require("../models/AssignRoleToUserRequest");
@@ -1770,6 +2003,7 @@ const AuthServerLinksClaims_1 = require("../models/AuthServerLinksClaims");
 const AuthServerLinksPolicies_1 = require("../models/AuthServerLinksPolicies");
 const AuthServerLinksRotateKey_1 = require("../models/AuthServerLinksRotateKey");
 const AuthServerLinksScopes_1 = require("../models/AuthServerLinksScopes");
+const AuthSettings_1 = require("../models/AuthSettings");
 const AuthenticationMethod_1 = require("../models/AuthenticationMethod");
 const AuthenticationMethodChain_1 = require("../models/AuthenticationMethodChain");
 const AuthenticationMethodChainMethod_1 = require("../models/AuthenticationMethodChainMethod");
@@ -1802,6 +2036,7 @@ const AuthenticatorKeyCustomAppProviderConfiguration_1 = require("../models/Auth
 const AuthenticatorKeyCustomAppProviderConfigurationApns_1 = require("../models/AuthenticatorKeyCustomAppProviderConfigurationApns");
 const AuthenticatorKeyCustomAppProviderConfigurationFcm_1 = require("../models/AuthenticatorKeyCustomAppProviderConfigurationFcm");
 const AuthenticatorKeyCustomAppSettings_1 = require("../models/AuthenticatorKeyCustomAppSettings");
+const AuthenticatorKeyCustomOtp_1 = require("../models/AuthenticatorKeyCustomOtp");
 const AuthenticatorKeyDuo_1 = require("../models/AuthenticatorKeyDuo");
 const AuthenticatorKeyDuoProvider_1 = require("../models/AuthenticatorKeyDuoProvider");
 const AuthenticatorKeyDuoProviderConfiguration_1 = require("../models/AuthenticatorKeyDuoProviderConfiguration");
@@ -1849,9 +2084,10 @@ const AuthorizationServer_1 = require("../models/AuthorizationServer");
 const AuthorizationServerCredentials_1 = require("../models/AuthorizationServerCredentials");
 const AuthorizationServerCredentialsSigningConfig_1 = require("../models/AuthorizationServerCredentialsSigningConfig");
 const AuthorizationServerJsonWebKey_1 = require("../models/AuthorizationServerJsonWebKey");
+const AuthorizationServerLinks_1 = require("../models/AuthorizationServerLinks");
 const AuthorizationServerPolicy_1 = require("../models/AuthorizationServerPolicy");
-const AuthorizationServerPolicyConditions_1 = require("../models/AuthorizationServerPolicyConditions");
 const AuthorizationServerPolicyLinks_1 = require("../models/AuthorizationServerPolicyLinks");
+const AuthorizationServerPolicyConditions_1 = require("../models/AuthorizationServerPolicyConditions");
 const AuthorizationServerPolicyPeopleCondition_1 = require("../models/AuthorizationServerPolicyPeopleCondition");
 const AuthorizationServerPolicyRule_1 = require("../models/AuthorizationServerPolicyRule");
 const AuthorizationServerPolicyRuleActions_1 = require("../models/AuthorizationServerPolicyRuleActions");
@@ -1865,6 +2101,9 @@ const AutoLoginApplication_1 = require("../models/AutoLoginApplication");
 const AutoLoginApplicationSettings_1 = require("../models/AutoLoginApplicationSettings");
 const AutoLoginApplicationSettingsSignOn_1 = require("../models/AutoLoginApplicationSettingsSignOn");
 const AutoUpdateSchedule_1 = require("../models/AutoUpdateSchedule");
+const AvailableAction_1 = require("../models/AvailableAction");
+const AvailableActionProvider_1 = require("../models/AvailableActionProvider");
+const AvailableActions_1 = require("../models/AvailableActions");
 const BaseContext_1 = require("../models/BaseContext");
 const BaseContextSession_1 = require("../models/BaseContextSession");
 const BaseContextUser_1 = require("../models/BaseContextUser");
@@ -1880,10 +2119,12 @@ const BasicApplicationSettingsApplication_1 = require("../models/BasicApplicatio
 const BasicAuthApplication_1 = require("../models/BasicAuthApplication");
 const BeforeScheduledActionPolicyRuleCondition_1 = require("../models/BeforeScheduledActionPolicyRuleCondition");
 const BehaviorRule_1 = require("../models/BehaviorRule");
+const BehaviorRuleASN_1 = require("../models/BehaviorRuleASN");
 const BehaviorRuleAnomalousDevice_1 = require("../models/BehaviorRuleAnomalousDevice");
 const BehaviorRuleAnomalousIP_1 = require("../models/BehaviorRuleAnomalousIP");
 const BehaviorRuleAnomalousLocation_1 = require("../models/BehaviorRuleAnomalousLocation");
 const BehaviorRuleSettings_1 = require("../models/BehaviorRuleSettings");
+const BehaviorRuleSettingsAnomalousASN_1 = require("../models/BehaviorRuleSettingsAnomalousASN");
 const BehaviorRuleSettingsAnomalousDevice_1 = require("../models/BehaviorRuleSettingsAnomalousDevice");
 const BehaviorRuleSettingsAnomalousIP_1 = require("../models/BehaviorRuleSettingsAnomalousIP");
 const BehaviorRuleSettingsAnomalousLocation_1 = require("../models/BehaviorRuleSettingsAnomalousLocation");
@@ -1913,9 +2154,11 @@ const BundleEntitlement_1 = require("../models/BundleEntitlement");
 const BundleEntitlementLinks_1 = require("../models/BundleEntitlementLinks");
 const BundleEntitlementsResponse_1 = require("../models/BundleEntitlementsResponse");
 const BundleEntitlementsResponseLinks_1 = require("../models/BundleEntitlementsResponseLinks");
+const BundleLink_1 = require("../models/BundleLink");
 const ByDateTimeAuthenticatorGracePeriodExpiry_1 = require("../models/ByDateTimeAuthenticatorGracePeriodExpiry");
 const ByDateTimeExpiry_1 = require("../models/ByDateTimeExpiry");
 const ByDurationExpiry_1 = require("../models/ByDurationExpiry");
+const BySkipCountAuthenticatorGracePeriod_1 = require("../models/BySkipCountAuthenticatorGracePeriod");
 const CAPTCHAInstance_1 = require("../models/CAPTCHAInstance");
 const CSRLinks_1 = require("../models/CSRLinks");
 const CaepCredentialChangeEvent_1 = require("../models/CaepCredentialChangeEvent");
@@ -1945,10 +2188,17 @@ const ChildOrgLicensing_1 = require("../models/ChildOrgLicensing");
 const ChromeBrowserVersion_1 = require("../models/ChromeBrowserVersion");
 const ClientPolicyCondition_1 = require("../models/ClientPolicyCondition");
 const ClientPrivilegesSetting_1 = require("../models/ClientPrivilegesSetting");
+const ClientUpdatePolicy_1 = require("../models/ClientUpdatePolicy");
+const ClientUpdatePolicyRule_1 = require("../models/ClientUpdatePolicyRule");
+const ClientUpdatePolicyRuleActionsObject_1 = require("../models/ClientUpdatePolicyRuleActionsObject");
+const ClientUpdatePolicyRuleActions_1 = require("../models/ClientUpdatePolicyRuleActions");
+const ClientUpdatePolicyRuleActionsUpdateControls_1 = require("../models/ClientUpdatePolicyRuleActionsUpdateControls");
 const Compliance_1 = require("../models/Compliance");
 const Conditions_1 = require("../models/Conditions");
+const ConnectionScopes_1 = require("../models/ConnectionScopes");
 const ContentSecurityPolicySetting_1 = require("../models/ContentSecurityPolicySetting");
 const ContextPolicyRuleCondition_1 = require("../models/ContextPolicyRuleCondition");
+const CreateAIAgentRequest_1 = require("../models/CreateAIAgentRequest");
 const CreateBrandRequest_1 = require("../models/CreateBrandRequest");
 const CreateGroupPushMappingRequest_1 = require("../models/CreateGroupPushMappingRequest");
 const CreateGroupRequest_1 = require("../models/CreateGroupRequest");
@@ -1973,10 +2223,26 @@ const CsrSelfHrefHints_1 = require("../models/CsrSelfHrefHints");
 const CustomAAGUIDCreateRequestObject_1 = require("../models/CustomAAGUIDCreateRequestObject");
 const CustomAAGUIDResponseObject_1 = require("../models/CustomAAGUIDResponseObject");
 const CustomAAGUIDUpdateRequestObject_1 = require("../models/CustomAAGUIDUpdateRequestObject");
+const CustomAuthSettings_1 = require("../models/CustomAuthSettings");
 const CustomRole_1 = require("../models/CustomRole");
 const CustomRoleAssignmentSchema_1 = require("../models/CustomRoleAssignmentSchema");
+const CustomTelephonyProviderCredentialCreateRequest_1 = require("../models/CustomTelephonyProviderCredentialCreateRequest");
+const CustomTelephonyProviderCredentialResponse_1 = require("../models/CustomTelephonyProviderCredentialResponse");
+const CustomTelephonyProviderCredentialSendTestRequest_1 = require("../models/CustomTelephonyProviderCredentialSendTestRequest");
+const CustomTelephonyProviderCredentialUpdateRequest_1 = require("../models/CustomTelephonyProviderCredentialUpdateRequest");
+const CustomTelephonyProviderCredentialsResponse_1 = require("../models/CustomTelephonyProviderCredentialsResponse");
+const CustomTelephonyProviderSettings_1 = require("../models/CustomTelephonyProviderSettings");
+const CustomTelephonyProviderSettingsCall_1 = require("../models/CustomTelephonyProviderSettingsCall");
+const CustomTelephonyProviderSettingsSms_1 = require("../models/CustomTelephonyProviderSettingsSms");
+const CustomTelephonyProviderSettingsTelesignServiceCall_1 = require("../models/CustomTelephonyProviderSettingsTelesignServiceCall");
+const CustomTelephonyProviderSettingsTelesignServiceSms_1 = require("../models/CustomTelephonyProviderSettingsTelesignServiceSms");
+const CustomTelephonyProviderSettingsTwilioCallerId_1 = require("../models/CustomTelephonyProviderSettingsTwilioCallerId");
+const CustomTelephonyProviderSettingsTwilioMessagingService_1 = require("../models/CustomTelephonyProviderSettingsTwilioMessagingService");
+const CustomTelephonyProviderSettingsTwilioPhoneNumber_1 = require("../models/CustomTelephonyProviderSettingsTwilioPhoneNumber");
+const CustomTelephonyProviderSettingsTwilioVerify_1 = require("../models/CustomTelephonyProviderSettingsTwilioVerify");
 const CustomizablePage_1 = require("../models/CustomizablePage");
-const DNSRecord_1 = require("../models/DNSRecord");
+const DNSRecordAuthenticators_1 = require("../models/DNSRecordAuthenticators");
+const DNSRecordDomains_1 = require("../models/DNSRecordDomains");
 const DRStatusItem_1 = require("../models/DRStatusItem");
 const DTCChromeOS_1 = require("../models/DTCChromeOS");
 const DTCMacOS_1 = require("../models/DTCMacOS");
@@ -2001,6 +2267,7 @@ const DeviceAssuranceMacOSPlatformDiskEncryptionType_1 = require("../models/Devi
 const DeviceAssuranceMacOSPlatformThirdPartySignalProviders_1 = require("../models/DeviceAssuranceMacOSPlatformThirdPartySignalProviders");
 const DeviceAssuranceWindowsPlatform_1 = require("../models/DeviceAssuranceWindowsPlatform");
 const DeviceAssuranceWindowsPlatformThirdPartySignalProviders_1 = require("../models/DeviceAssuranceWindowsPlatformThirdPartySignalProviders");
+const DeviceContextProvider_1 = require("../models/DeviceContextProvider");
 const DeviceDisplayName_1 = require("../models/DeviceDisplayName");
 const DeviceIntegrations_1 = require("../models/DeviceIntegrations");
 const DeviceIntegrationsMetadata_1 = require("../models/DeviceIntegrationsMetadata");
@@ -2020,6 +2287,14 @@ const DevicePostureChecksRemediationSettingsLink_1 = require("../models/DevicePo
 const DevicePostureChecksRemediationSettingsMessage_1 = require("../models/DevicePostureChecksRemediationSettingsMessage");
 const DevicePostureIdP_1 = require("../models/DevicePostureIdP");
 const DeviceProfile_1 = require("../models/DeviceProfile");
+const DeviceSignalCollectionPlatformConditionEvaluatorPlatform_1 = require("../models/DeviceSignalCollectionPlatformConditionEvaluatorPlatform");
+const DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem_1 = require("../models/DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem");
+const DeviceSignalCollectionPlatformPolicyRuleCondition_1 = require("../models/DeviceSignalCollectionPlatformPolicyRuleCondition");
+const DeviceSignalCollectionPolicy_1 = require("../models/DeviceSignalCollectionPolicy");
+const DeviceSignalCollectionPolicyRule_1 = require("../models/DeviceSignalCollectionPolicyRule");
+const DeviceSignalCollectionPolicyRuleActions_1 = require("../models/DeviceSignalCollectionPolicyRuleActions");
+const DeviceSignalCollectionPolicyRuleConditions_1 = require("../models/DeviceSignalCollectionPolicyRuleConditions");
+const DeviceSignalCollectionPolicyRuleDeviceSignalCollection_1 = require("../models/DeviceSignalCollectionPolicyRuleDeviceSignalCollection");
 const DeviceUser_1 = require("../models/DeviceUser");
 const DomainCertificate_1 = require("../models/DomainCertificate");
 const DomainCertificateMetadata_1 = require("../models/DomainCertificateMetadata");
@@ -2062,6 +2337,7 @@ const Embedded_1 = require("../models/Embedded");
 const EmptyRequestSchema_1 = require("../models/EmptyRequestSchema");
 const EnhancedDynamicNetworkZone_1 = require("../models/EnhancedDynamicNetworkZone");
 const EnhancedDynamicNetworkZoneAsns_1 = require("../models/EnhancedDynamicNetworkZoneAsns");
+const EnhancedDynamicNetworkZoneAsnsExclude_1 = require("../models/EnhancedDynamicNetworkZoneAsnsExclude");
 const EnhancedDynamicNetworkZoneAsnsInclude_1 = require("../models/EnhancedDynamicNetworkZoneAsnsInclude");
 const EnhancedDynamicNetworkZoneIpServiceCategories_1 = require("../models/EnhancedDynamicNetworkZoneIpServiceCategories");
 const EnhancedDynamicNetworkZoneLocations_1 = require("../models/EnhancedDynamicNetworkZoneLocations");
@@ -2072,11 +2348,15 @@ const EnrollmentActivationResponse_1 = require("../models/EnrollmentActivationRe
 const EnrollmentInitializationRequest_1 = require("../models/EnrollmentInitializationRequest");
 const EnrollmentInitializationResponse_1 = require("../models/EnrollmentInitializationResponse");
 const EnrollmentPolicyAuthenticatorGracePeriod_1 = require("../models/EnrollmentPolicyAuthenticatorGracePeriod");
+const EntitlementTypes_1 = require("../models/EntitlementTypes");
+const EntitlementTypesInner_1 = require("../models/EntitlementTypesInner");
+const EntitlementTypesInnerAttributes_1 = require("../models/EntitlementTypesInnerAttributes");
+const EntitlementTypesInnerMappings_1 = require("../models/EntitlementTypesInnerMappings");
 const EntitlementValue_1 = require("../models/EntitlementValue");
 const EntitlementValueLinks_1 = require("../models/EntitlementValueLinks");
 const EntitlementValuesResponse_1 = require("../models/EntitlementValuesResponse");
 const EntitlementValuesResponseLinks_1 = require("../models/EntitlementValuesResponseLinks");
-const EntitlementValuesResponseLinksAnyOf_1 = require("../models/EntitlementValuesResponseLinksAnyOf");
+const EntitlementsLink_1 = require("../models/EntitlementsLink");
 const EntityRiskPolicy_1 = require("../models/EntityRiskPolicy");
 const EntityRiskPolicyRule_1 = require("../models/EntityRiskPolicyRule");
 const EntityRiskPolicyRuleActionRunWorkflow_1 = require("../models/EntityRiskPolicyRuleActionRunWorkflow");
@@ -2089,6 +2369,7 @@ const EntityRiskPolicyRuleConditions_1 = require("../models/EntityRiskPolicyRule
 const EntityRiskScorePolicyRuleCondition_1 = require("../models/EntityRiskScorePolicyRuleCondition");
 const Error409_1 = require("../models/Error409");
 const ErrorCause_1 = require("../models/ErrorCause");
+const ErrorDetails_1 = require("../models/ErrorDetails");
 const ErrorPage_1 = require("../models/ErrorPage");
 const EventHook_1 = require("../models/EventHook");
 const EventHookChannel_1 = require("../models/EventHookChannel");
@@ -2121,6 +2402,7 @@ const FulfillmentData_1 = require("../models/FulfillmentData");
 const FulfillmentDataOrderDetails_1 = require("../models/FulfillmentDataOrderDetails");
 const FulfillmentRequest_1 = require("../models/FulfillmentRequest");
 const GetDRStatus200Response_1 = require("../models/GetDRStatus200Response");
+const GetJwk200Response_1 = require("../models/GetJwk200Response");
 const GetSsfStreams200Response_1 = require("../models/GetSsfStreams200Response");
 const GoogleApplication_1 = require("../models/GoogleApplication");
 const GoogleApplicationSettings_1 = require("../models/GoogleApplicationSettings");
@@ -2133,12 +2415,18 @@ const GovernanceBundlesResponse_1 = require("../models/GovernanceBundlesResponse
 const GovernanceBundlesResponseLinks_1 = require("../models/GovernanceBundlesResponseLinks");
 const GracePeriod_1 = require("../models/GracePeriod");
 const GracePeriodExpiry_1 = require("../models/GracePeriodExpiry");
+const GracePeriodRequiredSoon_1 = require("../models/GracePeriodRequiredSoon");
 const GrantResourcesHrefObject_1 = require("../models/GrantResourcesHrefObject");
 const GrantTypePolicyRuleCondition_1 = require("../models/GrantTypePolicyRuleCondition");
 const Group_1 = require("../models/Group");
 const GroupAssignmentProfile_1 = require("../models/GroupAssignmentProfile");
 const GroupCondition_1 = require("../models/GroupCondition");
+const GroupEmbedded_1 = require("../models/GroupEmbedded");
+const GroupEmbeddedApp_1 = require("../models/GroupEmbeddedApp");
+const GroupEmbeddedStats_1 = require("../models/GroupEmbeddedStats");
 const GroupLinks_1 = require("../models/GroupLinks");
+const GroupMembershipsRequestSchema_1 = require("../models/GroupMembershipsRequestSchema");
+const GroupMembershipsResponseSchema_1 = require("../models/GroupMembershipsResponseSchema");
 const GroupOwner_1 = require("../models/GroupOwner");
 const GroupPolicyRuleCondition_1 = require("../models/GroupPolicyRuleCondition");
 const GroupProfile_1 = require("../models/GroupProfile");
@@ -2160,6 +2448,9 @@ const GroupSchemaBaseProperties_1 = require("../models/GroupSchemaBaseProperties
 const GroupSchemaCustom_1 = require("../models/GroupSchemaCustom");
 const GroupSchemaDefinitions_1 = require("../models/GroupSchemaDefinitions");
 const GroupsLink_1 = require("../models/GroupsLink");
+const GroupsRequestSchema_1 = require("../models/GroupsRequestSchema");
+const GroupsResponseSchema_1 = require("../models/GroupsResponseSchema");
+const GroupsResponseSchemaProfile_1 = require("../models/GroupsResponseSchemaProfile");
 const HelpLink_1 = require("../models/HelpLink");
 const HookKey_1 = require("../models/HookKey");
 const HostedPage_1 = require("../models/HostedPage");
@@ -2184,6 +2475,7 @@ const HrefObjectLogoLink_1 = require("../models/HrefObjectLogoLink");
 const HrefObjectMappingsLink_1 = require("../models/HrefObjectMappingsLink");
 const HrefObjectMemberLink_1 = require("../models/HrefObjectMemberLink");
 const HrefObjectMembersLink_1 = require("../models/HrefObjectMembersLink");
+const HrefObjectNextLink_1 = require("../models/HrefObjectNextLink");
 const HrefObjectPermissionsLink_1 = require("../models/HrefObjectPermissionsLink");
 const HrefObjectResourceSetLink_1 = require("../models/HrefObjectResourceSetLink");
 const HrefObjectResourceSetResourcesLink_1 = require("../models/HrefObjectResourceSetResourcesLink");
@@ -2195,6 +2487,7 @@ const HrefObjectSelfLink_1 = require("../models/HrefObjectSelfLink");
 const HrefObjectSuspendLink_1 = require("../models/HrefObjectSuspendLink");
 const HrefObjectUnsuspendLink_1 = require("../models/HrefObjectUnsuspendLink");
 const HrefObjectUserLink_1 = require("../models/HrefObjectUserLink");
+const HrefObjectWebLink_1 = require("../models/HrefObjectWebLink");
 const IAMBundleEntitlement_1 = require("../models/IAMBundleEntitlement");
 const IDVAuthorizationEndpoint_1 = require("../models/IDVAuthorizationEndpoint");
 const IDVCredentials_1 = require("../models/IDVCredentials");
@@ -2212,6 +2505,12 @@ const IdPCsr_1 = require("../models/IdPCsr");
 const IdPCsrLinks_1 = require("../models/IdPCsrLinks");
 const IdPKeyCredential_1 = require("../models/IdPKeyCredential");
 const IdProofingMethod_1 = require("../models/IdProofingMethod");
+const IdentityAssertionAppInstanceConnection_1 = require("../models/IdentityAssertionAppInstanceConnection");
+const IdentityAssertionAppInstanceConnectionCreatable_1 = require("../models/IdentityAssertionAppInstanceConnectionCreatable");
+const IdentityAssertionAppInstanceConnectionCreatableApp_1 = require("../models/IdentityAssertionAppInstanceConnectionCreatableApp");
+const IdentityAssertionCustomASConnection_1 = require("../models/IdentityAssertionCustomASConnection");
+const IdentityAssertionCustomASConnectionCreatable_1 = require("../models/IdentityAssertionCustomASConnectionCreatable");
+const IdentityAssertionCustomASConnectionCreatableAuthorizationServer_1 = require("../models/IdentityAssertionCustomASConnectionCreatableAuthorizationServer");
 const IdentityProvider_1 = require("../models/IdentityProvider");
 const IdentityProviderApplicationUser_1 = require("../models/IdentityProviderApplicationUser");
 const IdentityProviderApplicationUserLinks_1 = require("../models/IdentityProviderApplicationUserLinks");
@@ -2219,6 +2518,7 @@ const IdentityProviderLinks_1 = require("../models/IdentityProviderLinks");
 const IdentityProviderPolicy_1 = require("../models/IdentityProviderPolicy");
 const IdentityProviderPolicyRuleCondition_1 = require("../models/IdentityProviderPolicyRuleCondition");
 const IdentityProviderProperties_1 = require("../models/IdentityProviderProperties");
+const IdentityProviderPropertiesIdvMetadata_1 = require("../models/IdentityProviderPropertiesIdvMetadata");
 const IdentityProviderProtocol_1 = require("../models/IdentityProviderProtocol");
 const IdentitySourceGroupMembershipsDeleteProfile_1 = require("../models/IdentitySourceGroupMembershipsDeleteProfile");
 const IdentitySourceGroupMembershipsDeleteProfileInner_1 = require("../models/IdentitySourceGroupMembershipsDeleteProfileInner");
@@ -2228,6 +2528,10 @@ const IdentitySourceGroupProfileForUpsert_1 = require("../models/IdentitySourceG
 const IdentitySourceSession_1 = require("../models/IdentitySourceSession");
 const IdentitySourceUserProfileForDelete_1 = require("../models/IdentitySourceUserProfileForDelete");
 const IdentitySourceUserProfileForUpsert_1 = require("../models/IdentitySourceUserProfileForUpsert");
+const IdentitySourceUserProfileForUpsertRequired_1 = require("../models/IdentitySourceUserProfileForUpsertRequired");
+const IdpDiscoveryPlatformConditionEvaluatorPlatform_1 = require("../models/IdpDiscoveryPlatformConditionEvaluatorPlatform");
+const IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem_1 = require("../models/IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem");
+const IdpDiscoveryPlatformPolicyRuleCondition_1 = require("../models/IdpDiscoveryPlatformPolicyRuleCondition");
 const IdpDiscoveryPolicy_1 = require("../models/IdpDiscoveryPolicy");
 const IdpDiscoveryPolicyRule_1 = require("../models/IdpDiscoveryPolicyRule");
 const IdpDiscoveryPolicyRuleCondition_1 = require("../models/IdpDiscoveryPolicyRuleCondition");
@@ -2273,11 +2577,10 @@ const InlineHookRequestObjectUrl_1 = require("../models/InlineHookRequestObjectU
 const InlineHookResponse_1 = require("../models/InlineHookResponse");
 const InlineHookResponseCommandValue_1 = require("../models/InlineHookResponseCommandValue");
 const InlineHookResponseCommands_1 = require("../models/InlineHookResponseCommands");
+const InterclientTrustMapping_1 = require("../models/InterclientTrustMapping");
+const InterclientTrustMappingRequestBody_1 = require("../models/InterclientTrustMappingRequestBody");
 const JsonPatchOperation_1 = require("../models/JsonPatchOperation");
 const JsonWebKey_1 = require("../models/JsonWebKey");
-const JsonWebKey1_1 = require("../models/JsonWebKey1");
-const JsonWebKeyEC_1 = require("../models/JsonWebKeyEC");
-const JsonWebKeyRsa_1 = require("../models/JsonWebKeyRsa");
 const JwkUse_1 = require("../models/JwkUse");
 const KeepCurrent_1 = require("../models/KeepCurrent");
 const KeepMeSignedIn_1 = require("../models/KeepMeSignedIn");
@@ -2316,13 +2619,19 @@ const LinksSelfAndRoles_1 = require("../models/LinksSelfAndRoles");
 const LinksSelfForRoleAssignment_1 = require("../models/LinksSelfForRoleAssignment");
 const LinksSelfLifecycleAndAuthorize_1 = require("../models/LinksSelfLifecycleAndAuthorize");
 const LinksSend_1 = require("../models/LinksSend");
-const LinksUser_1 = require("../models/LinksUser");
+const LinksUserAuthenticators_1 = require("../models/LinksUserAuthenticators");
+const LinksUserFactors_1 = require("../models/LinksUserFactors");
 const LinksUserRef_1 = require("../models/LinksUserRef");
 const LinksVerify_1 = require("../models/LinksVerify");
+const ListAIAgents200Response_1 = require("../models/ListAIAgents200Response");
+const ListAIAgents200ResponseLinks_1 = require("../models/ListAIAgents200ResponseLinks");
+const ListAgentJwk200Response_1 = require("../models/ListAgentJwk200Response");
 const ListGroupAssignedRoles200ResponseInner_1 = require("../models/ListGroupAssignedRoles200ResponseInner");
 const ListJwk200Response_1 = require("../models/ListJwk200Response");
+const ListJwk200ResponseKeysInner_1 = require("../models/ListJwk200ResponseKeysInner");
 const ListProfileMappings_1 = require("../models/ListProfileMappings");
 const ListRoleSubscriptionsRoleTypeOrRoleIdParameter_1 = require("../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter");
+const ListRolesForClient200ResponseInner_1 = require("../models/ListRolesForClient200ResponseInner");
 const LogActor_1 = require("../models/LogActor");
 const LogAuthenticationContext_1 = require("../models/LogAuthenticationContext");
 const LogClient_1 = require("../models/LogClient");
@@ -2332,9 +2641,12 @@ const LogEvent_1 = require("../models/LogEvent");
 const LogGeographicalContext_1 = require("../models/LogGeographicalContext");
 const LogGeolocation_1 = require("../models/LogGeolocation");
 const LogIpAddress_1 = require("../models/LogIpAddress");
+const LogIpDetails_1 = require("../models/LogIpDetails");
+const LogIpServiceCategory_1 = require("../models/LogIpServiceCategory");
 const LogIssuer_1 = require("../models/LogIssuer");
 const LogOutcome_1 = require("../models/LogOutcome");
 const LogRequest_1 = require("../models/LogRequest");
+const LogRisk_1 = require("../models/LogRisk");
 const LogSecurityContext_1 = require("../models/LogSecurityContext");
 const LogStream_1 = require("../models/LogStream");
 const LogStreamActivateLink_1 = require("../models/LogStreamActivateLink");
@@ -2355,7 +2667,20 @@ const LogTarget_1 = require("../models/LogTarget");
 const LogTargetChangeDetails_1 = require("../models/LogTargetChangeDetails");
 const LogTransaction_1 = require("../models/LogTransaction");
 const LogUserAgent_1 = require("../models/LogUserAgent");
+const LogUserBehavior_1 = require("../models/LogUserBehavior");
 const MDMEnrollmentPolicyRuleCondition_1 = require("../models/MDMEnrollmentPolicyRuleCondition");
+const ManagedConnection_1 = require("../models/ManagedConnection");
+const ManagedConnectionAppInstance_1 = require("../models/ManagedConnectionAppInstance");
+const ManagedConnectionCreatable_1 = require("../models/ManagedConnectionCreatable");
+const ManagedConnectionCustomAuthorizationServer_1 = require("../models/ManagedConnectionCustomAuthorizationServer");
+const ManagedConnectionLinks_1 = require("../models/ManagedConnectionLinks");
+const ManagedConnectionList_1 = require("../models/ManagedConnectionList");
+const ManagedConnectionListLinks_1 = require("../models/ManagedConnectionListLinks");
+const ManagedConnectionPatchable_1 = require("../models/ManagedConnectionPatchable");
+const ManagedConnectionPatchableScopes_1 = require("../models/ManagedConnectionPatchableScopes");
+const ManagedConnectionServiceAccount_1 = require("../models/ManagedConnectionServiceAccount");
+const ManagedConnectionVaultedSecret_1 = require("../models/ManagedConnectionVaultedSecret");
+const MembershipRequestSchema_1 = require("../models/MembershipRequestSchema");
 const MetadataLink_1 = require("../models/MetadataLink");
 const ModelError_1 = require("../models/ModelError");
 const MtlsCredentials_1 = require("../models/MtlsCredentials");
@@ -2373,8 +2698,17 @@ const OAuth2Actor_1 = require("../models/OAuth2Actor");
 const OAuth2Claim_1 = require("../models/OAuth2Claim");
 const OAuth2ClaimConditions_1 = require("../models/OAuth2ClaimConditions");
 const OAuth2Client_1 = require("../models/OAuth2Client");
-const OAuth2ClientJsonWebKey_1 = require("../models/OAuth2ClientJsonWebKey");
+const OAuth2ClientJsonEncryptionKeyRequest_1 = require("../models/OAuth2ClientJsonEncryptionKeyRequest");
+const OAuth2ClientJsonEncryptionKeyResponse_1 = require("../models/OAuth2ClientJsonEncryptionKeyResponse");
+const OAuth2ClientJsonSigningKeyRequest_1 = require("../models/OAuth2ClientJsonSigningKeyRequest");
+const OAuth2ClientJsonSigningKeyResponse_1 = require("../models/OAuth2ClientJsonSigningKeyResponse");
+const OAuth2ClientJsonWebKeyECRequest_1 = require("../models/OAuth2ClientJsonWebKeyECRequest");
+const OAuth2ClientJsonWebKeyECResponse_1 = require("../models/OAuth2ClientJsonWebKeyECResponse");
+const OAuth2ClientJsonWebKeyRequestBase_1 = require("../models/OAuth2ClientJsonWebKeyRequestBase");
 const OAuth2ClientJsonWebKeyRequestBody_1 = require("../models/OAuth2ClientJsonWebKeyRequestBody");
+const OAuth2ClientJsonWebKeyResponseBase_1 = require("../models/OAuth2ClientJsonWebKeyResponseBase");
+const OAuth2ClientJsonWebKeyRsaRequest_1 = require("../models/OAuth2ClientJsonWebKeyRsaRequest");
+const OAuth2ClientJsonWebKeyRsaResponse_1 = require("../models/OAuth2ClientJsonWebKeyRsaResponse");
 const OAuth2ClientLinks_1 = require("../models/OAuth2ClientLinks");
 const OAuth2ClientSecret_1 = require("../models/OAuth2ClientSecret");
 const OAuth2ClientSecretRequestBody_1 = require("../models/OAuth2ClientSecretRequestBody");
@@ -2385,12 +2719,15 @@ const OAuth2RefreshTokenLinksRevoke_1 = require("../models/OAuth2RefreshTokenLin
 const OAuth2RefreshTokenLinksRevokeHints_1 = require("../models/OAuth2RefreshTokenLinksRevokeHints");
 const OAuth2RefreshTokenScope_1 = require("../models/OAuth2RefreshTokenScope");
 const OAuth2RefreshTokenScopeLinks_1 = require("../models/OAuth2RefreshTokenScopeLinks");
+const OAuth2ResourceServerJsonWebKey_1 = require("../models/OAuth2ResourceServerJsonWebKey");
+const OAuth2ResourceServerJsonWebKeyRequestBody_1 = require("../models/OAuth2ResourceServerJsonWebKeyRequestBody");
 const OAuth2Scope_1 = require("../models/OAuth2Scope");
 const OAuth2ScopeConsentGrant_1 = require("../models/OAuth2ScopeConsentGrant");
 const OAuth2ScopeConsentGrantEmbedded_1 = require("../models/OAuth2ScopeConsentGrantEmbedded");
 const OAuth2ScopeConsentGrantEmbeddedScope_1 = require("../models/OAuth2ScopeConsentGrantEmbeddedScope");
 const OAuth2ScopeConsentGrantLinks_1 = require("../models/OAuth2ScopeConsentGrantLinks");
 const OAuth2ScopesMediationPolicyRuleCondition_1 = require("../models/OAuth2ScopesMediationPolicyRuleCondition");
+const OAuth2Settings_1 = require("../models/OAuth2Settings");
 const OAuth2Token_1 = require("../models/OAuth2Token");
 const OAuthApplicationCredentials_1 = require("../models/OAuthApplicationCredentials");
 const OAuthAuthorizationEndpoint_1 = require("../models/OAuthAuthorizationEndpoint");
@@ -2399,6 +2736,7 @@ const OAuthCredentials_1 = require("../models/OAuthCredentials");
 const OAuthCredentialsClient_1 = require("../models/OAuthCredentialsClient");
 const OAuthEndpoints_1 = require("../models/OAuthEndpoints");
 const OAuthMetadata_1 = require("../models/OAuthMetadata");
+const OAuthResourceServerKeyLinks_1 = require("../models/OAuthResourceServerKeyLinks");
 const OAuthScopes_1 = require("../models/OAuthScopes");
 const OAuthTokenEndpoint_1 = require("../models/OAuthTokenEndpoint");
 const OINApplication_1 = require("../models/OINApplication");
@@ -2426,6 +2764,9 @@ const OidcUserInfoEndpoint_1 = require("../models/OidcUserInfoEndpoint");
 const OktaActiveDirectoryGroupProfile_1 = require("../models/OktaActiveDirectoryGroupProfile");
 const OktaDeviceRiskChangeEvent_1 = require("../models/OktaDeviceRiskChangeEvent");
 const OktaIpChangeEvent_1 = require("../models/OktaIpChangeEvent");
+const OktaManagedUserAccount_1 = require("../models/OktaManagedUserAccount");
+const OktaManagedUserAccountForUpdate_1 = require("../models/OktaManagedUserAccountForUpdate");
+const OktaManagedUserAccountRequest_1 = require("../models/OktaManagedUserAccountRequest");
 const OktaPersonalAdminFeatureSettings_1 = require("../models/OktaPersonalAdminFeatureSettings");
 const OktaSignOnPolicy_1 = require("../models/OktaSignOnPolicy");
 const OktaSignOnPolicyConditions_1 = require("../models/OktaSignOnPolicyConditions");
@@ -2450,10 +2791,6 @@ const OpenIdConnectApplicationSettingsClientKeys_1 = require("../models/OpenIdCo
 const OpenIdConnectApplicationSettingsRefreshToken_1 = require("../models/OpenIdConnectApplicationSettingsRefreshToken");
 const OperationRequest_1 = require("../models/OperationRequest");
 const OperationResponse_1 = require("../models/OperationResponse");
-const OperationResponseAssignmentOperation_1 = require("../models/OperationResponseAssignmentOperation");
-const OperationResponseAssignmentOperationConfiguration_1 = require("../models/OperationResponseAssignmentOperationConfiguration");
-const OperationResponseAssignmentOperationConfigurationActions_1 = require("../models/OperationResponseAssignmentOperationConfigurationActions");
-const OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm_1 = require("../models/OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm");
 const OptInStatusResponse_1 = require("../models/OptInStatusResponse");
 const OptInStatusResponseLinks_1 = require("../models/OptInStatusResponseLinks");
 const Org2OrgApplication_1 = require("../models/Org2OrgApplication");
@@ -2468,8 +2805,6 @@ const OrgBillingContactType_1 = require("../models/OrgBillingContactType");
 const OrgBillingContactTypeLinks_1 = require("../models/OrgBillingContactTypeLinks");
 const OrgCAPTCHASettings_1 = require("../models/OrgCAPTCHASettings");
 const OrgCAPTCHASettingsLinks_1 = require("../models/OrgCAPTCHASettingsLinks");
-const OrgCWOConnection_1 = require("../models/OrgCWOConnection");
-const OrgCWOConnectionPatchRequest_1 = require("../models/OrgCWOConnectionPatchRequest");
 const OrgContactTypeObj_1 = require("../models/OrgContactTypeObj");
 const OrgContactUser_1 = require("../models/OrgContactUser");
 const OrgContactUserLinks_1 = require("../models/OrgContactUserLinks");
@@ -2477,6 +2812,8 @@ const OrgCreationAdmin_1 = require("../models/OrgCreationAdmin");
 const OrgCreationAdminCredentials_1 = require("../models/OrgCreationAdminCredentials");
 const OrgCreationAdminCredentialsPassword_1 = require("../models/OrgCreationAdminCredentialsPassword");
 const OrgCreationAdminProfile_1 = require("../models/OrgCreationAdminProfile");
+const OrgCrossAppAccessConnection_1 = require("../models/OrgCrossAppAccessConnection");
+const OrgCrossAppAccessConnectionPatchRequest_1 = require("../models/OrgCrossAppAccessConnectionPatchRequest");
 const OrgGeneralSettingLinks_1 = require("../models/OrgGeneralSettingLinks");
 const OrgOktaCommunicationSetting_1 = require("../models/OrgOktaCommunicationSetting");
 const OrgOktaCommunicationSettingLinks_1 = require("../models/OrgOktaCommunicationSettingLinks");
@@ -2532,6 +2869,8 @@ const PasswordPolicyRuleActions_1 = require("../models/PasswordPolicyRuleActions
 const PasswordPolicyRuleConditions_1 = require("../models/PasswordPolicyRuleConditions");
 const PasswordPolicySettings_1 = require("../models/PasswordPolicySettings");
 const PasswordSettingObject_1 = require("../models/PasswordSettingObject");
+const PatchAIAgentProfile_1 = require("../models/PatchAIAgentProfile");
+const PatchAIAgentRequest_1 = require("../models/PatchAIAgentRequest");
 const PerClientRateLimitSettings_1 = require("../models/PerClientRateLimitSettings");
 const PerClientRateLimitSettingsUseCaseModeOverrides_1 = require("../models/PerClientRateLimitSettingsUseCaseModeOverrides");
 const Permission_1 = require("../models/Permission");
@@ -2581,6 +2920,17 @@ const PostAuthSessionPolicyRuleActionsPostAuthSession_1 = require("../models/Pos
 const PostAuthSessionPolicyRuleConditions_1 = require("../models/PostAuthSessionPolicyRuleConditions");
 const PostAuthSessionPolicyRuleRunWorkflow_1 = require("../models/PostAuthSessionPolicyRuleRunWorkflow");
 const PostAuthSessionPolicyRuleTerminateSession_1 = require("../models/PostAuthSessionPolicyRuleTerminateSession");
+const PotentialConnection_1 = require("../models/PotentialConnection");
+const PotentialConnectionAppInstance_1 = require("../models/PotentialConnectionAppInstance");
+const PotentialConnectionCustomAuthorizationServer_1 = require("../models/PotentialConnectionCustomAuthorizationServer");
+const PotentialConnectionList_1 = require("../models/PotentialConnectionList");
+const PotentialConnectionListLinks_1 = require("../models/PotentialConnectionListLinks");
+const PotentialConnectionServiceAccount_1 = require("../models/PotentialConnectionServiceAccount");
+const PotentialConnectionVaultedSecret_1 = require("../models/PotentialConnectionVaultedSecret");
+const PotentialIdentityAssertionAppInstanceConnection_1 = require("../models/PotentialIdentityAssertionAppInstanceConnection");
+const PotentialIdentityAssertionCustomASConnection_1 = require("../models/PotentialIdentityAssertionCustomASConnection");
+const PotentialSTSServiceAccountConnection_1 = require("../models/PotentialSTSServiceAccountConnection");
+const PotentialSTSVaultSecretConnection_1 = require("../models/PotentialSTSVaultSecretConnection");
 const PreRegistrationInlineHook_1 = require("../models/PreRegistrationInlineHook");
 const PrincipalRateLimitEntity_1 = require("../models/PrincipalRateLimitEntity");
 const PrivilegedResource_1 = require("../models/PrivilegedResource");
@@ -2634,6 +2984,11 @@ const RateLimitWarningThresholdRequest_1 = require("../models/RateLimitWarningTh
 const RateLimitWarningThresholdResponse_1 = require("../models/RateLimitWarningThresholdResponse");
 const Realm_1 = require("../models/Realm");
 const RealmAssignment_1 = require("../models/RealmAssignment");
+const RealmAssignmentOperationResponse_1 = require("../models/RealmAssignmentOperationResponse");
+const RealmAssignmentOperationResponseAssignmentOperation_1 = require("../models/RealmAssignmentOperationResponseAssignmentOperation");
+const RealmAssignmentOperationResponseAssignmentOperationConfiguration_1 = require("../models/RealmAssignmentOperationResponseAssignmentOperationConfiguration");
+const RealmAssignmentOperationResponseAssignmentOperationConfigurationActions_1 = require("../models/RealmAssignmentOperationResponseAssignmentOperationConfigurationActions");
+const RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm_1 = require("../models/RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm");
 const RealmProfile_1 = require("../models/RealmProfile");
 const RecoveryQuestionCredential_1 = require("../models/RecoveryQuestionCredential");
 const RefreshToken_1 = require("../models/RefreshToken");
@@ -2657,6 +3012,8 @@ const ResendUserFactor_1 = require("../models/ResendUserFactor");
 const ResetPasswordToken_1 = require("../models/ResetPasswordToken");
 const ResourceConditions_1 = require("../models/ResourceConditions");
 const ResourceConditionsExclude_1 = require("../models/ResourceConditionsExclude");
+const ResourceServerJsonWebKey_1 = require("../models/ResourceServerJsonWebKey");
+const ResourceServerJsonWebKeys_1 = require("../models/ResourceServerJsonWebKeys");
 const ResourceSet_1 = require("../models/ResourceSet");
 const ResourceSetBindingAddMembersRequest_1 = require("../models/ResourceSetBindingAddMembersRequest");
 const ResourceSetBindingCreateRequest_1 = require("../models/ResourceSetBindingCreateRequest");
@@ -2695,7 +3052,6 @@ const RoleAssignedUsers_1 = require("../models/RoleAssignedUsers");
 const RoleGovernance_1 = require("../models/RoleGovernance");
 const RoleGovernanceResource_1 = require("../models/RoleGovernanceResource");
 const RoleGovernanceResources_1 = require("../models/RoleGovernanceResources");
-const RoleGovernanceResourcesLinks_1 = require("../models/RoleGovernanceResourcesLinks");
 const RoleGovernanceSource_1 = require("../models/RoleGovernanceSource");
 const RoleGovernanceSourceLinks_1 = require("../models/RoleGovernanceSourceLinks");
 const RoleTarget_1 = require("../models/RoleTarget");
@@ -2723,6 +3079,12 @@ const SAMLPayLoadDataContext_1 = require("../models/SAMLPayLoadDataContext");
 const SAMLPayLoadDataContextProtocol_1 = require("../models/SAMLPayLoadDataContextProtocol");
 const SAMLPayLoadDataContextProtocolIssuer_1 = require("../models/SAMLPayLoadDataContextProtocolIssuer");
 const SAMLPayloadExecute_1 = require("../models/SAMLPayloadExecute");
+const STSServiceAccountConnection_1 = require("../models/STSServiceAccountConnection");
+const STSServiceAccountConnectionCreatable_1 = require("../models/STSServiceAccountConnectionCreatable");
+const STSServiceAccountConnectionCreatableServiceAccount_1 = require("../models/STSServiceAccountConnectionCreatableServiceAccount");
+const STSVaultSecretConnection_1 = require("../models/STSVaultSecretConnection");
+const STSVaultSecretConnectionCreatable_1 = require("../models/STSVaultSecretConnectionCreatable");
+const STSVaultSecretConnectionCreatableSecret_1 = require("../models/STSVaultSecretConnectionCreatableSecret");
 const SalesforceApplication_1 = require("../models/SalesforceApplication");
 const SalesforceApplicationSettings_1 = require("../models/SalesforceApplicationSettings");
 const SalesforceApplicationSettingsApplication_1 = require("../models/SalesforceApplicationSettingsApplication");
@@ -2787,8 +3149,15 @@ const ServiceAccountDetailsAppAccountSub_1 = require("../models/ServiceAccountDe
 const ServiceAccountDetailsOktaUserAccount_1 = require("../models/ServiceAccountDetailsOktaUserAccount");
 const ServiceAccountDetailsOktaUserAccountSub_1 = require("../models/ServiceAccountDetailsOktaUserAccountSub");
 const ServiceAccountForUpdate_1 = require("../models/ServiceAccountForUpdate");
+const ServiceAccountLinks_1 = require("../models/ServiceAccountLinks");
 const Session_1 = require("../models/Session");
 const SessionIdentityProvider_1 = require("../models/SessionIdentityProvider");
+const SessionViolationDetectionPolicy_1 = require("../models/SessionViolationDetectionPolicy");
+const SessionViolationDetectionPolicyEvaluation_1 = require("../models/SessionViolationDetectionPolicyEvaluation");
+const SessionViolationDetectionPolicyRule_1 = require("../models/SessionViolationDetectionPolicyRule");
+const SessionViolationDetectionPolicyRuleActions_1 = require("../models/SessionViolationDetectionPolicyRuleActions");
+const SessionViolationDetectionPolicyRuleActionsSessionViolationDetection_1 = require("../models/SessionViolationDetectionPolicyRuleActionsSessionViolationDetection");
+const SessionViolationDetectionPolicyRuleConditions_1 = require("../models/SessionViolationDetectionPolicyRuleConditions");
 const SignInPage_1 = require("../models/SignInPage");
 const SignInPageWidgetCustomizations_1 = require("../models/SignInPageWidgetCustomizations");
 const SignOnInlineHook_1 = require("../models/SignOnInlineHook");
@@ -2814,6 +3183,8 @@ const SmsTemplateTranslations_1 = require("../models/SmsTemplateTranslations");
 const SocialAuthToken_1 = require("../models/SocialAuthToken");
 const SourceLinks_1 = require("../models/SourceLinks");
 const SourceLinksSchema_1 = require("../models/SourceLinksSchema");
+const SsfTransmitterCaepSessionRevokedEvent_1 = require("../models/SsfTransmitterCaepSessionRevokedEvent");
+const SsfTransmitterSecurityEventSubject_1 = require("../models/SsfTransmitterSecurityEventSubject");
 const Sso_1 = require("../models/Sso");
 const SsprPrimaryRequirement_1 = require("../models/SsprPrimaryRequirement");
 const SsprRequirement_1 = require("../models/SsprRequirement");
@@ -2836,9 +3207,15 @@ const StreamConfigurationDelivery_1 = require("../models/StreamConfigurationDeli
 const StreamStatus_1 = require("../models/StreamStatus");
 const StreamVerificationRequest_1 = require("../models/StreamVerificationRequest");
 const Subject_1 = require("../models/Subject");
+const SubmissionAction_1 = require("../models/SubmissionAction");
+const SubmissionActions_1 = require("../models/SubmissionActions");
+const SubmissionCapabilities_1 = require("../models/SubmissionCapabilities");
+const SubmissionCapability_1 = require("../models/SubmissionCapability");
 const SubmissionRequest_1 = require("../models/SubmissionRequest");
 const SubmissionResponse_1 = require("../models/SubmissionResponse");
+const SubmissionResponseAppContactDetailsInner_1 = require("../models/SubmissionResponseAppContactDetailsInner");
 const SubmissionResponseConfigInner_1 = require("../models/SubmissionResponseConfigInner");
+const SubmissionResponseGlobalTokenRevocation_1 = require("../models/SubmissionResponseGlobalTokenRevocation");
 const Subscription_1 = require("../models/Subscription");
 const SubscriptionLinks_1 = require("../models/SubscriptionLinks");
 const SupportedMethods_1 = require("../models/SupportedMethods");
@@ -2855,6 +3232,7 @@ const TelephonyResponse_1 = require("../models/TelephonyResponse");
 const TelephonyResponseCommandsInner_1 = require("../models/TelephonyResponseCommandsInner");
 const TelephonyResponseCommandsInnerValueInner_1 = require("../models/TelephonyResponseCommandsInnerValueInner");
 const TempPassword_1 = require("../models/TempPassword");
+const TenantSettings_1 = require("../models/TenantSettings");
 const TestInfo_1 = require("../models/TestInfo");
 const TestInfoOidcTestConfiguration_1 = require("../models/TestInfoOidcTestConfiguration");
 const TestInfoSamlTestConfiguration_1 = require("../models/TestInfoSamlTestConfiguration");
@@ -2902,6 +3280,9 @@ const UIElement_1 = require("../models/UIElement");
 const UIElementOptions_1 = require("../models/UIElementOptions");
 const UISchemaObject_1 = require("../models/UISchemaObject");
 const UISchemasResponseObject_1 = require("../models/UISchemasResponseObject");
+const UnconfirmedUserResponseSchema_1 = require("../models/UnconfirmedUserResponseSchema");
+const UnconfirmedUserResponseSchemaUsersInner_1 = require("../models/UnconfirmedUserResponseSchemaUsersInner");
+const UpdateAIAgentRequest_1 = require("../models/UpdateAIAgentRequest");
 const UpdateDefaultProvisioningConnectionForApplicationRequest_1 = require("../models/UpdateDefaultProvisioningConnectionForApplicationRequest");
 const UpdateDomain_1 = require("../models/UpdateDomain");
 const UpdateEmailDomain_1 = require("../models/UpdateEmailDomain");
@@ -2913,6 +3294,7 @@ const UpdateRealmRequest_1 = require("../models/UpdateRealmRequest");
 const UpdateThemeRequest_1 = require("../models/UpdateThemeRequest");
 const UpdateUISchema_1 = require("../models/UpdateUISchema");
 const UpdateUserRequest_1 = require("../models/UpdateUserRequest");
+const UpdateUserRequestType_1 = require("../models/UpdateUserRequestType");
 const UploadYubikeyOtpTokenSeedRequest_1 = require("../models/UploadYubikeyOtpTokenSeedRequest");
 const User_1 = require("../models/User");
 const UserActivationToken_1 = require("../models/UserActivationToken");
@@ -2996,7 +3378,9 @@ const UserLockoutSettings_1 = require("../models/UserLockoutSettings");
 const UserPolicyRuleCondition_1 = require("../models/UserPolicyRuleCondition");
 const UserProfile_1 = require("../models/UserProfile");
 const UserProvisioningApplicationFeature_1 = require("../models/UserProvisioningApplicationFeature");
+const UserRequestSchema_1 = require("../models/UserRequestSchema");
 const UserResourceHrefObject_1 = require("../models/UserResourceHrefObject");
+const UserResponseSchema_1 = require("../models/UserResponseSchema");
 const UserRiskGetResponse_1 = require("../models/UserRiskGetResponse");
 const UserRiskGetResponseLinks_1 = require("../models/UserRiskGetResponseLinks");
 const UserRiskLevelExists_1 = require("../models/UserRiskLevelExists");
@@ -3026,10 +3410,17 @@ const UserTypeLinksSchema_1 = require("../models/UserTypeLinksSchema");
 const UserTypePostRequest_1 = require("../models/UserTypePostRequest");
 const UserTypePutRequest_1 = require("../models/UserTypePutRequest");
 const UsersLink_1 = require("../models/UsersLink");
+const UsersUpdateRequestSchema_1 = require("../models/UsersUpdateRequestSchema");
+const ValidationDetail_1 = require("../models/ValidationDetail");
+const ValidationDetailProvider_1 = require("../models/ValidationDetailProvider");
+const VaultedSecretLinks_1 = require("../models/VaultedSecretLinks");
 const VerificationMethod_1 = require("../models/VerificationMethod");
+const VerifyActions200Response_1 = require("../models/VerifyActions200Response");
 const WebAuthnCredRequest_1 = require("../models/WebAuthnCredRequest");
 const WebAuthnCredResponse_1 = require("../models/WebAuthnCredResponse");
 const WebAuthnPreregistrationFactor_1 = require("../models/WebAuthnPreregistrationFactor");
+const WebAuthnRpId_1 = require("../models/WebAuthnRpId");
+const WebAuthnRpIdDomain_1 = require("../models/WebAuthnRpIdDomain");
 const Webauthn_1 = require("../models/Webauthn");
 const Webauthn1_1 = require("../models/Webauthn1");
 const WellKnownAppAuthenticatorConfiguration_1 = require("../models/WellKnownAppAuthenticatorConfiguration");
@@ -3048,6 +3439,9 @@ const WellKnownURIsRootEmbedded_1 = require("../models/WellKnownURIsRootEmbedded
 const WellKnownURIsRootEmbeddedAppleAppSiteAssociation_1 = require("../models/WellKnownURIsRootEmbeddedAppleAppSiteAssociation");
 const WellKnownURIsRootEmbeddedAssetlinksJson_1 = require("../models/WellKnownURIsRootEmbeddedAssetlinksJson");
 const WellKnownURIsRootLinks_1 = require("../models/WellKnownURIsRootLinks");
+const WorkflowActionProvider_1 = require("../models/WorkflowActionProvider");
+const WorkflowAvailableActionProvider_1 = require("../models/WorkflowAvailableActionProvider");
+const WorkflowsValidationDetailProvider_1 = require("../models/WorkflowsValidationDetailProvider");
 const WsFederationApplication_1 = require("../models/WsFederationApplication");
 const WsFederationApplicationSettings_1 = require("../models/WsFederationApplicationSettings");
 const WsFederationApplicationSettingsApplication_1 = require("../models/WsFederationApplicationSettingsApplication");
@@ -3070,12 +3464,45 @@ let primitives = [
     'any'
 ];
 let enumsMap = new Set([
+    'AIAgentStatusEnum',
+    'AIAgentOperationResponseStatusEnum',
+    'AIAgentOperationResponseTypeEnum',
     'APIServiceIntegrationInstanceSecretStatusEnum',
     'AccessPolicyConstraintMethodsEnum',
     'AccessPolicyConstraintTypesEnum',
     'AccessPolicyRuleApplicationSignOnAccess',
+    'AccessTokenKeyEncryptionAlgorithm',
+    'ActionProviderPayloadType',
+    'ActionProviderType',
     'ActiveDirectoryGroupScope',
     'ActiveDirectoryGroupType',
+    'AddJwkRequestKtyEnum',
+    'AddJwkRequestUseEnum',
+    'AddJwkRequestStatusEnum',
+    'AgentJsonSigningKeyCommonUseEnum',
+    'AgentJsonSigningKeyRequestKtyEnum',
+    'AgentJsonSigningKeyRequestStatusEnum',
+    'AgentJsonSigningKeyRequestUseEnum',
+    'AgentJsonSigningKeyRequestCrvEnum',
+    'AgentJsonSigningKeyResponseKtyEnum',
+    'AgentJsonSigningKeyResponseStatusEnum',
+    'AgentJsonSigningKeyResponseUseEnum',
+    'AgentJsonSigningKeyResponseCrvEnum',
+    'AgentJsonWebKeyECRequestCrvEnum',
+    'AgentJsonWebKeyECRequestKtyEnum',
+    'AgentJsonWebKeyECRequestStatusEnum',
+    'AgentJsonWebKeyECRequestUseEnum',
+    'AgentJsonWebKeyECResponseCrvEnum',
+    'AgentJsonWebKeyECResponseKtyEnum',
+    'AgentJsonWebKeyECResponseStatusEnum',
+    'AgentJsonWebKeyECResponseUseEnum',
+    'AgentJsonWebKeyRequestBaseStatusEnum',
+    'AgentJsonWebKeyRsaRequestKtyEnum',
+    'AgentJsonWebKeyRsaRequestStatusEnum',
+    'AgentJsonWebKeyRsaRequestUseEnum',
+    'AgentJsonWebKeyRsaResponseKtyEnum',
+    'AgentJsonWebKeyRsaResponseStatusEnum',
+    'AgentJsonWebKeyRsaResponseUseEnum',
     'AgentType',
     'AgentUpdateInstanceStatus',
     'AgentUpdateJobStatus',
@@ -3088,6 +3515,7 @@ let enumsMap = new Set([
     'AppUserStatus',
     'AppUserSyncState',
     'ApplicationFeaturesEnum',
+    'ApplicationCapability',
     'ApplicationCredentialsScheme',
     'ApplicationCredentialsSigningUse',
     'ApplicationCredentialsUsernameTemplatePushStatusEnum',
@@ -3102,7 +3530,11 @@ let enumsMap = new Set([
     'ApplicationUniversalLogoutProtocolEnum',
     'ApplicationUniversalLogoutStatusEnum',
     'ApplicationUniversalLogoutSupportTypeEnum',
+    'AssignRoleToClientRequestTypeEnum',
+    'AssignRoleToGroupRequestTypeEnum',
+    'AssignRoleToUserRequestTypeEnum',
     'AssuranceMethodFactorMode',
+    'AuthType',
     'AuthenticationMethodHardwareProtectionEnum',
     'AuthenticationMethodPhishingResistantEnum',
     'AuthenticationMethodUserVerificationEnum',
@@ -3122,6 +3554,7 @@ let enumsMap = new Set([
     'AuthenticatorMethodProperty',
     'AuthenticatorMethodTransactionType',
     'AuthenticatorMethodType',
+    'AuthenticatorMethodTypeWebAuthn',
     'AuthenticatorType',
     'AuthorizationServerCredentialsRotationMode',
     'AuthorizationServerCredentialsUse',
@@ -3150,7 +3583,9 @@ let enumsMap = new Set([
     'CaepDeviceComplianceChangeEventInitiatingEntityEnum',
     'CaepDeviceComplianceChangeEventPreviousStatusEnum',
     'CaepSecurityEventInitiatingEntityEnum',
+    'CaepSessionRevokedEventInitiatingEntityEnum',
     'CapabilitiesImportRulesUserCreateAndMatchObjectExactMatchCriteriaEnum',
+    'Capability',
     'CapabilityType',
     'CatalogApplicationStatus',
     'ChallengeType',
@@ -3161,7 +3596,10 @@ let enumsMap = new Set([
     'ChildOrgStatusEnum',
     'ChildOrgTokenTypeEnum',
     'ClassificationType',
+    'ClientUpdatePolicyRuleActionsObjectActionEnum',
+    'ClientUpdatePolicyRuleActionsObjectValueEnum',
     'CodeChallengeMethod',
+    'ConnectionType',
     'ConnectionsSigningRotationMode',
     'ContentSecurityPolicySettingModeEnum',
     'CreateGroupRuleRequestTypeEnum',
@@ -3169,11 +3607,22 @@ let enumsMap = new Set([
     'CsrPublishHrefHintsAllowEnum',
     'CsrSelfHrefHintsAllowEnum',
     'CustomAppUserVerificationEnum',
-    'CustomRoleTypeEnum',
     'CustomRoleAssignmentSchemaTypeEnum',
-    'DNSRecordType',
+    'CustomTelephonyProviderCredentialCreateRequestProviderCapabilityEnum',
+    'CustomTelephonyProviderCredentialCreateRequestProviderNameEnum',
+    'CustomTelephonyProviderCredentialResponseProviderCapabilityEnum',
+    'CustomTelephonyProviderCredentialResponseProviderNameEnum',
+    'CustomTelephonyProviderCredentialSendTestRequestFactorEnum',
+    'CustomTelephonyProviderSettingsCallTelesignServiceEnum',
+    'CustomTelephonyProviderSettingsSmsTelesignServiceEnum',
+    'CustomTelephonyProviderSettingsTelesignServiceCallTelesignServiceEnum',
+    'CustomTelephonyProviderSettingsTelesignServiceSmsTelesignServiceEnum',
+    'DNSRecordTypeAuthenticators',
+    'DNSRecordTypeDomains',
     'DetectedRiskEvents',
     'DeviceAssuranceDisplayRemediationModeEnum',
+    'DeviceContextProviderKeyEnum',
+    'DeviceContextProviderUserIdentificationEnum',
     'DeviceIntegrationsMetadataTypeEnum',
     'DeviceIntegrationsMetadataOneOfTypeEnum',
     'DeviceIntegrationsMetadataOneOf1TypeEnum',
@@ -3189,6 +3638,8 @@ let enumsMap = new Set([
     'DevicePostureChecksMappingType',
     'DevicePostureChecksPlatform',
     'DevicePostureChecksType',
+    'DeviceSignalCollectionPolicyPlatformOperatingSystemType',
+    'DeviceSignalCollectionPolicyPlatformType',
     'DeviceStatus',
     'DeviceUserManagementStatusEnum',
     'DeviceUserScreenLockTypeEnum',
@@ -3233,6 +3684,9 @@ let enumsMap = new Set([
     'FeatureType',
     'FipsEnum',
     'FulfillmentRequestFulfillmentProviderEnum',
+    'GetJwk200ResponseKtyEnum',
+    'GetJwk200ResponseUseEnum',
+    'GetJwk200ResponseStatusEnum',
     'GetSsfStreams200ResponseFormatEnum',
     'GoogleApplicationNameEnum',
     'GoogleApplicationSignOnModeEnum',
@@ -3253,12 +3707,18 @@ let enumsMap = new Set([
     'IDVParEndpointBindingEnum',
     'IDVTokenEndpointBindingEnum',
     'IPServiceCategory',
+    'IdTokenKeyEncryptionAlgorithm',
+    'IdentityAssertionAppInstanceConnectionConnectionTypeEnum',
+    'IdentityAssertionAppInstanceConnectionCreatableConnectionTypeEnum',
+    'IdentityAssertionCustomASConnectionConnectionTypeEnum',
+    'IdentityAssertionCustomASConnectionCreatableConnectionTypeEnum',
     'IdentityProviderIssuerMode',
     'IdentityProviderPolicyProvider',
     'IdentityProviderPropertiesAdditionalAmrEnum',
     'IdentityProviderProtocolTypeEnum',
     'IdentityProviderType',
     'IdentitySourceSessionStatus',
+    'IdpDiscoveryPolicyPlatformOperatingSystemType',
     'IdpSelectionType',
     'IframeEmbedScopeAllowedApps',
     'ImportUsernameObjectUsernameFormatEnum',
@@ -3277,13 +3737,19 @@ let enumsMap = new Set([
     'KnowledgeConstraintTypesEnum',
     'LifecycleStatus',
     'LinkedObjectDetailsType',
+    'ListJwk200ResponseKeysInnerKtyEnum',
+    'ListJwk200ResponseKeysInnerUseEnum',
+    'ListJwk200ResponseKeysInnerStatusEnum',
     'LoadingPageTouchPointVariant',
     'LocationGranularity',
     'LogAuthenticationProvider',
     'LogCredentialProvider',
     'LogCredentialType',
     'LogDiskEncryptionType',
+    'LogIpServiceCategoryTypeEnum',
     'LogOutcomeResultEnum',
+    'LogRiskLevelEnum',
+    'LogRiskPreviousLevelEnum',
     'LogScreenLockType',
     'LogSeverity',
     'LogStreamStatusEnum',
@@ -3292,7 +3758,12 @@ let enumsMap = new Set([
     'LogStreamLinkObjectMethodEnum',
     'LogStreamSelfLinkMethodEnum',
     'LogStreamType',
+    'LogUserBehaviorResultEnum',
     'MDMEnrollmentPolicyEnrollment',
+    'ManagedConnectionConnectionTypeEnum',
+    'ManagedConnectionCreatableConnectionTypeEnum',
+    'ManagedConnectionPatchableScopeCondition',
+    'ManagedConnectionStatus',
     'MtlsTrustCredentialsRevocation',
     'NetworkZoneAddressType',
     'NetworkZoneStatus',
@@ -3302,11 +3773,33 @@ let enumsMap = new Set([
     'OAuth2ClaimGroupFilterType',
     'OAuth2ClaimType',
     'OAuth2ClaimValueType',
-    'OAuth2ClientJsonWebKeyStatusEnum',
+    'OAuth2ClientJsonEncryptionKeyRequestKtyEnum',
+    'OAuth2ClientJsonEncryptionKeyRequestUseEnum',
+    'OAuth2ClientJsonEncryptionKeyRequestStatusEnum',
+    'OAuth2ClientJsonEncryptionKeyResponseKtyEnum',
+    'OAuth2ClientJsonEncryptionKeyResponseUseEnum',
+    'OAuth2ClientJsonEncryptionKeyResponseStatusEnum',
+    'OAuth2ClientJsonSigningKeyRequestStatusEnum',
+    'OAuth2ClientJsonSigningKeyRequestUseEnum',
+    'OAuth2ClientJsonSigningKeyRequestKtyEnum',
+    'OAuth2ClientJsonSigningKeyResponseStatusEnum',
+    'OAuth2ClientJsonSigningKeyResponseUseEnum',
+    'OAuth2ClientJsonSigningKeyResponseKtyEnum',
+    'OAuth2ClientJsonWebKeyECRequestKtyEnum',
+    'OAuth2ClientJsonWebKeyECRequestStatusEnum',
+    'OAuth2ClientJsonWebKeyECResponseKtyEnum',
+    'OAuth2ClientJsonWebKeyECResponseStatusEnum',
+    'OAuth2ClientJsonWebKeyRequestBaseStatusEnum',
     'OAuth2ClientJsonWebKeyRequestBodyStatusEnum',
+    'OAuth2ClientJsonWebKeyRsaRequestKtyEnum',
+    'OAuth2ClientJsonWebKeyRsaRequestStatusEnum',
+    'OAuth2ClientJsonWebKeyRsaResponseKtyEnum',
+    'OAuth2ClientJsonWebKeyRsaResponseStatusEnum',
     'OAuth2ClientSecretStatusEnum',
     'OAuth2ClientSecretRequestBodyStatusEnum',
     'OAuth2RefreshTokenLinksRevokeHintsAllowEnum',
+    'OAuth2ResourceServerJsonWebKeyStatusEnum',
+    'OAuth2ResourceServerJsonWebKeyRequestBodyStatusEnum',
     'OAuth2ScopeConsentGrantSource',
     'OAuth2ScopeConsentType',
     'OAuth2ScopeMetadataPublish',
@@ -3353,6 +3846,8 @@ let enumsMap = new Set([
     'Org2OrgApplicationSignOnModeEnum',
     'Org2OrgApplicationSettingsEmOptInStatusEnum',
     'OrgContactType',
+    'OrgCrossAppAccessConnectionStatusEnum',
+    'OrgCrossAppAccessConnectionPatchRequestStatusEnum',
     'OrgOktaSupportSetting',
     'OrgSettingStatusEnum',
     'OtpProtocol',
@@ -3373,6 +3868,7 @@ let enumsMap = new Set([
     'PolicyAccess',
     'PolicyAccountLinkAction',
     'PolicyContextRiskLevelEnum',
+    'PolicyContextRiskMinRiskLevelEnum',
     'PolicyContextUserStatusEnum',
     'PolicyMappingResourceType',
     'PolicyNetworkConnection',
@@ -3397,6 +3893,11 @@ let enumsMap = new Set([
     'PostAuthSessionFailureActionsObjectActionEnum',
     'PostAuthSessionPolicyRuleRunWorkflowActionEnum',
     'PostAuthSessionPolicyRuleTerminateSessionActionEnum',
+    'PotentialConnectionConnectionTypeEnum',
+    'PotentialIdentityAssertionAppInstanceConnectionConnectionTypeEnum',
+    'PotentialIdentityAssertionCustomASConnectionConnectionTypeEnum',
+    'PotentialSTSServiceAccountConnectionConnectionTypeEnum',
+    'PotentialSTSVaultSecretConnectionConnectionTypeEnum',
     'PrincipalType',
     'PrivilegedResourceStatus',
     'PrivilegedResourceType',
@@ -3404,6 +3905,7 @@ let enumsMap = new Set([
     'ProfileEnrollmentPolicyRuleActionProgressiveProfilingActionEnum',
     'ProfileEnrollmentPolicyRuleActionUnknownUserActionEnum',
     'ProfileMappingPropertyPushStatus',
+    'Protocol',
     'ProtocolAlgorithmRequestScope',
     'ProtocolAlgorithmResponseScope',
     'ProtocolEndpointBinding',
@@ -3424,6 +3926,7 @@ let enumsMap = new Set([
     'ProvisioningGroupsAction',
     'ProvisioningSuspendedAction',
     'PushMethodKeyProtection',
+    'RealmAssignmentOperationResponseStatusEnum',
     'RealmProfileRealmTypeEnum',
     'RegistrationInlineHookCommandTypeEnum',
     'RegistrationInlineHookRequestType',
@@ -3436,8 +3939,13 @@ let enumsMap = new Set([
     'RiskEventSubjectRiskLevel',
     'RiskProviderAction',
     'RiskScorePolicyRuleConditionLevelEnum',
+    'RiskScorePolicyRuleConditionMinRiskLevelEnum',
     'RoleAssignmentType',
     'RoleType',
+    'STSServiceAccountConnectionConnectionTypeEnum',
+    'STSServiceAccountConnectionCreatableConnectionTypeEnum',
+    'STSVaultSecretConnectionConnectionTypeEnum',
+    'STSVaultSecretConnectionCreatableConnectionTypeEnum',
     'SafeBrowsingProtectionLevel',
     'SalesforceApplicationNameEnum',
     'SalesforceApplicationSignOnModeEnum',
@@ -3461,7 +3969,9 @@ let enumsMap = new Set([
     'SamlEndpointType',
     'SamlNameIdFormat',
     'SamlRelayStateFormat',
+    'SamlRequestDigestAlgorithm',
     'SamlSigningAlgorithm',
+    'ScopeCondition',
     'ScreenLockComplexity',
     'ScreenLockType',
     'SecurePasswordStoreApplicationNameEnum',
@@ -3490,12 +4000,17 @@ let enumsMap = new Set([
     'SsprPrimaryRequirementMethodsEnum',
     'SsprRequirementAccessControlEnum',
     'SsprStepUpRequirementMethodsEnum',
+    'StandardRoleAssignmentSchemaTypeEnum',
     'StreamConfigurationFormatEnum',
     'StreamConfigurationCreateRequestFormatEnum',
     'StreamConfigurationDeliveryMethodEnum',
     'StreamStatusStatusEnum',
     'SubjectFormatEnum',
     'SubjectType',
+    'SubmissionResponseAppContactDetailsInnerContactTypeEnum',
+    'SubmissionResponseAppContactDetailsInnerContactValueTypeEnum',
+    'SubmissionResponseGlobalTokenRevocationSubjectFormatEnum',
+    'SubmissionResponseGlobalTokenRevocationAuthMethodEnum',
     'SubscriptionStatus',
     'SupportedMethodsTypeEnum',
     'SwaApplicationSettingsEmOptInStatusEnum',
@@ -3555,10 +4070,15 @@ let enumsMap = new Set([
     'UserSchemaAttributeType',
     'UserStatus',
     'UserVerificationEnum',
-    'WebAuthnAttachment',
+    'UserVerificationEnumEnrollment',
+    'UserVerificationEnumForVerify',
+    'WebAuthnAttachmentEnum',
+    'WebAuthnRpIdDomainValidationStatusEnum',
+    'WebAuthnSettingResidentKeyRequirement',
     'WellKnownAppAuthenticatorConfigurationTypeEnum',
     'WellKnownSSFMetadataDefaultSubjectsEnum',
     'WidgetGeneration',
+    'WorkflowsValidationErrorType',
     'WsFederationApplicationNameEnum',
     'WsFederationApplicationSettingsEmOptInStatusEnum',
     'WsFederationApplicationSettingsApplicationGroupValueFormatEnum',
@@ -3573,6 +4093,11 @@ let enumsMap = new Set([
 let typeMap = {
     "AAGUIDAuthenticatorCharacteristics": AAGUIDAuthenticatorCharacteristics_1.AAGUIDAuthenticatorCharacteristics,
     "AAGUIDGroupObject": AAGUIDGroupObject_1.AAGUIDGroupObject,
+    "AIAgent": AIAgent_1.AIAgent,
+    "AIAgentOperationListResponse": AIAgentOperationListResponse_1.AIAgentOperationListResponse,
+    "AIAgentOperationResponse": AIAgentOperationResponse_1.AIAgentOperationResponse,
+    "AIAgentProfile": AIAgentProfile_1.AIAgentProfile,
+    "AIAgentResource": AIAgentResource_1.AIAgentResource,
     "APIServiceIntegrationInstance": APIServiceIntegrationInstance_1.APIServiceIntegrationInstance,
     "APIServiceIntegrationInstanceSecret": APIServiceIntegrationInstanceSecret_1.APIServiceIntegrationInstanceSecret,
     "APIServiceIntegrationLinks": APIServiceIntegrationLinks_1.APIServiceIntegrationLinks,
@@ -3590,13 +4115,25 @@ let typeMap = {
     "AccessPolicyRuleConditions": AccessPolicyRuleConditions_1.AccessPolicyRuleConditions,
     "AccessPolicyRuleCustomCondition": AccessPolicyRuleCustomCondition_1.AccessPolicyRuleCustomCondition,
     "AcsEndpoint": AcsEndpoint_1.AcsEndpoint,
+    "ActionProvider": ActionProvider_1.ActionProvider,
     "Actions": Actions_1.Actions,
+    "AddJwkRequest": AddJwkRequest_1.AddJwkRequestClass,
     "AdminConsoleSettings": AdminConsoleSettings_1.AdminConsoleSettings,
     "Agent": Agent_1.Agent,
     "AgentAction": AgentAction_1.AgentAction,
+    "AgentJsonSigningKeyCommon": AgentJsonSigningKeyCommon_1.AgentJsonSigningKeyCommon,
+    "AgentJsonSigningKeyRequest": AgentJsonSigningKeyRequest_1.AgentJsonSigningKeyRequestClass,
+    "AgentJsonSigningKeyResponse": AgentJsonSigningKeyResponse_1.AgentJsonSigningKeyResponseClass,
+    "AgentJsonWebKeyECRequest": AgentJsonWebKeyECRequest_1.AgentJsonWebKeyECRequest,
+    "AgentJsonWebKeyECResponse": AgentJsonWebKeyECResponse_1.AgentJsonWebKeyECResponse,
+    "AgentJsonWebKeyRequestBase": AgentJsonWebKeyRequestBase_1.AgentJsonWebKeyRequestBase,
+    "AgentJsonWebKeyResponseBase": AgentJsonWebKeyResponseBase_1.AgentJsonWebKeyResponseBase,
+    "AgentJsonWebKeyRsaRequest": AgentJsonWebKeyRsaRequest_1.AgentJsonWebKeyRsaRequest,
+    "AgentJsonWebKeyRsaResponse": AgentJsonWebKeyRsaResponse_1.AgentJsonWebKeyRsaResponse,
     "AgentPool": AgentPool_1.AgentPool,
     "AgentPoolUpdate": AgentPoolUpdate_1.AgentPoolUpdate,
     "AgentPoolUpdateSetting": AgentPoolUpdateSetting_1.AgentPoolUpdateSetting,
+    "AgentSecretLinks": AgentSecretLinks_1.AgentSecretLinks,
     "AllCustomAAGUIDResponseObject": AllCustomAAGUIDResponseObject_1.AllCustomAAGUIDResponseObject,
     "AndroidDeviceTrust": AndroidDeviceTrust_1.AndroidDeviceTrust,
     "ApiToken": ApiToken_1.ApiToken,
@@ -3613,7 +4150,10 @@ let typeMap = {
     "AppCustomHrefObject": AppCustomHrefObject_1.AppCustomHrefObject,
     "AppCustomHrefObjectHints": AppCustomHrefObjectHints_1.AppCustomHrefObjectHints,
     "AppGroup": AppGroup_1.AppGroup,
+    "AppInstanceAuthorizationServer": AppInstanceAuthorizationServer_1.AppInstanceAuthorizationServer,
+    "AppInstanceLinks": AppInstanceLinks_1.AppInstanceLinks,
     "AppInstancePolicyRuleCondition": AppInstancePolicyRuleCondition_1.AppInstancePolicyRuleCondition,
+    "AppInstanceProperty": AppInstanceProperty_1.AppInstanceProperty,
     "AppProperties": AppProperties_1.AppProperties,
     "AppPropertiesValue": AppPropertiesValue_1.AppPropertiesValue,
     "AppResourceHrefObject": AppResourceHrefObject_1.AppResourceHrefObject,
@@ -3636,6 +4176,7 @@ let typeMap = {
     "ApplicationCredentialsSigning": ApplicationCredentialsSigning_1.ApplicationCredentialsSigning,
     "ApplicationCredentialsUsernameTemplate": ApplicationCredentialsUsernameTemplate_1.ApplicationCredentialsUsernameTemplate,
     "ApplicationEmbedded": ApplicationEmbedded_1.ApplicationEmbedded,
+    "ApplicationExpressConfiguration": ApplicationExpressConfiguration_1.ApplicationExpressConfiguration,
     "ApplicationFeature": ApplicationFeature_1.ApplicationFeature,
     "ApplicationGroupAssignment": ApplicationGroupAssignment_1.ApplicationGroupAssignment,
     "ApplicationGroupAssignmentLinks": ApplicationGroupAssignmentLinks_1.ApplicationGroupAssignmentLinks,
@@ -3657,6 +4198,8 @@ let typeMap = {
     "ApplicationVisibilityHide": ApplicationVisibilityHide_1.ApplicationVisibilityHide,
     "AssignGroupOwnerRequestBody": AssignGroupOwnerRequestBody_1.AssignGroupOwnerRequestBody,
     "AssignRoleRequest": AssignRoleRequest_1.AssignRoleRequest,
+    "AssignRoleToClientRequest": AssignRoleToClientRequest_1.AssignRoleToClientRequestClass,
+    "AssignRoleToGroup200Response": AssignRoleToGroup200Response_1.AssignRoleToGroup200ResponseClass,
     "AssignRoleToGroupRequest": AssignRoleToGroupRequest_1.AssignRoleToGroupRequestClass,
     "AssignRoleToUser201Response": AssignRoleToUser201Response_1.AssignRoleToUser201ResponseClass,
     "AssignRoleToUserRequest": AssignRoleToUserRequest_1.AssignRoleToUserRequestClass,
@@ -3674,6 +4217,7 @@ let typeMap = {
     "AuthServerLinksPolicies": AuthServerLinksPolicies_1.AuthServerLinksPolicies,
     "AuthServerLinksRotateKey": AuthServerLinksRotateKey_1.AuthServerLinksRotateKey,
     "AuthServerLinksScopes": AuthServerLinksScopes_1.AuthServerLinksScopes,
+    "AuthSettings": AuthSettings_1.AuthSettings,
     "AuthenticationMethod": AuthenticationMethod_1.AuthenticationMethod,
     "AuthenticationMethodChain": AuthenticationMethodChain_1.AuthenticationMethodChain,
     "AuthenticationMethodChainMethod": AuthenticationMethodChainMethod_1.AuthenticationMethodChainMethod,
@@ -3706,6 +4250,7 @@ let typeMap = {
     "AuthenticatorKeyCustomAppProviderConfigurationApns": AuthenticatorKeyCustomAppProviderConfigurationApns_1.AuthenticatorKeyCustomAppProviderConfigurationApns,
     "AuthenticatorKeyCustomAppProviderConfigurationFcm": AuthenticatorKeyCustomAppProviderConfigurationFcm_1.AuthenticatorKeyCustomAppProviderConfigurationFcm,
     "AuthenticatorKeyCustomAppSettings": AuthenticatorKeyCustomAppSettings_1.AuthenticatorKeyCustomAppSettings,
+    "AuthenticatorKeyCustomOtp": AuthenticatorKeyCustomOtp_1.AuthenticatorKeyCustomOtp,
     "AuthenticatorKeyDuo": AuthenticatorKeyDuo_1.AuthenticatorKeyDuo,
     "AuthenticatorKeyDuoProvider": AuthenticatorKeyDuoProvider_1.AuthenticatorKeyDuoProvider,
     "AuthenticatorKeyDuoProviderConfiguration": AuthenticatorKeyDuoProviderConfiguration_1.AuthenticatorKeyDuoProviderConfiguration,
@@ -3753,9 +4298,10 @@ let typeMap = {
     "AuthorizationServerCredentials": AuthorizationServerCredentials_1.AuthorizationServerCredentials,
     "AuthorizationServerCredentialsSigningConfig": AuthorizationServerCredentialsSigningConfig_1.AuthorizationServerCredentialsSigningConfig,
     "AuthorizationServerJsonWebKey": AuthorizationServerJsonWebKey_1.AuthorizationServerJsonWebKey,
+    "AuthorizationServerLinks": AuthorizationServerLinks_1.AuthorizationServerLinks,
     "AuthorizationServerPolicy": AuthorizationServerPolicy_1.AuthorizationServerPolicy,
-    "AuthorizationServerPolicyConditions": AuthorizationServerPolicyConditions_1.AuthorizationServerPolicyConditions,
     "AuthorizationServerPolicyLinks": AuthorizationServerPolicyLinks_1.AuthorizationServerPolicyLinks,
+    "AuthorizationServerPolicyConditions": AuthorizationServerPolicyConditions_1.AuthorizationServerPolicyConditions,
     "AuthorizationServerPolicyPeopleCondition": AuthorizationServerPolicyPeopleCondition_1.AuthorizationServerPolicyPeopleCondition,
     "AuthorizationServerPolicyRule": AuthorizationServerPolicyRule_1.AuthorizationServerPolicyRule,
     "AuthorizationServerPolicyRuleActions": AuthorizationServerPolicyRuleActions_1.AuthorizationServerPolicyRuleActions,
@@ -3769,6 +4315,9 @@ let typeMap = {
     "AutoLoginApplicationSettings": AutoLoginApplicationSettings_1.AutoLoginApplicationSettings,
     "AutoLoginApplicationSettingsSignOn": AutoLoginApplicationSettingsSignOn_1.AutoLoginApplicationSettingsSignOn,
     "AutoUpdateSchedule": AutoUpdateSchedule_1.AutoUpdateSchedule,
+    "AvailableAction": AvailableAction_1.AvailableAction,
+    "AvailableActionProvider": AvailableActionProvider_1.AvailableActionProvider,
+    "AvailableActions": AvailableActions_1.AvailableActions,
     "BaseContext": BaseContext_1.BaseContext,
     "BaseContextSession": BaseContextSession_1.BaseContextSession,
     "BaseContextUser": BaseContextUser_1.BaseContextUser,
@@ -3784,10 +4333,12 @@ let typeMap = {
     "BasicAuthApplication": BasicAuthApplication_1.BasicAuthApplication,
     "BeforeScheduledActionPolicyRuleCondition": BeforeScheduledActionPolicyRuleCondition_1.BeforeScheduledActionPolicyRuleCondition,
     "BehaviorRule": BehaviorRule_1.BehaviorRule,
+    "BehaviorRuleASN": BehaviorRuleASN_1.BehaviorRuleASN,
     "BehaviorRuleAnomalousDevice": BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
     "BehaviorRuleAnomalousIP": BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     "BehaviorRuleAnomalousLocation": BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
     "BehaviorRuleSettings": BehaviorRuleSettings_1.BehaviorRuleSettings,
+    "BehaviorRuleSettingsAnomalousASN": BehaviorRuleSettingsAnomalousASN_1.BehaviorRuleSettingsAnomalousASN,
     "BehaviorRuleSettingsAnomalousDevice": BehaviorRuleSettingsAnomalousDevice_1.BehaviorRuleSettingsAnomalousDevice,
     "BehaviorRuleSettingsAnomalousIP": BehaviorRuleSettingsAnomalousIP_1.BehaviorRuleSettingsAnomalousIP,
     "BehaviorRuleSettingsAnomalousLocation": BehaviorRuleSettingsAnomalousLocation_1.BehaviorRuleSettingsAnomalousLocation,
@@ -3817,9 +4368,11 @@ let typeMap = {
     "BundleEntitlementLinks": BundleEntitlementLinks_1.BundleEntitlementLinks,
     "BundleEntitlementsResponse": BundleEntitlementsResponse_1.BundleEntitlementsResponse,
     "BundleEntitlementsResponseLinks": BundleEntitlementsResponseLinks_1.BundleEntitlementsResponseLinks,
+    "BundleLink": BundleLink_1.BundleLink,
     "ByDateTimeAuthenticatorGracePeriodExpiry": ByDateTimeAuthenticatorGracePeriodExpiry_1.ByDateTimeAuthenticatorGracePeriodExpiry,
     "ByDateTimeExpiry": ByDateTimeExpiry_1.ByDateTimeExpiry,
     "ByDurationExpiry": ByDurationExpiry_1.ByDurationExpiry,
+    "BySkipCountAuthenticatorGracePeriod": BySkipCountAuthenticatorGracePeriod_1.BySkipCountAuthenticatorGracePeriod,
     "CAPTCHAInstance": CAPTCHAInstance_1.CAPTCHAInstance,
     "CSRLinks": CSRLinks_1.CSRLinks,
     "CaepCredentialChangeEvent": CaepCredentialChangeEvent_1.CaepCredentialChangeEvent,
@@ -3849,10 +4402,17 @@ let typeMap = {
     "ChromeBrowserVersion": ChromeBrowserVersion_1.ChromeBrowserVersion,
     "ClientPolicyCondition": ClientPolicyCondition_1.ClientPolicyCondition,
     "ClientPrivilegesSetting": ClientPrivilegesSetting_1.ClientPrivilegesSetting,
+    "ClientUpdatePolicy": ClientUpdatePolicy_1.ClientUpdatePolicy,
+    "ClientUpdatePolicyRule": ClientUpdatePolicyRule_1.ClientUpdatePolicyRule,
+    "ClientUpdatePolicyRuleActionsObject": ClientUpdatePolicyRuleActionsObject_1.ClientUpdatePolicyRuleActionsObject,
+    "ClientUpdatePolicyRuleActions": ClientUpdatePolicyRuleActions_1.ClientUpdatePolicyRuleActions,
+    "ClientUpdatePolicyRuleActionsUpdateControls": ClientUpdatePolicyRuleActionsUpdateControls_1.ClientUpdatePolicyRuleActionsUpdateControls,
     "Compliance": Compliance_1.Compliance,
     "Conditions": Conditions_1.Conditions,
+    "ConnectionScopes": ConnectionScopes_1.ConnectionScopes,
     "ContentSecurityPolicySetting": ContentSecurityPolicySetting_1.ContentSecurityPolicySetting,
     "ContextPolicyRuleCondition": ContextPolicyRuleCondition_1.ContextPolicyRuleCondition,
+    "CreateAIAgentRequest": CreateAIAgentRequest_1.CreateAIAgentRequest,
     "CreateBrandRequest": CreateBrandRequest_1.CreateBrandRequest,
     "CreateGroupPushMappingRequest": CreateGroupPushMappingRequest_1.CreateGroupPushMappingRequest,
     "CreateGroupRequest": CreateGroupRequest_1.CreateGroupRequest,
@@ -3877,10 +4437,26 @@ let typeMap = {
     "CustomAAGUIDCreateRequestObject": CustomAAGUIDCreateRequestObject_1.CustomAAGUIDCreateRequestObject,
     "CustomAAGUIDResponseObject": CustomAAGUIDResponseObject_1.CustomAAGUIDResponseObject,
     "CustomAAGUIDUpdateRequestObject": CustomAAGUIDUpdateRequestObject_1.CustomAAGUIDUpdateRequestObject,
+    "CustomAuthSettings": CustomAuthSettings_1.CustomAuthSettings,
     "CustomRole": CustomRole_1.CustomRole,
     "CustomRoleAssignmentSchema": CustomRoleAssignmentSchema_1.CustomRoleAssignmentSchema,
+    "CustomTelephonyProviderCredentialCreateRequest": CustomTelephonyProviderCredentialCreateRequest_1.CustomTelephonyProviderCredentialCreateRequest,
+    "CustomTelephonyProviderCredentialResponse": CustomTelephonyProviderCredentialResponse_1.CustomTelephonyProviderCredentialResponse,
+    "CustomTelephonyProviderCredentialSendTestRequest": CustomTelephonyProviderCredentialSendTestRequest_1.CustomTelephonyProviderCredentialSendTestRequest,
+    "CustomTelephonyProviderCredentialUpdateRequest": CustomTelephonyProviderCredentialUpdateRequest_1.CustomTelephonyProviderCredentialUpdateRequest,
+    "CustomTelephonyProviderCredentialsResponse": CustomTelephonyProviderCredentialsResponse_1.CustomTelephonyProviderCredentialsResponse,
+    "CustomTelephonyProviderSettings": CustomTelephonyProviderSettings_1.CustomTelephonyProviderSettings,
+    "CustomTelephonyProviderSettingsCall": CustomTelephonyProviderSettingsCall_1.CustomTelephonyProviderSettingsCallClass,
+    "CustomTelephonyProviderSettingsSms": CustomTelephonyProviderSettingsSms_1.CustomTelephonyProviderSettingsSmsClass,
+    "CustomTelephonyProviderSettingsTelesignServiceCall": CustomTelephonyProviderSettingsTelesignServiceCall_1.CustomTelephonyProviderSettingsTelesignServiceCall,
+    "CustomTelephonyProviderSettingsTelesignServiceSms": CustomTelephonyProviderSettingsTelesignServiceSms_1.CustomTelephonyProviderSettingsTelesignServiceSms,
+    "CustomTelephonyProviderSettingsTwilioCallerId": CustomTelephonyProviderSettingsTwilioCallerId_1.CustomTelephonyProviderSettingsTwilioCallerId,
+    "CustomTelephonyProviderSettingsTwilioMessagingService": CustomTelephonyProviderSettingsTwilioMessagingService_1.CustomTelephonyProviderSettingsTwilioMessagingService,
+    "CustomTelephonyProviderSettingsTwilioPhoneNumber": CustomTelephonyProviderSettingsTwilioPhoneNumber_1.CustomTelephonyProviderSettingsTwilioPhoneNumber,
+    "CustomTelephonyProviderSettingsTwilioVerify": CustomTelephonyProviderSettingsTwilioVerify_1.CustomTelephonyProviderSettingsTwilioVerify,
     "CustomizablePage": CustomizablePage_1.CustomizablePage,
-    "DNSRecord": DNSRecord_1.DNSRecord,
+    "DNSRecordAuthenticators": DNSRecordAuthenticators_1.DNSRecordAuthenticators,
+    "DNSRecordDomains": DNSRecordDomains_1.DNSRecordDomains,
     "DRStatusItem": DRStatusItem_1.DRStatusItem,
     "DTCChromeOS": DTCChromeOS_1.DTCChromeOS,
     "DTCMacOS": DTCMacOS_1.DTCMacOS,
@@ -3905,6 +4481,7 @@ let typeMap = {
     "DeviceAssuranceMacOSPlatformThirdPartySignalProviders": DeviceAssuranceMacOSPlatformThirdPartySignalProviders_1.DeviceAssuranceMacOSPlatformThirdPartySignalProviders,
     "DeviceAssuranceWindowsPlatform": DeviceAssuranceWindowsPlatform_1.DeviceAssuranceWindowsPlatform,
     "DeviceAssuranceWindowsPlatformThirdPartySignalProviders": DeviceAssuranceWindowsPlatformThirdPartySignalProviders_1.DeviceAssuranceWindowsPlatformThirdPartySignalProviders,
+    "DeviceContextProvider": DeviceContextProvider_1.DeviceContextProvider,
     "DeviceDisplayName": DeviceDisplayName_1.DeviceDisplayName,
     "DeviceIntegrations": DeviceIntegrations_1.DeviceIntegrations,
     "DeviceIntegrationsMetadata": DeviceIntegrationsMetadata_1.DeviceIntegrationsMetadataClass,
@@ -3924,6 +4501,14 @@ let typeMap = {
     "DevicePostureChecksRemediationSettingsMessage": DevicePostureChecksRemediationSettingsMessage_1.DevicePostureChecksRemediationSettingsMessage,
     "DevicePostureIdP": DevicePostureIdP_1.DevicePostureIdP,
     "DeviceProfile": DeviceProfile_1.DeviceProfile,
+    "DeviceSignalCollectionPlatformConditionEvaluatorPlatform": DeviceSignalCollectionPlatformConditionEvaluatorPlatform_1.DeviceSignalCollectionPlatformConditionEvaluatorPlatform,
+    "DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem": DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem_1.DeviceSignalCollectionPlatformConditionEvaluatorPlatformOperatingSystem,
+    "DeviceSignalCollectionPlatformPolicyRuleCondition": DeviceSignalCollectionPlatformPolicyRuleCondition_1.DeviceSignalCollectionPlatformPolicyRuleCondition,
+    "DeviceSignalCollectionPolicy": DeviceSignalCollectionPolicy_1.DeviceSignalCollectionPolicy,
+    "DeviceSignalCollectionPolicyRule": DeviceSignalCollectionPolicyRule_1.DeviceSignalCollectionPolicyRule,
+    "DeviceSignalCollectionPolicyRuleActions": DeviceSignalCollectionPolicyRuleActions_1.DeviceSignalCollectionPolicyRuleActions,
+    "DeviceSignalCollectionPolicyRuleConditions": DeviceSignalCollectionPolicyRuleConditions_1.DeviceSignalCollectionPolicyRuleConditions,
+    "DeviceSignalCollectionPolicyRuleDeviceSignalCollection": DeviceSignalCollectionPolicyRuleDeviceSignalCollection_1.DeviceSignalCollectionPolicyRuleDeviceSignalCollection,
     "DeviceUser": DeviceUser_1.DeviceUser,
     "DomainCertificate": DomainCertificate_1.DomainCertificate,
     "DomainCertificateMetadata": DomainCertificateMetadata_1.DomainCertificateMetadata,
@@ -3966,6 +4551,7 @@ let typeMap = {
     "EmptyRequestSchema": EmptyRequestSchema_1.EmptyRequestSchema,
     "EnhancedDynamicNetworkZone": EnhancedDynamicNetworkZone_1.EnhancedDynamicNetworkZone,
     "EnhancedDynamicNetworkZoneAsns": EnhancedDynamicNetworkZoneAsns_1.EnhancedDynamicNetworkZoneAsns,
+    "EnhancedDynamicNetworkZoneAsnsExclude": EnhancedDynamicNetworkZoneAsnsExclude_1.EnhancedDynamicNetworkZoneAsnsExclude,
     "EnhancedDynamicNetworkZoneAsnsInclude": EnhancedDynamicNetworkZoneAsnsInclude_1.EnhancedDynamicNetworkZoneAsnsInclude,
     "EnhancedDynamicNetworkZoneIpServiceCategories": EnhancedDynamicNetworkZoneIpServiceCategories_1.EnhancedDynamicNetworkZoneIpServiceCategories,
     "EnhancedDynamicNetworkZoneLocations": EnhancedDynamicNetworkZoneLocations_1.EnhancedDynamicNetworkZoneLocations,
@@ -3976,11 +4562,15 @@ let typeMap = {
     "EnrollmentInitializationRequest": EnrollmentInitializationRequest_1.EnrollmentInitializationRequest,
     "EnrollmentInitializationResponse": EnrollmentInitializationResponse_1.EnrollmentInitializationResponse,
     "EnrollmentPolicyAuthenticatorGracePeriod": EnrollmentPolicyAuthenticatorGracePeriod_1.EnrollmentPolicyAuthenticatorGracePeriod,
+    "EntitlementTypes": EntitlementTypes_1.EntitlementTypes,
+    "EntitlementTypesInner": EntitlementTypesInner_1.EntitlementTypesInner,
+    "EntitlementTypesInnerAttributes": EntitlementTypesInnerAttributes_1.EntitlementTypesInnerAttributes,
+    "EntitlementTypesInnerMappings": EntitlementTypesInnerMappings_1.EntitlementTypesInnerMappings,
     "EntitlementValue": EntitlementValue_1.EntitlementValue,
     "EntitlementValueLinks": EntitlementValueLinks_1.EntitlementValueLinks,
     "EntitlementValuesResponse": EntitlementValuesResponse_1.EntitlementValuesResponse,
     "EntitlementValuesResponseLinks": EntitlementValuesResponseLinks_1.EntitlementValuesResponseLinks,
-    "EntitlementValuesResponseLinksAnyOf": EntitlementValuesResponseLinksAnyOf_1.EntitlementValuesResponseLinksAnyOf,
+    "EntitlementsLink": EntitlementsLink_1.EntitlementsLink,
     "EntityRiskPolicy": EntityRiskPolicy_1.EntityRiskPolicy,
     "EntityRiskPolicyRule": EntityRiskPolicyRule_1.EntityRiskPolicyRule,
     "EntityRiskPolicyRuleActionRunWorkflow": EntityRiskPolicyRuleActionRunWorkflow_1.EntityRiskPolicyRuleActionRunWorkflow,
@@ -3993,6 +4583,7 @@ let typeMap = {
     "EntityRiskScorePolicyRuleCondition": EntityRiskScorePolicyRuleCondition_1.EntityRiskScorePolicyRuleCondition,
     "Error409": Error409_1.Error409,
     "ErrorCause": ErrorCause_1.ErrorCause,
+    "ErrorDetails": ErrorDetails_1.ErrorDetails,
     "ErrorPage": ErrorPage_1.ErrorPage,
     "EventHook": EventHook_1.EventHook,
     "EventHookChannel": EventHookChannel_1.EventHookChannel,
@@ -4025,6 +4616,7 @@ let typeMap = {
     "FulfillmentDataOrderDetails": FulfillmentDataOrderDetails_1.FulfillmentDataOrderDetails,
     "FulfillmentRequest": FulfillmentRequest_1.FulfillmentRequest,
     "GetDRStatus200Response": GetDRStatus200Response_1.GetDRStatus200Response,
+    "GetJwk200Response": GetJwk200Response_1.GetJwk200ResponseClass,
     "GetSsfStreams200Response": GetSsfStreams200Response_1.GetSsfStreams200ResponseClass,
     "GoogleApplication": GoogleApplication_1.GoogleApplication,
     "GoogleApplicationSettings": GoogleApplicationSettings_1.GoogleApplicationSettings,
@@ -4037,12 +4629,18 @@ let typeMap = {
     "GovernanceBundlesResponseLinks": GovernanceBundlesResponseLinks_1.GovernanceBundlesResponseLinks,
     "GracePeriod": GracePeriod_1.GracePeriod,
     "GracePeriodExpiry": GracePeriodExpiry_1.GracePeriodExpiryClass,
+    "GracePeriodRequiredSoon": GracePeriodRequiredSoon_1.GracePeriodRequiredSoon,
     "GrantResourcesHrefObject": GrantResourcesHrefObject_1.GrantResourcesHrefObject,
     "GrantTypePolicyRuleCondition": GrantTypePolicyRuleCondition_1.GrantTypePolicyRuleCondition,
     "Group": Group_1.Group,
     "GroupAssignmentProfile": GroupAssignmentProfile_1.GroupAssignmentProfile,
     "GroupCondition": GroupCondition_1.GroupCondition,
+    "GroupEmbedded": GroupEmbedded_1.GroupEmbedded,
+    "GroupEmbeddedApp": GroupEmbeddedApp_1.GroupEmbeddedApp,
+    "GroupEmbeddedStats": GroupEmbeddedStats_1.GroupEmbeddedStats,
     "GroupLinks": GroupLinks_1.GroupLinks,
+    "GroupMembershipsRequestSchema": GroupMembershipsRequestSchema_1.GroupMembershipsRequestSchema,
+    "GroupMembershipsResponseSchema": GroupMembershipsResponseSchema_1.GroupMembershipsResponseSchema,
     "GroupOwner": GroupOwner_1.GroupOwner,
     "GroupPolicyRuleCondition": GroupPolicyRuleCondition_1.GroupPolicyRuleCondition,
     "GroupProfile": GroupProfile_1.GroupProfile,
@@ -4064,6 +4662,9 @@ let typeMap = {
     "GroupSchemaCustom": GroupSchemaCustom_1.GroupSchemaCustom,
     "GroupSchemaDefinitions": GroupSchemaDefinitions_1.GroupSchemaDefinitions,
     "GroupsLink": GroupsLink_1.GroupsLink,
+    "GroupsRequestSchema": GroupsRequestSchema_1.GroupsRequestSchema,
+    "GroupsResponseSchema": GroupsResponseSchema_1.GroupsResponseSchema,
+    "GroupsResponseSchemaProfile": GroupsResponseSchemaProfile_1.GroupsResponseSchemaProfile,
     "HelpLink": HelpLink_1.HelpLink,
     "HookKey": HookKey_1.HookKey,
     "HostedPage": HostedPage_1.HostedPage,
@@ -4088,6 +4689,7 @@ let typeMap = {
     "HrefObjectMappingsLink": HrefObjectMappingsLink_1.HrefObjectMappingsLink,
     "HrefObjectMemberLink": HrefObjectMemberLink_1.HrefObjectMemberLink,
     "HrefObjectMembersLink": HrefObjectMembersLink_1.HrefObjectMembersLink,
+    "HrefObjectNextLink": HrefObjectNextLink_1.HrefObjectNextLink,
     "HrefObjectPermissionsLink": HrefObjectPermissionsLink_1.HrefObjectPermissionsLink,
     "HrefObjectResourceSetLink": HrefObjectResourceSetLink_1.HrefObjectResourceSetLink,
     "HrefObjectResourceSetResourcesLink": HrefObjectResourceSetResourcesLink_1.HrefObjectResourceSetResourcesLink,
@@ -4099,6 +4701,7 @@ let typeMap = {
     "HrefObjectSuspendLink": HrefObjectSuspendLink_1.HrefObjectSuspendLink,
     "HrefObjectUnsuspendLink": HrefObjectUnsuspendLink_1.HrefObjectUnsuspendLink,
     "HrefObjectUserLink": HrefObjectUserLink_1.HrefObjectUserLink,
+    "HrefObjectWebLink": HrefObjectWebLink_1.HrefObjectWebLink,
     "IAMBundleEntitlement": IAMBundleEntitlement_1.IAMBundleEntitlement,
     "IDVAuthorizationEndpoint": IDVAuthorizationEndpoint_1.IDVAuthorizationEndpoint,
     "IDVCredentials": IDVCredentials_1.IDVCredentials,
@@ -4116,6 +4719,12 @@ let typeMap = {
     "IdPCsrLinks": IdPCsrLinks_1.IdPCsrLinks,
     "IdPKeyCredential": IdPKeyCredential_1.IdPKeyCredential,
     "IdProofingMethod": IdProofingMethod_1.IdProofingMethod,
+    "IdentityAssertionAppInstanceConnection": IdentityAssertionAppInstanceConnection_1.IdentityAssertionAppInstanceConnection,
+    "IdentityAssertionAppInstanceConnectionCreatable": IdentityAssertionAppInstanceConnectionCreatable_1.IdentityAssertionAppInstanceConnectionCreatable,
+    "IdentityAssertionAppInstanceConnectionCreatableApp": IdentityAssertionAppInstanceConnectionCreatableApp_1.IdentityAssertionAppInstanceConnectionCreatableApp,
+    "IdentityAssertionCustomASConnection": IdentityAssertionCustomASConnection_1.IdentityAssertionCustomASConnection,
+    "IdentityAssertionCustomASConnectionCreatable": IdentityAssertionCustomASConnectionCreatable_1.IdentityAssertionCustomASConnectionCreatable,
+    "IdentityAssertionCustomASConnectionCreatableAuthorizationServer": IdentityAssertionCustomASConnectionCreatableAuthorizationServer_1.IdentityAssertionCustomASConnectionCreatableAuthorizationServer,
     "IdentityProvider": IdentityProvider_1.IdentityProvider,
     "IdentityProviderApplicationUser": IdentityProviderApplicationUser_1.IdentityProviderApplicationUser,
     "IdentityProviderApplicationUserLinks": IdentityProviderApplicationUserLinks_1.IdentityProviderApplicationUserLinks,
@@ -4123,6 +4732,7 @@ let typeMap = {
     "IdentityProviderPolicy": IdentityProviderPolicy_1.IdentityProviderPolicy,
     "IdentityProviderPolicyRuleCondition": IdentityProviderPolicyRuleCondition_1.IdentityProviderPolicyRuleCondition,
     "IdentityProviderProperties": IdentityProviderProperties_1.IdentityProviderProperties,
+    "IdentityProviderPropertiesIdvMetadata": IdentityProviderPropertiesIdvMetadata_1.IdentityProviderPropertiesIdvMetadata,
     "IdentityProviderProtocol": IdentityProviderProtocol_1.IdentityProviderProtocolClass,
     "IdentitySourceGroupMembershipsDeleteProfile": IdentitySourceGroupMembershipsDeleteProfile_1.IdentitySourceGroupMembershipsDeleteProfile,
     "IdentitySourceGroupMembershipsDeleteProfileInner": IdentitySourceGroupMembershipsDeleteProfileInner_1.IdentitySourceGroupMembershipsDeleteProfileInner,
@@ -4132,6 +4742,10 @@ let typeMap = {
     "IdentitySourceSession": IdentitySourceSession_1.IdentitySourceSession,
     "IdentitySourceUserProfileForDelete": IdentitySourceUserProfileForDelete_1.IdentitySourceUserProfileForDelete,
     "IdentitySourceUserProfileForUpsert": IdentitySourceUserProfileForUpsert_1.IdentitySourceUserProfileForUpsert,
+    "IdentitySourceUserProfileForUpsertRequired": IdentitySourceUserProfileForUpsertRequired_1.IdentitySourceUserProfileForUpsertRequired,
+    "IdpDiscoveryPlatformConditionEvaluatorPlatform": IdpDiscoveryPlatformConditionEvaluatorPlatform_1.IdpDiscoveryPlatformConditionEvaluatorPlatform,
+    "IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem": IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem_1.IdpDiscoveryPlatformConditionEvaluatorPlatformOperatingSystem,
+    "IdpDiscoveryPlatformPolicyRuleCondition": IdpDiscoveryPlatformPolicyRuleCondition_1.IdpDiscoveryPlatformPolicyRuleCondition,
     "IdpDiscoveryPolicy": IdpDiscoveryPolicy_1.IdpDiscoveryPolicy,
     "IdpDiscoveryPolicyRule": IdpDiscoveryPolicyRule_1.IdpDiscoveryPolicyRule,
     "IdpDiscoveryPolicyRuleCondition": IdpDiscoveryPolicyRuleCondition_1.IdpDiscoveryPolicyRuleCondition,
@@ -4177,11 +4791,10 @@ let typeMap = {
     "InlineHookResponse": InlineHookResponse_1.InlineHookResponse,
     "InlineHookResponseCommandValue": InlineHookResponseCommandValue_1.InlineHookResponseCommandValue,
     "InlineHookResponseCommands": InlineHookResponseCommands_1.InlineHookResponseCommands,
+    "InterclientTrustMapping": InterclientTrustMapping_1.InterclientTrustMapping,
+    "InterclientTrustMappingRequestBody": InterclientTrustMappingRequestBody_1.InterclientTrustMappingRequestBody,
     "JsonPatchOperation": JsonPatchOperation_1.JsonPatchOperation,
     "JsonWebKey": JsonWebKey_1.JsonWebKey,
-    "JsonWebKey1": JsonWebKey1_1.JsonWebKey1,
-    "JsonWebKeyEC": JsonWebKeyEC_1.JsonWebKeyEC,
-    "JsonWebKeyRsa": JsonWebKeyRsa_1.JsonWebKeyRsa,
     "JwkUse": JwkUse_1.JwkUse,
     "KeepCurrent": KeepCurrent_1.KeepCurrent,
     "KeepMeSignedIn": KeepMeSignedIn_1.KeepMeSignedIn,
@@ -4220,13 +4833,19 @@ let typeMap = {
     "LinksSelfForRoleAssignment": LinksSelfForRoleAssignment_1.LinksSelfForRoleAssignment,
     "LinksSelfLifecycleAndAuthorize": LinksSelfLifecycleAndAuthorize_1.LinksSelfLifecycleAndAuthorize,
     "LinksSend": LinksSend_1.LinksSend,
-    "LinksUser": LinksUser_1.LinksUser,
+    "LinksUserAuthenticators": LinksUserAuthenticators_1.LinksUserAuthenticators,
+    "LinksUserFactors": LinksUserFactors_1.LinksUserFactors,
     "LinksUserRef": LinksUserRef_1.LinksUserRef,
     "LinksVerify": LinksVerify_1.LinksVerify,
+    "ListAIAgents200Response": ListAIAgents200Response_1.ListAIAgents200Response,
+    "ListAIAgents200ResponseLinks": ListAIAgents200ResponseLinks_1.ListAIAgents200ResponseLinks,
+    "ListAgentJwk200Response": ListAgentJwk200Response_1.ListAgentJwk200Response,
     "ListGroupAssignedRoles200ResponseInner": ListGroupAssignedRoles200ResponseInner_1.ListGroupAssignedRoles200ResponseInnerClass,
     "ListJwk200Response": ListJwk200Response_1.ListJwk200Response,
+    "ListJwk200ResponseKeysInner": ListJwk200ResponseKeysInner_1.ListJwk200ResponseKeysInnerClass,
     "ListProfileMappings": ListProfileMappings_1.ListProfileMappings,
     "ListRoleSubscriptionsRoleTypeOrRoleIdParameter": ListRoleSubscriptionsRoleTypeOrRoleIdParameter_1.ListRoleSubscriptionsRoleTypeOrRoleIdParameterClass,
+    "ListRolesForClient200ResponseInner": ListRolesForClient200ResponseInner_1.ListRolesForClient200ResponseInnerClass,
     "LogActor": LogActor_1.LogActor,
     "LogAuthenticationContext": LogAuthenticationContext_1.LogAuthenticationContext,
     "LogClient": LogClient_1.LogClient,
@@ -4236,9 +4855,12 @@ let typeMap = {
     "LogGeographicalContext": LogGeographicalContext_1.LogGeographicalContext,
     "LogGeolocation": LogGeolocation_1.LogGeolocation,
     "LogIpAddress": LogIpAddress_1.LogIpAddress,
+    "LogIpDetails": LogIpDetails_1.LogIpDetails,
+    "LogIpServiceCategory": LogIpServiceCategory_1.LogIpServiceCategory,
     "LogIssuer": LogIssuer_1.LogIssuer,
     "LogOutcome": LogOutcome_1.LogOutcome,
     "LogRequest": LogRequest_1.LogRequest,
+    "LogRisk": LogRisk_1.LogRisk,
     "LogSecurityContext": LogSecurityContext_1.LogSecurityContext,
     "LogStream": LogStream_1.LogStream,
     "LogStreamActivateLink": LogStreamActivateLink_1.LogStreamActivateLink,
@@ -4259,7 +4881,20 @@ let typeMap = {
     "LogTargetChangeDetails": LogTargetChangeDetails_1.LogTargetChangeDetails,
     "LogTransaction": LogTransaction_1.LogTransaction,
     "LogUserAgent": LogUserAgent_1.LogUserAgent,
+    "LogUserBehavior": LogUserBehavior_1.LogUserBehavior,
     "MDMEnrollmentPolicyRuleCondition": MDMEnrollmentPolicyRuleCondition_1.MDMEnrollmentPolicyRuleCondition,
+    "ManagedConnection": ManagedConnection_1.ManagedConnectionClass,
+    "ManagedConnectionAppInstance": ManagedConnectionAppInstance_1.ManagedConnectionAppInstance,
+    "ManagedConnectionCreatable": ManagedConnectionCreatable_1.ManagedConnectionCreatableClass,
+    "ManagedConnectionCustomAuthorizationServer": ManagedConnectionCustomAuthorizationServer_1.ManagedConnectionCustomAuthorizationServer,
+    "ManagedConnectionLinks": ManagedConnectionLinks_1.ManagedConnectionLinks,
+    "ManagedConnectionList": ManagedConnectionList_1.ManagedConnectionList,
+    "ManagedConnectionListLinks": ManagedConnectionListLinks_1.ManagedConnectionListLinks,
+    "ManagedConnectionPatchable": ManagedConnectionPatchable_1.ManagedConnectionPatchable,
+    "ManagedConnectionPatchableScopes": ManagedConnectionPatchableScopes_1.ManagedConnectionPatchableScopes,
+    "ManagedConnectionServiceAccount": ManagedConnectionServiceAccount_1.ManagedConnectionServiceAccount,
+    "ManagedConnectionVaultedSecret": ManagedConnectionVaultedSecret_1.ManagedConnectionVaultedSecret,
+    "MembershipRequestSchema": MembershipRequestSchema_1.MembershipRequestSchema,
     "MetadataLink": MetadataLink_1.MetadataLink,
     "ModelError": ModelError_1.ModelError,
     "MtlsCredentials": MtlsCredentials_1.MtlsCredentials,
@@ -4277,8 +4912,17 @@ let typeMap = {
     "OAuth2Claim": OAuth2Claim_1.OAuth2Claim,
     "OAuth2ClaimConditions": OAuth2ClaimConditions_1.OAuth2ClaimConditions,
     "OAuth2Client": OAuth2Client_1.OAuth2Client,
-    "OAuth2ClientJsonWebKey": OAuth2ClientJsonWebKey_1.OAuth2ClientJsonWebKey,
+    "OAuth2ClientJsonEncryptionKeyRequest": OAuth2ClientJsonEncryptionKeyRequest_1.OAuth2ClientJsonEncryptionKeyRequest,
+    "OAuth2ClientJsonEncryptionKeyResponse": OAuth2ClientJsonEncryptionKeyResponse_1.OAuth2ClientJsonEncryptionKeyResponse,
+    "OAuth2ClientJsonSigningKeyRequest": OAuth2ClientJsonSigningKeyRequest_1.OAuth2ClientJsonSigningKeyRequestClass,
+    "OAuth2ClientJsonSigningKeyResponse": OAuth2ClientJsonSigningKeyResponse_1.OAuth2ClientJsonSigningKeyResponseClass,
+    "OAuth2ClientJsonWebKeyECRequest": OAuth2ClientJsonWebKeyECRequest_1.OAuth2ClientJsonWebKeyECRequest,
+    "OAuth2ClientJsonWebKeyECResponse": OAuth2ClientJsonWebKeyECResponse_1.OAuth2ClientJsonWebKeyECResponse,
+    "OAuth2ClientJsonWebKeyRequestBase": OAuth2ClientJsonWebKeyRequestBase_1.OAuth2ClientJsonWebKeyRequestBase,
     "OAuth2ClientJsonWebKeyRequestBody": OAuth2ClientJsonWebKeyRequestBody_1.OAuth2ClientJsonWebKeyRequestBody,
+    "OAuth2ClientJsonWebKeyResponseBase": OAuth2ClientJsonWebKeyResponseBase_1.OAuth2ClientJsonWebKeyResponseBase,
+    "OAuth2ClientJsonWebKeyRsaRequest": OAuth2ClientJsonWebKeyRsaRequest_1.OAuth2ClientJsonWebKeyRsaRequest,
+    "OAuth2ClientJsonWebKeyRsaResponse": OAuth2ClientJsonWebKeyRsaResponse_1.OAuth2ClientJsonWebKeyRsaResponse,
     "OAuth2ClientLinks": OAuth2ClientLinks_1.OAuth2ClientLinks,
     "OAuth2ClientSecret": OAuth2ClientSecret_1.OAuth2ClientSecret,
     "OAuth2ClientSecretRequestBody": OAuth2ClientSecretRequestBody_1.OAuth2ClientSecretRequestBody,
@@ -4289,12 +4933,15 @@ let typeMap = {
     "OAuth2RefreshTokenLinksRevokeHints": OAuth2RefreshTokenLinksRevokeHints_1.OAuth2RefreshTokenLinksRevokeHints,
     "OAuth2RefreshTokenScope": OAuth2RefreshTokenScope_1.OAuth2RefreshTokenScope,
     "OAuth2RefreshTokenScopeLinks": OAuth2RefreshTokenScopeLinks_1.OAuth2RefreshTokenScopeLinks,
+    "OAuth2ResourceServerJsonWebKey": OAuth2ResourceServerJsonWebKey_1.OAuth2ResourceServerJsonWebKey,
+    "OAuth2ResourceServerJsonWebKeyRequestBody": OAuth2ResourceServerJsonWebKeyRequestBody_1.OAuth2ResourceServerJsonWebKeyRequestBody,
     "OAuth2Scope": OAuth2Scope_1.OAuth2Scope,
     "OAuth2ScopeConsentGrant": OAuth2ScopeConsentGrant_1.OAuth2ScopeConsentGrant,
     "OAuth2ScopeConsentGrantEmbedded": OAuth2ScopeConsentGrantEmbedded_1.OAuth2ScopeConsentGrantEmbedded,
     "OAuth2ScopeConsentGrantEmbeddedScope": OAuth2ScopeConsentGrantEmbeddedScope_1.OAuth2ScopeConsentGrantEmbeddedScope,
     "OAuth2ScopeConsentGrantLinks": OAuth2ScopeConsentGrantLinks_1.OAuth2ScopeConsentGrantLinks,
     "OAuth2ScopesMediationPolicyRuleCondition": OAuth2ScopesMediationPolicyRuleCondition_1.OAuth2ScopesMediationPolicyRuleCondition,
+    "OAuth2Settings": OAuth2Settings_1.OAuth2Settings,
     "OAuth2Token": OAuth2Token_1.OAuth2Token,
     "OAuthApplicationCredentials": OAuthApplicationCredentials_1.OAuthApplicationCredentials,
     "OAuthAuthorizationEndpoint": OAuthAuthorizationEndpoint_1.OAuthAuthorizationEndpoint,
@@ -4303,6 +4950,7 @@ let typeMap = {
     "OAuthCredentialsClient": OAuthCredentialsClient_1.OAuthCredentialsClient,
     "OAuthEndpoints": OAuthEndpoints_1.OAuthEndpoints,
     "OAuthMetadata": OAuthMetadata_1.OAuthMetadata,
+    "OAuthResourceServerKeyLinks": OAuthResourceServerKeyLinks_1.OAuthResourceServerKeyLinks,
     "OAuthScopes": OAuthScopes_1.OAuthScopes,
     "OAuthTokenEndpoint": OAuthTokenEndpoint_1.OAuthTokenEndpoint,
     "OINApplication": OINApplication_1.OINApplication,
@@ -4330,6 +4978,9 @@ let typeMap = {
     "OktaActiveDirectoryGroupProfile": OktaActiveDirectoryGroupProfile_1.OktaActiveDirectoryGroupProfile,
     "OktaDeviceRiskChangeEvent": OktaDeviceRiskChangeEvent_1.OktaDeviceRiskChangeEvent,
     "OktaIpChangeEvent": OktaIpChangeEvent_1.OktaIpChangeEvent,
+    "OktaManagedUserAccount": OktaManagedUserAccount_1.OktaManagedUserAccount,
+    "OktaManagedUserAccountForUpdate": OktaManagedUserAccountForUpdate_1.OktaManagedUserAccountForUpdate,
+    "OktaManagedUserAccountRequest": OktaManagedUserAccountRequest_1.OktaManagedUserAccountRequest,
     "OktaPersonalAdminFeatureSettings": OktaPersonalAdminFeatureSettings_1.OktaPersonalAdminFeatureSettings,
     "OktaSignOnPolicy": OktaSignOnPolicy_1.OktaSignOnPolicy,
     "OktaSignOnPolicyConditions": OktaSignOnPolicyConditions_1.OktaSignOnPolicyConditions,
@@ -4354,10 +5005,6 @@ let typeMap = {
     "OpenIdConnectApplicationSettingsRefreshToken": OpenIdConnectApplicationSettingsRefreshToken_1.OpenIdConnectApplicationSettingsRefreshToken,
     "OperationRequest": OperationRequest_1.OperationRequest,
     "OperationResponse": OperationResponse_1.OperationResponse,
-    "OperationResponseAssignmentOperation": OperationResponseAssignmentOperation_1.OperationResponseAssignmentOperation,
-    "OperationResponseAssignmentOperationConfiguration": OperationResponseAssignmentOperationConfiguration_1.OperationResponseAssignmentOperationConfiguration,
-    "OperationResponseAssignmentOperationConfigurationActions": OperationResponseAssignmentOperationConfigurationActions_1.OperationResponseAssignmentOperationConfigurationActions,
-    "OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm": OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm_1.OperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm,
     "OptInStatusResponse": OptInStatusResponse_1.OptInStatusResponse,
     "OptInStatusResponseLinks": OptInStatusResponseLinks_1.OptInStatusResponseLinks,
     "Org2OrgApplication": Org2OrgApplication_1.Org2OrgApplication,
@@ -4372,8 +5019,6 @@ let typeMap = {
     "OrgBillingContactTypeLinks": OrgBillingContactTypeLinks_1.OrgBillingContactTypeLinks,
     "OrgCAPTCHASettings": OrgCAPTCHASettings_1.OrgCAPTCHASettings,
     "OrgCAPTCHASettingsLinks": OrgCAPTCHASettingsLinks_1.OrgCAPTCHASettingsLinks,
-    "OrgCWOConnection": OrgCWOConnection_1.OrgCWOConnection,
-    "OrgCWOConnectionPatchRequest": OrgCWOConnectionPatchRequest_1.OrgCWOConnectionPatchRequest,
     "OrgContactTypeObj": OrgContactTypeObj_1.OrgContactTypeObj,
     "OrgContactUser": OrgContactUser_1.OrgContactUser,
     "OrgContactUserLinks": OrgContactUserLinks_1.OrgContactUserLinks,
@@ -4381,6 +5026,8 @@ let typeMap = {
     "OrgCreationAdminCredentials": OrgCreationAdminCredentials_1.OrgCreationAdminCredentials,
     "OrgCreationAdminCredentialsPassword": OrgCreationAdminCredentialsPassword_1.OrgCreationAdminCredentialsPassword,
     "OrgCreationAdminProfile": OrgCreationAdminProfile_1.OrgCreationAdminProfile,
+    "OrgCrossAppAccessConnection": OrgCrossAppAccessConnection_1.OrgCrossAppAccessConnection,
+    "OrgCrossAppAccessConnectionPatchRequest": OrgCrossAppAccessConnectionPatchRequest_1.OrgCrossAppAccessConnectionPatchRequest,
     "OrgGeneralSettingLinks": OrgGeneralSettingLinks_1.OrgGeneralSettingLinks,
     "OrgOktaCommunicationSetting": OrgOktaCommunicationSetting_1.OrgOktaCommunicationSetting,
     "OrgOktaCommunicationSettingLinks": OrgOktaCommunicationSettingLinks_1.OrgOktaCommunicationSettingLinks,
@@ -4436,6 +5083,8 @@ let typeMap = {
     "PasswordPolicyRuleConditions": PasswordPolicyRuleConditions_1.PasswordPolicyRuleConditions,
     "PasswordPolicySettings": PasswordPolicySettings_1.PasswordPolicySettings,
     "PasswordSettingObject": PasswordSettingObject_1.PasswordSettingObject,
+    "PatchAIAgentProfile": PatchAIAgentProfile_1.PatchAIAgentProfile,
+    "PatchAIAgentRequest": PatchAIAgentRequest_1.PatchAIAgentRequest,
     "PerClientRateLimitSettings": PerClientRateLimitSettings_1.PerClientRateLimitSettings,
     "PerClientRateLimitSettingsUseCaseModeOverrides": PerClientRateLimitSettingsUseCaseModeOverrides_1.PerClientRateLimitSettingsUseCaseModeOverrides,
     "Permission": Permission_1.Permission,
@@ -4485,6 +5134,17 @@ let typeMap = {
     "PostAuthSessionPolicyRuleConditions": PostAuthSessionPolicyRuleConditions_1.PostAuthSessionPolicyRuleConditions,
     "PostAuthSessionPolicyRuleRunWorkflow": PostAuthSessionPolicyRuleRunWorkflow_1.PostAuthSessionPolicyRuleRunWorkflow,
     "PostAuthSessionPolicyRuleTerminateSession": PostAuthSessionPolicyRuleTerminateSession_1.PostAuthSessionPolicyRuleTerminateSession,
+    "PotentialConnection": PotentialConnection_1.PotentialConnectionClass,
+    "PotentialConnectionAppInstance": PotentialConnectionAppInstance_1.PotentialConnectionAppInstance,
+    "PotentialConnectionCustomAuthorizationServer": PotentialConnectionCustomAuthorizationServer_1.PotentialConnectionCustomAuthorizationServer,
+    "PotentialConnectionList": PotentialConnectionList_1.PotentialConnectionList,
+    "PotentialConnectionListLinks": PotentialConnectionListLinks_1.PotentialConnectionListLinks,
+    "PotentialConnectionServiceAccount": PotentialConnectionServiceAccount_1.PotentialConnectionServiceAccount,
+    "PotentialConnectionVaultedSecret": PotentialConnectionVaultedSecret_1.PotentialConnectionVaultedSecret,
+    "PotentialIdentityAssertionAppInstanceConnection": PotentialIdentityAssertionAppInstanceConnection_1.PotentialIdentityAssertionAppInstanceConnection,
+    "PotentialIdentityAssertionCustomASConnection": PotentialIdentityAssertionCustomASConnection_1.PotentialIdentityAssertionCustomASConnection,
+    "PotentialSTSServiceAccountConnection": PotentialSTSServiceAccountConnection_1.PotentialSTSServiceAccountConnection,
+    "PotentialSTSVaultSecretConnection": PotentialSTSVaultSecretConnection_1.PotentialSTSVaultSecretConnection,
     "PreRegistrationInlineHook": PreRegistrationInlineHook_1.PreRegistrationInlineHook,
     "PrincipalRateLimitEntity": PrincipalRateLimitEntity_1.PrincipalRateLimitEntity,
     "PrivilegedResource": PrivilegedResource_1.PrivilegedResource,
@@ -4538,6 +5198,11 @@ let typeMap = {
     "RateLimitWarningThresholdResponse": RateLimitWarningThresholdResponse_1.RateLimitWarningThresholdResponse,
     "Realm": Realm_1.Realm,
     "RealmAssignment": RealmAssignment_1.RealmAssignment,
+    "RealmAssignmentOperationResponse": RealmAssignmentOperationResponse_1.RealmAssignmentOperationResponse,
+    "RealmAssignmentOperationResponseAssignmentOperation": RealmAssignmentOperationResponseAssignmentOperation_1.RealmAssignmentOperationResponseAssignmentOperation,
+    "RealmAssignmentOperationResponseAssignmentOperationConfiguration": RealmAssignmentOperationResponseAssignmentOperationConfiguration_1.RealmAssignmentOperationResponseAssignmentOperationConfiguration,
+    "RealmAssignmentOperationResponseAssignmentOperationConfigurationActions": RealmAssignmentOperationResponseAssignmentOperationConfigurationActions_1.RealmAssignmentOperationResponseAssignmentOperationConfigurationActions,
+    "RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm": RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm_1.RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm,
     "RealmProfile": RealmProfile_1.RealmProfile,
     "RecoveryQuestionCredential": RecoveryQuestionCredential_1.RecoveryQuestionCredential,
     "RefreshToken": RefreshToken_1.RefreshToken,
@@ -4561,6 +5226,8 @@ let typeMap = {
     "ResetPasswordToken": ResetPasswordToken_1.ResetPasswordToken,
     "ResourceConditions": ResourceConditions_1.ResourceConditions,
     "ResourceConditionsExclude": ResourceConditionsExclude_1.ResourceConditionsExclude,
+    "ResourceServerJsonWebKey": ResourceServerJsonWebKey_1.ResourceServerJsonWebKey,
+    "ResourceServerJsonWebKeys": ResourceServerJsonWebKeys_1.ResourceServerJsonWebKeys,
     "ResourceSet": ResourceSet_1.ResourceSet,
     "ResourceSetBindingAddMembersRequest": ResourceSetBindingAddMembersRequest_1.ResourceSetBindingAddMembersRequest,
     "ResourceSetBindingCreateRequest": ResourceSetBindingCreateRequest_1.ResourceSetBindingCreateRequest,
@@ -4599,7 +5266,6 @@ let typeMap = {
     "RoleGovernance": RoleGovernance_1.RoleGovernance,
     "RoleGovernanceResource": RoleGovernanceResource_1.RoleGovernanceResource,
     "RoleGovernanceResources": RoleGovernanceResources_1.RoleGovernanceResources,
-    "RoleGovernanceResourcesLinks": RoleGovernanceResourcesLinks_1.RoleGovernanceResourcesLinks,
     "RoleGovernanceSource": RoleGovernanceSource_1.RoleGovernanceSource,
     "RoleGovernanceSourceLinks": RoleGovernanceSourceLinks_1.RoleGovernanceSourceLinks,
     "RoleTarget": RoleTarget_1.RoleTarget,
@@ -4627,6 +5293,12 @@ let typeMap = {
     "SAMLPayLoadDataContextProtocol": SAMLPayLoadDataContextProtocol_1.SAMLPayLoadDataContextProtocol,
     "SAMLPayLoadDataContextProtocolIssuer": SAMLPayLoadDataContextProtocolIssuer_1.SAMLPayLoadDataContextProtocolIssuer,
     "SAMLPayloadExecute": SAMLPayloadExecute_1.SAMLPayloadExecute,
+    "STSServiceAccountConnection": STSServiceAccountConnection_1.STSServiceAccountConnection,
+    "STSServiceAccountConnectionCreatable": STSServiceAccountConnectionCreatable_1.STSServiceAccountConnectionCreatable,
+    "STSServiceAccountConnectionCreatableServiceAccount": STSServiceAccountConnectionCreatableServiceAccount_1.STSServiceAccountConnectionCreatableServiceAccount,
+    "STSVaultSecretConnection": STSVaultSecretConnection_1.STSVaultSecretConnection,
+    "STSVaultSecretConnectionCreatable": STSVaultSecretConnectionCreatable_1.STSVaultSecretConnectionCreatable,
+    "STSVaultSecretConnectionCreatableSecret": STSVaultSecretConnectionCreatableSecret_1.STSVaultSecretConnectionCreatableSecret,
     "SalesforceApplication": SalesforceApplication_1.SalesforceApplication,
     "SalesforceApplicationSettings": SalesforceApplicationSettings_1.SalesforceApplicationSettings,
     "SalesforceApplicationSettingsApplication": SalesforceApplicationSettingsApplication_1.SalesforceApplicationSettingsApplication,
@@ -4691,8 +5363,15 @@ let typeMap = {
     "ServiceAccountDetailsOktaUserAccount": ServiceAccountDetailsOktaUserAccount_1.ServiceAccountDetailsOktaUserAccount,
     "ServiceAccountDetailsOktaUserAccountSub": ServiceAccountDetailsOktaUserAccountSub_1.ServiceAccountDetailsOktaUserAccountSub,
     "ServiceAccountForUpdate": ServiceAccountForUpdate_1.ServiceAccountForUpdate,
+    "ServiceAccountLinks": ServiceAccountLinks_1.ServiceAccountLinks,
     "Session": Session_1.Session,
     "SessionIdentityProvider": SessionIdentityProvider_1.SessionIdentityProvider,
+    "SessionViolationDetectionPolicy": SessionViolationDetectionPolicy_1.SessionViolationDetectionPolicy,
+    "SessionViolationDetectionPolicyEvaluation": SessionViolationDetectionPolicyEvaluation_1.SessionViolationDetectionPolicyEvaluation,
+    "SessionViolationDetectionPolicyRule": SessionViolationDetectionPolicyRule_1.SessionViolationDetectionPolicyRule,
+    "SessionViolationDetectionPolicyRuleActions": SessionViolationDetectionPolicyRuleActions_1.SessionViolationDetectionPolicyRuleActions,
+    "SessionViolationDetectionPolicyRuleActionsSessionViolationDetection": SessionViolationDetectionPolicyRuleActionsSessionViolationDetection_1.SessionViolationDetectionPolicyRuleActionsSessionViolationDetection,
+    "SessionViolationDetectionPolicyRuleConditions": SessionViolationDetectionPolicyRuleConditions_1.SessionViolationDetectionPolicyRuleConditions,
     "SignInPage": SignInPage_1.SignInPage,
     "SignInPageWidgetCustomizations": SignInPageWidgetCustomizations_1.SignInPageWidgetCustomizations,
     "SignOnInlineHook": SignOnInlineHook_1.SignOnInlineHook,
@@ -4718,6 +5397,8 @@ let typeMap = {
     "SocialAuthToken": SocialAuthToken_1.SocialAuthToken,
     "SourceLinks": SourceLinks_1.SourceLinks,
     "SourceLinksSchema": SourceLinksSchema_1.SourceLinksSchema,
+    "SsfTransmitterCaepSessionRevokedEvent": SsfTransmitterCaepSessionRevokedEvent_1.SsfTransmitterCaepSessionRevokedEvent,
+    "SsfTransmitterSecurityEventSubject": SsfTransmitterSecurityEventSubject_1.SsfTransmitterSecurityEventSubject,
     "Sso": Sso_1.Sso,
     "SsprPrimaryRequirement": SsprPrimaryRequirement_1.SsprPrimaryRequirement,
     "SsprRequirement": SsprRequirement_1.SsprRequirement,
@@ -4740,9 +5421,15 @@ let typeMap = {
     "StreamStatus": StreamStatus_1.StreamStatus,
     "StreamVerificationRequest": StreamVerificationRequest_1.StreamVerificationRequest,
     "Subject": Subject_1.Subject,
+    "SubmissionAction": SubmissionAction_1.SubmissionAction,
+    "SubmissionActions": SubmissionActions_1.SubmissionActions,
+    "SubmissionCapabilities": SubmissionCapabilities_1.SubmissionCapabilities,
+    "SubmissionCapability": SubmissionCapability_1.SubmissionCapability,
     "SubmissionRequest": SubmissionRequest_1.SubmissionRequest,
     "SubmissionResponse": SubmissionResponse_1.SubmissionResponse,
+    "SubmissionResponseAppContactDetailsInner": SubmissionResponseAppContactDetailsInner_1.SubmissionResponseAppContactDetailsInner,
     "SubmissionResponseConfigInner": SubmissionResponseConfigInner_1.SubmissionResponseConfigInner,
+    "SubmissionResponseGlobalTokenRevocation": SubmissionResponseGlobalTokenRevocation_1.SubmissionResponseGlobalTokenRevocation,
     "Subscription": Subscription_1.Subscription,
     "SubscriptionLinks": SubscriptionLinks_1.SubscriptionLinks,
     "SupportedMethods": SupportedMethods_1.SupportedMethods,
@@ -4759,6 +5446,7 @@ let typeMap = {
     "TelephonyResponseCommandsInner": TelephonyResponseCommandsInner_1.TelephonyResponseCommandsInner,
     "TelephonyResponseCommandsInnerValueInner": TelephonyResponseCommandsInnerValueInner_1.TelephonyResponseCommandsInnerValueInner,
     "TempPassword": TempPassword_1.TempPassword,
+    "TenantSettings": TenantSettings_1.TenantSettings,
     "TestInfo": TestInfo_1.TestInfo,
     "TestInfoOidcTestConfiguration": TestInfoOidcTestConfiguration_1.TestInfoOidcTestConfiguration,
     "TestInfoSamlTestConfiguration": TestInfoSamlTestConfiguration_1.TestInfoSamlTestConfiguration,
@@ -4806,6 +5494,9 @@ let typeMap = {
     "UIElementOptions": UIElementOptions_1.UIElementOptions,
     "UISchemaObject": UISchemaObject_1.UISchemaObject,
     "UISchemasResponseObject": UISchemasResponseObject_1.UISchemasResponseObject,
+    "UnconfirmedUserResponseSchema": UnconfirmedUserResponseSchema_1.UnconfirmedUserResponseSchema,
+    "UnconfirmedUserResponseSchemaUsersInner": UnconfirmedUserResponseSchemaUsersInner_1.UnconfirmedUserResponseSchemaUsersInner,
+    "UpdateAIAgentRequest": UpdateAIAgentRequest_1.UpdateAIAgentRequest,
     "UpdateDefaultProvisioningConnectionForApplicationRequest": UpdateDefaultProvisioningConnectionForApplicationRequest_1.UpdateDefaultProvisioningConnectionForApplicationRequestClass,
     "UpdateDomain": UpdateDomain_1.UpdateDomain,
     "UpdateEmailDomain": UpdateEmailDomain_1.UpdateEmailDomain,
@@ -4817,6 +5508,7 @@ let typeMap = {
     "UpdateThemeRequest": UpdateThemeRequest_1.UpdateThemeRequest,
     "UpdateUISchema": UpdateUISchema_1.UpdateUISchema,
     "UpdateUserRequest": UpdateUserRequest_1.UpdateUserRequest,
+    "UpdateUserRequestType": UpdateUserRequestType_1.UpdateUserRequestType,
     "UploadYubikeyOtpTokenSeedRequest": UploadYubikeyOtpTokenSeedRequest_1.UploadYubikeyOtpTokenSeedRequest,
     "User": User_1.User,
     "UserActivationToken": UserActivationToken_1.UserActivationToken,
@@ -4900,7 +5592,9 @@ let typeMap = {
     "UserPolicyRuleCondition": UserPolicyRuleCondition_1.UserPolicyRuleCondition,
     "UserProfile": UserProfile_1.UserProfile,
     "UserProvisioningApplicationFeature": UserProvisioningApplicationFeature_1.UserProvisioningApplicationFeature,
+    "UserRequestSchema": UserRequestSchema_1.UserRequestSchema,
     "UserResourceHrefObject": UserResourceHrefObject_1.UserResourceHrefObject,
+    "UserResponseSchema": UserResponseSchema_1.UserResponseSchema,
     "UserRiskGetResponse": UserRiskGetResponse_1.UserRiskGetResponse,
     "UserRiskGetResponseLinks": UserRiskGetResponseLinks_1.UserRiskGetResponseLinks,
     "UserRiskLevelExists": UserRiskLevelExists_1.UserRiskLevelExists,
@@ -4930,10 +5624,17 @@ let typeMap = {
     "UserTypePostRequest": UserTypePostRequest_1.UserTypePostRequest,
     "UserTypePutRequest": UserTypePutRequest_1.UserTypePutRequest,
     "UsersLink": UsersLink_1.UsersLink,
+    "UsersUpdateRequestSchema": UsersUpdateRequestSchema_1.UsersUpdateRequestSchema,
+    "ValidationDetail": ValidationDetail_1.ValidationDetail,
+    "ValidationDetailProvider": ValidationDetailProvider_1.ValidationDetailProvider,
+    "VaultedSecretLinks": VaultedSecretLinks_1.VaultedSecretLinks,
     "VerificationMethod": VerificationMethod_1.VerificationMethod,
+    "VerifyActions200Response": VerifyActions200Response_1.VerifyActions200Response,
     "WebAuthnCredRequest": WebAuthnCredRequest_1.WebAuthnCredRequest,
     "WebAuthnCredResponse": WebAuthnCredResponse_1.WebAuthnCredResponse,
     "WebAuthnPreregistrationFactor": WebAuthnPreregistrationFactor_1.WebAuthnPreregistrationFactor,
+    "WebAuthnRpId": WebAuthnRpId_1.WebAuthnRpId,
+    "WebAuthnRpIdDomain": WebAuthnRpIdDomain_1.WebAuthnRpIdDomain,
     "Webauthn": Webauthn_1.Webauthn,
     "Webauthn1": Webauthn1_1.Webauthn1,
     "WellKnownAppAuthenticatorConfiguration": WellKnownAppAuthenticatorConfiguration_1.WellKnownAppAuthenticatorConfiguration,
@@ -4952,6 +5653,9 @@ let typeMap = {
     "WellKnownURIsRootEmbeddedAppleAppSiteAssociation": WellKnownURIsRootEmbeddedAppleAppSiteAssociation_1.WellKnownURIsRootEmbeddedAppleAppSiteAssociation,
     "WellKnownURIsRootEmbeddedAssetlinksJson": WellKnownURIsRootEmbeddedAssetlinksJson_1.WellKnownURIsRootEmbeddedAssetlinksJson,
     "WellKnownURIsRootLinks": WellKnownURIsRootLinks_1.WellKnownURIsRootLinks,
+    "WorkflowActionProvider": WorkflowActionProvider_1.WorkflowActionProvider,
+    "WorkflowAvailableActionProvider": WorkflowAvailableActionProvider_1.WorkflowAvailableActionProvider,
+    "WorkflowsValidationDetailProvider": WorkflowsValidationDetailProvider_1.WorkflowsValidationDetailProvider,
     "WsFederationApplication": WsFederationApplication_1.WsFederationApplication,
     "WsFederationApplicationSettings": WsFederationApplicationSettings_1.WsFederationApplicationSettings,
     "WsFederationApplicationSettingsApplication": WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
@@ -4964,6 +5668,11 @@ let typeMap = {
     "ZscalerbyzApplicationSettingsApplication": ZscalerbyzApplicationSettingsApplication_1.ZscalerbyzApplicationSettingsApplication,
     // generated manually from spec
     // TODO: remove
+    '__WORKFLOWS': WorkflowActionProvider_1.WorkflowActionProvider,
+    '__RSA': AgentJsonWebKeyRsaRequest_1.AgentJsonWebKeyRsaRequest,
+    '__EC': AgentJsonWebKeyECRequest_1.AgentJsonWebKeyECRequest,
+    '__AgentJsonSigningKeyResponse__RSA': AgentJsonWebKeyRsaResponse_1.AgentJsonWebKeyRsaResponse,
+    '__AgentJsonSigningKeyResponse__EC': AgentJsonWebKeyECResponse_1.AgentJsonWebKeyECResponse,
     '__ACTIVE_DIRECTORY': AppConfigActiveDirectory_1.AppConfigActiveDirectory,
     '__AUTO_LOGIN': AutoLoginApplication_1.AutoLoginApplication,
     '__BASIC_AUTH': BasicAuthApplication_1.BasicAuthApplication,
@@ -4977,6 +5686,7 @@ let typeMap = {
     '__USER_PROVISIONING': UserProvisioningApplicationFeature_1.UserProvisioningApplicationFeature,
     '__INBOUND_PROVISIONING': InboundProvisioningApplicationFeature_1.InboundProvisioningApplicationFeature,
     '__custom_app': AuthenticatorKeyCustomApp_1.AuthenticatorKeyCustomApp,
+    '__custom_otp': AuthenticatorKeyCustomOtp_1.AuthenticatorKeyCustomOtp,
     '__duo': AuthenticatorKeyDuo_1.AuthenticatorKeyDuo,
     '__okta_email': AuthenticatorKeyEmail_1.AuthenticatorKeyEmail,
     '__google_otp': AuthenticatorKeyGoogleOtp_1.AuthenticatorKeyGoogleOtp,
@@ -5006,21 +5716,25 @@ let typeMap = {
     '__AuthenticatorMethodBase__duo': AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
     '__AuthenticatorMethodBase__cert': AuthenticatorMethodWithVerifiableProperties_1.AuthenticatorMethodWithVerifiableProperties,
     '__AuthenticatorMethodBase__tac': AuthenticatorMethodTac_1.AuthenticatorMethodTac,
+    '__AvailableActionProvider__WORKFLOWS': WorkflowAvailableActionProvider_1.WorkflowAvailableActionProvider,
     '__BehaviorRule__ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
     '__BehaviorRule__ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     '__BehaviorRule__ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
     '__BehaviorRule__VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
+    '__BehaviorRule__ANOMALOUS_ASN': BehaviorRuleASN_1.BehaviorRuleASN,
     '__ACCESS_POLICY': AccessPolicy_1.AccessPolicy,
     '__MFA_ENROLL': AuthenticatorEnrollmentPolicy_1.AuthenticatorEnrollmentPolicy,
     '__OKTA_SIGN_ON': OktaSignOnPolicy_1.OktaSignOnPolicy,
     '__PASSWORD': PasswordPolicy_1.PasswordPolicy,
     '__PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
+    '__DEVICE_SIGNAL_COLLECTION': DeviceSignalCollectionPolicy_1.DeviceSignalCollectionPolicy,
     '__WINDOWS': DeviceAssuranceWindowsPlatform_1.DeviceAssuranceWindowsPlatform,
     '__MACOS': DeviceAssuranceMacOSPlatform_1.DeviceAssuranceMacOSPlatform,
     '__CHROMEOS': DeviceAssuranceChromeOSPlatform_1.DeviceAssuranceChromeOSPlatform,
     '__IOS': DeviceAssuranceIOSPlatform_1.DeviceAssuranceIOSPlatform,
     '__ANDROID': DeviceAssuranceAndroidPlatform_1.DeviceAssuranceAndroidPlatform,
     '__BY_DATE_TIME': ByDateTimeAuthenticatorGracePeriodExpiry_1.ByDateTimeAuthenticatorGracePeriodExpiry,
+    '__BY_SKIP_COUNT': BySkipCountAuthenticatorGracePeriod_1.BySkipCountAuthenticatorGracePeriod,
     '__RUN_WORKFLOW': EntityRiskPolicyRuleActionRunWorkflow_1.EntityRiskPolicyRuleActionRunWorkflow,
     '__TERMINATE_ALL_SESSIONS': EntityRiskPolicyRuleActionTerminateAllSessions_1.EntityRiskPolicyRuleActionTerminateAllSessions,
     '__InlineHookChannel__HTTP': InlineHookChannelHttp_1.InlineHookChannelHttp,
@@ -5035,9 +5749,21 @@ let typeMap = {
     '__splunk_cloud_logstreaming': LogStreamSplunk_1.LogStreamSplunk,
     '__LogStreamPutSchema__aws_eventbridge': LogStreamAwsPutSchema_1.LogStreamAwsPutSchema,
     '__LogStreamPutSchema__splunk_cloud_logstreaming': LogStreamSplunkPutSchema_1.LogStreamSplunkPutSchema,
+    '__IDENTITY_ASSERTION_CUSTOM_AS': IdentityAssertionCustomASConnection_1.IdentityAssertionCustomASConnection,
+    '__STS_VAULT_SECRET': STSVaultSecretConnection_1.STSVaultSecretConnection,
+    '__STS_SERVICE_ACCOUNT': STSServiceAccountConnection_1.STSServiceAccountConnection,
+    '__IDENTITY_ASSERTION_APP_INSTANCE': IdentityAssertionAppInstanceConnection_1.IdentityAssertionAppInstanceConnection,
+    '__ManagedConnectionCreatable__IDENTITY_ASSERTION_CUSTOM_AS': IdentityAssertionCustomASConnectionCreatable_1.IdentityAssertionCustomASConnectionCreatable,
+    '__ManagedConnectionCreatable__STS_VAULT_SECRET': STSVaultSecretConnectionCreatable_1.STSVaultSecretConnectionCreatable,
+    '__ManagedConnectionCreatable__STS_SERVICE_ACCOUNT': STSServiceAccountConnectionCreatable_1.STSServiceAccountConnectionCreatable,
+    '__ManagedConnectionCreatable__IDENTITY_ASSERTION_APP_INSTANCE': IdentityAssertionAppInstanceConnectionCreatable_1.IdentityAssertionAppInstanceConnectionCreatable,
     '__IP': IPNetworkZone_1.IPNetworkZone,
     '__DYNAMIC': DynamicNetworkZone_1.DynamicNetworkZone,
     '__DYNAMIC_V2': EnhancedDynamicNetworkZone_1.EnhancedDynamicNetworkZone,
+    '__OAuth2ClientJsonSigningKeyRequest__RSA': OAuth2ClientJsonWebKeyRsaRequest_1.OAuth2ClientJsonWebKeyRsaRequest,
+    '__OAuth2ClientJsonSigningKeyRequest__EC': OAuth2ClientJsonWebKeyECRequest_1.OAuth2ClientJsonWebKeyECRequest,
+    '__OAuth2ClientJsonSigningKeyResponse__RSA': OAuth2ClientJsonWebKeyRsaResponse_1.OAuth2ClientJsonWebKeyRsaResponse,
+    '__OAuth2ClientJsonSigningKeyResponse__EC': OAuth2ClientJsonWebKeyECResponse_1.OAuth2ClientJsonWebKeyECResponse,
     '__BILLING': OrgBillingContactType_1.OrgBillingContactType,
     '__TECHNICAL': OrgTechnicalContactType_1.OrgTechnicalContactType,
     '__Policy__ACCESS_POLICY': AccessPolicy_1.AccessPolicy,
@@ -5048,6 +5774,7 @@ let typeMap = {
     '__Policy__PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
     '__Policy__POST_AUTH_SESSION': PostAuthSessionPolicy_1.PostAuthSessionPolicy,
     '__Policy__ENTITY_RISK': EntityRiskPolicy_1.EntityRiskPolicy,
+    '__Policy__SESSION_VIOLATION_DETECTION': SessionViolationDetectionPolicy_1.SessionViolationDetectionPolicy,
     '__PolicyRule__ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
     '__PolicyRule__PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
     '__PolicyRule__PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
@@ -5056,8 +5783,13 @@ let typeMap = {
     '__PolicyRule__POST_AUTH_SESSION': PostAuthSessionPolicyRule_1.PostAuthSessionPolicyRule,
     '__PolicyRule__ENTITY_RISK': EntityRiskPolicyRule_1.EntityRiskPolicyRule,
     '__PolicyRule__MFA_ENROLL': AuthenticatorEnrollmentPolicyRule_1.AuthenticatorEnrollmentPolicyRule,
+    '__PolicyRule__SESSION_VIOLATION_DETECTION': SessionViolationDetectionPolicyRule_1.SessionViolationDetectionPolicyRule,
     '__PostAuthSessionFailureActionsObject__RUN_WORKFLOW': PostAuthSessionPolicyRuleRunWorkflow_1.PostAuthSessionPolicyRuleRunWorkflow,
     '__PostAuthSessionFailureActionsObject__TERMINATE_SESSION': PostAuthSessionPolicyRuleTerminateSession_1.PostAuthSessionPolicyRuleTerminateSession,
+    '__PotentialConnection__IDENTITY_ASSERTION_CUSTOM_AS': PotentialIdentityAssertionCustomASConnection_1.PotentialIdentityAssertionCustomASConnection,
+    '__PotentialConnection__STS_VAULT_SECRET': PotentialSTSVaultSecretConnection_1.PotentialSTSVaultSecretConnection,
+    '__PotentialConnection__STS_SERVICE_ACCOUNT': PotentialSTSServiceAccountConnection_1.PotentialSTSServiceAccountConnection,
+    '__PotentialConnection__IDENTITY_ASSERTION_APP_INSTANCE': PotentialIdentityAssertionAppInstanceConnection_1.PotentialIdentityAssertionAppInstanceConnection,
     '__APP_ACCOUNT': PrivilegedResourceAccountAppRequest_1.PrivilegedResourceAccountAppRequest,
     '__OKTA_USER_ACCOUNT': PrivilegedResourceAccountOkta_1.PrivilegedResourceAccountOkta,
     '__APNS': APNSPushProvider_1.APNSPushProvider,
@@ -5099,6 +5831,7 @@ let typeMap = {
     '__MEDIUM': UserRiskLevelExists_1.UserRiskLevelExists,
     '__LOW': UserRiskLevelExists_1.UserRiskLevelExists,
     '__NONE': UserRiskLevelNone_1.UserRiskLevelNone,
+    '__ValidationDetailProvider__WORKFLOWS': WorkflowsValidationDetailProvider_1.WorkflowsValidationDetailProvider,
     '__ASSURANCE': AssuranceMethod_1.AssuranceMethod,
     '__AUTH_METHOD_CHAIN': AuthenticationMethodChainMethod_1.AuthenticationMethodChainMethod,
     '__ID_PROOFING': IdProofingMethod_1.IdProofingMethod,

@@ -23,7 +23,13 @@
  * Do not edit the class manually.
  */
 export declare class DevicePostureChecksIncludeInner {
+  /**
+    * The device posture check key
+    */
   'variableName'?: string;
+  /**
+    * The device posture check value
+    */
   'value'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

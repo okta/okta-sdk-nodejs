@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogIpAddress = void 0;
 class LogIpAddress {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogIpAddress.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogIpAddress = LogIpAddress;
@@ -45,6 +45,12 @@ LogIpAddress.attributeTypeMap = [
     'name': 'ip',
     'baseName': 'ip',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'ipDetails',
+    'baseName': 'ipDetails',
+    'type': 'LogIpDetails',
     'format': ''
   },
   {

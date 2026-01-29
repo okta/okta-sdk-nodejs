@@ -30,12 +30,12 @@ const ServiceAccount_1 = require('./../models/ServiceAccount');
 * Details for managing an Okta user as a service account
 */
 class ServiceAccountDetailsOktaUserAccount extends ServiceAccount_1.ServiceAccount {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(ServiceAccountDetailsOktaUserAccount.attributeTypeMap);
+  }
   constructor() {
     super();
     this.accountType = 'OKTA_USER_ACCOUNT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(ServiceAccountDetailsOktaUserAccount.attributeTypeMap);
   }
 }
 exports.ServiceAccountDetailsOktaUserAccount = ServiceAccountDetailsOktaUserAccount;

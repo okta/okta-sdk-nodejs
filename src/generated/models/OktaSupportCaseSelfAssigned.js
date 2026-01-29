@@ -29,10 +29,10 @@ exports.OktaSupportCaseSelfAssigned = void 0;
 * Customer allows Okta Support access to self-assigned cases. Support cases are self-assigned when an Okta Support team member creates and assigns the case to themselves.
 */
 class OktaSupportCaseSelfAssigned {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSupportCaseSelfAssigned.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSupportCaseSelfAssigned = OktaSupportCaseSelfAssigned;

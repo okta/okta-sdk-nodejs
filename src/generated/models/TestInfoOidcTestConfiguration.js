@@ -29,10 +29,10 @@ exports.TestInfoOidcTestConfiguration = void 0;
 * OIDC test details
 */
 class TestInfoOidcTestConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TestInfoOidcTestConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TestInfoOidcTestConfiguration = TestInfoOidcTestConfiguration;

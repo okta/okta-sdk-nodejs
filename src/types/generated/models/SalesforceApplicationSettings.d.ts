@@ -28,7 +28,7 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { SalesforceApplicationSettingsApplication } from './../models/SalesforceApplicationSettingsApplication';
 export declare class SalesforceApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: SalesforceApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class SalesforceApplicationSettings {
     }[];
   constructor();
 }
-export declare type SalesforceApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type SalesforceApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

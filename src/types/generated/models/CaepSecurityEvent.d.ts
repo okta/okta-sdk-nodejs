@@ -52,4 +52,4 @@ export declare class CaepSecurityEvent {
     }[];
   constructor();
 }
-export declare type CaepSecurityEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
+export type CaepSecurityEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';

@@ -22,6 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { GroupEmbedded } from './../models/GroupEmbedded';
 import { GroupLinks } from './../models/GroupLinks';
 import { GroupProfile } from './../models/GroupProfile';
 import { GroupType } from './../models/GroupType';
@@ -48,12 +49,7 @@ export declare class Group {
   'objectClass'?: Array<string>;
   'profile'?: GroupProfile;
   'type'?: GroupType;
-  /**
-    * Embedded resources related to the group
-    */
-  '_embedded'?: {
-        [key: string]: any;
-    };
+  '_embedded'?: GroupEmbedded;
   '_links'?: GroupLinks;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

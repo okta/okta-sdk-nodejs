@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SmsTemplate = void 0;
 class SmsTemplate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SmsTemplate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SmsTemplate = SmsTemplate;

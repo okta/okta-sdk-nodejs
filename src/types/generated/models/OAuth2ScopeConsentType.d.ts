@@ -25,4 +25,4 @@
 /**
 * Indicates whether a consent dialog is needed for the Scope
 */
-export declare type OAuth2ScopeConsentType = 'FLEXIBLE' | 'IMPLICIT' | 'REQUIRED';
+export type OAuth2ScopeConsentType = 'FLEXIBLE' | 'IMPLICIT' | 'REQUIRED';

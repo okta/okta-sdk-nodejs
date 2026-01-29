@@ -29,10 +29,10 @@ exports.RiscIdentifierChangedEvent = void 0;
 * The subject\'s identifier has changed, which is either an email address or a phone number change
 */
 class RiscIdentifierChangedEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RiscIdentifierChangedEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RiscIdentifierChangedEvent = RiscIdentifierChangedEvent;

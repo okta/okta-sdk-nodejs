@@ -34,6 +34,18 @@ class ListGroupAssignedRoles200ResponseInnerClass {
 exports.ListGroupAssignedRoles200ResponseInnerClass = ListGroupAssignedRoles200ResponseInnerClass;
 ListGroupAssignedRoles200ResponseInnerClass.discriminator = 'type';
 ListGroupAssignedRoles200ResponseInnerClass.mapping = {
-  '*': 'StandardRole',
+  'ACCESS_CERTIFICATIONS_ADMIN': 'CustomRole',
+  'ACCESS_REQUESTS_ADMIN': 'CustomRole',
+  'API_ACCESS_MANAGEMENT_ADMIN': 'StandardRole',
+  'APP_ADMIN': 'StandardRole',
   'CUSTOM': 'CustomRole',
+  'GROUP_MEMBERSHIP_ADMIN': 'StandardRole',
+  'HELP_DESK_ADMIN': 'StandardRole',
+  'MOBILE_ADMIN': 'StandardRole',
+  'ORG_ADMIN': 'StandardRole',
+  'READ_ONLY_ADMIN': 'StandardRole',
+  'REPORT_ADMIN': 'StandardRole',
+  'SUPER_ADMIN': 'StandardRole',
+  'USER_ADMIN': 'StandardRole',
+  'WORKFLOWS_ADMIN': 'CustomRole',
 };

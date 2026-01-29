@@ -49,4 +49,4 @@ export declare class SsprRequirement {
     }[];
   constructor();
 }
-export declare type SsprRequirementAccessControlEnum = 'AUTH_POLICY' | 'LEGACY';
+export type SsprRequirementAccessControlEnum = 'AUTH_POLICY' | 'LEGACY';

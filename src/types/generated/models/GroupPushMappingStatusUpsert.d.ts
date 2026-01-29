@@ -25,4 +25,4 @@
 /**
 * The status of the group push mapping
 */
-export declare type GroupPushMappingStatusUpsert = 'ACTIVE' | 'INACTIVE';
+export type GroupPushMappingStatusUpsert = 'ACTIVE' | 'INACTIVE';

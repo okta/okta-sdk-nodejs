@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ScheduledUserLifecycleAction = void 0;
 class ScheduledUserLifecycleAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ScheduledUserLifecycleAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ScheduledUserLifecycleAction = ScheduledUserLifecycleAction;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectGovernanceResourcesLink = void 0;
 class HrefObjectGovernanceResourcesLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectGovernanceResourcesLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectGovernanceResourcesLink = HrefObjectGovernanceResourcesLink;

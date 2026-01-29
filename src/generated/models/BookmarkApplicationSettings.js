@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BookmarkApplicationSettings = void 0;
 class BookmarkApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BookmarkApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BookmarkApplicationSettings = BookmarkApplicationSettings;

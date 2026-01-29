@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RevokeRefreshTokenHrefObject = void 0;
 class RevokeRefreshTokenHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RevokeRefreshTokenHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RevokeRefreshTokenHrefObject = RevokeRefreshTokenHrefObject;

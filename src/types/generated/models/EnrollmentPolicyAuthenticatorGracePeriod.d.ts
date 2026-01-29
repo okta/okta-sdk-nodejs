@@ -23,11 +23,11 @@
  * Do not edit the class manually.
  */
 /**
-* Specifies the time period required to complete an authenticator enrollment or setup
+* Specifies the [grace period](https://developer.okta.com/docs/concepts/policies/#authenticator-enrollment-policies) configuration for completing an authenticator enrollment or setup
 */
 export declare class EnrollmentPolicyAuthenticatorGracePeriod {
   /**
-    * Grace period type
+    * Grace period type  * `BY_DATE_TIME`: The grace period is defined by a specific date and time. * <x-lifecycle class=\"ea\"></x-lifecycle>`BY_SKIP_COUNT`: The grace period is defined by the number of times the user can skip enrolling the corresponding authenticator.
     */
   'type'?: EnrollmentPolicyAuthenticatorGracePeriodTypeEnum;
   static readonly discriminator: string | undefined;
@@ -48,4 +48,4 @@ export declare class EnrollmentPolicyAuthenticatorGracePeriod {
     }[];
   constructor();
 }
-export declare type EnrollmentPolicyAuthenticatorGracePeriodTypeEnum = 'BY_DATE_TIME';
+export type EnrollmentPolicyAuthenticatorGracePeriodTypeEnum = 'BY_DATE_TIME' | 'BY_SKIP_COUNT';

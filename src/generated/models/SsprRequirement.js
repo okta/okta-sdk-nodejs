@@ -29,10 +29,10 @@ exports.SsprRequirement = void 0;
 * <x-lifecycle class=\"oie\"></x-lifecycle> Describes the initial and secondary authenticator requirements a user needs to reset their password
 */
 class SsprRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SsprRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SsprRequirement = SsprRequirement;

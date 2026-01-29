@@ -52,5 +52,5 @@ export declare class DeviceUser {
     }[];
   constructor();
 }
-export declare type DeviceUserManagementStatusEnum = 'MANAGED' | 'NOT_MANAGED';
-export declare type DeviceUserScreenLockTypeEnum = 'NONE' | 'PASSCODE' | 'BIOMETRIC';
+export type DeviceUserManagementStatusEnum = 'MANAGED' | 'NOT_MANAGED';
+export type DeviceUserScreenLockTypeEnum = 'NONE' | 'PASSCODE' | 'BIOMETRIC';

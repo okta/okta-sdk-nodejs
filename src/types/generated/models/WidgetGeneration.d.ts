@@ -25,4 +25,4 @@
 /**
 * The generation of the Sign-in Widget
 */
-export declare type WidgetGeneration = 'G2' | 'G3';
+export type WidgetGeneration = 'G2' | 'G3';

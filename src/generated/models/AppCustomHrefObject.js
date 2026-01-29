@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppCustomHrefObject = void 0;
 class AppCustomHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppCustomHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppCustomHrefObject = AppCustomHrefObject;

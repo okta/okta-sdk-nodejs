@@ -29,10 +29,10 @@ exports.PasswordPolicyPasswordSettingsAge = void 0;
 * Age settings
 */
 class PasswordPolicyPasswordSettingsAge {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyPasswordSettingsAge.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyPasswordSettingsAge = PasswordPolicyPasswordSettingsAge;

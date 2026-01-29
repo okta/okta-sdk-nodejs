@@ -65,5 +65,5 @@ export declare class TrendMicroApexOneServiceApplication {
     }[];
   constructor();
 }
-export declare type TrendMicroApexOneServiceApplicationNameEnum = 'trendmicroapexoneservice';
-export declare type TrendMicroApexOneServiceApplicationSignOnModeEnum = 'SAML_2_0';
+export type TrendMicroApexOneServiceApplicationNameEnum = 'trendmicroapexoneservice';
+export type TrendMicroApexOneServiceApplicationSignOnModeEnum = 'SAML_2_0';

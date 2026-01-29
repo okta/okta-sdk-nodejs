@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PolicyTypeSimulation = 'ACCESS_POLICY' | 'MFA_ENROLL' | 'OKTA_SIGN_ON' | 'PROFILE_ENROLLMENT';
+export type PolicyTypeSimulation = 'ACCESS_POLICY' | 'MFA_ENROLL' | 'OKTA_SIGN_ON' | 'PROFILE_ENROLLMENT';

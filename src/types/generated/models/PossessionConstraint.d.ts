@@ -87,11 +87,11 @@ export declare class PossessionConstraint {
     }[];
   constructor();
 }
-export declare type PossessionConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
-export declare type PossessionConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';
-export declare type PossessionConstraintDeviceBoundEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type PossessionConstraintHardwareProtectionEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type PossessionConstraintPhishingResistantEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type PossessionConstraintUserPresenceEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type PossessionConstraintUserVerificationEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type PossessionConstraintUserVerificationMethodsEnum = 'BIOMETRICS' | 'PIN';
+export type PossessionConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
+export type PossessionConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';
+export type PossessionConstraintDeviceBoundEnum = 'OPTIONAL' | 'REQUIRED';
+export type PossessionConstraintHardwareProtectionEnum = 'OPTIONAL' | 'REQUIRED';
+export type PossessionConstraintPhishingResistantEnum = 'OPTIONAL' | 'REQUIRED';
+export type PossessionConstraintUserPresenceEnum = 'OPTIONAL' | 'REQUIRED';
+export type PossessionConstraintUserVerificationEnum = 'OPTIONAL' | 'REQUIRED';
+export type PossessionConstraintUserVerificationMethodsEnum = 'BIOMETRICS' | 'PIN';

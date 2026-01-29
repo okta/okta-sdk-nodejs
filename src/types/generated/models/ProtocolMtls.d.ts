@@ -49,4 +49,4 @@ export declare class ProtocolMtls {
     }[];
   constructor();
 }
-export declare type ProtocolMtlsTypeEnum = 'MTLS';
+export type ProtocolMtlsTypeEnum = 'MTLS';

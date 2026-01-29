@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PageRootLinks = void 0;
 class PageRootLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PageRootLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PageRootLinks = PageRootLinks;

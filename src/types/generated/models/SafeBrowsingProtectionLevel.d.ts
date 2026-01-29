@@ -25,4 +25,4 @@
 /**
 * Represents the current value of the Safe Browsing protection level
 */
-export declare type SafeBrowsingProtectionLevel = 'ENHANCED_PROTECTION' | 'NO_SAFE_BROWSING' | 'STANDARD_PROTECTION';
+export type SafeBrowsingProtectionLevel = 'ENHANCED_PROTECTION' | 'NO_SAFE_BROWSING' | 'STANDARD_PROTECTION';

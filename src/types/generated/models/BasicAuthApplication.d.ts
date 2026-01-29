@@ -47,4 +47,4 @@ export declare class BasicAuthApplication extends Application {
     }[];
   constructor();
 }
-export declare type BasicAuthApplicationNameEnum = 'template_basic_auth';
+export type BasicAuthApplicationNameEnum = 'template_basic_auth';

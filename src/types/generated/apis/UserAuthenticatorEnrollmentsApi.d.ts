@@ -48,14 +48,16 @@ export declare class UserAuthenticatorEnrollmentsApiRequestFactory extends BaseA
      * Retrieve an authenticator enrollment
      * @param userId ID of an existing Okta user
      * @param enrollmentId Unique identifier of an enrollment
+     * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
      */
-  getAuthenticatorEnrollment(userId: string, enrollmentId: string, _options?: Configuration): Promise<RequestContext>;
+  getAuthenticatorEnrollment(userId: string, enrollmentId: string, discloseIdentifiers?: Array<'phone'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all authenticator enrollments of the specified user
      * List all authenticator enrollments
      * @param userId ID of an existing Okta user
+     * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
      */
-  listAuthenticatorEnrollments(userId: string, _options?: Configuration): Promise<RequestContext>;
+  listAuthenticatorEnrollments(userId: string, discloseIdentifiers?: Array<'phone'>, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class UserAuthenticatorEnrollmentsApiResponseProcessor {
   /**

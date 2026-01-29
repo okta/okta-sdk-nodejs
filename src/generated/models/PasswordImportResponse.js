@@ -29,10 +29,10 @@ exports.PasswordImportResponse = void 0;
 * Password import inline hook response
 */
 class PasswordImportResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordImportResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordImportResponse = PasswordImportResponse;

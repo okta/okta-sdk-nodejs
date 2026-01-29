@@ -65,5 +65,5 @@ export declare class SlackApplication {
     }[];
   constructor();
 }
-export declare type SlackApplicationNameEnum = 'slack';
-export declare type SlackApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';
+export type SlackApplicationNameEnum = 'slack';
+export type SlackApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';

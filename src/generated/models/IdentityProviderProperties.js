@@ -29,10 +29,10 @@ exports.IdentityProviderProperties = void 0;
 * The properties in the IdP `properties` object vary depending on the IdP type
 */
 class IdentityProviderProperties {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentityProviderProperties.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentityProviderProperties = IdentityProviderProperties;
@@ -54,6 +54,12 @@ IdentityProviderProperties.attributeTypeMap = [
     'name': 'ialValue',
     'baseName': 'ialValue',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'idvMetadata',
+    'baseName': 'idvMetadata',
+    'type': 'IdentityProviderPropertiesIdvMetadata',
     'format': ''
   },
   {

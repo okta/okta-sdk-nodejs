@@ -29,10 +29,10 @@ exports.UserImportRequestDataContextJob = void 0;
 * The details of the running import job
 */
 class UserImportRequestDataContextJob {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataContextJob.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataContextJob = UserImportRequestDataContextJob;

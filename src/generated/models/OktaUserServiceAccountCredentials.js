@@ -29,10 +29,10 @@ exports.OktaUserServiceAccountCredentials = void 0;
 * Credentials for an Okta user
 */
 class OktaUserServiceAccountCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaUserServiceAccountCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaUserServiceAccountCredentials = OktaUserServiceAccountCredentials;

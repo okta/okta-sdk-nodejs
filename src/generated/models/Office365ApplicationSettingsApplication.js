@@ -29,10 +29,10 @@ exports.Office365ApplicationSettingsApplication = void 0;
 * Office365 app instance properties
 */
 class Office365ApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Office365ApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Office365ApplicationSettingsApplication = Office365ApplicationSettingsApplication;

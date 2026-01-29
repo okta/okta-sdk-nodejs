@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2ScopeConsentGrantEmbeddedScope = void 0;
 class OAuth2ScopeConsentGrantEmbeddedScope {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ScopeConsentGrantEmbeddedScope.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ScopeConsentGrantEmbeddedScope = OAuth2ScopeConsentGrantEmbeddedScope;

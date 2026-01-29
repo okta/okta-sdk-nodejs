@@ -29,10 +29,10 @@ exports.ApplicationGroupAssignment = void 0;
 * The Application Group object that defines a group of users\' app-specific profile and credentials for an app
 */
 class ApplicationGroupAssignment {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationGroupAssignment.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationGroupAssignment = ApplicationGroupAssignment;

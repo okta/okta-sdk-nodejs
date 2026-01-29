@@ -29,10 +29,10 @@ exports.PasswordPolicyDelegationSettings = void 0;
 * Specifies how to handle password delegation
 */
 class PasswordPolicyDelegationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyDelegationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyDelegationSettings = PasswordPolicyDelegationSettings;

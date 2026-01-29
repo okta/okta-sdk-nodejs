@@ -65,5 +65,5 @@ export declare class ZscalerbyzApplication {
     }[];
   constructor();
 }
-export declare type ZscalerbyzApplicationNameEnum = 'zscalerbyz';
-export declare type ZscalerbyzApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';
+export type ZscalerbyzApplicationNameEnum = 'zscalerbyz';
+export type ZscalerbyzApplicationSignOnModeEnum = 'BROWSER_PLUGIN' | 'SAML_2_0';

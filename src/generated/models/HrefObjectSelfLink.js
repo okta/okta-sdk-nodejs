@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectSelfLink = void 0;
 class HrefObjectSelfLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectSelfLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectSelfLink = HrefObjectSelfLink;

@@ -28,7 +28,7 @@ import { StreamConfiguration } from './../models/StreamConfiguration';
  * Type
  * @export
  */
-export declare type GetSsfStreams200Response = Array<StreamConfiguration> | StreamConfiguration;
+export type GetSsfStreams200Response = Array<StreamConfiguration> | StreamConfiguration;
 /**
 * @type GetSsfStreams200ResponseClass
 * @export

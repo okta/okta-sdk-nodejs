@@ -25,4 +25,4 @@
 /**
 * User verification setting
 */
-export declare type CustomAppUserVerificationEnum = 'PREFERRED' | 'REQUIRED';
+export type CustomAppUserVerificationEnum = 'PREFERRED' | 'REQUIRED';

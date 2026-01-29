@@ -38,6 +38,10 @@ export declare class IdpPolicyRuleActionIdp {
     * Required if `idpSelectionType` is set to `DYNAMIC`
     */
   'matchCriteria'?: Array<IdpPolicyRuleActionMatchCriteria>;
+  /**
+    * Specifies whether to fall back to `OKTA` if authentication with the configured identity provider fails
+    */
+  'shouldFallBackToOkta'?: boolean;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

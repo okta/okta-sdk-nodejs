@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* User verification setting. Possible values `DISCOURAGED` (the authenticator isn\'t asked to perform user verification, but may do so at its discretion), `PREFERRED` (the client uses an authenticator capable of user verification if possible), or `REQUIRED`(the client uses only an authenticator capable of user verification)
+* User verification settings. Possible values `DISCOURAGED` (the authenticator isn\'t asked to perform user verification, but may do so at its discretion), `PREFERRED` (the client uses an authenticator capable of user verification if possible), or `REQUIRED` (the client uses only an authenticator capable of user verification)
 */
-export declare type UserVerificationEnum = 'DISCOURAGED' | 'PREFERRED' | 'REQUIRED';
+export type UserVerificationEnum = 'DISCOURAGED' | 'PREFERRED' | 'REQUIRED';

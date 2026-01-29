@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertionConditions = void 0;
 * Provides a JSON representation of the `<saml:Conditions>` element of the SAML assertion
 */
 class SAMLPayLoadDataAssertionConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionConditions = SAMLPayLoadDataAssertionConditions;

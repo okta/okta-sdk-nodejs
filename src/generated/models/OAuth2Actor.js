@@ -29,10 +29,10 @@ exports.OAuth2Actor = void 0;
 * User that created the object
 */
 class OAuth2Actor {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2Actor.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2Actor = OAuth2Actor;

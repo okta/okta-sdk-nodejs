@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentitySourceSession = void 0;
 class IdentitySourceSession {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentitySourceSession.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentitySourceSession = IdentitySourceSession;

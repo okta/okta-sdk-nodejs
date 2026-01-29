@@ -25,4 +25,4 @@
 /**
 * Agent types that are being monitored
 */
-export declare type AgentType = 'AD' | 'IWA' | 'LDAP' | 'MFA' | 'OPP' | 'RUM' | 'Radius';
+export type AgentType = 'AD' | 'IWA' | 'LDAP' | 'MFA' | 'OPP' | 'RUM' | 'Radius';

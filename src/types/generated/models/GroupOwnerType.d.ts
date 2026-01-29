@@ -25,4 +25,4 @@
 /**
 * The entity type of the owner
 */
-export declare type GroupOwnerType = 'GROUP' | 'USER';
+export type GroupOwnerType = 'GROUP' | 'USER';

@@ -29,10 +29,10 @@ exports.PolicyPeopleCondition = void 0;
 * Identifies users and groups that are used together
 */
 class PolicyPeopleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyPeopleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyPeopleCondition = PolicyPeopleCondition;

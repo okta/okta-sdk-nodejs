@@ -29,10 +29,10 @@ exports.DeviceAssuranceMacOSPlatformThirdPartySignalProviders = void 0;
 * Settings for third-party signal providers (based on the `MACOS` platform)
 */
 class DeviceAssuranceMacOSPlatformThirdPartySignalProviders {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceMacOSPlatformThirdPartySignalProviders.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceMacOSPlatformThirdPartySignalProviders = DeviceAssuranceMacOSPlatformThirdPartySignalProviders;

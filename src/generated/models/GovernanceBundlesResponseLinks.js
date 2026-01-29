@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GovernanceBundlesResponseLinks = void 0;
 class GovernanceBundlesResponseLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GovernanceBundlesResponseLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GovernanceBundlesResponseLinks = GovernanceBundlesResponseLinks;
@@ -44,7 +44,7 @@ GovernanceBundlesResponseLinks.attributeTypeMap = [
   {
     'name': 'next',
     'baseName': 'next',
-    'type': 'HrefObject',
+    'type': 'HrefObjectNextLink',
     'format': ''
   }
 ];

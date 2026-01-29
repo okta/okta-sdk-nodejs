@@ -29,10 +29,10 @@ exports.OAuthEndpoints = void 0;
 * The `OAUTH2` and `OIDC` protocols support the `authorization` and `token` endpoints. Also, the `OIDC` protocol supports the `userInfo` and `jwks` endpoints.  The IdP Authorization Server (AS) endpoints are currently defined as part of the [IdP provider]((https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProvider/#tag/IdentityProvider/operation/createIdentityProvider!path=type&t=request)) and are read-only.
 */
 class OAuthEndpoints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthEndpoints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthEndpoints = OAuthEndpoints;

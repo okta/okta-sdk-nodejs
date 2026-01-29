@@ -29,10 +29,10 @@ exports.ScimScimServerConfigPatch = void 0;
 * PATCH operation options
 */
 class ScimScimServerConfigPatch {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ScimScimServerConfigPatch.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ScimScimServerConfigPatch = ScimScimServerConfigPatch;

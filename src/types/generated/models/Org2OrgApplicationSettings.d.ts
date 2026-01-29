@@ -28,7 +28,7 @@ import { OINSaml20ApplicationSettingsSignOn } from './../models/OINSaml20Applica
 import { Org2OrgApplicationSettingsApplication } from './../models/Org2OrgApplicationSettingsApplication';
 export declare class Org2OrgApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: Org2OrgApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class Org2OrgApplicationSettings {
     }[];
   constructor();
 }
-export declare type Org2OrgApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type Org2OrgApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

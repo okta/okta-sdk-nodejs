@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SAMLPayLoadDataAssertionClaimsValueAttributeValuesInnerAttributes = void 0;
 class SAMLPayLoadDataAssertionClaimsValueAttributeValuesInnerAttributes {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionClaimsValueAttributeValuesInnerAttributes.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionClaimsValueAttributeValuesInnerAttributes = SAMLPayLoadDataAssertionClaimsValueAttributeValuesInnerAttributes;

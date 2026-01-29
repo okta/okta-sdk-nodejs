@@ -22,7 +22,7 @@ export declare class BehaviorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates a behavior detection rule
      * Activate a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -34,19 +34,19 @@ export declare class BehaviorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Deactivates a behavior detection rule
      * Deactivate a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a Behavior Detection Rule by `behaviorId`
      * Delete a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a Behavior Detection Rule by `behaviorId`
      * Retrieve a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
@@ -57,7 +57,7 @@ export declare class BehaviorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Replaces a Behavior Detection Rule by `behaviorId`
      * Replace a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      * @param rule
      */
   replaceBehaviorDetectionRule(behaviorId: string, rule: BehaviorRule, _options?: Configuration): Promise<RequestContext>;

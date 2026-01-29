@@ -29,10 +29,10 @@ exports.TestInfo = void 0;
 * Integration Testing Information
 */
 class TestInfo {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TestInfo.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TestInfo = TestInfo;

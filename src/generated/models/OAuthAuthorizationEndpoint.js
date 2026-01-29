@@ -29,10 +29,10 @@ exports.OAuthAuthorizationEndpoint = void 0;
 * Endpoint for an [OAuth 2.0 Authorization Server (AS)](https://tools.ietf.org/html/rfc6749#page-18)
 */
 class OAuthAuthorizationEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthAuthorizationEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthAuthorizationEndpoint = OAuthAuthorizationEndpoint;

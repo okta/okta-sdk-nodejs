@@ -70,4 +70,4 @@ export declare class StreamConfiguration {
     }[];
   constructor();
 }
-export declare type StreamConfigurationFormatEnum = 'iss_sub';
+export type StreamConfigurationFormatEnum = 'iss_sub';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorSupported = void 0;
 class UserFactorSupported {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorSupported.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorSupported = UserFactorSupported;

@@ -32,7 +32,7 @@ export declare class SignInPage {
   'contentSecurityPolicySetting'?: ContentSecurityPolicySetting;
   'widgetCustomizations'?: SignInPageWidgetCustomizations;
   /**
-    * The version specified as a [Semantic Version](https://semver.org/).
+    * The version specified as a [Semantic Version](https://semver.org/). This value can be a wildcard (`*`), a major version range (for example, `^2`), a major-only version (for example, `7`), or a specific `Major.Minor` version (for example, `5.15`).
     */
   'widgetVersion'?: string;
   static readonly discriminator: string | undefined;

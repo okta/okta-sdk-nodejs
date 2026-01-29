@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor, AssignRoleRequest } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, StandardRoleAssignmentSchema } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -33,7 +33,7 @@ describe('User Role API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Assign USER_ADMIN role to the user
-    const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
+    const assignRoleRequest: StandardRoleAssignmentSchema = { type: 'USER_ADMIN'  };
     const role = await client.roleAssignmentApi.assignRoleToUser({
       userId: createdUser.id,
       assignRoleRequest

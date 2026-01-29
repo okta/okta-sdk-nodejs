@@ -108,4 +108,4 @@ export declare class OrgSetting {
     }[];
   constructor();
 }
-export declare type OrgSettingStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type OrgSettingStatusEnum = 'ACTIVE' | 'INACTIVE';

@@ -55,23 +55,23 @@ export declare class Oauth2Authentication implements SecurityAuthentication {
   getName(): string;
   applySecurityAuthentication(context: RequestContext): void;
 }
-export declare type AuthMethods = {
+export type AuthMethods = {
     'default'?: SecurityAuthentication;
     'apiToken'?: SecurityAuthentication;
     'oauth2'?: SecurityAuthentication;
 };
-export declare type ApiKeyConfiguration = string;
-export declare type HttpBasicConfiguration = {
+export type ApiKeyConfiguration = string;
+export type HttpBasicConfiguration = {
     'username': string;
     'password': string;
 };
-export declare type HttpBearerConfiguration = {
+export type HttpBearerConfiguration = {
     tokenProvider: TokenProvider;
 };
-export declare type OAuth2Configuration = {
+export type OAuth2Configuration = {
     accessToken: string;
 };
-export declare type AuthMethodsConfiguration = {
+export type AuthMethodsConfiguration = {
     'default'?: SecurityAuthentication;
     'apiToken'?: ApiKeyConfiguration;
     'oauth2'?: OAuth2Configuration;

@@ -29,15 +29,27 @@ exports.CaepSessionRevokedEvent = void 0;
 * The session of the subject was revoked
 */
 class CaepSessionRevokedEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepSessionRevokedEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepSessionRevokedEvent = CaepSessionRevokedEvent;
 CaepSessionRevokedEvent.discriminator = undefined;
 CaepSessionRevokedEvent.attributeTypeMap = [
+  {
+    'name': 'current_ip',
+    'baseName': 'current_ip',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'current_user_agent',
+    'baseName': 'current_user_agent',
+    'type': 'string',
+    'format': ''
+  },
   {
     'name': 'event_timestamp',
     'baseName': 'event_timestamp',
@@ -45,15 +57,33 @@ CaepSessionRevokedEvent.attributeTypeMap = [
     'format': 'int64'
   },
   {
+    'name': 'initiating_entity',
+    'baseName': 'initiating_entity',
+    'type': 'CaepSessionRevokedEventInitiatingEntityEnum',
+    'format': ''
+  },
+  {
+    'name': 'last_known_ip',
+    'baseName': 'last_known_ip',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'last_known_user_agent',
+    'baseName': 'last_known_user_agent',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'reason_admin',
     'baseName': 'reason_admin',
-    'type': 'CaepCredentialChangeEventReasonAdmin',
+    'type': 'CaepDeviceComplianceChangeEventReasonAdmin',
     'format': ''
   },
   {
     'name': 'reason_user',
     'baseName': 'reason_user',
-    'type': 'CaepCredentialChangeEventReasonUser',
+    'type': 'CaepDeviceComplianceChangeEventReasonUser',
     'format': ''
   },
   {

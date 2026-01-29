@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorWebAuthn = void 0;
 const UserFactor_1 = require('./../models/UserFactor');
 class UserFactorWebAuthn extends UserFactor_1.UserFactor {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorWebAuthn.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorType = 'webauthn';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorWebAuthn.attributeTypeMap);
   }
 }
 exports.UserFactorWebAuthn = UserFactorWebAuthn;

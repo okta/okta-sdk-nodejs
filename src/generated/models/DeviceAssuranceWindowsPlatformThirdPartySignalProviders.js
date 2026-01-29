@@ -29,10 +29,10 @@ exports.DeviceAssuranceWindowsPlatformThirdPartySignalProviders = void 0;
 * Settings for third-party signal providers (based on the `WINDOWS` platform)
 */
 class DeviceAssuranceWindowsPlatformThirdPartySignalProviders {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceWindowsPlatformThirdPartySignalProviders.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceWindowsPlatformThirdPartySignalProviders = DeviceAssuranceWindowsPlatformThirdPartySignalProviders;

@@ -29,10 +29,10 @@ exports.OINSaml20ApplicationSettingsSignOn = void 0;
 * Contains SAML 2.0 sign-on mode attributes. > **Note:** Set `destinationOverride` to configure any other SAML 2.0 attributes in this section.
 */
 class OINSaml20ApplicationSettingsSignOn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OINSaml20ApplicationSettingsSignOn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OINSaml20ApplicationSettingsSignOn = OINSaml20ApplicationSettingsSignOn;

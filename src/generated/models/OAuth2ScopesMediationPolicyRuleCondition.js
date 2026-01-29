@@ -29,10 +29,10 @@ exports.OAuth2ScopesMediationPolicyRuleCondition = void 0;
 * Array of scopes that the condition includes
 */
 class OAuth2ScopesMediationPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ScopesMediationPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ScopesMediationPolicyRuleCondition = OAuth2ScopesMediationPolicyRuleCondition;

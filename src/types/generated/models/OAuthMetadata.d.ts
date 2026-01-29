@@ -140,4 +140,4 @@ export declare class OAuthMetadata {
     }[];
   constructor();
 }
-export declare type OAuthMetadataDpopSigningAlgValuesSupportedEnum = 'ES256' | 'ES384' | 'ES512' | 'RS256' | 'RS384' | 'RS512';
+export type OAuthMetadataDpopSigningAlgValuesSupportedEnum = 'ES256' | 'ES384' | 'ES512' | 'RS256' | 'RS384' | 'RS512';

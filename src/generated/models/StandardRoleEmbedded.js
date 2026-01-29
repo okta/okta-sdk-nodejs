@@ -29,10 +29,10 @@ exports.StandardRoleEmbedded = void 0;
 * Optional embedded resources for the role assignment
 */
 class StandardRoleEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StandardRoleEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StandardRoleEmbedded = StandardRoleEmbedded;

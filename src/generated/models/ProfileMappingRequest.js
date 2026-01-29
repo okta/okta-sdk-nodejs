@@ -29,10 +29,10 @@ exports.ProfileMappingRequest = void 0;
 * The updated request body properties
 */
 class ProfileMappingRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProfileMappingRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProfileMappingRequest = ProfileMappingRequest;

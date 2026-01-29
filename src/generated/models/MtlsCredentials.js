@@ -29,10 +29,10 @@ exports.MtlsCredentials = void 0;
 * Certificate chain description for verifying assertions from the Smart Card
 */
 class MtlsCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return MtlsCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.MtlsCredentials = MtlsCredentials;

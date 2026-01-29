@@ -29,10 +29,10 @@ exports.FulfillmentRequest = void 0;
 * Fulfillment request
 */
 class FulfillmentRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FulfillmentRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FulfillmentRequest = FulfillmentRequest;

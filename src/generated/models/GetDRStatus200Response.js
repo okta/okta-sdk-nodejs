@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GetDRStatus200Response = void 0;
 class GetDRStatus200Response {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GetDRStatus200Response.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GetDRStatus200Response = GetDRStatus200Response;

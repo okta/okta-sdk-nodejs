@@ -29,10 +29,10 @@ exports.EnhancedDynamicNetworkZoneAsns = void 0;
 * The list of ASNs associated with an Enhanced Dynamic Network Zone
 */
 class EnhancedDynamicNetworkZoneAsns {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnhancedDynamicNetworkZoneAsns.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnhancedDynamicNetworkZoneAsns = EnhancedDynamicNetworkZoneAsns;
@@ -42,6 +42,12 @@ EnhancedDynamicNetworkZoneAsns.attributeTypeMap = [
     'name': 'include',
     'baseName': 'include',
     'type': 'EnhancedDynamicNetworkZoneAsnsInclude',
+    'format': ''
+  },
+  {
+    'name': 'exclude',
+    'baseName': 'exclude',
+    'type': 'EnhancedDynamicNetworkZoneAsnsExclude',
     'format': ''
   }
 ];

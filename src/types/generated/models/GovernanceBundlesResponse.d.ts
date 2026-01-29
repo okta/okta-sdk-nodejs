@@ -25,6 +25,9 @@
 import { GovernanceBundle } from './../models/GovernanceBundle';
 import { GovernanceBundlesResponseLinks } from './../models/GovernanceBundlesResponseLinks';
 export declare class GovernanceBundlesResponse {
+  /**
+    * List of governance bundles
+    */
   'bundles'?: Array<GovernanceBundle>;
   '_links'?: GovernanceBundlesResponseLinks;
   static readonly discriminator: string | undefined;

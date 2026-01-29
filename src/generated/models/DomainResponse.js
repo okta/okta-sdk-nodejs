@@ -29,10 +29,10 @@ exports.DomainResponse = void 0;
 * The properties that define an individual domain.
 */
 class DomainResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DomainResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DomainResponse = DomainResponse;
@@ -53,7 +53,7 @@ DomainResponse.attributeTypeMap = [
   {
     'name': 'dnsRecords',
     'baseName': 'dnsRecords',
-    'type': 'Array<DNSRecord>',
+    'type': 'Array<DNSRecordDomains>',
     'format': ''
   },
   {

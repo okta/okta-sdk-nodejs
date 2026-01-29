@@ -47,4 +47,4 @@ export declare class BulkUpsertRequestBody {
     }[];
   constructor();
 }
-export declare type BulkUpsertRequestBodyEntityTypeEnum = 'USERS';
+export type BulkUpsertRequestBodyEntityTypeEnum = 'USERS';

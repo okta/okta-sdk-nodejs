@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PolicyContextDevice = void 0;
 class PolicyContextDevice {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyContextDevice.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyContextDevice = PolicyContextDevice;

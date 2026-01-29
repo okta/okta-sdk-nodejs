@@ -29,10 +29,10 @@ exports.Provisioning = void 0;
 * Specifies the behavior for just-in-time (JIT) provisioning of an IdP user as a new Okta user and their group memberships
 */
 class Provisioning {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Provisioning.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Provisioning = Provisioning;

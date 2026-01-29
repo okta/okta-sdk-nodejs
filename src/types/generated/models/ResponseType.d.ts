@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ResponseType = 'code' | 'id_token' | 'none' | 'token';
+export type ResponseType = 'code' | 'id_token' | 'none' | 'token';

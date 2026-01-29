@@ -29,10 +29,10 @@ exports.ProvisioningSuspendedCondition = void 0;
 * Behavior for a previously suspended IdP user during authentication. Not supported with OIDC IdPs.
 */
 class ProvisioningSuspendedCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningSuspendedCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningSuspendedCondition = ProvisioningSuspendedCondition;

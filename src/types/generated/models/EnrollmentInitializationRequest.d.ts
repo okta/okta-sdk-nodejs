@@ -55,4 +55,4 @@ export declare class EnrollmentInitializationRequest {
     }[];
   constructor();
 }
-export declare type EnrollmentInitializationRequestFulfillmentProviderEnum = 'yubico';
+export type EnrollmentInitializationRequestFulfillmentProviderEnum = 'yubico';

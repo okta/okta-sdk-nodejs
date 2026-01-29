@@ -14,10 +14,16 @@
 import { Collection } from '../../collection';
 import { HttpFile } from '../http/http';
 import { Configuration } from '../configuration';
+import { AIAgent } from '../models/AIAgent';
+import { AIAgentOperationListResponse } from '../models/AIAgentOperationListResponse';
+import { AIAgentOperationResponse } from '../models/AIAgentOperationResponse';
 import { APIServiceIntegrationInstance } from '../models/APIServiceIntegrationInstance';
 import { APIServiceIntegrationInstanceSecret } from '../models/APIServiceIntegrationInstanceSecret';
+import { AddJwkRequest } from '../models/AddJwkRequest';
 import { AdminConsoleSettings } from '../models/AdminConsoleSettings';
 import { AgentAction } from '../models/AgentAction';
+import { AgentJsonSigningKeyRequest } from '../models/AgentJsonSigningKeyRequest';
+import { AgentJsonSigningKeyResponse } from '../models/AgentJsonSigningKeyResponse';
 import { AgentPool } from '../models/AgentPool';
 import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
 import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
@@ -38,24 +44,29 @@ import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment
 import { ApplicationLayout } from '../models/ApplicationLayout';
 import { ApplicationLayouts } from '../models/ApplicationLayouts';
 import { AssignGroupOwnerRequestBody } from '../models/AssignGroupOwnerRequestBody';
+import { AssignRoleToClientRequest } from '../models/AssignRoleToClientRequest';
+import { AssignRoleToGroup200Response } from '../models/AssignRoleToGroup200Response';
 import { AssignRoleToGroupRequest } from '../models/AssignRoleToGroupRequest';
 import { AssignRoleToUser201Response } from '../models/AssignRoleToUser201Response';
 import { AssignRoleToUserRequest } from '../models/AssignRoleToUserRequest';
 import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
+import { AuthSettings } from '../models/AuthSettings';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
 import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
 import { AuthenticatorEnrollmentCreateRequestTac } from '../models/AuthenticatorEnrollmentCreateRequestTac';
 import { AuthenticatorMethodBase } from '../models/AuthenticatorMethodBase';
 import { AuthenticatorMethodType } from '../models/AuthenticatorMethodType';
+import { AuthenticatorMethodTypeWebAuthn } from '../models/AuthenticatorMethodTypeWebAuthn';
 import { AuthorizationServer } from '../models/AuthorizationServer';
 import { AuthorizationServerJsonWebKey } from '../models/AuthorizationServerJsonWebKey';
 import { AuthorizationServerPolicy } from '../models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from '../models/AuthorizationServerPolicyRule';
 import { AuthorizationServerPolicyRuleRequest } from '../models/AuthorizationServerPolicyRuleRequest';
 import { AutoAssignAdminAppSetting } from '../models/AutoAssignAdminAppSetting';
+import { AvailableActions } from '../models/AvailableActions';
 import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
@@ -76,6 +87,7 @@ import { CatalogApplication } from '../models/CatalogApplication';
 import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
 import { ChildOrg } from '../models/ChildOrg';
 import { ClientPrivilegesSetting } from '../models/ClientPrivilegesSetting';
+import { CreateAIAgentRequest } from '../models/CreateAIAgentRequest';
 import { CreateBrandRequest } from '../models/CreateBrandRequest';
 import { CreateGroupPushMappingRequest } from '../models/CreateGroupPushMappingRequest';
 import { CreateGroupRequest } from '../models/CreateGroupRequest';
@@ -94,6 +106,11 @@ import { CsrMetadata } from '../models/CsrMetadata';
 import { CustomAAGUIDCreateRequestObject } from '../models/CustomAAGUIDCreateRequestObject';
 import { CustomAAGUIDResponseObject } from '../models/CustomAAGUIDResponseObject';
 import { CustomAAGUIDUpdateRequestObject } from '../models/CustomAAGUIDUpdateRequestObject';
+import { CustomTelephonyProviderCredentialCreateRequest } from '../models/CustomTelephonyProviderCredentialCreateRequest';
+import { CustomTelephonyProviderCredentialResponse } from '../models/CustomTelephonyProviderCredentialResponse';
+import { CustomTelephonyProviderCredentialSendTestRequest } from '../models/CustomTelephonyProviderCredentialSendTestRequest';
+import { CustomTelephonyProviderCredentialUpdateRequest } from '../models/CustomTelephonyProviderCredentialUpdateRequest';
+import { CustomTelephonyProviderCredentialsResponse } from '../models/CustomTelephonyProviderCredentialsResponse';
 import { DesktopMFAEnforceNumberMatchingChallengeOrgSetting } from '../models/DesktopMFAEnforceNumberMatchingChallengeOrgSetting';
 import { DesktopMFARecoveryPinOrgSetting } from '../models/DesktopMFARecoveryPinOrgSetting';
 import { DetailedHookKeyInstance } from '../models/DetailedHookKeyInstance';
@@ -138,17 +155,21 @@ import { FederatedClaimRequestBody } from '../models/FederatedClaimRequestBody';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { FulfillmentRequest } from '../models/FulfillmentRequest';
 import { GetDRStatus200Response } from '../models/GetDRStatus200Response';
+import { GetJwk200Response } from '../models/GetJwk200Response';
 import { GetSsfStreams200Response } from '../models/GetSsfStreams200Response';
 import { GovernanceBundle } from '../models/GovernanceBundle';
 import { GovernanceBundleCreateRequest } from '../models/GovernanceBundleCreateRequest';
 import { GovernanceBundleUpdateRequest } from '../models/GovernanceBundleUpdateRequest';
 import { GovernanceBundlesResponse } from '../models/GovernanceBundlesResponse';
 import { Group } from '../models/Group';
+import { GroupMembershipsResponseSchema } from '../models/GroupMembershipsResponseSchema';
 import { GroupOwner } from '../models/GroupOwner';
 import { GroupPushMapping } from '../models/GroupPushMapping';
 import { GroupPushMappingStatus } from '../models/GroupPushMappingStatus';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { GroupsRequestSchema } from '../models/GroupsRequestSchema';
+import { GroupsResponseSchema } from '../models/GroupsResponseSchema';
 import { HookKey } from '../models/HookKey';
 import { HostedPage } from '../models/HostedPage';
 import { IamRole } from '../models/IamRole';
@@ -165,33 +186,48 @@ import { InlineHook } from '../models/InlineHook';
 import { InlineHookCreate } from '../models/InlineHookCreate';
 import { InlineHookCreateResponse } from '../models/InlineHookCreateResponse';
 import { InlineHookReplace } from '../models/InlineHookReplace';
+import { InterclientTrustMapping } from '../models/InterclientTrustMapping';
+import { InterclientTrustMappingRequestBody } from '../models/InterclientTrustMappingRequestBody';
 import { JsonPatchOperation } from '../models/JsonPatchOperation';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
 import { KeepCurrent } from '../models/KeepCurrent';
 import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
+import { ListAIAgents200Response } from '../models/ListAIAgents200Response';
+import { ListAgentJwk200Response } from '../models/ListAgentJwk200Response';
 import { ListGroupAssignedRoles200ResponseInner } from '../models/ListGroupAssignedRoles200ResponseInner';
 import { ListJwk200Response } from '../models/ListJwk200Response';
+import { ListJwk200ResponseKeysInner } from '../models/ListJwk200ResponseKeysInner';
 import { ListProfileMappings } from '../models/ListProfileMappings';
 import { ListRoleSubscriptionsRoleTypeOrRoleIdParameter } from '../models/ListRoleSubscriptionsRoleTypeOrRoleIdParameter';
+import { ListRolesForClient200ResponseInner } from '../models/ListRolesForClient200ResponseInner';
 import { LogEvent } from '../models/LogEvent';
 import { LogStream } from '../models/LogStream';
 import { LogStreamPutSchema } from '../models/LogStreamPutSchema';
 import { LogStreamSchema } from '../models/LogStreamSchema';
 import { LogStreamType } from '../models/LogStreamType';
+import { ManagedConnection } from '../models/ManagedConnection';
+import { ManagedConnectionCreatable } from '../models/ManagedConnectionCreatable';
+import { ManagedConnectionList } from '../models/ManagedConnectionList';
+import { ManagedConnectionPatchable } from '../models/ManagedConnectionPatchable';
+import { MembershipRequestSchema } from '../models/MembershipRequestSchema';
 import { NetworkZone } from '../models/NetworkZone';
 import { NotificationType } from '../models/NotificationType';
 import { OAuth2Claim } from '../models/OAuth2Claim';
 import { OAuth2Client } from '../models/OAuth2Client';
-import { OAuth2ClientJsonWebKey } from '../models/OAuth2ClientJsonWebKey';
-import { OAuth2ClientJsonWebKeyRequestBody } from '../models/OAuth2ClientJsonWebKeyRequestBody';
+import { OAuth2ClientJsonSigningKeyResponse } from '../models/OAuth2ClientJsonSigningKeyResponse';
 import { OAuth2ClientSecret } from '../models/OAuth2ClientSecret';
 import { OAuth2ClientSecretRequestBody } from '../models/OAuth2ClientSecretRequestBody';
 import { OAuth2RefreshToken } from '../models/OAuth2RefreshToken';
+import { OAuth2ResourceServerJsonWebKey } from '../models/OAuth2ResourceServerJsonWebKey';
+import { OAuth2ResourceServerJsonWebKeyRequestBody } from '../models/OAuth2ResourceServerJsonWebKeyRequestBody';
 import { OAuth2Scope } from '../models/OAuth2Scope';
 import { OAuth2ScopeConsentGrant } from '../models/OAuth2ScopeConsentGrant';
 import { OAuthProvisioningEnabledApp } from '../models/OAuthProvisioningEnabledApp';
+import { OktaManagedUserAccount } from '../models/OktaManagedUserAccount';
+import { OktaManagedUserAccountForUpdate } from '../models/OktaManagedUserAccountForUpdate';
+import { OktaManagedUserAccountRequest } from '../models/OktaManagedUserAccountRequest';
 import { OktaPersonalAdminFeatureSettings } from '../models/OktaPersonalAdminFeatureSettings';
 import { OktaSupportCase } from '../models/OktaSupportCase';
 import { OktaSupportCases } from '../models/OktaSupportCases';
@@ -202,15 +238,16 @@ import { OrgAerialConsent } from '../models/OrgAerialConsent';
 import { OrgAerialConsentDetails } from '../models/OrgAerialConsentDetails';
 import { OrgAerialConsentRevoked } from '../models/OrgAerialConsentRevoked';
 import { OrgCAPTCHASettings } from '../models/OrgCAPTCHASettings';
-import { OrgCWOConnection } from '../models/OrgCWOConnection';
-import { OrgCWOConnectionPatchRequest } from '../models/OrgCWOConnectionPatchRequest';
 import { OrgContactTypeObj } from '../models/OrgContactTypeObj';
 import { OrgContactUser } from '../models/OrgContactUser';
+import { OrgCrossAppAccessConnection } from '../models/OrgCrossAppAccessConnection';
+import { OrgCrossAppAccessConnectionPatchRequest } from '../models/OrgCrossAppAccessConnectionPatchRequest';
 import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetting';
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
 import { PageRoot } from '../models/PageRoot';
+import { PatchAIAgentRequest } from '../models/PatchAIAgentRequest';
 import { PerClientRateLimitSettings } from '../models/PerClientRateLimitSettings';
 import { Permission } from '../models/Permission';
 import { Permissions } from '../models/Permissions';
@@ -222,6 +259,7 @@ import { PolicyMappingRequest } from '../models/PolicyMappingRequest';
 import { PolicyRule } from '../models/PolicyRule';
 import { PostAPIServiceIntegrationInstance } from '../models/PostAPIServiceIntegrationInstance';
 import { PostAPIServiceIntegrationInstanceRequest } from '../models/PostAPIServiceIntegrationInstanceRequest';
+import { PotentialConnectionList } from '../models/PotentialConnectionList';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { PrivilegedResource } from '../models/PrivilegedResource';
 import { PrivilegedResourceAccountAppResponse } from '../models/PrivilegedResourceAccountAppResponse';
@@ -240,6 +278,7 @@ import { RateLimitWarningThresholdRequest } from '../models/RateLimitWarningThre
 import { RateLimitWarningThresholdResponse } from '../models/RateLimitWarningThresholdResponse';
 import { Realm } from '../models/Realm';
 import { RealmAssignment } from '../models/RealmAssignment';
+import { RealmAssignmentOperationResponse } from '../models/RealmAssignmentOperationResponse';
 import { ReplaceUserClassification } from '../models/ReplaceUserClassification';
 import { ResendUserFactor } from '../models/ResendUserFactor';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
@@ -285,10 +324,13 @@ import { StreamConfiguration } from '../models/StreamConfiguration';
 import { StreamConfigurationCreateRequest } from '../models/StreamConfigurationCreateRequest';
 import { StreamStatus } from '../models/StreamStatus';
 import { StreamVerificationRequest } from '../models/StreamVerificationRequest';
+import { SubmissionActions } from '../models/SubmissionActions';
+import { SubmissionCapabilities } from '../models/SubmissionCapabilities';
 import { SubmissionRequest } from '../models/SubmissionRequest';
 import { SubmissionResponse } from '../models/SubmissionResponse';
 import { Subscription } from '../models/Subscription';
 import { TacAuthenticatorEnrollment } from '../models/TacAuthenticatorEnrollment';
+import { TenantSettings } from '../models/TenantSettings';
 import { TestInfo } from '../models/TestInfo';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThirdPartyAdminSetting } from '../models/ThirdPartyAdminSetting';
@@ -296,6 +338,8 @@ import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration
 import { TrustedOrigin } from '../models/TrustedOrigin';
 import { TrustedOriginWrite } from '../models/TrustedOriginWrite';
 import { UISchemasResponseObject } from '../models/UISchemasResponseObject';
+import { UnconfirmedUserResponseSchema } from '../models/UnconfirmedUserResponseSchema';
+import { UpdateAIAgentRequest } from '../models/UpdateAIAgentRequest';
 import { UpdateDefaultProvisioningConnectionForApplicationRequest } from '../models/UpdateDefaultProvisioningConnectionForApplicationRequest';
 import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
@@ -328,6 +372,8 @@ import { UserGetSingleton } from '../models/UserGetSingleton';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
 import { UserLockoutSettings } from '../models/UserLockoutSettings';
 import { UserNextLogin } from '../models/UserNextLogin';
+import { UserRequestSchema } from '../models/UserRequestSchema';
+import { UserResponseSchema } from '../models/UserResponseSchema';
 import { UserRiskGetResponse } from '../models/UserRiskGetResponse';
 import { UserRiskPutResponse } from '../models/UserRiskPutResponse';
 import { UserRiskRequest } from '../models/UserRiskRequest';
@@ -335,6 +381,8 @@ import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { UserTypePostRequest } from '../models/UserTypePostRequest';
 import { UserTypePutRequest } from '../models/UserTypePutRequest';
+import { UsersUpdateRequestSchema } from '../models/UsersUpdateRequestSchema';
+import { VerifyActions200Response } from '../models/VerifyActions200Response';
 import { WebAuthnPreregistrationFactor } from '../models/WebAuthnPreregistrationFactor';
 import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
@@ -342,6 +390,163 @@ import { WellKnownSSFMetadata } from '../models/WellKnownSSFMetadata';
 import { WellKnownURIObjectResponse } from '../models/WellKnownURIObjectResponse';
 import { WellKnownURIRequest } from '../models/WellKnownURIRequest';
 import { WellKnownURIsRoot } from '../models/WellKnownURIsRoot';
+import { AgentConnectionsApiRequestFactory, AgentConnectionsApiResponseProcessor } from '../apis/AgentConnectionsApi';
+export interface AgentConnectionsApiActivateManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApiactivateManagedConnection
+      */
+    agentId: string;
+    /**
+      * ID of the connection
+      * @type string
+      * @memberof AgentConnectionsApiactivateManagedConnection
+      */
+    connectionId: string;
+}
+export interface AgentConnectionsApiCreateManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApicreateManagedConnection
+      */
+    agentId: string;
+    /**
+      *
+      * @type ManagedConnectionCreatable
+      * @memberof AgentConnectionsApicreateManagedConnection
+      */
+    managedConnectionCreatable: ManagedConnectionCreatable;
+}
+export interface AgentConnectionsApiDeactivateManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApideactivateManagedConnection
+      */
+    agentId: string;
+    /**
+      * ID of the connection
+      * @type string
+      * @memberof AgentConnectionsApideactivateManagedConnection
+      */
+    connectionId: string;
+}
+export interface AgentConnectionsApiDeleteManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApideleteManagedConnection
+      */
+    agentId: string;
+    /**
+      * ID of the connection
+      * @type string
+      * @memberof AgentConnectionsApideleteManagedConnection
+      */
+    connectionId: string;
+}
+export interface AgentConnectionsApiGetManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApigetManagedConnection
+      */
+    agentId: string;
+    /**
+      * ID of the connection
+      * @type string
+      * @memberof AgentConnectionsApigetManagedConnection
+      */
+    connectionId: string;
+}
+export interface AgentConnectionsApiListConnectionsRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApilistConnections
+      */
+    agentId: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof AgentConnectionsApilistConnections
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return
+      * @type number
+      * @memberof AgentConnectionsApilistConnections
+      */
+    limit?: number;
+}
+export interface AgentConnectionsApiUpdateManagedConnectionRequest {
+    /**
+      * ID of the agent
+      * @type string
+      * @memberof AgentConnectionsApiupdateManagedConnection
+      */
+    agentId: string;
+    /**
+      * ID of the connection
+      * @type string
+      * @memberof AgentConnectionsApiupdateManagedConnection
+      */
+    connectionId: string;
+    /**
+      *
+      * @type ManagedConnectionPatchable
+      * @memberof AgentConnectionsApiupdateManagedConnection
+      */
+    managedConnectionPatchable: ManagedConnectionPatchable;
+}
+export declare class ObjectAgentConnectionsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AgentConnectionsApiRequestFactory, responseProcessor?: AgentConnectionsApiResponseProcessor);
+  /**
+      * Activates a managed connection for the agent
+      * Activate a managed connection
+      * @param param the request object
+      */
+  activateManagedConnection(param: AgentConnectionsApiActivateManagedConnectionRequest, options?: Configuration): Promise<ManagedConnection>;
+  /**
+      * Creates a managed connection for the agent
+      * Create a managed connection
+      * @param param the request object
+      */
+  createManagedConnection(param: AgentConnectionsApiCreateManagedConnectionRequest, options?: Configuration): Promise<ManagedConnection>;
+  /**
+      * Deactivates a managed connection for the agent
+      * Deactivate a managed connection
+      * @param param the request object
+      */
+  deactivateManagedConnection(param: AgentConnectionsApiDeactivateManagedConnectionRequest, options?: Configuration): Promise<ManagedConnection>;
+  /**
+      * Deletes a managed connection for the agent
+      * Delete an agent connection
+      * @param param the request object
+      */
+  deleteManagedConnection(param: AgentConnectionsApiDeleteManagedConnectionRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a connection for the agent
+      * Retrieve an agent connection
+      * @param param the request object
+      */
+  getManagedConnection(param: AgentConnectionsApiGetManagedConnectionRequest, options?: Configuration): Promise<ManagedConnection>;
+  /**
+      * Lists all connections for the agent
+      * List all agent connections
+      * @param param the request object
+      */
+  listConnections(param: AgentConnectionsApiListConnectionsRequest, options?: Configuration): Promise<ManagedConnectionList>;
+  /**
+      * Updates a managed connection for the agent
+      * Update a managed connection
+      * @param param the request object
+      */
+  updateManagedConnection(param: AgentConnectionsApiUpdateManagedConnectionRequest, options?: Configuration): Promise<ManagedConnection>;
+}
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export interface AgentPoolsApiActivateAgentPoolsUpdateRequest {
     /**
@@ -435,7 +640,7 @@ export interface AgentPoolsApiListAgentPoolsRequest {
       */
     poolType?: AgentType;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof AgentPoolsApilistAgentPools
       */
@@ -633,6 +838,337 @@ export declare class ObjectAgentPoolsApi {
       */
   updateAgentPoolsUpdateSettings(param: AgentPoolsApiUpdateAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
 }
+import { AgentPotentialConnectionsApiRequestFactory, AgentPotentialConnectionsApiResponseProcessor } from '../apis/AgentPotentialConnectionsApi';
+export interface AgentPotentialConnectionsApiListPotentialConnectionsByTypeRequest {
+    /**
+      * A required [filter](/#filter) expression to return a specific type of potential connections.  The expression supports the &#x60;eq&#x60; [operator](/#operators) and the following &#x60;connectionType&#x60; values: * &#x60;IDENTITY_ASSERTION_CUSTOM_AS&#x60; * &#x60;STS_VAULT_SECRET&#x60; * &#x60;STS_SERVICE_ACCOUNT&#x60;  You can combine multiple expressions using the &#x60;and&#x60; operator to narrow results. For example, filter by connection type and app instance ORN for &#x60;STS_SERVICE_ACCOUNT&#x60; connections.  **Note:** Query parameter percent encoding is required. See [Special characters](/#special-characters).
+      * @type string
+      * @memberof AgentPotentialConnectionsApilistPotentialConnectionsByType
+      */
+    filter: string;
+    /**
+      * A case-insensitive substring for fuzzy-match that\&#39;s prefix-friendly
+      * @type string
+      * @memberof AgentPotentialConnectionsApilistPotentialConnectionsByType
+      */
+    match?: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof AgentPotentialConnectionsApilistPotentialConnectionsByType
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return
+      * @type number
+      * @memberof AgentPotentialConnectionsApilistPotentialConnectionsByType
+      */
+    limit?: number;
+}
+export declare class ObjectAgentPotentialConnectionsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AgentPotentialConnectionsApiRequestFactory, responseProcessor?: AgentPotentialConnectionsApiResponseProcessor);
+  /**
+      * Lists all global resource connections of a specific connection type that an AI agent can potentially connect to  Only resource connections returned from this request are valid for [creating a connection](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentConnections/#tag/AgentConnections/operation/createManagedConnection) with a matching connection-type protocol.  Include the required [`filter`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=filter&t=request) query parameter to return potential connections with a specific `connectionType`. You can also use the [`match`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AgentPotentialConnections/#tag/AgentPotentialConnections/operation/listPotentialConnectionsByType!in=query&path=match&t=request) query parameter to apply fuzzy-matching on the returned list of potential connections.
+      * List all potential connections
+      * @param param the request object
+      */
+  listPotentialConnectionsByType(param: AgentPotentialConnectionsApiListPotentialConnectionsByTypeRequest, options?: Configuration): Promise<PotentialConnectionList>;
+}
+import { AgentPublicKeyApiRequestFactory, AgentPublicKeyApiResponseProcessor } from '../apis/AgentPublicKeyApi';
+export interface AgentPublicKeyApiActivateAgentJsonWebKeyRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApiactivateAgentJsonWebKey
+      */
+    agentId: string;
+    /**
+      * Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      * @type string
+      * @memberof AgentPublicKeyApiactivateAgentJsonWebKey
+      */
+    keyId: string;
+}
+export interface AgentPublicKeyApiAddAgentJwkRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApiaddAgentJwk
+      */
+    agentId: string;
+    /**
+      *
+      * @type AgentJsonSigningKeyRequest
+      * @memberof AgentPublicKeyApiaddAgentJwk
+      */
+    agentJsonSigningKeyRequest: AgentJsonSigningKeyRequest;
+}
+export interface AgentPublicKeyApiDeactivateAgentJsonWebKeyRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApideactivateAgentJsonWebKey
+      */
+    agentId: string;
+    /**
+      * Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      * @type string
+      * @memberof AgentPublicKeyApideactivateAgentJsonWebKey
+      */
+    keyId: string;
+}
+export interface AgentPublicKeyApiDeleteAgentJwkRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApideleteAgentJwk
+      */
+    agentId: string;
+    /**
+      * Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      * @type string
+      * @memberof AgentPublicKeyApideleteAgentJwk
+      */
+    keyId: string;
+}
+export interface AgentPublicKeyApiGetAgentJwkRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApigetAgentJwk
+      */
+    agentId: string;
+    /**
+      * Unique &#x60;id&#x60; of the AI agent JSON Web Key
+      * @type string
+      * @memberof AgentPublicKeyApigetAgentJwk
+      */
+    keyId: string;
+}
+export interface AgentPublicKeyApiListAgentJwkRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentPublicKeyApilistAgentJwk
+      */
+    agentId: string;
+}
+export declare class ObjectAgentPublicKeyApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AgentPublicKeyApiRequestFactory, responseProcessor?: AgentPublicKeyApiResponseProcessor);
+  /**
+      * Activates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only have one active encryption key at any given time for an AI agent. When you activate an inactive key, the currently active key is automatically deactivated.
+      * Activate an AI agent JSON Web Key
+      * @param param the request object
+      */
+  activateAgentJsonWebKey(param: AgentPublicKeyApiActivateAgentJsonWebKeyRequest, options?: Configuration): Promise<AgentJsonSigningKeyResponse>;
+  /**
+      * Adds a new JSON Web Key (JWK) to the AI agent\'s JWK Set (JWKS)
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+  addAgentJwk(param: AgentPublicKeyApiAddAgentJwkRequest, options?: Configuration): Promise<AgentJsonSigningKeyResponse>;
+  /**
+      * Deactivates an AI agent\'s JSON Web Key by `keyId`  > **Note:** You can only deactivate signing keys. You can\'t deactivate the active encryption key if the client has ID token encryption enabled. However, you can activate another encryption key, which makes the current key inactive.
+      * Deactivate an AI agent JSON Web Key
+      * @param param the request object
+      */
+  deactivateAgentJsonWebKey(param: AgentPublicKeyApiDeactivateAgentJsonWebKeyRequest, options?: Configuration): Promise<AgentJsonSigningKeyResponse>;
+  /**
+      * Deletes an AI agent\'s JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an AI agent JSON Web Key
+      * @param param the request object
+      */
+  deleteAgentJwk(param: AgentPublicKeyApiDeleteAgentJwkRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves an AI agent\'s JSON Web Key by `keyId`
+      * Retrieve an AI agent JSON Web Key
+      * @param param the request object
+      */
+  getAgentJwk(param: AgentPublicKeyApiGetAgentJwkRequest, options?: Configuration): Promise<AgentJsonSigningKeyResponse>;
+  /**
+      * Lists all JSON Web Keys (JWK) for an AI agent
+      * List all AI agent JSON Web Keys
+      * @param param the request object
+      */
+  listAgentJwk(param: AgentPublicKeyApiListAgentJwkRequest, options?: Configuration): Promise<ListAgentJwk200Response>;
+}
+import { AgentRegistrationApiRequestFactory, AgentRegistrationApiResponseProcessor } from '../apis/AgentRegistrationApi';
+export interface AgentRegistrationApiActivateAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApiactivateAIAgent
+      */
+    agentId: string;
+}
+export interface AgentRegistrationApiDeactivateAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApideactivateAIAgent
+      */
+    agentId: string;
+}
+export interface AgentRegistrationApiDeleteAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApideleteAIAgent
+      */
+    agentId: string;
+}
+export interface AgentRegistrationApiGetAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApigetAIAgent
+      */
+    agentId: string;
+}
+export interface AgentRegistrationApiGetAIAgentOperationRequest {
+    /**
+      * ID of the AI agent operation
+      * @type string
+      * @memberof AgentRegistrationApigetAIAgentOperation
+      */
+    operationId: string;
+}
+export interface AgentRegistrationApiListAIAgentOperationsRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof AgentRegistrationApilistAIAgentOperations
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return
+      * @type number
+      * @memberof AgentRegistrationApilistAIAgentOperations
+      */
+    limit?: number;
+}
+export interface AgentRegistrationApiListAIAgentsRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof AgentRegistrationApilistAIAgents
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return
+      * @type number
+      * @memberof AgentRegistrationApilistAIAgents
+      */
+    limit?: number;
+    /**
+      * Searches for AI agents with a filtering expression that supports: *  &#x60;eq&#x60; operator for the &#x60;status&#x60; and &#x60;appId&#x60; property *  &#x60;sw&#x60;, &#x60;co&#x60; and &#x60;eq&#x60; operator for the &#x60;profile.name&#x60; property  &gt; **Note:** Query parameter percent encoding is required. See [Special characters](https://developer.okta.com/docs/api/#special-characters).
+      * @type string
+      * @memberof AgentRegistrationApilistAIAgents
+      */
+    search?: string;
+}
+export interface AgentRegistrationApiRegisterAIAgentRequest {
+    /**
+      *
+      * @type CreateAIAgentRequest
+      * @memberof AgentRegistrationApiregisterAIAgent
+      */
+    body: CreateAIAgentRequest;
+}
+export interface AgentRegistrationApiReplaceAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApireplaceAIAgent
+      */
+    agentId: string;
+    /**
+      *
+      * @type UpdateAIAgentRequest
+      * @memberof AgentRegistrationApireplaceAIAgent
+      */
+    body: UpdateAIAgentRequest;
+}
+export interface AgentRegistrationApiUpdateAIAgentRequest {
+    /**
+      * ID of the AI agent
+      * @type string
+      * @memberof AgentRegistrationApiupdateAIAgent
+      */
+    agentId: string;
+    /**
+      *
+      * @type PatchAIAgentRequest
+      * @memberof AgentRegistrationApiupdateAIAgent
+      */
+    body: PatchAIAgentRequest;
+}
+export declare class ObjectAgentRegistrationApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AgentRegistrationApiRequestFactory, responseProcessor?: AgentRegistrationApiResponseProcessor);
+  /**
+      * Activates an AI agent
+      * Activate an AI agent
+      * @param param the request object
+      */
+  activateAIAgent(param: AgentRegistrationApiActivateAIAgentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deactivates an AI agent
+      * Deactivate an AI agent
+      * @param param the request object
+      */
+  deactivateAIAgent(param: AgentRegistrationApiDeactivateAIAgentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes an AI agent
+      * Delete an AI agent
+      * @param param the request object
+      */
+  deleteAIAgent(param: AgentRegistrationApiDeleteAIAgentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves an AI agent
+      * Retrieve an AI agent
+      * @param param the request object
+      */
+  getAIAgent(param: AgentRegistrationApiGetAIAgentRequest, options?: Configuration): Promise<AIAgent>;
+  /**
+      * Retrieves an AI agent operation and its status
+      * Retrieve an AI agent operation
+      * @param param the request object
+      */
+  getAIAgentOperation(param: AgentRegistrationApiGetAIAgentOperationRequest, options?: Configuration): Promise<AIAgentOperationResponse>;
+  /**
+      * Lists all AI agent operations. Operations are sorted in descending order from most recent to oldest by creation time.
+      * List all AI agent operations
+      * @param param the request object
+      */
+  listAIAgentOperations(param?: AgentRegistrationApiListAIAgentOperationsRequest, options?: Configuration): Promise<AIAgentOperationListResponse>;
+  /**
+      * Lists all AI agents
+      * List all AI agents
+      * @param param the request object
+      */
+  listAIAgents(param?: AgentRegistrationApiListAIAgentsRequest, options?: Configuration): Promise<ListAIAgents200Response>;
+  /**
+      * Registers an AI agent
+      * Register an AI agent
+      * @param param the request object
+      */
+  registerAIAgent(param: AgentRegistrationApiRegisterAIAgentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Replaces an AI agent
+      * Replace an AI agent
+      * @param param the request object
+      */
+  replaceAIAgent(param: AgentRegistrationApiReplaceAIAgentRequest, options?: Configuration): Promise<void>;
+  /**
+      * Updates an AI agent. Use this request to perform partial updates on AI agent profile properties.
+      * Update an AI agent
+      * @param param the request object
+      */
+  updateAIAgent(param: AgentRegistrationApiUpdateAIAgentRequest, options?: Configuration): Promise<void>;
+}
 import { ApiServiceIntegrationsApiRequestFactory, ApiServiceIntegrationsApiResponseProcessor } from '../apis/ApiServiceIntegrationsApi';
 export interface ApiServiceIntegrationsApiActivateApiServiceIntegrationInstanceSecretRequest {
     /**
@@ -718,7 +1254,7 @@ export interface ApiServiceIntegrationsApiListApiServiceIntegrationInstanceSecre
 }
 export interface ApiServiceIntegrationsApiListApiServiceIntegrationInstancesRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ApiServiceIntegrationsApilistApiServiceIntegrationInstances
       */
@@ -868,48 +1404,6 @@ export interface ApplicationApiActivateDefaultProvisioningConnectionForApplicati
       */
     appId: string;
 }
-export interface ApplicationApiActivateOAuth2ClientJsonWebKeyRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApiactivateOAuth2ClientJsonWebKey
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      * @type string
-      * @memberof ApplicationApiactivateOAuth2ClientJsonWebKey
-      */
-    keyId: string;
-}
-export interface ApplicationApiActivateOAuth2ClientSecretRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApiactivateOAuth2ClientSecret
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      * @type string
-      * @memberof ApplicationApiactivateOAuth2ClientSecret
-      */
-    secretId: string;
-}
-export interface ApplicationApiAddJwkRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApiaddJwk
-      */
-    appId: string;
-    /**
-      *
-      * @type OAuth2ClientJsonWebKeyRequestBody
-      * @memberof ApplicationApiaddJwk
-      */
-    oAuth2ClientJsonWebKeyRequestBody: OAuth2ClientJsonWebKeyRequestBody;
-}
 export interface ApplicationApiAssignApplicationPolicyRequest {
     /**
       * Application ID
@@ -1012,20 +1506,6 @@ export interface ApplicationApiCreateApplicationRequest {
       */
     oktaAccessGatewayAgent?: string;
 }
-export interface ApplicationApiCreateCWOConnectionRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApicreateCWOConnection
-      */
-    appId: string;
-    /**
-      *
-      * @type OrgCWOConnection
-      * @memberof ApplicationApicreateCWOConnection
-      */
-    orgCWOConnection: OrgCWOConnection;
-}
 export interface ApplicationApiCreateFederatedClaimRequest {
     /**
       * Application ID
@@ -1039,20 +1519,6 @@ export interface ApplicationApiCreateFederatedClaimRequest {
       * @memberof ApplicationApicreateFederatedClaim
       */
     federatedClaimRequestBody: FederatedClaimRequestBody;
-}
-export interface ApplicationApiCreateOAuth2ClientSecretRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApicreateOAuth2ClientSecret
-      */
-    appId: string;
-    /**
-      *
-      * @type OAuth2ClientSecretRequestBody
-      * @memberof ApplicationApicreateOAuth2ClientSecret
-      */
-    oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody;
 }
 export interface ApplicationApiDeactivateApplicationRequest {
     /**
@@ -1070,34 +1536,6 @@ export interface ApplicationApiDeactivateDefaultProvisioningConnectionForApplica
       */
     appId: string;
 }
-export interface ApplicationApiDeactivateOAuth2ClientJsonWebKeyRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApideactivateOAuth2ClientJsonWebKey
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      * @type string
-      * @memberof ApplicationApideactivateOAuth2ClientJsonWebKey
-      */
-    keyId: string;
-}
-export interface ApplicationApiDeactivateOAuth2ClientSecretRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApideactivateOAuth2ClientSecret
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      * @type string
-      * @memberof ApplicationApideactivateOAuth2ClientSecret
-      */
-    secretId: string;
-}
 export interface ApplicationApiDeleteApplicationRequest {
     /**
       * Application ID
@@ -1105,20 +1543,6 @@ export interface ApplicationApiDeleteApplicationRequest {
       * @memberof ApplicationApideleteApplication
       */
     appId: string;
-}
-export interface ApplicationApiDeleteCWOConnectionRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApideleteCWOConnection
-      */
-    appId: string;
-    /**
-      * Connection ID
-      * @type string
-      * @memberof ApplicationApideleteCWOConnection
-      */
-    connectionId: string;
 }
 export interface ApplicationApiDeleteFederatedClaimRequest {
     /**
@@ -1133,34 +1557,6 @@ export interface ApplicationApiDeleteFederatedClaimRequest {
       * @memberof ApplicationApideleteFederatedClaim
       */
     claimId: string;
-}
-export interface ApplicationApiDeleteOAuth2ClientSecretRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApideleteOAuth2ClientSecret
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      * @type string
-      * @memberof ApplicationApideleteOAuth2ClientSecret
-      */
-    secretId: string;
-}
-export interface ApplicationApiDeletejwkRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApideletejwk
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      * @type string
-      * @memberof ApplicationApideletejwk
-      */
-    keyId: string;
 }
 export interface ApplicationApiGenerateApplicationKeyRequest {
     /**
@@ -1189,14 +1585,6 @@ export interface ApplicationApiGenerateCsrForApplicationRequest {
       * @memberof ApplicationApigenerateCsrForApplication
       */
     metadata: CsrMetadata;
-}
-export interface ApplicationApiGetAllCWOConnectionsRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApigetAllCWOConnections
-      */
-    appId: string;
 }
 export interface ApplicationApiGetApplicationRequest {
     /**
@@ -1266,20 +1654,6 @@ export interface ApplicationApiGetApplicationUserRequest {
       */
     expand?: string;
 }
-export interface ApplicationApiGetCWOConnectionRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApigetCWOConnection
-      */
-    appId: string;
-    /**
-      * Connection ID
-      * @type string
-      * @memberof ApplicationApigetCWOConnection
-      */
-    connectionId: string;
-}
 export interface ApplicationApiGetCsrForApplicationRequest {
     /**
       * Application ID
@@ -1330,20 +1704,6 @@ export interface ApplicationApiGetFederatedClaimRequest {
       */
     claimId: string;
 }
-export interface ApplicationApiGetJwkRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApigetJwk
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-      * @type string
-      * @memberof ApplicationApigetJwk
-      */
-    keyId: string;
-}
 export interface ApplicationApiGetOAuth2AccessTokenForExpressConfigurationRequest {
     /**
       * Application ID
@@ -1363,20 +1723,6 @@ export interface ApplicationApiGetOAuth2AccessTokenForExpressConfigurationReques
       * @memberof ApplicationApigetOAuth2AccessTokenForExpressConfiguration
       */
     capabilityType?: CapabilityType;
-}
-export interface ApplicationApiGetOAuth2ClientSecretRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApigetOAuth2ClientSecret
-      */
-    appId: string;
-    /**
-      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-      * @type string
-      * @memberof ApplicationApigetOAuth2ClientSecret
-      */
-    secretId: string;
 }
 export interface ApplicationApiGetOAuth2TokenForApplicationRequest {
     /**
@@ -1532,13 +1878,19 @@ export interface ApplicationApiListApplicationsRequest {
       */
     useOptimization?: boolean;
     /**
+      * Specifies whether to include the VPN configuration for existing notifications in the result, regardless of whether VPN notifications are configured
+      * @type boolean
+      * @memberof ApplicationApilistApplications
+      */
+    alwaysIncludeVpnSettings?: boolean;
+    /**
       * Specifies the number of results per page
       * @type number
       * @memberof ApplicationApilistApplications
       */
     limit?: number;
     /**
-      * Filters apps by &#x60;status&#x60;, &#x60;user.id&#x60;, &#x60;group.id&#x60;, &#x60;credentials.signing.kid&#x60; or &#x60;name&#x60; expression that supports the &#x60;eq&#x60; operator
+      * Filters apps with a supported expression for a subset of properties. Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;credentials.signing.kid&#x60;, &#x60;settings.slo.enabled&#x60;, or &#x60;name&#x60;. See [Filter](https://developer.okta.com/docs/api/#filter).
       * @type string
       * @memberof ApplicationApilistApplications
       */
@@ -1577,22 +1929,6 @@ export interface ApplicationApiListFederatedClaimsRequest {
       * Application ID
       * @type string
       * @memberof ApplicationApilistFederatedClaims
-      */
-    appId: string;
-}
-export interface ApplicationApiListJwkRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApilistJwk
-      */
-    appId: string;
-}
-export interface ApplicationApiListOAuth2ClientSecretsRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApilistOAuth2ClientSecrets
       */
     appId: string;
 }
@@ -1808,26 +2144,6 @@ export interface ApplicationApiUpdateApplicationUserRequest {
       */
     appUser: AppUserUpdateRequest;
 }
-export interface ApplicationApiUpdateCWOConnectionRequest {
-    /**
-      * Application ID
-      * @type string
-      * @memberof ApplicationApiupdateCWOConnection
-      */
-    appId: string;
-    /**
-      * Connection ID
-      * @type string
-      * @memberof ApplicationApiupdateCWOConnection
-      */
-    connectionId: string;
-    /**
-      *
-      * @type OrgCWOConnectionPatchRequest
-      * @memberof ApplicationApiupdateCWOConnection
-      */
-    orgCWOConnectionPatchRequest: OrgCWOConnectionPatchRequest;
-}
 export interface ApplicationApiUpdateDefaultProvisioningConnectionForApplicationRequest {
     /**
       * Application ID
@@ -1984,26 +2300,8 @@ export declare class ObjectApplicationApi {
       */
   activateDefaultProvisioningConnectionForApplication(param: ApplicationApiActivateDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Activates an OAuth 2.0 Client JSON Web Key by `keyId`
-      * Activate an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-  activateOAuth2ClientJsonWebKey(param: ApplicationApiActivateOAuth2ClientJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ClientJsonWebKey>;
-  /**
-      * Activates an OAuth 2.0 Client Secret by `secretId`
-      * Activate an OAuth 2.0 client secret
-      * @param param the request object
-      */
-  activateOAuth2ClientSecret(param: ApplicationApiActivateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
-  /**
-      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOCredentialOAuth2ClientAuth/#tag/ApplicationSSOCredentialOAuth2ClientAuth/operation/deletejwk) and re-add the key with a `kid`.
-      * Add a JSON Web Key
-      * @param param the request object
-      */
-  addJwk(param: ApplicationApiAddJwkRequest, options?: Configuration): Promise<OAuth2ClientJsonWebKey>;
-  /**
-      * Assigns an app to an [authentication policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate authentication policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
-      * Assign an authentication policy
+      * Assigns an app to an [app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate app sign-in policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
+      * Assign an app sign-in policy
       * @param param the request object
       */
   assignApplicationPolicy(param: ApplicationApiAssignApplicationPolicyRequest, options?: Configuration): Promise<void>;
@@ -2038,23 +2336,11 @@ export declare class ObjectApplicationApi {
       */
   createApplication(param: ApplicationApiCreateApplicationRequest, options?: Configuration): Promise<Application>;
   /**
-      * Creates a CWO connection
-      * Create a CWO connection
-      * @param param the request object
-      */
-  createCWOConnection(param: ApplicationApiCreateCWOConnectionRequest, options?: Configuration): Promise<OrgCWOConnection>;
-  /**
       * Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
       * Create a federated claim
       * @param param the request object
       */
   createFederatedClaim(param: ApplicationApiCreateFederatedClaimRequest, options?: Configuration): Promise<FederatedClaim>;
-  /**
-      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
-      * Create an OAuth 2.0 client secret
-      * @param param the request object
-      */
-  createOAuth2ClientSecret(param: ApplicationApiCreateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
   /**
       * Deactivates an active application  > **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
       * Deactivate an application
@@ -2068,47 +2354,17 @@ export declare class ObjectApplicationApi {
       */
   deactivateDefaultProvisioningConnectionForApplication(param: ApplicationApiDeactivateDefaultProvisioningConnectionForApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Deactivate an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-  deactivateOAuth2ClientJsonWebKey(param: ApplicationApiDeactivateOAuth2ClientJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ClientJsonWebKey>;
-  /**
-      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
-      * Deactivate an OAuth 2.0 client secret
-      * @param param the request object
-      */
-  deactivateOAuth2ClientSecret(param: ApplicationApiDeactivateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
-  /**
       * Deletes an inactive application
       * Delete an application
       * @param param the request object
       */
   deleteApplication(param: ApplicationApiDeleteApplicationRequest, options?: Configuration): Promise<void>;
   /**
-      * Deletes a CWO connection
-      * Delete a CWO connection
-      * @param param the request object
-      */
-  deleteCWOConnection(param: ApplicationApiDeleteCWOConnectionRequest, options?: Configuration): Promise<void>;
-  /**
       * Deletes a federated claim by `claimId`
       * Delete a federated claim
       * @param param the request object
       */
   deleteFederatedClaim(param: ApplicationApiDeleteFederatedClaimRequest, options?: Configuration): Promise<void>;
-  /**
-      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
-      * Delete an OAuth 2.0 client secret
-      * @param param the request object
-      */
-  deleteOAuth2ClientSecret(param: ApplicationApiDeleteOAuth2ClientSecretRequest, options?: Configuration): Promise<void>;
-  /**
-      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
-      * Delete an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-  deletejwk(param: ApplicationApiDeletejwkRequest, options?: Configuration): Promise<void>;
   /**
       * Generates a new X.509 certificate for an app key credential > **Note:** To update an Application with the newly generated key credential, use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) request with the new [credentials.signing.kid](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing/kid&t=request) value in the request body. You can provide just the [Signing Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials/signing&t=request) instead of the entire [Application Credential object](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication!path=4/credentials&t=request).
       * Generate a key credential
@@ -2121,12 +2377,6 @@ export declare class ObjectApplicationApi {
       * @param param the request object
       */
   generateCsrForApplication(param: ApplicationApiGenerateCsrForApplicationRequest, options?: Configuration): Promise<string>;
-  /**
-      * Retrieves inbound and outbound CWO connections for a given app
-      * Retrieve all CWO connections
-      * @param param the request object
-      */
-  getAllCWOConnections(param: ApplicationApiGetAllCWOConnectionsRequest, options?: Configuration): Promise<Collection<OrgCWOConnection>>;
   /**
       * Retrieves an application from your Okta organization by `id`
       * Retrieve an application
@@ -2152,12 +2402,6 @@ export declare class ObjectApplicationApi {
       */
   getApplicationUser(param: ApplicationApiGetApplicationUserRequest, options?: Configuration): Promise<AppUser>;
   /**
-      * Retrieves a CWO connection for an app
-      * Retrieve a CWO connection
-      * @param param the request object
-      */
-  getCWOConnection(param: ApplicationApiGetCWOConnectionRequest, options?: Configuration): Promise<OrgCWOConnection>;
-  /**
       * Retrieves a Certificate Signing Request (CSR) for the app by `csrId`.  Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
       * Retrieve a certificate signing request
       * @param param the request object
@@ -2182,23 +2426,11 @@ export declare class ObjectApplicationApi {
       */
   getFederatedClaim(param: ApplicationApiGetFederatedClaimRequest, options?: Configuration): Promise<FederatedClaimRequestBody>;
   /**
-      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
-      * Retrieve an OAuth 2.0 client JSON Web Key
-      * @param param the request object
-      */
-  getJwk(param: ApplicationApiGetJwkRequest, options?: Configuration): Promise<OAuth2ClientJsonWebKey>;
-  /**
       * Retrieves the OAuth 2.0 authorization code from the app\'s authorization server. Use this authorization code to exchange for an access token through another endpoint to enable Express Configuration on behalf of the user.
       * Retrieve the OAuth 2.0 authorization code for Express Configuration.
       * @param param the request object
       */
   getOAuth2AccessTokenForExpressConfiguration(param: ApplicationApiGetOAuth2AccessTokenForExpressConfigurationRequest, options?: Configuration): Promise<void>;
-  /**
-      * Retrieves an OAuth 2.0 Client Secret by `secretId`
-      * Retrieve an OAuth 2.0 client secret
-      * @param param the request object
-      */
-  getOAuth2ClientSecret(param: ApplicationApiGetOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
   /**
       * Retrieves a refresh token for the specified app
       * Retrieve an application token
@@ -2265,18 +2497,6 @@ export declare class ObjectApplicationApi {
       * @param param the request object
       */
   listFederatedClaims(param: ApplicationApiListFederatedClaimsRequest, options?: Configuration): Promise<Collection<FederatedClaim>>;
-  /**
-      * Lists all JSON Web Keys for an OAuth 2.0 client app
-      * List all the OAuth 2.0 client JSON Web Keys
-      * @param param the request object
-      */
-  listJwk(param: ApplicationApiListJwkRequest, options?: Configuration): Promise<ListJwk200Response>;
-  /**
-      * Lists all client secrets for an OAuth 2.0 client app
-      * List all OAuth 2.0 client secrets
-      * @param param the request object
-      */
-  listOAuth2ClientSecrets(param: ApplicationApiListOAuth2ClientSecretsRequest, options?: Configuration): Promise<Collection<OAuth2ClientSecret>>;
   /**
       * Lists all refresh tokens for an app  > **Note:** The results are [paginated](/#pagination) according to the `limit` parameter. > If there are multiple pages of results, the Link header contains a `next` link that you need to use as an opaque value (follow it, don\'t parse it).
       * List all application refresh tokens
@@ -2356,12 +2576,6 @@ export declare class ObjectApplicationApi {
       */
   updateApplicationUser(param: ApplicationApiUpdateApplicationUserRequest, options?: Configuration): Promise<AppUser>;
   /**
-      * Updates a CWO connection
-      * Update a CWO connection
-      * @param param the request object
-      */
-  updateCWOConnection(param: ApplicationApiUpdateCWOConnectionRequest, options?: Configuration): Promise<OrgCWOConnection>;
-  /**
       * Updates the default provisioning connection for an app
       * Update the default provisioning connection
       * @param param the request object
@@ -2403,6 +2617,429 @@ export declare class ObjectApplicationApi {
       * @param param the request object
       */
   verifyProvisioningConnectionForOfficeApplication(param: ApplicationApiVerifyProvisioningConnectionForOfficeApplicationRequest, options?: Configuration): Promise<void>;
+}
+import { ApplicationCrossAppAccessConnectionsApiRequestFactory, ApplicationCrossAppAccessConnectionsApiResponseProcessor } from '../apis/ApplicationCrossAppAccessConnectionsApi';
+export interface ApplicationCrossAppAccessConnectionsApiCreateCrossAppAccessConnectionRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApicreateCrossAppAccessConnection
+      */
+    appId: string;
+    /**
+      *
+      * @type OrgCrossAppAccessConnection
+      * @memberof ApplicationCrossAppAccessConnectionsApicreateCrossAppAccessConnection
+      */
+    orgCrossAppAccessConnection: OrgCrossAppAccessConnection;
+}
+export interface ApplicationCrossAppAccessConnectionsApiDeleteCrossAppAccessConnectionRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApideleteCrossAppAccessConnection
+      */
+    appId: string;
+    /**
+      * Connection ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApideleteCrossAppAccessConnection
+      */
+    connectionId: string;
+}
+export interface ApplicationCrossAppAccessConnectionsApiGetAllCrossAppAccessConnectionsRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApigetAllCrossAppAccessConnections
+      */
+    appId: string;
+    /**
+      * Specifies the pagination cursor for the next page of connection results
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApigetAllCrossAppAccessConnections
+      */
+    after?: string;
+    /**
+      * Specifies the number of results to return per page. The values:   * -1: Return all results (up to system maximum)   * 0: Return an empty result set   * Positive integer: Return up to that many results (capped at system maximum)
+      * @type number
+      * @memberof ApplicationCrossAppAccessConnectionsApigetAllCrossAppAccessConnections
+      */
+    limit?: number;
+}
+export interface ApplicationCrossAppAccessConnectionsApiGetCrossAppAccessConnectionRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApigetCrossAppAccessConnection
+      */
+    appId: string;
+    /**
+      * Connection ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApigetCrossAppAccessConnection
+      */
+    connectionId: string;
+}
+export interface ApplicationCrossAppAccessConnectionsApiUpdateCrossAppAccessConnectionRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApiupdateCrossAppAccessConnection
+      */
+    appId: string;
+    /**
+      * Connection ID
+      * @type string
+      * @memberof ApplicationCrossAppAccessConnectionsApiupdateCrossAppAccessConnection
+      */
+    connectionId: string;
+    /**
+      *
+      * @type OrgCrossAppAccessConnectionPatchRequest
+      * @memberof ApplicationCrossAppAccessConnectionsApiupdateCrossAppAccessConnection
+      */
+    orgCrossAppAccessConnectionPatchRequest: OrgCrossAppAccessConnectionPatchRequest;
+}
+export declare class ObjectApplicationCrossAppAccessConnectionsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: ApplicationCrossAppAccessConnectionsApiRequestFactory, responseProcessor?: ApplicationCrossAppAccessConnectionsApiResponseProcessor);
+  /**
+      * Creates a Cross App Access connection
+      * Create a Cross App Access connection
+      * @param param the request object
+      */
+  createCrossAppAccessConnection(param: ApplicationCrossAppAccessConnectionsApiCreateCrossAppAccessConnectionRequest, options?: Configuration): Promise<OrgCrossAppAccessConnection>;
+  /**
+      * Deletes a Cross App Access connection with the specified ID
+      * Delete a Cross App Access connection
+      * @param param the request object
+      */
+  deleteCrossAppAccessConnection(param: ApplicationCrossAppAccessConnectionsApiDeleteCrossAppAccessConnectionRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves inbound and outbound Cross App Access connections associated with an app
+      * Retrieve all Cross App Access connections
+      * @param param the request object
+      */
+  getAllCrossAppAccessConnections(param: ApplicationCrossAppAccessConnectionsApiGetAllCrossAppAccessConnectionsRequest, options?: Configuration): Promise<Collection<OrgCrossAppAccessConnection>>;
+  /**
+      * Retrieves the Cross App Access connection with the specified ID
+      * Retrieve a Cross App Access connection
+      * @param param the request object
+      */
+  getCrossAppAccessConnection(param: ApplicationCrossAppAccessConnectionsApiGetCrossAppAccessConnectionRequest, options?: Configuration): Promise<OrgCrossAppAccessConnection>;
+  /**
+      * Updates the Cross App Access connection with the specified ID
+      * Update a Cross App Access connection
+      * @param param the request object
+      */
+  updateCrossAppAccessConnection(param: ApplicationCrossAppAccessConnectionsApiUpdateCrossAppAccessConnectionRequest, options?: Configuration): Promise<OrgCrossAppAccessConnection>;
+}
+import { ApplicationInterclientTrustMappingsApiRequestFactory, ApplicationInterclientTrustMappingsApiResponseProcessor } from '../apis/ApplicationInterclientTrustMappingsApi';
+export interface ApplicationInterclientTrustMappingsApiCreateInterclientTrustMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationInterclientTrustMappingsApicreateInterclientTrustMapping
+      */
+    appId: string;
+    /**
+      *
+      * @type InterclientTrustMappingRequestBody
+      * @memberof ApplicationInterclientTrustMappingsApicreateInterclientTrustMapping
+      */
+    interclientTrustMappingRequestBody: InterclientTrustMappingRequestBody;
+}
+export interface ApplicationInterclientTrustMappingsApiDeleteInterclientTrustMappingRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationInterclientTrustMappingsApideleteInterclientTrustMapping
+      */
+    appId: string;
+    /**
+      * App ID of the allowed app instance to delete mapping from the target app.
+      * @type string
+      * @memberof ApplicationInterclientTrustMappingsApideleteInterclientTrustMapping
+      */
+    allowedAppId: string;
+}
+export interface ApplicationInterclientTrustMappingsApiListInterclientAllowedApplicationsRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationInterclientTrustMappingsApilistInterclientAllowedApplications
+      */
+    appId: string;
+}
+export interface ApplicationInterclientTrustMappingsApiListInterclientTargetApplicationsRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationInterclientTrustMappingsApilistInterclientTargetApplications
+      */
+    appId: string;
+}
+export declare class ObjectApplicationInterclientTrustMappingsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: ApplicationInterclientTrustMappingsApiRequestFactory, responseProcessor?: ApplicationInterclientTrustMappingsApiResponseProcessor);
+  /**
+      * Creates a mapping between the target app and an allowed app for interclient SSO using the interclient token
+      * Create an allowed app mapping for a target app
+      * @param param the request object
+      */
+  createInterclientTrustMapping(param: ApplicationInterclientTrustMappingsApiCreateInterclientTrustMappingRequest, options?: Configuration): Promise<InterclientTrustMapping>;
+  /**
+      * Deletes the mapping between the target app and an allowed app
+      * Delete an interclient trust mapping
+      * @param param the request object
+      */
+  deleteInterclientTrustMapping(param: ApplicationInterclientTrustMappingsApiDeleteInterclientTrustMappingRequest, options?: Configuration): Promise<void>;
+  /**
+      * Lists all apps allowed by this app to request interclient SSO using the interclient token
+      * List all allowed apps for a target app
+      * @param param the request object
+      */
+  listInterclientAllowedApplications(param: ApplicationInterclientTrustMappingsApiListInterclientAllowedApplicationsRequest, options?: Configuration): Promise<Collection<string>>;
+  /**
+      * Lists all the target apps that allow this app to request interclient SSO using an interclient token
+      * List all target apps for an allowed app
+      * @param param the request object
+      */
+  listInterclientTargetApplications(param: ApplicationInterclientTrustMappingsApiListInterclientTargetApplicationsRequest, options?: Configuration): Promise<Collection<string>>;
+}
+import { ApplicationSSOPublicKeysApiRequestFactory, ApplicationSSOPublicKeysApiResponseProcessor } from '../apis/ApplicationSSOPublicKeysApi';
+export interface ApplicationSSOPublicKeysApiActivateOAuth2ClientJsonWebKeyRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApiactivateOAuth2ClientJsonWebKey
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApiactivateOAuth2ClientJsonWebKey
+      */
+    keyId: string;
+}
+export interface ApplicationSSOPublicKeysApiActivateOAuth2ClientSecretRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApiactivateOAuth2ClientSecret
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApiactivateOAuth2ClientSecret
+      */
+    secretId: string;
+}
+export interface ApplicationSSOPublicKeysApiAddJwkRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApiaddJwk
+      */
+    appId: string;
+    /**
+      *
+      * @type AddJwkRequest
+      * @memberof ApplicationSSOPublicKeysApiaddJwk
+      */
+    addJwkRequest: AddJwkRequest;
+}
+export interface ApplicationSSOPublicKeysApiCreateOAuth2ClientSecretRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApicreateOAuth2ClientSecret
+      */
+    appId: string;
+    /**
+      *
+      * @type OAuth2ClientSecretRequestBody
+      * @memberof ApplicationSSOPublicKeysApicreateOAuth2ClientSecret
+      */
+    oAuth2ClientSecretRequestBody?: OAuth2ClientSecretRequestBody;
+}
+export interface ApplicationSSOPublicKeysApiDeactivateOAuth2ClientJsonWebKeyRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideactivateOAuth2ClientJsonWebKey
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideactivateOAuth2ClientJsonWebKey
+      */
+    keyId: string;
+}
+export interface ApplicationSSOPublicKeysApiDeactivateOAuth2ClientSecretRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideactivateOAuth2ClientSecret
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideactivateOAuth2ClientSecret
+      */
+    secretId: string;
+}
+export interface ApplicationSSOPublicKeysApiDeleteOAuth2ClientSecretRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideleteOAuth2ClientSecret
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideleteOAuth2ClientSecret
+      */
+    secretId: string;
+}
+export interface ApplicationSSOPublicKeysApiDeletejwkRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideletejwk
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApideletejwk
+      */
+    keyId: string;
+}
+export interface ApplicationSSOPublicKeysApiGetJwkRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApigetJwk
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApigetJwk
+      */
+    keyId: string;
+}
+export interface ApplicationSSOPublicKeysApiGetOAuth2ClientSecretRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApigetOAuth2ClientSecret
+      */
+    appId: string;
+    /**
+      * Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApigetOAuth2ClientSecret
+      */
+    secretId: string;
+}
+export interface ApplicationSSOPublicKeysApiListJwkRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApilistJwk
+      */
+    appId: string;
+}
+export interface ApplicationSSOPublicKeysApiListOAuth2ClientSecretsRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof ApplicationSSOPublicKeysApilistOAuth2ClientSecrets
+      */
+    appId: string;
+}
+export declare class ObjectApplicationSSOPublicKeysApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: ApplicationSSOPublicKeysApiRequestFactory, responseProcessor?: ApplicationSSOPublicKeysApiResponseProcessor);
+  /**
+      * Activates an OAuth 2.0 Client JSON Web Key by `keyId` > **Note:** You can have only one active encryption key at any given time for app. When you activate an inactive key, the current active key is automatically deactivated.
+      * Activate an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+  activateOAuth2ClientJsonWebKey(param: ApplicationSSOPublicKeysApiActivateOAuth2ClientJsonWebKeyRequest, options?: Configuration): Promise<ListJwk200ResponseKeysInner>;
+  /**
+      * Activates an OAuth 2.0 Client Secret by `secretId`
+      * Activate an OAuth 2.0 client secret
+      * @param param the request object
+      */
+  activateOAuth2ClientSecret(param: ApplicationSSOPublicKeysApiActivateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
+  /**
+      * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOPublicKeys/#tag/ApplicationSSOPublicKeys/operation/deletejwk) and re-add the key with a `kid`.
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+  addJwk(param: ApplicationSSOPublicKeysApiAddJwkRequest, options?: Configuration): Promise<ListJwk200ResponseKeysInner>;
+  /**
+      * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
+      * Create an OAuth 2.0 client secret
+      * @param param the request object
+      */
+  createOAuth2ClientSecret(param: ApplicationSSOPublicKeysApiCreateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
+  /**
+      * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`. > **Note:** You can only deactivate signing keys. Deactivating the active encryption key isn\'t allowed if the client has ID token encryption enabled. You can activate another encryption key, which makes the current key inactive.
+      * Deactivate an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+  deactivateOAuth2ClientJsonWebKey(param: ApplicationSSOPublicKeysApiDeactivateOAuth2ClientJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ClientJsonSigningKeyResponse>;
+  /**
+      * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
+      * Deactivate an OAuth 2.0 client secret
+      * @param param the request object
+      */
+  deactivateOAuth2ClientSecret(param: ApplicationSSOPublicKeysApiDeactivateOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
+  /**
+      * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
+      * Delete an OAuth 2.0 client secret
+      * @param param the request object
+      */
+  deleteOAuth2ClientSecret(param: ApplicationSSOPublicKeysApiDeleteOAuth2ClientSecretRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
+      * Delete an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+  deletejwk(param: ApplicationSSOPublicKeysApiDeletejwkRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
+      * Retrieve an OAuth 2.0 client JSON Web Key
+      * @param param the request object
+      */
+  getJwk(param: ApplicationSSOPublicKeysApiGetJwkRequest, options?: Configuration): Promise<GetJwk200Response>;
+  /**
+      * Retrieves an OAuth 2.0 Client Secret by `secretId`
+      * Retrieve an OAuth 2.0 client secret
+      * @param param the request object
+      */
+  getOAuth2ClientSecret(param: ApplicationSSOPublicKeysApiGetOAuth2ClientSecretRequest, options?: Configuration): Promise<OAuth2ClientSecret>;
+  /**
+      * Lists all JSON Web Keys for an OAuth 2.0 client app
+      * List all the OAuth 2.0 client JSON Web Keys
+      * @param param the request object
+      */
+  listJwk(param: ApplicationSSOPublicKeysApiListJwkRequest, options?: Configuration): Promise<ListJwk200Response>;
+  /**
+      * Lists all client secrets for an OAuth 2.0 client app
+      * List all OAuth 2.0 client secrets
+      * @param param the request object
+      */
+  listOAuth2ClientSecrets(param: ApplicationSSOPublicKeysApiListOAuth2ClientSecretsRequest, options?: Configuration): Promise<Collection<OAuth2ClientSecret>>;
 }
 import { AssociatedDomainCustomizationsApiRequestFactory, AssociatedDomainCustomizationsApiResponseProcessor } from '../apis/AssociatedDomainCustomizationsApi';
 export interface AssociatedDomainCustomizationsApiGetAllWellKnownURIsRequest {
@@ -2554,13 +3191,13 @@ export declare class ObjectAttackProtectionApi {
       * Retrieve the authenticator settings
       * @param param the request object
       */
-  getAuthenticatorSettings(param?: AttackProtectionApiGetAuthenticatorSettingsRequest, options?: Configuration): Promise<Collection<AttackProtectionAuthenticatorSettings>>;
+  getAuthenticatorSettings(param?: AttackProtectionApiGetAuthenticatorSettingsRequest, options?: Configuration): Promise<AttackProtectionAuthenticatorSettings>;
   /**
       * Retrieves the User Lockout Settings for an org
       * Retrieve the user lockout settings
       * @param param the request object
       */
-  getUserLockoutSettings(param?: AttackProtectionApiGetUserLockoutSettingsRequest, options?: Configuration): Promise<Collection<UserLockoutSettings>>;
+  getUserLockoutSettings(param?: AttackProtectionApiGetUserLockoutSettingsRequest, options?: Configuration): Promise<UserLockoutSettings>;
   /**
       * Replaces the Authenticator Settings for an org
       * Replace the authenticator settings
@@ -2797,6 +3434,20 @@ export interface AuthenticatorApiUpdateCustomAAGUIDRequest {
       */
     customAAGUIDUpdateRequestObject?: CustomAAGUIDUpdateRequestObject;
 }
+export interface AuthenticatorApiVerifyRpIdDomainRequest {
+    /**
+      * &#x60;id&#x60; of the authenticator
+      * @type string
+      * @memberof AuthenticatorApiverifyRpIdDomain
+      */
+    authenticatorId: string;
+    /**
+      * Type of authenticator method
+      * @type AuthenticatorMethodTypeWebAuthn
+      * @memberof AuthenticatorApiverifyRpIdDomain
+      */
+    webAuthnMethodType: AuthenticatorMethodTypeWebAuthn;
+}
 export declare class ObjectAuthenticatorApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: AuthenticatorApiRequestFactory, responseProcessor?: AuthenticatorApiResponseProcessor);
@@ -2908,6 +3559,12 @@ export declare class ObjectAuthenticatorApi {
       * @param param the request object
       */
   updateCustomAAGUID(param: AuthenticatorApiUpdateCustomAAGUIDRequest, options?: Configuration): Promise<CustomAAGUIDResponseObject>;
+  /**
+      * Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified WebAuthn authenticator and the specific `webauthn` authenticator method
+      * Verify a Relying Party ID domain
+      * @param param the request object
+      */
+  verifyRpIdDomain(param: AuthenticatorApiVerifyRpIdDomainRequest, options?: Configuration): Promise<void>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export interface AuthorizationServerApiActivateAuthorizationServerRequest {
@@ -3254,7 +3911,7 @@ export interface AuthorizationServerApiGetRefreshTokenForAuthorizationServerAndC
       */
     authServerId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof AuthorizationServerApigetRefreshTokenForAuthorizationServerAndClient
       */
@@ -3410,7 +4067,7 @@ export interface AuthorizationServerApiListRefreshTokensForAuthorizationServerAn
       */
     authServerId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof AuthorizationServerApilistRefreshTokensForAuthorizationServerAndClient
       */
@@ -3542,7 +4199,7 @@ export interface AuthorizationServerApiRevokeRefreshTokenForAuthorizationServerA
       */
     authServerId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof AuthorizationServerApirevokeRefreshTokenForAuthorizationServerAndClient
       */
@@ -3562,7 +4219,7 @@ export interface AuthorizationServerApiRevokeRefreshTokensForAuthorizationServer
       */
     authServerId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof AuthorizationServerApirevokeRefreshTokensForAuthorizationServerAndClient
       */
@@ -3841,7 +4498,7 @@ export declare class ObjectAuthorizationServerApi {
 import { BehaviorApiRequestFactory, BehaviorApiResponseProcessor } from '../apis/BehaviorApi';
 export interface BehaviorApiActivateBehaviorDetectionRuleRequest {
     /**
-      * id of the Behavior Detection Rule
+      * ID of the Behavior Detection Rule
       * @type string
       * @memberof BehaviorApiactivateBehaviorDetectionRule
       */
@@ -3857,7 +4514,7 @@ export interface BehaviorApiCreateBehaviorDetectionRuleRequest {
 }
 export interface BehaviorApiDeactivateBehaviorDetectionRuleRequest {
     /**
-      * id of the Behavior Detection Rule
+      * ID of the Behavior Detection Rule
       * @type string
       * @memberof BehaviorApideactivateBehaviorDetectionRule
       */
@@ -3865,7 +4522,7 @@ export interface BehaviorApiDeactivateBehaviorDetectionRuleRequest {
 }
 export interface BehaviorApiDeleteBehaviorDetectionRuleRequest {
     /**
-      * id of the Behavior Detection Rule
+      * ID of the Behavior Detection Rule
       * @type string
       * @memberof BehaviorApideleteBehaviorDetectionRule
       */
@@ -3873,7 +4530,7 @@ export interface BehaviorApiDeleteBehaviorDetectionRuleRequest {
 }
 export interface BehaviorApiGetBehaviorDetectionRuleRequest {
     /**
-      * id of the Behavior Detection Rule
+      * ID of the Behavior Detection Rule
       * @type string
       * @memberof BehaviorApigetBehaviorDetectionRule
       */
@@ -3883,7 +4540,7 @@ export interface BehaviorApiListBehaviorDetectionRulesRequest {
 }
 export interface BehaviorApiReplaceBehaviorDetectionRuleRequest {
     /**
-      * id of the Behavior Detection Rule
+      * ID of the Behavior Detection Rule
       * @type string
       * @memberof BehaviorApireplaceBehaviorDetectionRule
       */
@@ -4134,7 +4791,7 @@ export declare class ObjectCustomDomainApi {
   constructor(configuration: Configuration, requestFactory?: CustomDomainApiRequestFactory, responseProcessor?: CustomDomainApiResponseProcessor);
   /**
       * Creates your custom domain
-      * Create a Custom Domain
+      * Create a custom domain
       * @param param the request object
       */
   createCustomDomain(param: CustomDomainApiCreateCustomDomainRequest, options?: Configuration): Promise<DomainResponse>;
@@ -4152,7 +4809,7 @@ export declare class ObjectCustomDomainApi {
   getCustomDomain(param: CustomDomainApiGetCustomDomainRequest, options?: Configuration): Promise<DomainResponse>;
   /**
       * Lists all verified custom domains for the org
-      * List all Custom Domains
+      * List all custom domains
       * @param param the request object
       */
   listCustomDomains(param?: CustomDomainApiListCustomDomainsRequest, options?: Configuration): Promise<DomainListResponse>;
@@ -4169,7 +4826,7 @@ export declare class ObjectCustomDomainApi {
       */
   upsertCertificate(param: CustomDomainApiUpsertCertificateRequest, options?: Configuration): Promise<void>;
   /**
-      * Verifies the custom domain and validity of DNS records by `domainId`. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.
+      * Verifies the custom domain and validity of DNS records by `domainId`. Verify your custom domain to confirm that you own or control the domain and that you have properly configured the required DNS records. Furthermore, if the `certificateSourceType` in the domain is `OKTA_MANAGED`, then an attempt is made to obtain and install a certificate. After a certificate is obtained and installed by Okta, Okta manages the certificate including certificate renewal.  Verify your custom domain after you\'ve [created it](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomDomain/#tag/CustomDomain/operation/createCustomDomain) and after you\'ve added your TXT and CNAME records to your domain provider. Okta doesn\'t verify your domain automatically. You must use the API to verify your custom domain if you change your DNS records or if you encounter issues with domain validation.  > **Note:** DNS record changes can take time to propagate. If you recently updated your DNS records, you may need to wait before verifying your custom domain. If you encounter issues with domain verification, double-check your DNS records and ensure that they\'re correctly configured. See [Update your DNS TXT](https://developer.okta.com/docs/guides/custom-url-domain/main/#update-your-dns-txt) for more information about verifying your custom domain.
       * Verify a custom domain
       * @param param the request object
       */
@@ -4258,7 +4915,7 @@ export interface CustomRoleApiListRolePermissionsRequest {
 }
 export interface CustomRoleApiListRolesRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof CustomRoleApilistRoles
       */
@@ -4361,6 +5018,143 @@ export declare class ObjectCustomRoleApi {
       * @param param the request object
       */
   replaceRolePermission(param: CustomRoleApiReplaceRolePermissionRequest, options?: Configuration): Promise<Permission>;
+}
+import { CustomTelephonyProviderApiRequestFactory, CustomTelephonyProviderApiResponseProcessor } from '../apis/CustomTelephonyProviderApi';
+export interface CustomTelephonyProviderApiActivateCustomTelephonyCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApiactivateCustomTelephonyCredential
+      */
+    customTelephonyProviderId: string;
+}
+export interface CustomTelephonyProviderApiCreateCustomTelephonyProviderCredentialsRequest {
+    /**
+      *
+      * @type CustomTelephonyProviderCredentialCreateRequest
+      * @memberof CustomTelephonyProviderApicreateCustomTelephonyProviderCredentials
+      */
+    customTelephonyProviderCredentialCreateRequest: CustomTelephonyProviderCredentialCreateRequest;
+}
+export interface CustomTelephonyProviderApiDeactivateCustomTelephonyCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApideactivateCustomTelephonyCredential
+      */
+    customTelephonyProviderId: string;
+}
+export interface CustomTelephonyProviderApiDeleteCustomTelephonyProviderCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApideleteCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderId: string;
+}
+export interface CustomTelephonyProviderApiGetCustomTelephonyProviderCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApigetCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderId: string;
+}
+export interface CustomTelephonyProviderApiListAllCustomTelephonyProviderCredentialsRequest {
+}
+export interface CustomTelephonyProviderApiSendTestCustomTelephonyProviderCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApisendTestCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderId: string;
+    /**
+      *
+      * @type CustomTelephonyProviderCredentialSendTestRequest
+      * @memberof CustomTelephonyProviderApisendTestCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderCredentialSendTestRequest: CustomTelephonyProviderCredentialSendTestRequest;
+}
+export interface CustomTelephonyProviderApiSetAsPrimaryCustomTelephonyCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApisetAsPrimaryCustomTelephonyCredential
+      */
+    customTelephonyProviderId: string;
+}
+export interface CustomTelephonyProviderApiUpdateCustomTelephonyProviderCredentialRequest {
+    /**
+      * The ID of the custom telephony provider
+      * @type string
+      * @memberof CustomTelephonyProviderApiupdateCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderId: string;
+    /**
+      *
+      * @type CustomTelephonyProviderCredentialUpdateRequest
+      * @memberof CustomTelephonyProviderApiupdateCustomTelephonyProviderCredential
+      */
+    customTelephonyProviderCredentialUpdateRequest: CustomTelephonyProviderCredentialUpdateRequest;
+}
+export declare class ObjectCustomTelephonyProviderApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: CustomTelephonyProviderApiRequestFactory, responseProcessor?: CustomTelephonyProviderApiResponseProcessor);
+  /**
+      * Activates a custom telephony provider by its ID. You must activate a provider before it can be used.
+      * Activate a custom telephony provider
+      * @param param the request object
+      */
+  activateCustomTelephonyCredential(param: CustomTelephonyProviderApiActivateCustomTelephonyCredentialRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Creates a custom telephony provider with the provided credentials
+      * Create a custom telephony provider
+      * @param param the request object
+      */
+  createCustomTelephonyProviderCredentials(param: CustomTelephonyProviderApiCreateCustomTelephonyProviderCredentialsRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Deactivates a custom telephony provider by its ID. Keep the following points in mind when you deactivate a provider: * You must deactivate a provider before deleting it. * If you have two telephony providers configured, and both are active, you can only deactivate the secondary provider. The second provider is the one that isn\'t set as the primary provider.
+      * Deactivate a custom telephony provider
+      * @param param the request object
+      */
+  deactivateCustomTelephonyCredential(param: CustomTelephonyProviderApiDeactivateCustomTelephonyCredentialRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Deletes a custom telephony provider by its ID.  Before you delete a provider, ensure that it is [deactivated](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTelephonyProvider/#tag/CustomTelephonyProvider/operation/deactivateCustomTelephonyCredential). Consider setting up another telephony provider if you still plan to use telephony in your org. See [Set up an external telephony provider](https://help.okta.com/okta_help.htm?type=oie&id=about-telephony).
+      * Delete a custom telephony provider
+      * @param param the request object
+      */
+  deleteCustomTelephonyProviderCredential(param: CustomTelephonyProviderApiDeleteCustomTelephonyProviderCredentialRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves the details of a custom telephony provider by its ID
+      * Retrieve a custom telephony provider
+      * @param param the request object
+      */
+  getCustomTelephonyProviderCredential(param: CustomTelephonyProviderApiGetCustomTelephonyProviderCredentialRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Lists all custom telephony providers that are configured in your org
+      * List all custom telephony providers
+      * @param param the request object
+      */
+  listAllCustomTelephonyProviderCredentials(param?: CustomTelephonyProviderApiListAllCustomTelephonyProviderCredentialsRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialsResponse>;
+  /**
+      * Sends a test message (SMS or call) using the specified custom telephony provider to verify that the provider is configured correctly.  You must provide a valid phone number and country code to send the test message. Send it to a phone number that you have access to so you can confirm that the message was received.
+      * Send a test message from a custom telephony provider
+      * @param param the request object
+      */
+  sendTestCustomTelephonyProviderCredential(param: CustomTelephonyProviderApiSendTestCustomTelephonyProviderCredentialRequest, options?: Configuration): Promise<void>;
+  /**
+      * Sets a custom telephony provider as the primary telephony provider for the org. You can only set one provider as a primary provider at a time.
+      * Set a custom telephony provider as a primary telephony provider
+      * @param param the request object
+      */
+  setAsPrimaryCustomTelephonyCredential(param: CustomTelephonyProviderApiSetAsPrimaryCustomTelephonyCredentialRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
+  /**
+      * Updates the credentials of an existing custom telephony provider
+      * Update a custom telephony provider credential
+      * @param param the request object
+      */
+  updateCustomTelephonyProviderCredential(param: CustomTelephonyProviderApiUpdateCustomTelephonyProviderCredentialRequest, options?: Configuration): Promise<CustomTelephonyProviderCredentialResponse>;
 }
 import { CustomizationApiRequestFactory, CustomizationApiResponseProcessor } from '../apis/CustomizationApi';
 export interface CustomizationApiBulkRemoveEmailAddressBouncesRequest {
@@ -4773,7 +5567,7 @@ export interface CustomizationApiListBrandsRequest {
       */
     expand?: Array<'themes' | 'domains' | 'emailDomain'>;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof CustomizationApilistBrands
       */
@@ -4805,7 +5599,7 @@ export interface CustomizationApiListEmailCustomizationsRequest {
       */
     templateName: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof CustomizationApilistEmailCustomizations
       */
@@ -4825,7 +5619,7 @@ export interface CustomizationApiListEmailTemplatesRequest {
       */
     brandId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof CustomizationApilistEmailTemplates
       */
@@ -5488,7 +6282,7 @@ export declare class ObjectDeviceApi {
       */
   listDeviceUsers(param: DeviceApiListDeviceUsersRequest, options?: Configuration): Promise<Collection<DeviceUser>>;
   /**
-      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request. > **Note:** Listing devices with `search` should not be used as a part of any critical flow, such as authentication or updates, to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * Lists all devices with pagination support.  >**Note:** To list all devices enrolled by a user, use the [List all devices endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserDevices).  You can return a subset of devices that match a supported search criteria using the `search` query parameter. Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.  Don\'t use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss.   Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation requires [URL encoding](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
       * List all devices
       * @param param the request object
       */
@@ -5769,17 +6563,17 @@ export declare class ObjectDevicePostureCheckApi {
   replaceDevicePostureCheck(param: DevicePostureCheckApiReplaceDevicePostureCheckRequest, options?: Configuration): Promise<DevicePostureCheck>;
 }
 import { DirectoriesIntegrationApiRequestFactory, DirectoriesIntegrationApiResponseProcessor } from '../apis/DirectoriesIntegrationApi';
-export interface DirectoriesIntegrationApiUpdateADGroupMembershipRequest {
+export interface DirectoriesIntegrationApiUpdateGroupMembershipRequest {
     /**
-      * ID of the Active Directory app instance in Okta
+      * ID of the Active Directory or LDAP app instance in Okta
       * @type string
-      * @memberof DirectoriesIntegrationApiupdateADGroupMembership
+      * @memberof DirectoriesIntegrationApiupdateGroupMembership
       */
     appInstanceId: string;
     /**
       *
       * @type AgentAction
-      * @memberof DirectoriesIntegrationApiupdateADGroupMembership
+      * @memberof DirectoriesIntegrationApiupdateGroupMembership
       */
     agentAction: AgentAction;
 }
@@ -5787,11 +6581,11 @@ export declare class ObjectDirectoriesIntegrationApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: DirectoriesIntegrationApiRequestFactory, responseProcessor?: DirectoriesIntegrationApiResponseProcessor);
   /**
-      * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-      * Update an Active Directory group membership
+      * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+      * Update an external directory group membership
       * @param param the request object
       */
-  updateADGroupMembership(param: DirectoriesIntegrationApiUpdateADGroupMembershipRequest, options?: Configuration): Promise<void>;
+  updateGroupMembership(param: DirectoriesIntegrationApiUpdateGroupMembershipRequest, options?: Configuration): Promise<void>;
 }
 import { DisasterRecoveryApiRequestFactory, DisasterRecoveryApiResponseProcessor } from '../apis/DisasterRecoveryApi';
 export interface DisasterRecoveryApiGetDRStatusRequest {
@@ -6301,7 +7095,7 @@ export interface GovernanceBundleApiListBundleEntitlementValuesRequest {
       */
     entitlementId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof GovernanceBundleApilistBundleEntitlementValues
       */
@@ -6321,7 +7115,7 @@ export interface GovernanceBundleApiListBundleEntitlementsRequest {
       */
     bundleId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof GovernanceBundleApilistBundleEntitlements
       */
@@ -6335,7 +7129,7 @@ export interface GovernanceBundleApiListBundleEntitlementsRequest {
 }
 export interface GovernanceBundleApiListGovernanceBundlesRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof GovernanceBundleApilistGovernanceBundles
       */
@@ -6369,62 +7163,62 @@ export declare class ObjectGovernanceBundleApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: GovernanceBundleApiRequestFactory, responseProcessor?: GovernanceBundleApiResponseProcessor);
   /**
-      * Creates a Governance Bundle for the Admin Console in RAMP
-      * Create a governance bundle for the Admin Console in RAMP
+      * Creates a governance bundle of entitlements for the Admin Console
+      * Create a governance bundle
       * @param param the request object
       */
   createGovernanceBundle(param: GovernanceBundleApiCreateGovernanceBundleRequest, options?: Configuration): Promise<GovernanceBundle>;
   /**
-      * Deletes a Governance Bundle from RAMP
-      * Delete a governance bundle from RAMP
+      * Deletes an Admin Console governance bundle
+      * Delete a governance bundle
       * @param param the request object
       */
   deleteGovernanceBundle(param: GovernanceBundleApiDeleteGovernanceBundleRequest, options?: Configuration): Promise<void>;
   /**
-      * Retrieves a Governance Bundle from RAMP
-      * Retrieve a governance bundle from RAMP
+      * Retrieves a governance bundle for the Admin Console
+      * Retrieve a governance bundle
       * @param param the request object
       */
   getGovernanceBundle(param: GovernanceBundleApiGetGovernanceBundleRequest, options?: Configuration): Promise<GovernanceBundle>;
   /**
-      * Retrieves the opt-in status of the Admin Console from RAMP
-      * Retrieve the opt-in status from RAMP
+      * Retrieves the entitlement management opt-in status for the Admin Console
+      * Retrieve the Admin Console opt-in status
       * @param param the request object
       */
   getOptInStatus(param?: GovernanceBundleApiGetOptInStatusRequest, options?: Configuration): Promise<OptInStatusResponse>;
   /**
-      * Lists all Entitlement Values specific to a Bundle Entitlement
-      * List all entitlement values for a bundle entitlement
+      * Lists all entitlement values that are specific to a governance bundle entitlement
+      * List all values for a governance bundle entitlement
       * @param param the request object
       */
   listBundleEntitlementValues(param: GovernanceBundleApiListBundleEntitlementValuesRequest, options?: Configuration): Promise<EntitlementValuesResponse>;
   /**
-      * Lists all Entitlements specific to a Governance Bundle
+      * Lists all entitlements specific to a governance bundle
       * List all entitlements for a governance bundle
       * @param param the request object
       */
   listBundleEntitlements(param: GovernanceBundleApiListBundleEntitlementsRequest, options?: Configuration): Promise<BundleEntitlementsResponse>;
   /**
-      * Lists all Governance Bundles for the Admin Console in your org
-      * List all governance bundles for the Admin Console
+      * Lists all governance bundles for the Admin Console in your org
+      * List all governance bundles
       * @param param the request object
       */
   listGovernanceBundles(param?: GovernanceBundleApiListGovernanceBundlesRequest, options?: Configuration): Promise<GovernanceBundlesResponse>;
   /**
-      * Opts in the Admin Console to RAMP
-      * Opt in the Admin Console to RAMP
+      * Opts in the Admin Console to entitlement management
+      * Opt in the Admin Console to entitlement management
       * @param param the request object
       */
   optIn(param?: GovernanceBundleApiOptInRequest, options?: Configuration): Promise<OptInStatusResponse>;
   /**
-      * Opts out the Admin Console from RAMP
-      * Opt out the Admin Console from RAMP
+      * Opts out the Admin Console from entitlement management
+      * Opt out the Admin Console from entitlement management
       * @param param the request object
       */
   optOut(param?: GovernanceBundleApiOptOutRequest, options?: Configuration): Promise<OptInStatusResponse>;
   /**
-      * Replaces a Governance Bundle in RAMP
-      * Replace a governance bundle in RAMP
+      * Replaces the properties of a governance bundle for the Admin Console
+      * Replace a governance bundle
       * @param param the request object
       */
   replaceGovernanceBundle(param: GovernanceBundleApiReplaceGovernanceBundleRequest, options?: Configuration): Promise<GovernanceBundle>;
@@ -6628,7 +7422,7 @@ export interface GroupApiListGroupUsersRequest {
       */
     groupId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof GroupApilistGroupUsers
       */
@@ -6642,13 +7436,13 @@ export interface GroupApiListGroupUsersRequest {
 }
 export interface GroupApiListGroupsRequest {
     /**
-      * Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * Searches for groups with a supported [filtering](https://developer.okta.com/docs/api/#filter) expression for all properties except for &#x60;_embedded&#x60;, &#x60;_links&#x60;, and &#x60;objectClass&#x60;. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination).  Using search requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding), for example, &#x60;search&#x3D;type eq \&quot;OKTA_GROUP\&quot;&#x60; is encoded as &#x60;search&#x3D;type+eq+%22OKTA_GROUP%22&#x60;.  This operation searches many properties:  * Any group profile attribute, including imported app group profile attributes. * The top-level properties: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;lastMembershipUpdated&#x60;, &#x60;lastUpdated&#x60;, and &#x60;type&#x60;. * The [source](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c&#x3D;200&amp;path&#x3D;_links/source&amp;t&#x3D;response) of groups with type of &#x60;APP_GROUP&#x60;, accessed as &#x60;source.id&#x60;.  You can also use the &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters.  Searches for groups can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select profile attributes: &#x60;profile.name&#x60; and &#x60;profile.description&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
       * @type string
       * @memberof GroupApilistGroups
       */
     search?: string;
     /**
-      * Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.
+      * Filter expression for groups. See [Filter](https://developer.okta.com/docs/api/#filter).  Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;type&#x60;, &#x60;lastUpdated&#x60;, and &#x60;lastMembershipUpdated&#x60;.  &gt; **Note:** All filters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;.  See [Special characters](https://developer.okta.com/docs/api/#special-characters).
       * @type string
       * @memberof GroupApilistGroups
       */
@@ -6678,13 +7472,13 @@ export interface GroupApiListGroupsRequest {
       */
     expand?: string;
     /**
-      * Specifies field to sort by **(for search queries only)**. &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;.
+      * Specifies the field to sort by (for search queries only). &#x60;sortBy&#x60; can be any single property, for example &#x60;sortBy&#x3D;profile.name&#x60;. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;. Use with &#x60;sortOrder&#x60; to control the order of results.
       * @type string
       * @memberof GroupApilistGroups
       */
     sortBy?: string;
     /**
-      * Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present. Groups with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;\&#39;.
+      * Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       * @type string
       * @memberof GroupApilistGroups
       */
@@ -6760,7 +7554,7 @@ export declare class ObjectGroupApi {
       */
   createGroup(param: GroupApiCreateGroupRequest, options?: Configuration): Promise<Group>;
   /**
-      * Creates a group rule to dynamically add users to the specified group if they match the condition > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
+      * Creates a group rule to dynamically add users to the specified group if they match the condition. > **Note:** Group rules are created with the status set to `\'INACTIVE\'`.
       * Create a group rule
       * @param param the request object
       */
@@ -6826,7 +7620,7 @@ export declare class ObjectGroupApi {
       */
   listGroupUsers(param: GroupApiListGroupUsersRequest, options?: Configuration): Promise<Collection<User>>;
   /**
-      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** Results from the filter or query parameter are driven from an eventually consistent datasource. The synchronization lag is typically less than one second.
+      * Lists all groups with pagination support.  > **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserResources/#tag/UserResources/operation/listUserGroups).  The number of groups returned depends on the specified [`limit`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!in=query&path=limit&t=request), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.  A subset of groups can be returned that match a supported filter expression, query, or search criteria.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all groups
       * @param param the request object
       */
@@ -6838,7 +7632,7 @@ export declare class ObjectGroupApi {
       */
   replaceGroup(param: GroupApiReplaceGroupRequest, options?: Configuration): Promise<Group>;
   /**
-      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `\'INACTIVE\'`. > > You currently can\'t update the `action` section.
+      * Replaces a group rule > **Notes:** You can only update rules with a group whose status is set to `INACTIVE`. > > You currently can\'t update the `actions` section.
       * Replace a group rule
       * @param param the request object
       */
@@ -7285,7 +8079,7 @@ export interface IdentityProviderApiListIdentityProviderApplicationUsersRequest 
       */
     q?: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof IdentityProviderApilistIdentityProviderApplicationUsers
       */
@@ -7305,7 +8099,7 @@ export interface IdentityProviderApiListIdentityProviderApplicationUsersRequest 
 }
 export interface IdentityProviderApiListIdentityProviderKeysRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof IdentityProviderApilistIdentityProviderKeys
       */
@@ -7333,7 +8127,7 @@ export interface IdentityProviderApiListIdentityProvidersRequest {
       */
     q?: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof IdentityProviderApilistIdentityProviders
       */
@@ -7465,7 +8259,7 @@ export declare class ObjectIdentityProviderApi {
       */
   cloneIdentityProviderKey(param: IdentityProviderApiCloneIdentityProviderKeyRequest, options?: Configuration): Promise<IdPKeyCredential>;
   /**
-      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification vendors (IDVs) work like IdPs, with a few key differences. IDVs verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDVs that you can configure as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)
+      * Creates a new identity provider (IdP) integration.  #### SAML 2.0 IdP  You must first add the IdP\'s signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.   Don\'t use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn\'t tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).  Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:  * SP ACS URL<br> For example: `https://${yourOktaDomain}/sso/saml2/:idpId` * The app to which the user is automatically redirected after successfully authenticating with the IdP <br> For example: `/app/:app-location/:appId/sso/saml` * Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br> For example: `?RelayState=:anyUrlEncodedValue`  The deep link for the above three parts is:<br> `https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`  #### Smart Card X509 IdP  You must first add the IdP\'s server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference. You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey). Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.  #### Identity verification vendors as identity providers  Identity verification (IDV) vendors work like IdPs, with a few key differences. IDV vendors verify your user\'s identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver\'s license and matching that information with a database.  There are three IDV vendors (Persona, CLEAR Verified, and Incode) with specific configuration settings and another IDV vendor type (Custom IDV) that lets you create a custom IDV vendor, using a [standardized IDV process](https://developer.okta.com/docs/guides/idv-integration/main/). You can configure each of the IDV vendors as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).  * [Persona](https://withpersona.com/)  * [CLEAR Verified](https://www.clearme.com/)  * [Incode](https://incode.com/)  * [Custom IDV](https://help.okta.com/okta_help.htm?type=oie&id=idp-add-custom-idv-vendor)
       * Create an IdP
       * @param param the request object
       */
@@ -7622,6 +8416,40 @@ export declare class ObjectIdentityProviderApi {
   unlinkUserFromIdentityProvider(param: IdentityProviderApiUnlinkUserFromIdentityProviderRequest, options?: Configuration): Promise<void>;
 }
 import { IdentitySourceApiRequestFactory, IdentitySourceApiResponseProcessor } from '../apis/IdentitySourceApi';
+export interface IdentitySourceApiCreateIdentitySourceGroupsRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApicreateIdentitySourceGroups
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type GroupsRequestSchema
+      * @memberof IdentitySourceApicreateIdentitySourceGroups
+      */
+    groupsRequestSchema?: GroupsRequestSchema;
+}
+export interface IdentitySourceApiCreateIdentitySourceGroupsMembershipsRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApicreateIdentitySourceGroupsMemberships
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApicreateIdentitySourceGroupsMemberships
+      */
+    groupOrExternalId: string;
+    /**
+      *
+      * @type MembershipRequestSchema
+      * @memberof IdentitySourceApicreateIdentitySourceGroupsMemberships
+      */
+    membershipRequestSchema?: MembershipRequestSchema;
+}
 export interface IdentitySourceApiCreateIdentitySourceSessionRequest {
     /**
       * The ID of the identity source for which the session is created
@@ -7629,6 +8457,54 @@ export interface IdentitySourceApiCreateIdentitySourceSessionRequest {
       * @memberof IdentitySourceApicreateIdentitySourceSession
       */
     identitySourceId: string;
+}
+export interface IdentitySourceApiCreateIdentitySourceUserRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApicreateIdentitySourceUser
+      */
+    identitySourceId: string;
+    /**
+      *
+      * @type UserRequestSchema
+      * @memberof IdentitySourceApicreateIdentitySourceUser
+      */
+    userRequestSchema?: UserRequestSchema;
+}
+export interface IdentitySourceApiDeleteIdentitySourceGroupRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceGroup
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceGroup
+      */
+    groupOrExternalId: string;
+}
+export interface IdentitySourceApiDeleteIdentitySourceGroupMembershipsRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceGroupMemberships
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceGroupMemberships
+      */
+    groupOrExternalId: string;
+    /**
+      * The external ID of the identity source user
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceGroupMemberships
+      */
+    memberExternalId: string;
 }
 export interface IdentitySourceApiDeleteIdentitySourceSessionRequest {
     /**
@@ -7644,6 +8520,60 @@ export interface IdentitySourceApiDeleteIdentitySourceSessionRequest {
       */
     sessionId: string;
 }
+export interface IdentitySourceApiDeleteIdentitySourceUserRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceUser
+      */
+    identitySourceId: string;
+    /**
+      * The external ID of the user
+      * @type string
+      * @memberof IdentitySourceApideleteIdentitySourceUser
+      */
+    externalId: string;
+}
+export interface IdentitySourceApiGetIdentitySourceGroupRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceGroup
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceGroup
+      */
+    groupOrExternalId: string;
+}
+export interface IdentitySourceApiGetIdentitySourceGroupMembershipsRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceGroupMemberships
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceGroupMemberships
+      */
+    groupOrExternalId: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceGroupMemberships
+      */
+    after?: string;
+    /**
+      * Specifies the number of group membership results in a page. Okta recommends using a specific value other than the default or maximum. If your request times out, retry your request with a smaller &#x60;limit&#x60; and [page the results](https://developer.okta.com/docs/api/#pagination).
+      * @type number
+      * @memberof IdentitySourceApigetIdentitySourceGroupMemberships
+      */
+    limit?: number;
+}
 export interface IdentitySourceApiGetIdentitySourceSessionRequest {
     /**
       * The ID of the identity source for which the session is created
@@ -7658,6 +8588,20 @@ export interface IdentitySourceApiGetIdentitySourceSessionRequest {
       */
     sessionId: string;
 }
+export interface IdentitySourceApiGetIdentitySourceUserRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceUser
+      */
+    identitySourceId: string;
+    /**
+      * The external ID of the user
+      * @type string
+      * @memberof IdentitySourceApigetIdentitySourceUser
+      */
+    externalId: string;
+}
 export interface IdentitySourceApiListIdentitySourceSessionsRequest {
     /**
       * The ID of the identity source for which the session is created
@@ -7665,6 +8609,26 @@ export interface IdentitySourceApiListIdentitySourceSessionsRequest {
       * @memberof IdentitySourceApilistIdentitySourceSessions
       */
     identitySourceId: string;
+}
+export interface IdentitySourceApiReplaceExistingIdentitySourceUserRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApireplaceExistingIdentitySourceUser
+      */
+    identitySourceId: string;
+    /**
+      * The external ID of the user
+      * @type string
+      * @memberof IdentitySourceApireplaceExistingIdentitySourceUser
+      */
+    externalId: string;
+    /**
+      *
+      * @type UserRequestSchema
+      * @memberof IdentitySourceApireplaceExistingIdentitySourceUser
+      */
+    userRequestSchema?: UserRequestSchema;
 }
 export interface IdentitySourceApiStartImportFromIdentitySourceRequest {
     /**
@@ -7679,6 +8643,46 @@ export interface IdentitySourceApiStartImportFromIdentitySourceRequest {
       * @memberof IdentitySourceApistartImportFromIdentitySource
       */
     sessionId: string;
+}
+export interface IdentitySourceApiUpdateIdentitySourceGroupsRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiupdateIdentitySourceGroups
+      */
+    identitySourceId: string;
+    /**
+      * The Okta group ID or external ID of the identity source group
+      * @type string
+      * @memberof IdentitySourceApiupdateIdentitySourceGroups
+      */
+    groupOrExternalId: string;
+    /**
+      *
+      * @type GroupsRequestSchema
+      * @memberof IdentitySourceApiupdateIdentitySourceGroups
+      */
+    groupsRequestSchema?: GroupsRequestSchema;
+}
+export interface IdentitySourceApiUpdateIdentitySourceUsersRequest {
+    /**
+      * The ID of the identity source for which the session is created
+      * @type string
+      * @memberof IdentitySourceApiupdateIdentitySourceUsers
+      */
+    identitySourceId: string;
+    /**
+      * The external ID of the user
+      * @type string
+      * @memberof IdentitySourceApiupdateIdentitySourceUsers
+      */
+    externalId: string;
+    /**
+      *
+      * @type UsersUpdateRequestSchema
+      * @memberof IdentitySourceApiupdateIdentitySourceUsers
+      */
+    usersUpdateRequestSchema?: UsersUpdateRequestSchema;
 }
 export interface IdentitySourceApiUploadIdentitySourceDataForDeleteRequest {
     /**
@@ -7804,11 +8808,41 @@ export declare class ObjectIdentitySourceApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: IdentitySourceApiRequestFactory, responseProcessor?: IdentitySourceApiResponseProcessor);
   /**
+      * Creates a group in an identity source for the given identity source instance
+      * Create an identity source group
+      * @param param the request object
+      */
+  createIdentitySourceGroups(param: IdentitySourceApiCreateIdentitySourceGroupsRequest, options?: Configuration): Promise<GroupsResponseSchema>;
+  /**
+      * Creates the group memberships for the given identity source group
+      * Create the memberships for the given identity source group
+      * @param param the request object
+      */
+  createIdentitySourceGroupsMemberships(param: IdentitySourceApiCreateIdentitySourceGroupsMembershipsRequest, options?: Configuration): Promise<void>;
+  /**
       * Creates an identity source session for the given identity source instance
       * Create an identity source session
       * @param param the request object
       */
   createIdentitySourceSession(param: IdentitySourceApiCreateIdentitySourceSessionRequest, options?: Configuration): Promise<IdentitySourceSession>;
+  /**
+      * Creates a user in an identity source for the given identity source instance
+      * Create an identity source user
+      * @param param the request object
+      */
+  createIdentitySourceUser(param: IdentitySourceApiCreateIdentitySourceUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes a group in an identity source for a given identity source ID and group ID
+      * Delete an identity source group
+      * @param param the request object
+      */
+  deleteIdentitySourceGroup(param: IdentitySourceApiDeleteIdentitySourceGroupRequest, options?: Configuration): Promise<void>;
+  /**
+      * Deletes group memberships for the specified identity source group using member external IDs
+      * Delete the memberships for the specified identity source group
+      * @param param the request object
+      */
+  deleteIdentitySourceGroupMemberships(param: IdentitySourceApiDeleteIdentitySourceGroupMembershipsRequest, options?: Configuration): Promise<void>;
   /**
       * Deletes an identity source session for a given identity source ID and session Id
       * Delete an identity source session
@@ -7816,11 +8850,35 @@ export declare class ObjectIdentitySourceApi {
       */
   deleteIdentitySourceSession(param: IdentitySourceApiDeleteIdentitySourceSessionRequest, options?: Configuration): Promise<void>;
   /**
+      * Deletes a user in an identity source for the given identity source instance and external ID
+      * Delete an identity source user
+      * @param param the request object
+      */
+  deleteIdentitySourceUser(param: IdentitySourceApiDeleteIdentitySourceUserRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a group from an identity source for a given identity source ID and group ID or external ID
+      * Retrieve an identity source group
+      * @param param the request object
+      */
+  getIdentitySourceGroup(param: IdentitySourceApiGetIdentitySourceGroupRequest, options?: Configuration): Promise<GroupsResponseSchema>;
+  /**
+      * Retrieves the group memberships for the given identity source group in the given identity source instance
+      * Retrieve the memberships for the given identity source group
+      * @param param the request object
+      */
+  getIdentitySourceGroupMemberships(param: IdentitySourceApiGetIdentitySourceGroupMembershipsRequest, options?: Configuration): Promise<GroupMembershipsResponseSchema>;
+  /**
       * Retrieves an identity source session for a given identity source ID and session ID
       * Retrieve an identity source session
       * @param param the request object
       */
   getIdentitySourceSession(param: IdentitySourceApiGetIdentitySourceSessionRequest, options?: Configuration): Promise<IdentitySourceSession>;
+  /**
+      * Retrieves a user by external ID in an identity source for the given identity source instance
+      * Retrieve an identity source user
+      * @param param the request object
+      */
+  getIdentitySourceUser(param: IdentitySourceApiGetIdentitySourceUserRequest, options?: Configuration): Promise<UserResponseSchema>;
   /**
       * Lists all identity source sessions for the given identity source instance
       * List all identity source sessions
@@ -7828,11 +8886,29 @@ export declare class ObjectIdentitySourceApi {
       */
   listIdentitySourceSessions(param: IdentitySourceApiListIdentitySourceSessionsRequest, options?: Configuration): Promise<Collection<IdentitySourceSession>>;
   /**
+      * Replaces an existing user for the given identity source instance and external ID
+      * Replace an existing identity source user
+      * @param param the request object
+      */
+  replaceExistingIdentitySourceUser(param: IdentitySourceApiReplaceExistingIdentitySourceUserRequest, options?: Configuration): Promise<UserResponseSchema>;
+  /**
       * Starts the import from the identity source described by the uploaded bulk operations
       * Start the import from the identity source
       * @param param the request object
       */
   startImportFromIdentitySource(param: IdentitySourceApiStartImportFromIdentitySourceRequest, options?: Configuration): Promise<IdentitySourceSession>;
+  /**
+      * Updates a group to an identity source for the given identity source instance and group ID
+      * Update an identity source group
+      * @param param the request object
+      */
+  updateIdentitySourceGroups(param: IdentitySourceApiUpdateIdentitySourceGroupsRequest, options?: Configuration): Promise<GroupsResponseSchema>;
+  /**
+      * Updates a user to an identity source for the given identity source instance and external ID
+      * Update an identity source user
+      * @param param the request object
+      */
+  updateIdentitySourceUsers(param: IdentitySourceApiUpdateIdentitySourceUsersRequest, options?: Configuration): Promise<UserResponseSchema>;
   /**
       * Uploads external IDs of entities that need to be deleted in Okta from the identity source for the given session
       * Upload the data to be deleted in Okta
@@ -8117,7 +9193,7 @@ export interface LogStreamApiGetLogStreamRequest {
 }
 export interface LogStreamApiListLogStreamsRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof LogStreamApilistLogStreams
       */
@@ -8280,7 +9356,7 @@ export declare class ObjectNetworkZoneApi {
       */
   activateNetworkZone(param: NetworkZoneApiActivateNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
   /**
-      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`.
+      * Creates a Network Zone * For an IP Network Zone, you must define either `gateways` or `proxies`. * For a Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `proxyType`. * For an Enhanced Dynamic Network Zone, you must define at least one of the following: `asns`, `locations`, or `ipServiceCategories`. > **Note:** To view all properties for an Enhanced Dynamic Network Zone, select `DYNAMIC_V2` from the `type` dropdown list.
       * Create a network zone
       * @param param the request object
       */
@@ -8315,6 +9391,125 @@ export declare class ObjectNetworkZoneApi {
       * @param param the request object
       */
   replaceNetworkZone(param: NetworkZoneApiReplaceNetworkZoneRequest, options?: Configuration): Promise<NetworkZone>;
+}
+import { OAuth2ResourceServerCredentialsKeysApiRequestFactory, OAuth2ResourceServerCredentialsKeysApiResponseProcessor } from '../apis/OAuth2ResourceServerCredentialsKeysApi';
+export interface OAuth2ResourceServerCredentialsKeysApiActivateOAuth2ResourceServerJsonWebKeyRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApiactivateOAuth2ResourceServerJsonWebKey
+      */
+    authServerId: string;
+    /**
+      * Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApiactivateOAuth2ResourceServerJsonWebKey
+      */
+    keyId: string;
+}
+export interface OAuth2ResourceServerCredentialsKeysApiAddOAuth2ResourceServerJsonWebKeyRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApiaddOAuth2ResourceServerJsonWebKey
+      */
+    authServerId: string;
+    /**
+      *
+      * @type OAuth2ResourceServerJsonWebKeyRequestBody
+      * @memberof OAuth2ResourceServerCredentialsKeysApiaddOAuth2ResourceServerJsonWebKey
+      */
+    oAuth2ResourceServerJsonWebKeyRequestBody: OAuth2ResourceServerJsonWebKeyRequestBody;
+}
+export interface OAuth2ResourceServerCredentialsKeysApiDeactivateOAuth2ResourceServerJsonWebKeyRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApideactivateOAuth2ResourceServerJsonWebKey
+      */
+    authServerId: string;
+    /**
+      * Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApideactivateOAuth2ResourceServerJsonWebKey
+      */
+    keyId: string;
+}
+export interface OAuth2ResourceServerCredentialsKeysApiDeleteOAuth2ResourceServerJsonWebKeyRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApideleteOAuth2ResourceServerJsonWebKey
+      */
+    authServerId: string;
+    /**
+      * Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApideleteOAuth2ResourceServerJsonWebKey
+      */
+    keyId: string;
+}
+export interface OAuth2ResourceServerCredentialsKeysApiGetOAuth2ResourceServerJsonWebKeyRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApigetOAuth2ResourceServerJsonWebKey
+      */
+    authServerId: string;
+    /**
+      * Unique &#x60;id&#x60; of the Custom Authorization Server JSON Web Key
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApigetOAuth2ResourceServerJsonWebKey
+      */
+    keyId: string;
+}
+export interface OAuth2ResourceServerCredentialsKeysApiListOAuth2ResourceServerJsonWebKeysRequest {
+    /**
+      * &#x60;id&#x60; of the Authorization Server
+      * @type string
+      * @memberof OAuth2ResourceServerCredentialsKeysApilistOAuth2ResourceServerJsonWebKeys
+      */
+    authServerId: string;
+}
+export declare class ObjectOAuth2ResourceServerCredentialsKeysApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: OAuth2ResourceServerCredentialsKeysApiRequestFactory, responseProcessor?: OAuth2ResourceServerCredentialsKeysApiResponseProcessor);
+  /**
+      * Activates a custom authorization server public JSON web key by key `id`. > **Note:** You can have only one active key at any given time for the authorization server. When you activate an inactive key, Okta automatically deactivates the current active key.
+      * Activate a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+  activateOAuth2ResourceServerJsonWebKey(param: OAuth2ResourceServerCredentialsKeysApiActivateOAuth2ResourceServerJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Adds a new JSON Web Key to the custom authorization server`s JSON web keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. Use the [Replace an Authorization Server](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/AuthorizationServer/#tag/AuthorizationServer/operation/replaceAuthorizationServer) operation to update the JWKS or [Delete a Custom Authorization Server Public JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/OAuth2ResourceServerCredentialsKeys/#tag/OAuth2ResourceServerCredentialsKeys/operation/deleteOAuth2ResourceServerJsonWebKey) and re-add the key with a `kid`. > **Note:** This API doesn\'t allow you to add a key with an ACTIVE status. You need to add an INACTIVE key first, and then ACTIVATE the key.
+      * Add a JSON Web Key
+      * @param param the request object
+      */
+  addOAuth2ResourceServerJsonWebKey(param: OAuth2ResourceServerCredentialsKeysApiAddOAuth2ResourceServerJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Deactivates a custom authorization server public JSON web key by key `id`. > **Note:** Deactivating the active key isn\'t allowed if the authorization server has access token encryption enabled. You can activate another key, which makes the current key inactive.
+      * Deactivate a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+  deactivateOAuth2ResourceServerJsonWebKey(param: OAuth2ResourceServerCredentialsKeysApiDeactivateOAuth2ResourceServerJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Deletes a custom authorization server public JSON web key by key `id`. You can only delete an inactive key.
+      * Delete a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+  deleteOAuth2ResourceServerJsonWebKey(param: OAuth2ResourceServerCredentialsKeysApiDeleteOAuth2ResourceServerJsonWebKeyRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves a custom authorization server public JSON web key by key `id`
+      * Retrieve a Custom Authorization Server Public JSON Web Key
+      * @param param the request object
+      */
+  getOAuth2ResourceServerJsonWebKey(param: OAuth2ResourceServerCredentialsKeysApiGetOAuth2ResourceServerJsonWebKeyRequest, options?: Configuration): Promise<OAuth2ResourceServerJsonWebKey>;
+  /**
+      * Lists all the public keys used by the custom authorization server
+      * List all Custom Authorization Server Public JSON Web Keys
+      * @param param the request object
+      */
+  listOAuth2ResourceServerJsonWebKeys(param: OAuth2ResourceServerCredentialsKeysApiListOAuth2ResourceServerJsonWebKeysRequest, options?: Configuration): Promise<Collection<OAuth2ResourceServerJsonWebKey>>;
 }
 import { OktaApplicationSettingsApiRequestFactory, OktaApplicationSettingsApiResponseProcessor } from '../apis/OktaApplicationSettingsApi';
 export interface OktaApplicationSettingsApiGetFirstPartyAppSettingsRequest {
@@ -8354,6 +9549,99 @@ export declare class ObjectOktaApplicationSettingsApi {
       * @param param the request object
       */
   replaceFirstPartyAppSettings(param: OktaApplicationSettingsApiReplaceFirstPartyAppSettingsRequest, options?: Configuration): Promise<AdminConsoleSettings>;
+}
+import { OktaManagedUserAccountApiRequestFactory, OktaManagedUserAccountApiResponseProcessor } from '../apis/OktaManagedUserAccountApi';
+export interface OktaManagedUserAccountApiCreateOktaManagedUserAccountRequest {
+    /**
+      *
+      * @type OktaManagedUserAccountRequest
+      * @memberof OktaManagedUserAccountApicreateOktaManagedUserAccount
+      */
+    body: OktaManagedUserAccountRequest;
+}
+export interface OktaManagedUserAccountApiDeleteOktaManagedUserAccountRequest {
+    /**
+      * ID of an existing Okta managed user account
+      * @type string
+      * @memberof OktaManagedUserAccountApideleteOktaManagedUserAccount
+      */
+    id: string;
+}
+export interface OktaManagedUserAccountApiGetOktaManagedUserAccountRequest {
+    /**
+      * ID of an existing Okta managed user account
+      * @type string
+      * @memberof OktaManagedUserAccountApigetOktaManagedUserAccount
+      */
+    id: string;
+}
+export interface OktaManagedUserAccountApiListOktaManagedUserAccountsRequest {
+    /**
+      * A limit on the number of objects to return
+      * @type number
+      * @memberof OktaManagedUserAccountApilistOktaManagedUserAccounts
+      */
+    limit?: number;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
+      * @type string
+      * @memberof OktaManagedUserAccountApilistOktaManagedUserAccounts
+      */
+    after?: string;
+    /**
+      * Searches for Okta managed user accounts where the account name (&#x60;name&#x60;) or username (&#x60;username&#x60;) contains the given value
+      * @type string
+      * @memberof OktaManagedUserAccountApilistOktaManagedUserAccounts
+      */
+    match?: string;
+}
+export interface OktaManagedUserAccountApiUpdateOktaManagedUserAccountRequest {
+    /**
+      * ID of an existing Okta managed user account
+      * @type string
+      * @memberof OktaManagedUserAccountApiupdateOktaManagedUserAccount
+      */
+    id: string;
+    /**
+      *
+      * @type OktaManagedUserAccountForUpdate
+      * @memberof OktaManagedUserAccountApiupdateOktaManagedUserAccount
+      */
+    body?: OktaManagedUserAccountForUpdate;
+}
+export declare class ObjectOktaManagedUserAccountApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: OktaManagedUserAccountApiRequestFactory, responseProcessor?: OktaManagedUserAccountApiResponseProcessor);
+  /**
+      * Creates a new Okta managed user account for managing an Okta Universal Directory user as a privileged account.  You must specify an existing Okta user in your org with the `oktaUserId` request parameter. You can\'t modify the user\'s email or username because they\'re retrieved from the Okta user profile.
+      * Create an Okta managed user account
+      * @param param the request object
+      */
+  createOktaManagedUserAccount(param: OktaManagedUserAccountApiCreateOktaManagedUserAccountRequest, options?: Configuration): Promise<OktaManagedUserAccount>;
+  /**
+      * Deletes an Okta managed user account specified by ID.  This operation removes the privileged account management for the Okta user, but doesn\'t delete the user from Okta Universal Directory.
+      * Delete an Okta managed user account
+      * @param param the request object
+      */
+  deleteOktaManagedUserAccount(param: OktaManagedUserAccountApiDeleteOktaManagedUserAccountRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves an Okta managed user account specified by ID
+      * Retrieve an Okta managed user account
+      * @param param the request object
+      */
+  getOktaManagedUserAccount(param: OktaManagedUserAccountApiGetOktaManagedUserAccountRequest, options?: Configuration): Promise<OktaManagedUserAccount>;
+  /**
+      * Lists all Okta managed user accounts in your org.  Use the `match` parameter to search for accounts where the account name (`name`), username (`username`),  or email (`email`) contains the specified value.
+      * List all Okta managed user accounts
+      * @param param the request object
+      */
+  listOktaManagedUserAccounts(param?: OktaManagedUserAccountApiListOktaManagedUserAccountsRequest, options?: Configuration): Promise<Collection<OktaManagedUserAccount>>;
+  /**
+      * Updates an existing Okta managed user account specified by ID.  You can only update the `name`, `description`, `ownerUserIds`, and `ownerGroupIds` properties. You can\'t modify the `oktaUserId`, `username`, and `email` properties after the account is created.
+      * Update an Okta managed user account
+      * @param param the request object
+      */
+  updateOktaManagedUserAccount(param: OktaManagedUserAccountApiUpdateOktaManagedUserAccountRequest, options?: Configuration): Promise<OktaManagedUserAccount>;
 }
 import { OktaPersonalSettingsApiRequestFactory, OktaPersonalSettingsApiResponseProcessor } from '../apis/OktaPersonalSettingsApi';
 export interface OktaPersonalSettingsApiListPersonalAppsExportBlockListRequest {
@@ -8395,6 +9683,25 @@ export declare class ObjectOktaPersonalSettingsApi {
       * @param param the request object
       */
   replaceOktaPersonalAdminSettings(param: OktaPersonalSettingsApiReplaceOktaPersonalAdminSettingsRequest, options?: Configuration): Promise<void>;
+}
+import { OperationsIntegrationApiRequestFactory, OperationsIntegrationApiResponseProcessor } from '../apis/OperationsIntegrationApi';
+export interface OperationsIntegrationApiGetOperationStatusRequest {
+    /**
+      * ID of the asynchronous operation in Okta
+      * @type string
+      * @memberof OperationsIntegrationApigetOperationStatus
+      */
+    operationId: string;
+}
+export declare class ObjectOperationsIntegrationApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: OperationsIntegrationApiRequestFactory, responseProcessor?: OperationsIntegrationApiResponseProcessor);
+  /**
+      * Retrieves an asynchronous operation and its current status
+      * Retrieve an operation status
+      * @param param the request object
+      */
+  getOperationStatus(param: OperationsIntegrationApiGetOperationStatusRequest, options?: Configuration): Promise<OperationResponse>;
 }
 import { OrgCreatorApiRequestFactory, OrgCreatorApiResponseProcessor } from '../apis/OrgCreatorApi';
 export interface OrgCreatorApiCreateChildOrgRequest {
@@ -8917,11 +10224,11 @@ export interface PolicyApiGetPolicyRuleRequest {
 }
 export interface PolicyApiListPoliciesRequest {
     /**
-      * Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60;, and &#x60;ENTITY_RISK&#x60;.
-      * @type &#39;OKTA_SIGN_ON&#39; | &#39;PASSWORD&#39; | &#39;MFA_ENROLL&#39; | &#39;IDP_DISCOVERY&#39; | &#39;ACCESS_POLICY&#39; | &#39;PROFILE_ENROLLMENT&#39; | &#39;POST_AUTH_SESSION&#39; | &#39;ENTITY_RISK&#39;
+      * Specifies the type of policy to return. The following policy types are available only with the Okta Identity Engine - &#x60;ACCESS_POLICY&#x60;, &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; &#x60;DEVICE_SIGNAL_COLLECTION&#x60;, &#x60;PROFILE_ENROLLMENT&#x60;, &#x60;POST_AUTH_SESSION&#x60; and &#x60;ENTITY_RISK&#x60;.
+      * @type &#39;OKTA_SIGN_ON&#39; | &#39;PASSWORD&#39; | &#39;MFA_ENROLL&#39; | &#39;IDP_DISCOVERY&#39; | &#39;ACCESS_POLICY&#39; | &#39;DEVICE_SIGNAL_COLLECTION&#39; | &#39;PROFILE_ENROLLMENT&#39; | &#39;POST_AUTH_SESSION&#39; | &#39;ENTITY_RISK&#39;
       * @memberof PolicyApilistPolicies
       */
-    type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK';
+    type: 'OKTA_SIGN_ON' | 'PASSWORD' | 'MFA_ENROLL' | 'IDP_DISCOVERY' | 'ACCESS_POLICY' | 'DEVICE_SIGNAL_COLLECTION' | 'PROFILE_ENROLLMENT' | 'POST_AUTH_SESSION' | 'ENTITY_RISK';
     /**
       * Refines the query by the &#x60;status&#x60; of the policy - &#x60;ACTIVE&#x60; or &#x60;INACTIVE&#x60;
       * @type string
@@ -9155,7 +10462,7 @@ export declare class ObjectPolicyApi {
       */
   listPolicyRules(param: PolicyApiListPolicyRulesRequest, options?: Configuration): Promise<Collection<PolicyRule>>;
   /**
-      * Maps a resource to a policy identified by `policyId`
+      * Maps a resource to a policy identified by `policyId`  > **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
       * Map a resource to a policy
       * @param param the request object
       */
@@ -9687,7 +10994,7 @@ export interface RealmApiListRealmsRequest {
       */
     limit?: number;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RealmApilistRealms
       */
@@ -9705,7 +11012,7 @@ export interface RealmApiListRealmsRequest {
       */
     sortBy?: string;
     /**
-      * Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       * @type string
       * @memberof RealmApilistRealms
       */
@@ -9747,7 +11054,7 @@ export declare class ObjectRealmApi {
       */
   getRealm(param: RealmApiGetRealmRequest, options?: Configuration): Promise<Realm>;
   /**
-      * Lists all Realms
+      * Lists all realms.  > **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all realms
       * @param param the request object
       */
@@ -9816,7 +11123,7 @@ export interface RealmAssignmentApiListRealmAssignmentOperationsRequest {
       */
     limit?: number;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RealmAssignmentApilistRealmAssignmentOperations
       */
@@ -9882,7 +11189,7 @@ export declare class ObjectRealmAssignmentApi {
       * Execute a realm assignment
       * @param param the request object
       */
-  executeRealmAssignment(param: RealmAssignmentApiExecuteRealmAssignmentRequest, options?: Configuration): Promise<OperationResponse>;
+  executeRealmAssignment(param: RealmAssignmentApiExecuteRealmAssignmentRequest, options?: Configuration): Promise<RealmAssignmentOperationResponse>;
   /**
       * Retrieves a realm assignment
       * Retrieve a realm assignment
@@ -9894,7 +11201,7 @@ export declare class ObjectRealmAssignmentApi {
       * List all realm assignment operations
       * @param param the request object
       */
-  listRealmAssignmentOperations(param?: RealmAssignmentApiListRealmAssignmentOperationsRequest, options?: Configuration): Promise<Collection<OperationResponse>>;
+  listRealmAssignmentOperations(param?: RealmAssignmentApiListRealmAssignmentOperationsRequest, options?: Configuration): Promise<Collection<RealmAssignmentOperationResponse>>;
   /**
       * Lists all realm assignments
       * List all realm assignments
@@ -10079,7 +11386,7 @@ export interface ResourceSetApiListBindingsRequest {
       */
     resourceSetId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ResourceSetApilistBindings
       */
@@ -10099,7 +11406,7 @@ export interface ResourceSetApiListMembersOfBindingRequest {
       */
     roleIdOrLabel: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ResourceSetApilistMembersOfBinding
       */
@@ -10112,10 +11419,22 @@ export interface ResourceSetApiListResourceSetResourcesRequest {
       * @memberof ResourceSetApilistResourceSetResources
       */
     resourceSetId: string;
+    /**
+      * Specifies the pagination cursor for the next page of targets
+      * @type string
+      * @memberof ResourceSetApilistResourceSetResources
+      */
+    after?: string;
+    /**
+      * Specifies the number of results returned. Defaults to &#x60;100&#x60;.
+      * @type number
+      * @memberof ResourceSetApilistResourceSetResources
+      */
+    limit?: number;
 }
 export interface ResourceSetApiListResourceSetsRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ResourceSetApilistResourceSets
       */
@@ -10203,7 +11522,7 @@ export declare class ObjectResourceSetApi {
       */
   createResourceSet(param: ResourceSetApiCreateResourceSetRequest, options?: Configuration): Promise<ResourceSet>;
   /**
-      * Creates a binding for the resource set, custom role, and members (users or groups)
+      * Creates a binding for the resource set, custom role, and members (users or groups)  > **Note:** If you use a custom role with permissions that don\'t apply to the resources in the resource set, it doesn\'t affect the admin role. For example,  the `okta.users.userprofile.manage` permission gives the admin no privileges if it\'s granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`  resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
       * Create a role resource set binding
       * @param param the request object
       */
@@ -10275,7 +11594,7 @@ export declare class ObjectResourceSetApi {
       */
   listResourceSets(param?: ResourceSetApiListResourceSetsRequest, options?: Configuration): Promise<ResourceSets>;
   /**
-      * Replaces the label and description of a resource set
+      * Replaces the label and description of a resource set. See [Supported resources](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#supported-resources).
       * Replace a resource set
       * @param param the request object
       */
@@ -10390,17 +11709,17 @@ export declare class ObjectRiskProviderApi {
 import { RoleAssignmentApiRequestFactory, RoleAssignmentApiResponseProcessor } from '../apis/RoleAssignmentApi';
 export interface RoleAssignmentApiAssignRoleToClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleAssignmentApiassignRoleToClient
       */
     clientId: string;
     /**
       *
-      * @type AssignRoleToGroupRequest
+      * @type AssignRoleToClientRequest
       * @memberof RoleAssignmentApiassignRoleToClient
       */
-    assignRoleRequest: AssignRoleToGroupRequest;
+    assignRoleRequest: AssignRoleToClientRequest;
 }
 export interface RoleAssignmentApiAssignRoleToGroupRequest {
     /**
@@ -10444,7 +11763,7 @@ export interface RoleAssignmentApiAssignRoleToUserRequest {
 }
 export interface RoleAssignmentApiDeleteRoleFromClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleAssignmentApideleteRoleFromClient
       */
@@ -10568,7 +11887,7 @@ export interface RoleAssignmentApiListGroupAssignedRolesRequest {
 }
 export interface RoleAssignmentApiListRolesForClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleAssignmentApilistRolesForClient
       */
@@ -10590,7 +11909,7 @@ export interface RoleAssignmentApiListUsersWithRoleAssignmentsRequest {
 }
 export interface RoleAssignmentApiRetrieveClientRoleRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleAssignmentApiretrieveClientRole
       */
@@ -10638,13 +11957,13 @@ export declare class ObjectRoleAssignmentApi {
       * Assign a client role
       * @param param the request object
       */
-  assignRoleToClient(param: RoleAssignmentApiAssignRoleToClientRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  assignRoleToClient(param: RoleAssignmentApiAssignRoleToClientRequest, options?: Configuration): Promise<ListRolesForClient200ResponseInner>;
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a group.  You can also assign a custom role to a group, but the preferred method to assign a custom role to a group is to create a binding between the custom role, the resource set, and the group. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a role to a group
       * @param param the request object
       */
-  assignRoleToGroup(param: RoleAssignmentApiAssignRoleToGroupRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner | void>;
+  assignRoleToGroup(param: RoleAssignmentApiAssignRoleToGroupRequest, options?: Configuration): Promise<void | AssignRoleToGroup200Response>;
   /**
       * Assigns a [standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles) to a user.  You can also assign a custom role to a user, but the preferred method to assign a custom role to a user is to create a binding between the custom role, the resource set, and the user. See [Create a role resource set binding](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/RoleDResourceSetBinding/#tag/RoleDResourceSetBinding/operation/createResourceSetBinding).  > **Notes:** > * The request payload is different for standard and custom role assignments. > * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role\'s assignment response.
       * Assign a user role
@@ -10662,7 +11981,7 @@ export declare class ObjectRoleAssignmentApi {
       * Retrieve a group role assignment
       * @param param the request object
       */
-  getGroupAssignedRole(param: RoleAssignmentApiGetGroupAssignedRoleRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  getGroupAssignedRole(param: RoleAssignmentApiGetGroupAssignedRoleRequest, options?: Configuration): Promise<AssignRoleToGroup200Response>;
   /**
       * Retrieves a governance source (identified by `grantId`) for a role (identified by `roleAssignmentId`) that\'s assigned to a user (identified by `userId`)
       * Retrieve a user role governance source
@@ -10680,7 +11999,7 @@ export declare class ObjectRoleAssignmentApi {
       * Retrieve a user role assignment
       * @param param the request object
       */
-  getUserAssignedRole(param: RoleAssignmentApiGetUserAssignedRoleRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  getUserAssignedRole(param: RoleAssignmentApiGetUserAssignedRoleRequest, options?: Configuration): Promise<AssignRoleToGroup200Response>;
   /**
       * Retrieves the governance sources of a role (identified by `roleAssignmentId`) that\'s assigned to a user (identified by `userId`)
       * Retrieve all user role governance sources
@@ -10704,7 +12023,7 @@ export declare class ObjectRoleAssignmentApi {
       * List all client role assignments
       * @param param the request object
       */
-  listRolesForClient(param: RoleAssignmentApiListRolesForClientRequest, options?: Configuration): Promise<Collection<ListGroupAssignedRoles200ResponseInner>>;
+  listRolesForClient(param: RoleAssignmentApiListRolesForClientRequest, options?: Configuration): Promise<Collection<ListRolesForClient200ResponseInner>>;
   /**
       * Lists all users with role assignments
       * List all users with role assignments
@@ -10716,7 +12035,7 @@ export declare class ObjectRoleAssignmentApi {
       * Retrieve a client role
       * @param param the request object
       */
-  retrieveClientRole(param: RoleAssignmentApiRetrieveClientRoleRequest, options?: Configuration): Promise<ListGroupAssignedRoles200ResponseInner>;
+  retrieveClientRole(param: RoleAssignmentApiRetrieveClientRoleRequest, options?: Configuration): Promise<ListRolesForClient200ResponseInner>;
   /**
       * Unassigns a role assignment (identified by `roleAssignmentId`) from a group (identified by the `groupId`)
       * Unassign a group role
@@ -10799,7 +12118,7 @@ export interface RoleTargetApiAssignAppInstanceTargetToAppAdminRoleForUserReques
 }
 export interface RoleTargetApiAssignAppTargetInstanceRoleForClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiassignAppTargetInstanceRoleForClient
       */
@@ -10825,7 +12144,7 @@ export interface RoleTargetApiAssignAppTargetInstanceRoleForClientRequest {
 }
 export interface RoleTargetApiAssignAppTargetRoleToClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiassignAppTargetRoleToClient
       */
@@ -10885,7 +12204,7 @@ export interface RoleTargetApiAssignAppTargetToAdminRoleForUserRequest {
 }
 export interface RoleTargetApiAssignGroupTargetRoleForClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiassignGroupTargetRoleForClient
       */
@@ -10963,7 +12282,7 @@ export interface RoleTargetApiGetRoleTargetsByUserIdAndRoleIdRequest {
       */
     assignmentType?: 'USER' | 'GROUP';
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApigetRoleTargetsByUserIdAndRoleId
       */
@@ -10977,7 +12296,7 @@ export interface RoleTargetApiGetRoleTargetsByUserIdAndRoleIdRequest {
 }
 export interface RoleTargetApiListAppTargetRoleToClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApilistAppTargetRoleToClient
       */
@@ -10989,7 +12308,7 @@ export interface RoleTargetApiListAppTargetRoleToClientRequest {
       */
     roleAssignmentId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistAppTargetRoleToClient
       */
@@ -11015,7 +12334,7 @@ export interface RoleTargetApiListApplicationTargetsForApplicationAdministratorR
       */
     roleId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForGroup
       */
@@ -11041,7 +12360,7 @@ export interface RoleTargetApiListApplicationTargetsForApplicationAdministratorR
       */
     roleId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistApplicationTargetsForApplicationAdministratorRoleForUser
       */
@@ -11055,7 +12374,7 @@ export interface RoleTargetApiListApplicationTargetsForApplicationAdministratorR
 }
 export interface RoleTargetApiListGroupTargetRoleForClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApilistGroupTargetRoleForClient
       */
@@ -11067,7 +12386,7 @@ export interface RoleTargetApiListGroupTargetRoleForClientRequest {
       */
     roleAssignmentId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistGroupTargetRoleForClient
       */
@@ -11093,7 +12412,7 @@ export interface RoleTargetApiListGroupTargetsForGroupRoleRequest {
       */
     roleId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistGroupTargetsForGroupRole
       */
@@ -11119,7 +12438,7 @@ export interface RoleTargetApiListGroupTargetsForRoleRequest {
       */
     roleId: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof RoleTargetApilistGroupTargetsForRole
       */
@@ -11133,7 +12452,7 @@ export interface RoleTargetApiListGroupTargetsForRoleRequest {
 }
 export interface RoleTargetApiRemoveAppTargetInstanceRoleForClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiremoveAppTargetInstanceRoleForClient
       */
@@ -11159,7 +12478,7 @@ export interface RoleTargetApiRemoveAppTargetInstanceRoleForClientRequest {
 }
 export interface RoleTargetApiRemoveAppTargetRoleFromClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiremoveAppTargetRoleFromClient
       */
@@ -11179,7 +12498,7 @@ export interface RoleTargetApiRemoveAppTargetRoleFromClientRequest {
 }
 export interface RoleTargetApiRemoveGroupTargetRoleFromClientRequest {
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof RoleTargetApiremoveGroupTargetRoleFromClient
       */
@@ -11896,7 +13215,7 @@ export interface ServiceAccountApiListAppServiceAccountsRequest {
       */
     limit?: number;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ServiceAccountApilistAppServiceAccounts
       */
@@ -11916,7 +13235,7 @@ export interface ServiceAccountApiListServiceAccountsRequest {
       */
     limit?: number;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof ServiceAccountApilistServiceAccounts
       */
@@ -12047,7 +13366,7 @@ export interface SessionApiGetCurrentSessionRequest {
 }
 export interface SessionApiGetSessionRequest {
     /**
-      * &#x60;id&#x60; of the Session
+      * &#x60;id&#x60; of the session
       * @type string
       * @memberof SessionApigetSession
       */
@@ -12063,7 +13382,7 @@ export interface SessionApiRefreshCurrentSessionRequest {
 }
 export interface SessionApiRefreshSessionRequest {
     /**
-      * &#x60;id&#x60; of the Session
+      * &#x60;id&#x60; of the session
       * @type string
       * @memberof SessionApirefreshSession
       */
@@ -12071,7 +13390,7 @@ export interface SessionApiRefreshSessionRequest {
 }
 export interface SessionApiRevokeSessionRequest {
     /**
-      * &#x60;id&#x60; of the Session
+      * &#x60;id&#x60; of the session
       * @type string
       * @memberof SessionApirevokeSession
       */
@@ -12081,43 +13400,43 @@ export declare class ObjectSessionApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SessionApiRequestFactory, responseProcessor?: SessionApiResponseProcessor);
   /**
-      * Closes the Session for the user who is currently signed in. Use this method in a browser-based application to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Closes the session for the user who is currently signed in. Use this method in a browser-based app to sign out a user.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Close the current session
       * @param param the request object
       */
   closeCurrentSession(param?: SessionApiCloseCurrentSessionRequest, options?: Configuration): Promise<void>;
   /**
-      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
       * Create a session with session token
       * @param param the request object
       */
   createSession(param: SessionApiCreateSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in.   > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Retrieves session information for the current user. Use this method in a browser-based app to determine if the user is signed in.  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Retrieve the current session
       * @param param the request object
       */
   getCurrentSession(param?: SessionApiGetCurrentSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Retrieves information about the Session specified by the given session ID
+      * Retrieves information about the session specified by the given session ID
       * Retrieve a session
       * @param param the request object
       */
   getSession(param: SessionApiGetSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Refreshes the Session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
+      * Refreshes the session for the current user  > **Note:** This operation requires a session cookie for the user. An API token isn\'t allowed for this operation.
       * Refresh the current session
       * @param param the request object
       */
   refreshCurrentSession(param?: SessionApiRefreshCurrentSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
+      * Refreshes an existing session using the `id` for that session. A successful response contains the refreshed session with an updated `expiresAt` timestamp.
       * Refresh a session
       * @param param the request object
       */
   refreshSession(param: SessionApiRefreshSessionRequest, options?: Configuration): Promise<Session>;
   /**
-      * Revokes the specified Session
+      * Revokes the specified session
       * Revoke a session
       * @param param the request object
       */
@@ -12126,7 +13445,7 @@ export declare class ObjectSessionApi {
 import { SubscriptionApiRequestFactory, SubscriptionApiResponseProcessor } from '../apis/SubscriptionApi';
 export interface SubscriptionApiListRoleSubscriptionsRequest {
     /**
-      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @type ListRoleSubscriptionsRoleTypeOrRoleIdParameter
       * @memberof SubscriptionApilistRoleSubscriptions
       */
@@ -12134,7 +13453,7 @@ export interface SubscriptionApiListRoleSubscriptionsRequest {
 }
 export interface SubscriptionApiListRoleSubscriptionsByNotificationTypeRequest {
     /**
-      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @type ListRoleSubscriptionsRoleTypeOrRoleIdParameter
       * @memberof SubscriptionApilistRoleSubscriptionsByNotificationType
       */
@@ -12170,7 +13489,7 @@ export interface SubscriptionApiListUserSubscriptionsByNotificationTypeRequest {
 }
 export interface SubscriptionApiSubscribeRoleSubscriptionByNotificationTypeRequest {
     /**
-      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @type ListRoleSubscriptionsRoleTypeOrRoleIdParameter
       * @memberof SubscriptionApisubscribeRoleSubscriptionByNotificationType
       */
@@ -12198,7 +13517,7 @@ export interface SubscriptionApiSubscribeUserSubscriptionByNotificationTypeReque
 }
 export interface SubscriptionApiUnsubscribeRoleSubscriptionByNotificationTypeRequest {
     /**
-      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard Roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
+      * A reference to an existing role. Standard roles require a &#x60;roleType&#x60;, while Custom Roles require a &#x60;roleId&#x60;. See [Standard roles](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles).
       * @type ListRoleSubscriptionsRoleTypeOrRoleIdParameter
       * @memberof SubscriptionApiunsubscribeRoleSubscriptionByNotificationType
       */
@@ -12701,6 +14020,37 @@ export declare class ObjectUISchemaApi {
       */
   replaceUISchemas(param: UISchemaApiReplaceUISchemasRequest, options?: Configuration): Promise<UISchemasResponseObject>;
 }
+import { UnconfirmedUsersApiRequestFactory, UnconfirmedUsersApiResponseProcessor } from '../apis/UnconfirmedUsersApi';
+export interface UnconfirmedUsersApiListUnconfirmedUsersRequest {
+    /**
+      * Application ID
+      * @type string
+      * @memberof UnconfirmedUsersApilistUnconfirmedUsers
+      */
+    appId: string;
+    /**
+      * Specifies the pagination cursor for the next page of results. Treat this as an opaque value obtained through the next link relationship. See [Pagination](/#pagination).
+      * @type string
+      * @memberof UnconfirmedUsersApilistUnconfirmedUsers
+      */
+    after?: string;
+    /**
+      * Specifies the number of objects to return per page. If there are multiple pages of results, the Link header contains a &#x60;next&#x60; link that you need to use as an opaque value (follow it, don\&#39;t parse it). See [Pagination](/#pagination).
+      * @type number
+      * @memberof UnconfirmedUsersApilistUnconfirmedUsers
+      */
+    limit?: number;
+}
+export declare class ObjectUnconfirmedUsersApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: UnconfirmedUsersApiRequestFactory, responseProcessor?: UnconfirmedUsersApiResponseProcessor);
+  /**
+      * Lists all unconfirmed users for an app
+      * List all unconfirmed users
+      * @param param the request object
+      */
+  listUnconfirmedUsers(param: UnconfirmedUsersApiListUnconfirmedUsersRequest, options?: Configuration): Promise<UnconfirmedUserResponseSchema>;
+}
 import { UserApiRequestFactory, UserApiResponseProcessor } from '../apis/UserApi';
 export interface UserApiActivateUserRequest {
     /**
@@ -12936,7 +14286,7 @@ export interface UserApiGetRefreshTokenForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApigetRefreshTokenForUserAndClient
       */
@@ -13046,7 +14396,7 @@ export interface UserApiListGrantsForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApilistGrantsForUserAndClient
       */
@@ -13084,7 +14434,7 @@ export interface UserApiListIdentityProviderApplicationUsersRequest {
       */
     q?: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof UserApilistIdentityProviderApplicationUsers
       */
@@ -13124,7 +14474,7 @@ export interface UserApiListRefreshTokensForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApilistRefreshTokensForUserAndClient
       */
@@ -13242,47 +14592,53 @@ export interface UserApiListUsersRequest {
       */
     contentType?: string;
     /**
-      * Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for optimal search performance.   &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.   This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;search&#x3D;profile.department eq \&quot;Engineering\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.department%20eq%20%22Engineering%22&#x60;. If you use the special character &#x60;\&quot;&#x60; within a quoted string, it must also be escaped &#x60;\\&#x60; and encoded. For example, &#x60;search&#x3D;profile.lastName eq \&quot;bob\&quot;smith\&quot;&#x60; is encoded as &#x60;search&#x3D;profile.lastName%20eq%20%22bob%5C%22smith%22&#x60;. See [Special Characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
+      * Searches for users with a supported filtering expression for most properties. Okta recommends this query parameter because it provides the largest range of search options and optimal performance.  &gt; **Note:** Using an overly complex or long search query can result in an error.  This operation supports [pagination](https://developer.okta.com/docs/api/#pagination). Use an ID lookup for records that you update to ensure your results contain the latest data. Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  Property names in the search parameter are case sensitive, whereas operators (&#x60;eq&#x60;, &#x60;sw&#x60;, and so on) and string values are case insensitive. Unlike with user logins, diacritical marks are significant in search string values: a search for &#x60;isaac.brock&#x60; finds &#x60;Isaac.Brock&#x60;, but doesn\&#39;t find a property whose value is &#x60;isáàc.bröck&#x60;.  This operation requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). See [Special characters](https://developer.okta.com/docs/api/#special-characters).  This operation searches many properties:   * Any user profile attribute, including custom-defined attributes   * The top-level properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;created&#x60;, &#x60;activated&#x60;, &#x60;statusChanged&#x60;, and &#x60;lastUpdated&#x60;   * The [user type](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType/operation/updateUserType) accessed as &#x60;type.id&#x60;   * Properties that have array values  &gt; **Note:** &lt;x-lifecycle class&#x3D;\&quot;ea\&quot;&gt;&lt;/x-lifecycle&gt; The ability to search by user classification is available as an [Early Access](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) feature. The &#x60;classification.type&#x60; property cannot be used in conjunction with other search terms. You can search using &#x60;classification.type eq \&quot;LITE\&quot;&#x60; or &#x60;classification.type eq \&quot;STANDARD\&quot;&#x60;.  You can also use &#x60;sortBy&#x60; and &#x60;sortOrder&#x60; parameters. The &#x60;ne&#x60; (not equal) operator isn\&#39;t supported, but you can obtain the same result by using &#x60;lt ... or ... gt&#x60;. For example, to see all users except those that have a status of &#x60;STAGED&#x60;, use &#x60;(status lt \&quot;STAGED\&quot; or status gt \&quot;STAGED\&quot;)&#x60;.  You can search properties that are arrays. If any element matches the search term, the entire array (object) is returned. Okta follows the [SCIM Protocol Specification](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for searching arrays. You can search multiple arrays, multiple values in an array, as well as using the standard logical and filtering operators. See [Filter](https://developer.okta.com/docs/reference/core-okta-api/#filter).  Searches for users can be filtered by the following operators: &#x60;sw&#x60;, &#x60;eq&#x60;, and &#x60;co&#x60;. You can only use &#x60;co&#x60; with these select user profile attributes: &#x60;profile.firstName&#x60;, &#x60;profile.lastName&#x60;, &#x60;profile.email&#x60;, and &#x60;profile.login&#x60;. See [Operators](https://developer.okta.com/docs/api/#operators).
       * @type string
       * @memberof UserApilistUsers
       */
     search?: string;
     /**
-      * Filters users with a supported expression for a subset of properties.   &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
+      * Filters users with a supported expression for a subset of properties.  &gt; **Note:** Returned users include those with the &#x60;DEPROVISIONED&#x60; status.  This requires [URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding). For example, &#x60;filter&#x3D;lastUpdated gt \&quot;2013-06-01T00:00:00.000Z\&quot;&#x60; is encoded as &#x60;filter&#x3D;lastUpdated%20gt%20%222013-06-01T00:00:00.000Z%22&#x60;. Filtering is case-sensitive for property names and query values, while operators are case-insensitive.  Filtering supports the following limited number of properties: &#x60;status&#x60;, &#x60;lastUpdated&#x60;, &#x60;id&#x60;, &#x60;profile.login&#x60;, &#x60;profile.email&#x60;, &#x60;profile.firstName&#x60;, and &#x60;profile.lastName&#x60;.  Additionally, filtering supports only the equal &#x60;eq&#x60; operator from the standard Okta API filtering semantics, except in the case of the &#x60;lastUpdated&#x60; property. This property can also use the inequality operators (&#x60;gt&#x60;, &#x60;ge&#x60;, &#x60;lt&#x60;, and &#x60;le&#x60;). For logical operators, only the logical operators &#x60;and&#x60; and &#x60;or&#x60; are supported. The &#x60;not&#x60; operator isn\&#39;t supported. See [Filter](https://developer.okta.com/docs/api/#filter) and [Operators](https://developer.okta.com/docs/api/#operators).
       * @type string
       * @memberof UserApilistUsers
       */
     filter?: string;
     /**
-      * Finds users who match the specified query. This doesn\&#39;t support pagination.  &gt; **Note:** For optimal performance, use the &#x60;search&#x60; parameter instead.  Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Note:** Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a filter or search query instead.
+      * Finds users who match the specified query. Use the &#x60;q&#x60; parameter for simple queries, such as a lookup of users by name when creating a people picker.  The value of &#x60;q&#x60; is matched against &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;. This performs a &#x60;startsWith&#x60; match, but this is an implementation detail and can change without notice. You don\&#39;t need to specify &#x60;firstName&#x60;, &#x60;lastName&#x60;, or &#x60;email&#x60;.  &gt; **Notes:**  &gt; * Using the &#x60;q&#x60; parameter in a request omits users that have a status of &#x60;DEPROVISIONED&#x60;. To return all users, use a &#x60;filter&#x60; or &#x60;search&#x60; query instead. &gt; * This doesn\&#39;t support pagination, but you can use &#x60;limit&#x60;.  &gt; * This isn\&#39;t designed for large data sets. For optimal performance, use the &#x60;search&#x60; parameter instead.
       * @type string
       * @memberof UserApilistUsers
       */
     q?: string;
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
       * @type string
       * @memberof UserApilistUsers
       */
     after?: string;
     /**
-      * Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
+      * Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.  You can use &#x60;limit&#x60; with &#x60;after&#x60; to define the cursor location in the data set and manage the user records per page.
       * @type number
       * @memberof UserApilistUsers
       */
     limit?: number;
     /**
-      * Specifies field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property will be ordered by &#x60;id&#x60;.
+      * Specifies the field to sort by (for search queries only). This can be any single property, for example &#x60;sortBy&#x3D;profile.lastName&#x60;. Users with the same value for the &#x60;sortBy&#x60; property are ordered by &#x60;id&#x60;. Use with &#x60;sortOrder&#x60; to control the order of results.
       * @type string
       * @memberof UserApilistUsers
       */
     sortBy?: string;
     /**
-      * Specifies the sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn\&#39;t case sensitive. &#x60;sortOrder&#x60; is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
+      * Specifies sort order: &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; isn\&#39;t present.
       * @type string
       * @memberof UserApilistUsers
       */
     sortOrder?: string;
+    /**
+      * Specifies a select set of user properties to query. Any other properties will be filtered out of the returned users. This is often called field projections in APIs, which can reduce payload size, improve performance, and limit unneccessary data exposure.  Requested fields should be comma-separated. Comma-separate the fields and place sub-fields in the profile object inside a &#x60;profile:()&#x60; directive, for example &#x60;profile:(firstName, city)&#x60;. The &#x60;id&#x60; field is always included, regardless of whether it\&#39;s specified in the &#x60;fields&#x60; parameter.
+      * @type string
+      * @memberof UserApilistUsers
+      */
+    fields?: string;
     /**
       * A parameter to include metadata in the &#x60;_embedded&#x60; property. Supported value: &#x60;classification&#x60;.
       * @type string
@@ -13360,7 +14716,7 @@ export interface UserApiRevokeGrantsForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApirevokeGrantsForUserAndClient
       */
@@ -13374,7 +14730,7 @@ export interface UserApiRevokeTokenForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApirevokeTokenForUserAndClient
       */
@@ -13394,7 +14750,7 @@ export interface UserApiRevokeTokensForUserAndClientRequest {
       */
     userId: string;
     /**
-      * Client app ID
+      * &#x60;client_id&#x60; of the app
       * @type string
       * @memberof UserApirevokeTokensForUserAndClient
       */
@@ -13430,11 +14786,17 @@ export interface UserApiRevokeUserSessionsRequest {
       */
     userId: string;
     /**
-      * Revoke issued OpenID Connect and OAuth refresh and access tokens
+      * Revokes issued OpenID Connect and OAuth refresh and access tokens
       * @type boolean
       * @memberof UserApirevokeUserSessions
       */
     oauthTokens?: boolean;
+    /**
+      * Clears the user\&#39;s remembered factors for all devices. &gt; **Note:** This parameter defaults to false in Classic Engine.
+      * @type boolean
+      * @memberof UserApirevokeUserSessions
+      */
+    forgetDevices?: boolean;
 }
 export interface UserApiSetLinkedObjectForUserRequest {
     /**
@@ -13562,7 +14924,7 @@ export declare class ObjectUserApi {
       */
   createUser(param: UserApiCreateUserRequest, options?: Configuration): Promise<User>;
   /**
-      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.
+      * Deactivates a user.  Perform this operation only on users that do not have a `DEPROVISIONED` status. * The user\'s `transitioningToStatus` property is `DEPROVISIONED` during deactivation to indicate that the user hasn\'t completed the asynchronous operation. * The user\'s status is `DEPROVISIONED` when the deactivation process is complete.  > **Important:** Deactivating a user is a **destructive** operation. The user is deprovisioned from all assigned apps, which might destroy their data such as email or files. **This action cannot be recovered!**  You can also perform user deactivation asynchronously. To invoke asynchronous user deactivation, pass an HTTP header `Prefer: respond-async` with the request.  > **Note:** Users with the `DEPROVISIONED` status won\'t have their profiles updated when running the [Update a user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/updateUser) endpoint unless you have the **Edit Deactived User Profile Updates** option turned on in the Admin Console. See [Edit deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).
       * Deactivate a user
       * @param param the request object
       */
@@ -13730,7 +15092,7 @@ export declare class ObjectUserApi {
       */
   listUserIdentityProviders(param: UserApiListUserIdentityProvidersRequest, options?: Configuration): Promise<Collection<IdentityProvider>>;
   /**
-      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Note:** This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead.
+      * Lists users in your org, with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.  > **Notes:**  >  * This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead. >  * The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
       * List all users
       * @param param the request object
       */
@@ -13766,7 +15128,7 @@ export declare class ObjectUserApi {
       */
   revokeGrantsForUserAndClient(param: UserApiRevokeGrantsForUserAndClientRequest, options?: Configuration): Promise<void>;
   /**
-      * Revokes the specified refresh token
+      * Revokes the specified refresh and access tokens
       * Revoke a token for a client
       * @param param the request object
       */
@@ -13790,7 +15152,7 @@ export declare class ObjectUserApi {
       */
   revokeUserGrants(param: UserApiRevokeUserGrantsRequest, options?: Configuration): Promise<void>;
   /**
-      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user. > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.  You can also clear the user\'s remembered factors for all devices using the `forgetDevices` parameter. See [forgetDevices](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserSessions/#tag/UserSessions/operation/revokeUserSessions!in=query&path=forgetDevices&t=request). > **Note:** This operation doesn\'t clear the sessions created for web or native apps.
       * Revoke all user sessions
       * @param param the request object
       */
@@ -13826,7 +15188,7 @@ export declare class ObjectUserApi {
       */
   unsuspendUser(param: UserApiUnsuspendUserRequest, options?: Configuration): Promise<void>;
   /**
-      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request. > **Note**: Currently, the user type of a user can only be changed via a full replacement PUT operation. If the request parameters of a partial update include the type element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type.  > **Note**: To update a current user\'s profile with partial semantics, the `/api/v1/users/me` endpoint can be invoked. > > A user can only update profile properties for which the user has write access. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification.  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
+      * Updates a user\'s profile or credentials with partial update semantics.  > **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.  `profile` and `credentials` can be updated independently or together with a single request.  > **Notes:**  > * Currently, the user type of a user can only be changed using a full replacement `PUT` operation. If the request parameters of a partial update include the `type` element from the user object, the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type. > > * To update a current user\'s profile with partial semantics, you can use the `/api/v1/users/me` endpoint. But, a user can only update profile properties that they have write access for. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification. > > * You can update user profiles of users in the `DEPROVISIONED` status if you have the **Edit Deactivated User Profile Updates** option turned on in the Admin Console. See [deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).  If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/resetPassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
       * Update a user
       * @param param the request object
       */
@@ -13894,6 +15256,12 @@ export interface UserAuthenticatorEnrollmentsApiGetAuthenticatorEnrollmentReques
       * @memberof UserAuthenticatorEnrollmentsApigetAuthenticatorEnrollment
       */
     enrollmentId: string;
+    /**
+      * Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
+      * @type Array&lt;&#39;phone&#39;&gt;
+      * @memberof UserAuthenticatorEnrollmentsApigetAuthenticatorEnrollment
+      */
+    discloseIdentifiers?: Array<'phone'>;
 }
 export interface UserAuthenticatorEnrollmentsApiListAuthenticatorEnrollmentsRequest {
     /**
@@ -13902,6 +15270,12 @@ export interface UserAuthenticatorEnrollmentsApiListAuthenticatorEnrollmentsRequ
       * @memberof UserAuthenticatorEnrollmentsApilistAuthenticatorEnrollments
       */
     userId: string;
+    /**
+      * Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
+      * @type Array&lt;&#39;phone&#39;&gt;
+      * @memberof UserAuthenticatorEnrollmentsApilistAuthenticatorEnrollments
+      */
+    discloseIdentifiers?: Array<'phone'>;
 }
 export declare class ObjectUserAuthenticatorEnrollmentsApi {
   private api;
@@ -14559,6 +15933,28 @@ export interface YourOinIntegrationsApiCreateSubmissionRequest {
       */
     submissionRequest?: SubmissionRequest;
 }
+export interface YourOinIntegrationsApiGetSubmissionActionsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApigetSubmissionActions
+      */
+    submissionId: string;
+    /**
+      * Capability
+      * @type &#39;sso&#39; | &#39;universal_logout&#39; | &#39;provisioning&#39; | &#39;entitlements&#39; | &#39;shared&#39;
+      * @memberof YourOinIntegrationsApigetSubmissionActions
+      */
+    capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared';
+}
+export interface YourOinIntegrationsApiGetSubmissionAuthSettingsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApigetSubmissionAuthSettings
+      */
+    submissionId: string;
+}
 export interface YourOinIntegrationsApiGetSubmissionByOperationIdRequest {
     /**
       * OIN Integration ID
@@ -14567,11 +15963,47 @@ export interface YourOinIntegrationsApiGetSubmissionByOperationIdRequest {
       */
     submissionId: string;
 }
+export interface YourOinIntegrationsApiGetSubmissionTenantSettingsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApigetSubmissionTenantSettings
+      */
+    submissionId: string;
+}
 export interface YourOinIntegrationsApiGetSubmissionTestInfoRequest {
     /**
       * OIN Integration ID
       * @type string
       * @memberof YourOinIntegrationsApigetSubmissionTestInfo
+      */
+    submissionId: string;
+}
+export interface YourOinIntegrationsApiListAvailableActionsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApilistAvailableActions
+      */
+    submissionId: string;
+    /**
+      * Capability
+      * @type &#39;sso&#39; | &#39;universal_logout&#39; | &#39;provisioning&#39; | &#39;entitlements&#39; | &#39;shared&#39;
+      * @memberof YourOinIntegrationsApilistAvailableActions
+      */
+    capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared';
+    /**
+      * Actions provider type
+      * @type &#39;workflows&#39;
+      * @memberof YourOinIntegrationsApilistAvailableActions
+      */
+    actionsProviderType: 'workflows';
+}
+export interface YourOinIntegrationsApiListSubmissionCapabilitiesRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApilistSubmissionCapabilities
       */
     submissionId: string;
 }
@@ -14611,6 +16043,14 @@ export interface YourOinIntegrationsApiSubmitSubmissionRequest {
       */
     submissionId: string;
 }
+export interface YourOinIntegrationsApiUploadSubmissionDefaultLogoRequest {
+    /**
+      *
+      * @type HttpFile
+      * @memberof YourOinIntegrationsApiuploadSubmissionDefaultLogo
+      */
+    file?: HttpFile;
+}
 export interface YourOinIntegrationsApiUploadSubmissionLogoRequest {
     /**
       *
@@ -14618,6 +16058,68 @@ export interface YourOinIntegrationsApiUploadSubmissionLogoRequest {
       * @memberof YourOinIntegrationsApiuploadSubmissionLogo
       */
     file?: HttpFile;
+}
+export interface YourOinIntegrationsApiUpsertSubmissionActionsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApiupsertSubmissionActions
+      */
+    submissionId: string;
+    /**
+      * Capability
+      * @type &#39;sso&#39; | &#39;universal_logout&#39; | &#39;provisioning&#39; | &#39;entitlements&#39; | &#39;shared&#39;
+      * @memberof YourOinIntegrationsApiupsertSubmissionActions
+      */
+    capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared';
+    /**
+      *
+      * @type SubmissionActions
+      * @memberof YourOinIntegrationsApiupsertSubmissionActions
+      */
+    submissionActions?: SubmissionActions;
+}
+export interface YourOinIntegrationsApiUpsertSubmissionAuthSettingsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApiupsertSubmissionAuthSettings
+      */
+    submissionId: string;
+    /**
+      *
+      * @type AuthSettings
+      * @memberof YourOinIntegrationsApiupsertSubmissionAuthSettings
+      */
+    authSettings?: AuthSettings;
+}
+export interface YourOinIntegrationsApiUpsertSubmissionCapabilitiesRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApiupsertSubmissionCapabilities
+      */
+    submissionId: string;
+    /**
+      *
+      * @type SubmissionCapabilities
+      * @memberof YourOinIntegrationsApiupsertSubmissionCapabilities
+      */
+    submissionCapabilities?: SubmissionCapabilities;
+}
+export interface YourOinIntegrationsApiUpsertSubmissionTenantSettingsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApiupsertSubmissionTenantSettings
+      */
+    submissionId: string;
+    /**
+      *
+      * @type TenantSettings
+      * @memberof YourOinIntegrationsApiupsertSubmissionTenantSettings
+      */
+    tenantSettings?: TenantSettings;
 }
 export interface YourOinIntegrationsApiUpsertSubmissionTestInfoRequest {
     /**
@@ -14633,6 +16135,26 @@ export interface YourOinIntegrationsApiUpsertSubmissionTestInfoRequest {
       */
     testInfo?: TestInfo;
 }
+export interface YourOinIntegrationsApiVerifyActionsRequest {
+    /**
+      * OIN Integration ID
+      * @type string
+      * @memberof YourOinIntegrationsApiverifyActions
+      */
+    submissionId: string;
+    /**
+      * Capability
+      * @type &#39;sso&#39; | &#39;universal_logout&#39; | &#39;provisioning&#39; | &#39;entitlements&#39; | &#39;shared&#39;
+      * @memberof YourOinIntegrationsApiverifyActions
+      */
+    capability: 'sso' | 'universal_logout' | 'provisioning' | 'entitlements' | 'shared';
+    /**
+      * Actions provider type
+      * @type &#39;workflows&#39;
+      * @memberof YourOinIntegrationsApiverifyActions
+      */
+    actionsProviderType: 'workflows';
+}
 export declare class ObjectYourOinIntegrationsApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: YourOinIntegrationsApiRequestFactory, responseProcessor?: YourOinIntegrationsApiResponseProcessor);
@@ -14643,17 +16165,47 @@ export declare class ObjectYourOinIntegrationsApi {
       */
   createSubmission(param?: YourOinIntegrationsApiCreateSubmissionRequest, options?: Configuration): Promise<SubmissionResponse>;
   /**
+      * Retrieves all actions for a specific capability in an OIN Integration submission
+      * Retrieve all actions for OIN integration
+      * @param param the request object
+      */
+  getSubmissionActions(param: YourOinIntegrationsApiGetSubmissionActionsRequest, options?: Configuration): Promise<SubmissionActions>;
+  /**
+      * Retrieves the authentication settings for an OIN Integration submission
+      * Retrieve the authentication settings
+      * @param param the request object
+      */
+  getSubmissionAuthSettings(param: YourOinIntegrationsApiGetSubmissionAuthSettingsRequest, options?: Configuration): Promise<AuthSettings>;
+  /**
       * Retrieves an OIN Integration by ID
       * Retrieve an OIN integration
       * @param param the request object
       */
   getSubmissionByOperationId(param: YourOinIntegrationsApiGetSubmissionByOperationIdRequest, options?: Configuration): Promise<SubmissionResponse>;
   /**
+      * Retrieves the tenant settings for an OIN Integration submission
+      * Retrieve the tenant settings
+      * @param param the request object
+      */
+  getSubmissionTenantSettings(param: YourOinIntegrationsApiGetSubmissionTenantSettingsRequest, options?: Configuration): Promise<TenantSettings>;
+  /**
       * Retrieves the testing information for an existing OIN Integration
       * Retrieve an OIN integration testing information
       * @param param the request object
       */
   getSubmissionTestInfo(param: YourOinIntegrationsApiGetSubmissionTestInfoRequest, options?: Configuration): Promise<TestInfo>;
+  /**
+      * Lists all available actions from an actions provider (such as Workflows) for a specific OIN integration
+      * List all available actions for an OIN integration
+      * @param param the request object
+      */
+  listAvailableActions(param: YourOinIntegrationsApiListAvailableActionsRequest, options?: Configuration): Promise<AvailableActions>;
+  /**
+      * Lists all capabilities for an OIN Integration submission
+      * List all supported capabilities
+      * @param param the request object
+      */
+  listSubmissionCapabilities(param: YourOinIntegrationsApiListSubmissionCapabilitiesRequest, options?: Configuration): Promise<SubmissionCapabilities>;
   /**
       * Lists all OIN Integration submissions created through the org
       * List all OIN integrations
@@ -14673,15 +16225,51 @@ export declare class ObjectYourOinIntegrationsApi {
       */
   submitSubmission(param: YourOinIntegrationsApiSubmitSubmissionRequest, options?: Configuration): Promise<void>;
   /**
+      * Uploads a default logo to the OIN submission. The image must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
+      * Upload a default logo for an OIN integration
+      * @param param the request object
+      */
+  uploadSubmissionDefaultLogo(param?: YourOinIntegrationsApiUploadSubmissionDefaultLogoRequest, options?: Configuration): Promise<void>;
+  /**
       * Uploads a logo to your org. The image uploaded must adhere to the [OIN logo guidelines](https://developer.okta.com/docs/guides/submit-app-prereq/main/#logo-guidelines). Use the URL returned in the response header to specify the [`logo`](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission!path=logo&t=request) parameter when you [create your OIN Integration submission](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/YourOinIntegrations/#tag/YourOinIntegrations/operation/createSubmission). This logo appears in the OIN catalog for your app integration.
       * Upload an OIN integration logo
       * @param param the request object
       */
   uploadSubmissionLogo(param?: YourOinIntegrationsApiUploadSubmissionLogoRequest, options?: Configuration): Promise<void>;
   /**
+      * Upserts (adds or replaces) actions for a specific capability in an OIN Integration submission
+      * Upsert the submission actions
+      * @param param the request object
+      */
+  upsertSubmissionActions(param: YourOinIntegrationsApiUpsertSubmissionActionsRequest, options?: Configuration): Promise<SubmissionActions>;
+  /**
+      * Upserts (adds or replaces) authentication settings for an OIN Integration submission
+      * Upsert the submission authentication settings
+      * @param param the request object
+      */
+  upsertSubmissionAuthSettings(param: YourOinIntegrationsApiUpsertSubmissionAuthSettingsRequest, options?: Configuration): Promise<AuthSettings>;
+  /**
+      * Upserts (adds or replaces) capabilities for an OIN Integration submission
+      * Upsert the submission supported capabilities
+      * @param param the request object
+      */
+  upsertSubmissionCapabilities(param: YourOinIntegrationsApiUpsertSubmissionCapabilitiesRequest, options?: Configuration): Promise<SubmissionCapabilities>;
+  /**
+      * Upserts (adds or replaces) tenant settings for an OIN Integration submission
+      * Upsert the submission tenant settings
+      * @param param the request object
+      */
+  upsertSubmissionTenantSettings(param: YourOinIntegrationsApiUpsertSubmissionTenantSettingsRequest, options?: Configuration): Promise<TenantSettings>;
+  /**
       * Upserts (adds or replaces) testing information for an OIN Integration
       * Upsert an OIN integration testing information
       * @param param the request object
       */
   upsertSubmissionTestInfo(param: YourOinIntegrationsApiUpsertSubmissionTestInfoRequest, options?: Configuration): Promise<TestInfo>;
+  /**
+      * Verifies the submission actions\' correctness with an actions provider, such as Workflows
+      * Verify the submission actions
+      * @param param the request object
+      */
+  verifyActions(param: YourOinIntegrationsApiVerifyActionsRequest, options?: Configuration): Promise<VerifyActions200Response>;
 }

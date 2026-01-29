@@ -29,10 +29,10 @@ exports.PolicyContextRisk = void 0;
 * The risk rule condition level
 */
 class PolicyContextRisk {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyContextRisk.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyContextRisk = PolicyContextRisk;
@@ -42,6 +42,12 @@ PolicyContextRisk.attributeTypeMap = [
     'name': 'level',
     'baseName': 'level',
     'type': 'PolicyContextRiskLevelEnum',
+    'format': ''
+  },
+  {
+    'name': 'minRiskLevel',
+    'baseName': 'minRiskLevel',
+    'type': 'PolicyContextRiskMinRiskLevelEnum',
     'format': ''
   }
 ];

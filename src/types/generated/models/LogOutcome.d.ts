@@ -46,4 +46,4 @@ export declare class LogOutcome {
     }[];
   constructor();
 }
-export declare type LogOutcomeResultEnum = 'SUCCESS' | 'FAILURE' | 'SKIPPED' | 'ALLOW' | 'DENY' | 'CHALLENGE' | 'UNKNOWN' | 'RATE_LIMIT' | 'DEFERRED' | 'SCHEDULED' | 'ABANDONED' | 'UNANSWERED';
+export type LogOutcomeResultEnum = 'SUCCESS' | 'FAILURE' | 'SKIPPED' | 'ALLOW' | 'DENY' | 'CHALLENGE' | 'UNKNOWN' | 'RATE_LIMIT' | 'DEFERRED' | 'SCHEDULED' | 'ABANDONED' | 'UNANSWERED';

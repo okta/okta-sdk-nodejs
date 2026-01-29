@@ -29,10 +29,10 @@ exports.ChildOrgLicensing = void 0;
 * Licensing details associated with the org > **Internal use:** This property is only valid when `editionId=6` (`DirectoryIntegrationEdition`|`OktaCloudConnect`).
 */
 class ChildOrgLicensing {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ChildOrgLicensing.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ChildOrgLicensing = ChildOrgLicensing;

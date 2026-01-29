@@ -25,4 +25,4 @@
 /**
 * Represents the attestation strength used by the Chrome Verified Access API
 */
-export declare type KeyTrustLevelBrowserKey = 'CHROME_BROWSER_HW_KEY' | 'CHROME_BROWSER_OS_KEY';
+export type KeyTrustLevelBrowserKey = 'CHROME_BROWSER_HW_KEY' | 'CHROME_BROWSER_OS_KEY';

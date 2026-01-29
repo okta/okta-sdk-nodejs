@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TempPassword = void 0;
 class TempPassword {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TempPassword.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TempPassword = TempPassword;

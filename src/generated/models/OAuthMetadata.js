@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuthMetadata = void 0;
 class OAuthMetadata {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthMetadata.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthMetadata = OAuthMetadata;

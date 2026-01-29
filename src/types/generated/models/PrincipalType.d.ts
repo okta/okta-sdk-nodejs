@@ -25,4 +25,4 @@
 /**
 * The type of principal, either an API token or an OAuth 2.0 app
 */
-export declare type PrincipalType = 'OAUTH_CLIENT' | 'SSWS_TOKEN';
+export type PrincipalType = 'OAUTH_CLIENT' | 'SSWS_TOKEN';

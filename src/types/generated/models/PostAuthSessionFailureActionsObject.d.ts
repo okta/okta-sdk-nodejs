@@ -42,4 +42,4 @@ export declare class PostAuthSessionFailureActionsObject {
     }[];
   constructor();
 }
-export declare type PostAuthSessionFailureActionsObjectActionEnum = 'RUN_WORKFLOW' | 'TERMINATE_SESSION';
+export type PostAuthSessionFailureActionsObjectActionEnum = 'RUN_WORKFLOW' | 'TERMINATE_SESSION';

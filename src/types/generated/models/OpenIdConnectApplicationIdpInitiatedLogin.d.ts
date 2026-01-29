@@ -49,4 +49,4 @@ export declare class OpenIdConnectApplicationIdpInitiatedLogin {
     }[];
   constructor();
 }
-export declare type OpenIdConnectApplicationIdpInitiatedLoginModeEnum = 'DISABLED' | 'SPEC' | 'OKTA';
+export type OpenIdConnectApplicationIdpInitiatedLoginModeEnum = 'DISABLED' | 'SPEC' | 'OKTA';

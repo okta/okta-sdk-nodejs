@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PolicyRule = void 0;
 class PolicyRule {
-  constructor() {
-    // this.type = 'PolicyRule';
-  }
   static getAttributeTypeMap() {
     return PolicyRule.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'PolicyRule';
   }
 }
 exports.PolicyRule = PolicyRule;
@@ -43,6 +43,7 @@ PolicyRule.mapping = {
   'PASSWORD': 'PasswordPolicyRule',
   'POST_AUTH_SESSION': 'PostAuthSessionPolicyRule',
   'PROFILE_ENROLLMENT': 'ProfileEnrollmentPolicyRule',
+  'SESSION_VIOLATION_DETECTION': 'SessionViolationDetectionPolicyRule',
   'SIGN_ON': 'OktaSignOnPolicyRule',
 };
 PolicyRule.attributeTypeMap = [
@@ -74,12 +75,6 @@ PolicyRule.attributeTypeMap = [
     'name': 'priority',
     'baseName': 'priority',
     'type': 'number',
-    'format': ''
-  },
-  {
-    'name': 'actions',
-    'baseName': 'actions',
-    'type': 'PolicyRuleActions',
     'format': ''
   },
   {

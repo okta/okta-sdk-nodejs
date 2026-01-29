@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.StreamVerificationRequest = void 0;
 class StreamVerificationRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StreamVerificationRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StreamVerificationRequest = StreamVerificationRequest;

@@ -29,10 +29,10 @@ exports.StreamConfigurationDelivery = void 0;
 * Contains information about the intended SET delivery method by the receiver
 */
 class StreamConfigurationDelivery {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StreamConfigurationDelivery.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StreamConfigurationDelivery = StreamConfigurationDelivery;

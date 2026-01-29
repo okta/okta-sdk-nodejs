@@ -29,10 +29,10 @@ exports.GroupRuleExpression = void 0;
 * Defines Okta specific [group-rules expression](https://developer.okta.com/docs/reference/okta-expression-language/#expressions-in-group-rules)
 */
 class GroupRuleExpression {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleExpression.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleExpression = GroupRuleExpression;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntityRiskPolicyRuleActionTerminateAllSessions = void 0;
 class EntityRiskPolicyRuleActionTerminateAllSessions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActionTerminateAllSessions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleActionTerminateAllSessions = EntityRiskPolicyRuleActionTerminateAllSessions;

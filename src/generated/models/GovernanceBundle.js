@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GovernanceBundle = void 0;
 class GovernanceBundle {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GovernanceBundle.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GovernanceBundle = GovernanceBundle;

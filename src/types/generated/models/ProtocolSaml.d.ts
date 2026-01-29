@@ -55,4 +55,4 @@ export declare class ProtocolSaml {
     }[];
   constructor();
 }
-export declare type ProtocolSamlTypeEnum = 'SAML2';
+export type ProtocolSamlTypeEnum = 'SAML2';

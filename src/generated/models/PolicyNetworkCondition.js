@@ -29,10 +29,10 @@ exports.PolicyNetworkCondition = void 0;
 * Specifies a network selection mode and a set of network zones to be included or excluded. If the connection parameter\'s data type is `ZONE`, one of the `include` or `exclude` arrays is required. Specific zone IDs to include or exclude are enumerated in the respective arrays.
 */
 class PolicyNetworkCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyNetworkCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyNetworkCondition = PolicyNetworkCondition;

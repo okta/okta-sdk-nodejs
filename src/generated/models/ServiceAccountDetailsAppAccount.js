@@ -30,12 +30,12 @@ const ServiceAccount_1 = require('./../models/ServiceAccount');
 * Details for a SaaS app account, which will be managed as a service account
 */
 class ServiceAccountDetailsAppAccount extends ServiceAccount_1.ServiceAccount {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(ServiceAccountDetailsAppAccount.attributeTypeMap);
+  }
   constructor() {
     super();
     this.accountType = 'APP_ACCOUNT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(ServiceAccountDetailsAppAccount.attributeTypeMap);
   }
 }
 exports.ServiceAccountDetailsAppAccount = ServiceAccountDetailsAppAccount;

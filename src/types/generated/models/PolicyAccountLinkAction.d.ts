@@ -25,4 +25,4 @@
 /**
 * Specifies the account linking action for an IdP user
 */
-export declare type PolicyAccountLinkAction = 'AUTO' | 'DISABLED';
+export type PolicyAccountLinkAction = 'AUTO' | 'DISABLED';

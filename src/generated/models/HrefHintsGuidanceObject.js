@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefHintsGuidanceObject = void 0;
 class HrefHintsGuidanceObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefHintsGuidanceObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefHintsGuidanceObject = HrefHintsGuidanceObject;

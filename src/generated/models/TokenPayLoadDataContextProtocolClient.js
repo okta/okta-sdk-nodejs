@@ -29,10 +29,10 @@ exports.TokenPayLoadDataContextProtocolClient = void 0;
 * The client making the token request
 */
 class TokenPayLoadDataContextProtocolClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextProtocolClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextProtocolClient = TokenPayLoadDataContextProtocolClient;

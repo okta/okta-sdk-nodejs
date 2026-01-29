@@ -29,10 +29,10 @@ exports.EnrollmentInitializationRequest = void 0;
 * Enrollment initialization request
 */
 class EnrollmentInitializationRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnrollmentInitializationRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnrollmentInitializationRequest = EnrollmentInitializationRequest;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TrustedOrigin = void 0;
 class TrustedOrigin {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TrustedOrigin.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TrustedOrigin = TrustedOrigin;

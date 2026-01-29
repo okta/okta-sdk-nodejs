@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2RefreshTokenLinks = void 0;
 class OAuth2RefreshTokenLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2RefreshTokenLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2RefreshTokenLinks = OAuth2RefreshTokenLinks;

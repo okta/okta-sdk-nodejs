@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { Saml11ApplicationSettingsSignOn } from './../models/Saml11ApplicationSettingsSignOn';
 export declare class Saml11ApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: Saml11ApplicationSettingsEmOptInStatusEnum;
   /**
@@ -63,4 +63,4 @@ export declare class Saml11ApplicationSettings {
     }[];
   constructor();
 }
-export declare type Saml11ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type Saml11ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

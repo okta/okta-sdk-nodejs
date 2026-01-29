@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserSchemaAttributeEnum = void 0;
 class UserSchemaAttributeEnum {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserSchemaAttributeEnum.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserSchemaAttributeEnum = UserSchemaAttributeEnum;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.BookmarkApplication = void 0;
 const Application_1 = require('./../models/Application');
 class BookmarkApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(BookmarkApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'BOOKMARK';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(BookmarkApplication.attributeTypeMap);
   }
 }
 exports.BookmarkApplication = BookmarkApplication;

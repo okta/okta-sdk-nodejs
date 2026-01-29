@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrgOktaCommunicationSetting = void 0;
 class OrgOktaCommunicationSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgOktaCommunicationSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgOktaCommunicationSetting = OrgOktaCommunicationSetting;

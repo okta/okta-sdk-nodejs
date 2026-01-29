@@ -57,5 +57,5 @@ export declare class SamlAssertionEncryption {
     }[];
   constructor();
 }
-export declare type SamlAssertionEncryptionEncryptionAlgorithmEnum = 'AES128_CBC' | 'AES256_CBC' | 'AES256_CBC' | 'AES256_GCM';
-export declare type SamlAssertionEncryptionKeyTransportAlgorithmEnum = 'RSA_OAEP' | 'RSA_15';
+export type SamlAssertionEncryptionEncryptionAlgorithmEnum = 'AES128_CBC' | 'AES256_CBC' | 'AES256_CBC' | 'AES256_GCM';
+export type SamlAssertionEncryptionKeyTransportAlgorithmEnum = 'RSA_OAEP' | 'RSA_15';

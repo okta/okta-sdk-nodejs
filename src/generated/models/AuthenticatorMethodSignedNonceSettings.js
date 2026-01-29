@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodSignedNonceSettings = void 0;
 class AuthenticatorMethodSignedNonceSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodSignedNonceSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodSignedNonceSettings = AuthenticatorMethodSignedNonceSettings;

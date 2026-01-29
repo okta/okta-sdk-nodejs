@@ -29,10 +29,10 @@ exports.IDVParEndpoint = void 0;
 * IDV [PAR](https://datatracker.ietf.org/doc/html/rfc9126) endpoint
 */
 class IDVParEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVParEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVParEndpoint = IDVParEndpoint;

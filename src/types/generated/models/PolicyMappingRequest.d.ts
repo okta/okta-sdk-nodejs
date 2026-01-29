@@ -24,6 +24,9 @@
  */
 import { PolicyMappingResourceType } from './../models/PolicyMappingResourceType';
 export declare class PolicyMappingRequest {
+  /**
+    * [Policy ID](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/#tag/Policy/operation/listPolicies!c=200&path=0/id&t=response) of the app sign-in policy that you want to map
+    */
   'resourceId'?: string;
   'resourceType'?: PolicyMappingResourceType;
   static readonly discriminator: string | undefined;

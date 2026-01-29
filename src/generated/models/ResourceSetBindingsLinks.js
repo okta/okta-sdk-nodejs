@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResourceSetBindingsLinks = void 0;
 class ResourceSetBindingsLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceSetBindingsLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceSetBindingsLinks = ResourceSetBindingsLinks;

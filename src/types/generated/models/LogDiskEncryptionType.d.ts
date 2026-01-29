@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type LogDiskEncryptionType = 'ALL_INTERNAL_VALUES' | 'FULL' | 'NONE' | 'SYSTEM_VOLUME' | 'USER';
+export type LogDiskEncryptionType = 'ALL_INTERNAL_VALUES' | 'FULL' | 'NONE' | 'SYSTEM_VOLUME' | 'USER';

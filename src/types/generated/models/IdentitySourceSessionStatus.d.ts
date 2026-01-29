@@ -25,4 +25,4 @@
 /**
 * The current status of the identity source session
 */
-export declare type IdentitySourceSessionStatus = 'CLOSED' | 'COMPLETED' | 'CREATED' | 'ERROR' | 'EXPIRED' | 'IN_PROGRESS' | 'TRIGGERED';
+export type IdentitySourceSessionStatus = 'CLOSED' | 'COMPLETED' | 'CREATED' | 'ERROR' | 'EXPIRED' | 'IN_PROGRESS' | 'TRIGGERED';

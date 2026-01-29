@@ -22,12 +22,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { IdentityProviderPropertiesIdvMetadata } from './../models/IdentityProviderPropertiesIdvMetadata';
 /**
 * The properties in the IdP `properties` object vary depending on the IdP type
 */
 export declare class IdentityProviderProperties {
   /**
-    * The [authentication assurance level](https://developers.login.gov/oidc/#aal-values) (AAL) value for the Login.gov IdP.  See [Add a Login.gov IdP](https://developer.okta.com/docs/guides/add-logingov-idp/). Applies to `LOGINGOV` and `LOGINGOV_SANDBOX` IdP types.
+    * The [authentication assurance level](https://developers.login.gov/oidc/#aal-values) (AAL) value for the Login.gov IdP. See [Add a Login.gov IdP](https://developer.okta.com/docs/guides/add-logingov-idp/). Applies to `LOGINGOV` and `LOGINGOV_SANDBOX` IdP types.
     */
   'aalValue'?: string | null;
   /**
@@ -35,9 +36,10 @@ export declare class IdentityProviderProperties {
     */
   'additionalAmr'?: Array<IdentityProviderPropertiesAdditionalAmrEnum> | null;
   /**
-    * The [type of identity verification](https://developers.login.gov/oidc/#ial-values) (IAL) value for the Login.gov IdP.  See [Add a Login.gov IdP](https://developer.okta.com/docs/guides/add-logingov-idp/). Applies to `LOGINGOV` and `LOGINGOV_SANDBOX` IdP types.
+    * The [type of identity verification](https://developers.login.gov/oidc/#ial-values) (IAL) value for the Login.gov IdP. See [Add a Login.gov IdP](https://developer.okta.com/docs/guides/add-logingov-idp/). Applies to `LOGINGOV` and `LOGINGOV_SANDBOX` IdP types.
     */
   'ialValue'?: string | null;
+  'idvMetadata'?: IdentityProviderPropertiesIdvMetadata;
   /**
     * The ID of the inquiry template from your Persona dashboard. The inquiry template always starts with `itmpl`. Applies to the `IDV_PERSONA` IdP type.
     */
@@ -57,4 +59,4 @@ export declare class IdentityProviderProperties {
     }[];
   constructor();
 }
-export declare type IdentityProviderPropertiesAdditionalAmrEnum = 'sc' | 'hwk' | 'pin' | 'mfa';
+export type IdentityProviderPropertiesAdditionalAmrEnum = 'sc' | 'hwk' | 'pin' | 'mfa';

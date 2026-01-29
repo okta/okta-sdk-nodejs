@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentityProviderApplicationUserLinks = void 0;
 class IdentityProviderApplicationUserLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentityProviderApplicationUserLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentityProviderApplicationUserLinks = IdentityProviderApplicationUserLinks;
@@ -44,7 +44,7 @@ IdentityProviderApplicationUserLinks.attributeTypeMap = [
   {
     'name': 'next',
     'baseName': 'next',
-    'type': 'HrefObject',
+    'type': 'HrefObjectNextLink',
     'format': ''
   },
   {

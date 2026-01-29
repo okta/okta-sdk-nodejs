@@ -23,7 +23,26 @@
  * Do not edit the class manually.
  */
 import { DomainResponse } from './../models/DomainResponse';
-export declare class BrandDomains extends Array<DomainResponse> {
+/**
+* Defines a list of domains with a subset of the properties for each domain
+*/
+export declare class BrandDomains {
+  /**
+    * Each element of the array defines an individual domain
+    */
+  'domains'?: Array<DomainResponse>;
   static readonly discriminator: string | undefined;
+  static readonly attributeTypeMap: Array<{
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }>;
+  static getAttributeTypeMap(): {
+        name: string;
+        baseName: string;
+        type: string;
+        format: string;
+    }[];
   constructor();
 }

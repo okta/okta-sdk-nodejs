@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PasswordPolicyRecoveryEmailProperties = void 0;
 class PasswordPolicyRecoveryEmailProperties {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyRecoveryEmailProperties.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyRecoveryEmailProperties = PasswordPolicyRecoveryEmailProperties;

@@ -29,10 +29,10 @@ exports.SalesforceApplicationSettingsApplication = void 0;
 * Salesforce app instance properties
 */
 class SalesforceApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SalesforceApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SalesforceApplicationSettingsApplication = SalesforceApplicationSettingsApplication;

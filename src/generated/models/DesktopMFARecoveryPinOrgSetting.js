@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DesktopMFARecoveryPinOrgSetting = void 0;
 class DesktopMFARecoveryPinOrgSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DesktopMFARecoveryPinOrgSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DesktopMFARecoveryPinOrgSetting = DesktopMFARecoveryPinOrgSetting;

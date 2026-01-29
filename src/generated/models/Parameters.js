@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Parameters = void 0;
 /**
-* Attributes used for processing Active Directory group membership update
+* Attributes used for processing Active Directory or LDAP group membership update
 */
 class Parameters {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Parameters.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Parameters = Parameters;

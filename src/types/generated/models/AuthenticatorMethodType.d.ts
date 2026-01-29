@@ -25,4 +25,4 @@
 /**
 * The type of authenticator method
 */
-export declare type AuthenticatorMethodType = 'cert' | 'duo' | 'email' | 'idp' | 'otp' | 'password' | 'push' | 'security_question' | 'signed_nonce' | 'sms' | 'totp' | 'voice' | 'webauthn' | 'tac';
+export type AuthenticatorMethodType = 'cert' | 'duo' | 'email' | 'idp' | 'otp' | 'password' | 'push' | 'security_question' | 'signed_nonce' | 'sms' | 'totp' | 'voice' | 'webauthn' | 'tac';

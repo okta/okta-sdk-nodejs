@@ -29,10 +29,10 @@ exports.UserGetSingletonEmbedded = void 0;
 * The embedded resources related to the object if the `expand` query parameter is specified
 */
 class UserGetSingletonEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserGetSingletonEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserGetSingletonEmbedded = UserGetSingletonEmbedded;

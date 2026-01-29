@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OperationRequest = void 0;
 class OperationRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OperationRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OperationRequest = OperationRequest;

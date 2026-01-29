@@ -29,10 +29,10 @@ exports.GroupLinks = void 0;
 * [Discoverable resources](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Group/#tag/Group/operation/listGroups!c=200&path=_links&t=response) related to the group
 */
 class GroupLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupLinks = GroupLinks;

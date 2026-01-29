@@ -29,10 +29,10 @@ exports.Office365Application = void 0;
 * Schema for the Microsoft Office 365 app (key name: `office365`)  To create a Microsoft Office 365 app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Note:** The Office 365 app only supports `BROWSER_PLUGIN` and `SAML_1_1` sign-on modes.
 */
 class Office365Application {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Office365Application.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Office365Application = Office365Application;

@@ -22,4 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PolicyPlatformType = 'ANY' | 'DESKTOP' | 'MOBILE' | 'OTHER';
+/**
+* The type of platform
+*/
+export type PolicyPlatformType = 'ANY' | 'DESKTOP' | 'MOBILE' | 'OTHER';

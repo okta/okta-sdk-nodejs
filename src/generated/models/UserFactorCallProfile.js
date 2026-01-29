@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorCallProfile = void 0;
 class UserFactorCallProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorCallProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorCallProfile = UserFactorCallProfile;

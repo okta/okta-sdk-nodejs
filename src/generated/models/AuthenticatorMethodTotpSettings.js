@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodTotpSettings = void 0;
 class AuthenticatorMethodTotpSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodTotpSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodTotpSettings = AuthenticatorMethodTotpSettings;

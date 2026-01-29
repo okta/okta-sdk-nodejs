@@ -29,10 +29,10 @@ exports.EnhancedDynamicNetworkZoneIpServiceCategories = void 0;
 * IP services, such as a proxy or VPN, to include or exclude for an Enhanced Dynamic Network Zone
 */
 class EnhancedDynamicNetworkZoneIpServiceCategories {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnhancedDynamicNetworkZoneIpServiceCategories.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnhancedDynamicNetworkZoneIpServiceCategories = EnhancedDynamicNetworkZoneIpServiceCategories;

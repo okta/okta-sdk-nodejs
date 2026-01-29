@@ -66,7 +66,7 @@ export declare class AuthenticationMethod {
     }[];
   constructor();
 }
-export declare type AuthenticationMethodHardwareProtectionEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type AuthenticationMethodPhishingResistantEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type AuthenticationMethodUserVerificationEnum = 'OPTIONAL' | 'REQUIRED';
-export declare type AuthenticationMethodUserVerificationMethodsEnum = 'BIOMETRICS' | 'PIN';
+export type AuthenticationMethodHardwareProtectionEnum = 'OPTIONAL' | 'REQUIRED';
+export type AuthenticationMethodPhishingResistantEnum = 'OPTIONAL' | 'REQUIRED';
+export type AuthenticationMethodUserVerificationEnum = 'OPTIONAL' | 'REQUIRED';
+export type AuthenticationMethodUserVerificationMethodsEnum = 'BIOMETRICS' | 'PIN';

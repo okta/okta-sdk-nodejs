@@ -29,10 +29,10 @@ exports.OrgCreationAdminCredentialsPassword = void 0;
 * Specifies a password for a user > **Note:** For information on defaults and configuring your password policies, see [Configure the password authenticator](https://help.okta.com/okta_help.htm?type=oie&id=ext-configure-password) in the help documentation.
 */
 class OrgCreationAdminCredentialsPassword {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCreationAdminCredentialsPassword.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCreationAdminCredentialsPassword = OrgCreationAdminCredentialsPassword;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BasicApplicationSettingsApplication = void 0;
 class BasicApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BasicApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BasicApplicationSettingsApplication = BasicApplicationSettingsApplication;

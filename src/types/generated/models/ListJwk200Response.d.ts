@@ -22,9 +22,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OAuth2ClientJsonWebKey } from './../models/OAuth2ClientJsonWebKey';
+import { ListJwk200ResponseKeysInner } from './../models/ListJwk200ResponseKeysInner';
 export declare class ListJwk200Response {
-  'keys'?: Array<OAuth2ClientJsonWebKey>;
+  'keys'?: Array<ListJwk200ResponseKeysInner>;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

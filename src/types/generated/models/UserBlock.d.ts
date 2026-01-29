@@ -49,5 +49,5 @@ export declare class UserBlock {
     }[];
   constructor();
 }
-export declare type UserBlockAppliesToEnum = 'ANY_DEVICES' | 'UNKNOWN_DEVICES';
-export declare type UserBlockTypeEnum = 'DEVICE_BASED';
+export type UserBlockAppliesToEnum = 'ANY_DEVICES' | 'UNKNOWN_DEVICES';
+export type UserBlockTypeEnum = 'DEVICE_BASED';

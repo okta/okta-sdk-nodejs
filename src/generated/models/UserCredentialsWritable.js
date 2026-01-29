@@ -29,10 +29,10 @@ exports.UserCredentialsWritable = void 0;
 * Specifies primary authentication and recovery credentials for a user. Credential types and requirements vary depending on the provider and security policy of the org.
 */
 class UserCredentialsWritable {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserCredentialsWritable.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserCredentialsWritable = UserCredentialsWritable;

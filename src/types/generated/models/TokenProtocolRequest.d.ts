@@ -64,5 +64,5 @@ export declare class TokenProtocolRequest {
     }[];
   constructor();
 }
-export declare type TokenProtocolRequestResponseModeEnum = 'form_post' | 'fragment' | 'okta_post_message' | 'query';
-export declare type TokenProtocolRequestResponseTypeEnum = 'code' | 'id_token' | 'token' | 'none';
+export type TokenProtocolRequestResponseModeEnum = 'form_post' | 'fragment' | 'okta_post_message' | 'query';
+export type TokenProtocolRequestResponseTypeEnum = 'code' | 'id_token' | 'token' | 'none';

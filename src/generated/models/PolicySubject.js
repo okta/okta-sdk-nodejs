@@ -29,10 +29,10 @@ exports.PolicySubject = void 0;
 * Specifies the behavior for establishing, validating, and matching a username for an IdP user
 */
 class PolicySubject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicySubject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicySubject = PolicySubject;

@@ -29,10 +29,10 @@ exports.PolicyAccountLinkFilterUsers = void 0;
 * Filters on which users are available for account linking
 */
 class PolicyAccountLinkFilterUsers {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyAccountLinkFilterUsers.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyAccountLinkFilterUsers = PolicyAccountLinkFilterUsers;

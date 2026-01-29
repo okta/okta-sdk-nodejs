@@ -29,10 +29,10 @@ exports.SubscriptionLinks = void 0;
 * Discoverable resources related to the subscription
 */
 class SubscriptionLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SubscriptionLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SubscriptionLinks = SubscriptionLinks;

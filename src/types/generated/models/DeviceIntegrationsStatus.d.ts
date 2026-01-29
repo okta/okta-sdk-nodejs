@@ -25,4 +25,4 @@
 /**
 * The status of the device integration
 */
-export declare type DeviceIntegrationsStatus = 'ACTIVE' | 'DEACTIVATED';
+export type DeviceIntegrationsStatus = 'ACTIVE' | 'DEACTIVATED';

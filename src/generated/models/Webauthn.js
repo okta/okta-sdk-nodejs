@@ -29,10 +29,10 @@ exports.Webauthn = void 0;
 * Activates a `webauthn` factor with the specified attestation and registration information from the WebAuthn authenticator
 */
 class Webauthn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Webauthn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Webauthn = Webauthn;

@@ -23,8 +23,9 @@
  * Do not edit the class manually.
  */
 import { HrefObject } from './../models/HrefObject';
+import { HrefObjectNextLink } from './../models/HrefObjectNextLink';
 export declare class ResourceSetResourcesLinks {
-  'next'?: HrefObject;
+  'next'?: HrefObjectNextLink;
   'resource_set'?: HrefObject;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

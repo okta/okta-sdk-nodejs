@@ -29,10 +29,10 @@ exports.SamlSpCertificate = void 0;
 * The certificate that Okta uses to validate Single Logout (SLO) requests and responses
 */
 class SamlSpCertificate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlSpCertificate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlSpCertificate = SamlSpCertificate;

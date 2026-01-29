@@ -25,4 +25,4 @@
 /**
 * Current release stage of the feature
 */
-export declare type FeatureStageValue = 'BETA' | 'EA';
+export type FeatureStageValue = 'BETA' | 'EA';

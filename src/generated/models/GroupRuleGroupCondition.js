@@ -29,10 +29,10 @@ exports.GroupRuleGroupCondition = void 0;
 * Currently not supported
 */
 class GroupRuleGroupCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleGroupCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleGroupCondition = GroupRuleGroupCondition;

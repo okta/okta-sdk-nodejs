@@ -29,10 +29,10 @@ exports.PostAuthSessionPolicyRuleConditions = void 0;
 * Specifies conditions that must be met during policy evaluation to apply the rule. All policy conditions and conditions for at least one rule must be met to apply the settings specified in the policy and the associated rule.
 */
 class PostAuthSessionPolicyRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionPolicyRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthSessionPolicyRuleConditions = PostAuthSessionPolicyRuleConditions;

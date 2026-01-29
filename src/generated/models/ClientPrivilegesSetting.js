@@ -29,10 +29,10 @@ exports.ClientPrivilegesSetting = void 0;
 * The org setting that assigns the super admin role by default to a public client app
 */
 class ClientPrivilegesSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ClientPrivilegesSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ClientPrivilegesSetting = ClientPrivilegesSetting;

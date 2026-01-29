@@ -29,10 +29,10 @@ exports.AppleClientSigning = void 0;
 * Information used to generate the secret JSON Web Token for the token requests to Apple IdP > **Note:** The `privateKey` property is required for a CREATE request. For an UPDATE request, it can be null and keeps the existing value if it\'s null. The `privateKey` property isn\'t returned for LIST and GET requests or UPDATE requests if it\'s null.
 */
 class AppleClientSigning {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppleClientSigning.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppleClientSigning = AppleClientSigning;

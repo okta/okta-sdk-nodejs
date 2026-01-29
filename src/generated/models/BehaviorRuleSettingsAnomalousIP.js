@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleSettingsAnomalousIP = void 0;
 class BehaviorRuleSettingsAnomalousIP {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BehaviorRuleSettingsAnomalousIP.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BehaviorRuleSettingsAnomalousIP = BehaviorRuleSettingsAnomalousIP;

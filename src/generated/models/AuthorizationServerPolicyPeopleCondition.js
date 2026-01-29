@@ -29,10 +29,10 @@ exports.AuthorizationServerPolicyPeopleCondition = void 0;
 * Identifies Users and Groups that are used together
 */
 class AuthorizationServerPolicyPeopleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServerPolicyPeopleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServerPolicyPeopleCondition = AuthorizationServerPolicyPeopleCondition;

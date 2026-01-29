@@ -47,4 +47,4 @@ export declare class WsFederationApplication extends Application {
     }[];
   constructor();
 }
-export declare type WsFederationApplicationNameEnum = 'template_wsfed';
+export type WsFederationApplicationNameEnum = 'template_wsfed';

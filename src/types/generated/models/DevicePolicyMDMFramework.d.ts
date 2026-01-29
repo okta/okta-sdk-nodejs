@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DevicePolicyMDMFramework = 'AFW' | 'NATIVE' | 'SAFE';
+export type DevicePolicyMDMFramework = 'AFW' | 'NATIVE' | 'SAFE';

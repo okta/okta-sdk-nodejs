@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2Claim = void 0;
 class OAuth2Claim {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2Claim.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2Claim = OAuth2Claim;

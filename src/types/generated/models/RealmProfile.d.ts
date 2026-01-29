@@ -50,4 +50,4 @@ export declare class RealmProfile {
     }[];
   constructor();
 }
-export declare type RealmProfileRealmTypeEnum = 'PARTNER' | 'DEFAULT';
+export type RealmProfileRealmTypeEnum = 'PARTNER' | 'DEFAULT';

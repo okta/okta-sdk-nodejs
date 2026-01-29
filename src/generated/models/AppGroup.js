@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AppGroup = void 0;
 class AppGroup {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppGroup.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppGroup = AppGroup;

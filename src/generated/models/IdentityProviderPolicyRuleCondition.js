@@ -29,10 +29,10 @@ exports.IdentityProviderPolicyRuleCondition = void 0;
 * Specifies the IdP that\'s used to sign in
 */
 class IdentityProviderPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentityProviderPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentityProviderPolicyRuleCondition = IdentityProviderPolicyRuleCondition;

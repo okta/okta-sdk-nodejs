@@ -29,11 +29,11 @@ exports.RegistrationInlineHookRequest = void 0;
 * Registration inline hook request
 */
 class RegistrationInlineHookRequest {
-  constructor() {
-    // this.requestType = 'RegistrationInlineHookRequest';
-  }
   static getAttributeTypeMap() {
     return RegistrationInlineHookRequest.attributeTypeMap;
+  }
+  constructor() {
+    // this.requestType = 'RegistrationInlineHookRequest';
   }
 }
 exports.RegistrationInlineHookRequest = RegistrationInlineHookRequest;

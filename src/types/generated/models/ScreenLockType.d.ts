@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ScreenLockType = 'BIOMETRIC' | 'NONE' | 'PASSCODE';
+export type ScreenLockType = 'BIOMETRIC' | 'NONE' | 'PASSCODE';

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserLockoutSettings = void 0;
 class UserLockoutSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserLockoutSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserLockoutSettings = UserLockoutSettings;

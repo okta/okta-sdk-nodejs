@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.PrivilegedResourceAccountOkta = void 0;
 const PrivilegedResource_1 = require('./../models/PrivilegedResource');
 class PrivilegedResourceAccountOkta extends PrivilegedResource_1.PrivilegedResource {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(PrivilegedResourceAccountOkta.attributeTypeMap);
+  }
   constructor() {
     super();
     this.resourceType = 'OKTA_USER_ACCOUNT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(PrivilegedResourceAccountOkta.attributeTypeMap);
   }
 }
 exports.PrivilegedResourceAccountOkta = PrivilegedResourceAccountOkta;

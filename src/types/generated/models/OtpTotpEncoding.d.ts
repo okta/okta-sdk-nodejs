@@ -25,4 +25,4 @@
 /**
 * The shared secret encoding
 */
-export declare type OtpTotpEncoding = 'base32' | 'base64' | 'hexadecimal';
+export type OtpTotpEncoding = 'base32' | 'base64' | 'hexadecimal';

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceAssuranceWindowsPlatform = void 0;
 const DeviceAssurance_1 = require('./../models/DeviceAssurance');
 class DeviceAssuranceWindowsPlatform extends DeviceAssurance_1.DeviceAssurance {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(DeviceAssuranceWindowsPlatform.attributeTypeMap);
+  }
   constructor() {
     super();
     this.platform = 'WINDOWS';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(DeviceAssuranceWindowsPlatform.attributeTypeMap);
   }
 }
 exports.DeviceAssuranceWindowsPlatform = DeviceAssuranceWindowsPlatform;

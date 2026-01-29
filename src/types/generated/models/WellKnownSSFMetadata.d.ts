@@ -74,4 +74,4 @@ export declare class WellKnownSSFMetadata {
     }[];
   constructor();
 }
-export declare type WellKnownSSFMetadataDefaultSubjectsEnum = 'ALL' | 'NONE';
+export type WellKnownSSFMetadataDefaultSubjectsEnum = 'ALL' | 'NONE';

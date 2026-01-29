@@ -29,10 +29,10 @@ exports.TrendMicroApexOneServiceApplicationSettingsApplication = void 0;
 * Trend Micro Apex One as a Service app instance properties
 */
 class TrendMicroApexOneServiceApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TrendMicroApexOneServiceApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TrendMicroApexOneServiceApplicationSettingsApplication = TrendMicroApexOneServiceApplicationSettingsApplication;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RoleGovernanceSourceLinks = void 0;
 class RoleGovernanceSourceLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RoleGovernanceSourceLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RoleGovernanceSourceLinks = RoleGovernanceSourceLinks;

@@ -23,12 +23,14 @@
  * Do not edit the class manually.
  */
 import { LogGeographicalContext } from './../models/LogGeographicalContext';
+import { LogIpDetails } from './../models/LogIpDetails';
 export declare class LogIpAddress {
   'geographicalContext'?: LogGeographicalContext;
   /**
     * IP address
     */
   'ip'?: string;
+  'ipDetails'?: LogIpDetails | null;
   /**
     * Details regarding the source
     */

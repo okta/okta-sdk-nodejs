@@ -29,10 +29,10 @@ exports.AuthenticationProviderWritable = void 0;
 * Specifies the authentication provider that validates the user password credential. The user\'s current provider is managed by the **Delegated Authentication** settings in your org. See [Create user with authentication provider](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#create-user-with-authentication-provider).
 */
 class AuthenticationProviderWritable {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticationProviderWritable.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticationProviderWritable = AuthenticationProviderWritable;

@@ -25,14 +25,11 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogTarget = void 0;
-/**
-* The entity that an actor performs an action on. Targets can be anything, such as an app user, a sign-in token, or anything else.
-*/
 class LogTarget {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogTarget.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogTarget = LogTarget;

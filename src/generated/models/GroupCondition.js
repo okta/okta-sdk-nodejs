@@ -29,10 +29,10 @@ exports.GroupCondition = void 0;
 * Specifies a set of groups whose users are to be included or excluded
 */
 class GroupCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupCondition = GroupCondition;

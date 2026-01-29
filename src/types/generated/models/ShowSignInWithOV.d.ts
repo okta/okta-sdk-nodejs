@@ -25,4 +25,4 @@
 /**
 * Controls whether to show the Sign in with Okta Verify button on the Sign-In Widget
 */
-export declare type ShowSignInWithOV = 'ALWAYS' | 'NEVER';
+export type ShowSignInWithOV = 'ALWAYS' | 'NEVER';

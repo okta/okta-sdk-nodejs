@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* Describes the detailed status of an app service account
+* Describes the detailed status of a service account
 */
-export declare type ServiceAccountStatusDetail = 'CREATION_FAILED' | 'MISSING_PASSWORD' | 'PENDING' | 'ROTATED' | 'ROTATING' | 'ROTATION_FAILED' | 'STAGED' | 'VAULTED';
+export type ServiceAccountStatusDetail = 'CREATION_FAILED' | 'MISSING_PASSWORD' | 'PENDING' | 'ROTATED' | 'ROTATING' | 'ROTATION_FAILED' | 'STAGED' | 'UNMANAGED' | 'VAULTED';

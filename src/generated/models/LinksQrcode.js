@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksQrcode = void 0;
 class LinksQrcode {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksQrcode.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksQrcode = LinksQrcode;

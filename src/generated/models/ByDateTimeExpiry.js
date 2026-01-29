@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ByDateTimeExpiry = void 0;
 class ByDateTimeExpiry {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ByDateTimeExpiry.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ByDateTimeExpiry = ByDateTimeExpiry;

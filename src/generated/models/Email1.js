@@ -29,10 +29,10 @@ exports.Email1 = void 0;
 * Verifies an OTP sent by an `email` factor challenge. If you omit `passCode` in the request, a new OTP is sent to the phone.
 */
 class Email1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Email1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Email1 = Email1;

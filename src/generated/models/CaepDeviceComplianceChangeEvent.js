@@ -29,10 +29,10 @@ exports.CaepDeviceComplianceChangeEvent = void 0;
 * The subject\'s device compliance was revoked
 */
 class CaepDeviceComplianceChangeEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CaepDeviceComplianceChangeEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CaepDeviceComplianceChangeEvent = CaepDeviceComplianceChangeEvent;

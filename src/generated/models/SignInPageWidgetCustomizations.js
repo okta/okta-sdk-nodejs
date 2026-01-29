@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SignInPageWidgetCustomizations = void 0;
 class SignInPageWidgetCustomizations {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SignInPageWidgetCustomizations.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SignInPageWidgetCustomizations = SignInPageWidgetCustomizations;
@@ -171,6 +171,12 @@ SignInPageWidgetCustomizations.attributeTypeMap = [
     'name': 'classicFooterHelpTitle',
     'baseName': 'classicFooterHelpTitle',
     'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'gracePeriodRequiredSoon',
+    'baseName': 'gracePeriodRequiredSoon',
+    'type': 'GracePeriodRequiredSoon',
     'format': ''
   }
 ];

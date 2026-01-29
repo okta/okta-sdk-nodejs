@@ -25,4 +25,4 @@
 /**
 * How the key is used
 */
-export declare type AuthorizationServerCredentialsUse = 'sig';
+export type AuthorizationServerCredentialsUse = 'sig';

@@ -29,10 +29,10 @@ exports.Org2OrgApplication = void 0;
 * Schema for the Okta Org2Org app (key name: `okta_org2org`)  To create an Org2Org app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Notes:** > * The Okta Org2Org (`okta_org2org`) app isn\'t available in Okta Integrator Free Plan orgs. If you need to test this feature in your Integrator Free Plan org, contact your Okta account team. > * The Okta Org2Org app supports `SAML_2_0` and `AUTO_LOGIN` sign-on modes.
 */
 class Org2OrgApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Org2OrgApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Org2OrgApplication = Org2OrgApplication;

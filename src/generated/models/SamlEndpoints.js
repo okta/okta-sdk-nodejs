@@ -29,10 +29,10 @@ exports.SamlEndpoints = void 0;
 * SAML 2.0 HTTP binding settings for IdP and SP (Okta)
 */
 class SamlEndpoints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlEndpoints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlEndpoints = SamlEndpoints;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionTimeoutLinks = void 0;
 class UserFactorPushTransactionTimeoutLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorPushTransactionTimeoutLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorPushTransactionTimeoutLinks = UserFactorPushTransactionTimeoutLinks;

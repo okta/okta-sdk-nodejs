@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksSelfAndFullUsersLifecycle = void 0;
 class LinksSelfAndFullUsersLifecycle {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksSelfAndFullUsersLifecycle.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksSelfAndFullUsersLifecycle = LinksSelfAndFullUsersLifecycle;

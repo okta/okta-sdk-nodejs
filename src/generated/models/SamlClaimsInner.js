@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SamlClaimsInner = void 0;
 class SamlClaimsInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlClaimsInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlClaimsInner = SamlClaimsInner;

@@ -22,4 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type PolicyPlatformOperatingSystemType = 'ANDROID' | 'ANY' | 'IOS' | 'OSX' | 'OTHER' | 'WINDOWS';
+/**
+* The type of operating system
+*/
+export type PolicyPlatformOperatingSystemType = 'ANDROID' | 'ANY' | 'CHROMEOS' | 'IOS' | 'MACOS' | 'OTHER' | 'WINDOWS' | 'LINUX';

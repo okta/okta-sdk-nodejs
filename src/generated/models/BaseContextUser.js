@@ -29,10 +29,10 @@ exports.BaseContextUser = void 0;
 * Identifies the Okta user that the token was generated to authenticate and provides details of their Okta user profile
 */
 class BaseContextUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseContextUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseContextUser = BaseContextUser;

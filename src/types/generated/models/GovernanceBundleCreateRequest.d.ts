@@ -23,9 +23,21 @@
  * Do not edit the class manually.
  */
 import { IAMBundleEntitlement } from './../models/IAMBundleEntitlement';
+/**
+* Request to create a governance bundle
+*/
 export declare class GovernanceBundleCreateRequest {
+  /**
+    * Description of the governance bundle
+    */
   'description'?: string;
+  /**
+    * List of entitlements to include in the governance bundle
+    */
   'entitlements'?: Array<IAMBundleEntitlement>;
+  /**
+    * Name of the governance bundle
+    */
   'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

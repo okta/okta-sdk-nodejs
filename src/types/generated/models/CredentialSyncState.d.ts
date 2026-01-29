@@ -25,4 +25,4 @@
 /**
 * Current credential sync status of the privileged resource
 */
-export declare type CredentialSyncState = 'NOT_SYNCED' | 'SYNCED' | 'SYNCING' | 'SYNC_FAILED';
+export type CredentialSyncState = 'NOT_SYNCED' | 'SYNCED' | 'SYNCING' | 'SYNC_FAILED';

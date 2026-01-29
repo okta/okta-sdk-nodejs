@@ -29,10 +29,10 @@ exports.SamlAssertionEncryption = void 0;
 * Determines if the app supports encrypted assertions
 */
 class SamlAssertionEncryption {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlAssertionEncryption.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlAssertionEncryption = SamlAssertionEncryption;

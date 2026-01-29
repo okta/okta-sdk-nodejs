@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntityRiskPolicyRuleActionsObject = void 0;
 class EntityRiskPolicyRuleActionsObject {
-  constructor() {
-    // this.action = 'EntityRiskPolicyRuleActionsObject';
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActionsObject.attributeTypeMap;
+  }
+  constructor() {
+    // this.action = 'EntityRiskPolicyRuleActionsObject';
   }
 }
 exports.EntityRiskPolicyRuleActionsObject = EntityRiskPolicyRuleActionsObject;

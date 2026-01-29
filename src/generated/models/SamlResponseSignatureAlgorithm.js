@@ -29,10 +29,10 @@ exports.SamlResponseSignatureAlgorithm = void 0;
 * XML digital Signature Algorithm settings for verifying `<SAMLResponse>` messages and `<Assertion>` elements from the IdP
 */
 class SamlResponseSignatureAlgorithm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlResponseSignatureAlgorithm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlResponseSignatureAlgorithm = SamlResponseSignatureAlgorithm;

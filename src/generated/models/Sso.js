@@ -29,10 +29,10 @@ exports.Sso = void 0;
 * Supported SSO protocol configurations. You must configure at least one protocol: `oidc` or `saml`
 */
 class Sso {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Sso.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Sso = Sso;

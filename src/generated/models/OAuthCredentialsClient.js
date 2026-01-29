@@ -29,10 +29,10 @@ exports.OAuthCredentialsClient = void 0;
 * OAuth 2.0 and OpenID Connect Client object > **Note:** You must complete client registration with the IdP Authorization Server for your Okta IdP instance to obtain client credentials.
 */
 class OAuthCredentialsClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthCredentialsClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthCredentialsClient = OAuthCredentialsClient;

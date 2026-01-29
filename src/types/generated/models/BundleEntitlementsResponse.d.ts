@@ -24,7 +24,13 @@
  */
 import { BundleEntitlement } from './../models/BundleEntitlement';
 import { BundleEntitlementsResponseLinks } from './../models/BundleEntitlementsResponseLinks';
+/**
+* Entitlement list for a governance bundle
+*/
 export declare class BundleEntitlementsResponse {
+  /**
+    * List of bundle entitlements
+    */
   'entitlements'?: Array<BundleEntitlement>;
   '_links'?: BundleEntitlementsResponseLinks;
   static readonly discriminator: string | undefined;

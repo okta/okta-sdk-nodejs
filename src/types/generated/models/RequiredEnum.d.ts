@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type RequiredEnum = 'ALWAYS' | 'HIGH_RISK_ONLY' | 'NEVER';
+export type RequiredEnum = 'ALWAYS' | 'HIGH_RISK_ONLY' | 'NEVER';

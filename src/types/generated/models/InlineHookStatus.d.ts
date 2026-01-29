@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type InlineHookStatus = 'ACTIVE' | 'INACTIVE';
+export type InlineHookStatus = 'ACTIVE' | 'INACTIVE';

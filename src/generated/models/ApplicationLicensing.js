@@ -29,10 +29,10 @@ exports.ApplicationLicensing = void 0;
 * Licenses for the app
 */
 class ApplicationLicensing {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationLicensing.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationLicensing = ApplicationLicensing;

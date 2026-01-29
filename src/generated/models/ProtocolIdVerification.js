@@ -26,13 +26,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ProtocolIdVerification = void 0;
 /**
-* Protocol settings for the IDV
+* Protocol settings for the IDV vendor
 */
 class ProtocolIdVerification {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProtocolIdVerification.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProtocolIdVerification = ProtocolIdVerification;

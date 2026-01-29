@@ -29,10 +29,10 @@ exports.TokenPayLoadDataContextProtocol = void 0;
 * Details of the authentication protocol
 */
 class TokenPayLoadDataContextProtocol {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextProtocol.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextProtocol = TokenPayLoadDataContextProtocol;

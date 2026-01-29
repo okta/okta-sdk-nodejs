@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionSuccess = void 0;
 const UserFactorPushTransaction_1 = require('./../models/UserFactorPushTransaction');
 class UserFactorPushTransactionSuccess extends UserFactorPushTransaction_1.UserFactorPushTransaction {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorPushTransactionSuccess.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorResult = 'SUCCESS';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorPushTransactionSuccess.attributeTypeMap);
   }
 }
 exports.UserFactorPushTransactionSuccess = UserFactorPushTransactionSuccess;

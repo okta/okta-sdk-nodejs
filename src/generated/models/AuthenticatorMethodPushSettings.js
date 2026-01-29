@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodPushSettings = void 0;
 class AuthenticatorMethodPushSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodPushSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodPushSettings = AuthenticatorMethodPushSettings;

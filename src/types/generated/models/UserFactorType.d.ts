@@ -25,4 +25,4 @@
 /**
 * Type of factor
 */
-export declare type UserFactorType = 'call' | 'email' | 'push' | 'question' | 'signed_nonce' | 'sms' | 'token' | 'token:hardware' | 'token:hotp' | 'token:software:totp' | 'u2f' | 'web' | 'webauthn';
+export type UserFactorType = 'call' | 'email' | 'push' | 'question' | 'signed_nonce' | 'sms' | 'token' | 'token:hardware' | 'token:hotp' | 'token:software:totp' | 'u2f' | 'web' | 'webauthn';

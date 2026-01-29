@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OidcAlgorithms = void 0;
 class OidcAlgorithms {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcAlgorithms.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcAlgorithms = OidcAlgorithms;

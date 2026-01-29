@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectPermissionsLink = void 0;
 class HrefObjectPermissionsLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectPermissionsLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectPermissionsLink = HrefObjectPermissionsLink;

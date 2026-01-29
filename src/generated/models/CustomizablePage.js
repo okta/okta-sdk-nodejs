@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CustomizablePage = void 0;
 class CustomizablePage {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CustomizablePage.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CustomizablePage = CustomizablePage;

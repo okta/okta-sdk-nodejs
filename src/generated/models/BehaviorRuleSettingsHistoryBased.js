@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleSettingsHistoryBased = void 0;
 class BehaviorRuleSettingsHistoryBased {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BehaviorRuleSettingsHistoryBased.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BehaviorRuleSettingsHistoryBased = BehaviorRuleSettingsHistoryBased;

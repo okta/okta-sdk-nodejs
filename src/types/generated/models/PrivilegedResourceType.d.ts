@@ -25,4 +25,4 @@
 /**
 * The type of the resource
 */
-export declare type PrivilegedResourceType = 'APP_ACCOUNT' | 'OKTA_USER_ACCOUNT';
+export type PrivilegedResourceType = 'APP_ACCOUNT' | 'OKTA_USER_ACCOUNT';

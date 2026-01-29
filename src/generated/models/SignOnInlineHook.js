@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SignOnInlineHook = void 0;
 class SignOnInlineHook {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SignOnInlineHook.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SignOnInlineHook = SignOnInlineHook;

@@ -25,4 +25,4 @@
 /**
 * The events object type. Currently supports `EVENT_TYPE`.
 */
-export declare type EventSubscriptionType = 'EVENT_TYPE';
+export type EventSubscriptionType = 'EVENT_TYPE';

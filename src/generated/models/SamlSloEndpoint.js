@@ -29,10 +29,10 @@ exports.SamlSloEndpoint = void 0;
 * IdP\'s `SingleLogoutService` endpoint where Okta sends a `<LogoutRequest>` message
 */
 class SamlSloEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlSloEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlSloEndpoint = SamlSloEndpoint;

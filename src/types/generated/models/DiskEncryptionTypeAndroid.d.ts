@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DiskEncryptionTypeAndroid = 'FULL' | 'USER';
+export type DiskEncryptionTypeAndroid = 'FULL' | 'USER';

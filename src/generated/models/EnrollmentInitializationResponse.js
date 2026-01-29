@@ -29,10 +29,10 @@ exports.EnrollmentInitializationResponse = void 0;
 * Yubico transport key in the form of a JSON Web Token (JWK), used to encrypt our fulfillment request to Yubico. The currently agreed protocol uses P-384.
 */
 class EnrollmentInitializationResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EnrollmentInitializationResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EnrollmentInitializationResponse = EnrollmentInitializationResponse;

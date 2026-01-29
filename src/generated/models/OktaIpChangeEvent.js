@@ -29,10 +29,10 @@ exports.OktaIpChangeEvent = void 0;
 * IP changed for the subject\'s session
 */
 class OktaIpChangeEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaIpChangeEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaIpChangeEvent = OktaIpChangeEvent;

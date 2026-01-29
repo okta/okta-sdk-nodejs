@@ -25,4 +25,4 @@
 /**
 * Indicates if Google Play Protect is enabled on the device and whether it has found known malware
 */
-export declare type PlayProtectVerdict = 'HIGH' | 'LOW' | 'MEDIUM';
+export type PlayProtectVerdict = 'HIGH' | 'LOW' | 'MEDIUM';

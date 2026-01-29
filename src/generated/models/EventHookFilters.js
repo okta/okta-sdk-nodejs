@@ -29,10 +29,10 @@ exports.EventHookFilters = void 0;
 * The optional filter defined on a specific event type  > **Note:** Event hook filters is a [self-service Early Access (EA)](https://developer.okta.com/docs/api/openapi/okta-management/guides/release-lifecycle/#early-access-ea) to enable. If you want to disable this feature, it\'s recommended to first remove all event filters.
 */
 class EventHookFilters {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EventHookFilters.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EventHookFilters = EventHookFilters;

@@ -29,10 +29,10 @@ exports.LogStreamSettingsSplunk = void 0;
 * Specifies the configuration for the `splunk_cloud_logstreaming` log stream type.
 */
 class LogStreamSettingsSplunk {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogStreamSettingsSplunk.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogStreamSettingsSplunk = LogStreamSettingsSplunk;

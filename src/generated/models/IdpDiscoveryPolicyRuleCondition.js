@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdpDiscoveryPolicyRuleCondition = void 0;
 class IdpDiscoveryPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdpDiscoveryPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdpDiscoveryPolicyRuleCondition = IdpDiscoveryPolicyRuleCondition;
@@ -50,7 +50,7 @@ IdpDiscoveryPolicyRuleCondition.attributeTypeMap = [
   {
     'name': 'platform',
     'baseName': 'platform',
-    'type': 'PlatformPolicyRuleCondition',
+    'type': 'IdpDiscoveryPlatformPolicyRuleCondition',
     'format': ''
   },
   {

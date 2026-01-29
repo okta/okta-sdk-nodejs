@@ -29,10 +29,10 @@ exports.WellKnownURIsRootEmbeddedAssetlinksJson = void 0;
 * Contains the customized well-known URI content and links
 */
 class WellKnownURIsRootEmbeddedAssetlinksJson {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownURIsRootEmbeddedAssetlinksJson.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownURIsRootEmbeddedAssetlinksJson = WellKnownURIsRootEmbeddedAssetlinksJson;

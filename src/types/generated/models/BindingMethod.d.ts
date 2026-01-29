@@ -25,4 +25,4 @@
 /**
 * The method used to bind the out-of-band channel with the primary channel.
 */
-export declare type BindingMethod = 'none' | 'prompt' | 'transfer';
+export type BindingMethod = 'none' | 'prompt' | 'transfer';

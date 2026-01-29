@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Group = void 0;
 class Group {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Group.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Group = Group;
@@ -80,7 +80,7 @@ Group.attributeTypeMap = [
   {
     'name': '_embedded',
     'baseName': '_embedded',
-    'type': '{ [key: string]: any; }',
+    'type': 'GroupEmbedded',
     'format': ''
   },
   {

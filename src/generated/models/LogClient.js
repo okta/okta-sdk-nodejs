@@ -29,10 +29,10 @@ exports.LogClient = void 0;
 * When an event is triggered by an HTTP request, the `client` object describes the [client](https://datatracker.ietf.org/doc/html/rfc2616) that issues the HTTP request. For instance, the web browser is the client when a user accesses Okta. When this request is received and processed, a sign-in event is fired. When the event isn\'t sourced to an HTTP request, such as an automatic update, the `client` object field is blank.
 */
 class LogClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogClient = LogClient;

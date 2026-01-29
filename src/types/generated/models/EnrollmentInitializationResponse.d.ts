@@ -58,4 +58,4 @@ export declare class EnrollmentInitializationResponse {
     }[];
   constructor();
 }
-export declare type EnrollmentInitializationResponseFulfillmentProviderEnum = 'yubico';
+export type EnrollmentInitializationResponseFulfillmentProviderEnum = 'yubico';

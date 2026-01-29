@@ -29,10 +29,10 @@ exports.LogIssuer = void 0;
 * Describes the issuer of the authorization server when the authentication is performed through OAuth. This is the location where well-known resources regarding the details of the authorization servers are published.
 */
 class LogIssuer {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogIssuer.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogIssuer = LogIssuer;

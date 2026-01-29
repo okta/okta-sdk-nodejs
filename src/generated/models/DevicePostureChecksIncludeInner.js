@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DevicePostureChecksIncludeInner = void 0;
 class DevicePostureChecksIncludeInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureChecksIncludeInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureChecksIncludeInner = DevicePostureChecksIncludeInner;

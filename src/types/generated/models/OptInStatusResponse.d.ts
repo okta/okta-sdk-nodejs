@@ -24,6 +24,9 @@
  */
 import { OptInStatusResponseLinks } from './../models/OptInStatusResponseLinks';
 export declare class OptInStatusResponse {
+  /**
+    * The entitlement management opt-in status for the Admin Console
+    */
   'optInStatus'?: OptInStatusResponseOptInStatusEnum;
   '_links'?: OptInStatusResponseLinks;
   static readonly discriminator: string | undefined;
@@ -41,4 +44,4 @@ export declare class OptInStatusResponse {
     }[];
   constructor();
 }
-export declare type OptInStatusResponseOptInStatusEnum = 'OPTING_IN' | 'OPTED_IN' | 'OPTING_OUT' | 'OPTED_OUT';
+export type OptInStatusResponseOptInStatusEnum = 'OPTING_IN' | 'OPTED_IN' | 'OPTING_OUT' | 'OPTED_OUT';

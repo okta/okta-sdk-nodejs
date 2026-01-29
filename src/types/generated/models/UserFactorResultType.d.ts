@@ -25,4 +25,4 @@
 /**
 * Result of a factor verification attempt
 */
-export declare type UserFactorResultType = 'CANCELLED' | 'CHALLENGE' | 'ERROR' | 'FAILED' | 'PASSCODE_REPLAYED' | 'REJECTED' | 'SUCCESS' | 'TIMEOUT' | 'TIME_WINDOW_EXCEEDED' | 'WAITING';
+export type UserFactorResultType = 'CANCELLED' | 'CHALLENGE' | 'ERROR' | 'FAILED' | 'PASSCODE_REPLAYED' | 'REJECTED' | 'SUCCESS' | 'TIMEOUT' | 'TIME_WINDOW_EXCEEDED' | 'WAITING';

@@ -25,4 +25,4 @@
 /**
 * Status of an application user
 */
-export declare type AppUserStatus = 'ACTIVE' | 'APPROVED' | 'DEPROVISIONED' | 'IMPLICIT' | 'IMPORTED' | 'INACTIVE' | 'MATCHED' | 'PENDING' | 'PROVISIONED' | 'REVOKED' | 'STAGED' | 'SUSPENDED' | 'UNASSIGNED';
+export type AppUserStatus = 'ACTIVE' | 'APPROVED' | 'DEPROVISIONED' | 'IMPLICIT' | 'IMPORTED' | 'INACTIVE' | 'MATCHED' | 'PENDING' | 'PROVISIONED' | 'REVOKED' | 'STAGED' | 'SUSPENDED' | 'UNASSIGNED';

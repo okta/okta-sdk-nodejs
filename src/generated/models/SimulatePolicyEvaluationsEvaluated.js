@@ -29,10 +29,10 @@ exports.SimulatePolicyEvaluationsEvaluated = void 0;
 * A list of evaluated but not matched policies and rules
 */
 class SimulatePolicyEvaluationsEvaluated {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulatePolicyEvaluationsEvaluated.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulatePolicyEvaluationsEvaluated = SimulatePolicyEvaluationsEvaluated;

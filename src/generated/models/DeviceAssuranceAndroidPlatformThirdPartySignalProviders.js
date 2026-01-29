@@ -29,10 +29,10 @@ exports.DeviceAssuranceAndroidPlatformThirdPartySignalProviders = void 0;
 * Settings for third-party signal providers (based on the `ANDROID` platform)
 */
 class DeviceAssuranceAndroidPlatformThirdPartySignalProviders {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DeviceAssuranceAndroidPlatformThirdPartySignalProviders.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DeviceAssuranceAndroidPlatformThirdPartySignalProviders = DeviceAssuranceAndroidPlatformThirdPartySignalProviders;

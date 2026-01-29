@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogStreamAwsPutSchema = void 0;
 const LogStreamPutSchema_1 = require('./../models/LogStreamPutSchema');
 class LogStreamAwsPutSchema extends LogStreamPutSchema_1.LogStreamPutSchema {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(LogStreamAwsPutSchema.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'aws_eventbridge';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(LogStreamAwsPutSchema.attributeTypeMap);
   }
 }
 exports.LogStreamAwsPutSchema = LogStreamAwsPutSchema;

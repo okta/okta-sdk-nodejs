@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PolicyCommon = void 0;
 class PolicyCommon {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PolicyCommon.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PolicyCommon = PolicyCommon;

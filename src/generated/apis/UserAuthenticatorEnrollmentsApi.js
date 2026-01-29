@@ -169,8 +169,9 @@ class UserAuthenticatorEnrollmentsApiRequestFactory extends baseapi_1.BaseAPIReq
      * Retrieve an authenticator enrollment
      * @param userId ID of an existing Okta user
      * @param enrollmentId Unique identifier of an enrollment
+     * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
      */
-  async getAuthenticatorEnrollment(userId, enrollmentId, _options) {
+  async getAuthenticatorEnrollment(userId, enrollmentId, discloseIdentifiers, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'userId' is not null or undefined
     if (userId === null || userId === undefined) {
@@ -189,6 +190,10 @@ class UserAuthenticatorEnrollmentsApiRequestFactory extends baseapi_1.BaseAPIReq
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Query Params
+    if (discloseIdentifiers !== undefined) {
+      requestContext.setQueryParam('discloseIdentifiers', ObjectSerializer_1.ObjectSerializer.serialize(discloseIdentifiers, 'Array<\'phone\'>', ''));
+    }
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['apiToken'];
@@ -210,8 +215,9 @@ class UserAuthenticatorEnrollmentsApiRequestFactory extends baseapi_1.BaseAPIReq
      * Lists all authenticator enrollments of the specified user
      * List all authenticator enrollments
      * @param userId ID of an existing Okta user
+     * @param discloseIdentifiers Indicates whether or not the identifier of an authenticator enrollment is disclosed or anonymized. If it\&#39;s included in the operation query, then the identifier of the authenticator enrollment (the actual phone number, for example) is included in the response.
      */
-  async listAuthenticatorEnrollments(userId, _options) {
+  async listAuthenticatorEnrollments(userId, discloseIdentifiers, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'userId' is not null or undefined
     if (userId === null || userId === undefined) {
@@ -225,6 +231,10 @@ class UserAuthenticatorEnrollmentsApiRequestFactory extends baseapi_1.BaseAPIReq
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Query Params
+    if (discloseIdentifiers !== undefined) {
+      requestContext.setQueryParam('discloseIdentifiers', ObjectSerializer_1.ObjectSerializer.serialize(discloseIdentifiers, 'Array<\'phone\'>', ''));
+    }
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['apiToken'];

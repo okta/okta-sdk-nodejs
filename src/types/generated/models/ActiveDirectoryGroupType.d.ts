@@ -25,4 +25,4 @@
 /**
 * The type of the group in Active Directory
 */
-export declare type ActiveDirectoryGroupType = 'DISTRIBUTION' | 'SECURITY';
+export type ActiveDirectoryGroupType = 'DISTRIBUTION' | 'SECURITY';

@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* <x-lifecycle class=\"oie\"></x-lifecycle> Indicates the primary factor used to establish a session for the org. Supported values: `PASSWORD_IDP_ANY_FACTOR` (users can use any factor required by the app authentication policy to establish a session), `PASSWORD_IDP` (users must always use a password to establish a session).  > **Note:** Required only if `access` is set to `ALLOW`.
+* <x-lifecycle class=\"oie\"></x-lifecycle> Indicates the primary factor used to establish a session for the org. Supported values: `PASSWORD_IDP_ANY_FACTOR` (users can use any factor required by the app\'s app sign-in policy to establish a session), `PASSWORD_IDP` (users must always use a password to establish a session).  > **Note:** Required only if `access` is set to `ALLOW`.
 */
-export declare type OktaSignOnPolicyRuleSignonPrimaryFactor = 'PASSWORD_IDP' | 'PASSWORD_IDP_ANY_FACTOR';
+export type OktaSignOnPolicyRuleSignonPrimaryFactor = 'PASSWORD_IDP' | 'PASSWORD_IDP_ANY_FACTOR';

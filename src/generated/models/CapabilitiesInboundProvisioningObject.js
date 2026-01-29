@@ -29,10 +29,10 @@ exports.CapabilitiesInboundProvisioningObject = void 0;
 * Defines the configuration for the INBOUND_PROVISIONING feature
 */
 class CapabilitiesInboundProvisioningObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CapabilitiesInboundProvisioningObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CapabilitiesInboundProvisioningObject = CapabilitiesInboundProvisioningObject;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Realm = void 0;
 class Realm {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Realm.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Realm = Realm;

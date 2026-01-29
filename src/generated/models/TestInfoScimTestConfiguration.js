@@ -29,10 +29,10 @@ exports.TestInfoScimTestConfiguration = void 0;
 * SCIM test details
 */
 class TestInfoScimTestConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TestInfoScimTestConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TestInfoScimTestConfiguration = TestInfoScimTestConfiguration;
@@ -47,6 +47,12 @@ TestInfoScimTestConfiguration.attributeTypeMap = [
   {
     'name': 'crudTestResults',
     'baseName': 'crudTestResults',
+    'type': 'string',
+    'format': 'uri'
+  },
+  {
+    'name': 'entitlementsTestResults',
+    'baseName': 'entitlementsTestResults',
     'type': 'string',
     'format': 'uri'
   }

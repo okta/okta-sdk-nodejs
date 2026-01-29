@@ -29,10 +29,10 @@ exports.TokenSoftwareTotp = void 0;
 * Attempts to activate a `token:software:totp` factor with the specified passcode
 */
 class TokenSoftwareTotp {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenSoftwareTotp.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenSoftwareTotp = TokenSoftwareTotp;

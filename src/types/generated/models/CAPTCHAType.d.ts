@@ -25,4 +25,4 @@
 /**
 * The type of CAPTCHA provider
 */
-export declare type CAPTCHAType = 'HCAPTCHA' | 'RECAPTCHA_V2';
+export type CAPTCHAType = 'HCAPTCHA' | 'RECAPTCHA_V2';

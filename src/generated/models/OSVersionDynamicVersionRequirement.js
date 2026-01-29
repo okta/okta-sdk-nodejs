@@ -29,10 +29,10 @@ exports.OSVersionDynamicVersionRequirement = void 0;
 * Contains the necessary properties for a dynamic version requirement
 */
 class OSVersionDynamicVersionRequirement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OSVersionDynamicVersionRequirement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OSVersionDynamicVersionRequirement = OSVersionDynamicVersionRequirement;

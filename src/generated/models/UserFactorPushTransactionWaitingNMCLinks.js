@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionWaitingNMCLinks = void 0;
 class UserFactorPushTransactionWaitingNMCLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorPushTransactionWaitingNMCLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorPushTransactionWaitingNMCLinks = UserFactorPushTransactionWaitingNMCLinks;

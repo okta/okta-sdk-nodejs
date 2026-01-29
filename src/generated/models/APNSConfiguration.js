@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.APNSConfiguration = void 0;
 class APNSConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return APNSConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.APNSConfiguration = APNSConfiguration;

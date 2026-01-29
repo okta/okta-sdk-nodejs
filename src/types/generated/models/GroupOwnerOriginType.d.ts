@@ -25,4 +25,4 @@
 /**
 * The source where group ownership is managed
 */
-export declare type GroupOwnerOriginType = 'APPLICATION' | 'OKTA_DIRECTORY';
+export type GroupOwnerOriginType = 'APPLICATION' | 'OKTA_DIRECTORY';

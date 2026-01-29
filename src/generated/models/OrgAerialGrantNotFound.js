@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrgAerialGrantNotFound = void 0;
 class OrgAerialGrantNotFound {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgAerialGrantNotFound.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgAerialGrantNotFound = OrgAerialGrantNotFound;

@@ -29,10 +29,10 @@ exports.ProvisioningConnectionProfileOauth = void 0;
 * The app provisioning connection profile used to configure the method of authentication and the credentials. Currently, token-based and OAuth 2.0-based authentication are supported.
 */
 class ProvisioningConnectionProfileOauth {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningConnectionProfileOauth.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningConnectionProfileOauth = ProvisioningConnectionProfileOauth;

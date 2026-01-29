@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertion = void 0;
 * Details of the SAML assertion that was generated
 */
 class SAMLPayLoadDataAssertion {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertion.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertion = SAMLPayLoadDataAssertion;

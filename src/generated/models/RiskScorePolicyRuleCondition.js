@@ -29,10 +29,10 @@ exports.RiskScorePolicyRuleCondition = void 0;
 * Specifies a particular level of risk to match on
 */
 class RiskScorePolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RiskScorePolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RiskScorePolicyRuleCondition = RiskScorePolicyRuleCondition;
@@ -42,6 +42,12 @@ RiskScorePolicyRuleCondition.attributeTypeMap = [
     'name': 'level',
     'baseName': 'level',
     'type': 'RiskScorePolicyRuleConditionLevelEnum',
+    'format': ''
+  },
+  {
+    'name': 'minRiskLevel',
+    'baseName': 'minRiskLevel',
+    'type': 'RiskScorePolicyRuleConditionMinRiskLevelEnum',
     'format': ''
   }
 ];

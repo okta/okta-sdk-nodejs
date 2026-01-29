@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UploadYubikeyOtpTokenSeedRequest = void 0;
 class UploadYubikeyOtpTokenSeedRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UploadYubikeyOtpTokenSeedRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UploadYubikeyOtpTokenSeedRequest = UploadYubikeyOtpTokenSeedRequest;

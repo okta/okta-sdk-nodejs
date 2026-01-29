@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAPIServiceIntegrationInstance = void 0;
 class PostAPIServiceIntegrationInstance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAPIServiceIntegrationInstance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAPIServiceIntegrationInstance = PostAPIServiceIntegrationInstance;

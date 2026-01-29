@@ -29,10 +29,10 @@ exports.AppUserCredentials = void 0;
 * Specifies a user\'s credentials for the app. This parameter can be omitted for apps with [sign-on mode](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/getApplication!c=200&path=0/signOnMode&t=response) (`signOnMode`) or [authentication schemes](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/getApplication!c=200&path=0/credentials/scheme&t=response) (`credentials.scheme`) that don\'t require credentials.
 */
 class AppUserCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUserCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUserCredentials = AppUserCredentials;

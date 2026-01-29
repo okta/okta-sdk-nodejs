@@ -25,4 +25,4 @@
 /**
 * The risk level associated with the user
 */
-export declare type UserRiskLevelPut = 'HIGH' | 'LOW';
+export type UserRiskLevelPut = 'HIGH' | 'LOW';

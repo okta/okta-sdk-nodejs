@@ -23,12 +23,12 @@
  * Do not edit the class manually.
  */
 /**
-* IDV token endpoint
+* Token endpoint of the IDV vendor
 */
 export declare class IDVTokenEndpoint {
   'binding'?: IDVTokenEndpointBindingEnum;
   /**
-    * URL of the IDV `token` endpoint
+    * URL of the `token` endpoint of the IDV vendor
     */
   'url'?: string;
   static readonly discriminator: string | undefined;
@@ -46,4 +46,4 @@ export declare class IDVTokenEndpoint {
     }[];
   constructor();
 }
-export declare type IDVTokenEndpointBindingEnum = 'HTTP-POST';
+export type IDVTokenEndpointBindingEnum = 'HTTP-POST';

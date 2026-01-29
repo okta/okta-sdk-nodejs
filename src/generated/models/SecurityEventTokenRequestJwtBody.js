@@ -29,10 +29,10 @@ exports.SecurityEventTokenRequestJwtBody = void 0;
 * JSON Web Token body payload for a Security Event Token
 */
 class SecurityEventTokenRequestJwtBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenRequestJwtBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenRequestJwtBody = SecurityEventTokenRequestJwtBody;

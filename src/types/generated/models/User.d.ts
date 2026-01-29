@@ -90,4 +90,4 @@ export declare class User {
     }[];
   constructor();
 }
-export declare type UserTransitioningToStatusEnum = 'ACTIVE' | 'DEPROVISIONED' | 'PROVISIONED';
+export type UserTransitioningToStatusEnum = 'ACTIVE' | 'DEPROVISIONED' | 'PROVISIONED';

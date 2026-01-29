@@ -56,4 +56,4 @@ export declare class ThreatInsightConfiguration {
     }[];
   constructor();
 }
-export declare type ThreatInsightConfigurationActionEnum = 'none' | 'audit' | 'block';
+export type ThreatInsightConfigurationActionEnum = 'none' | 'audit' | 'block';

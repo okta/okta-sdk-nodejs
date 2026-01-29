@@ -25,4 +25,4 @@
 /**
 * Certificate type
 */
-export declare type DomainCertificateType = 'PEM';
+export type DomainCertificateType = 'PEM';

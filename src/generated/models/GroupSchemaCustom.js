@@ -29,10 +29,10 @@ exports.GroupSchemaCustom = void 0;
 * All custom profile properties are defined in a profile subschema with the resolution scope `#custom`
 */
 class GroupSchemaCustom {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupSchemaCustom.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupSchemaCustom = GroupSchemaCustom;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserSchemaAttributePermission = void 0;
 class UserSchemaAttributePermission {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserSchemaAttributePermission.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserSchemaAttributePermission = UserSchemaAttributePermission;

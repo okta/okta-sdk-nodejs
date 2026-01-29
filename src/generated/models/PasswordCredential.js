@@ -29,10 +29,10 @@ exports.PasswordCredential = void 0;
 * Specifies a password for a user.  When a user has a valid password, imported hashed password, or password hook, and a response object contains a password credential, then the password object is a bare object without the value property defined (for example, `password: {}`). This indicates that a password value exists. You can modify password policy requirements in the Admin Console by editing the Password authenticator:  **Security** > **Authenticators** > **Password** (or for Okta Classic orgs, use **Security** > **Authentication** > **Password**).  For information on defaults and configuring your password policies, see [Configure the password authenticator](https://help.okta.com/okta_help.htm?type=oie&id=ext-configure-password) in the help documentation.
 */
 class PasswordCredential {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordCredential.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordCredential = PasswordCredential;

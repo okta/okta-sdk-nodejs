@@ -29,10 +29,10 @@ exports.AuthenticatorMethodWebAuthnSettings = void 0;
 * The settings for the WebAuthn authenticator method
 */
 class AuthenticatorMethodWebAuthnSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorMethodWebAuthnSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorMethodWebAuthnSettings = AuthenticatorMethodWebAuthnSettings;
@@ -47,18 +47,66 @@ AuthenticatorMethodWebAuthnSettings.attributeTypeMap = [
   {
     'name': 'userVerification',
     'baseName': 'userVerification',
-    'type': 'UserVerificationEnum',
+    'type': 'UserVerificationEnumEnrollment',
+    'format': ''
+  },
+  {
+    'name': 'userVerificationForVerify',
+    'baseName': 'userVerificationForVerify',
+    'type': 'UserVerificationEnumForVerify',
     'format': ''
   },
   {
     'name': 'attachment',
     'baseName': 'attachment',
-    'type': 'WebAuthnAttachment',
+    'type': 'WebAuthnAttachmentEnum',
+    'format': ''
+  },
+  {
+    'name': 'rpId',
+    'baseName': 'rpId',
+    'type': 'WebAuthnRpId',
     'format': ''
   },
   {
     'name': 'enableAutofillUI',
     'baseName': 'enableAutofillUI',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'residentKeyRequirement',
+    'baseName': 'residentKeyRequirement',
+    'type': 'WebAuthnSettingResidentKeyRequirement',
+    'format': ''
+  },
+  {
+    'name': 'showSignInWithAPasskeyButton',
+    'baseName': 'showSignInWithAPasskeyButton',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'certBasedAttestationValidation',
+    'baseName': 'certBasedAttestationValidation',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'hardwareProtected',
+    'baseName': 'hardwareProtected',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'fipsCompliant',
+    'baseName': 'fipsCompliant',
+    'type': 'boolean',
+    'format': ''
+  },
+  {
+    'name': 'allowSyncablePasskeys',
+    'baseName': 'allowSyncablePasskeys',
     'type': 'boolean',
     'format': ''
   }

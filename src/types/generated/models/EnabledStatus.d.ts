@@ -25,4 +25,4 @@
 /**
 * Setting status
 */
-export declare type EnabledStatus = 'DISABLED' | 'ENABLED';
+export type EnabledStatus = 'DISABLED' | 'ENABLED';

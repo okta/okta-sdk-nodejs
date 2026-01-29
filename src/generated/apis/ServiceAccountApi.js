@@ -254,7 +254,7 @@ class ServiceAccountApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Lists all app service accounts
      * List all app service accounts
      * @param limit A limit on the number of objects to return
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param match Searches for app service accounts where the account name (&#x60;name&#x60;), username (&#x60;username&#x60;), app instance label (&#x60;containerInstanceName&#x60;), or OIN app key name (&#x60;containerGlobalName&#x60;) contains the given value
      */
   async listAppServiceAccounts(limit, after, match, _options) {
@@ -297,7 +297,7 @@ class ServiceAccountApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Lists all service accounts
      * List all service accounts
      * @param limit Specifies the number of results returned
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination).
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/api/#pagination) and [Link header](https://developer.okta.com/docs/api/#link-header).
      * @param q Searches for service accounts where the account name, username, app instance name, or global app name contains the given value
      */
   async listServiceAccounts(limit, after, q, _options) {

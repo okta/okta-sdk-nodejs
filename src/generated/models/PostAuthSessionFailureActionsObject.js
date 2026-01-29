@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAuthSessionFailureActionsObject = void 0;
 class PostAuthSessionFailureActionsObject {
-  constructor() {
-    // this.action = 'PostAuthSessionFailureActionsObject';
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionFailureActionsObject.attributeTypeMap;
+  }
+  constructor() {
+    // this.action = 'PostAuthSessionFailureActionsObject';
   }
 }
 exports.PostAuthSessionFailureActionsObject = PostAuthSessionFailureActionsObject;

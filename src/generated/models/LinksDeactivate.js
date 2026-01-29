@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksDeactivate = void 0;
 class LinksDeactivate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksDeactivate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksDeactivate = LinksDeactivate;

@@ -29,7 +29,7 @@ import { ByDurationExpiry } from './../models/ByDurationExpiry';
  * Type
  * @export
  */
-export declare type GracePeriodExpiry = ByDateTimeExpiry | ByDurationExpiry;
+export type GracePeriodExpiry = ByDateTimeExpiry | ByDurationExpiry;
 /**
 * @type GracePeriodExpiryClass
 * @export

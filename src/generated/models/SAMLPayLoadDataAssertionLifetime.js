@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertionLifetime = void 0;
 * Specifies the expiration time, in seconds, of the SAML assertion
 */
 class SAMLPayLoadDataAssertionLifetime {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionLifetime.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionLifetime = SAMLPayLoadDataAssertionLifetime;

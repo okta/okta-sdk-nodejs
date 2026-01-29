@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookChannelConfigHeaders = void 0;
 class InlineHookChannelConfigHeaders {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookChannelConfigHeaders.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookChannelConfigHeaders = InlineHookChannelConfigHeaders;

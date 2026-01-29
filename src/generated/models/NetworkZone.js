@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.NetworkZone = void 0;
 class NetworkZone {
-  constructor() {
-    // this.type = 'NetworkZone';
-  }
   static getAttributeTypeMap() {
     return NetworkZone.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'NetworkZone';
   }
 }
 exports.NetworkZone = NetworkZone;

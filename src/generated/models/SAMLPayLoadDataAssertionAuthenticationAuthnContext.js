@@ -29,10 +29,10 @@ exports.SAMLPayLoadDataAssertionAuthenticationAuthnContext = void 0;
 * Details of the authentication methods used for the SAML assertion
 */
 class SAMLPayLoadDataAssertionAuthenticationAuthnContext {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SAMLPayLoadDataAssertionAuthenticationAuthnContext.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SAMLPayLoadDataAssertionAuthenticationAuthnContext = SAMLPayLoadDataAssertionAuthenticationAuthnContext;
