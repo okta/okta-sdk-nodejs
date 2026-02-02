@@ -42,7 +42,6 @@
 | Component | Old Name                        | New Name                         | Backward Compatible         |
 |-----------|--------------------------------|----------------------------------|-----------------------------|
 | Type      | `AssignRoleRequest`            | `StandardRoleAssignmentSchema`   | Yes (alias until v9.0.0)    |
-| Type      | `CustomRole`                   | `IamRole`                        | Yes (alias until v9.0.0)    |
 | Property  | `_from`                        | `fromAddress`                    | No                          |
 | Property  | `to`                           | `toAddress`                      | No                          |
 
@@ -59,11 +58,6 @@ import { StandardRoleAssignmentSchema } from '@okta/okta-sdk-nodejs';
 const request: StandardRoleAssignmentSchema = { type: 'HELP_DESK_ADMIN' };
 ```
 
-**Custom Role:**
-```typescript
-// Before: CustomRole → After: IamRole (CustomRole still works but deprecated)
-```
-
 **Email Server (Required Update):**
 ```typescript
 // Before (v7.x)
@@ -73,7 +67,7 @@ emailTestAddresses: { _from: 'from@example.com', to: 'to@example.com' }
 emailTestAddresses: { fromAddress: 'from@example.com', toAddress: 'to@example.com' }
 ```
 
-**Note:** Type aliases `AssignRoleRequest` and `CustomRole` will continue to work until v9.0.0 but will show deprecation warnings. Email property renames require immediate updates.
+**Note:** Type alias `AssignRoleRequest` will continue to work until v9.0.0 but will show deprecation warnings. Email property renames require immediate updates.
 
 # 7.3.1
 

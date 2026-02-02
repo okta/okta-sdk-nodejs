@@ -1867,8 +1867,3 @@ export * from '../models/ZscalerbyzApplicationSettingsApplication';
  * @deprecated Use StandardRoleAssignmentSchema instead - will be removed in v9.0.0
  */
 export { StandardRoleAssignmentSchema as AssignRoleRequest } from '../models/StandardRoleAssignmentSchema';
-
-/**
- * @deprecated Use IamRole instead - will be removed in v9.0.0
- */
-export { IamRole as CustomRole } from '../models/IamRole';
