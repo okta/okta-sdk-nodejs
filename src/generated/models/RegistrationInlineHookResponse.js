@@ -29,10 +29,10 @@ exports.RegistrationInlineHookResponse = void 0;
 * Registration inline hook response
 */
 class RegistrationInlineHookResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationInlineHookResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationInlineHookResponse = RegistrationInlineHookResponse;

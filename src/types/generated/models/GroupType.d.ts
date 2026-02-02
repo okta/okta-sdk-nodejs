@@ -25,4 +25,4 @@
 /**
 * Determines how a group\'s profile and memberships are managed
 */
-export declare type GroupType = 'APP_GROUP' | 'BUILT_IN' | 'OKTA_GROUP';
+export type GroupType = 'APP_GROUP' | 'BUILT_IN' | 'OKTA_GROUP';

@@ -23,8 +23,11 @@
  * Do not edit the class manually.
  */
 import { AAGUIDGroupObject } from './../models/AAGUIDGroupObject';
-import { UserVerificationEnum } from './../models/UserVerificationEnum';
-import { WebAuthnAttachment } from './../models/WebAuthnAttachment';
+import { UserVerificationEnumEnrollment } from './../models/UserVerificationEnumEnrollment';
+import { UserVerificationEnumForVerify } from './../models/UserVerificationEnumForVerify';
+import { WebAuthnAttachmentEnum } from './../models/WebAuthnAttachmentEnum';
+import { WebAuthnRpId } from './../models/WebAuthnRpId';
+import { WebAuthnSettingResidentKeyRequirement } from './../models/WebAuthnSettingResidentKeyRequirement';
 /**
 * The settings for the WebAuthn authenticator method
 */
@@ -33,12 +36,35 @@ export declare class AuthenticatorMethodWebAuthnSettings {
     * The FIDO2 Authenticator Attestation Global Unique Identifiers (AAGUID) groups available to the WebAuthn authenticator
     */
   'aaguidGroups'?: Array<AAGUIDGroupObject>;
-  'userVerification'?: UserVerificationEnum;
-  'attachment'?: WebAuthnAttachment;
+  'userVerification'?: UserVerificationEnumEnrollment;
+  'userVerificationForVerify'?: UserVerificationEnumForVerify;
+  'attachment'?: WebAuthnAttachmentEnum;
+  'rpId'?: WebAuthnRpId;
   /**
     * Enables the passkeys autofill UI to display available WebAuthn discoverable credentials (\"resident key\") from the Sign-In Widget username field
     */
   'enableAutofillUI'?: boolean;
+  'residentKeyRequirement'?: WebAuthnSettingResidentKeyRequirement;
+  /**
+    * Indicates if the **Sign in with a Passkey** button on the Sign-In Widget is shown   > **Note:** This setting is only available when you have enabled the **Passkeys Rebrand** feature. See [Enable self-service features](https://help.okta.com/okta_help.htm?id=ext_Manage_Early_Access_features).
+    */
+  'showSignInWithAPasskeyButton'?: boolean;
+  /**
+    * Indicates whether certificate-based attestation validation is enabled. When enabled, the authenticator\'s attestation certificate is validated against known root certificates (custom AAGUIDs with associated certificates or the [FIDO Metadata Service](https://fidoalliance.org/metadata/)) to ensure its validity.  > **Note:** This setting is only available when you have enabled the **Passkeys Rebrand** feature. See [Enable self-service features](https://help.okta.com/okta_help.htm?id=ext_Manage_Early_Access_features).
+    */
+  'certBasedAttestationValidation'?: boolean;
+  /**
+    * Indicates whether the authenticator is required to store the private key on a hardware component  > **Note:** This setting is only available when you have enabled the **Passkeys Rebrand** feature. See [Enable self-service features](https://help.okta.com/okta_help.htm?id=ext_Manage_Early_Access_features).
+    */
+  'hardwareProtected'?: boolean;
+  /**
+    * Indicates whether the authenticator is required to be [Federal Information Processing Standards (FIPS)](https://csrc.nist.gov/glossary/term/federal_information_processing_standard) compliant  > **Note:** This setting is only available when you have enabled the **Passkeys Rebrand** feature. See [Enable self-service features](https://help.okta.com/okta_help.htm?id=ext_Manage_Early_Access_features).
+    */
+  'fipsCompliant'?: boolean;
+  /**
+    * Indicates whether syncable passkeys are allowed. When enabled, users can register passkeys that are synchronized across their devices by using platform-specific mechanisms (such as iCloud Keychain for Apple devices or Google Password Manager for Android devices).  > **Note:** This setting is only available when you have enabled the **Passkeys Rebrand** feature. See [Enable self-service features](https://help.okta.com/okta_help.htm?id=ext_Manage_Early_Access_features).
+    */
+  'allowSyncablePasskeys'?: boolean;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

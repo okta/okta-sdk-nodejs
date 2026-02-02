@@ -29,10 +29,10 @@ exports.Profile = void 0;
 * Specific profile properties for the privileged resource
 */
 class Profile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Profile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Profile = Profile;

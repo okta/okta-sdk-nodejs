@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { WsFederationApplicationSettingsApplication } from './../models/WsFederationApplicationSettingsApplication';
 export declare class WsFederationApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: WsFederationApplicationSettingsEmOptInStatusEnum;
   /**
@@ -60,4 +60,4 @@ export declare class WsFederationApplicationSettings {
     }[];
   constructor();
 }
-export declare type WsFederationApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type WsFederationApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* All Okta orgs contain only one IdP Discovery policy with an immutable default rule routing to your org\'s sign-in page, one entity risk policy, and one session protection policy. Creating or replacing a policy with the `IDP_DISCOVERY` type, the `ENTITY_RISK` type, or the `POST_AUTH_SESSION` type isn\'t supported. The following policy types are available with Identity Engine: `ACCESS_POLICY`, `PROFILE_ENROLLMENT`, `POST_AUTH_SESSION`, and `ENTITY_RISK`.
+* All Okta orgs contain only one IdP discovery policy with an immutable default rule routing to your org\'s sign-in page, one entity risk policy, and one session protection policy. Creating or replacing a policy with the `IDP_DISCOVERY` type, the `ENTITY_RISK` type, the `POST_AUTH_SESSION` or the <x-lifecycle class=\"ea\"></x-lifecycle> `SESSION_VIOLATION_DETECTION` type isn\'t supported. The following policy types are available with Identity Engine: `ACCESS_POLICY`, `PROFILE_ENROLLMENT`, `POST_AUTH_SESSION`, <x-lifecycle class=\"ea\"></x-lifecycle> `DEVICE_SIGNAL_COLLECTION`, <x-lifecycle class=\"ea\"></x-lifecycle> `SESSION_VIOLATION_DETECTION`, `ENTITY_RISK`.
 */
-export declare type PolicyType = 'ACCESS_POLICY' | 'ENTITY_RISK' | 'IDP_DISCOVERY' | 'MFA_ENROLL' | 'OKTA_SIGN_ON' | 'PASSWORD' | 'POST_AUTH_SESSION' | 'PROFILE_ENROLLMENT';
+export type PolicyType = 'ACCESS_POLICY' | 'DEVICE_SIGNAL_COLLECTION' | 'ENTITY_RISK' | 'IDP_DISCOVERY' | 'MFA_ENROLL' | 'OKTA_SIGN_ON' | 'PASSWORD' | 'POST_AUTH_SESSION' | 'PROFILE_ENROLLMENT' | 'SESSION_VIOLATION_DETECTION' | '&lt;x-lifecycle class&#x3D;&quot;ea&quot;&gt;&lt;/x-lifecycle&gt; DEVICE_SIGNAL_COLLECTION' | '&lt;x-lifecycle class&#x3D;&quot;ea&quot;&gt;&lt;/x-lifecycle&gt; SESSION_VIOLATION_DETECTION';

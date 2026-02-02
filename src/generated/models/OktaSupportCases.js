@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OktaSupportCases = void 0;
 class OktaSupportCases {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSupportCases.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSupportCases = OktaSupportCases;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ThreatInsightConfiguration = void 0;
 class ThreatInsightConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ThreatInsightConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ThreatInsightConfiguration = ThreatInsightConfiguration;

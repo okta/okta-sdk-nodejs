@@ -44,4 +44,4 @@ export declare class AuthenticatorMethodConstraint {
     }[];
   constructor();
 }
-export declare type AuthenticatorMethodConstraintMethodEnum = 'otp';
+export type AuthenticatorMethodConstraintMethodEnum = 'otp';

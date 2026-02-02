@@ -29,10 +29,10 @@ exports.PasswordPolicyRecoveryFactors = void 0;
 * Settings for the factors that can be used for recovery
 */
 class PasswordPolicyRecoveryFactors {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyRecoveryFactors.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyRecoveryFactors = PasswordPolicyRecoveryFactors;

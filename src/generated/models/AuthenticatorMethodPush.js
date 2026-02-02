@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorMethodPush = void 0;
 const AuthenticatorMethodBase_1 = require('./../models/AuthenticatorMethodBase');
 class AuthenticatorMethodPush extends AuthenticatorMethodBase_1.AuthenticatorMethodBase {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorMethodPush.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'push';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorMethodPush.attributeTypeMap);
   }
 }
 exports.AuthenticatorMethodPush = AuthenticatorMethodPush;

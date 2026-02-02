@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.DynamicNetworkZone = void 0;
 const NetworkZone_1 = require('./../models/NetworkZone');
 class DynamicNetworkZone extends NetworkZone_1.NetworkZone {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(DynamicNetworkZone.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'DYNAMIC';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(DynamicNetworkZone.attributeTypeMap);
   }
 }
 exports.DynamicNetworkZone = DynamicNetworkZone;

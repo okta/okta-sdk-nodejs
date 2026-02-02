@@ -29,10 +29,10 @@ exports.OAuth2ScopeConsentGrant = void 0;
 * Grant object that represents an app consent scope grant
 */
 class OAuth2ScopeConsentGrant {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ScopeConsentGrant.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ScopeConsentGrant = OAuth2ScopeConsentGrant;

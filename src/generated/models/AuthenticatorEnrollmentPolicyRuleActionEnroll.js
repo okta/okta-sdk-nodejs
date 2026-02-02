@@ -29,10 +29,10 @@ exports.AuthenticatorEnrollmentPolicyRuleActionEnroll = void 0;
 * Specifies whether the user is to be enrolled the first time they `LOGIN`, the next time they are in the `CHALLENGE` process, or `NEVER`
 */
 class AuthenticatorEnrollmentPolicyRuleActionEnroll {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorEnrollmentPolicyRuleActionEnroll.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorEnrollmentPolicyRuleActionEnroll = AuthenticatorEnrollmentPolicyRuleActionEnroll;

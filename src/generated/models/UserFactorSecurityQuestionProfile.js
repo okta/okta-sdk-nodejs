@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorSecurityQuestionProfile = void 0;
 class UserFactorSecurityQuestionProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorSecurityQuestionProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorSecurityQuestionProfile = UserFactorSecurityQuestionProfile;

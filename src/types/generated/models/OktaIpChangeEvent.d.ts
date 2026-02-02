@@ -63,4 +63,4 @@ export declare class OktaIpChangeEvent {
     }[];
   constructor();
 }
-export declare type OktaIpChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';
+export type OktaIpChangeEventInitiatingEntityEnum = 'admin' | 'user' | 'policy' | 'system';

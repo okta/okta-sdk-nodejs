@@ -29,10 +29,10 @@ exports.U2f1 = void 0;
 * Verifies a `u2f` factor challenge by posting a signed assertion using the challenge `nonce`
 */
 class U2f1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return U2f1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.U2f1 = U2f1;

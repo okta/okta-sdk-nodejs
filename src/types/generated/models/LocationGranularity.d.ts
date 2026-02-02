@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type LocationGranularity = 'CITY' | 'COUNTRY' | 'LAT_LONG' | 'SUBDIVISION';
+export type LocationGranularity = 'CITY' | 'COUNTRY' | 'LAT_LONG' | 'SUBDIVISION';

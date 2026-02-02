@@ -29,10 +29,10 @@ exports.ApplicationVisibilityHide = void 0;
 * Hides the app for specific end-user apps
 */
 class ApplicationVisibilityHide {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationVisibilityHide.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationVisibilityHide = ApplicationVisibilityHide;

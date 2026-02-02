@@ -29,10 +29,10 @@ exports.AuthenticatorProfileTacResponsePost = void 0;
 * Defines the authenticator specific parameters
 */
 class AuthenticatorProfileTacResponsePost {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorProfileTacResponsePost.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorProfileTacResponsePost = AuthenticatorProfileTacResponsePost;

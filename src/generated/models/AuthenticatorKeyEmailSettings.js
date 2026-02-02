@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyEmailSettings = void 0;
 class AuthenticatorKeyEmailSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyEmailSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyEmailSettings = AuthenticatorKeyEmailSettings;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPush = void 0;
 const UserFactor_1 = require('./../models/UserFactor');
 class UserFactorPush extends UserFactor_1.UserFactor {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorPush.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorType = 'push';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorPush.attributeTypeMap);
   }
 }
 exports.UserFactorPush = UserFactorPush;

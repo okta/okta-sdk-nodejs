@@ -29,10 +29,10 @@ exports.Sms1 = void 0;
 * Verifies an OTP sent by an `sms` factor challenge. If you omit `passCode` in the request, a new OTP is sent to the phone.
 */
 class Sms1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Sms1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Sms1 = Sms1;

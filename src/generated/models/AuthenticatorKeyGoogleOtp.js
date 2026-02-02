@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorKeyGoogleOtp = void 0;
 const AuthenticatorSimple_1 = require('./../models/AuthenticatorSimple');
 class AuthenticatorKeyGoogleOtp extends AuthenticatorSimple_1.AuthenticatorSimple {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AuthenticatorKeyGoogleOtp.attributeTypeMap);
+  }
   constructor() {
     super();
     this.key = 'google_otp';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AuthenticatorKeyGoogleOtp.attributeTypeMap);
   }
 }
 exports.AuthenticatorKeyGoogleOtp = AuthenticatorKeyGoogleOtp;

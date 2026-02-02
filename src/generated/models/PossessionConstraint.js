@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PossessionConstraint = void 0;
 class PossessionConstraint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PossessionConstraint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PossessionConstraint = PossessionConstraint;

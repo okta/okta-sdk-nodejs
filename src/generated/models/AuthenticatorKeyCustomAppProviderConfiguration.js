@@ -29,10 +29,10 @@ exports.AuthenticatorKeyCustomAppProviderConfiguration = void 0;
 * The configuration of the provider
 */
 class AuthenticatorKeyCustomAppProviderConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorKeyCustomAppProviderConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorKeyCustomAppProviderConfiguration = AuthenticatorKeyCustomAppProviderConfiguration;

@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GovernanceBundleLinks = void 0;
+/**
+* Link relations available
+*/
 class GovernanceBundleLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GovernanceBundleLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GovernanceBundleLinks = GovernanceBundleLinks;
@@ -38,7 +41,13 @@ GovernanceBundleLinks.attributeTypeMap = [
   {
     'name': 'entitlements',
     'baseName': 'entitlements',
-    'type': 'HrefObject',
+    'type': 'EntitlementsLink',
+    'format': ''
+  },
+  {
+    'name': 'self',
+    'baseName': 'self',
+    'type': 'HrefObjectSelfLink',
     'format': ''
   }
 ];

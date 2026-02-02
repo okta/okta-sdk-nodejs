@@ -29,10 +29,10 @@ exports.EmptyRequestSchema = void 0;
 * Empty object payload
 */
 class EmptyRequestSchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EmptyRequestSchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EmptyRequestSchema = EmptyRequestSchema;

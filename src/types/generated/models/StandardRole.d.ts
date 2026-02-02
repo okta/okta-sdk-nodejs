@@ -46,7 +46,7 @@ export declare class StandardRole {
     */
   'lastUpdated'?: Date;
   'status'?: LifecycleStatus;
-  'type'?: RoleType;
+  'type': RoleType;
   '_embedded'?: StandardRoleEmbedded;
   '_links'?: LinksAssignee;
   static readonly discriminator: string | undefined;

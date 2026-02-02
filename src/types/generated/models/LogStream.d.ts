@@ -65,4 +65,4 @@ export declare class LogStream {
     }[];
   constructor();
 }
-export declare type LogStreamStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type LogStreamStatusEnum = 'ACTIVE' | 'INACTIVE';

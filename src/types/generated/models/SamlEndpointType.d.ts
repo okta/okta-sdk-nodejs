@@ -25,4 +25,4 @@
 /**
 * Determines whether to publish an instance-specific (trust) or organization (shared) ACS endpoint in the SAML metadata
 */
-export declare type SamlEndpointType = 'INSTANCE' | 'ORG';
+export type SamlEndpointType = 'INSTANCE' | 'ORG';

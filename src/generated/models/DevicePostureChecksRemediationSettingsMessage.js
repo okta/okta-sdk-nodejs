@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.DevicePostureChecksRemediationSettingsMessage = void 0;
 class DevicePostureChecksRemediationSettingsMessage {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DevicePostureChecksRemediationSettingsMessage.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DevicePostureChecksRemediationSettingsMessage = DevicePostureChecksRemediationSettingsMessage;

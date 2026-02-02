@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookChannel = void 0;
 class InlineHookChannel {
-  constructor() {
-    // this.type = 'InlineHookChannel';
-  }
   static getAttributeTypeMap() {
     return InlineHookChannel.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'InlineHookChannel';
   }
 }
 exports.InlineHookChannel = InlineHookChannel;

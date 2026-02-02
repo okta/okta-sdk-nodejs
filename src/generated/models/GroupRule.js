@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GroupRule = void 0;
 class GroupRule {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRule.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRule = GroupRule;

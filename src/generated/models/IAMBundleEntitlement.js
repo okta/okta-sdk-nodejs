@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IAMBundleEntitlement = void 0;
+/**
+* An entitlement in a governance bundle
+*/
 class IAMBundleEntitlement {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IAMBundleEntitlement.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IAMBundleEntitlement = IAMBundleEntitlement;

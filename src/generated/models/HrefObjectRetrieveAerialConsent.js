@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectRetrieveAerialConsent = void 0;
 class HrefObjectRetrieveAerialConsent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectRetrieveAerialConsent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectRetrieveAerialConsent = HrefObjectRetrieveAerialConsent;

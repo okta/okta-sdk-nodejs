@@ -29,10 +29,10 @@ exports.SamlSsoEndpoint = void 0;
 * IdP\'s `SingleSignOnService` endpoint where Okta sends an `<AuthnRequest>` message
 */
 class SamlSsoEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlSsoEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlSsoEndpoint = SamlSsoEndpoint;

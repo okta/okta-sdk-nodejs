@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AutoLoginApplicationSettingsSignOn = void 0;
 class AutoLoginApplicationSettingsSignOn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AutoLoginApplicationSettingsSignOn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AutoLoginApplicationSettingsSignOn = AutoLoginApplicationSettingsSignOn;

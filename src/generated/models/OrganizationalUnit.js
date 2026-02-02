@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OrganizationalUnit = void 0;
 class OrganizationalUnit {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrganizationalUnit.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrganizationalUnit = OrganizationalUnit;

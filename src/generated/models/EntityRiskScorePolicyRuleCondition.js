@@ -29,10 +29,10 @@ exports.EntityRiskScorePolicyRuleCondition = void 0;
 * <x-lifecycle class=\"oie\"></x-lifecycle> The risk score level of the entity risk policy rule
 */
 class EntityRiskScorePolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskScorePolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskScorePolicyRuleCondition = EntityRiskScorePolicyRuleCondition;

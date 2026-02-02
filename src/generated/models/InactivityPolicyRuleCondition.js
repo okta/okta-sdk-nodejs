@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InactivityPolicyRuleCondition = void 0;
 class InactivityPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InactivityPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InactivityPolicyRuleCondition = InactivityPolicyRuleCondition;

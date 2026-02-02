@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EventHookFilterMapObjectCondition = void 0;
 class EventHookFilterMapObjectCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EventHookFilterMapObjectCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EventHookFilterMapObjectCondition = EventHookFilterMapObjectCondition;

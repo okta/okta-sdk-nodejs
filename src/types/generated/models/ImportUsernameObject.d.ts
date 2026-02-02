@@ -49,4 +49,4 @@ export declare class ImportUsernameObject {
     }[];
   constructor();
 }
-export declare type ImportUsernameObjectUsernameFormatEnum = 'EMAIL' | 'CUSTOM';
+export type ImportUsernameObjectUsernameFormatEnum = 'EMAIL' | 'CUSTOM';

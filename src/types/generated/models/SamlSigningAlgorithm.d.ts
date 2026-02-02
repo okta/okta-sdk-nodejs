@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type SamlSigningAlgorithm = 'SHA-1' | 'SHA-256';
+export type SamlSigningAlgorithm = 'SHA-1' | 'SHA-256';

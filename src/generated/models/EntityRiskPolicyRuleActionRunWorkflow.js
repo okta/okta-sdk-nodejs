@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EntityRiskPolicyRuleActionRunWorkflow = void 0;
 class EntityRiskPolicyRuleActionRunWorkflow {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActionRunWorkflow.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleActionRunWorkflow = EntityRiskPolicyRuleActionRunWorkflow;

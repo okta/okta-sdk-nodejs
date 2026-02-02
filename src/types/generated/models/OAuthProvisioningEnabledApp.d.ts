@@ -25,4 +25,4 @@
 /**
 * Application name for the provisioning connection
 */
-export declare type OAuthProvisioningEnabledApp = 'google' | 'office365' | 'slack' | 'zoomus';
+export type OAuthProvisioningEnabledApp = 'google' | 'office365' | 'slack' | 'zoomus';

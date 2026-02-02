@@ -25,4 +25,4 @@
 /**
 * The result of this entity evaluation
 */
-export declare type SimulateResultStatus = 'MATCH' | 'NOT_MATCH' | 'UNDEFINED';
+export type SimulateResultStatus = 'MATCH' | 'NOT_MATCH' | 'UNDEFINED';

@@ -23,6 +23,7 @@
  * Do not edit the class manually.
  */
 import { GrantType } from './../models/GrantType';
+import { IdTokenKeyEncryptionAlgorithm } from './../models/IdTokenKeyEncryptionAlgorithm';
 import { OAuthResponseType } from './../models/OAuthResponseType';
 import { OpenIdConnectApplicationConsentMethod } from './../models/OpenIdConnectApplicationConsentMethod';
 import { OpenIdConnectApplicationIdpInitiatedLogin } from './../models/OpenIdConnectApplicationIdpInitiatedLogin';
@@ -63,6 +64,7 @@ export declare class OpenIdConnectApplicationSettingsClient {
     */
   'frontchannel_logout_uri'?: string;
   'grant_types': Array<GrantType>;
+  'id_token_encrypted_response_alg'?: IdTokenKeyEncryptionAlgorithm;
   'idp_initiated_login'?: OpenIdConnectApplicationIdpInitiatedLogin;
   /**
     * URL string that a third party can use to initiate the sign-in flow by the client
@@ -71,7 +73,7 @@ export declare class OpenIdConnectApplicationSettingsClient {
   'issuer_mode'?: OpenIdConnectApplicationIssuerMode;
   'jwks'?: OpenIdConnectApplicationSettingsClientKeys;
   /**
-    * URL string that references a JSON Web Key Set for validating JWTs presented to Okta
+    * URL string that references a JSON Web Key Set for validating JWTs presented to Okta or for encrypting ID tokens minted by Okta for the client
     */
   'jwks_uri'?: string;
   /**
@@ -135,8 +137,8 @@ export declare class OpenIdConnectApplicationSettingsClient {
     }[];
   constructor();
 }
-export declare type OpenIdConnectApplicationSettingsClientBackchannelAuthenticationRequestSigningAlgEnum = 'HS256' | 'HS384' | 'HS512' | 'RS256' | 'RS384' | 'RS512' | 'ES256' | 'ES384' | 'ES512';
-export declare type OpenIdConnectApplicationSettingsClientBackchannelTokenDeliveryModeEnum = 'poll' | 'ping' | 'push';
-export declare type OpenIdConnectApplicationSettingsClientRequestObjectSigningAlgEnum = 'HS256' | 'HS384' | 'HS512' | 'RS256' | 'RS384' | 'RS512' | 'ES256' | 'ES384' | 'ES512';
-export declare type OpenIdConnectApplicationSettingsClientSubjectTypeEnum = 'public' | 'pairwise';
-export declare type OpenIdConnectApplicationSettingsClientWildcardRedirectEnum = 'DISABLED' | 'SUBDOMAIN';
+export type OpenIdConnectApplicationSettingsClientBackchannelAuthenticationRequestSigningAlgEnum = 'HS256' | 'HS384' | 'HS512' | 'RS256' | 'RS384' | 'RS512' | 'ES256' | 'ES384' | 'ES512';
+export type OpenIdConnectApplicationSettingsClientBackchannelTokenDeliveryModeEnum = 'poll' | 'ping' | 'push';
+export type OpenIdConnectApplicationSettingsClientRequestObjectSigningAlgEnum = 'HS256' | 'HS384' | 'HS512' | 'RS256' | 'RS384' | 'RS512' | 'ES256' | 'ES384' | 'ES512';
+export type OpenIdConnectApplicationSettingsClientSubjectTypeEnum = 'public' | 'pairwise';
+export type OpenIdConnectApplicationSettingsClientWildcardRedirectEnum = 'DISABLED' | 'SUBDOMAIN';

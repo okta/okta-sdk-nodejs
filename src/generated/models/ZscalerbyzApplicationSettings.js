@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ZscalerbyzApplicationSettings = void 0;
 class ZscalerbyzApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ZscalerbyzApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ZscalerbyzApplicationSettings = ZscalerbyzApplicationSettings;

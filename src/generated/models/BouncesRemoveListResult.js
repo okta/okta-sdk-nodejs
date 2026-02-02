@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BouncesRemoveListResult = void 0;
 class BouncesRemoveListResult {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BouncesRemoveListResult.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BouncesRemoveListResult = BouncesRemoveListResult;

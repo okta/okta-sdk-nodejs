@@ -29,10 +29,10 @@ exports.SamlSigningCredentials = void 0;
 * Key used for signing requests to the IdP
 */
 class SamlSigningCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlSigningCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlSigningCredentials = SamlSigningCredentials;

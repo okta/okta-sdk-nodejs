@@ -49,4 +49,4 @@ export declare class SelfServicePasswordResetAction {
     }[];
   constructor();
 }
-export declare type SelfServicePasswordResetActionTypeEnum = 'selfServicePasswordReset';
+export type SelfServicePasswordResetActionTypeEnum = 'selfServicePasswordReset';

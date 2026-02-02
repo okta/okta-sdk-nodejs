@@ -29,10 +29,10 @@ exports.GroupRuleUserCondition = void 0;
 * Defines conditions specific to user exclusion
 */
 class GroupRuleUserCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleUserCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleUserCondition = GroupRuleUserCondition;

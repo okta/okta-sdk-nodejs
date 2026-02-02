@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthorizationServerResourceHrefObject = void 0;
 class AuthorizationServerResourceHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServerResourceHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServerResourceHrefObject = AuthorizationServerResourceHrefObject;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookChannelOAuth = void 0;
 const InlineHookChannel_1 = require('./../models/InlineHookChannel');
 class InlineHookChannelOAuth extends InlineHookChannel_1.InlineHookChannel {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(InlineHookChannelOAuth.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'OAUTH';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(InlineHookChannelOAuth.attributeTypeMap);
   }
 }
 exports.InlineHookChannelOAuth = InlineHookChannelOAuth;

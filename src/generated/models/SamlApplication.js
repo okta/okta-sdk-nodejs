@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.SamlApplication = void 0;
 const Application_1 = require('./../models/Application');
 class SamlApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(SamlApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'SAML_2_0';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(SamlApplication.attributeTypeMap);
   }
 }
 exports.SamlApplication = SamlApplication;

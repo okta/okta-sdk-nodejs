@@ -29,10 +29,10 @@ exports.IDVAuthorizationEndpoint = void 0;
 * IDV authorization endpoint
 */
 class IDVAuthorizationEndpoint {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IDVAuthorizationEndpoint.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IDVAuthorizationEndpoint = IDVAuthorizationEndpoint;

@@ -29,10 +29,10 @@ exports.AuthenticationProvider = void 0;
 * Specifies the authentication provider that validates the user\'s password credential. The user\'s current provider is managed by the **Delegated Authentication** settings for your org. The provider object is **read-only**.
 */
 class AuthenticationProvider {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticationProvider.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticationProvider = AuthenticationProvider;

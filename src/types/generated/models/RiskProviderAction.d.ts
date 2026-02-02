@@ -25,4 +25,4 @@
 /**
 * Action taken by Okta during authentication attempts based on the risk events sent by this provider
 */
-export declare type RiskProviderAction = 'enforce_and_log' | 'log_only' | 'none';
+export type RiskProviderAction = 'enforce_and_log' | 'log_only' | 'none';

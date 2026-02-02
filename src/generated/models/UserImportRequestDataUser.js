@@ -29,10 +29,10 @@ exports.UserImportRequestDataUser = void 0;
 * Provides information on the Okta user profile currently set to be used for the user who is being imported, based on the matching  rules and attribute mappings that were applied.
 */
 class UserImportRequestDataUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataUser = UserImportRequestDataUser;

@@ -28,6 +28,10 @@ import { AuthenticatorEnrollmentPolicyAuthenticatorType } from './../models/Auth
 export declare class AuthenticatorEnrollmentPolicyAuthenticatorSettings {
   'constraints'?: AuthenticatorEnrollmentPolicyAuthenticatorSettingsConstraints | null;
   'enroll'?: AuthenticatorEnrollmentPolicyAuthenticatorSettingsEnroll;
+  /**
+    * The authenticator ID for `custom_app`, `custom_otp` or `external_idp`. Use this property to select a specific `custom_app`, `custom_otp` or `external_idp` authenticator.
+    */
+  'id'?: string;
   'key'?: AuthenticatorEnrollmentPolicyAuthenticatorType;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

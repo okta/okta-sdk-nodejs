@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.DeviceAssuranceAndroidPlatform = void 0;
 const DeviceAssurance_1 = require('./../models/DeviceAssurance');
 class DeviceAssuranceAndroidPlatform extends DeviceAssurance_1.DeviceAssurance {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(DeviceAssuranceAndroidPlatform.attributeTypeMap);
+  }
   constructor() {
     super();
     this.platform = 'ANDROID';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(DeviceAssuranceAndroidPlatform.attributeTypeMap);
   }
 }
 exports.DeviceAssuranceAndroidPlatform = DeviceAssuranceAndroidPlatform;

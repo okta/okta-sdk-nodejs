@@ -29,10 +29,10 @@ exports.ThirdPartyAdminSetting = void 0;
 * The third-party admin setting
 */
 class ThirdPartyAdminSetting {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ThirdPartyAdminSetting.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ThirdPartyAdminSetting = ThirdPartyAdminSetting;

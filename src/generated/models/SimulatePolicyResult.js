@@ -29,10 +29,10 @@ exports.SimulatePolicyResult = void 0;
 * The result of the policy evaluation
 */
 class SimulatePolicyResult {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SimulatePolicyResult.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SimulatePolicyResult = SimulatePolicyResult;

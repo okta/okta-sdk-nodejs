@@ -29,10 +29,10 @@ exports.SecurityEventsProviderResponse = void 0;
 * The Security Events Provider response
 */
 class SecurityEventsProviderResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventsProviderResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventsProviderResponse = SecurityEventsProviderResponse;

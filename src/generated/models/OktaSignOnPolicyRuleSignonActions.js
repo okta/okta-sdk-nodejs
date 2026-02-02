@@ -29,10 +29,10 @@ exports.OktaSignOnPolicyRuleSignonActions = void 0;
 * Specifies settings for the policy rule
 */
 class OktaSignOnPolicyRuleSignonActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSignOnPolicyRuleSignonActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSignOnPolicyRuleSignonActions = OktaSignOnPolicyRuleSignonActions;

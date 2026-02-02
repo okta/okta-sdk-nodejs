@@ -29,10 +29,10 @@ exports.AuthenticatorProfileTacRequest = void 0;
 * Defines the authenticator specific parameters
 */
 class AuthenticatorProfileTacRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorProfileTacRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorProfileTacRequest = AuthenticatorProfileTacRequest;

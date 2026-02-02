@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ThemeResponse = void 0;
 class ThemeResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ThemeResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ThemeResponse = ThemeResponse;

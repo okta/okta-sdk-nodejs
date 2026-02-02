@@ -29,10 +29,10 @@ exports.SloParticipate = void 0;
 * Determines if the app participates in Single Logout (SLO)
 */
 class SloParticipate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SloParticipate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SloParticipate = SloParticipate;

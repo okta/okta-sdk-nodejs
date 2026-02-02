@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OfflineAccessScopeResourceHrefObject = void 0;
 class OfflineAccessScopeResourceHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OfflineAccessScopeResourceHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OfflineAccessScopeResourceHrefObject = OfflineAccessScopeResourceHrefObject;

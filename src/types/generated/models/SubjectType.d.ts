@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type SubjectType = 'pairwise' | 'public';
+export type SubjectType = 'pairwise' | 'public';

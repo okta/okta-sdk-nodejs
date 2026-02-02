@@ -29,10 +29,10 @@ exports.LogUserAgent = void 0;
 * \"A user agent is software (a software agent) that is acting on behalf of a user.\" ([Definition of User Agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent))  In the Okta event data object, the `UserAgent` object provides specifications about the client software that makes event-triggering HTTP requests. User agent identification is often useful for identifying interoperability problems between servers and clients, and also for browser and operating system usage analytics.
 */
 class LogUserAgent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LogUserAgent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LogUserAgent = LogUserAgent;

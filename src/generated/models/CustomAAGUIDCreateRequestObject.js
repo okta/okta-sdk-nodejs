@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CustomAAGUIDCreateRequestObject = void 0;
 class CustomAAGUIDCreateRequestObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CustomAAGUIDCreateRequestObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CustomAAGUIDCreateRequestObject = CustomAAGUIDCreateRequestObject;

@@ -29,15 +29,21 @@ exports.SamlTrustCredentials = void 0;
 * Federation Trust Credentials for verifying assertions from the IdP
 */
 class SamlTrustCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlTrustCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlTrustCredentials = SamlTrustCredentials;
 SamlTrustCredentials.discriminator = undefined;
 SamlTrustCredentials.attributeTypeMap = [
+  {
+    'name': 'additionalKids',
+    'baseName': 'additionalKids',
+    'type': 'Array<string>',
+    'format': ''
+  },
   {
     'name': 'audience',
     'baseName': 'audience',

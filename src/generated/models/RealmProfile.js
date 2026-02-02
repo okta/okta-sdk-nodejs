@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RealmProfile = void 0;
 class RealmProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RealmProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RealmProfile = RealmProfile;

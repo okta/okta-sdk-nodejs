@@ -33,11 +33,11 @@ export declare class Session {
   'amr'?: Array<SessionAuthenticationMethod>;
   'createdAt'?: Date;
   /**
-    * A timestamp when the Session expires
+    * A timestamp when the session expires
     */
   'expiresAt'?: Date;
   /**
-    * A unique key for the Session
+    * A unique key for the session
     */
   'id'?: string;
   'idp'?: SessionIdentityProvider;

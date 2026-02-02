@@ -29,10 +29,10 @@ exports.OSVersionThreeComponents = void 0;
 * Current version of the operating system (maximum of three components in the versioning scheme)
 */
 class OSVersionThreeComponents {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OSVersionThreeComponents.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OSVersionThreeComponents = OSVersionThreeComponents;

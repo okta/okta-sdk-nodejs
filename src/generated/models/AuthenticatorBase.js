@@ -26,17 +26,18 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorBase = void 0;
 class AuthenticatorBase {
-  constructor() {
-    // this.key = 'AuthenticatorBase';
-  }
   static getAttributeTypeMap() {
     return AuthenticatorBase.attributeTypeMap;
+  }
+  constructor() {
+    // this.key = 'AuthenticatorBase';
   }
 }
 exports.AuthenticatorBase = AuthenticatorBase;
 AuthenticatorBase.discriminator = 'key';
 AuthenticatorBase.mapping = {
   'custom_app': 'AuthenticatorKeyCustomApp',
+  'custom_otp': 'AuthenticatorKeyCustomOtp',
   'duo': 'AuthenticatorKeyDuo',
   'external_idp': 'AuthenticatorKeyExternalIdp',
   'google_otp': 'AuthenticatorKeyGoogleOtp',
@@ -59,6 +60,12 @@ AuthenticatorBase.attributeTypeMap = [
     'baseName': 'created',
     'type': 'Date',
     'format': 'date-time'
+  },
+  {
+    'name': 'description',
+    'baseName': 'description',
+    'type': 'string',
+    'format': ''
   },
   {
     'name': 'id',

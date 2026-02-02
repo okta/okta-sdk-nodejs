@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuth2RefreshTokenScope = void 0;
 class OAuth2RefreshTokenScope {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2RefreshTokenScope.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2RefreshTokenScope = OAuth2RefreshTokenScope;

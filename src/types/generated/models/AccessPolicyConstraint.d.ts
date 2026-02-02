@@ -66,5 +66,5 @@ export declare class AccessPolicyConstraint {
     }[];
   constructor();
 }
-export declare type AccessPolicyConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
-export declare type AccessPolicyConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';
+export type AccessPolicyConstraintMethodsEnum = 'PASSWORD' | 'SECURITY_QUESTION' | 'SMS' | 'VOICE' | 'EMAIL' | 'PUSH' | 'SIGNED_NONCE' | 'OTP' | 'TOTP' | 'WEBAUTHN' | 'DUO' | 'IDP' | 'CERT';
+export type AccessPolicyConstraintTypesEnum = 'SECURITY_KEY' | 'PHONE' | 'EMAIL' | 'PASSWORD' | 'SECURITY_QUESTION' | 'APP' | 'FEDERATED';

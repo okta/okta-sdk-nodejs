@@ -29,10 +29,10 @@ exports.ProvisioningGroups = void 0;
 * Provisioning settings for a user\'s group memberships
 */
 class ProvisioningGroups {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningGroups.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningGroups = ProvisioningGroups;

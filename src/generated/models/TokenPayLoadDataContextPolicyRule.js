@@ -29,10 +29,10 @@ exports.TokenPayLoadDataContextPolicyRule = void 0;
 * The authorization server policy rule used to mint the token
 */
 class TokenPayLoadDataContextPolicyRule {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextPolicyRule.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextPolicyRule = TokenPayLoadDataContextPolicyRule;

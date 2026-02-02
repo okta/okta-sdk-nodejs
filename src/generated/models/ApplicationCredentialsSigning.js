@@ -29,10 +29,10 @@ exports.ApplicationCredentialsSigning = void 0;
 * App signing key properties > **Note:** Only apps with SAML_2_0, SAML_1_1, WS_FEDERATION, or OPENID_CONNECT `signOnMode` support the key rotation feature.
 */
 class ApplicationCredentialsSigning {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationCredentialsSigning.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationCredentialsSigning = ApplicationCredentialsSigning;

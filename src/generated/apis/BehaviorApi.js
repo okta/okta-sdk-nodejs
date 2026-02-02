@@ -27,7 +27,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates a behavior detection rule
      * Activate a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   async activateBehaviorDetectionRule(behaviorId, _options) {
     let _config = _options || this.configuration;
@@ -104,7 +104,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Deactivates a behavior detection rule
      * Deactivate a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   async deactivateBehaviorDetectionRule(behaviorId, _options) {
     let _config = _options || this.configuration;
@@ -140,7 +140,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Deletes a Behavior Detection Rule by `behaviorId`
      * Delete a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   async deleteBehaviorDetectionRule(behaviorId, _options) {
     let _config = _options || this.configuration;
@@ -176,7 +176,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Retrieves a Behavior Detection Rule by `behaviorId`
      * Retrieve a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      */
   async getBehaviorDetectionRule(behaviorId, _options) {
     let _config = _options || this.configuration;
@@ -240,7 +240,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Replaces a Behavior Detection Rule by `behaviorId`
      * Replace a behavior detection rule
-     * @param behaviorId id of the Behavior Detection Rule
+     * @param behaviorId ID of the Behavior Detection Rule
      * @param rule
      */
   async replaceBehaviorDetectionRule(behaviorId, rule, _options) {
@@ -330,7 +330,7 @@ class BehaviorApiResponseProcessor {
      */
   async createBehaviorDetectionRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'BehaviorRule', '');
       return body;
     }

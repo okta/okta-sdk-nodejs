@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OAuthApplicationCredentials = void 0;
 class OAuthApplicationCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuthApplicationCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuthApplicationCredentials = OAuthApplicationCredentials;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RiskPolicyRuleCondition = void 0;
 class RiskPolicyRuleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RiskPolicyRuleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RiskPolicyRuleCondition = RiskPolicyRuleCondition;

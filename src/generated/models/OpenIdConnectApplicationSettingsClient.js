@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OpenIdConnectApplicationSettingsClient = void 0;
 class OpenIdConnectApplicationSettingsClient {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OpenIdConnectApplicationSettingsClient.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OpenIdConnectApplicationSettingsClient = OpenIdConnectApplicationSettingsClient;
@@ -93,6 +93,12 @@ OpenIdConnectApplicationSettingsClient.attributeTypeMap = [
     'name': 'grant_types',
     'baseName': 'grant_types',
     'type': 'Array<GrantType>',
+    'format': ''
+  },
+  {
+    'name': 'id_token_encrypted_response_alg',
+    'baseName': 'id_token_encrypted_response_alg',
+    'type': 'IdTokenKeyEncryptionAlgorithm',
     'format': ''
   },
   {

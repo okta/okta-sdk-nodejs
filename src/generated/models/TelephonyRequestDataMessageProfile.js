@@ -29,10 +29,10 @@ exports.TelephonyRequestDataMessageProfile = void 0;
 * Message profile specifies information about the telephony (sms/voice) message to be sent to the Okta user
 */
 class TelephonyRequestDataMessageProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyRequestDataMessageProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyRequestDataMessageProfile = TelephonyRequestDataMessageProfile;

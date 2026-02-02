@@ -24,6 +24,7 @@
  */
 import { ApplicationAccessibility } from './../models/ApplicationAccessibility';
 import { ApplicationEmbedded } from './../models/ApplicationEmbedded';
+import { ApplicationExpressConfiguration } from './../models/ApplicationExpressConfiguration';
 import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
 import { ApplicationLinks } from './../models/ApplicationLinks';
@@ -36,6 +37,7 @@ export declare class Application {
     * Timestamp when the application object was created
     */
   'created'?: Date;
+  'expressConfiguration'?: ApplicationExpressConfiguration;
   /**
     * Enabled app features > **Note:** See [Application Features](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationFeatures/) for app provisioning features.
     */
@@ -87,4 +89,4 @@ export declare class Application {
     }[];
   constructor();
 }
-export declare type ApplicationFeaturesEnum = 'GROUP_PUSH' | 'IMPORT_NEW_USERS' | 'IMPORT_PROFILE_UPDATES' | 'IMPORT_USER_SCHEMA' | 'PROFILE_MASTERING' | 'PUSH_NEW_USERS' | 'PUSH_PASSWORD_UPDATES' | 'PUSH_PROFILE_UPDATES' | 'PUSH_USER_DEACTIVATION' | 'REACTIVATE_USERS' | 'OUTBOUND_DEL_AUTH' | 'DESKTOP_SSO' | 'FEDERATED_PROFILE' | 'SUPPRESS_ACTIVATION_EMAIL' | 'PUSH_PENDING_USERS' | 'MFA' | 'UPDATE_EXISTING_USERNAME' | 'EXCLUDE_USERNAME_UPDATE_ON_PROFILE_PUSH' | 'EXCHANGE_ACTIVE_SYNC' | 'IMPORT_SYNC' | 'IMPORT_SYNC_CONTACTS' | 'DEVICE_COMPLIANCE' | 'VPN_CONFIG' | 'IMPORT_SCHEMA_ENUM_VALUES' | 'SCIM_PROVISIONING' | 'DEVICE_FILTER_IN_SIGN_ON_RULES' | 'PROFILE_TEMPLATE_UPGRADE' | 'DEFAULT_PUSH_STATUS_TO_PUSH' | 'REAL_TIME_SYNC' | 'SSO' | 'AUTHN_CONTEXT' | 'JIT_PROVISIONING' | 'GROUP_SYNC' | 'OPP_SCIM_INCREMENTAL_IMPORTS' | 'IN_MEMORY_APP_USER' | 'LOG_STREAMING' | 'OAUTH_INTEGRATION' | 'IDP' | 'PUSH_NEW_USERS_WITHOUT_PASSWORD' | 'SKYHOOK_SERVICE' | 'ENTITLEMENT_MANAGEMENT' | 'PUSH_NEW_USERS_WITH_HASHED_PASSWORD';
+export type ApplicationFeaturesEnum = 'GROUP_PUSH' | 'IMPORT_NEW_USERS' | 'IMPORT_PROFILE_UPDATES' | 'IMPORT_USER_SCHEMA' | 'PROFILE_MASTERING' | 'PUSH_NEW_USERS' | 'PUSH_PASSWORD_UPDATES' | 'PUSH_PROFILE_UPDATES' | 'PUSH_USER_DEACTIVATION' | 'REACTIVATE_USERS' | 'OUTBOUND_DEL_AUTH' | 'DESKTOP_SSO' | 'FEDERATED_PROFILE' | 'SUPPRESS_ACTIVATION_EMAIL' | 'PUSH_PENDING_USERS' | 'MFA' | 'UPDATE_EXISTING_USERNAME' | 'EXCLUDE_USERNAME_UPDATE_ON_PROFILE_PUSH' | 'EXCHANGE_ACTIVE_SYNC' | 'IMPORT_SYNC' | 'IMPORT_SYNC_CONTACTS' | 'DEVICE_COMPLIANCE' | 'VPN_CONFIG' | 'IMPORT_SCHEMA_ENUM_VALUES' | 'SCIM_PROVISIONING' | 'DEVICE_FILTER_IN_SIGN_ON_RULES' | 'PROFILE_TEMPLATE_UPGRADE' | 'DEFAULT_PUSH_STATUS_TO_PUSH' | 'REAL_TIME_SYNC' | 'SSO' | 'AUTHN_CONTEXT' | 'JIT_PROVISIONING' | 'GROUP_SYNC' | 'OPP_SCIM_INCREMENTAL_IMPORTS' | 'IN_MEMORY_APP_USER' | 'LOG_STREAMING' | 'OAUTH_INTEGRATION' | 'IDP' | 'PUSH_NEW_USERS_WITHOUT_PASSWORD' | 'SKYHOOK_SERVICE' | 'ENTITLEMENT_MANAGEMENT' | 'PUSH_NEW_USERS_WITH_HASHED_PASSWORD';

@@ -29,10 +29,10 @@ exports.GroupRulePeopleCondition = void 0;
 * Defines conditions for `people` in a group rule
 */
 class GroupRulePeopleCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRulePeopleCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRulePeopleCondition = GroupRulePeopleCondition;

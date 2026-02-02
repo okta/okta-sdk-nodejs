@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PermissionLinks = void 0;
 class PermissionLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PermissionLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PermissionLinks = PermissionLinks;

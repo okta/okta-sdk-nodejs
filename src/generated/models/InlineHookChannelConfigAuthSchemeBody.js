@@ -29,10 +29,10 @@ exports.InlineHookChannelConfigAuthSchemeBody = void 0;
 * The authentication scheme to use for this request
 */
 class InlineHookChannelConfigAuthSchemeBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookChannelConfigAuthSchemeBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookChannelConfigAuthSchemeBody = InlineHookChannelConfigAuthSchemeBody;

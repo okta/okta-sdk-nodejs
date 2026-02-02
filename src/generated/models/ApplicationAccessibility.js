@@ -29,10 +29,10 @@ exports.ApplicationAccessibility = void 0;
 * Specifies access settings for the app
 */
 class ApplicationAccessibility {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationAccessibility.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationAccessibility = ApplicationAccessibility;

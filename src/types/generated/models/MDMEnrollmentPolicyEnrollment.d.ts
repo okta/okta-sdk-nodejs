@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type MDMEnrollmentPolicyEnrollment = 'ANY_OR_NONE' | 'OMM';
+export type MDMEnrollmentPolicyEnrollment = 'ANY_OR_NONE' | 'OMM';

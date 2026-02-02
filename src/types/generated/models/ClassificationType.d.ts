@@ -25,4 +25,4 @@
 /**
 * The type of user classification
 */
-export declare type ClassificationType = 'LITE' | 'STANDARD';
+export type ClassificationType = 'LITE' | 'STANDARD';

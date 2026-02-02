@@ -39,4 +39,4 @@ export declare class EmailSettings {
     }[];
   constructor();
 }
-export declare type EmailSettingsRecipientsEnum = 'ALL_USERS' | 'ADMINS_ONLY' | 'NO_USERS';
+export type EmailSettingsRecipientsEnum = 'ALL_USERS' | 'ADMINS_ONLY' | 'NO_USERS';

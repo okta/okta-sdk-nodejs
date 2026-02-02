@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SessionIdentityProvider = void 0;
 class SessionIdentityProvider {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SessionIdentityProvider.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SessionIdentityProvider = SessionIdentityProvider;

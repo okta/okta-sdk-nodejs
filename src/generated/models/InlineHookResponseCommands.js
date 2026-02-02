@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookResponseCommands = void 0;
 class InlineHookResponseCommands {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookResponseCommands.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookResponseCommands = InlineHookResponseCommands;

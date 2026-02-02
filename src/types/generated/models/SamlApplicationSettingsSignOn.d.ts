@@ -156,7 +156,7 @@ export declare class SamlApplicationSettingsSignOn {
     }[];
   constructor();
 }
-export declare type SamlApplicationSettingsSignOnAuthnContextClassRefEnum = 'urn:federation:authentication:windows' | 'oasis:names:tc:SAML:2.0:ac:classes:Kerberos' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:X509';
-export declare type SamlApplicationSettingsSignOnDigestAlgorithmEnum = 'SHA1' | 'SHA256';
-export declare type SamlApplicationSettingsSignOnSignatureAlgorithmEnum = 'RSA_SHA1' | 'RSA_SHA256';
-export declare type SamlApplicationSettingsSignOnSubjectNameIdFormatEnum = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:x509SubjectName';
+export type SamlApplicationSettingsSignOnAuthnContextClassRefEnum = 'urn:federation:authentication:windows' | 'oasis:names:tc:SAML:2.0:ac:classes:Kerberos' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified' | 'urn:oasis:names:tc:SAML:2.0:ac:classes:X509';
+export type SamlApplicationSettingsSignOnDigestAlgorithmEnum = 'SHA1' | 'SHA256';
+export type SamlApplicationSettingsSignOnSignatureAlgorithmEnum = 'RSA_SHA1' | 'RSA_SHA256';
+export type SamlApplicationSettingsSignOnSubjectNameIdFormatEnum = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' | 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified' | 'urn:oasis:names:tc:SAML:1.1:nameid-format:x509SubjectName';

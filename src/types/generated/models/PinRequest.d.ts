@@ -53,4 +53,4 @@ export declare class PinRequest {
     }[];
   constructor();
 }
-export declare type PinRequestFulfillmentProviderEnum = 'yubico';
+export type PinRequestFulfillmentProviderEnum = 'yubico';

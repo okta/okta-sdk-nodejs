@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRuleSettingsAnomalousDevice = void 0;
 class BehaviorRuleSettingsAnomalousDevice {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BehaviorRuleSettingsAnomalousDevice.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BehaviorRuleSettingsAnomalousDevice = BehaviorRuleSettingsAnomalousDevice;

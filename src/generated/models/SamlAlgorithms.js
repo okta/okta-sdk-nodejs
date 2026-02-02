@@ -29,10 +29,10 @@ exports.SamlAlgorithms = void 0;
 * Settings for signing and verifying SAML messages
 */
 class SamlAlgorithms {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlAlgorithms.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlAlgorithms = SamlAlgorithms;

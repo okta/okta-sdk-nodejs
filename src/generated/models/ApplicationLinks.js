@@ -29,10 +29,10 @@ exports.ApplicationLinks = void 0;
 * Discoverable resources related to the app
 */
 class ApplicationLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationLinks = ApplicationLinks;

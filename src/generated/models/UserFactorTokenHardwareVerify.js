@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorTokenHardwareVerify = void 0;
 class UserFactorTokenHardwareVerify {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserFactorTokenHardwareVerify.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserFactorTokenHardwareVerify = UserFactorTokenHardwareVerify;

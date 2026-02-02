@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BulkGroupUpsertRequestBodyProfilesInner = void 0;
 class BulkGroupUpsertRequestBodyProfilesInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BulkGroupUpsertRequestBodyProfilesInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BulkGroupUpsertRequestBodyProfilesInner = BulkGroupUpsertRequestBodyProfilesInner;

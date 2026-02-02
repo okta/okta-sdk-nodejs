@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAuthSessionPolicyRuleTerminateSession = void 0;
 class PostAuthSessionPolicyRuleTerminateSession {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthSessionPolicyRuleTerminateSession.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthSessionPolicyRuleTerminateSession = PostAuthSessionPolicyRuleTerminateSession;

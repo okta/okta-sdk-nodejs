@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SecurityEventReason = void 0;
 class SecurityEventReason {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventReason.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventReason = SecurityEventReason;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserTypePutRequest = void 0;
 class UserTypePutRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserTypePutRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserTypePutRequest = UserTypePutRequest;

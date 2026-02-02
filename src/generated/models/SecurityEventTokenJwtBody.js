@@ -29,10 +29,10 @@ exports.SecurityEventTokenJwtBody = void 0;
 * JSON Web Token body payload for a Security Event Token sent by the SSF Transmitter. For examples and more information, see [SSF Transmitter SET payload structures](https://developer.okta.com/docs/reference/ssf-transmitter-sets).
 */
 class SecurityEventTokenJwtBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenJwtBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenJwtBody = SecurityEventTokenJwtBody;

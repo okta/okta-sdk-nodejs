@@ -29,10 +29,10 @@ exports.UpdateUISchema = void 0;
 * The updated request body properties
 */
 class UpdateUISchema {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UpdateUISchema.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UpdateUISchema = UpdateUISchema;

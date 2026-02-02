@@ -25,4 +25,4 @@
 /**
 * Current status of the application instance
 */
-export declare type AppInstanceContainerStatus = 'ACTIVE' | 'DELETED' | 'INACTIVE';
+export type AppInstanceContainerStatus = 'ACTIVE' | 'DELETED' | 'INACTIVE';

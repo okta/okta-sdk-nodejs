@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.LogStreamAws = void 0;
 const LogStream_1 = require('./../models/LogStream');
 class LogStreamAws extends LogStream_1.LogStream {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(LogStreamAws.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'aws_eventbridge';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(LogStreamAws.attributeTypeMap);
   }
 }
 exports.LogStreamAws = LogStreamAws;

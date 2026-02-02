@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BaseContextUserProfile = void 0;
 class BaseContextUserProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseContextUserProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseContextUserProfile = BaseContextUserProfile;

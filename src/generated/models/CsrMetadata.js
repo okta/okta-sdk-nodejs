@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CsrMetadata = void 0;
 class CsrMetadata {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CsrMetadata.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CsrMetadata = CsrMetadata;

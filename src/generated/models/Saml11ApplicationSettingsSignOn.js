@@ -29,10 +29,10 @@ exports.Saml11ApplicationSettingsSignOn = void 0;
 * SAML 1.1 sign-on mode attributes
 */
 class Saml11ApplicationSettingsSignOn {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Saml11ApplicationSettingsSignOn.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Saml11ApplicationSettingsSignOn = Saml11ApplicationSettingsSignOn;

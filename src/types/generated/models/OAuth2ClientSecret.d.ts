@@ -64,4 +64,4 @@ export declare class OAuth2ClientSecret {
     }[];
   constructor();
 }
-export declare type OAuth2ClientSecretStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type OAuth2ClientSecretStatusEnum = 'ACTIVE' | 'INACTIVE';

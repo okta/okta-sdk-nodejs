@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TokenPayLoadDataAccess = void 0;
 class TokenPayLoadDataAccess {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataAccess.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataAccess = TokenPayLoadDataAccess;

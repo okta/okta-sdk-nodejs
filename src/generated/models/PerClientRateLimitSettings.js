@@ -29,10 +29,10 @@ exports.PerClientRateLimitSettings = void 0;
 *
 */
 class PerClientRateLimitSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PerClientRateLimitSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PerClientRateLimitSettings = PerClientRateLimitSettings;

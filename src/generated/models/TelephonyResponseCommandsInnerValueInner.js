@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TelephonyResponseCommandsInnerValueInner = void 0;
 class TelephonyResponseCommandsInnerValueInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyResponseCommandsInnerValueInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyResponseCommandsInnerValueInner = TelephonyResponseCommandsInnerValueInner;

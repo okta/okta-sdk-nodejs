@@ -45,4 +45,4 @@ export declare class ResendUserFactor {
     }[];
   constructor();
 }
-export declare type ResendUserFactorFactorTypeEnum = 'call' | 'email' | 'sms';
+export type ResendUserFactorFactorTypeEnum = 'call' | 'email' | 'sms';

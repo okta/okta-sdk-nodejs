@@ -25,4 +25,4 @@
 /**
 * Indicates whether the Scope is included in the metadata
 */
-export declare type OAuth2ScopeMetadataPublish = 'ALL_CLIENTS' | 'NO_CLIENTS';
+export type OAuth2ScopeMetadataPublish = 'ALL_CLIENTS' | 'NO_CLIENTS';

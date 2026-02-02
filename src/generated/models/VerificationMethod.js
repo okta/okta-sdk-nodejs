@@ -29,11 +29,11 @@ exports.VerificationMethod = void 0;
 * The method used to verify a user
 */
 class VerificationMethod {
-  constructor() {
-    // this.type = 'VerificationMethod';
-  }
   static getAttributeTypeMap() {
     return VerificationMethod.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'VerificationMethod';
   }
 }
 exports.VerificationMethod = VerificationMethod;

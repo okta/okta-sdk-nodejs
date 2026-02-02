@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SecurityEvent = void 0;
 class SecurityEvent {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEvent.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEvent = SecurityEvent;

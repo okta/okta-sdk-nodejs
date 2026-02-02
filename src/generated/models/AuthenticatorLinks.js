@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthenticatorLinks = void 0;
 class AuthenticatorLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthenticatorLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthenticatorLinks = AuthenticatorLinks;

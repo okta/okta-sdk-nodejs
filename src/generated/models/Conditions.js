@@ -29,10 +29,10 @@ exports.Conditions = void 0;
 * Conditions of applying realm assignment
 */
 class Conditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Conditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Conditions = Conditions;

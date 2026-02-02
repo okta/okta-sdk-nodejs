@@ -26,9 +26,21 @@ import { BehaviorRuleType } from './../models/BehaviorRuleType';
 import { LifecycleStatus } from './../models/LifecycleStatus';
 import { LinksSelf } from './../models/LinksSelf';
 export declare class BehaviorRule {
-  'created'?: Date;
+  /**
+    * Timestamp when the Behavior Detection Rule was created
+    */
+  'created'?: string;
+  /**
+    * ID of the Behavior Detection Rule
+    */
   'id'?: string;
-  'lastUpdated'?: Date;
+  /**
+    * Timestamp when the Behavior Detection Rule was last modified
+    */
+  'lastUpdated'?: string;
+  /**
+    * Name of the Behavior Detection Rule
+    */
   'name': string;
   'status'?: LifecycleStatus;
   'type': BehaviorRuleType;

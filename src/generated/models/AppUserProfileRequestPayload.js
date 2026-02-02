@@ -29,10 +29,10 @@ exports.AppUserProfileRequestPayload = void 0;
 * Updates the assigned user profile > **Note:** The Okta API currently doesn\'t support entity tags for conditional updates. As long as you\'re the only user updating the the user profile, Okta recommends you fetch the most recent profile with [Retrieve an Application User](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/#tag/ApplicationUsers/operation/getApplicationUser), apply your profile update, and then `POST` back the updated profile.
 */
 class AppUserProfileRequestPayload {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUserProfileRequestPayload.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUserProfileRequestPayload = AppUserProfileRequestPayload;

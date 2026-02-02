@@ -42,7 +42,7 @@ export declare class BrandRequest {
     */
   'locale'?: string;
   /**
-    * The name of the Brand
+    * The name of the brand  > **Note:** You can\'t use the reserved `DRAPP_DOMAIN_BRAND` name.
     */
   'name': string;
   /**

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinkedObject = void 0;
 class LinkedObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinkedObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinkedObject = LinkedObject;

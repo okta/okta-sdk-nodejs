@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.EmailDomainDNSRecord = void 0;
 class EmailDomainDNSRecord {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EmailDomainDNSRecord.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EmailDomainDNSRecord = EmailDomainDNSRecord;

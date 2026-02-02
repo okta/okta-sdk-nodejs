@@ -29,10 +29,10 @@ exports.Webauthn1 = void 0;
 * Verifies a `webauthn` factor challenge by posting a signed assertion using the challenge `nonce`
 */
 class Webauthn1 {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Webauthn1.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Webauthn1 = Webauthn1;

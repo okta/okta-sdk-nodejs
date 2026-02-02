@@ -29,10 +29,10 @@ exports.ImportUsernameObject = void 0;
 * Determines the Okta username for the imported user
 */
 class ImportUsernameObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ImportUsernameObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ImportUsernameObject = ImportUsernameObject;

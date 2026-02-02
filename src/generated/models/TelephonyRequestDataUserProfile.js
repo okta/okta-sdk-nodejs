@@ -29,10 +29,10 @@ exports.TelephonyRequestDataUserProfile = void 0;
 * User profile specifies information about the Okta user
 */
 class TelephonyRequestDataUserProfile {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TelephonyRequestDataUserProfile.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TelephonyRequestDataUserProfile = TelephonyRequestDataUserProfile;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserProvisioningApplicationFeature = void 0;
 const ApplicationFeature_1 = require('./../models/ApplicationFeature');
 class UserProvisioningApplicationFeature extends ApplicationFeature_1.ApplicationFeature {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserProvisioningApplicationFeature.attributeTypeMap);
+  }
   constructor() {
     super();
     this.name = 'USER_PROVISIONING';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserProvisioningApplicationFeature.attributeTypeMap);
   }
 }
 exports.UserProvisioningApplicationFeature = UserProvisioningApplicationFeature;

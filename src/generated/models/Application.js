@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Application = void 0;
 class Application {
-  constructor() {
-    // this.signOnMode = 'Application';
-  }
   static getAttributeTypeMap() {
     return Application.attributeTypeMap;
+  }
+  constructor() {
+    // this.signOnMode = 'Application';
   }
 }
 exports.Application = Application;
@@ -58,6 +58,12 @@ Application.attributeTypeMap = [
     'baseName': 'created',
     'type': 'Date',
     'format': 'date-time'
+  },
+  {
+    'name': 'expressConfiguration',
+    'baseName': 'expressConfiguration',
+    'type': 'ApplicationExpressConfiguration',
+    'format': ''
   },
   {
     'name': 'features',

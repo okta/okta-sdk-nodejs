@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentitySourceGroupMembershipsUpsertProfileInner = void 0;
 class IdentitySourceGroupMembershipsUpsertProfileInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentitySourceGroupMembershipsUpsertProfileInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentitySourceGroupMembershipsUpsertProfileInner = IdentitySourceGroupMembershipsUpsertProfileInner;

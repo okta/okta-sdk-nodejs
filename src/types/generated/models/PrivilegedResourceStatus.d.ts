@@ -25,4 +25,4 @@
 /**
 * Current status of the privileged resource
 */
-export declare type PrivilegedResourceStatus = 'ACTIVE' | 'CREATED' | 'CREATION_FAILED' | 'INACTIVE' | 'PENDING';
+export type PrivilegedResourceStatus = 'ACTIVE' | 'CREATED' | 'CREATION_FAILED' | 'INACTIVE' | 'PENDING';

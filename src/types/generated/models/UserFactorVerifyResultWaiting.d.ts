@@ -25,4 +25,4 @@
 /**
 * Result of a factor verification
 */
-export declare type UserFactorVerifyResultWaiting = 'WAITING';
+export type UserFactorVerifyResultWaiting = 'WAITING';

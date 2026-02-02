@@ -29,10 +29,10 @@ exports.TokenHookResponse = void 0;
 * For the token inline hook, the `commands` and `error` objects that you can return in the JSON payload of your response are defined in the following sections. > **Note:** The size of your response payload must be less than 256 KB.
 */
 class TokenHookResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenHookResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenHookResponse = TokenHookResponse;

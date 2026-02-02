@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BundleEntitlementLinks = void 0;
+/**
+* Link relations available
+*/
 class BundleEntitlementLinks {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BundleEntitlementLinks.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BundleEntitlementLinks = BundleEntitlementLinks;

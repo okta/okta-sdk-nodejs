@@ -29,10 +29,10 @@ exports.PasswordPolicyPasswordSettingsBreachedProtection = void 0;
 * Breached Protection settings
 */
 class PasswordPolicyPasswordSettingsBreachedProtection {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordPolicyPasswordSettingsBreachedProtection.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordPolicyPasswordSettingsBreachedProtection = PasswordPolicyPasswordSettingsBreachedProtection;

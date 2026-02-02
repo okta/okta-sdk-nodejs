@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ResponseMode = 'form_post' | 'fragment' | 'okta_post_message' | 'query';
+export type ResponseMode = 'form_post' | 'fragment' | 'okta_post_message' | 'query';

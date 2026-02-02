@@ -29,10 +29,10 @@ exports.UserIdentifierConditionEvaluatorPattern = void 0;
 * Specifies the details of the patterns to match against
 */
 class UserIdentifierConditionEvaluatorPattern {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserIdentifierConditionEvaluatorPattern.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserIdentifierConditionEvaluatorPattern = UserIdentifierConditionEvaluatorPattern;

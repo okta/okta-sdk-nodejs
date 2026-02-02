@@ -25,11 +25,14 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.GovernanceBundleUpdateRequest = void 0;
+/**
+* Request to update a governance bundle
+*/
 class GovernanceBundleUpdateRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GovernanceBundleUpdateRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GovernanceBundleUpdateRequest = GovernanceBundleUpdateRequest;

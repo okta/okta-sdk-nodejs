@@ -29,10 +29,10 @@ exports.ScimScimServerConfig = void 0;
 * SCIM server schema configuration
 */
 class ScimScimServerConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ScimScimServerConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ScimScimServerConfig = ScimScimServerConfig;

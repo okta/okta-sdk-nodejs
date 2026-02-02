@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.LinksPoll = void 0;
 class LinksPoll {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return LinksPoll.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.LinksPoll = LinksPoll;

@@ -29,10 +29,10 @@ exports.ApplicationSettings = void 0;
 * App settings
 */
 class ApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationSettings = ApplicationSettings;

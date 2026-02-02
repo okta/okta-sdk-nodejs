@@ -33,6 +33,7 @@ export declare class ProtocolOidc {
   'algorithms'?: OidcAlgorithms;
   'credentials'?: OAuthCredentials;
   'endpoints'?: OAuthEndpoints;
+  'issuer'?: { url?: string; binding?: string };
   /**
     * URL of the IdP org
     */
@@ -61,4 +62,4 @@ export declare class ProtocolOidc {
     }[];
   constructor();
 }
-export declare type ProtocolOidcTypeEnum = 'OIDC';
+export type ProtocolOidcTypeEnum = 'OIDC';

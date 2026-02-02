@@ -26,11 +26,11 @@ export declare class EmailTestAddresses {
   /**
     * Email address that sends test emails
     */
-  '_from': string;
+  'fromAddress': string;
   /**
     * Email address that receives test emails
     */
-  'to': string;
+  'toAddress': string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -25,4 +25,4 @@
 /**
 * The type of client application. Default value: `web`.
 */
-export declare type ApplicationType = 'browser' | 'native' | 'service' | 'web';
+export type ApplicationType = 'browser' | 'native' | 'service' | 'web';

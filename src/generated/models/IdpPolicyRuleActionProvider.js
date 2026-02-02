@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdpPolicyRuleActionProvider = void 0;
 class IdpPolicyRuleActionProvider {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdpPolicyRuleActionProvider.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdpPolicyRuleActionProvider = IdpPolicyRuleActionProvider;

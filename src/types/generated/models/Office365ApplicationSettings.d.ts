@@ -28,7 +28,7 @@ import { OINSaml11ApplicationSettingsSignOn } from './../models/OINSaml11Applica
 import { Office365ApplicationSettingsApplication } from './../models/Office365ApplicationSettingsApplication';
 export declare class Office365ApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: Office365ApplicationSettingsEmOptInStatusEnum;
   /**
@@ -62,4 +62,4 @@ export declare class Office365ApplicationSettings {
     }[];
   constructor();
 }
-export declare type Office365ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type Office365ApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

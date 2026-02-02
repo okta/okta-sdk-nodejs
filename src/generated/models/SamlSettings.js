@@ -29,10 +29,10 @@ exports.SamlSettings = void 0;
 * Advanced settings for the SAML 2.0 protocol
 */
 class SamlSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SamlSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SamlSettings = SamlSettings;

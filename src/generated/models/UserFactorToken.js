@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorToken = void 0;
 const UserFactor_1 = require('./../models/UserFactor');
 class UserFactorToken extends UserFactor_1.UserFactor {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorToken.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorType = 'token';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorToken.attributeTypeMap);
   }
 }
 exports.UserFactorToken = UserFactorToken;

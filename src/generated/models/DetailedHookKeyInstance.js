@@ -29,10 +29,10 @@ exports.DetailedHookKeyInstance = void 0;
 * A key object with public key details
 */
 class DetailedHookKeyInstance {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DetailedHookKeyInstance.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DetailedHookKeyInstance = DetailedHookKeyInstance;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TokenResponse = void 0;
 class TokenResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenResponse = TokenResponse;

@@ -29,10 +29,10 @@ exports.OktaPersonalAdminFeatureSettings = void 0;
 * Defines a list of Okta Personal settings that can be enabled or disabled for the org
 */
 class OktaPersonalAdminFeatureSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaPersonalAdminFeatureSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaPersonalAdminFeatureSettings = OktaPersonalAdminFeatureSettings;

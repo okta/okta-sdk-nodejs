@@ -29,10 +29,10 @@ exports.UISchemaObject = void 0;
 * Properties of the UI schema
 */
 class UISchemaObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UISchemaObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UISchemaObject = UISchemaObject;

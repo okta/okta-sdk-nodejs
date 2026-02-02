@@ -29,10 +29,10 @@ exports.GoogleApplication = void 0;
 * Schema for the Google Workspace app (key name: `google`)  To create a Google Workspace app, use the [Create an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication) request with the following parameters in the request body. > **Note:** The Google Workspace app only supports `BROWSER_PLUGIN` and `SAML_2_0` sign-on modes.
 */
 class GoogleApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GoogleApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GoogleApplication = GoogleApplication;

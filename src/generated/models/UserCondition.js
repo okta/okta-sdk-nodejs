@@ -29,10 +29,10 @@ exports.UserCondition = void 0;
 * Specifies a set of users to be included or excluded
 */
 class UserCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserCondition = UserCondition;

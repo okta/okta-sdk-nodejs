@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AccessPolicyRuleConditions = void 0;
 class AccessPolicyRuleConditions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyRuleConditions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyRuleConditions = AccessPolicyRuleConditions;

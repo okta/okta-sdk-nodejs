@@ -29,18 +29,18 @@ exports.TokenPayLoadDataContextProtocolOriginalGrant = void 0;
 * Information about the original token request used to get the refresh token being used, when in a refresh token request
 */
 class TokenPayLoadDataContextProtocolOriginalGrant {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenPayLoadDataContextProtocolOriginalGrant.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenPayLoadDataContextProtocolOriginalGrant = TokenPayLoadDataContextProtocolOriginalGrant;
 TokenPayLoadDataContextProtocolOriginalGrant.discriminator = undefined;
 TokenPayLoadDataContextProtocolOriginalGrant.attributeTypeMap = [
   {
-    'name': 'request',
-    'baseName': 'request',
+    'name': 'authorization',
+    'baseName': 'authorization',
     'type': 'TokenProtocolRequest',
     'format': ''
   },

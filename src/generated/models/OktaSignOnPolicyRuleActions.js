@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.OktaSignOnPolicyRuleActions = void 0;
 class OktaSignOnPolicyRuleActions {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OktaSignOnPolicyRuleActions.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OktaSignOnPolicyRuleActions = OktaSignOnPolicyRuleActions;

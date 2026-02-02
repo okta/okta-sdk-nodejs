@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AuthorizationServerCredentialsSigningConfig = void 0;
 class AuthorizationServerCredentialsSigningConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AuthorizationServerCredentialsSigningConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AuthorizationServerCredentialsSigningConfig = AuthorizationServerCredentialsSigningConfig;

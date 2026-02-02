@@ -20,20 +20,20 @@ import { AgentAction } from '../models/AgentAction';
  */
 export declare class DirectoriesIntegrationApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Updates an Active Directory group membership directly in Active Directory  > **Note:** See **Before you begin: Active Directory integration with the following setup** in the [Use Okta Access Certifications to manage AD group membership](https://help.okta.com/okta_help.htm?type=oie&id=ad-bidirectional-group-mgt-configure) product documentation.
-     * Update an Active Directory group membership
-     * @param appInstanceId ID of the Active Directory app instance in Okta
+     * Updates an Active Directory or LDAP  group membership directly in the Active Directory or LDAP server
+     * Update an external directory group membership
+     * @param appInstanceId ID of the Active Directory or LDAP app instance in Okta
      * @param agentAction
      */
-  updateADGroupMembership(appInstanceId: string, agentAction: AgentAction, _options?: Configuration): Promise<RequestContext>;
+  updateGroupMembership(appInstanceId: string, agentAction: AgentAction, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class DirectoriesIntegrationApiResponseProcessor {
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateADGroupMembership
+     * @params response Response returned by the server for a request to updateGroupMembership
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateADGroupMembership(response: ResponseContext): Promise<void>;
+  updateGroupMembership(response: ResponseContext): Promise<void>;
 }

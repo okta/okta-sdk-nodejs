@@ -29,10 +29,10 @@ exports.UserImportResponseError = void 0;
 * An object to return an error. Returning an error causes Okta to record a failure event in the Okta System Log.  The string supplied in the `errorSummary` property is recorded in the System Log event.  >**Note:** If a response to an import inline hook request is not received from your external service within three seconds, a timeout occurs. In this scenario, the Okta import process continues and the user is created.
 */
 class UserImportResponseError {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportResponseError.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportResponseError = UserImportResponseError;

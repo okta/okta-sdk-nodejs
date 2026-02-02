@@ -29,10 +29,10 @@ exports.AppUserCredentialsRequestPayload = void 0;
 * Updates the assigned user credentials
 */
 class AppUserCredentialsRequestPayload {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppUserCredentialsRequestPayload.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppUserCredentialsRequestPayload = AppUserCredentialsRequestPayload;

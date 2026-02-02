@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.StandardRole = void 0;
 class StandardRole {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return StandardRole.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.StandardRole = StandardRole;

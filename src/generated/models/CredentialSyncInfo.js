@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CredentialSyncInfo = void 0;
 class CredentialSyncInfo {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CredentialSyncInfo.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CredentialSyncInfo = CredentialSyncInfo;

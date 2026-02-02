@@ -29,10 +29,10 @@ exports.InlineHookCreate = void 0;
 * An inline hook object that specifies the details of the inline hook
 */
 class InlineHookCreate {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookCreate.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookCreate = InlineHookCreate;

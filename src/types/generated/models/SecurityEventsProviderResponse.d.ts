@@ -61,4 +61,4 @@ export declare class SecurityEventsProviderResponse {
     }[];
   constructor();
 }
-export declare type SecurityEventsProviderResponseStatusEnum = 'ACTIVE' | 'INACTIVE';
+export type SecurityEventsProviderResponseStatusEnum = 'ACTIVE' | 'INACTIVE';

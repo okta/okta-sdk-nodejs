@@ -26,16 +26,17 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.BehaviorRule = void 0;
 class BehaviorRule {
-  constructor() {
-    // this.type = 'BehaviorRule';
-  }
   static getAttributeTypeMap() {
     return BehaviorRule.attributeTypeMap;
+  }
+  constructor() {
+    // this.type = 'BehaviorRule';
   }
 }
 exports.BehaviorRule = BehaviorRule;
 BehaviorRule.discriminator = 'type';
 BehaviorRule.mapping = {
+  'ANOMALOUS_ASN': 'BehaviorRuleASN',
   'ANOMALOUS_DEVICE': 'BehaviorRuleAnomalousDevice',
   'ANOMALOUS_IP': 'BehaviorRuleAnomalousIP',
   'ANOMALOUS_LOCATION': 'BehaviorRuleAnomalousLocation',
@@ -45,8 +46,8 @@ BehaviorRule.attributeTypeMap = [
   {
     'name': 'created',
     'baseName': 'created',
-    'type': 'Date',
-    'format': 'date-time'
+    'type': 'string',
+    'format': ''
   },
   {
     'name': 'id',
@@ -57,8 +58,8 @@ BehaviorRule.attributeTypeMap = [
   {
     'name': 'lastUpdated',
     'baseName': 'lastUpdated',
-    'type': 'Date',
-    'format': 'date-time'
+    'type': 'string',
+    'format': ''
   },
   {
     'name': 'name',

@@ -29,10 +29,10 @@ exports.SecurityEventsProviderSettingsSSFCompliant = void 0;
 * Security Events Provider with well-known URL setting
 */
 class SecurityEventsProviderSettingsSSFCompliant {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventsProviderSettingsSSFCompliant.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventsProviderSettingsSSFCompliant = SecurityEventsProviderSettingsSSFCompliant;

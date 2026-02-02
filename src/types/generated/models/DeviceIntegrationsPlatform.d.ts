@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type DeviceIntegrationsPlatform = 'ANDROID' | 'CHROMEOS' | 'IOS' | 'MACOS' | 'WINDOWS';
+export type DeviceIntegrationsPlatform = 'ANDROID' | 'CHROMEOS' | 'IOS' | 'MACOS' | 'WINDOWS';

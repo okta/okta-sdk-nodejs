@@ -24,11 +24,11 @@
  */
 import { Parameters } from './../models/Parameters';
 /**
-* Details about the Active Directory group membership update
+* Details about the Active Directory or LDAP group membership update
 */
 export declare class AgentAction {
   /**
-    * ID of the Active Directory group to update
+    * ID of the Active Directory or LDAP group to update
     */
   'id'?: string;
   'parameters'?: Parameters;

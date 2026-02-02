@@ -29,10 +29,10 @@ exports.AppServiceAccountCredentials = void 0;
 * Credentials for a SaaS app account
 */
 class AppServiceAccountCredentials {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppServiceAccountCredentials.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppServiceAccountCredentials = AppServiceAccountCredentials;

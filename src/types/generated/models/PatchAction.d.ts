@@ -25,4 +25,4 @@
 /**
 * The operation (PATCH action)
 */
-export declare type PatchAction = 'remove' | 'replace';
+export type PatchAction = 'remove' | 'replace';

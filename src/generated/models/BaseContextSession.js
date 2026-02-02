@@ -29,10 +29,10 @@ exports.BaseContextSession = void 0;
 * Details of the user session
 */
 class BaseContextSession {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return BaseContextSession.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.BaseContextSession = BaseContextSession;

@@ -29,10 +29,10 @@ exports.UserImportRequestDataAppUser = void 0;
 * The app user profile being imported
 */
 class UserImportRequestDataAppUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return UserImportRequestDataAppUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.UserImportRequestDataAppUser = UserImportRequestDataAppUser;

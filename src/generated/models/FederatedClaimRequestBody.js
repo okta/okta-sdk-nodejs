@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FederatedClaimRequestBody = void 0;
 class FederatedClaimRequestBody {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FederatedClaimRequestBody.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FederatedClaimRequestBody = FederatedClaimRequestBody;

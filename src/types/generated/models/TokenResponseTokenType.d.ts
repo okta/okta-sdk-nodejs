@@ -25,4 +25,4 @@
 /**
 * The token type in a `/token` response. The value is generally `Bearer` except for a few instances of token exchange.
 */
-export declare type TokenResponseTokenType = 'Bearer' | 'N_A';
+export type TokenResponseTokenType = 'Bearer' | 'N_A';

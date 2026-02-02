@@ -29,10 +29,10 @@ exports.SecurityEventsProviderRequest = void 0;
 * The request schema for creating or updating a Security Events Provider. The `settings` must match one of the schemas.
 */
 class SecurityEventsProviderRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventsProviderRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventsProviderRequest = SecurityEventsProviderRequest;

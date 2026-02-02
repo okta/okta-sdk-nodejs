@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CustomRole = void 0;
 class CustomRole {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return CustomRole.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.CustomRole = CustomRole;
@@ -86,7 +86,7 @@ CustomRole.attributeTypeMap = [
   {
     'name': 'type',
     'baseName': 'type',
-    'type': 'CustomRoleTypeEnum',
+    'type': 'RoleType',
     'format': ''
   },
   {

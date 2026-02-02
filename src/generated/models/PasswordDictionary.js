@@ -29,10 +29,10 @@ exports.PasswordDictionary = void 0;
 * Weak password dictionary lookup settings
 */
 class PasswordDictionary {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordDictionary.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordDictionary = PasswordDictionary;

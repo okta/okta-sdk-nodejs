@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WellKnownOrgMetadata = void 0;
 class WellKnownOrgMetadata {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownOrgMetadata.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownOrgMetadata = WellKnownOrgMetadata;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Org2OrgApplicationSettings = void 0;
 class Org2OrgApplicationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Org2OrgApplicationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Org2OrgApplicationSettings = Org2OrgApplicationSettings;

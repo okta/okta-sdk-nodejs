@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { SwaApplicationSettingsApplication } from './../models/SwaApplicationSettingsApplication';
 export declare class SwaApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: SwaApplicationSettingsEmOptInStatusEnum;
   /**
@@ -60,4 +60,4 @@ export declare class SwaApplicationSettings {
     }[];
   constructor();
 }
-export declare type SwaApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type SwaApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

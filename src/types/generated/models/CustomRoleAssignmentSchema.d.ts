@@ -26,15 +26,15 @@ export declare class CustomRoleAssignmentSchema {
   /**
     * Resource set ID
     */
-  'resource_set'?: string;
+  'resource_set': string;
   /**
     * Custom role ID
     */
-  'role'?: string;
+  'role': string;
   /**
-    * The type of role. Specify `CUSTOM` for a custom role.
+    * Specify a [standard admin role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#standard-roles), an [IAM-based standard role](https://developer.okta.com/docs/api/openapi/okta-management/guides/roles/#iam-based-standard-roles), or `CUSTOM` for a custom role type:
     */
-  'type'?: CustomRoleAssignmentSchemaTypeEnum;
+  'type': CustomRoleAssignmentSchemaTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -50,4 +50,4 @@ export declare class CustomRoleAssignmentSchema {
     }[];
   constructor();
 }
-export declare type CustomRoleAssignmentSchemaTypeEnum = 'CUSTOM';
+export type CustomRoleAssignmentSchemaTypeEnum = 'CUSTOM';

@@ -27,6 +27,10 @@
 */
 export declare class SamlTrustCredentials {
   /**
+    * Additional IdP key credential reference to the Okta X.509 signature certificate
+    */
+  'additionalKids'?: Array<string>;
+  /**
     * URI that identifies the target Okta IdP instance (SP) for an `<Assertion>`
     */
   'audience'?: string;

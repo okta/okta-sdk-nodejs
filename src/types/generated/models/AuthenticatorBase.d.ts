@@ -32,6 +32,10 @@ export declare class AuthenticatorBase {
     */
   'created'?: Date;
   /**
+    * The description of the authenticator. This setting is only available for the `webauthn` authenticator type (Passkeys).
+    */
+  'description'?: string;
+  /**
     * A unique identifier for the authenticator
     */
   'id'?: string;

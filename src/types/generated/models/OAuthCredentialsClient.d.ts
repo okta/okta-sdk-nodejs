@@ -57,4 +57,4 @@ export declare class OAuthCredentialsClient {
     }[];
   constructor();
 }
-export declare type OAuthCredentialsClientTokenEndpointAuthMethodEnum = 'private_key_jwt';
+export type OAuthCredentialsClientTokenEndpointAuthMethodEnum = 'private_key_jwt';

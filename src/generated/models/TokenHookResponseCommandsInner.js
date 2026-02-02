@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TokenHookResponseCommandsInner = void 0;
 class TokenHookResponseCommandsInner {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenHookResponseCommandsInner.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenHookResponseCommandsInner = TokenHookResponseCommandsInner;

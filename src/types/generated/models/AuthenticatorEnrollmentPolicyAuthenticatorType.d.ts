@@ -25,4 +25,4 @@
 /**
 * A label that identifies the authenticator
 */
-export declare type AuthenticatorEnrollmentPolicyAuthenticatorType = 'custom_app' | 'custom_otp' | 'duo' | 'external_idp' | 'google_otp' | 'okta_email' | 'okta_password' | 'okta_verify' | 'onprem_mfa' | 'phone_number' | 'rsa_token' | 'security_question' | 'symantec_vip' | 'webauthn' | 'yubikey_token';
+export type AuthenticatorEnrollmentPolicyAuthenticatorType = 'custom_app' | 'custom_otp' | 'duo' | 'external_idp' | 'google_otp' | 'okta_email' | 'okta_password' | 'okta_verify' | 'onprem_mfa' | 'phone_number' | 'rsa_token' | 'security_question' | 'symantec_vip' | 'webauthn' | 'yubikey_token';

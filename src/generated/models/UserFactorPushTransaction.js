@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransaction = void 0;
 class UserFactorPushTransaction {
-  constructor() {
-    // this.factorResult = 'UserFactorPushTransaction';
-  }
   static getAttributeTypeMap() {
     return UserFactorPushTransaction.attributeTypeMap;
+  }
+  constructor() {
+    // this.factorResult = 'UserFactorPushTransaction';
   }
 }
 exports.UserFactorPushTransaction = UserFactorPushTransaction;

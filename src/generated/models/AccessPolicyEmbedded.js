@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.AccessPolicyEmbedded = void 0;
 class AccessPolicyEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AccessPolicyEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AccessPolicyEmbedded = AccessPolicyEmbedded;

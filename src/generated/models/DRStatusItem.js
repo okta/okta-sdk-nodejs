@@ -29,10 +29,10 @@ exports.DRStatusItem = void 0;
 * Status whether a domain has been failed over or not
 */
 class DRStatusItem {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return DRStatusItem.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.DRStatusItem = DRStatusItem;

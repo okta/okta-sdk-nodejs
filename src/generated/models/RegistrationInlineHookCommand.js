@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.RegistrationInlineHookCommand = void 0;
 class RegistrationInlineHookCommand {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RegistrationInlineHookCommand.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RegistrationInlineHookCommand = RegistrationInlineHookCommand;

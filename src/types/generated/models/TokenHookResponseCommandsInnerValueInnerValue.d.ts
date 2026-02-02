@@ -30,7 +30,7 @@
  * Type
  * @export
  */
-export declare type TokenHookResponseCommandsInnerValueInnerValue = any | number | string;
+export type TokenHookResponseCommandsInnerValueInnerValue = any | number | string;
 /**
 * @type TokenHookResponseCommandsInnerValueInnerValueClass
     * Value to set the claim to.

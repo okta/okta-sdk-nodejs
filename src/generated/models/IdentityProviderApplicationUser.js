@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.IdentityProviderApplicationUser = void 0;
 class IdentityProviderApplicationUser {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return IdentityProviderApplicationUser.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.IdentityProviderApplicationUser = IdentityProviderApplicationUser;

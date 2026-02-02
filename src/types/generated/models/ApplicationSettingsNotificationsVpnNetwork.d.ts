@@ -53,4 +53,4 @@ export declare class ApplicationSettingsNotificationsVpnNetwork {
     }[];
   constructor();
 }
-export declare type ApplicationSettingsNotificationsVpnNetworkConnectionEnum = 'DISABLED' | 'ANYWHERE' | 'ON_NETWORK' | 'OFF_NETWORK' | 'ZONE';
+export type ApplicationSettingsNotificationsVpnNetworkConnectionEnum = 'DISABLED' | 'ANYWHERE' | 'ON_NETWORK' | 'OFF_NETWORK' | 'ZONE';

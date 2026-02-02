@@ -29,10 +29,10 @@ exports.Org2OrgProvisioningOAuthSigningSettings = void 0;
 * Only used for the Okta Org2Org (`okta_org2org`) app.  The signing key rotation setting.
 */
 class Org2OrgProvisioningOAuthSigningSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return Org2OrgProvisioningOAuthSigningSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.Org2OrgProvisioningOAuthSigningSettings = Org2OrgProvisioningOAuthSigningSettings;

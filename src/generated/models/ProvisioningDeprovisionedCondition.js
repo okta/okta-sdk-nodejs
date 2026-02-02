@@ -29,10 +29,10 @@ exports.ProvisioningDeprovisionedCondition = void 0;
 * Behavior for a previously deprovisioned IdP user during authentication. Not supported with OIDC IdPs.
 */
 class ProvisioningDeprovisionedCondition {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ProvisioningDeprovisionedCondition.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ProvisioningDeprovisionedCondition = ProvisioningDeprovisionedCondition;

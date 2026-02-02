@@ -25,4 +25,4 @@
 /**
 * The status of the public key
 */
-export declare type JsonWebKeyStatus = 'ACTIVE' | 'INACTIVE';
+export type JsonWebKeyStatus = 'ACTIVE' | 'INACTIVE';

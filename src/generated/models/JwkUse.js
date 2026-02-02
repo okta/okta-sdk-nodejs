@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.JwkUse = void 0;
 class JwkUse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return JwkUse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.JwkUse = JwkUse;

@@ -29,10 +29,10 @@ exports.OrgCAPTCHASettings = void 0;
 *
 */
 class OrgCAPTCHASettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OrgCAPTCHASettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OrgCAPTCHASettings = OrgCAPTCHASettings;

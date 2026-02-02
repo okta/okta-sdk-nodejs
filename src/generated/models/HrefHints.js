@@ -29,10 +29,10 @@ exports.HrefHints = void 0;
 * Describes allowed HTTP verbs for the `href`
 */
 class HrefHints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefHints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefHints = HrefHints;

@@ -29,10 +29,10 @@ exports.PasswordDictionaryCommon = void 0;
 * Lookup settings for commonly used passwords
 */
 class PasswordDictionaryCommon {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PasswordDictionaryCommon.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PasswordDictionaryCommon = PasswordDictionaryCommon;

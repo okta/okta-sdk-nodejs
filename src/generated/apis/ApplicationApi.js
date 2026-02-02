@@ -99,141 +99,8 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Activates an OAuth 2.0 Client JSON Web Key by `keyId`
-     * Activate an OAuth 2.0 client JSON Web Key
-     * @param appId Application ID
-     * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-     */
-  async activateOAuth2ClientJsonWebKey(appId, keyId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'activateOAuth2ClientJsonWebKey', 'appId');
-    }
-    // verify required parameter 'keyId' is not null or undefined
-    if (keyId === null || keyId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'activateOAuth2ClientJsonWebKey', 'keyId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks/{keyId}/lifecycle/activate';
-    const vars = {
-      ['appId']: String(appId),
-      ['keyId']: String(keyId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Activates an OAuth 2.0 Client Secret by `secretId`
-     * Activate an OAuth 2.0 client secret
-     * @param appId Application ID
-     * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-     */
-  async activateOAuth2ClientSecret(appId, secretId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'activateOAuth2ClientSecret', 'appId');
-    }
-    // verify required parameter 'secretId' is not null or undefined
-    if (secretId === null || secretId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'activateOAuth2ClientSecret', 'secretId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets/{secretId}/lifecycle/activate';
-    const vars = {
-      ['appId']: String(appId),
-      ['secretId']: String(secretId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Adds a new JSON Web Key to the client`s JSON Web Keys. > **Note:** This API doesn\'t allow you to add a key if the existing key doesn\'t have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/tag/Client/) or [Applications](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/) APIs behave, as they don\'t allow the creation of multiple keys without `kids`. Use the [Replace an Application](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/replaceApplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/tag/Client/#tag/Client/operation/replaceClient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationSSOCredentialOAuth2ClientAuth/#tag/ApplicationSSOCredentialOAuth2ClientAuth/operation/deletejwk) and re-add the key with a `kid`.
-     * Add a JSON Web Key
-     * @param appId Application ID
-     * @param oAuth2ClientJsonWebKeyRequestBody
-     */
-  async addJwk(appId, oAuth2ClientJsonWebKeyRequestBody, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'addJwk', 'appId');
-    }
-    // verify required parameter 'oAuth2ClientJsonWebKeyRequestBody' is not null or undefined
-    if (oAuth2ClientJsonWebKeyRequestBody === null || oAuth2ClientJsonWebKeyRequestBody === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'addJwk', 'oAuth2ClientJsonWebKeyRequestBody');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], oAuth2ClientJsonWebKeyRequestBody);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2ClientJsonWebKeyRequestBody, 'OAuth2ClientJsonWebKeyRequestBody', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Assigns an app to an [authentication policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate authentication policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
-     * Assign an authentication policy
+     * Assigns an app to an [app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/), identified by `policyId`. If the app was previously assigned to another policy, this operation replaces that assignment with the updated policy identified by `policyId`.  > **Note:** When you [merge duplicate app sign-in policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-merge-auth-policies), the policy and mapping CRUD operations may be unavailable during the consolidation. When the consolidation is complete, you receive an email with merged results.
+     * Assign an app sign-in policy
      * @param appId Application ID
      * @param policyId &#x60;id&#x60; of the Policy
      */
@@ -516,55 +383,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Creates a CWO connection
-     * Create a CWO connection
-     * @param appId Application ID
-     * @param orgCWOConnection
-     */
-  async createCWOConnection(appId, orgCWOConnection, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'createCWOConnection', 'appId');
-    }
-    // verify required parameter 'orgCWOConnection' is not null or undefined
-    if (orgCWOConnection === null || orgCWOConnection === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'createCWOConnection', 'orgCWOConnection');
-    }
-    // Path Params
-    const path = '/apps/{appId}/cwo/connections';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], orgCWOConnection);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(orgCWOConnection, 'OrgCWOConnection', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
      * Create a federated claim
      * @param appId Application ID
@@ -595,51 +413,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Content-Type', contentType);
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(federatedClaimRequestBody, 'FederatedClaimRequestBody', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Creates an OAuth 2.0 Client Secret object with a new active client secret. You can create up to two Secret objects. An error is returned if you attempt to create more than two Secret objects. > **Note:** This API lets you bring your own secret. If [token_endpoint_auth_method](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Application/#tag/Application/operation/createApplication!path=4/credentials/oauthClient/token_endpoint_auth_method&t=request) of the app is `client_secret_jwt`, then the minimum length of `client_secret` is 32 characters. If no secret is specified in the request, Okta adds a new system-generated secret.
-     * Create an OAuth 2.0 client secret
-     * @param appId Application ID
-     * @param oAuth2ClientSecretRequestBody
-     */
-  async createOAuth2ClientSecret(appId, oAuth2ClientSecretRequestBody, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'createOAuth2ClientSecret', 'appId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], oAuth2ClientSecretRequestBody);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2ClientSecretRequestBody, 'OAuth2ClientSecretRequestBody', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
@@ -731,90 +504,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deactivates an OAuth 2.0 Client JSON Web Key by `keyId`.
-     * Deactivate an OAuth 2.0 client JSON Web Key
-     * @param appId Application ID
-     * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-     */
-  async deactivateOAuth2ClientJsonWebKey(appId, keyId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deactivateOAuth2ClientJsonWebKey', 'appId');
-    }
-    // verify required parameter 'keyId' is not null or undefined
-    if (keyId === null || keyId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deactivateOAuth2ClientJsonWebKey', 'keyId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks/{keyId}/lifecycle/deactivate';
-    const vars = {
-      ['appId']: String(appId),
-      ['keyId']: String(keyId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Deactivates an OAuth 2.0 Client Secret by `secretId`. You can\'t deactivate a secret if it\'s the only secret of the client.
-     * Deactivate an OAuth 2.0 client secret
-     * @param appId Application ID
-     * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-     */
-  async deactivateOAuth2ClientSecret(appId, secretId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deactivateOAuth2ClientSecret', 'appId');
-    }
-    // verify required parameter 'secretId' is not null or undefined
-    if (secretId === null || secretId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deactivateOAuth2ClientSecret', 'secretId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets/{secretId}/lifecycle/deactivate';
-    const vars = {
-      ['appId']: String(appId),
-      ['secretId']: String(secretId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Deletes an inactive application
      * Delete an application
      * @param appId Application ID
@@ -829,48 +518,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const path = '/api/v1/apps/{appId}';
     const vars = {
       ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Deletes a CWO connection
-     * Delete a CWO connection
-     * @param appId Application ID
-     * @param connectionId Connection ID
-     */
-  async deleteCWOConnection(appId, connectionId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deleteCWOConnection', 'appId');
-    }
-    // verify required parameter 'connectionId' is not null or undefined
-    if (connectionId === null || connectionId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deleteCWOConnection', 'connectionId');
-    }
-    // Path Params
-    const path = '/apps/{appId}/cwo/connections/{connectionId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['connectionId']: String(connectionId),
     };
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
@@ -913,90 +560,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const vars = {
       ['appId']: String(appId),
       ['claimId']: String(claimId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Deletes an OAuth 2.0 Client Secret by `secretId`. You can only delete an inactive Secret.
-     * Delete an OAuth 2.0 client secret
-     * @param appId Application ID
-     * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-     */
-  async deleteOAuth2ClientSecret(appId, secretId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deleteOAuth2ClientSecret', 'appId');
-    }
-    // verify required parameter 'secretId' is not null or undefined
-    if (secretId === null || secretId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deleteOAuth2ClientSecret', 'secretId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets/{secretId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['secretId']: String(secretId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
-     * Delete an OAuth 2.0 client JSON Web Key
-     * @param appId Application ID
-     * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-     */
-  async deletejwk(appId, keyId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deletejwk', 'appId');
-    }
-    // verify required parameter 'keyId' is not null or undefined
-    if (keyId === null || keyId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'deletejwk', 'keyId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks/{keyId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['keyId']: String(keyId),
     };
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
@@ -1095,42 +658,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(metadata, 'CsrMetadata', ''), contentType);
     requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Retrieves inbound and outbound CWO connections for a given app
-     * Retrieve all CWO connections
-     * @param appId Application ID
-     */
-  async getAllCWOConnections(appId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getAllCWOConnections', 'appId');
-    }
-    // Path Params
-    const path = '/apps/{appId}/cwo/connections';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['apiToken'];
@@ -1326,48 +853,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves a CWO connection for an app
-     * Retrieve a CWO connection
-     * @param appId Application ID
-     * @param connectionId Connection ID
-     */
-  async getCWOConnection(appId, connectionId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getCWOConnection', 'appId');
-    }
-    // verify required parameter 'connectionId' is not null or undefined
-    if (connectionId === null || connectionId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getCWOConnection', 'connectionId');
-    }
-    // Path Params
-    const path = '/apps/{appId}/cwo/connections/{connectionId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['connectionId']: String(connectionId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Retrieves a Certificate Signing Request (CSR) for the app by `csrId`.  Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
      * Retrieve a certificate signing request
      * @param appId Application ID
@@ -1530,48 +1015,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves an OAuth 2.0 Client JSON Web Key by `keyId`.
-     * Retrieve an OAuth 2.0 client JSON Web Key
-     * @param appId Application ID
-     * @param keyId Unique &#x60;id&#x60; of the OAuth 2.0 Client JSON Web Key
-     */
-  async getJwk(appId, keyId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getJwk', 'appId');
-    }
-    // verify required parameter 'keyId' is not null or undefined
-    if (keyId === null || keyId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getJwk', 'keyId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks/{keyId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['keyId']: String(keyId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Retrieves the OAuth 2.0 authorization code from the app\'s authorization server. Use this authorization code to exchange for an access token through another endpoint to enable Express Configuration on behalf of the user.
      * Retrieve the OAuth 2.0 authorization code for Express Configuration.
      * @param appId Application ID
@@ -1600,48 +1043,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     if (capabilityType !== undefined) {
       requestContext.setQueryParam('capabilityType', ObjectSerializer_1.ObjectSerializer.serialize(capabilityType, 'CapabilityType', ''));
     }
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Retrieves an OAuth 2.0 Client Secret by `secretId`
-     * Retrieve an OAuth 2.0 client secret
-     * @param appId Application ID
-     * @param secretId Unique &#x60;id&#x60; of the OAuth 2.0 Client Secret
-     */
-  async getOAuth2ClientSecret(appId, secretId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getOAuth2ClientSecret', 'appId');
-    }
-    // verify required parameter 'secretId' is not null or undefined
-    if (secretId === null || secretId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'getOAuth2ClientSecret', 'secretId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets/{secretId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['secretId']: String(secretId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['apiToken'];
@@ -1992,12 +1393,13 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * @param q Searches for apps with &#x60;name&#x60; or &#x60;label&#x60; properties that starts with the &#x60;q&#x60; value using the &#x60;startsWith&#x60; operation
      * @param after Specifies the [pagination](/#pagination) cursor for the next page of results. Treat this as an opaque value obtained through the &#x60;next&#x60; link relationship.
      * @param useOptimization Specifies whether to use query optimization. If you specify &#x60;useOptimization&#x3D;true&#x60; in the request query, the response contains a subset of app instance properties.
+     * @param alwaysIncludeVpnSettings Specifies whether to include the VPN configuration for existing notifications in the result, regardless of whether VPN notifications are configured
      * @param limit Specifies the number of results per page
-     * @param filter Filters apps by &#x60;status&#x60;, &#x60;user.id&#x60;, &#x60;group.id&#x60;, &#x60;credentials.signing.kid&#x60; or &#x60;name&#x60; expression that supports the &#x60;eq&#x60; operator
+     * @param filter Filters apps with a supported expression for a subset of properties. Filtering supports the following limited number of properties: &#x60;id&#x60;, &#x60;status&#x60;, &#x60;credentials.signing.kid&#x60;, &#x60;settings.slo.enabled&#x60;, or &#x60;name&#x60;. See [Filter](https://developer.okta.com/docs/api/#filter).
      * @param expand An optional parameter used for link expansion to embed more resources in the response. Only supports &#x60;expand&#x3D;user/{userId}&#x60; and must be used with the &#x60;user.id eq \&quot;{userId}\&quot;&#x60; filter query for the same user. Returns the assigned [application user](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationUsers/) in the &#x60;_embedded&#x60; property.
      * @param includeNonDeleted Specifies whether to include non-active, but not deleted apps in the results
      */
-  async listApplications(q, after, useOptimization, limit, filter, expand, includeNonDeleted, _options) {
+  async listApplications(q, after, useOptimization, alwaysIncludeVpnSettings, limit, filter, expand, includeNonDeleted, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/apps';
@@ -2015,6 +1417,10 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Query Params
     if (useOptimization !== undefined) {
       requestContext.setQueryParam('useOptimization', ObjectSerializer_1.ObjectSerializer.serialize(useOptimization, 'boolean', ''));
+    }
+    // Query Params
+    if (alwaysIncludeVpnSettings !== undefined) {
+      requestContext.setQueryParam('alwaysIncludeVpnSettings', ObjectSerializer_1.ObjectSerializer.serialize(alwaysIncludeVpnSettings, 'boolean', ''));
     }
     // Query Params
     if (limit !== undefined) {
@@ -2134,78 +1540,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/apps/{appId}/federated-claims';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Lists all JSON Web Keys for an OAuth 2.0 client app
-     * List all the OAuth 2.0 client JSON Web Keys
-     * @param appId Application ID
-     */
-  async listJwk(appId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'listJwk', 'appId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/jwks';
-    const vars = {
-      ['appId']: String(appId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Lists all client secrets for an OAuth 2.0 client app
-     * List all OAuth 2.0 client secrets
-     * @param appId Application ID
-     */
-  async listOAuth2ClientSecrets(appId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'listOAuth2ClientSecrets', 'appId');
-    }
-    // Path Params
-    const path = '/api/v1/apps/{appId}/credentials/secrets';
     const vars = {
       ['appId']: String(appId),
     };
@@ -2830,61 +2164,6 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates a CWO connection
-     * Update a CWO connection
-     * @param appId Application ID
-     * @param connectionId Connection ID
-     * @param orgCWOConnectionPatchRequest
-     */
-  async updateCWOConnection(appId, connectionId, orgCWOConnectionPatchRequest, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'updateCWOConnection', 'appId');
-    }
-    // verify required parameter 'connectionId' is not null or undefined
-    if (connectionId === null || connectionId === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'updateCWOConnection', 'connectionId');
-    }
-    // verify required parameter 'orgCWOConnectionPatchRequest' is not null or undefined
-    if (orgCWOConnectionPatchRequest === null || orgCWOConnectionPatchRequest === undefined) {
-      throw new baseapi_1.RequiredError('ApplicationApi', 'updateCWOConnection', 'orgCWOConnectionPatchRequest');
-    }
-    // Path Params
-    const path = '/apps/{appId}/cwo/connections/{connectionId}';
-    const vars = {
-      ['appId']: String(appId),
-      ['connectionId']: String(connectionId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PATCH, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], orgCWOConnectionPatchRequest);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(orgCWOConnectionPatchRequest, 'OrgCWOConnectionPatchRequest', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['apiToken'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['oauth2'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Updates the default provisioning connection for an app
      * Update the default provisioning connection
      * @param appId Application ID
@@ -3321,114 +2600,6 @@ class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to activateOAuth2ClientJsonWebKey
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async activateOAuth2ClientJsonWebKey(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientJsonWebKey'), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to activateOAuth2ClientSecret
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async activateOAuth2ClientSecret(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientSecret'), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to addJwk
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async addJwk(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientJsonWebKey'), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to assignApplicationPolicy
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -3635,46 +2806,6 @@ class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createCWOConnection
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async createCWOConnection(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCWOConnection', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OrgCWOConnection'), 'OrgCWOConnection', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to createFederatedClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -3703,42 +2834,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'FederatedClaim'), 'FederatedClaim', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to createOAuth2ClientSecret
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async createOAuth2ClientSecret(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientSecret'), 'OAuth2ClientSecret', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -3809,86 +2904,6 @@ class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deactivateOAuth2ClientJsonWebKey
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async deactivateOAuth2ClientJsonWebKey(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientJsonWebKey'), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deactivateOAuth2ClientSecret
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async deactivateOAuth2ClientSecret(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientSecret'), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to deleteApplication
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -3920,41 +2935,6 @@ class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteCWOConnection
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async deleteCWOConnection(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void'), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to deleteFederatedClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -3962,84 +2942,6 @@ class ApplicationApiResponseProcessor {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void'), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deleteOAuth2ClientSecret
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async deleteOAuth2ClientSecret(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'void'), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deletejwk
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async deletejwk(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
     }
     if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
@@ -4132,42 +3034,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'string'), 'string', 'base64');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getAllCWOConnections
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async getAllCWOConnections(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<OrgCWOConnection>', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'Array<OrgCWOConnection>'), 'Array<OrgCWOConnection>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -4296,42 +3162,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'AppUser'), 'AppUser', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getCWOConnection
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async getCWOConnection(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCWOConnection', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OrgCWOConnection'), 'OrgCWOConnection', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -4472,42 +3302,6 @@ class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getJwk
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async getJwk(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientJsonWebKey'), 'OAuth2ClientJsonWebKey', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to getOAuth2AccessTokenForExpressConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -4531,42 +3325,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       return;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getOAuth2ClientSecret
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async getOAuth2ClientSecret(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2ClientSecret', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OAuth2ClientSecret'), 'OAuth2ClientSecret', '');
-      return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
   }
@@ -4926,78 +3684,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'Array<FederatedClaim>'), 'Array<FederatedClaim>', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listJwk
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async listJwk(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ListJwk200Response', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'ListJwk200Response'), 'ListJwk200Response', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listOAuth2ClientSecrets
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async listOAuth2ClientSecrets(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<OAuth2ClientSecret>', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'Array<OAuth2ClientSecret>'), 'Array<OAuth2ClientSecret>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -5424,46 +4110,6 @@ class ApplicationApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'AppUser'), 'AppUser', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateCWOConnection
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateCWOConnection(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OrgCWOConnection', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('401', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(401, 'Unauthorized', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ModelError', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType, 'OrgCWOConnection'), 'OrgCWOConnection', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

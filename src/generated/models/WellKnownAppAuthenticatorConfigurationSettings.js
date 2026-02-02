@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.WellKnownAppAuthenticatorConfigurationSettings = void 0;
 class WellKnownAppAuthenticatorConfigurationSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WellKnownAppAuthenticatorConfigurationSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WellKnownAppAuthenticatorConfigurationSettings = WellKnownAppAuthenticatorConfigurationSettings;

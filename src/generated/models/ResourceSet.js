@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ResourceSet = void 0;
 class ResourceSet {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ResourceSet.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ResourceSet = ResourceSet;

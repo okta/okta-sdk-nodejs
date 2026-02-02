@@ -29,10 +29,10 @@ exports.RecoveryQuestionCredential = void 0;
 * Specifies a secret question and answer that\'s validated (case insensitive) when a user forgets their password or unlocks their account. The answer property is write-only.
 */
 class RecoveryQuestionCredential {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RecoveryQuestionCredential.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RecoveryQuestionCredential = RecoveryQuestionCredential;

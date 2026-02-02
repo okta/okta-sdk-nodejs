@@ -29,10 +29,10 @@ exports.OAuth2ScopeConsentGrantEmbedded = void 0;
 * Embedded resources related to the Grant
 */
 class OAuth2ScopeConsentGrantEmbedded {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OAuth2ScopeConsentGrantEmbedded.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OAuth2ScopeConsentGrantEmbedded = OAuth2ScopeConsentGrantEmbedded;

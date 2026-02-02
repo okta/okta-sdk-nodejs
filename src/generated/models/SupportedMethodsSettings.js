@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.SupportedMethodsSettings = void 0;
 class SupportedMethodsSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SupportedMethodsSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SupportedMethodsSettings = SupportedMethodsSettings;

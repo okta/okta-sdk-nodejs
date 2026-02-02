@@ -39,4 +39,4 @@ export declare class RegistrationInlineHookCommand {
     }[];
   constructor();
 }
-export declare type RegistrationInlineHookCommandTypeEnum = 'com.okta.user.profile.update' | 'com.okta.action.update' | 'com.okta.user.progressive.profile.update';
+export type RegistrationInlineHookCommandTypeEnum = 'com.okta.user.profile.update' | 'com.okta.action.update' | 'com.okta.user.progressive.profile.update';

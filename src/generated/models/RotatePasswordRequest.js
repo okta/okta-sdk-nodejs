@@ -29,10 +29,10 @@ exports.RotatePasswordRequest = void 0;
 * Rotate password request for the privileged resource
 */
 class RotatePasswordRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return RotatePasswordRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.RotatePasswordRequest = RotatePasswordRequest;

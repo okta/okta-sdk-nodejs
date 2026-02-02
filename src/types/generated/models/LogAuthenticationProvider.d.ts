@@ -25,4 +25,4 @@
 /**
 * The system that proves the identity of an actor using the credentials provided to it
 */
-export declare type LogAuthenticationProvider = 'ACTIVE_DIRECTORY' | 'FACTOR_PROVIDER' | 'FEDERATION' | 'LDAP' | 'OKTA_AUTHENTICATION_PROVIDER' | 'SOCIAL';
+export type LogAuthenticationProvider = 'ACTIVE_DIRECTORY' | 'FACTOR_PROVIDER' | 'FEDERATION' | 'LDAP' | 'OKTA_AUTHENTICATION_PROVIDER' | 'SOCIAL';

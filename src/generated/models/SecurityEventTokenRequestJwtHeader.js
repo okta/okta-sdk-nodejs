@@ -29,10 +29,10 @@ exports.SecurityEventTokenRequestJwtHeader = void 0;
 * JSON Web Token header for a Security Event Token
 */
 class SecurityEventTokenRequestJwtHeader {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventTokenRequestJwtHeader.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventTokenRequestJwtHeader = SecurityEventTokenRequestJwtHeader;

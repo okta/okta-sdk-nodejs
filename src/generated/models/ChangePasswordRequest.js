@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.ChangePasswordRequest = void 0;
 class ChangePasswordRequest {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ChangePasswordRequest.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ChangePasswordRequest = ChangePasswordRequest;

@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserFactorPushTransactionTimeout = void 0;
 const UserFactorPushTransaction_1 = require('./../models/UserFactorPushTransaction');
 class UserFactorPushTransactionTimeout extends UserFactorPushTransaction_1.UserFactorPushTransaction {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(UserFactorPushTransactionTimeout.attributeTypeMap);
+  }
   constructor() {
     super();
     this.factorResult = 'TIMEOUT';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(UserFactorPushTransactionTimeout.attributeTypeMap);
   }
 }
 exports.UserFactorPushTransactionTimeout = UserFactorPushTransactionTimeout;

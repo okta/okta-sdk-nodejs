@@ -72,4 +72,4 @@ export declare class WellKnownAppAuthenticatorConfiguration {
     }[];
   constructor();
 }
-export declare type WellKnownAppAuthenticatorConfigurationTypeEnum = 'app';
+export type WellKnownAppAuthenticatorConfigurationTypeEnum = 'app';

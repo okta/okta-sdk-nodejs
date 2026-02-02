@@ -29,10 +29,10 @@ exports.HookKey = void 0;
 * The `id` property in the response as `id` serves as the unique ID for the key, which you can specify when invoking other CRUD operations.   The `keyId` provided in the response is the alias of the public key that you can use to get details of the public key data in a separate call.
 */
 class HookKey {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HookKey.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HookKey = HookKey;

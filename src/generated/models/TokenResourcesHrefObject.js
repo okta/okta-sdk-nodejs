@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.TokenResourcesHrefObject = void 0;
 class TokenResourcesHrefObject {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TokenResourcesHrefObject.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TokenResourcesHrefObject = TokenResourcesHrefObject;

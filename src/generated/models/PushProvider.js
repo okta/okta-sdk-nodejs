@@ -26,11 +26,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PushProvider = void 0;
 class PushProvider {
-  constructor() {
-    // this.providerType = 'PushProvider';
-  }
   static getAttributeTypeMap() {
     return PushProvider.attributeTypeMap;
+  }
+  constructor() {
+    // this.providerType = 'PushProvider';
   }
 }
 exports.PushProvider = PushProvider;

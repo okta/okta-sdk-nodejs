@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.FCMConfiguration = void 0;
 class FCMConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return FCMConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.FCMConfiguration = FCMConfiguration;

@@ -25,4 +25,4 @@
 /**
 * Capability type
 */
-export declare type CapabilityType = 'PROVISIONING' | 'SSO';
+export type CapabilityType = 'PROVISIONING' | 'SSO';

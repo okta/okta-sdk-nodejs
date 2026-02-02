@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.InlineHookHttpConfig = void 0;
 class InlineHookHttpConfig {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return InlineHookHttpConfig.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.InlineHookHttpConfig = InlineHookHttpConfig;

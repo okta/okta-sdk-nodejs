@@ -29,10 +29,10 @@ exports.AppCustomHrefObjectHints = void 0;
 * Describes allowed HTTP verbs for the `href`
 */
 class AppCustomHrefObjectHints {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return AppCustomHrefObjectHints.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.AppCustomHrefObjectHints = AppCustomHrefObjectHints;

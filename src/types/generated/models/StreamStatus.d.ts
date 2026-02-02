@@ -49,4 +49,4 @@ export declare class StreamStatus {
     }[];
   constructor();
 }
-export declare type StreamStatusStatusEnum = 'enabled' | 'disabled';
+export type StreamStatusStatusEnum = 'enabled' | 'disabled';

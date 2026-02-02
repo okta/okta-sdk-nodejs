@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AutoLoginApplication = void 0;
 const Application_1 = require('./../models/Application');
 class AutoLoginApplication extends Application_1.Application {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AutoLoginApplication.attributeTypeMap);
+  }
   constructor() {
     super();
     this.signOnMode = 'AUTO_LOGIN';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AutoLoginApplication.attributeTypeMap);
   }
 }
 exports.AutoLoginApplication = AutoLoginApplication;

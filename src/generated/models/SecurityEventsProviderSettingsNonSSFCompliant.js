@@ -29,10 +29,10 @@ exports.SecurityEventsProviderSettingsNonSSFCompliant = void 0;
 * Security Events Provider with issuer and JWKS settings for signal ingestion
 */
 class SecurityEventsProviderSettingsNonSSFCompliant {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return SecurityEventsProviderSettingsNonSSFCompliant.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.SecurityEventsProviderSettingsNonSSFCompliant = SecurityEventsProviderSettingsNonSSFCompliant;

@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.HrefObjectDeleteLink = void 0;
 class HrefObjectDeleteLink {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return HrefObjectDeleteLink.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.HrefObjectDeleteLink = HrefObjectDeleteLink;

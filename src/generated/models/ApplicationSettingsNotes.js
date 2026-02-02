@@ -29,10 +29,10 @@ exports.ApplicationSettingsNotes = void 0;
 * App notes visible to either the admin or end user
 */
 class ApplicationSettingsNotes {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ApplicationSettingsNotes.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ApplicationSettingsNotes = ApplicationSettingsNotes;

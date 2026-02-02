@@ -29,10 +29,10 @@ exports.WebAuthnCredResponse = void 0;
 * Credential response object for enrolled credential details, along with enrollment and key identifiers to associate the credential
 */
 class WebAuthnCredResponse {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return WebAuthnCredResponse.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.WebAuthnCredResponse = WebAuthnCredResponse;
@@ -45,8 +45,8 @@ WebAuthnCredResponse.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'credResponseJWE',
-    'baseName': 'credResponseJWE',
+    'name': 'credResponseJwe',
+    'baseName': 'credResponseJwe',
     'type': 'string',
     'format': ''
   }

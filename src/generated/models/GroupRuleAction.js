@@ -29,10 +29,10 @@ exports.GroupRuleAction = void 0;
 * Defines which users and groups to assign
 */
 class GroupRuleAction {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return GroupRuleAction.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.GroupRuleAction = GroupRuleAction;

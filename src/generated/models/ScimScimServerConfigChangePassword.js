@@ -29,10 +29,10 @@ exports.ScimScimServerConfigChangePassword = void 0;
 * Password change options
 */
 class ScimScimServerConfigChangePassword {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ScimScimServerConfigChangePassword.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ScimScimServerConfigChangePassword = ScimScimServerConfigChangePassword;

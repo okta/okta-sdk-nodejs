@@ -29,10 +29,10 @@ exports.OidcSettings = void 0;
 * Advanced settings for the OpenID Connect protocol
 */
 class OidcSettings {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return OidcSettings.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.OidcSettings = OidcSettings;

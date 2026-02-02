@@ -25,4 +25,4 @@
 /**
 * Status of Okta Support access
 */
-export declare type OktaSupportAccessStatus = 'DISABLED' | 'ENABLED' | 'NOT_REQUESTED' | 'REQUESTED';
+export type OktaSupportAccessStatus = 'DISABLED' | 'ENABLED' | 'NOT_REQUESTED' | 'REQUESTED';

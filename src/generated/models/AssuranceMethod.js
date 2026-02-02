@@ -27,12 +27,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 exports.AssuranceMethod = void 0;
 const VerificationMethod_1 = require('./../models/VerificationMethod');
 class AssuranceMethod extends VerificationMethod_1.VerificationMethod {
+  static getAttributeTypeMap() {
+    return super.getAttributeTypeMap().concat(AssuranceMethod.attributeTypeMap);
+  }
   constructor() {
     super();
     this.type = 'ASSURANCE';
-  }
-  static getAttributeTypeMap() {
-    return super.getAttributeTypeMap().concat(AssuranceMethod.attributeTypeMap);
   }
 }
 exports.AssuranceMethod = AssuranceMethod;

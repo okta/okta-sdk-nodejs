@@ -25,4 +25,4 @@
 /**
 * Defines the method of authentication
 */
-export declare type ProvisioningConnectionAuthScheme = 'OAUTH2' | 'TOKEN' | 'UNKNOWN';
+export type ProvisioningConnectionAuthScheme = 'OAUTH2' | 'TOKEN' | 'UNKNOWN';

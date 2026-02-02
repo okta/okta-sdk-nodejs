@@ -25,4 +25,4 @@
 /**
 * Apps with `BASIC_AUTH`, `BROWSER_PLUGIN`, or `SECURE_PASSWORD_STORE` sign-on modes have credentials vaulted by Okta and can be configured with the following schemes.
 */
-export declare type ApplicationCredentialsScheme = 'ADMIN_SETS_CREDENTIALS' | 'EDIT_PASSWORD_ONLY' | 'EDIT_USERNAME_AND_PASSWORD' | 'EXTERNAL_PASSWORD_SYNC' | 'SHARED_USERNAME_AND_PASSWORD';
+export type ApplicationCredentialsScheme = 'ADMIN_SETS_CREDENTIALS' | 'EDIT_PASSWORD_ONLY' | 'EDIT_USERNAME_AND_PASSWORD' | 'EXTERNAL_PASSWORD_SYNC' | 'SHARED_USERNAME_AND_PASSWORD';

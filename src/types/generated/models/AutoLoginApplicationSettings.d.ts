@@ -27,7 +27,7 @@ import { ApplicationSettingsNotifications } from './../models/ApplicationSetting
 import { AutoLoginApplicationSettingsSignOn } from './../models/AutoLoginApplicationSettingsSignOn';
 export declare class AutoLoginApplicationSettings {
   /**
-    * The Governance Engine opt-in status for the app
+    * The entitlement management opt-in status for the app
     */
   'emOptInStatus'?: AutoLoginApplicationSettingsEmOptInStatusEnum;
   /**
@@ -60,4 +60,4 @@ export declare class AutoLoginApplicationSettings {
     }[];
   constructor();
 }
-export declare type AutoLoginApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';
+export type AutoLoginApplicationSettingsEmOptInStatusEnum = 'DISABLED' | 'DISABLING' | 'ENABLED' | 'ENABLING' | 'NONE';

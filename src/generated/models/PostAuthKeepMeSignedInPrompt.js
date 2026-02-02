@@ -26,10 +26,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PostAuthKeepMeSignedInPrompt = void 0;
 class PostAuthKeepMeSignedInPrompt {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return PostAuthKeepMeSignedInPrompt.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.PostAuthKeepMeSignedInPrompt = PostAuthKeepMeSignedInPrompt;

@@ -29,10 +29,10 @@ exports.ZoomUsApplicationSettingsApplication = void 0;
 * Zoom app instance properties
 */
 class ZoomUsApplicationSettingsApplication {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return ZoomUsApplicationSettingsApplication.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.ZoomUsApplicationSettingsApplication = ZoomUsApplicationSettingsApplication;

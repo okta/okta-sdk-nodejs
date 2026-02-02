@@ -29,10 +29,10 @@ exports.EntityRiskPolicyRuleActionRunWorkflowWorkflow = void 0;
 * This action runs a workflow
 */
 class EntityRiskPolicyRuleActionRunWorkflowWorkflow {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return EntityRiskPolicyRuleActionRunWorkflowWorkflow.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.EntityRiskPolicyRuleActionRunWorkflowWorkflow = EntityRiskPolicyRuleActionRunWorkflowWorkflow;

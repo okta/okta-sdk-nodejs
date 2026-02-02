@@ -29,10 +29,10 @@ exports.TestInfoSamlTestConfiguration = void 0;
 * SAML test details
 */
 class TestInfoSamlTestConfiguration {
-  constructor() {
-  }
   static getAttributeTypeMap() {
     return TestInfoSamlTestConfiguration.attributeTypeMap;
+  }
+  constructor() {
   }
 }
 exports.TestInfoSamlTestConfiguration = TestInfoSamlTestConfiguration;
