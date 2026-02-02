@@ -1860,3 +1860,15 @@ export * from '../models/ZoomUsApplicationSettingsApplication';
 export * from '../models/ZscalerbyzApplication';
 export * from '../models/ZscalerbyzApplicationSettings';
 export * from '../models/ZscalerbyzApplicationSettingsApplication';
+
+// Deprecated type aliases for backward compatibility
+
+/**
+ * @deprecated Use StandardRoleAssignmentSchema instead - will be removed in v9.0.0
+ */
+export { StandardRoleAssignmentSchema as AssignRoleRequest } from '../models/StandardRoleAssignmentSchema';
+
+/**
+ * @deprecated Use IamRole instead - will be removed in v9.0.0
+ */
+export { IamRole as CustomRole } from '../models/IamRole';
