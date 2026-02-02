@@ -4,7 +4,7 @@
 
 ### Features
 
-- SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec
+- https://github.com/okta/okta-sdk-nodejs/pull/466 SDK has been regenerated using latest version of openapi-generator-cli (7.13.0) and latest Okta OpenAPI spec
 
 - Added new APIs:
   - AgentConnectionsApi
