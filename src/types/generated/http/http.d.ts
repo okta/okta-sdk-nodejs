@@ -15,6 +15,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
 /// <reference types="node" />
+/// <reference types="node" />
 import * as FormData from 'form-data';
 import { URLSearchParams } from 'url';
 import * as http from 'http';

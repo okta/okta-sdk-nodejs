@@ -5681,6 +5681,13 @@ let typeMap = {
     '__OPENID_CONNECT': OpenIdConnectApplication_1.OpenIdConnectApplication,
     '__SAML_1_1': Saml11Application_1.Saml11Application,
     '__SAML_2_0': SamlApplication_1.SamlApplication,
+    '__google': GoogleApplication_1.GoogleApplication,
+    '__office365': Office365Application_1.Office365Application,
+    '__okta_org2org': Org2OrgApplication_1.Org2OrgApplication,
+    '__salesforce': SalesforceApplication_1.SalesforceApplication,
+    '__slack': SlackApplication_1.SlackApplication,
+    '__trendmicroapexoneservice': TrendMicroApexOneServiceApplication_1.TrendMicroApexOneServiceApplication,
+    '__zscaler_byz': ZscalerbyzApplication_1.ZscalerbyzApplication,
     '__SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
     '__WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
     '__USER_PROVISIONING': UserProvisioningApplicationFeature_1.UserProvisioningApplicationFeature,
@@ -5922,6 +5929,13 @@ class ObjectSerializer {
                     const prefixedTypeDiscriminatorType = `__${expectedType}__${discriminatorType}`;
                     const prefixedDiscriminatorType = `__${discriminatorType}`;
                     const manuallyDiscriminatedType = typeMap[prefixedTypeDiscriminatorType] || typeMap[prefixedDiscriminatorType];
+                    // For Application type, also check 'name' property for OIN apps
+                    if (expectedType === 'Application' && data['name']) {
+                        const nameMapping = typeMap[`__${data['name']}`];
+                        if (nameMapping) {
+                            return `__${data['name']}`;
+                        }
+                    }
                     if (mapping != undefined && mapping[discriminatorType]) {
                         return mapping[discriminatorType]; // use the type given in the discriminator
                     }

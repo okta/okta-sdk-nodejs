@@ -48,10 +48,22 @@ OINApplication.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'id',
+    'baseName': 'id',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'label',
     'baseName': 'label',
     'type': 'string',
     'format': ''
+  },
+  {
+    'name': 'lastUpdated',
+    'baseName': 'lastUpdated',
+    'type': 'Date',
+    'format': 'date-time'
   },
   {
     'name': 'licensing',
@@ -87,6 +99,12 @@ OINApplication.attributeTypeMap = [
     'name': 'visibility',
     'baseName': 'visibility',
     'type': 'ApplicationVisibility',
+    'format': ''
+  },
+  {
+    'name': '_links',
+    'baseName': '_links',
+    'type': 'ApplicationLinks',
     'format': ''
   }
 ];

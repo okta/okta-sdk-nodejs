@@ -247,6 +247,69 @@ const renameBodyParams = () => {
   return renamesResult;
 };
 
+const fixApplicationDiscriminator = () => {
+  // Fix ObjectSerializer to check 'name' property for OIN apps when signOnMode is ambiguous
+  const oinAppMappings = {
+    'google': 'GoogleApplication',
+    'office365': 'Office365Application',
+    'okta_org2org': 'Org2OrgApplication',
+    'salesforce': 'SalesforceApplication',
+    'slack': 'SlackApplication',
+    'trendmicroapexoneservice': 'TrendMicroApexOneServiceApplication',
+    'zscaler_byz': 'ZscalerbyzApplication'
+  };
+
+  // Read the ObjectSerializer.ts file
+  const objSerializerPath = 'src/generated/models/ObjectSerializer.ts';
+  if (!fs.existsSync(objSerializerPath)) {
+    console.warn(`ObjectSerializer.ts not found at ${objSerializerPath}, skipping Application discriminator fix`);
+    return { modified: false, skipped: true };
+  }
+  
+  let content = fs.readFileSync(objSerializerPath, { encoding: 'utf8' });
+  let modifications = 0;
+
+  // 1. Add OIN app name mappings to classMap after __SAML_2_0
+  const samlMappingRegex = /('__SAML_2_0': SamlApplication,)/;
+  if (content.match(samlMappingRegex)) {
+    const oinMappings = Object.entries(oinAppMappings)
+      .map(([name, className]) => `  '__${name}': ${className}`)
+      .join(',\n');
+    
+    content = content.replace(
+      samlMappingRegex,
+      `$1\n${oinMappings},`
+    );
+    modifications++;
+  }
+
+  // 2. Modify findCorrectType to check 'name' property for Application types with SAML signOnMode
+  const findCorrectTypeRegex = /(if \(mapping != undefined && mapping\[discriminatorType\]\) \{\s+return mapping\[discriminatorType\];[^\}]+\})/;
+  const findCorrectTypeMatch = content.match(findCorrectTypeRegex);
+  
+  if (findCorrectTypeMatch) {
+    // Insert check for Application name property before the existing discriminator checks
+    const newCode = `// For Application type, also check 'name' property for OIN apps
+                  if (expectedType === 'Application' && data['name']) {
+                      const nameMapping = typeMap[\`__\${data['name']}\`];
+                      if (nameMapping) {
+                          return \`__\${data['name']}\`;
+                      }
+                  }
+                  ${findCorrectTypeMatch[1]}`;
+    
+    content = content.replace(findCorrectTypeRegex, newCode);
+    modifications++;
+  }
+
+  if (modifications > 0) {
+    fs.writeFileSync(objSerializerPath, content, { encoding: 'utf8' });
+    return { modified: true, file: objSerializerPath, modifications };
+  }
+  
+  return { modified: false };
+};
+
 async function main() {
   try {
     // Use ESM import
@@ -266,6 +329,10 @@ async function main() {
     // remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
     const removeIncorrectDiscriminatorsResult = removeIncorrectDiscriminators(specMeta, oauthSpecMeta);
     console.log('Fix/remove incorrect discriminators result =', removeIncorrectDiscriminatorsResult);
+
+    // fix Application discriminator to support OIN apps by name
+    const fixApplicationDiscriminatorResult = fixApplicationDiscriminator();
+    console.log('Fix Application discriminator for OIN apps =', fixApplicationDiscriminatorResult);
 
     // fix '' with '
     const fixRespondAsyncResult = fixRespondAsync();

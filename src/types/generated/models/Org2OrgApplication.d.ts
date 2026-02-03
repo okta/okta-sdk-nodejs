@@ -25,6 +25,7 @@
 import { ApplicationAccessibility } from './../models/ApplicationAccessibility';
 import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
+import { ApplicationLinks } from './../models/ApplicationLinks';
 import { ApplicationVisibility } from './../models/ApplicationVisibility';
 import { Org2OrgApplicationSettings } from './../models/Org2OrgApplicationSettings';
 import { SchemeApplicationCredentials } from './../models/SchemeApplicationCredentials';
@@ -35,9 +36,17 @@ export declare class Org2OrgApplication {
   'accessibility'?: ApplicationAccessibility;
   'credentials'?: SchemeApplicationCredentials;
   /**
+    * Unique ID for the app instance
+    */
+  'id'?: string;
+  /**
     * User-defined display name for app
     */
   'label': string;
+  /**
+    * Timestamp when the application object was last updated
+    */
+  'lastUpdated'?: Date;
   'licensing'?: ApplicationLicensing;
   'name': Org2OrgApplicationNameEnum;
   /**
@@ -49,6 +58,7 @@ export declare class Org2OrgApplication {
   'signOnMode'?: Org2OrgApplicationSignOnModeEnum;
   'status'?: ApplicationLifecycleStatus;
   'visibility'?: ApplicationVisibility;
+  '_links'?: ApplicationLinks;
   'settings': Org2OrgApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
