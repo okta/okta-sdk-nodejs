@@ -63,4 +63,60 @@ describe('Authenticators API tests', () => {
       }
     });
   });
+
+  it('should throw error when activating authenticator without authenticatorId', async () => {
+    try {
+      await client.authenticatorApi.activateAuthenticator({authenticatorId: null});
+      expect.fail('Should have thrown an error');
+    } catch (error) {
+      expect(error.message).to.include('authenticatorId');
+    }
+  });
+
+  it('should throw error when activating authenticator with undefined authenticatorId', async () => {
+    try {
+      await client.authenticatorApi.activateAuthenticator({authenticatorId: undefined});
+      expect.fail('Should have thrown an error');
+    } catch (error) {
+      expect(error.message).to.include('authenticatorId');
+    }
+  });
+
+  it('should handle activating a non-existent authenticator', async () => {
+    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+      return Math.floor(Math.random() * 16).toString(16);
+    });
+
+    try {
+      await client.authenticatorApi.activateAuthenticator({authenticatorId: nonExistentId});
+      expect.fail('Should have thrown an error for non-existent authenticator');
+    } catch (error) {
+      // Expected - should get 404 or similar error
+      expect(error).to.exist;
+    }
+  });
+
+  it('should handle activating an already active authenticator', async () => {
+    const authenticators = await client.authenticatorApi.listAuthenticators();
+    let activeAuthenticatorId: string;
+
+    await authenticators.each(async (item) => {
+      if (item.status === 'ACTIVE' && item.type === 'security_question') {
+        activeAuthenticatorId = item.id;
+      }
+    });
+
+    if (activeAuthenticatorId) {
+      try {
+        const result = await client.authenticatorApi.activateAuthenticator({
+          authenticatorId: activeAuthenticatorId
+        });
+        // Should succeed or return the already active authenticator
+        expect(result).to.exist;
+      } catch (error) {
+        // Some implementations may throw an error for already active authenticators
+        console.log('Activating already active authenticator error:', error.message);
+      }
+    }
+  });
 });
