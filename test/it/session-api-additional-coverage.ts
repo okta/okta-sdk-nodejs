@@ -309,7 +309,7 @@ describe('SessionApi Additional Coverage', () => {
         await client.sessionApi.closeCurrentSession({
           cookie: `sid=${session.id}`
         });
-        
+
         // Verify session is closed
         try {
           await client.sessionApi.getSession({
@@ -351,7 +351,7 @@ describe('SessionApi Additional Coverage', () => {
       }
 
       const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-      
+
       // This test ensures the apiToken authentication path is exercised
       const session = await client.sessionApi.createSession({
         createSessionRequest: {
@@ -550,7 +550,7 @@ describe('SessionApi Additional Coverage', () => {
       }
 
       const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-      
+
       // This exercises the 200 response path in createSession response processor
       const session = await client.sessionApi.createSession({
         createSessionRequest: {

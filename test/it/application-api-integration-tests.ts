@@ -20,9 +20,9 @@ describe('ApplicationApi Integration Tests', () => {
   const appLabel = `node-sdk-test-app-${Date.now()}`;
 
   describe('createApplication', () => {
-    it('should create a basic OIDC web application', async function() {
+    it('should create a basic OIDC web application', async function () {
       this.timeout(10000);
-      
+
       const app = {
         name: 'oidc_client',
         label: appLabel,
@@ -57,7 +57,7 @@ describe('ApplicationApi Integration Tests', () => {
       };
 
       createdApp = await client.applicationApi.createApplication({ application: app as any });
-      
+
       expect(createdApp).to.exist;
       expect(createdApp.id).to.exist;
       expect(createdApp.label).to.equal(appLabel);
@@ -67,13 +67,13 @@ describe('ApplicationApi Integration Tests', () => {
   });
 
   describe('getApplication', () => {
-    it('should retrieve an application by id', async function() {
+    it('should retrieve an application by id', async function () {
       this.timeout(10000);
-      
+
       const app = await client.applicationApi.getApplication({
         appId: createdApp.id
       });
-      
+
       expect(app).to.exist;
       expect(app.id).to.equal(createdApp.id);
       expect(app.label).to.equal(appLabel);
@@ -81,25 +81,27 @@ describe('ApplicationApi Integration Tests', () => {
   });
 
   describe('listApplications', () => {
-    it('should list all applications', async function() {
+    it('should list all applications', async function () {
       this.timeout(10000);
-      
+
       const apps = await client.applicationApi.listApplications({});
-      
+
       expect(apps).to.exist;
       // Test that we can iterate - Collection exists
       let count = 0;
-      await apps.each(() => { count++; });
+      await apps.each(() => {
+        count++;
+      });
       expect(count).to.be.greaterThan(0);
     });
 
-    it('should filter applications by label', async function() {
+    it('should filter applications by label', async function () {
       this.timeout(10000);
-      
+
       const apps = await client.applicationApi.listApplications({
         q: appLabel
       });
-      
+
       expect(apps).to.exist;
       // Verify collection can be iterated
       let found = false;
@@ -111,105 +113,107 @@ describe('ApplicationApi Integration Tests', () => {
       expect(found).to.be.true;
     });
 
-    it('should limit number of applications returned', async function() {
+    it('should limit number of applications returned', async function () {
       this.timeout(10000);
-      
+
       const apps = await client.applicationApi.listApplications({
         limit: 5
       });
-      
+
       expect(apps).to.exist;
       // Verify collection exists - Collection may iterate beyond initial limit
       // but the API respects the limit parameter in pagination
       let count = 0;
-      await apps.each(() => { 
-        count++; 
-        if (count >= 5) return false; // Stop after 5
+      await apps.each(() => {
+        count++;
+        if (count >= 5) {
+          return false;
+        } // Stop after 5
       });
       expect(count).to.be.greaterThan(0);
     });
   });
 
   describe('replaceApplication', () => {
-    it('should update application label', async function() {
+    it('should update application label', async function () {
       this.timeout(10000);
-      
+
       const updatedLabel = `${appLabel}-updated`;
       const appToUpdate = { ...createdApp, label: updatedLabel };
-      
+
       const updatedApp = await client.applicationApi.replaceApplication({
         appId: createdApp.id,
         application: appToUpdate
       });
-      
+
       expect(updatedApp).to.exist;
       expect(updatedApp.label).to.equal(updatedLabel);
-      
+
       // Update for cleanup
       createdApp = updatedApp;
     });
   });
 
   describe('listApplicationKeys', () => {
-    it('should list all key credentials for an application', async function() {
+    it('should list all key credentials for an application', async function () {
       this.timeout(10000);
-      
+
       const keys = await client.applicationApi.listApplicationKeys({
         appId: createdApp.id
       });
-      
+
       expect(keys).to.exist;
     });
   });
 
   describe('deactivateApplication', () => {
-    it('should deactivate an active application', async function() {
+    it('should deactivate an active application', async function () {
       this.timeout(10000);
-      
+
       await client.applicationApi.deactivateApplication({
         appId: createdApp.id
       });
-      
+
       // Verify deactivation
       const app = await client.applicationApi.getApplication({
         appId: createdApp.id
       });
-      
+
       expect(app.status).to.equal('INACTIVE');
     });
   });
 
   describe('activateApplication', () => {
-    it('should activate an inactive application', async function() {
+    it('should activate an inactive application', async function () {
       this.timeout(10000);
-      
+
       await client.applicationApi.activateApplication({
         appId: createdApp.id
       });
-      
+
       // Verify activation
       const app = await client.applicationApi.getApplication({
         appId: createdApp.id
       });
-      
+
       expect(app.status).to.equal('ACTIVE');
     });
   });
 
   describe('deleteApplication', () => {
-    it('should delete an application', async function() {
+    it('should delete an application', async function () {
       this.timeout(10000);
-      
+
       // Deactivate first (required before deletion)
       await client.applicationApi.deactivateApplication({
         appId: createdApp.id
       });
-      
+
       // Delete
       await client.applicationApi.deleteApplication({
         appId: createdApp.id
       });
-      
+
       // Verify deletion by attempting to get it (should fail)
       try {
         await client.applicationApi.getApplication({
@@ -225,9 +229,9 @@ describe('ApplicationApi Integration Tests', () => {
   describe('Additional ApplicationApi Methods', () => {
     let testApp: Application;
 
-    before(async function() {
+    before(async function () {
       this.timeout(10000);
-      
+
       // Create a test app for additional tests
       const app = {
         name: 'oidc_client',
@@ -254,9 +258,9 @@ describe('ApplicationApi Integration Tests', () => {
       testApp = await client.applicationApi.createApplication({ application: app as any });
     });
 
-    after(async function() {
+    after(async function () {
       this.timeout(10000);
-      
+
       if (testApp && testApp.id) {
         try {
           await client.applicationApi.deactivateApplication({ appId: testApp.id });
@@ -270,9 +274,9 @@ describe('ApplicationApi Integration Tests', () => {
     describe('assignUserToApplication', () => {
       let testUser;
 
-      before(async function() {
+      before(async function () {
         this.timeout(10000);
-        
+
         // Create a test user
         const newUser = {
           profile: utils.getMockProfile('application-api-user'),
@@ -284,14 +288,14 @@ describe('ApplicationApi Integration Tests', () => {
         testUser = await client.userApi.createUser({ body: newUser });
       });
 
-      after(async function() {
+      after(async function () {
         this.timeout(10000);
         await utils.cleanup(client, testUser);
       });
 
-      it('should assign a user to an application', async function() {
+      it('should assign a user to an application', async function () {
         this.timeout(10000);
-        
+
         const appUser = {
           id: testUser.id,
           scope: 'USER'
@@ -306,9 +310,9 @@ describe('ApplicationApi Integration Tests', () => {
         expect(assignedUser.id).to.equal(testUser.id);
       });
 
-      it('should retrieve an application user', async function() {
+      it('should retrieve an application user', async function () {
         this.timeout(10000);
-        
+
         const appUser = await client.applicationApi.getApplicationUser({
           appId: testApp.id,
           userId: testUser.id
@@ -318,9 +322,9 @@ describe('ApplicationApi Integration Tests', () => {
         expect(appUser.id).to.equal(testUser.id);
       });
 
-      it('should list all application users', async function() {
+      it('should list all application users', async function () {
         this.timeout(10000);
-        
+
         const users = await client.applicationApi.listApplicationUsers({
           appId: testApp.id
         });
@@ -336,9 +340,9 @@ describe('ApplicationApi Integration Tests', () => {
         expect(found).to.be.true;
       });
 
-      it('should unassign a user from an application', async function() {
+      it('should unassign a user from an application', async function () {
         this.timeout(10000);
-        
+
         await client.applicationApi.unassignUserFromApplication({
           appId: testApp.id,
           userId: testUser.id
@@ -358,9 +362,9 @@ describe('ApplicationApi Integration Tests', () => {
     });
 
     describe('generateApplicationKey', () => {
-      it('should generate a new key credential', async function() {
+      it('should generate a new key credential', async function () {
         this.timeout(10000);
-        
+
         const key = await client.applicationApi.generateApplicationKey({
           appId: testApp.id,
           validityYears: 2
@@ -373,9 +377,9 @@ describe('ApplicationApi Integration Tests', () => {
     });
 
     describe('listFeaturesForApplication', () => {
-      it('should list all features for an application', async function() {
+      it('should list all features for an application', async function () {
         this.timeout(10000);
-        
+
         const features = await client.applicationApi.listFeaturesForApplication({
           appId: testApp.id
         });
@@ -385,9 +389,9 @@ describe('ApplicationApi Integration Tests', () => {
     });
 
     describe('listScopeConsentGrants', () => {
-      it('should list all scope consent grants for an application', async function() {
+      it('should list all scope consent grants for an application', async function () {
         this.timeout(10000);
-        
+
         const grants = await client.applicationApi.listScopeConsentGrants({
           appId: testApp.id
         });
@@ -397,9 +401,9 @@ describe('ApplicationApi Integration Tests', () => {
     });
 
     describe('listOAuth2TokensForApplication', () => {
-      it('should list all OAuth 2.0 tokens for an application', async function() {
+      it('should list all OAuth 2.0 tokens for an application', async function () {
         this.timeout(10000);
-        
+
         const tokens = await client.applicationApi.listOAuth2TokensForApplication({
           appId: testApp.id
         });
@@ -413,9 +417,9 @@ describe('ApplicationApi Integration Tests', () => {
     let testApp: Application;
     let testGroup;
 
-    before(async function() {
+    before(async function () {
       this.timeout(10000);
-      
+
       // Create a test app
       const app = {
         name: 'oidc_client',
@@ -449,9 +453,9 @@ describe('ApplicationApi Integration Tests', () => {
       testGroup = await client.groupApi.createGroup({ group: newGroup });
     });
 
-    after(async function() {
+    after(async function () {
       this.timeout(10000);
-      
+
       if (testApp && testApp.id) {
         try {
           await client.applicationApi.deactivateApplication({ appId: testApp.id });
@@ -470,9 +474,9 @@ describe('ApplicationApi Integration Tests', () => {
       }
     });
 
-    it('should assign a group to an application', async function() {
+    it('should assign a group to an application', async function () {
       this.timeout(10000);
-      
+
       const groupAssignment = {
         priority: 0
       };
@@ -487,9 +491,9 @@ describe('ApplicationApi Integration Tests', () => {
       expect(assignment.id).to.equal(testGroup.id);
     });
 
-    it('should retrieve an application group assignment', async function() {
+    it('should retrieve an application group assignment', async function () {
       this.timeout(10000);
-      
+
       const assignment = await client.applicationApi.getApplicationGroupAssignment({
         appId: testApp.id,
         groupId: testGroup.id
@@ -499,9 +503,9 @@ describe('ApplicationApi Integration Tests', () => {
       expect(assignment.id).to.equal(testGroup.id);
     });
 
-    it('should list all application group assignments', async function() {
+    it('should list all application group assignments', async function () {
       this.timeout(10000);
-      
+
       const assignments = await client.applicationApi.listApplicationGroupAssignments({
         appId: testApp.id
       });
@@ -517,9 +521,9 @@ describe('ApplicationApi Integration Tests', () => {
       expect(found).to.be.true;
     });
 
-    it('should unassign a group from an application', async function() {
+    it('should unassign a group from an application', async function () {
       this.timeout(10000);
-      
+
       await client.applicationApi.unassignApplicationFromGroup({
         appId: testApp.id,
         groupId: testGroup.id

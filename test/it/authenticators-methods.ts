@@ -51,7 +51,7 @@ describe('Authenticators API - Methods tests', () => {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
     const methods: any[] = [];
     await methodsCollection.each(method => methods.push(method));
-    
+
     if (methods.length > 0) {
       const methodType = methods[0].type;
       const method = await client.authenticatorApi.getAuthenticatorMethod({
@@ -83,10 +83,10 @@ describe('Authenticators API - Methods tests', () => {
 
       // Find a method that can be toggled
       const toggleableMethod = methods.find(m => m.status === 'ACTIVE' || m.status === 'INACTIVE');
-      
+
       if (toggleableMethod) {
         const originalStatus = toggleableMethod.status;
-        
+
         try {
           if (originalStatus === 'ACTIVE') {
             // Deactivate it
@@ -129,7 +129,7 @@ describe('Authenticators API - Methods tests', () => {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
     const methods: any[] = [];
     await methodsCollection.each(method => methods.push(method));
-    
+
     if (methods.length > 0) {
       const method = methods[0];
       try {

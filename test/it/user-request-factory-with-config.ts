@@ -48,7 +48,7 @@ describe('UserApi Request Factory - With Config', () => {
       mockConfig.authMethods.apiToken = null;
       mockConfig.authMethods.oauth2 = null;
       mockConfig.authMethods = {
-        default: {
+        'default': {
           applySecurityAuthentication: async () => {}
         }
       };
@@ -113,7 +113,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.getUserClassification('user123', mockConfig);
       expect(context).to.exist;
@@ -146,7 +146,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.getUserRisk('user123', mockConfig);
       expect(context).to.exist;
@@ -161,7 +161,7 @@ describe('UserApi Request Factory - With Config', () => {
     });
 
     it('should execute with complex link request', async () => {
-      const linkRequest = { 
+      const linkRequest = {
         externalId: 'ext456',
         displayName: 'Test User'
       };
@@ -243,7 +243,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.listUserBlocks('user123', mockConfig);
       expect(context).to.exist;
@@ -271,7 +271,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.listUserGroups('user123', mockConfig);
       expect(context).to.exist;
@@ -297,12 +297,12 @@ describe('UserApi Request Factory - With Config', () => {
 
   describe('replaceUser - with body', () => {
     it('should execute with user object', async () => {
-      const user = { 
-        profile: { 
-          firstName: 'John', 
+      const user = {
+        profile: {
+          firstName: 'John',
           lastName: 'Doe',
           email: 'john.doe@example.com'
-        } 
+        }
       };
       const context = await factory.replaceUser('user123', user as any, undefined, undefined, mockConfig);
       expect(context).to.exist;
@@ -350,7 +350,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.revokeUserGrant('user123', 'grant456', mockConfig);
       expect(context).to.exist;
@@ -391,7 +391,7 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        default: { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {} }
       };
       const context = await factory.unlinkUserFromIdentityProvider('idp789', 'user101', mockConfig);
       expect(context).to.exist;

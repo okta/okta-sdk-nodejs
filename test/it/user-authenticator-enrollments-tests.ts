@@ -6,7 +6,7 @@ function createMockResponse(statusCode: number, body: any, contentType = 'applic
   const headers: Record<string, string> = {
     'content-type': contentType
   };
-  
+
   return {
     httpStatusCode: statusCode,
     headers: headers,
@@ -42,7 +42,7 @@ function createMockConfiguration() {
       oauth2: {
         applySecurityAuthentication: async () => {}
       },
-      default: {
+      'default': {
         applySecurityAuthentication: async () => {}
       }
     }
@@ -60,9 +60,9 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should create request context with required parameters', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.createAuthenticatorEnrollment(
-        'user-123', 
+        'user-123',
         { authenticatorId: 'auth-123', profile: { phoneNumber: '+1234567890' } },
         mockConfig
       );
@@ -72,7 +72,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when userId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.createAuthenticatorEnrollment(
           null as any,
@@ -88,7 +88,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when authenticator is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.createAuthenticatorEnrollment('user-123', null as any, mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -102,7 +102,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 200 OK response', async () => {
       const enrollmentBody = { id: 'enrollment-123', status: 'ACTIVE' };
       const response: any = createMockResponse(200, enrollmentBody);
-      
+
       const result = await responseProcessor.createAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
@@ -110,7 +110,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 400 Bad Request response', async () => {
       const errorBody = { errorCode: 'E0000001', errorSummary: 'Bad Request' };
       const response: any = createMockResponse(400, errorBody);
-      
+
       try {
         await responseProcessor.createAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -123,7 +123,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 403 Forbidden response', async () => {
       const errorBody = { errorCode: 'E0000006', errorSummary: 'Forbidden' };
       const response: any = createMockResponse(403, errorBody);
-      
+
       try {
         await responseProcessor.createAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -136,7 +136,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 429 Too Many Requests response', async () => {
       const errorBody = { errorCode: 'E0000047', errorSummary: 'Too Many Requests' };
       const response: any = createMockResponse(429, errorBody);
-      
+
       try {
         await responseProcessor.createAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -149,14 +149,14 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 2xx fallback response', async () => {
       const enrollmentBody = { id: 'enrollment-456', status: 'ACTIVE' };
       const response: any = createMockResponse(201, enrollmentBody);
-      
+
       const result = await responseProcessor.createAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
 
     it('should handle unknown status code', async () => {
       const response: any = createMockResponse(500, { error: 'Internal Server Error' });
-      
+
       try {
         await responseProcessor.createAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -170,7 +170,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should create request context with required parameters', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.createTacAuthenticatorEnrollment(
         'user-123',
         { authenticatorId: 'tac-123', profile: { multiUse: false, ttl: '60' } },
@@ -182,7 +182,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when userId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.createTacAuthenticatorEnrollment(
           null as any,
@@ -198,7 +198,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when authenticator is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.createTacAuthenticatorEnrollment('user-123', null as any, mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -212,7 +212,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 200 OK response', async () => {
       const enrollmentBody = { id: 'tac-enrollment-123', status: 'ACTIVE' };
       const response: any = createMockResponse(200, enrollmentBody);
-      
+
       const result = await responseProcessor.createTacAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
@@ -220,7 +220,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 400 Bad Request response', async () => {
       const errorBody = { errorCode: 'E0000001', errorSummary: 'Bad Request' };
       const response: any = createMockResponse(400, errorBody);
-      
+
       try {
         await responseProcessor.createTacAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -233,7 +233,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 403 Forbidden response', async () => {
       const errorBody = { errorCode: 'E0000006', errorSummary: 'Forbidden' };
       const response: any = createMockResponse(403, errorBody);
-      
+
       try {
         await responseProcessor.createTacAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -246,7 +246,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 429 Too Many Requests response', async () => {
       const errorBody = { errorCode: 'E0000047', errorSummary: 'Too Many Requests' };
       const response: any = createMockResponse(429, errorBody);
-      
+
       try {
         await responseProcessor.createTacAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -259,14 +259,14 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 2xx fallback response', async () => {
       const enrollmentBody = { id: 'tac-enrollment-456', status: 'ACTIVE' };
       const response: any = createMockResponse(201, enrollmentBody);
-      
+
       const result = await responseProcessor.createTacAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
 
     it('should handle unknown status code', async () => {
       const response: any = createMockResponse(500, { error: 'Internal Server Error' });
-      
+
       try {
         await responseProcessor.createTacAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -280,7 +280,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should create request context with required parameters', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.deleteAuthenticatorEnrollment(
         'user-123',
         'enrollment-123',
@@ -292,7 +292,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when userId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.deleteAuthenticatorEnrollment(null as any, 'enrollment-123', mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -304,7 +304,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when enrollmentId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.deleteAuthenticatorEnrollment('user-123', null as any, mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -324,7 +324,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 403 Forbidden response', async () => {
       const errorBody = { errorCode: 'E0000006', errorSummary: 'Forbidden' };
       const response: any = createMockResponse(403, errorBody);
-      
+
       try {
         await responseProcessor.deleteAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -337,7 +337,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 404 Not Found response', async () => {
       const errorBody = { errorCode: 'E0000007', errorSummary: 'Not Found' };
       const response: any = createMockResponse(404, errorBody);
-      
+
       try {
         await responseProcessor.deleteAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -350,7 +350,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 429 Too Many Requests response', async () => {
       const errorBody = { errorCode: 'E0000047', errorSummary: 'Too Many Requests' };
       const response: any = createMockResponse(429, errorBody);
-      
+
       try {
         await responseProcessor.deleteAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -368,7 +368,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
 
     it('should handle unknown status code', async () => {
       const response: any = createMockResponse(500, { error: 'Internal Server Error' });
-      
+
       try {
         await responseProcessor.deleteAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -382,7 +382,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should create request context with required parameters', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.getAuthenticatorEnrollment(
         'user-123',
         'enrollment-123',
@@ -395,7 +395,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle discloseIdentifiers parameter', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.getAuthenticatorEnrollment(
         'user-123',
         'enrollment-123',
@@ -408,7 +408,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when userId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.getAuthenticatorEnrollment(
           null as any,
@@ -425,7 +425,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when enrollmentId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.getAuthenticatorEnrollment('user-123', null as any, undefined, mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -439,7 +439,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 200 OK response', async () => {
       const enrollmentBody = { id: 'enrollment-123', status: 'ACTIVE' };
       const response: any = createMockResponse(200, enrollmentBody);
-      
+
       const result = await responseProcessor.getAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
@@ -447,7 +447,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 403 Forbidden response', async () => {
       const errorBody = { errorCode: 'E0000006', errorSummary: 'Forbidden' };
       const response: any = createMockResponse(403, errorBody);
-      
+
       try {
         await responseProcessor.getAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -460,7 +460,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 404 Not Found response', async () => {
       const errorBody = { errorCode: 'E0000007', errorSummary: 'Not Found' };
       const response: any = createMockResponse(404, errorBody);
-      
+
       try {
         await responseProcessor.getAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -473,7 +473,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 429 Too Many Requests response', async () => {
       const errorBody = { errorCode: 'E0000047', errorSummary: 'Too Many Requests' };
       const response: any = createMockResponse(429, errorBody);
-      
+
       try {
         await responseProcessor.getAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -486,14 +486,14 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 2xx fallback response', async () => {
       const enrollmentBody = { id: 'enrollment-456', status: 'ACTIVE' };
       const response: any = createMockResponse(201, enrollmentBody);
-      
+
       const result = await responseProcessor.getAuthenticatorEnrollment(response);
       expect(result).to.be.an('object');
     });
 
     it('should handle unknown status code', async () => {
       const response: any = createMockResponse(500, { error: 'Internal Server Error' });
-      
+
       try {
         await responseProcessor.getAuthenticatorEnrollment(response);
         expect.fail('Should have thrown ApiException');
@@ -507,7 +507,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should create request context with required parameters', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.listAuthenticatorEnrollments(
         'user-123',
         undefined,
@@ -519,7 +519,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle discloseIdentifiers parameter', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       const requestContext = await requestFactory.listAuthenticatorEnrollments(
         'user-123',
         ['phone'],
@@ -531,7 +531,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should throw RequiredError when userId is null', async () => {
       const requestFactory = new UserAuthenticatorEnrollmentsApiRequestFactory();
       const mockConfig: any = createMockConfiguration();
-      
+
       try {
         await requestFactory.listAuthenticatorEnrollments(null as any, undefined, mockConfig);
         expect.fail('Should have thrown RequiredError');
@@ -545,7 +545,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 200 OK response', async () => {
       const enrollmentsBody = { id: 'enrollment-123', status: 'ACTIVE' };
       const response: any = createMockResponse(200, enrollmentsBody);
-      
+
       const result = await responseProcessor.listAuthenticatorEnrollments(response);
       expect(result).to.exist;
     });
@@ -553,7 +553,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 403 Forbidden response', async () => {
       const errorBody = { errorCode: 'E0000006', errorSummary: 'Forbidden' };
       const response: any = createMockResponse(403, errorBody);
-      
+
       try {
         await responseProcessor.listAuthenticatorEnrollments(response);
         expect.fail('Should have thrown ApiException');
@@ -566,7 +566,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 404 Not Found response', async () => {
       const errorBody = { errorCode: 'E0000007', errorSummary: 'Not Found' };
       const response: any = createMockResponse(404, errorBody);
-      
+
       try {
         await responseProcessor.listAuthenticatorEnrollments(response);
         expect.fail('Should have thrown ApiException');
@@ -579,7 +579,7 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 429 Too Many Requests response', async () => {
       const errorBody = { errorCode: 'E0000047', errorSummary: 'Too Many Requests' };
       const response: any = createMockResponse(429, errorBody);
-      
+
       try {
         await responseProcessor.listAuthenticatorEnrollments(response);
         expect.fail('Should have thrown ApiException');
@@ -592,14 +592,14 @@ describe('UserAuthenticatorEnrollmentsApi Unit Tests - Response Processors', () 
     it('should handle 2xx fallback response', async () => {
       const enrollmentsBody = { id: 'enrollment-456', status: 'ACTIVE' };
       const response: any = createMockResponse(201, enrollmentsBody);
-      
+
       const result = await responseProcessor.listAuthenticatorEnrollments(response);
       expect(result).to.exist;
     });
 
     it('should handle unknown status code', async () => {
       const response: any = createMockResponse(500, { error: 'Internal Server Error' });
-      
+
       try {
         await responseProcessor.listAuthenticatorEnrollments(response);
         expect.fail('Should have thrown ApiException');

@@ -127,7 +127,7 @@ describe('SessionApi Error Path Coverage', () => {
       }
 
       const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-      
+
       // This should trigger 200 response path with Session deserialization (lines 266-269)
       const session = await client.sessionApi.createSession({
         createSessionRequest: {
@@ -202,7 +202,7 @@ describe('SessionApi Error Path Coverage', () => {
       }
 
       const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-      
+
       // This test ensures the 2xx fallback path (lines 282-285) is considered
       const session = await client.sessionApi.createSession({
         createSessionRequest: {

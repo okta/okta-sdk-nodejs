@@ -19,9 +19,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   let createdUser: User;
   let securityQuestionFactor;
 
-  before(async function() {
+  before(async function () {
     this.timeout(20000);
-    
+
     // Ensure Security Question is active
     await utils.activateSecurityQuestion(client);
 
@@ -41,9 +41,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('listFactors', () => {
-    it('should list all enrolled factors for a user', async function() {
+    it('should list all enrolled factors for a user', async function () {
       this.timeout(10000);
-      
+
       const factors = await client.userFactorApi.listFactors({
         userId: createdUser.id
       });
@@ -73,9 +73,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('listSupportedFactors', () => {
-    it('should list all supported factors for a user', async function() {
+    it('should list all supported factors for a user', async function () {
       this.timeout(10000);
-      
+
       const supportedFactors = await client.userFactorApi.listSupportedFactors({
         userId: createdUser.id
       });
@@ -105,9 +105,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('listSupportedSecurityQuestions', () => {
-    it('should list all supported security questions', async function() {
+    it('should list all supported security questions', async function () {
       this.timeout(10000);
-      
+
       const questions = await client.userFactorApi.listSupportedSecurityQuestions({
         userId: createdUser.id
       });
@@ -137,9 +137,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('enrollFactor and getFactor', () => {
-    it('should enroll a security question factor', async function() {
+    it('should enroll a security question factor', async function () {
       this.timeout(10000);
-      
+
       const factor = {
         factorType: 'question',
         provider: 'OKTA',
@@ -159,9 +159,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       expect(securityQuestionFactor.factorType).to.equal('question');
     });
 
-    it('should get an enrolled factor by ID', async function() {
+    it('should get an enrolled factor by ID', async function () {
       this.timeout(10000);
-      
+
       if (!securityQuestionFactor?.id) {
         this.skip();
       }
@@ -217,9 +217,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('verifyFactor', () => {
-    it('should verify a security question factor', async function() {
+    it('should verify a security question factor', async function () {
       this.timeout(10000);
-      
+
       if (!securityQuestionFactor?.id) {
         this.skip();
       }
@@ -266,9 +266,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('resendEnrollFactor', () => {
-    it('should handle resend for SMS factor', async function() {
+    it('should handle resend for SMS factor', async function () {
       this.timeout(10000);
-      
+
       // Try to enroll SMS factor first
       try {
         const smsFactor = await client.userFactorApi.enrollFactor({
@@ -331,9 +331,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('getFactorTransactionStatus', () => {
-    it('should handle transaction status request', async function() {
+    it('should handle transaction status request', async function () {
       this.timeout(10000);
-      
+
       try {
         await client.userFactorApi.getFactorTransactionStatus({
           userId: createdUser.id,
@@ -372,9 +372,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('unenrollFactor', () => {
-    it('should unenroll a factor', async function() {
+    it('should unenroll a factor', async function () {
       this.timeout(10000);
-      
+
       // Create a factor to delete
       const factor = {
         factorType: 'question',
@@ -437,9 +437,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('activateFactor', () => {
-    it('should handle activation request', async function() {
+    it('should handle activation request', async function () {
       this.timeout(10000);
-      
+
       // Try to enroll a TOTP factor that requires activation
       try {
         const totpFactor = await client.userFactorApi.enrollFactor({
@@ -512,9 +512,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('Yubikey OTP Token operations', () => {
-    it('should handle listYubikeyOtpTokens', async function() {
+    it('should handle listYubikeyOtpTokens', async function () {
       this.timeout(10000);
-      
+
       try {
         const tokens = await client.userFactorApi.listYubikeyOtpTokens({});
         expect(tokens).to.exist;
@@ -523,9 +523,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       }
     });
 
-    it('should handle getYubikeyOtpTokenById', async function() {
+    it('should handle getYubikeyOtpTokenById', async function () {
       this.timeout(10000);
-      
+
       try {
         await client.userFactorApi.getYubikeyOtpTokenById({
           tokenId: 'some-token-id'
@@ -536,9 +536,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       }
     });
 
-    it('should handle uploadYubikeyOtpTokenSeed', async function() {
+    it('should handle uploadYubikeyOtpTokenSeed', async function () {
       this.timeout(10000);
-      
+
       try {
         await client.userFactorApi.uploadYubikeyOtpTokenSeed({
           uploadYubikeyOtpTokenSeedRequest: {
@@ -572,9 +572,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('Error handling and edge cases', () => {
-    it('should handle rate limiting (429)', async function() {
+    it('should handle rate limiting (429)', async function () {
       this.timeout(10000);
-      
+
       // This test documents the 429 response path but may not trigger it in normal testing
       try {
         await client.userFactorApi.listFactors({

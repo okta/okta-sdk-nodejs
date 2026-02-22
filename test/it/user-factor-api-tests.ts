@@ -3,11 +3,11 @@ import { UserFactorApiResponseProcessor } from '../../src/generated/apis/UserFac
 import { ResponseContext } from '../../src/types/generated';
 
 // Helper function to create mock response
-function createMockResponse(statusCode: number, body?: any, contentType: string = 'application/json') {
+function createMockResponse(statusCode: number, body?: any, contentType = 'application/json') {
   const headers: Record<string, string> = {
     'content-type': contentType
   };
-  
+
   return {
     httpStatusCode: statusCode,
     headers: headers,
@@ -488,8 +488,8 @@ describe('UserFactorApi Response Processors - Unit Tests', () => {
   describe('listSupportedSecurityQuestions', () => {
     it('should process 200 OK response with security questions', async () => {
       const mockQuestions = [
-        { question: "What is your favorite color?", questionText: "What is your favorite color?" },
-        { question: "What is your pet's name?", questionText: "What is your pet's name?" }
+        { question: 'What is your favorite color?', questionText: 'What is your favorite color?' },
+        { question: 'What is your pet\'s name?', questionText: 'What is your pet\'s name?' }
       ];
       const response = createMockResponse(200, mockQuestions);
       const result = await processor.listSupportedSecurityQuestions(response);

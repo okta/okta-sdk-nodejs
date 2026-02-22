@@ -47,7 +47,7 @@ describe('Authenticators API - Create tests', () => {
   it('should create a new authenticator', async () => {
     // Create a custom authenticator (this may not work in all orgs)
     // Most orgs have pre-created authenticators, so this test may be limited
-    
+
     // Try to create a custom app authenticator
     const authenticator: any = {
       key: 'okta_email',

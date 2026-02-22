@@ -30,7 +30,7 @@ describe('Authenticators API - Well-Known Configuration tests', () => {
   it('should get well-known app authenticator configuration', async () => {
     // This endpoint provides configuration for app authenticators
     // We need a valid OAuth client ID to test this
-    
+
     // Try with a sample OAuth client ID
     const testClientId = 'test-oauth-client-id';
 
@@ -50,7 +50,7 @@ describe('Authenticators API - Well-Known Configuration tests', () => {
   });
 
   it('should handle invalid OAuth client ID gracefully', async () => {
-    const invalidClientId = 'invalid-client-' + Date.now();
+    const invalidClientId = `invalid-client-${  Date.now()}`;
 
     try {
       await client.authenticatorApi.getWellKnownAppAuthenticatorConfiguration({

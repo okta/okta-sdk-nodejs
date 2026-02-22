@@ -29,9 +29,9 @@ describe('Authenticators API - Error Response Tests', () => {
 
   // Tests for activateAuthenticator response processor
   it('should handle 404 error when activating non-existent authenticator', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     try {
       await client.authenticatorApi.activateAuthenticator({authenticatorId: nonExistentId});
@@ -55,9 +55,9 @@ describe('Authenticators API - Error Response Tests', () => {
 
   // Tests for deactivateAuthenticator response processor
   it('should handle 404 error when deactivating non-existent authenticator', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     try {
       await client.authenticatorApi.deactivateAuthenticator({authenticatorId: nonExistentId});
@@ -215,9 +215,9 @@ describe('Authenticators API - Error Response Tests', () => {
 
   // Additional error scenario tests
   it('should handle error when activating authenticator method with non-existent authenticatorId', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     try {
       await client.authenticatorApi.activateAuthenticatorMethod({
@@ -232,9 +232,9 @@ describe('Authenticators API - Error Response Tests', () => {
   });
 
   it('should handle error when deactivating authenticator method with non-existent authenticatorId', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     try {
       await client.authenticatorApi.deactivateAuthenticatorMethod({
@@ -250,9 +250,9 @@ describe('Authenticators API - Error Response Tests', () => {
 
   // Tests for createCustomAAGUID response processor
   it('should handle 404 error when creating custom AAGUID with non-existent authenticator', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     const aaguid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       const r = Math.random() * 16 | 0;

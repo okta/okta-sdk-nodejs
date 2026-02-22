@@ -26,7 +26,7 @@ function createMockConfiguration() {
 }
 
 // Helper function to create mock response
-function createMockResponse(statusCode: number, body?: any, contentType: string = 'application/json') {
+function createMockResponse(statusCode: number, body?: any, contentType = 'application/json') {
   return {
     httpStatusCode: statusCode,
     headers: { 'content-type': contentType },

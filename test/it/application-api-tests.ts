@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { ApplicationApiResponseProcessor } from '../../src/generated/apis/ApplicationApi';
 
 // Helper function to create mock response objects
-function createMockResponse(statusCode: number, body?: any, contentType: string = 'application/json') {
+function createMockResponse(statusCode: number, body?: any, contentType = 'application/json') {
   return {
     httpStatusCode: statusCode,
     headers: { 'content-type': contentType },

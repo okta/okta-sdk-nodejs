@@ -36,9 +36,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('createAuthenticatorEnrollment', () => {
-    it('should create a phone authenticator enrollment', async function() {
+    it('should create a phone authenticator enrollment', async function () {
       this.timeout(10000);
-      
+
       try {
         phoneEnrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: createdUser.id,
@@ -95,9 +95,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('listAuthenticatorEnrollments', () => {
-    it('should list authenticator enrollments for a user', async function() {
+    it('should list authenticator enrollments for a user', async function () {
       this.timeout(10000);
-      
+
       try {
         const enrollments = await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
           userId: createdUser.id
@@ -111,9 +111,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should list enrollments with discloseIdentifiers parameter', async function() {
+    it('should list enrollments with discloseIdentifiers parameter', async function () {
       this.timeout(10000);
-      
+
       try {
         const enrollments = await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
           userId: createdUser.id,
@@ -150,9 +150,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('getAuthenticatorEnrollment', () => {
-    it('should retrieve a specific authenticator enrollment', async function() {
+    it('should retrieve a specific authenticator enrollment', async function () {
       this.timeout(10000);
-      
+
       if (!phoneEnrollment?.id) {
         console.log('Skipping test - no enrollment created');
         return;
@@ -171,9 +171,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should retrieve enrollment with discloseIdentifiers parameter', async function() {
+    it('should retrieve enrollment with discloseIdentifiers parameter', async function () {
       this.timeout(10000);
-      
+
       if (!phoneEnrollment?.id) {
         console.log('Skipping test - no enrollment created');
         return;
@@ -218,9 +218,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('createTacAuthenticatorEnrollment', () => {
-    it('should create a TAC authenticator enrollment', async function() {
+    it('should create a TAC authenticator enrollment', async function () {
       this.timeout(10000);
-      
+
       try {
         const tacEnrollment = await client.userAuthenticatorEnrollmentsApi.createTacAuthenticatorEnrollment({
           userId: createdUser.id,
@@ -275,9 +275,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   describe('deleteAuthenticatorEnrollment', () => {
     let enrollmentToDelete;
 
-    before(async function() {
+    before(async function () {
       this.timeout(10000);
-      
+
       // Try to create an enrollment to delete
       try {
         enrollmentToDelete = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
@@ -294,9 +294,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should delete an authenticator enrollment', async function() {
+    it('should delete an authenticator enrollment', async function () {
       this.timeout(10000);
-      
+
       if (!enrollmentToDelete?.id) {
         console.log('Skipping test - no enrollment to delete');
         return;
@@ -339,9 +339,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should handle 404 when deleting already deleted enrollment', async function() {
+    it('should handle 404 when deleting already deleted enrollment', async function () {
       this.timeout(10000);
-      
+
       if (!enrollmentToDelete?.id) {
         console.log('Skipping test - no enrollment was deleted');
         return;
@@ -360,9 +360,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('Error handling and edge cases', () => {
-    it('should handle rate limiting (429)', async function() {
+    it('should handle rate limiting (429)', async function () {
       this.timeout(10000);
-      
+
       // This test documents the 429 response path but may not trigger it in normal testing
       try {
         await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
@@ -414,9 +414,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should handle 2xx fallback responses for createAuthenticatorEnrollment', async function() {
+    it('should handle 2xx fallback responses for createAuthenticatorEnrollment', async function () {
       this.timeout(10000);
-      
+
       // This test covers the 2xx fallback path in response processor
       try {
         const enrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
@@ -428,7 +428,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
             }
           }
         });
-        
+
         // Any 2xx response should be handled
         if (enrollment) {
           expect(enrollment).to.be.an('object');
@@ -439,9 +439,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       }
     });
 
-    it('should handle 2xx fallback responses for deleteAuthenticatorEnrollment', async function() {
+    it('should handle 2xx fallback responses for deleteAuthenticatorEnrollment', async function () {
       this.timeout(10000);
-      
+
       // Create and delete to test 2xx fallback path
       try {
         const enrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
@@ -459,7 +459,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
             userId: createdUser.id,
             enrollmentId: enrollment.id
           });
-          
+
           // 2xx responses should be handled (typically 204 returns undefined)
           expect(result).to.be.undefined;
         }

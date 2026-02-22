@@ -83,9 +83,9 @@ describe('Authenticators API tests', () => {
   });
 
   it('should handle activating a non-existent authenticator', async () => {
-    const nonExistentId = 'aut' + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    const nonExistentId = `aut${  'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
       return Math.floor(Math.random() * 16).toString(16);
-    });
+    })}`;
 
     try {
       await client.authenticatorApi.activateAuthenticator({authenticatorId: nonExistentId});

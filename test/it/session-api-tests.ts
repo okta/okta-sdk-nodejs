@@ -9,7 +9,7 @@ describe('SessionApi Unit Tests - Response Processors', () => {
   });
 
   // Helper function to create mock response
-  const createMockResponse = (statusCode: number, bodyText: string, contentType: string = 'application/json') => {
+  const createMockResponse = (statusCode: number, bodyText: string, contentType = 'application/json') => {
     return {
       httpStatusCode: statusCode,
       headers: {

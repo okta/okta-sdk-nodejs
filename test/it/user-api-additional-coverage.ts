@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { UserApiResponseProcessor, UserApiRequestFactory } from '../../src/generated/apis/UserApi';
 
-function createMockResponse(statusCode: number, body: any, contentType: string = 'application/json') {
+function createMockResponse(statusCode: number, body: any, contentType = 'application/json') {
   return {
     httpStatusCode: statusCode,
     headers: { 'content-type': contentType },
@@ -24,7 +24,7 @@ describe('UserApi - Additional Coverage', () => {
   // forgotPassword - comprehensive tests
   describe('forgotPassword', () => {
     it('should handle 200 with complete response', async () => {
-      const mockBody = { 
+      const mockBody = {
         resetPasswordUrl: 'https://example.okta.com/reset',
         expiresAt: '2026-02-14T12:00:00.000Z'
       };
@@ -95,7 +95,7 @@ describe('UserApi - Additional Coverage', () => {
   // getIdentityProviderApplicationUser - comprehensive tests
   describe('getIdentityProviderApplicationUser', () => {
     it('should handle 200 with full user data', async () => {
-      const mockBody = { 
+      const mockBody = {
         id: 'idp123',
         externalId: 'ext456',
         created: '2026-01-01T00:00:00.000Z',
@@ -204,7 +204,7 @@ describe('UserApi - Additional Coverage', () => {
   // getUserGrant - comprehensive tests
   describe('getUserGrant', () => {
     it('should handle 200 with full grant details', async () => {
-      const mockBody = { 
+      const mockBody = {
         id: 'grant123',
         status: 'ACTIVE',
         created: '2026-01-01T00:00:00.000Z',
@@ -250,7 +250,7 @@ describe('UserApi - Additional Coverage', () => {
   // getUserRisk - comprehensive tests
   describe('getUserRisk', () => {
     it('should handle 200 with HIGH risk', async () => {
-      const mockBody = { 
+      const mockBody = {
         level: 'HIGH',
         reasons: ['suspicious_activity', 'location_anomaly'],
         lastUpdated: '2026-02-13T10:00:00.000Z'
@@ -300,7 +300,7 @@ describe('UserApi - Additional Coverage', () => {
   // linkUserToIdentityProvider - comprehensive tests
   describe('linkUserToIdentityProvider', () => {
     it('should handle 200 with successful link', async () => {
-      const mockBody = { 
+      const mockBody = {
         id: 'link123',
         externalId: 'ext789',
         idpId: 'idp456',
@@ -627,7 +627,7 @@ describe('UserApi - Additional Coverage', () => {
   // reactivateUser - comprehensive tests
   describe('reactivateUser', () => {
     it('should handle 200 with complete user data', async () => {
-      const mockBody = { 
+      const mockBody = {
         id: 'user123',
         status: 'ACTIVE',
         profile: { firstName: 'John', lastName: 'Doe', email: 'john@example.com' },
@@ -660,10 +660,10 @@ describe('UserApi - Additional Coverage', () => {
   // replaceUser - comprehensive tests
   describe('replaceUser', () => {
     it('should handle 200 with updated user', async () => {
-      const mockBody = { 
+      const mockBody = {
         id: 'user123',
         status: 'ACTIVE',
-        profile: { 
+        profile: {
           firstName: 'Jane',
           lastName: 'Smith',
           email: 'jane.smith@example.com',
@@ -707,7 +707,7 @@ describe('UserApi - Additional Coverage', () => {
   // replaceUserClassification - comprehensive tests
   describe('replaceUserClassification', () => {
     it('should handle 200 with classification update', async () => {
-      const mockBody = { 
+      const mockBody = {
         classification: 'HIGH_VALUE',
         updatedAt: '2026-02-13T11:00:00.000Z'
       };
