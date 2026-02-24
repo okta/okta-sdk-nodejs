@@ -7,19 +7,29 @@ function createMockConfiguration() {
     baseServer: {
       makeRequestContext: (path: string, method: string, vars?: any) => {
         return {
-          setHeaderParam: () => {},
-          setQueryParam: () => {},
-          setBody: () => {},
+          setHeaderParam: () => {
+            // no-op
+          },
+          setQueryParam: () => {
+            // no-op
+          },
+          setBody: () => {
+            // no-op
+          },
           getUrl: () => path
         };
       }
     },
     authMethods: {
       apiToken: {
-        applySecurityAuthentication: async () => {}
+        applySecurityAuthentication: async () => {
+          // no-op
+        }
       },
       oauth2: {
-        applySecurityAuthentication: async () => {}
+        applySecurityAuthentication: async () => {
+          // no-op
+        }
       }
     }
   };

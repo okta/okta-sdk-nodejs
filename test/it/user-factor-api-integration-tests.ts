@@ -44,10 +44,12 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should list all enrolled factors for a user', async function () {
       this.timeout(10000);
 
-      const factors = await client.userFactorApi.listFactors({
+      const factorsCollection = await client.userFactorApi.listFactors({
         userId: createdUser.id
       });
 
+      const factors: any[] = [];
+      await factorsCollection.each(factor => factors.push(factor));
       expect(factors).to.be.an('array');
     });
 
@@ -375,7 +377,19 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should unenroll a factor', async function () {
       this.timeout(10000);
 
-      // Create a factor to delete
+      // First unenroll the security question factor from the earlier test if it exists
+      if (securityQuestionFactor?.id) {
+        try {
+          await client.userFactorApi.unenrollFactor({
+            userId: createdUser.id,
+            factorId: securityQuestionFactor.id
+          });
+        } catch (err) {
+          // Factor may already be unenrolled
+        }
+      }
+
+      // Create a new security question factor to delete
       const factor = {
         factorType: 'question',
         provider: 'OKTA',

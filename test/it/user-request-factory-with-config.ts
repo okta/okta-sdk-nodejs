@@ -11,9 +11,15 @@ describe('UserApi Request Factory - With Config', () => {
       baseServer: {
         makeRequestContext: (path: string, method: string, vars?: any) => {
           return {
-            setHeaderParam: () => {},
-            setQueryParam: () => {},
-            setBody: () => {},
+            setHeaderParam: () => {
+              // no-op
+            },
+            setQueryParam: () => {
+              // no-op
+            },
+            setBody: () => {
+              // no-op
+            },
             getUrl: () => path,
             getHttpMethod: () => method
           };
@@ -21,10 +27,14 @@ describe('UserApi Request Factory - With Config', () => {
       },
       authMethods: {
         apiToken: {
-          applySecurityAuthentication: async () => {}
+          applySecurityAuthentication: async () => {
+            // no-op
+          }
         },
         oauth2: {
-          applySecurityAuthentication: async () => {}
+          applySecurityAuthentication: async () => {
+            // no-op
+          }
         }
       }
     };
@@ -49,7 +59,9 @@ describe('UserApi Request Factory - With Config', () => {
       mockConfig.authMethods.oauth2 = null;
       mockConfig.authMethods = {
         'default': {
-          applySecurityAuthentication: async () => {}
+          applySecurityAuthentication: async () => {
+            // no-op
+          }
         }
       };
       const context = await factory.endUserSessions(null, mockConfig);
@@ -113,7 +125,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.getUserClassification('user123', mockConfig);
       expect(context).to.exist;
@@ -146,7 +160,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.getUserRisk('user123', mockConfig);
       expect(context).to.exist;
@@ -243,7 +259,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.listUserBlocks('user123', mockConfig);
       expect(context).to.exist;
@@ -271,7 +289,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.listUserGroups('user123', mockConfig);
       expect(context).to.exist;
@@ -350,7 +370,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.revokeUserGrant('user123', 'grant456', mockConfig);
       expect(context).to.exist;
@@ -391,7 +413,9 @@ describe('UserApi Request Factory - With Config', () => {
 
     it('should execute with default auth', async () => {
       mockConfig.authMethods = {
-        'default': { applySecurityAuthentication: async () => {} }
+        'default': { applySecurityAuthentication: async () => {
+          // no-op
+        } }
       };
       const context = await factory.unlinkUserFromIdentityProvider('idp789', 'user101', mockConfig);
       expect(context).to.exist;
