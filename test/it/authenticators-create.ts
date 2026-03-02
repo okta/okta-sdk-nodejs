@@ -44,7 +44,7 @@ describe('Authenticators API - Create tests', () => {
     }
   });
 
-  it('should create a new authenticator', async () => {
+  it('should create a new authenticator', async function () {
     // Create a custom authenticator (this may not work in all orgs)
     // Most orgs have pre-created authenticators, so this test may be limited
 
@@ -68,9 +68,11 @@ describe('Authenticators API - Create tests', () => {
       expect(created).to.have.property('name');
       createdAuthenticatorId = created.id;
     } catch (error) {
-      // Creating authenticators may not be supported in all orgs
-      // Most orgs come with pre-configured authenticators that can't be created via API
-      console.log('Create authenticator not supported or failed:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
@@ -96,7 +98,7 @@ describe('Authenticators API - Create tests', () => {
     }
   });
 
-  it('should create authenticator with activate parameter as false', async () => {
+  it('should create authenticator with activate parameter as false', async function () {
     const authenticator: any = {
       key: 'okta_email',
       name: `Test Email Authenticator Inactive ${Date.now()}`,
@@ -115,11 +117,15 @@ describe('Authenticators API - Create tests', () => {
       expect(created).to.have.property('id');
       createdAuthenticatorId = created.id;
     } catch (error) {
-      console.log('Create authenticator with activate=false not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should create and activate an authenticator in one step', async () => {
+  it('should create and activate an authenticator in one step', async function () {
     const authenticator: any = {
       key: 'okta_email',
       name: `Test Activated Email Authenticator ${Date.now()}`,
@@ -142,7 +148,11 @@ describe('Authenticators API - Create tests', () => {
       }
       createdAuthenticatorId = created.id;
     } catch (error) {
-      console.log('Create and activate authenticator not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 });

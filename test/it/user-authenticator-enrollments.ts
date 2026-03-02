@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import { expect } from 'chai';
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorEnrollment, OktaApiError } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -18,8 +18,12 @@ const client = new Client({
 describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   let createdUser;
   let phoneEnrollment;
+  let phoneAuthenticatorId: string;
+  let tacAuthenticatorId: string;
 
-  before(async () => {
+  before(async function () {
+    this.timeout(30000);
+
     // Create a test user
     const newUser = {
       profile: utils.getMockProfile('user-authenticator-enrollments'),
@@ -29,6 +33,17 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
     };
     await utils.cleanup(client, newUser);
     createdUser = await client.userApi.createUser({ body: newUser });
+
+    // Look up real authenticator IDs
+    const authenticators = await client.authenticatorApi.listAuthenticators();
+    await authenticators.each(async (auth) => {
+      if (auth.type === 'phone' && !phoneAuthenticatorId) {
+        phoneAuthenticatorId = auth.id;
+      }
+      if ((auth.key === 'custom_otp' || auth.type === 'security_key') && !tacAuthenticatorId) {
+        tacAuthenticatorId = auth.id;
+      }
+    });
   });
 
   after(async () => {
@@ -39,31 +54,45 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
     it('should create a phone authenticator enrollment', async function () {
       this.timeout(10000);
 
+      if (!phoneAuthenticatorId) {
+        this.skip();
+        return;
+      }
+
       try {
         phoneEnrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: createdUser.id,
           authenticator: {
-            authenticatorId: 'phone-authenticator-id',
+            authenticatorId: phoneAuthenticatorId,
             profile: {
-              phoneNumber: '+1 555 0100'
+              phoneNumber: '+14155550100'
             }
           }
         });
 
-        expect(phoneEnrollment).to.be.an('object');
-        expect(phoneEnrollment.id).to.exist;
+        expect(phoneEnrollment).to.be.instanceof(AuthenticatorEnrollment);
+        expect(phoneEnrollment.id).to.be.a('string');
+        expect(phoneEnrollment.type).to.be.a('string');
       } catch (err) {
-        // May fail if phone authenticator is not enabled in org
-        console.log('Phone enrollment creation failed (may not be supported):', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
-    it('should handle 400 Bad Request for invalid phone number', async () => {
+    it('should handle 400 Bad Request for invalid phone number', async function () {
+      if (!phoneAuthenticatorId) {
+        this.skip();
+        return;
+      }
+
       try {
         await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: createdUser.id,
           authenticator: {
-            authenticatorId: 'phone-authenticator-id',
+            authenticatorId: phoneAuthenticatorId,
             profile: {
               phoneNumber: 'invalid-phone'
             }
@@ -71,8 +100,8 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         });
         expect.fail('Should have thrown error for invalid phone number');
       } catch (err: any) {
-        expect(err).to.exist;
-        // Error expected for invalid input
+        expect(err).to.be.instanceof(OktaApiError);
+        expect((err as OktaApiError).errorCode).to.be.a('string');
       }
     });
 
@@ -81,9 +110,9 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: 'non-existent-user-id',
           authenticator: {
-            authenticatorId: 'phone-authenticator-id',
+            authenticatorId: phoneAuthenticatorId || 'phone-placeholder',
             profile: {
-              phoneNumber: '+1 555 0100'
+              phoneNumber: '+14155550100'
             }
           }
         });
@@ -106,8 +135,11 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(enrollments).to.exist;
         // User may have 0 or more enrollments
       } catch (err) {
-        // May fail if API is not accessible
-        console.log('List enrollments failed:', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -122,7 +154,11 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
 
         expect(enrollments).to.exist;
       } catch (err) {
-        console.log('List enrollments with discloseIdentifiers failed:', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -154,7 +190,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       this.timeout(10000);
 
       if (!phoneEnrollment?.id) {
-        console.log('Skipping test - no enrollment created');
+        this.skip();
         return;
       }
 
@@ -164,10 +200,15 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           enrollmentId: phoneEnrollment.id
         });
 
-        expect(enrollment).to.be.an('object');
+        expect(enrollment).to.be.instanceof(AuthenticatorEnrollment);
         expect(enrollment.id).to.equal(phoneEnrollment.id);
+        expect(enrollment.type).to.be.a('string');
       } catch (err) {
-        console.log('Get enrollment failed:', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -175,7 +216,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       this.timeout(10000);
 
       if (!phoneEnrollment?.id) {
-        console.log('Skipping test - no enrollment created');
+        this.skip();
         return;
       }
 
@@ -186,9 +227,14 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           discloseIdentifiers: ['phone']
         });
 
-        expect(enrollment).to.be.an('object');
+        expect(enrollment).to.be.instanceof(AuthenticatorEnrollment);
+        expect(enrollment.id).to.be.a('string');
       } catch (err) {
-        console.log('Get enrollment with discloseIdentifiers failed:', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -221,11 +267,16 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
     it('should create a TAC authenticator enrollment', async function () {
       this.timeout(10000);
 
+      if (!tacAuthenticatorId) {
+        this.skip();
+        return;
+      }
+
       try {
         const tacEnrollment = await client.userAuthenticatorEnrollmentsApi.createTacAuthenticatorEnrollment({
           userId: createdUser.id,
           authenticator: {
-            authenticatorId: 'tac-authenticator-id',
+            authenticatorId: tacAuthenticatorId,
             profile: {
               multiUse: false,
               ttl: '60'
@@ -233,11 +284,15 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           }
         });
 
-        expect(tacEnrollment).to.be.an('object');
-        expect(tacEnrollment.id).to.exist;
+        expect(tacEnrollment).to.exist;
+        expect(tacEnrollment.id).to.be.a('string');
+        expect(tacEnrollment.type).to.be.a('string');
       } catch (err) {
-        // May fail if TAC authenticator is not enabled in org
-        console.log('TAC enrollment creation failed (may not be supported):', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -261,7 +316,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         await client.userAuthenticatorEnrollmentsApi.createTacAuthenticatorEnrollment({
           userId: 'non-existent-user-id',
           authenticator: {
-            authenticatorId: 'tac-authenticator-id',
+            authenticatorId: tacAuthenticatorId || 'tac-placeholder',
             profile: {}
           }
         });
@@ -278,19 +333,23 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
     before(async function () {
       this.timeout(10000);
 
+      if (!phoneAuthenticatorId) {
+        return;
+      }
+
       // Try to create an enrollment to delete
       try {
         enrollmentToDelete = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: createdUser.id,
           authenticator: {
-            authenticatorId: 'phone-authenticator-id',
+            authenticatorId: phoneAuthenticatorId,
             profile: {
-              phoneNumber: '+1 555 0101'
+              phoneNumber: '+14155550101'
             }
           }
         });
       } catch (err) {
-        console.log('Could not create enrollment for deletion test:', err.message);
+        // Enrollment creation may not be supported in this org
       }
     });
 
@@ -298,7 +357,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       this.timeout(10000);
 
       if (!enrollmentToDelete?.id) {
-        console.log('Skipping test - no enrollment to delete');
+        this.skip();
         return;
       }
 
@@ -311,7 +370,11 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         // 204 returns void/undefined
         expect(result).to.be.undefined;
       } catch (err) {
-        console.log('Delete enrollment failed:', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -343,7 +406,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       this.timeout(10000);
 
       if (!enrollmentToDelete?.id) {
-        console.log('Skipping test - no enrollment was deleted');
+        this.skip();
         return;
       }
 
@@ -360,22 +423,6 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
   });
 
   describe('Error handling and edge cases', () => {
-    it('should handle rate limiting (429)', async function () {
-      this.timeout(10000);
-
-      // This test documents the 429 response path but may not trigger it in normal testing
-      try {
-        await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
-          userId: createdUser.id
-        });
-      } catch (err: any) {
-        if (err.code === 429) {
-          expect(err).to.exist;
-          expect(err.message).to.include('Too Many Requests');
-        }
-      }
-    });
-
     it('should handle missing required userId parameter', async () => {
       try {
         await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
@@ -411,60 +458,6 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       } catch (err: any) {
         expect(err).to.exist;
         expect(err.name).to.equal('RequiredError');
-      }
-    });
-
-    it('should handle 2xx fallback responses for createAuthenticatorEnrollment', async function () {
-      this.timeout(10000);
-
-      // This test covers the 2xx fallback path in response processor
-      try {
-        const enrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
-          userId: createdUser.id,
-          authenticator: {
-            authenticatorId: 'phone-authenticator-id',
-            profile: {
-              phoneNumber: '+1 555 0102'
-            }
-          }
-        });
-
-        // Any 2xx response should be handled
-        if (enrollment) {
-          expect(enrollment).to.be.an('object');
-        }
-      } catch (err) {
-        // Expected if phone authenticator not supported
-        console.log('2xx fallback test failed (expected if not supported):', err.message);
-      }
-    });
-
-    it('should handle 2xx fallback responses for deleteAuthenticatorEnrollment', async function () {
-      this.timeout(10000);
-
-      // Create and delete to test 2xx fallback path
-      try {
-        const enrollment = await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
-          userId: createdUser.id,
-          authenticator: {
-            authenticatorId: 'phone-authenticator-id',
-            profile: {
-              phoneNumber: '+1 555 0103'
-            }
-          }
-        });
-
-        if (enrollment?.id) {
-          const result = await client.userAuthenticatorEnrollmentsApi.deleteAuthenticatorEnrollment({
-            userId: createdUser.id,
-            enrollmentId: enrollment.id
-          });
-
-          // 2xx responses should be handled (typically 204 returns undefined)
-          expect(result).to.be.undefined;
-        }
-      } catch (err) {
-        console.log('2xx fallback delete test failed:', err.message);
       }
     });
   });

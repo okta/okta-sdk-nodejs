@@ -62,7 +62,7 @@ describe('Authenticators API - Methods tests', () => {
     }
   });
 
-  it('should activate and deactivate authenticator method', async () => {
+  it('should activate and deactivate authenticator method', async function () {
     // Find an authenticator with methods that can be activated/deactivated
     const authenticators = await client.authenticatorApi.listAuthenticators();
     let phoneAuthenticator;
@@ -118,14 +118,17 @@ describe('Authenticators API - Methods tests', () => {
             expect(deactivated.status).to.equal('INACTIVE');
           }
         } catch (error) {
-          // Some methods may not support activation/deactivation
-          console.log('Method activation/deactivation not supported:', error.message);
+          const status = (error as any).status || (error as any).statusCode;
+          if (status === 403 || status === 404 || status === 501 || status === 405) {
+            this.skip();
+          }
+          throw error;
         }
       }
     }
   });
 
-  it('should replace authenticator method settings', async () => {
+  it('should replace authenticator method settings', async function () {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
     const methods: any[] = [];
     await methodsCollection.each(method => methods.push(method));
@@ -140,8 +143,11 @@ describe('Authenticators API - Methods tests', () => {
         });
         expect(updatedMethod).to.have.property('type', method.type);
       } catch (error) {
-        // Some methods may not support replacement
-        console.log('Method replacement not supported:', error.message);
+        const status = (error as any).status || (error as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw error;
       }
     }
   });

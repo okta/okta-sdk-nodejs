@@ -59,20 +59,16 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should create a custom AAGUID', async () => {
+  it('should create a custom AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
-    // Generate a valid UUID
-    const aaguid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    // Use a well-known YubiKey 5 NFC AAGUID from FIDO Alliance Metadata
+    const aaguid = '2fc0579f-8113-47ea-b116-bb5a8db9202a';
     const customAAGUID = {
       aaguid: aaguid,
-      name: `Test AAGUID ${Date.now()}`,
       authenticatorCharacteristics: {
         fipsCompliant: false,
         hardwareProtected: true,
@@ -90,13 +86,17 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(created).to.have.property('name');
       createdAAGUID = created.aaguid;
     } catch (error) {
-      // Feature may not be available in all orgs
-      console.log('Create AAGUID not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should list all custom AAGUIDs', async () => {
+  it('should list all custom AAGUIDs', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
@@ -107,22 +107,20 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(aaguids).to.be.an('array');
     } catch (error) {
-      // Feature may not be available in all orgs
-      console.log('List AAGUIDs not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 403 || status === 404 || status === 501 || status === 405) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should get a specific custom AAGUID', async () => {
+  it('should get a specific custom AAGUID', async function () {
     if (!webauthnAuthenticatorId || !createdAAGUID) {
-      // Create one first
-      const aaguid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
+      // Create one first using a well-known YubiKey 5Ci AAGUID
+      const aaguid = 'c5ef55ff-ad9a-4b9f-b580-adebafe026d0';
       const customAAGUID = {
         aaguid: aaguid,
-        name: `Test AAGUID ${Date.now()}`,
         authenticatorCharacteristics: {
           fipsCompliant: false,
           hardwareProtected: true,
@@ -137,8 +135,11 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
         });
         createdAAGUID = created.aaguid;
       } catch (error) {
-        console.log('Setup failed:', error.message);
-        return;
+        const status = (error as any).status || (error as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+          this.skip();
+        }
+        throw error;
       }
     }
 
@@ -150,7 +151,11 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(aaguid).to.have.property('aaguid', createdAAGUID);
     } catch (error) {
-      console.log('Get AAGUID not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
@@ -212,8 +217,9 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should handle getting a non-existent custom AAGUID', async () => {
+  it('should handle getting a non-existent custom AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
@@ -297,8 +303,9 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should replace a custom AAGUID', async () => {
+  it('should replace a custom AAGUID', async function () {
     if (!webauthnAuthenticatorId || !createdAAGUID) {
+      this.skip();
       return;
     }
 
@@ -321,12 +328,17 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(replaced).to.have.property('name');
       expect(replaced.name).to.include('Updated AAGUID');
     } catch (error) {
-      console.log('Replace AAGUID not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 403 || status === 404 || status === 501 || status === 405) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should handle replacing a non-existent custom AAGUID', async () => {
+  it('should handle replacing a non-existent custom AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
@@ -420,8 +432,9 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should update (patch) a custom AAGUID', async () => {
+  it('should update (patch) a custom AAGUID', async function () {
     if (!webauthnAuthenticatorId || !createdAAGUID) {
+      this.skip();
       return;
     }
 
@@ -439,12 +452,17 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(patched).to.have.property('name');
       expect(patched.name).to.include('Patched AAGUID');
     } catch (error) {
-      console.log('Update AAGUID not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 403 || status === 404 || status === 501 || status === 405) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should handle updating a non-existent custom AAGUID', async () => {
+  it('should handle updating a non-existent custom AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
@@ -471,20 +489,16 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should delete a custom AAGUID', async () => {
+  it('should delete a custom AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
-    // Create an AAGUID to delete
-    const aaguid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    // Create an AAGUID to delete using a well-known YubiKey Bio FIDO Edition AAGUID
+    const aaguid = 'd8522d9f-575b-4866-88a9-ba99fa02f35b';
     const customAAGUID = {
       aaguid: aaguid,
-      name: `Test AAGUID to Delete ${Date.now()}`,
       authenticatorCharacteristics: {
         fipsCompliant: false,
         hardwareProtected: true,
@@ -516,12 +530,17 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
         expect(error).to.exist;
       }
     } catch (error) {
-      console.log('Delete AAGUID not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
-  it('should verify RP ID domain', async () => {
+  it('should verify RP ID domain', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 
@@ -533,8 +552,11 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(verification).to.exist;
     } catch (error) {
-      // Feature may not be available or domain verification may fail
-      console.log('RP ID domain verification not supported:', error.message);
+      const status = (error as any).status || (error as any).statusCode;
+      if (status === 400 || status === 403 || status === 404 || status === 405 || status === 500 || status === 501) {
+        this.skip();
+      }
+      throw error;
     }
   });
 
@@ -596,8 +618,9 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
     }
   });
 
-  it('should handle deletion of non-existent AAGUID', async () => {
+  it('should handle deletion of non-existent AAGUID', async function () {
     if (!webauthnAuthenticatorId) {
+      this.skip();
       return;
     }
 

@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import { expect } from 'chai';
-import { Client, DefaultRequestExecutor, User } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, User, UserFactor, UserFactorSecurityQuestion, UserFactorVerifyResponse, OktaApiError } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -83,6 +83,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       });
 
       expect(supportedFactors).to.exist;
+      expect(supportedFactors.each).to.be.a('function');
     });
 
     it('should handle 403 Forbidden for unauthorized access', async () => {
@@ -115,6 +116,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       });
 
       expect(questions).to.exist;
+      expect(questions.each).to.be.a('function');
     });
 
     it('should handle 403 Forbidden for unauthorized access', async () => {
@@ -156,9 +158,11 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         body: factor as any
       });
 
-      expect(securityQuestionFactor).to.exist;
-      expect(securityQuestionFactor.id).to.exist;
+      expect(securityQuestionFactor).to.be.instanceof(UserFactor);
+      expect(securityQuestionFactor).to.be.instanceof(UserFactorSecurityQuestion);
+      expect(securityQuestionFactor.id).to.be.a('string');
       expect(securityQuestionFactor.factorType).to.equal('question');
+      expect(securityQuestionFactor.provider).to.equal('OKTA');
     });
 
     it('should get an enrolled factor by ID', async function () {
@@ -173,8 +177,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         factorId: securityQuestionFactor.id
       });
 
-      expect(factor).to.exist;
+      expect(factor).to.be.instanceof(UserFactor);
       expect(factor.id).to.equal(securityQuestionFactor.id);
+      expect(factor.factorType).to.equal('question');
     });
 
     it('should handle 400 Bad Request for invalid factor', async () => {
@@ -188,7 +193,8 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         });
         expect.fail('Should have thrown error');
       } catch (err: any) {
-        expect(err).to.exist;
+        expect(err).to.be.instanceof(OktaApiError);
+        expect((err as OktaApiError).errorCode).to.be.a('string');
       }
     });
 
@@ -235,10 +241,14 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           }
         });
 
-        expect(response).to.exist;
+        expect(response).to.be.instanceof(UserFactorVerifyResponse);
+        expect(response.factorResult).to.be.a('string');
       } catch (err) {
-        // May fail if factor is not in correct state
-        console.log('Verify factor failed (expected in some states):', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -271,39 +281,56 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should handle resend for SMS factor', async function () {
       this.timeout(10000);
 
+      let smsFactor;
       // Try to enroll SMS factor first
       try {
-        const smsFactor = await client.userFactorApi.enrollFactor({
+        smsFactor = await client.userFactorApi.enrollFactor({
           userId: createdUser.id,
           body: {
             factorType: 'sms',
             provider: 'OKTA',
             profile: {
-              phoneNumber: '+1 555 0100'
+              phoneNumber: '+14155550100'
             }
           }
         });
+      } catch (err) {
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+          this.skip();
+        }
+        throw err;
+      }
 
-        if (smsFactor?.id) {
-          try {
-            const response = await client.userFactorApi.resendEnrollFactor({
-              userId: createdUser.id,
-              factorId: smsFactor.id,
-              resendUserFactor: {} as any
-            });
-            expect(response).to.exist;
-          } catch (err) {
-            console.log('Resend failed (expected if SMS not supported):', err.message);
-          }
+      if (!smsFactor?.id) {
+        this.skip();
+        return;
+      }
 
-          // Clean up
+      try {
+        const response = await client.userFactorApi.resendEnrollFactor({
+          userId: createdUser.id,
+          factorId: smsFactor.id,
+          resendUserFactor: {} as any
+        });
+        expect(response).to.exist;
+        expect(response.factorType).to.be.a('string');
+      } catch (err) {
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
+      } finally {
+        // Clean up
+        try {
           await client.userFactorApi.unenrollFactor({
             userId: createdUser.id,
             factorId: smsFactor.id
           });
+        } catch (_) {
+          // cleanup best-effort
         }
-      } catch (err) {
-        console.log('SMS enrollment failed (expected if not supported):', err.message);
       }
     });
 
@@ -404,8 +431,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         body: factor as any
       });
 
-      expect(createdFactor).to.exist;
-      expect(createdFactor.id).to.exist;
+      expect(createdFactor).to.be.instanceof(UserFactor);
+      expect(createdFactor.id).to.be.a('string');
+      expect(createdFactor.factorType).to.equal('question');
 
       const response = await client.userFactorApi.unenrollFactor({
         userId: createdUser.id,
@@ -423,7 +451,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         });
         expect.fail('Should have thrown 404');
       } catch (err: any) {
-        expect(err).to.exist;
+        expect(err).to.be.instanceof(OktaApiError);
       }
     });
 
@@ -454,37 +482,50 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should handle activation request', async function () {
       this.timeout(10000);
 
+      let totpFactor;
       // Try to enroll a TOTP factor that requires activation
       try {
-        const totpFactor = await client.userFactorApi.enrollFactor({
+        totpFactor = await client.userFactorApi.enrollFactor({
           userId: createdUser.id,
           body: {
             factorType: 'token:software:totp',
             provider: 'OKTA'
           }
         });
+      } catch (err) {
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
+          this.skip();
+        }
+        throw err;
+      }
 
-        if (totpFactor?.id) {
-          try {
-            await client.userFactorApi.activateFactor({
-              userId: createdUser.id,
-              factorId: totpFactor.id,
-              body: {
-                passCode: '123456'
-              }
-            });
-          } catch (err) {
-            console.log('Activation failed (expected without valid passcode):', err.message);
+      if (!totpFactor?.id) {
+        this.skip();
+        return;
+      }
+
+      try {
+        await client.userFactorApi.activateFactor({
+          userId: createdUser.id,
+          factorId: totpFactor.id,
+          body: {
+            passCode: '123456'
           }
-
-          // Clean up
+        });
+      } catch (err) {
+        // Expected to fail without a valid passcode
+        expect(err).to.exist;
+      } finally {
+        // Clean up
+        try {
           await client.userFactorApi.unenrollFactor({
             userId: createdUser.id,
             factorId: totpFactor.id
           });
+        } catch (_) {
+          // cleanup best-effort
         }
-      } catch (err) {
-        console.log('TOTP enrollment failed (expected if not supported):', err.message);
       }
     });
 
@@ -533,7 +574,11 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         const tokens = await client.userFactorApi.listYubikeyOtpTokens({});
         expect(tokens).to.exist;
       } catch (err) {
-        console.log('List Yubikey tokens failed (expected if not supported):', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 403 || status === 404 || status === 501 || status === 405) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -562,7 +607,11 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           } as any
         });
       } catch (err) {
-        console.log('Upload Yubikey seed failed (expected if not supported):', err.message);
+        const status = (err as any).status || (err as any).statusCode;
+        if (status === 400 || status === 403 || status === 404 || status === 405 || status === 500 || status === 501) {
+          this.skip();
+        }
+        throw err;
       }
     });
 
@@ -586,22 +635,6 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
   });
 
   describe('Error handling and edge cases', () => {
-    it('should handle rate limiting (429)', async function () {
-      this.timeout(10000);
-
-      // This test documents the 429 response path but may not trigger it in normal testing
-      try {
-        await client.userFactorApi.listFactors({
-          userId: createdUser.id
-        });
-      } catch (err: any) {
-        if (err.statusCode === 429) {
-          expect(err).to.exist;
-          expect(err.message).to.include('Too Many Requests');
-        }
-      }
-    });
-
     it('should handle missing required userId parameter', async () => {
       try {
         await client.userFactorApi.listFactors({
