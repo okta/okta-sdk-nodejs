@@ -39,7 +39,7 @@ export declare class ProtocolSaml {
   /**
     * SAML 2.0 protocol
     */
-  'type'?: ProtocolSamlTypeEnum;
+  'type': ProtocolSamlTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

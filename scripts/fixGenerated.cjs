@@ -114,6 +114,72 @@ const fixEscapings = () => {
     .map(result => result.file);
 };
 
+/**
+ * Fix discriminated union types to make TypeScript properly narrow types based on discriminator property.
+ *
+ * The issue: OpenAPI Generator has a bug where it generates the 'type' discriminator property as
+ * optional ('type'?:) even when the OpenAPI spec explicitly lists 'type' in the schema's 'required'
+ * array. This prevents TypeScript from using it as a discriminant for union type narrowing.
+ *
+ * Example — without this fix:
+ *   class ProtocolOidc { 'type'?: ProtocolOidcTypeEnum; ... }   // optional → no narrowing
+ *
+ * Example — after this fix:
+ *   class ProtocolOidc { 'type': ProtocolOidcTypeEnum; ... }    // required → TypeScript can narrow
+ *
+ * Scope: Only targets schemas where ALL of the following are true in the OpenAPI spec:
+ *   1. 'type' is listed in the schema's 'required' array.
+ *   2. The 'type' property has exactly one enum value (i.e. it is a literal discriminator tag).
+ *
+ * This ensures we never accidentally break schemas where 'type' is legitimately optional
+ * (e.g. CreateGroupRuleRequest, SamlAttributeStatement, AuthorizationServerPolicyRule, etc.).
+ *
+ * @param {object} spec      - Parsed management.yaml spec object
+ * @param {object} oauthSpec - Parsed oauth.yaml spec object
+ */
+const fixDiscriminatedUnions = (spec, oauthSpec) => {
+  // Build the set of class names that should have 'type' made required.
+  const classesNeedingRequiredType = new Set();
+
+  for (const specDoc of [spec, oauthSpec]) {
+    if (!specDoc?.components?.schemas) continue;
+    for (const schemaName in specDoc.components.schemas) {
+      const schema = specDoc.components.schemas[schemaName];
+      const required = schema.required || [];
+      const typeProperty = (schema.properties || {}).type;
+      // Only fix schemas where 'type' is explicitly required and is a single-value
+      // enum (the hallmark of a discriminator literal tag).
+      if (required.includes('type') && typeProperty?.enum?.length === 1) {
+        classesNeedingRequiredType.add(schemaName);
+      }
+    }
+  }
+
+  if (classesNeedingRequiredType.size === 0) {
+    return [];
+  }
+
+  // Target only the specific model files that need the fix — do NOT apply globally.
+  // These files only exist during build (after build:generate, before build:emitTypes).
+  const targetFiles = [...classesNeedingRequiredType].map(
+    name => `src/generated/models/${name}.ts`
+  );
+
+  const result = replaceInFileSync({
+    files: targetFiles,
+    from: /^(\s+)'(type)'\?: (\w+TypeEnum);$/gm,
+    to: (_match, indent, propName, enumType) => `${indent}'${propName}': ${enumType};`,
+    // allowEmptyPaths prevents ENOENT if a target file doesn't exist
+    // (e.g. when build:fixGenerated is run without build:generate, or
+    // if a future spec change removes one of the target schemas).
+    allowEmptyPaths: true,
+  });
+
+  return result
+    .filter(r => r.hasChanged)
+    .map(r => r.file);
+};
+
 const fixRespondAsync = () => {
   const res = replaceInFileSync({
     files: 'src/generated/**/*.ts',
@@ -282,6 +348,11 @@ async function main() {
     // fix some unnecessary html escapings like &#39; for '
     const fixEscapingsResult = fixEscapings();
     console.log('Fix escapings =', fixEscapingsResult);
+
+    // fix discriminated union types to enable proper type narrowing
+    // Pass both specs so the function can target only schemas where 'type' is truly required.
+    const fixDiscriminatedUnionsResult = fixDiscriminatedUnions(spec, oauthSpec);
+    console.log('Fix discriminated unions =', fixDiscriminatedUnionsResult);
 
   } catch (error) {
     console.error('Error occurred:', error);

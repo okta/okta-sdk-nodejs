@@ -35,7 +35,7 @@ export declare class ProtocolOAuth {
   /**
     * OAuth 2.0 Authorization Code flow
     */
-  'type'?: ProtocolOAuthTypeEnum;
+  'type': ProtocolOAuthTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

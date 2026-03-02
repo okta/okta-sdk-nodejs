@@ -33,7 +33,7 @@ export declare class ProtocolMtls {
   /**
     * Mutual TLS
     */
-  'type'?: ProtocolMtlsTypeEnum;
+  'type': ProtocolMtlsTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

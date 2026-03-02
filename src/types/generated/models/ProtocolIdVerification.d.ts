@@ -35,7 +35,7 @@ export declare class ProtocolIdVerification {
   /**
     * ID verification protocol
     */
-  'type'?: ProtocolIdVerificationTypeEnum;
+  'type': ProtocolIdVerificationTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
