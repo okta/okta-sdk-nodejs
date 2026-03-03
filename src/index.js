@@ -17,12 +17,12 @@ const { Collection } = require('./collection');
 const MemoryStore = require('./memory-store');
 const OktaApiError = require('./api-error');
 
-module.exports.Client = Client
-module.exports.RequestExecutor = RequestExecutor
-module.exports.DefaultRequestExecutor = DefaultRequestExecutor
-module.exports.Collection = Collection
-module.exports.MemoryStore = MemoryStore
-module.exports.OktaApiError = OktaApiError
+module.exports.Client = Client;
+module.exports.RequestExecutor = RequestExecutor;
+module.exports.DefaultRequestExecutor = DefaultRequestExecutor;
+module.exports.Collection = Collection;
+module.exports.MemoryStore = MemoryStore;
+module.exports.OktaApiError = OktaApiError;
 module.exports = Object.assign(
   module.exports,
   require('./generated'),
