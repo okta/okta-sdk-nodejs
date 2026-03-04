@@ -1073,7 +1073,6 @@ Version 8.0 introduces several new API endpoints:
 - **OAuth2ResourceServerCredentialsKeysApi** - Manage OAuth2 resource server credentials
 - **OktaManagedUserAccountApi** - Manage Okta managed user accounts
 - **OperationsIntegrationApi** - Handle operations integrations
-- **UnconfirmedUsersApi** - Manage unconfirmed users
 - **UserAuthenticatorEnrollmentsApi** - Manage user authenticator enrollments
 
 #### API Enhancements
@@ -1094,8 +1093,6 @@ const client = new okta.Client({
 // Example: Use the new AgentConnectionsApi
 const connections = await client.agentConnectionsApi.listAgentConnections({ poolId: 'poolId' });
 
-// Example: Use the new UnconfirmedUsersApi
-const unconfirmedUsers = await client.unconfirmedUsersApi.listUnconfirmedUsers();
 ```
 
 ### From 6.x to 7.0
