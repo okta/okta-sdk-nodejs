@@ -64,11 +64,14 @@ describe('IdP Protocol - discriminated union type narrowing (PR #472)', () => {
 
     it('should return an IdP with protocol.type === "OIDC"', () => {
       expect(idp.protocol).to.exist;
-      expect(idp.protocol!.type).to.equal('OIDC');
+      expect(idp.protocol?.type).to.equal('OIDC');
     });
 
     it('should narrow protocol to ProtocolOidc and expose OIDC-specific fields', () => {
-      const protocol = idp.protocol!;
+      const protocol = idp.protocol;
+      if (!protocol) {
+        throw new Error('protocol is undefined');
+      }
       // Runtime narrowing - mirrors compile-time discriminated union narrowing.
       if (protocol.type === 'OIDC') {
         // TypeScript narrows `protocol` to ProtocolOidc here (verified in type test).
@@ -84,7 +87,7 @@ describe('IdP Protocol - discriminated union type narrowing (PR #472)', () => {
 
     it('protocol.type should be a string (not undefined)', async () => {
       const fetched = await client.identityProviderApi.getIdentityProvider({ idpId: idp.id });
-      expect(typeof fetched.protocol!.type).to.equal('string');
+      expect(typeof fetched.protocol?.type).to.equal('string');
     });
   });
 
@@ -106,11 +109,14 @@ describe('IdP Protocol - discriminated union type narrowing (PR #472)', () => {
 
     it('should return an IdP with protocol.type === "OAUTH2"', () => {
       expect(idp.protocol).to.exist;
-      expect(idp.protocol!.type).to.equal('OAUTH2');
+      expect(idp.protocol?.type).to.equal('OAUTH2');
     });
 
     it('should narrow protocol to ProtocolOAuth and expose OAuth-specific fields', () => {
-      const protocol = idp.protocol!;
+      const protocol = idp.protocol;
+      if (!protocol) {
+        throw new Error('protocol is undefined');
+      }
       if (protocol.type === 'OAUTH2') {
         const oauthProtocol = protocol as ProtocolOAuth;
         expect(oauthProtocol.type).to.equal('OAUTH2');
@@ -123,7 +129,7 @@ describe('IdP Protocol - discriminated union type narrowing (PR #472)', () => {
 
     it('protocol.type should be a string (not undefined)', async () => {
       const fetched = await client.identityProviderApi.getIdentityProvider({ idpId: idp.id });
-      expect(typeof fetched.protocol!.type).to.equal('string');
+      expect(typeof fetched.protocol?.type).to.equal('string');
     });
   });
 
@@ -134,8 +140,8 @@ describe('IdP Protocol - discriminated union type narrowing (PR #472)', () => {
       const undefinedTypeIdps: string[] = [];
 
       await collection.each((idp: IdentityProvider) => {
-        if (idp.protocol && idp.protocol.type == null) {
-          undefinedTypeIdps.push(idp.id!);
+        if (idp.protocol && (idp.protocol.type === null || idp.protocol.type === undefined)) {
+          undefinedTypeIdps.push(idp.id ?? '');
         }
       });
 
