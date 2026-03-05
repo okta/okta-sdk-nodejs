@@ -46,7 +46,7 @@ export declare class ProtocolOidc {
   /**
     * OpenID Connect Authorization Code flow
     */
-  'type'?: ProtocolOidcTypeEnum;
+  'type': ProtocolOidcTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
