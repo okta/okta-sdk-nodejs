@@ -25,6 +25,7 @@
 import { ApplicationAccessibility } from './../models/ApplicationAccessibility';
 import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
+import { ApplicationLinks } from './../models/ApplicationLinks';
 import { ApplicationVisibility } from './../models/ApplicationVisibility';
 import { SchemeApplicationCredentials } from './../models/SchemeApplicationCredentials';
 import { ZscalerbyzApplicationSettings } from './../models/ZscalerbyzApplicationSettings';
@@ -35,9 +36,17 @@ export declare class ZscalerbyzApplication {
   'accessibility'?: ApplicationAccessibility;
   'credentials'?: SchemeApplicationCredentials;
   /**
+    * Unique ID for the app instance
+    */
+  'id'?: string;
+  /**
     * User-defined display name for app
     */
   'label': string;
+  /**
+    * Timestamp when the application object was last updated
+    */
+  'lastUpdated'?: Date;
   'licensing'?: ApplicationLicensing;
   'name': ZscalerbyzApplicationNameEnum;
   /**
@@ -49,6 +58,7 @@ export declare class ZscalerbyzApplication {
   'signOnMode'?: ZscalerbyzApplicationSignOnModeEnum;
   'status'?: ApplicationLifecycleStatus;
   'visibility'?: ApplicationVisibility;
+  '_links'?: ApplicationLinks;
   'settings': ZscalerbyzApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

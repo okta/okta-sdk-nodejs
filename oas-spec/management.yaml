@@ -73377,8 +73377,17 @@ components:
           $ref: '#/components/schemas/ApplicationAccessibility'
         credentials:
           $ref: '#/components/schemas/SchemeApplicationCredentials'
+        id:
+          type: string
+          readOnly: true
+          description: Unique ID for the app instance
         label:
           $ref: '#/components/schemas/ApplicationLabel'
+        lastUpdated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Timestamp when the application object was last updated
         licensing:
           $ref: '#/components/schemas/ApplicationLicensing'
         name:
@@ -73397,6 +73406,8 @@ components:
           $ref: '#/components/schemas/ApplicationLifecycleStatus'
         visibility:
           $ref: '#/components/schemas/ApplicationVisibility'
+        _links:
+          $ref: '#/components/schemas/ApplicationLinks'
     OINSaml11ApplicationSettingsSignOn:
       title: SAML 1.1 settings
       description: Contains SAML 1.1 sign-on mode attributes
