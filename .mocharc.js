@@ -15,18 +15,14 @@ if (process.env.TEST_TYPE === 'it') {
   config = {
     ...config,
     reporter: 'mocha-multi-reporters',
-    reporterOptions: [
-      'configFile=.mocha-multi-it.json',
-    ],
+    reporterOptions: 'configFile=.mocha-multi-it.json',
     retries: 2,
   };
 } else if (process.env.TEST_TYPE === 'unit') {
   config = {
     ...config,
     reporter: 'mocha-multi-reporters',
-    reporterOptions: [
-      'configFile=.mocha-multi-unit.json',
-    ],
+    reporterOptions: 'configFile=.mocha-multi-unit.json',
   };
 }
 
