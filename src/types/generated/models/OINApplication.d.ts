@@ -25,15 +25,24 @@
 import { ApplicationAccessibility } from './../models/ApplicationAccessibility';
 import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
+import { ApplicationLinks } from './../models/ApplicationLinks';
 import { ApplicationVisibility } from './../models/ApplicationVisibility';
 import { SchemeApplicationCredentials } from './../models/SchemeApplicationCredentials';
 export declare class OINApplication {
   'accessibility'?: ApplicationAccessibility;
   'credentials'?: SchemeApplicationCredentials;
   /**
+    * Unique ID for the app instance
+    */
+  'id'?: string;
+  /**
     * User-defined display name for app
     */
   'label'?: string;
+  /**
+    * Timestamp when the application object was last updated
+    */
+  'lastUpdated'?: Date;
   'licensing'?: ApplicationLicensing;
   /**
     * The key name for the OIN app definition
@@ -51,6 +60,7 @@ export declare class OINApplication {
   'signOnMode'?: string;
   'status'?: ApplicationLifecycleStatus;
   'visibility'?: ApplicationVisibility;
+  '_links'?: ApplicationLinks;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -25,6 +25,7 @@
 import { ApplicationAccessibility } from './../models/ApplicationAccessibility';
 import { ApplicationLicensing } from './../models/ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './../models/ApplicationLifecycleStatus';
+import { ApplicationLinks } from './../models/ApplicationLinks';
 import { ApplicationVisibility } from './../models/ApplicationVisibility';
 import { Office365ApplicationSettings } from './../models/Office365ApplicationSettings';
 import { SchemeApplicationCredentials } from './../models/SchemeApplicationCredentials';
@@ -35,9 +36,17 @@ export declare class Office365Application {
   'accessibility'?: ApplicationAccessibility;
   'credentials'?: SchemeApplicationCredentials;
   /**
+    * Unique ID for the app instance
+    */
+  'id'?: string;
+  /**
     * User-defined display name for app
     */
   'label': string;
+  /**
+    * Timestamp when the application object was last updated
+    */
+  'lastUpdated'?: Date;
   'licensing'?: ApplicationLicensing;
   'name': Office365ApplicationNameEnum;
   /**
@@ -49,6 +58,7 @@ export declare class Office365Application {
   'signOnMode'?: Office365ApplicationSignOnModeEnum;
   'status'?: ApplicationLifecycleStatus;
   'visibility'?: ApplicationVisibility;
+  '_links'?: ApplicationLinks;
   'settings': Office365ApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
