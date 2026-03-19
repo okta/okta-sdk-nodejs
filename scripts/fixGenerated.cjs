@@ -256,6 +256,7 @@ const fixApplicationDiscriminator = () => {
     'salesforce': 'SalesforceApplication',
     'slack': 'SlackApplication',
     'trendmicroapexoneservice': 'TrendMicroApexOneServiceApplication',
+    'zoomus': 'ZoomUsApplication',
     'zscaler_byz': 'ZscalerbyzApplication'
   };
 

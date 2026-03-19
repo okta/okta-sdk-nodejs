@@ -5687,6 +5687,7 @@ let typeMap = {
     '__salesforce': SalesforceApplication_1.SalesforceApplication,
     '__slack': SlackApplication_1.SlackApplication,
     '__trendmicroapexoneservice': TrendMicroApexOneServiceApplication_1.TrendMicroApexOneServiceApplication,
+    '__zoomus': ZoomUsApplication_1.ZoomUsApplication,
     '__zscaler_byz': ZscalerbyzApplication_1.ZscalerbyzApplication,
     '__SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
     '__WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
