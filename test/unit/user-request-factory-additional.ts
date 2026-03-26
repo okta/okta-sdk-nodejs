@@ -588,6 +588,40 @@ describe('UserApi Request Factory - Additional Coverage', () => {
     });
   });
 
+  describe('generateResetPasswordToken', () => {
+    it('should not throw RequiredError when provider is omitted', async () => {
+      try {
+        await factory.generateResetPasswordToken('user123', true);
+      } catch (error: any) {
+        expect(error.name).to.not.equal('RequiredError');
+      }
+    });
+
+    it('should not throw RequiredError when provider is FEDERATION', async () => {
+      try {
+        await factory.generateResetPasswordToken('user123', false, undefined, 'FEDERATION' as any);
+      } catch (error: any) {
+        expect(error.name).to.not.equal('RequiredError');
+      }
+    });
+
+    it('should not throw RequiredError when provider is undefined', async () => {
+      try {
+        await factory.generateResetPasswordToken('user123', true, false, undefined);
+      } catch (error: any) {
+        expect(error.name).to.not.equal('RequiredError');
+      }
+    });
+
+    it('should not throw RequiredError with all parameters set', async () => {
+      try {
+        await factory.generateResetPasswordToken('user123', false, true, 'FEDERATION' as any);
+      } catch (error: any) {
+        expect(error.name).to.not.equal('RequiredError');
+      }
+    });
+  });
+
   describe('revokeGrantsForUserAndClient', () => {
     it('should throw RequiredError when userId is null', async () => {
       try {

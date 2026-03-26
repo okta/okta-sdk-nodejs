@@ -6367,7 +6367,7 @@ class ObjectUserApi {
       * @param param the request object
       */
     generateResetPasswordToken(param, options) {
-        return this.api.generateResetPasswordToken(param.userId, param.sendEmail, param.revokeSessions, options).toPromise();
+        return this.api.generateResetPasswordToken(param.userId, param.sendEmail, param.revokeSessions, param.provider, options).toPromise();
     }
     /**
       * Retrieves a linked identity provider (IdP) user by ID

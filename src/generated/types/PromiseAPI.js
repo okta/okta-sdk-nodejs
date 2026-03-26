@@ -7656,9 +7656,10 @@ class PromiseUserApi {
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param sendEmail
       * @param revokeSessions Revokes all user sessions, except for the current session, if set to &#x60;true&#x60;
+      * @param provider Specifies the authentication provider to use when converting a user to a federated user. Use &#x60;FEDERATION&#x60; to convert an Okta-credentialed user to a federated user. After conversion, the user can\&#39;t directly sign in with a password and must authenticate through a trusted identity provider.
       */
-  generateResetPasswordToken(userId, sendEmail, revokeSessions, _options) {
-    const result = this.api.generateResetPasswordToken(userId, sendEmail, revokeSessions, _options);
+  generateResetPasswordToken(userId, sendEmail, revokeSessions, provider, _options) {
+    const result = this.api.generateResetPasswordToken(userId, sendEmail, revokeSessions, provider, _options);
     return result.toPromise();
   }
   /**

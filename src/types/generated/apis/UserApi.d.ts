@@ -15,6 +15,7 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { AssignedAppLink } from '../models/AssignedAppLink';
+import { AuthenticationProviderType } from '../models/AuthenticationProviderType';
 import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
@@ -140,8 +141,9 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
      * @param sendEmail
      * @param revokeSessions Revokes all user sessions, except for the current session, if set to &#x60;true&#x60;
+     * @param provider Specifies the authentication provider to use when converting a user to a federated user. Use &#x60;FEDERATION&#x60; to convert an Okta-credentialed user to a federated user. After conversion, the user can\&#39;t directly sign in with a password and must authenticate through a trusted identity provider.
      */
-  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, _options?: Configuration): Promise<RequestContext>;
+  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, provider?: AuthenticationProviderType, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a linked identity provider (IdP) user by ID
      * Retrieve a user for IdP

@@ -174,6 +174,15 @@ describe('UserApiRequestFactory', () => {
         expect(error.message).to.include('userId');
       }
     });
+
+    it('should throw error when sendEmail is null', async () => {
+      try {
+        await factory.generateResetPasswordToken('user123', null as any, false);
+        expect.fail('Should have thrown an error');
+      } catch (error) {
+        expect(error.message).to.include('sendEmail');
+      }
+    });
   });
 
   describe('getIdentityProviderApplicationUser', () => {

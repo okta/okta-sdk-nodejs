@@ -53,6 +53,7 @@ import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
 import { AuthSettings } from '../models/AuthSettings';
+import { AuthenticationProviderType } from '../models/AuthenticationProviderType';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
 import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
@@ -14263,6 +14264,12 @@ export interface UserApiGenerateResetPasswordTokenRequest {
       * @memberof UserApigenerateResetPasswordToken
       */
     revokeSessions?: boolean;
+    /**
+      * Specifies the authentication provider to use when converting a user to a federated user. Use &#x60;FEDERATION&#x60; to convert an Okta-credentialed user to a federated user. After conversion, the user can\&#39;t directly sign in with a password and must authenticate through a trusted identity provider.
+      * @type AuthenticationProviderType
+      * @memberof UserApigenerateResetPasswordToken
+      */
+    provider?: AuthenticationProviderType;
 }
 export interface UserApiGetIdentityProviderApplicationUserRequest {
     /**

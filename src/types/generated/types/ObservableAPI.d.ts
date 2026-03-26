@@ -54,6 +54,7 @@ import { AssignedAppLink } from '../models/AssignedAppLink';
 import { AssociatedServerMediated } from '../models/AssociatedServerMediated';
 import { AttackProtectionAuthenticatorSettings } from '../models/AttackProtectionAuthenticatorSettings';
 import { AuthSettings } from '../models/AuthSettings';
+import { AuthenticationProviderType } from '../models/AuthenticationProviderType';
 import { AuthenticatorBase } from '../models/AuthenticatorBase';
 import { AuthenticatorEnrollment } from '../models/AuthenticatorEnrollment';
 import { AuthenticatorEnrollmentCreateRequest } from '../models/AuthenticatorEnrollmentCreateRequest';
@@ -5852,8 +5853,9 @@ export declare class ObservableUserApi {
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param sendEmail
       * @param revokeSessions Revokes all user sessions, except for the current session, if set to &#x60;true&#x60;
+      * @param provider Specifies the authentication provider to use when converting a user to a federated user. Use &#x60;FEDERATION&#x60; to convert an Okta-credentialed user to a federated user. After conversion, the user can\&#39;t directly sign in with a password and must authenticate through a trusted identity provider.
       */
-  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, _options?: Configuration): Observable<ResetPasswordToken>;
+  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, provider?: AuthenticationProviderType, _options?: Configuration): Observable<ResetPasswordToken>;
   /**
       * Retrieves a linked identity provider (IdP) user by ID
       * Retrieve a user for IdP
