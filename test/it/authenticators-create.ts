@@ -1,4 +1,4 @@
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorBase } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 
@@ -51,7 +51,7 @@ describe('Authenticators API - Create tests', () => {
     // Most orgs have pre-created authenticators, so this test may be limited
 
     // Try to create a custom app authenticator
-    const authenticator = {
+    const authenticator: AuthenticatorBase = {
       key: 'okta_email',
       name: `Test Email Authenticator ${Date.now()}`,
       type: 'email',
@@ -101,7 +101,7 @@ describe('Authenticators API - Create tests', () => {
   });
 
   it('should create authenticator with activate parameter as false', async function () {
-    const authenticator = {
+    const authenticator: AuthenticatorBase = {
       key: 'okta_email',
       name: `Test Email Authenticator Inactive ${Date.now()}`,
       type: 'email',
@@ -128,7 +128,7 @@ describe('Authenticators API - Create tests', () => {
   });
 
   it('should create and activate an authenticator in one step', async function () {
-    const authenticator = {
+    const authenticator: AuthenticatorBase = {
       key: 'okta_email',
       name: `Test Activated Email Authenticator ${Date.now()}`,
       type: 'email',
