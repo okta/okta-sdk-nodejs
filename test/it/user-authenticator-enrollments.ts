@@ -433,7 +433,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect.fail('Should have thrown RequiredError');
       } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
 
@@ -446,7 +446,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect.fail('Should have thrown RequiredError');
       } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
 
@@ -459,7 +459,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect.fail('Should have thrown RequiredError');
       } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
   });
