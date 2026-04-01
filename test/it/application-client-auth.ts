@@ -1,9 +1,7 @@
-import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
   OpenIdConnectApplication,
-  OAuth2ClientSecret,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 

@@ -1,7 +1,8 @@
 import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
-import { faker } from '@faker-js/faker';
+
+type HttpError = { status?: number; statusCode?: number };
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -86,7 +87,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(created).to.have.property('name');
       createdAAGUID = created.aaguid;
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
@@ -107,7 +108,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(aaguids).to.be.an('array');
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 403 || status === 404 || status === 501 || status === 405) {
         this.skip();
       }
@@ -135,7 +136,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
         });
         createdAAGUID = created.aaguid;
       } catch (error) {
-        const status = (error as any).status || (error as any).statusCode;
+        const status = (error as HttpError).status || (error as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
           this.skip();
         }
@@ -151,7 +152,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(aaguid).to.have.property('aaguid', createdAAGUID);
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
@@ -328,7 +329,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(replaced).to.have.property('name');
       expect(replaced.name).to.include('Updated AAGUID');
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 403 || status === 404 || status === 501 || status === 405) {
         this.skip();
       }
@@ -452,7 +453,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
       expect(patched).to.have.property('name');
       expect(patched.name).to.include('Patched AAGUID');
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 403 || status === 404 || status === 501 || status === 405) {
         this.skip();
       }
@@ -530,7 +531,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
         expect(error).to.exist;
       }
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
@@ -552,7 +553,7 @@ describe('Authenticators API - WebAuthn AAGUID tests', () => {
 
       expect(verification).to.exist;
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 500 || status === 501) {
         this.skip();
       }

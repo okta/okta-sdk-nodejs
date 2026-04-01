@@ -1,6 +1,8 @@
 import utils = require('../utils');
 import { expect } from 'chai';
-import { Client, DefaultRequestExecutor, User, UserFactor, UserFactorSecurityQuestion, UserFactorVerifyResponse, OktaApiError } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, User, UserFactor, UserFactorSecurityQuestion, UserFactorVerifyResponse, OktaApiError, ResendUserFactor, UploadYubikeyOtpTokenSeedRequest } from '@okta/okta-sdk-nodejs';
+
+type HttpError = { status?: number; statusCode?: number };
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -48,7 +50,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         userId: createdUser.id
       });
 
-      const factors: any[] = [];
+      const factors: UserFactor[] = [];
       await factorsCollection.each(factor => factors.push(factor));
       expect(factors).to.be.an('array');
     });
@@ -58,7 +60,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listFactors({
           userId: 'invalid-user-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -68,7 +70,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listFactors({
           userId: '00u000000000000000000'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -91,7 +93,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listSupportedFactors({
           userId: 'invalid-user-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -101,7 +103,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listSupportedFactors({
           userId: '00u000000000000000000'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -124,7 +126,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listSupportedSecurityQuestions({
           userId: 'invalid-user-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -134,7 +136,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.listSupportedSecurityQuestions({
           userId: '00u000000000000000000'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -155,7 +157,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
 
       securityQuestionFactor = await client.userFactorApi.enrollFactor({
         userId: createdUser.id,
-        body: factor as any
+        body: factor as UserFactor
       });
 
       expect(securityQuestionFactor).to.be.instanceof(UserFactor);
@@ -189,10 +191,10 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           body: {
             factorType: 'invalid',
             provider: 'OKTA'
-          } as any
+          } as UserFactor
         });
         expect.fail('Should have thrown error');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.be.instanceof(OktaApiError);
         expect((err as OktaApiError).errorCode).to.be.a('string');
       }
@@ -207,7 +209,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
             provider: 'OKTA'
           }
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -218,7 +220,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           userId: createdUser.id,
           factorId: 'non-existent-factor-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -244,7 +246,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         expect(response).to.be.instanceof(UserFactorVerifyResponse);
         expect(response.factorResult).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -259,7 +261,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'some-factor-id',
           body: {}
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -271,7 +273,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'non-existent-factor-id',
           body: {}
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -295,7 +297,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           }
         });
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
           this.skip();
         }
@@ -311,12 +313,12 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         const response = await client.userFactorApi.resendEnrollFactor({
           userId: createdUser.id,
           factorId: smsFactor.id,
-          resendUserFactor: {} as any
+          resendUserFactor: {} as ResendUserFactor
         });
         expect(response).to.exist;
         expect(response.factorType).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -339,9 +341,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.resendEnrollFactor({
           userId: 'invalid-user-id',
           factorId: 'some-factor-id',
-          resendUserFactor: {} as any
+          resendUserFactor: {} as ResendUserFactor
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -351,9 +353,9 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.resendEnrollFactor({
           userId: createdUser.id,
           factorId: 'non-existent-factor-id',
-          resendUserFactor: {} as any
+          resendUserFactor: {} as ResendUserFactor
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -369,7 +371,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'some-factor-id',
           transactionId: 'some-transaction-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Expected to fail without valid transaction
       }
@@ -382,7 +384,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'some-factor-id',
           transactionId: 'some-transaction-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -394,7 +396,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'factor-id',
           transactionId: 'non-existent-transaction'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -428,7 +430,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
 
       const createdFactor = await client.userFactorApi.enrollFactor({
         userId: createdUser.id,
-        body: factor as any
+        body: factor as UserFactor
       });
 
       expect(createdFactor).to.be.instanceof(UserFactor);
@@ -450,7 +452,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: createdFactor.id
         });
         expect.fail('Should have thrown 404');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.be.instanceof(OktaApiError);
       }
     });
@@ -461,7 +463,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           userId: 'invalid-user-id',
           factorId: 'some-factor-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -472,7 +474,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           userId: createdUser.id,
           factorId: 'non-existent-factor-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -493,7 +495,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           }
         });
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
           this.skip();
         }
@@ -536,7 +538,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'some-factor-id',
           body: {}
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -548,7 +550,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'some-factor-id',
           body: {}
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -560,7 +562,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           factorId: 'non-existent-factor-id',
           body: {}
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -574,7 +576,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         const tokens = await client.userFactorApi.listYubikeyOtpTokens({});
         expect(tokens).to.exist;
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -589,7 +591,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.getYubikeyOtpTokenById({
           tokenId: 'some-token-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Expected to fail without valid token
       }
@@ -604,10 +606,10 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
             privateId: 'some-id',
             publicId: 'some-public-id',
             secretKey: 'some-secret'
-          } as any
+          } as UploadYubikeyOtpTokenSeedRequest
         });
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 500 || status === 501) {
           this.skip();
         }
@@ -618,7 +620,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should handle 403 Forbidden for Yubikey operations', async () => {
       try {
         await client.userFactorApi.listYubikeyOtpTokens({});
-      } catch (err: any) {
+      } catch (err: unknown) {
         // May succeed or fail depending on permissions
       }
     });
@@ -628,7 +630,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.getYubikeyOtpTokenById({
           tokenId: 'non-existent-token'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -638,10 +640,10 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
     it('should handle missing required userId parameter', async () => {
       try {
         await client.userFactorApi.listFactors({
-          userId: null as any
+          userId: null as unknown as string
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -650,10 +652,10 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       try {
         await client.userFactorApi.getFactor({
           userId: createdUser.id,
-          factorId: null as any
+          factorId: null as unknown as string
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });
@@ -662,10 +664,10 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
       try {
         await client.userFactorApi.enrollFactor({
           userId: createdUser.id,
-          body: null as any
+          body: null as unknown as UserFactor
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
       }
     });

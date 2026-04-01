@@ -1,6 +1,6 @@
 import utils = require('../utils');
 import { expect } from 'chai';
-import { Client, DefaultRequestExecutor, Application } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Application, AppUserAssignRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -56,7 +56,7 @@ describe('ApplicationApi Integration Tests', () => {
         }
       };
 
-      createdApp = await client.applicationApi.createApplication({ application: app as any });
+      createdApp = await client.applicationApi.createApplication({ application: app as Application });
 
       expect(createdApp).to.exist;
       expect(createdApp.id).to.exist;
@@ -255,7 +255,7 @@ describe('ApplicationApi Integration Tests', () => {
         }
       };
 
-      testApp = await client.applicationApi.createApplication({ application: app as any });
+      testApp = await client.applicationApi.createApplication({ application: app as Application });
     });
 
     after(async function () {
@@ -303,7 +303,7 @@ describe('ApplicationApi Integration Tests', () => {
 
         const assignedUser = await client.applicationApi.assignUserToApplication({
           appId: testApp.id,
-          appUser: appUser as any
+          appUser: appUser as AppUserAssignRequest
         });
 
         expect(assignedUser).to.exist;
@@ -440,7 +440,7 @@ describe('ApplicationApi Integration Tests', () => {
         }
       };
 
-      testApp = await client.applicationApi.createApplication({ application: app as any });
+      testApp = await client.applicationApi.createApplication({ application: app as Application });
 
       // Create a test group
       const newGroup = {
