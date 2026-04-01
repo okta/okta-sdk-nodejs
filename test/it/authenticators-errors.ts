@@ -1,4 +1,4 @@
-import { Client, DefaultRequestExecutor, AuthenticatorBase, AuthenticatorMethodBase, AuthenticatorMethodType, AuthenticatorMethodTypeWebAuthn } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorBase, AuthenticatorMethodBase, AuthenticatorMethodType, AuthenticatorMethodTypeWebAuthn, CustomAAGUIDCreateRequestObject } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 
@@ -84,7 +84,7 @@ describe('Authenticators API - Error Response Tests', () => {
       key: 'invalid_key_that_does_not_exist',
       name: 'Invalid Authenticator',
       type: 'invalid_type'
-    };
+    } as unknown as AuthenticatorBase;
 
     try {
       await client.authenticatorApi.createAuthenticator({
@@ -331,7 +331,7 @@ describe('Authenticators API - Error Response Tests', () => {
       const incompleteAAGUID = {
         name: `Incomplete AAGUID ${Date.now()}`
         // Missing aaguid and authenticatorCharacteristics
-      };
+      } as unknown as CustomAAGUIDCreateRequestObject;
 
       try {
         await client.authenticatorApi.createCustomAAGUID({
