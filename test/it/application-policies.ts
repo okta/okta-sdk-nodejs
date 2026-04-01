@@ -44,7 +44,17 @@ describe('ApplicationPoliciesApi', () => {
       await client.applicationApi.deleteApplication({appId: application.id});
     }
     if (policy) {
-      await client.policyApi.deactivatePolicy({policyId: policy.id});
+      try {
+        await client.policyApi.deactivatePolicy({policyId: policy.id});
+      } catch (err) {
+        // Some policy types (e.g. Okta:SignOn) cannot be deactivated via API (returns 400).
+        // Only swallow the error in that case; re-throw anything unexpected.
+        const status = (err as { status?: number; statusCode?: number }).status
+          ?? (err as { status?: number; statusCode?: number }).statusCode;
+        if (status !== 400) {
+          throw err;
+        }
+      }
       await client.policyApi.deletePolicy({policyId: policy.id});
     }
   });
