@@ -191,7 +191,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
           body: {
             factorType: 'invalid',
             provider: 'OKTA'
-          } as UserFactor
+          } as unknown as UserFactor
         });
         expect.fail('Should have thrown error');
       } catch (err: unknown) {
