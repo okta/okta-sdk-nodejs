@@ -8,6 +8,8 @@ import {
 import utils = require('../utils');
 import faker = require('@faker-js/faker');
 
+type HttpError = { status?: number; statusCode?: number };
+
 const orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const client = new Client({
   orgUrl: orgUrl,
@@ -44,18 +46,21 @@ describe('ApplicationPoliciesApi', () => {
       await client.applicationApi.deleteApplication({appId: application.id});
     }
     if (policy) {
+      let deactivated = false;
       try {
         await client.policyApi.deactivatePolicy({policyId: policy.id});
+        deactivated = true;
       } catch (err) {
         // Some policy types (e.g. Okta:SignOn) cannot be deactivated via API (returns 400).
         // Only swallow the error in that case; re-throw anything unexpected.
-        const status = (err as { status?: number; statusCode?: number }).status
-          ?? (err as { status?: number; statusCode?: number }).statusCode;
+        const status = (err as HttpError).status ?? (err as HttpError).statusCode;
         if (status !== 400) {
           throw err;
         }
       }
-      await client.policyApi.deletePolicy({policyId: policy.id});
+      if (deactivated) {
+        await client.policyApi.deletePolicy({policyId: policy.id});
+      }
     }
   });
 

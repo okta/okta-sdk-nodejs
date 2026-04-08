@@ -313,7 +313,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         const response = await client.userFactorApi.resendEnrollFactor({
           userId: createdUser.id,
           factorId: smsFactor.id,
-          resendUserFactor: {} as ResendUserFactor
+          resendUserFactor: {} as unknown as ResendUserFactor
         });
         expect(response).to.exist;
         expect(response.factorType).to.be.a('string');
@@ -341,7 +341,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.resendEnrollFactor({
           userId: 'invalid-user-id',
           factorId: 'some-factor-id',
-          resendUserFactor: {} as ResendUserFactor
+          resendUserFactor: {} as unknown as ResendUserFactor
         });
       } catch (err: unknown) {
         expect(err).to.exist;
@@ -353,7 +353,7 @@ describe('UserFactorApi Integration Tests - Additional Coverage', () => {
         await client.userFactorApi.resendEnrollFactor({
           userId: createdUser.id,
           factorId: 'non-existent-factor-id',
-          resendUserFactor: {} as ResendUserFactor
+          resendUserFactor: {} as unknown as ResendUserFactor
         });
       } catch (err: unknown) {
         expect(err).to.exist;

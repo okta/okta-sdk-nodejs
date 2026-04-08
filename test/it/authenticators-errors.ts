@@ -607,7 +607,7 @@ describe('Authenticators API - Error Response Tests', () => {
           authenticatorId,
           authenticator: {
             // Invalid: missing required fields
-          } as AuthenticatorBase
+          } as unknown as AuthenticatorBase
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -634,7 +634,7 @@ describe('Authenticators API - Error Response Tests', () => {
           methodType: 'webauthn',
           authenticatorMethodBase: {
             // Invalid: missing required fields
-          } as AuthenticatorMethodBase
+          } as unknown as AuthenticatorMethodBase
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
