@@ -1,4 +1,4 @@
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorBase, AuthenticatorMethodBase, AuthenticatorMethodType, AuthenticatorMethodTypeWebAuthn, CustomAAGUIDCreateRequestObject } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 
@@ -80,11 +80,11 @@ describe('Authenticators API - Error Response Tests', () => {
 
   // Tests for createAuthenticator response processor
   it('should handle 400 error when creating authenticator with invalid data', async () => {
-    const invalidAuthenticator: any = {
+    const invalidAuthenticator = {
       key: 'invalid_key_that_does_not_exist',
       name: 'Invalid Authenticator',
       type: 'invalid_type'
-    };
+    } as unknown as AuthenticatorBase;
 
     try {
       await client.authenticatorApi.createAuthenticator({
@@ -98,7 +98,7 @@ describe('Authenticators API - Error Response Tests', () => {
   });
 
   it('should handle error when creating authenticator with missing required fields', async () => {
-    const incompleteAuthenticator: any = {
+    const incompleteAuthenticator = {
       name: 'Incomplete Authenticator'
       // Missing key and type
     };
@@ -129,7 +129,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.activateAuthenticatorMethod({
           authenticatorId,
-          methodType: 'non_existent_method' as any
+          methodType: 'non_existent_method' as unknown as AuthenticatorMethodType
         });
         expect.fail('Should have thrown a 404 error');
       } catch (error) {
@@ -154,7 +154,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.activateAuthenticatorMethod({
           authenticatorId,
-          methodType: 'invalid-method-format-!!!' as any
+          methodType: 'invalid-method-format-!!!' as unknown as AuthenticatorMethodType
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -179,7 +179,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.deactivateAuthenticatorMethod({
           authenticatorId,
-          methodType: 'non_existent_method' as any
+          methodType: 'non_existent_method' as unknown as AuthenticatorMethodType
         });
         expect.fail('Should have thrown a 404 error');
       } catch (error) {
@@ -203,7 +203,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.deactivateAuthenticatorMethod({
           authenticatorId,
-          methodType: 'invalid-method-format-!!!' as any
+          methodType: 'invalid-method-format-!!!' as unknown as AuthenticatorMethodType
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -328,10 +328,10 @@ describe('Authenticators API - Error Response Tests', () => {
     });
 
     if (webauthnAuthenticatorId) {
-      const incompleteAAGUID: any = {
+      const incompleteAAGUID = {
         name: `Incomplete AAGUID ${Date.now()}`
         // Missing aaguid and authenticatorCharacteristics
-      };
+      } as unknown as CustomAAGUIDCreateRequestObject;
 
       try {
         await client.authenticatorApi.createCustomAAGUID({
@@ -479,7 +479,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.getAuthenticatorMethod({
           authenticatorId,
-          methodType: 'invalid_method_type' as any
+          methodType: 'invalid_method_type' as unknown as AuthenticatorMethodType
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -607,7 +607,7 @@ describe('Authenticators API - Error Response Tests', () => {
           authenticatorId,
           authenticator: {
             // Invalid: missing required fields
-          } as any
+          } as unknown as AuthenticatorBase
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -634,7 +634,7 @@ describe('Authenticators API - Error Response Tests', () => {
           methodType: 'webauthn',
           authenticatorMethodBase: {
             // Invalid: missing required fields
-          } as any
+          } as unknown as AuthenticatorMethodBase
         });
         expect.fail('Should have thrown an error');
       } catch (error) {
@@ -698,7 +698,7 @@ describe('Authenticators API - Error Response Tests', () => {
       try {
         await client.authenticatorApi.verifyRpIdDomain({
           authenticatorId: webauthnAuthenticatorId,
-          webAuthnMethodType: 'invalid_method' as any
+          webAuthnMethodType: 'invalid_method' as unknown as AuthenticatorMethodTypeWebAuthn
         });
         expect.fail('Should have thrown an error');
       } catch (error) {

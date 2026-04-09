@@ -1,6 +1,8 @@
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorMethodBase } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
+
+type HttpError = { status?: number; statusCode?: number };
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -41,7 +43,7 @@ describe('Authenticators API - Methods tests', () => {
 
   it('should list authenticator methods', async () => {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
-    const methods: any[] = [];
+    const methods: AuthenticatorMethodBase[] = [];
     await methodsCollection.each(method => methods.push(method));
     expect(methods).to.be.an('array');
     expect(methods.length).to.be.greaterThan(0);
@@ -49,7 +51,7 @@ describe('Authenticators API - Methods tests', () => {
 
   it('should get a specific authenticator method', async () => {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
-    const methods: any[] = [];
+    const methods: AuthenticatorMethodBase[] = [];
     await methodsCollection.each(method => methods.push(method));
 
     if (methods.length > 0) {
@@ -78,7 +80,7 @@ describe('Authenticators API - Methods tests', () => {
         authenticatorId: phoneAuthenticator.id
       });
 
-      const methods: any[] = [];
+      const methods: AuthenticatorMethodBase[] = [];
       await methodsCollection.each(method => methods.push(method));
 
       // Find a method that can be toggled
@@ -118,7 +120,7 @@ describe('Authenticators API - Methods tests', () => {
             expect(deactivated.status).to.equal('INACTIVE');
           }
         } catch (error) {
-          const status = (error as any).status || (error as any).statusCode;
+          const status = (error as HttpError).status || (error as HttpError).statusCode;
           if (status === 403 || status === 404 || status === 501 || status === 405) {
             this.skip();
           }
@@ -130,7 +132,7 @@ describe('Authenticators API - Methods tests', () => {
 
   it('should replace authenticator method settings', async function () {
     const methodsCollection = await client.authenticatorApi.listAuthenticatorMethods({ authenticatorId });
-    const methods: any[] = [];
+    const methods: AuthenticatorMethodBase[] = [];
     await methodsCollection.each(method => methods.push(method));
 
     if (methods.length > 0) {
@@ -143,7 +145,7 @@ describe('Authenticators API - Methods tests', () => {
         });
         expect(updatedMethod).to.have.property('type', method.type);
       } catch (error) {
-        const status = (error as any).status || (error as any).statusCode;
+        const status = (error as HttpError).status || (error as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }

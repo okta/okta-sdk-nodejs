@@ -1,6 +1,8 @@
 import utils = require('../utils');
 import { expect } from 'chai';
-import { Client, DefaultRequestExecutor, AuthenticatorEnrollment, OktaApiError } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorEnrollment, OktaApiError, AuthenticatorEnrollmentCreateRequest } from '@okta/okta-sdk-nodejs';
+
+type HttpError = { status?: number; statusCode?: number };
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -74,7 +76,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(phoneEnrollment.id).to.be.a('string');
         expect(phoneEnrollment.type).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
           this.skip();
         }
@@ -99,7 +101,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           }
         });
         expect.fail('Should have thrown error for invalid phone number');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.be.instanceof(OktaApiError);
         expect((err as OktaApiError).errorCode).to.be.a('string');
       }
@@ -116,7 +118,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
             }
           }
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Forbidden or Not Found expected
       }
@@ -135,7 +137,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(enrollments).to.exist;
         // User may have 0 or more enrollments
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -154,7 +156,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
 
         expect(enrollments).to.exist;
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -167,7 +169,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
           userId: 'invalid-user-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Forbidden or Not Found expected
       }
@@ -178,7 +180,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
           userId: '00u000000000000000000'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Not Found expected
       }
@@ -204,7 +206,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(enrollment.id).to.equal(phoneEnrollment.id);
         expect(enrollment.type).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -230,7 +232,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(enrollment).to.be.instanceof(AuthenticatorEnrollment);
         expect(enrollment.id).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -244,7 +246,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           userId: createdUser.id,
           enrollmentId: 'non-existent-enrollment-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Not Found expected
       }
@@ -256,7 +258,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           userId: 'invalid-user-id',
           enrollmentId: 'some-enrollment-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Forbidden or Not Found expected
       }
@@ -288,7 +290,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         expect(tacEnrollment.id).to.be.a('string');
         expect(tacEnrollment.type).to.be.a('string');
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
           this.skip();
         }
@@ -305,7 +307,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
             profile: {}
           }
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Error expected for invalid input
       }
@@ -320,7 +322,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
             profile: {}
           }
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Forbidden or Not Found expected
       }
@@ -370,7 +372,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
         // 204 returns void/undefined
         expect(result).to.be.undefined;
       } catch (err) {
-        const status = (err as any).status || (err as any).statusCode;
+        const status = (err as HttpError).status || (err as HttpError).statusCode;
         if (status === 403 || status === 404 || status === 501 || status === 405) {
           this.skip();
         }
@@ -384,7 +386,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           userId: createdUser.id,
           enrollmentId: 'non-existent-enrollment-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Not Found expected
       }
@@ -396,7 +398,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           userId: 'invalid-user-id',
           enrollmentId: 'some-enrollment-id'
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Forbidden or Not Found expected
       }
@@ -415,7 +417,7 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
           userId: createdUser.id,
           enrollmentId: enrollmentToDelete.id
         });
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
         // Not Found expected for already deleted enrollment
       }
@@ -426,12 +428,12 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
     it('should handle missing required userId parameter', async () => {
       try {
         await client.userAuthenticatorEnrollmentsApi.listAuthenticatorEnrollments({
-          userId: null as any
+          userId: null as unknown as string
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
 
@@ -439,12 +441,12 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       try {
         await client.userAuthenticatorEnrollmentsApi.getAuthenticatorEnrollment({
           userId: createdUser.id,
-          enrollmentId: null as any
+          enrollmentId: null as unknown as string
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
 
@@ -452,12 +454,12 @@ describe('UserAuthenticatorEnrollmentsApi Integration Tests', () => {
       try {
         await client.userAuthenticatorEnrollmentsApi.createAuthenticatorEnrollment({
           userId: createdUser.id,
-          authenticator: null as any
+          authenticator: null as unknown as AuthenticatorEnrollmentCreateRequest
         });
         expect.fail('Should have thrown RequiredError');
-      } catch (err: any) {
+      } catch (err: unknown) {
         expect(err).to.exist;
-        expect(err.name).to.equal('RequiredError');
+        expect((err as Error).name).to.equal('RequiredError');
       }
     });
   });

@@ -1,6 +1,8 @@
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, AuthenticatorKeyEmail } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
+
+type HttpError = { status?: number; statusCode?: number };
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -49,7 +51,7 @@ describe('Authenticators API - Create tests', () => {
     // Most orgs have pre-created authenticators, so this test may be limited
 
     // Try to create a custom app authenticator
-    const authenticator: any = {
+    const authenticator: AuthenticatorKeyEmail = {
       key: 'okta_email',
       name: `Test Email Authenticator ${Date.now()}`,
       type: 'email',
@@ -68,7 +70,7 @@ describe('Authenticators API - Create tests', () => {
       expect(created).to.have.property('name');
       createdAuthenticatorId = created.id;
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
@@ -99,7 +101,7 @@ describe('Authenticators API - Create tests', () => {
   });
 
   it('should create authenticator with activate parameter as false', async function () {
-    const authenticator: any = {
+    const authenticator: AuthenticatorKeyEmail = {
       key: 'okta_email',
       name: `Test Email Authenticator Inactive ${Date.now()}`,
       type: 'email',
@@ -117,7 +119,7 @@ describe('Authenticators API - Create tests', () => {
       expect(created).to.have.property('id');
       createdAuthenticatorId = created.id;
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
@@ -126,7 +128,7 @@ describe('Authenticators API - Create tests', () => {
   });
 
   it('should create and activate an authenticator in one step', async function () {
-    const authenticator: any = {
+    const authenticator: AuthenticatorKeyEmail = {
       key: 'okta_email',
       name: `Test Activated Email Authenticator ${Date.now()}`,
       type: 'email',
@@ -148,7 +150,7 @@ describe('Authenticators API - Create tests', () => {
       }
       createdAuthenticatorId = created.id;
     } catch (error) {
-      const status = (error as any).status || (error as any).statusCode;
+      const status = (error as HttpError).status || (error as HttpError).statusCode;
       if (status === 400 || status === 403 || status === 404 || status === 405 || status === 501) {
         this.skip();
       }
