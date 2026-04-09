@@ -41,7 +41,7 @@ ProfileMappingRequest.attributeTypeMap = [
   {
     'name': 'properties',
     'baseName': 'properties',
-    'type': 'ProfileMappingProperty',
+    'type': '{ [key: string]: ProfileMappingProperty; }',
     'format': ''
   }
 ];
