@@ -34,7 +34,9 @@ export declare class ProfileMapping {
     * Unique identifier for a profile mapping
     */
   'id'?: string;
-  'properties'?: ProfileMappingProperty;
+  'properties'?: {
+        [key: string]: ProfileMappingProperty;
+    };
   'source'?: ProfileMappingSource;
   'target'?: ProfileMappingTarget;
   '_links'?: LinksSelf;

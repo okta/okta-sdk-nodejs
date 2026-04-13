@@ -27,7 +27,9 @@ import { ProfileMappingProperty } from './../models/ProfileMappingProperty';
 * The updated request body properties
 */
 export declare class ProfileMappingRequest {
-  'properties': ProfileMappingProperty;
+  'properties': {
+        [key: string]: ProfileMappingProperty;
+    };
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

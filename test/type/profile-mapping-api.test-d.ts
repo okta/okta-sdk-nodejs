@@ -18,6 +18,6 @@ const client = new Client();
   const profileMappingRequest = profileMapping as ProfileMappingRequest;
   profileMapping = await client.profileMappingApi.updateProfileMapping({mappingId: 'mappingId', profileMapping: profileMappingRequest});
   if (profileMapping && profileMapping.properties) {
-    expectType<ProfileMappingProperty>(profileMapping.properties);
+    expectType<{ [key: string]: ProfileMappingProperty }>(profileMapping.properties);
   }
 }());
