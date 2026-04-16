@@ -137,6 +137,35 @@ describe('DefaultRequestExecutor', () => {
       expect(newRequest.timeout).toEqual(0);
     });
 
+    it('should preserve the original agent instance on the retry request', () => {
+      const requestExecutor = new DefaultRequestExecutor();
+      // Simulate an HttpsProxyAgent-like object (class instance with prototype methods)
+      class FakeAgent {
+        addRequest() {}
+      }
+      const agent = new FakeAgent();
+      const mockRequest = {
+        method: 'GET',
+        headers: {},
+        startTime: new Date(),
+        agent
+      };
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, 'req-id-123', 0);
+      expect(newRequest.agent).toBe(agent);
+      expect(newRequest.agent).toBeInstanceOf(FakeAgent);
+    });
+
+    it('should not set agent on the retry request if the original had none', () => {
+      const requestExecutor = new DefaultRequestExecutor();
+      const mockRequest = {
+        method: 'GET',
+        headers: {},
+        startTime: new Date()
+      };
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, 'req-id-456', 0);
+      expect(newRequest.agent).toBeUndefined();
+    });
+
   });
 
   describe('validateRetryResponseHeaders', () => {

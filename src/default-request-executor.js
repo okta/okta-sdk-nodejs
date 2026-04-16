@@ -33,7 +33,11 @@ class DefaultRequestExecutor extends RequestExecutor {
 
   buildRetryRequest(request, requestId, delayMs) {
     const elapsedMs = Date.now() - request.startTime;
-    const newRequest = deepCopy(request);
+    const { agent, ...rest } = request;
+    const newRequest = deepCopy(rest);
+    if (agent) {
+      newRequest.agent = agent;
+    }
     newRequest.timeout = this.requestTimeout > 0 ? this.requestTimeout - elapsedMs - delayMs : 0;
     if (!newRequest.headers) {
       newRequest.headers = {};
