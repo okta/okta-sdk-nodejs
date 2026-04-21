@@ -72,6 +72,12 @@ UserSchemaAttribute.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'items',
+    'baseName': 'items',
+    'type': 'UserSchemaAttributeItems',
+    'format': ''
+  },
+  {
     'name': 'master',
     'baseName': 'master',
     'type': 'UserSchemaAttributeMaster',

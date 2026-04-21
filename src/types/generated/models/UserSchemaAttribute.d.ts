@@ -25,6 +25,7 @@
 import { GroupSchemaAttributeEnumInner } from './../models/GroupSchemaAttributeEnumInner';
 import { UserSchemaAttributeEnum } from './../models/UserSchemaAttributeEnum';
 import { UserSchemaAttributeFormat } from './../models/UserSchemaAttributeFormat';
+import { UserSchemaAttributeItems } from './../models/UserSchemaAttributeItems';
 import { UserSchemaAttributeMaster } from './../models/UserSchemaAttributeMaster';
 import { UserSchemaAttributeMutabilityString } from './../models/UserSchemaAttributeMutabilityString';
 import { UserSchemaAttributePermission } from './../models/UserSchemaAttributePermission';
@@ -55,6 +56,7 @@ export declare class UserSchemaAttribute {
     * Identifies the type of data represented by the string
     */
   'format'?: UserSchemaAttributeFormat;
+  'items'?: UserSchemaAttributeItems;
   /**
     * Identifies where the property is mastered
     */
