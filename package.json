@@ -52,7 +52,7 @@
     "rasha": "^1.2.5",
     "safe-flat": "^2.0.2",
     "url-parse": "^1.5.10",
-    "uuid": "^11.1.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^5.5.3",
