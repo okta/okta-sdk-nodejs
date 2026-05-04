@@ -16,6 +16,7 @@
     "build": "yarn build:cleanGenerated && yarn build:fixSpec && yarn build:generate && yarn build:fixGenerated && yarn build:emitTypes",
     "build:generate": "docker run --rm -v \"${PWD}:/local\" -e JAVA_OPTS=\"-Dlog.level=warn -DmaxYamlCodePoints=99999999 -Dsnakeyaml.codepoint.limit=99999999\" openapitools/openapi-generator-cli:v7.13.0 generate -i /local/spec/management.yaml -g typescript -c /local/templates/swagger-codegen-config.json -o /local/src/generated  -t /local/templates/openapi-generator --model-name-mappings User_type=UserTypeInline",
     "build:validateSpec": "docker run --rm -v \"${PWD}:/local\" openapitools/openapi-generator-cli:v7.13.0 validate -i /local/spec/management.yaml",
+    "generate:tests": "bash scripts/generate-tests.sh",
     "build:validateGenerated": "node scripts/validateGenerated.cjs",
     "build:fixSpec": "node scripts/fixSpec.cjs",
     "build:fixGenerated": "node scripts/fixGenerated.cjs",
@@ -30,6 +31,7 @@
     "test:integration:ssws": "./scripts/test-it-ssws.sh",
     "test:integration:oauth": "./scripts/test-it-oauth.sh",
     "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
+    "test:generated": "npx mocha --no-config src/generated/tests/**/*.test.js --timeout 30000",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
     "aftertest": "./scripts/test-it-clean.sh"

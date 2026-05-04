@@ -1,0 +1,21 @@
+{
+  "additionalProperties": {
+    "supportsES6": true,
+    "withSeparateModelsAndApi": true,
+    "modelPropertyNaming": "original",
+    "platform": "node",
+    "enumPropertyNaming": "original",
+    "useObjectParameters": true,
+    "generateAliasAsModel": true
+  },
+  "moduleName": "okta",
+  "projectName": "@okta/okta-sdk-nodejs",
+  "templateDir" : "./",
+  "files": {
+    "api/api_test.mustache": {
+      "folder": "tests",
+      "destinationFilename": ".test.js",
+      "templateType": "APITests"
+    }
+  }
+}
