@@ -11,7 +11,6 @@ Version 8.1.0 contains no breaking API changes. The following TypeScript type co
 ### 1. `IdentityProviderProtocol` discriminant `type` is now required
 
 The `type` property on the five `IdentityProviderProtocol` subtypes (`ProtocolOidc`, `ProtocolSaml`, `ProtocolMtls`, `ProtocolOAuth`, `ProtocolIdVerification`) is now correctly marked as required (was incorrectly optional due to a code-generator bug). This matches the Okta API spec.
-
 If your TypeScript code constructs a Protocol object without an explicit `type` field, add the appropriate discriminant literal:
 
 ```typescript
