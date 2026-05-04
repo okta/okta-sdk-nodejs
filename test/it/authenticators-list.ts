@@ -26,14 +26,15 @@ describe('Authenticators API tests', () => {
 
   it('should list all available Authenticators', async () => {
     const authenticators = await client.authenticatorApi.listAuthenticators();
-    const expectedTypes = new Set(['email', 'app', 'password', 'phone']);
+    const expectedTypesList = ['email', 'app', 'password', 'phone'];
+    const expectedTypes = new Set(expectedTypesList);
     const foundTypes = new Set<string>();
     await authenticators.each(a => {
       if (a.type && expectedTypes.has(a.type)) {
         foundTypes.add(a.type);
       }
     });
-    for (const type of expectedTypes) {
+    for (const type of expectedTypesList) {
       expect(foundTypes.has(type), `Expected authenticator type '${type}' to be present`).to.be.true;
     }
   });
