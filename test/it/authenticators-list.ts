@@ -29,7 +29,7 @@ describe('Authenticators API tests', () => {
     const expectedTypes = new Set(['email', 'app', 'password', 'phone']);
     const foundTypes = new Set<string>();
     await authenticators.each(a => {
-      if (expectedTypes.has(a.type)) {
+      if (a.type && expectedTypes.has(a.type)) {
         foundTypes.add(a.type);
       }
     });
