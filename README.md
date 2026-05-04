@@ -46,7 +46,7 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 5.x | :x: Retired |
 | 6.x | :x: Retired |
 | 7.x | :x: Retired |
-| 8.x | :heavy_check_mark: Stable ([migration guide](#from-7x-to-80)) |
+| 8.x | :heavy_check_mark: Stable ([migration guide](MIGRATING.md)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
@@ -934,7 +934,7 @@ const application: BookmarkApplication = client.createApplication(applicationOpt
 API methods should be called from corresponding API object of `client`. 
 Params should be passed as a single object. 
 
-See [migration guide](#from-6x-to-70)
+See [migration guide](MIGRATING.md#from-6x-to-70)
 
 ```typescript
 const application: BookmarkApplication = {
@@ -974,196 +974,7 @@ const client: Client = new Client({
 
 ## Migrating between versions
 
-### From 7.x to 8.0
-
-#### Breaking Changes
-
-Version 8.0 includes several breaking changes due to updates in the Okta OpenAPI specification:
-
-##### 1. Email Server API - Property Renamed
-
-The `EmailTestAddresses` model has been updated with renamed properties:
-
-**Old (v7.x):**
-```javascript
-await client.emailServerApi.testEmailServer({
-  emailServerId: emailServer.id,
-  emailTestAddresses: {
-    _from: 'test@example.com',
-    to: 'recipient@example.com'
-  }
-});
-```
-
-**New (v8.0):**
-```javascript
-await client.emailServerApi.testEmailServer({
-  emailServerId: emailServer.id,
-  emailTestAddresses: {
-    fromAddress: 'test@example.com',  // Changed from '_from'
-    to: 'recipient@example.com'
-  }
-});
-```
-
-##### 2. Custom Role API - Model Renamed
-
-The `CustomRole` model has been renamed to `IamRole`:
-
-**Old (v7.x):**
-```javascript
-import { CustomRole } from '@okta/okta-sdk-nodejs';
-
-let customRole: CustomRole;
-```
-
-**New (v8.0):**
-```javascript
-import { IamRole } from '@okta/okta-sdk-nodejs';
-
-let customRole: IamRole;  // Changed from CustomRole
-```
-
-##### 3. Role Assignment API - Model Renamed
-
-The `AssignRoleRequest` model has been renamed to `StandardRoleAssignmentSchema`:
-
-**Old (v7.x):**
-```javascript
-import { AssignRoleRequest } from '@okta/okta-sdk-nodejs';
-
-const roleRequest: AssignRoleRequest = {
-  type: 'USER_ADMIN'
-};
-
-await client.userApi.assignRoleToUser({
-  userId: user.id,
-  assignRoleRequest: roleRequest
-});
-```
-
-**New (v8.0):**
-```javascript
-import { StandardRoleAssignmentSchema } from '@okta/okta-sdk-nodejs';
-
-const roleRequest: StandardRoleAssignmentSchema = {  // Changed from AssignRoleRequest
-  type: 'USER_ADMIN'
-};
-
-await client.userApi.assignRoleToUser({
-  userId: user.id,
-  assignRoleRequest: roleRequest
-});
-```
-
-#### New APIs Added
-
-Version 8.0 introduces several new API endpoints:
-
-- **AgentConnectionsApi** - Manage agent connections
-- **AgentPotentialConnectionsApi** - Discover potential agent connections
-- **AgentPublicKeyApi** - Manage agent public keys
-- **AgentRegistrationApi** - Handle agent registration
-- **ApplicationCrossAppAccessConnectionsApi** - Manage cross-app access connections
-- **ApplicationInterclientTrustMappingsApi** - Configure interclient trust mappings
-- **ApplicationSSOPublicKeysApi** - Manage application SSO public keys
-- **AssociatedDomainCustomizationsApi** - Customize associated domains
-- **CustomTelephonyProviderApi** - Configure custom telephony providers
-- **GroupPushMappingApi** - Manage group push mappings
-- **OAuth2ResourceServerCredentialsKeysApi** - Manage OAuth2 resource server credentials
-- **OktaManagedUserAccountApi** - Manage Okta managed user accounts
-- **OperationsIntegrationApi** - Handle operations integrations
-- **UserAuthenticatorEnrollmentsApi** - Manage user authenticator enrollments
-
-#### API Enhancements
-
-- **ApplicationApi** - Enhanced with additional methods for improved application management
-- **AuthenticatorApi** - Expanded authenticator management capabilities
-- **IdentitySourceApi** - Significantly enhanced with extensive new methods for identity source operations
-- **YourOinIntegrationsApi** - Enhanced integration management features
-
-To use the new APIs:
-
-```javascript
-const client = new okta.Client({
-  orgUrl: 'https://dev-1234.okta.com',
-  token: 'YOUR_API_TOKEN'
-});
-
-// Example: Use the new AgentConnectionsApi
-const connections = await client.agentConnectionsApi.listAgentConnections({ poolId: 'poolId' });
-
-```
-
-### From 6.x to 7.0
-
-#### Breaking changes
-
- - Methods are invoked on scoped clients
- - Method params are passed as a single object
- - Models no longer have CRUD methods
- - Methods which return `Collection` become async
- - Enums are replaced with union types
- - Model properties are optional
-
-```diff
-- await client.getUser('ausmvdt5xg8wRVI1d0g3')
-+ await client.userApi.getUser({ userId: 'ausmvdt5xg8wRVI1d0g3' })
-```
-
-```diff
-- await user.deactivate()
-+ await client.userApi.deactivateUser({ userId: user.id })
-```
-
-### From 5.x to 6.0
-
-#### Breaking changes
-
-Enum types from the spec are accounted for: repspective JS models are converted to enum-like modules.
-
-Following Client methods signatures have changed:
- - `listPolicies` returns `Promise<Policy>`
- - `activateNetworkZone` returns `Promise<NetworkZone>`
- - `deactivateNetworkZone` returns `Promise<NetworkZone>`
- - `listGroups` no longer accepts `filter` parameter trhough `queryParameters`
-
-### From 4.x to 5.0
-
-The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimal Node version is 12.0.0.
-
-#### Breaking changes
-
-Following Client methods signatures have changed:
- - `createAuthorizationServerPolicy`: added `authorizationServerPolicy: AuthorizationServerPolicyOptions` parameter
- - `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
- - `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
- - `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
- - `listPolicies` returns `Promise<AuthorizationServerPolicy>`
-
-Following models' method signatures have changed:
-- `AuthorizationServer`
-
- Change details are listed in [CHANGELOG.md](CHANGELOG.md#500)
-
-All required method parameters in Client are now checked at runtime in JS code.
-
-### From 3.x to 4.0
-
-The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
-
-This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes added, changed and deprecated factories/models/client methods. Change details are listed in [CHANGELOG.md](CHANGELOG.md#400). For each change item:
-
-- `Add` stands for newly added factories/models/client methods.
-- `Change` (**breaking changes**) stands for renamed factories/models/client methods.
-- `Remove` (**breaking changes**) stands for deprecated factories/models/client methods.
-
-#### Main breaking changes
-
-- Renamed `Factor` related factories/models/client methods to `UserFactor`
-- Renamed `client.sessionApi.endAllUserSessions` to `client.sessionApi.clearUserSessions`
-- Model and Client methods change for `User` related operations
-- Model and Client methods change for `Rule` related operations
+See [MIGRATING.md](MIGRATING.md) for a full version-by-version migration guide.
 
 ## Building the SDK
 
