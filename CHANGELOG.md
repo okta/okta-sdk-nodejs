@@ -1,5 +1,33 @@
 # Okta Node SDK Changelog
 
+# 8.1.0
+
+### Fixes
+
+- [#472](https://github.com/okta/okta-sdk-nodejs/pull/472) fix: TypeScript Compilation errors - Fixed `IdentityProviderProtocol` discriminated union where the `type` discriminant property was incorrectly generated as optional (`type?:`) in 5 protocol subtypes (`ProtocolOidc`, `ProtocolSaml`, `ProtocolMtls`, `ProtocolOAuth`, `ProtocolIdVerification`). TypeScript can now properly narrow the union by `type`, making subtype-specific properties (e.g. `issuer`, `authorization`, `signing`) accessible after a type guard check.
+
+  > **Note for TypeScript consumers:** If you were constructing a Protocol subtype object without an explicit `type` field, TypeScript will now report a compile-time error. Add the appropriate `type` literal (e.g. `type: 'OIDC'`) to fix this.
+
+- [#473](https://github.com/okta/okta-sdk-nodejs/pull/473) fix: support ESM named imports - Explicit named exports for `Client`, `RequestExecutor`, `DefaultRequestExecutor`, `Collection`, `MemoryStore`, and `OktaApiError` are now assigned individually on `module.exports` before the generated exports are merged. This allows bundlers (webpack, rollup) and ESM interop tools to statically enumerate and tree-shake individual named exports.
+
+- [#474](https://github.com/okta/okta-sdk-nodejs/pull/474) fix: upgrade lodash to 4.17.23 - Resolves a prototype pollution vulnerability (CVE-2025-13465) in `lodash@^4.17.20` via the `_.unset` and `_.omit` functions.
+
+- [#487](https://github.com/okta/okta-sdk-nodejs/pull/487) fix: ProfileMapping properties serialized as empty object - Fixed a silent data-loss bug where calling `profileMappingApi.updateProfileMapping()` with a `properties` map containing custom attribute names (e.g. `logoutRedirectURL`, `login`) would send `"properties": {}` to the API. The `ObjectSerializer` was treating the entire map as a single typed object and discarding all custom keys. `ProfileMapping.properties` and `ProfileMappingRequest.properties` are now correctly typed as `{ [key: string]: ProfileMappingProperty }`.
+
+  > **Note for TypeScript consumers:** The TypeScript type of `ProfileMapping.properties` and `ProfileMappingRequest.properties` has changed from `ProfileMappingProperty` to `{ [key: string]: ProfileMappingProperty }`. Update any type annotations accordingly.
+
+- [#488](https://github.com/okta/okta-sdk-nodejs/pull/488) fix: preserve agent instance when building retry request - Fixed a crash that occurred when `HTTPS_PROXY` (or `https_proxy`) was set and a request was retried (e.g. after a 429 rate-limit response). The `deepCopy()` call in `buildRetryRequest` stripped the `HttpsProxyAgent` prototype chain, causing Node's `http`/`https` module to reject the retry with `The "options.agent" property must be one of Agent-like Object, undefined, or false. Received an instance of Object`. The original `agent` instance is now preserved across retries.
+
+- [#489](https://github.com/okta/okta-sdk-nodejs/pull/489) fix: add missing `items` field to `UserSchemaAttribute` - Fixed an issue where calling `schemaApi.updateApplicationUserProfile` with a custom attribute of `type: 'array'` would cause the API to reject the request with `Items not present for array property`. The `items` field (typed as `UserSchemaAttributeItems`) was accidentally dropped from `UserSchemaAttribute` during the v4→v5 spec update. It is now restored, consistent with `GroupSchemaAttribute`.
+
+### Dependencies
+
+- [#476](https://github.com/okta/okta-sdk-nodejs/pull/476) chore: upgrade mocha to v10.8.2 - Resolves security vulnerabilities in transitive dependencies that were blocked by Mocha v9.
+- [#481](https://github.com/okta/okta-sdk-nodejs/pull/481) chore(deps): bump `flatted` from 3.3.3 to 3.4.2
+- [#482](https://github.com/okta/okta-sdk-nodejs/pull/482) chore(deps): bump `picomatch` from 2.3.1 to 2.3.2
+- [#484](https://github.com/okta/okta-sdk-nodejs/pull/484) chore(deps-dev): bump `node-forge` from 1.3.3 to 1.4.0
+- [#486](https://github.com/okta/okta-sdk-nodejs/pull/486) chore(deps): bump `lodash` from 4.17.23 to 4.18.1
+
 # 8.0.0
 
 ### Features
