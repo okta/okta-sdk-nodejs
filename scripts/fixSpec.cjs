@@ -505,6 +505,11 @@ function fixExtensibleSchemas(spec) {
   // Schemas to add `x-okta-extensible`
   const schemasToForceExtensible = [
     'UserProfile',
+    // `GroupProfile` carries custom group attributes defined via the Schemas
+    // API. Mark it extensible so `ObjectSerializer` preserves those attributes
+    // on both serialize and deserialize, matching `OktaUserGroupProfile`. This
+    // was the behavior through 6.6.0 (#365) and regressed afterwards.
+    'GroupProfile',
   ];
 
   for (const schemaKey in spec.components.schemas) {
