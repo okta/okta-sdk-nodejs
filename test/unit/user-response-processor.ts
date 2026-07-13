@@ -464,6 +464,7 @@ describe('UserApiResponseProcessor', () => {
       const response = createMockResponse(200, mockBody);
       const result = await processor.expirePasswordAndGetTemporaryPassword(response as any);
       expect(result).to.be.an('object');
+      expect((result as any).tempPassword).to.equal('temp123');
     });
 
     it('should throw ApiException on 403', async () => {

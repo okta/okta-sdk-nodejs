@@ -209,6 +209,7 @@ describe('UserApiResponseProcessor - Edge Cases', () => {
       const response = createMockResponse(201, mockBody);
       const result = await processor.expirePasswordAndGetTemporaryPassword(response as any);
       expect(result).to.be.an('object');
+      expect((result as any).tempPassword).to.equal('temp123');
     });
 
     it('should throw on 500 error', async () => {

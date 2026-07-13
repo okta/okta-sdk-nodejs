@@ -330,6 +330,7 @@ import { SubmissionRequest } from '../models/SubmissionRequest';
 import { SubmissionResponse } from '../models/SubmissionResponse';
 import { Subscription } from '../models/Subscription';
 import { TacAuthenticatorEnrollment } from '../models/TacAuthenticatorEnrollment';
+import { TempPassword } from '../models/TempPassword';
 import { TenantSettings } from '../models/TenantSettings';
 import { TestInfo } from '../models/TestInfo';
 import { ThemeResponse } from '../models/ThemeResponse';
@@ -5677,7 +5678,7 @@ export declare class PromiseUserApi {
       * @param userId An ID, login, or login shortname (as long as the shortname is unambiguous) of an existing Okta user
       * @param revokeSessions Revokes the user\&#39;s existing sessions if &#x60;true&#x60;
       */
-  expirePasswordAndGetTemporaryPassword(userId: string, revokeSessions?: boolean, _options?: Configuration): Promise<User>;
+  expirePasswordAndGetTemporaryPassword(userId: string, revokeSessions?: boolean, _options?: Configuration): Promise<TempPassword>;
   /**
       * Starts the forgot password flow.  Generates a one-time token (OTT) that you can use to reset a user\'s password.  The user must validate their security question\'s answer when visiting the reset link. Perform this operation only on users with an `ACTIVE` status and a valid [recovery question credential](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/createUser!path=credentials/recovery_question&t=request).  > **Note:** If you have migrated to Identity Engine, you can allow users to recover passwords with any enrolled MFA authenticator. See [Self-service account recovery](https://help.okta.com/oie/en-us/content/topics/identity-engine/authenticators/configure-sspr.htm?cshid=ext-config-sspr).  If an email address is associated with multiple users, keep in mind the following to ensure a successful password recovery lookup:   * Okta no longer includes deactivated users in the lookup.   * The lookup searches sign-in IDs first, then primary email addresses, and then secondary email addresses.  If `sendEmail` is `false`, returns a link for the user to reset their password. This operation doesn\'t affect the status of the user.
       * Start forgot password flow
