@@ -29,6 +29,7 @@ import { ReplaceUserClassification } from '../models/ReplaceUserClassification';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { ResponseLinks } from '../models/ResponseLinks';
 import { SocialAuthToken } from '../models/SocialAuthToken';
+import { TempPassword } from '../models/TempPassword';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
@@ -501,7 +502,7 @@ export declare class UserApiResponseProcessor {
      * @params response Response returned by the server for a request to expirePasswordAndGetTemporaryPassword
      * @throws ApiException if the response code was not in [200, 299]
      */
-  expirePasswordAndGetTemporaryPassword(response: ResponseContext): Promise<User>;
+  expirePasswordAndGetTemporaryPassword(response: ResponseContext): Promise<TempPassword>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
