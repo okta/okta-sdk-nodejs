@@ -1,0 +1,14 @@
+# okta-config.yaml — Okta credentials for test-setup.sh
+# This file is gitignored. Copy from okta-config.yaml.example and fill in your values.
+#
+# terraform: credentials used by the Okta Terraform provider to create/destroy test resources
+# client:    credentials used by the Node.js SDK during test execution
+
+terraform:
+  orgName: your-org-name
+  baseUrl: oktapreview.com
+  apiToken: your-terraform-api-token
+
+client:
+  orgUrl: https://your-org-name.oktapreview.com/
+  token: your-ssws-api-token

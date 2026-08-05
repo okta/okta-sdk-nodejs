@@ -36,3 +36,11 @@ src/types/generated/git_push.sh
 src/types/generated/README.md
 src/types/generated/tsconfig.json
 src/types/generated/package.json
+
+# Generated test files
+tmp_test_gen/
+src/generated/tests/
+
+# Local Okta credentials (never commit)
+okta-config.yaml
+test/generated/utils.js
