@@ -30,7 +30,9 @@ describe('ApplicationPoliciesApi', () => {
       application: utils.getOIDCApplication()
     }) as OpenIdConnectApplication;
 
-    const policyName = `node-sdk: Policy ${faker.random.word()}`.substring(0, 49);
+    // Policy names must be unique in the org, and faker.random.word() only has ~1400 values, so
+    // it collided with leftovers from earlier runs (400 E0000001 name: Policy name already in use).
+    const policyName = `node-sdk: Policy ${faker.random.alphaNumeric(10)}`.substring(0, 49);
     const policyData: AccessPolicy = {
       type: 'ACCESS_POLICY',
       status: 'ACTIVE',
@@ -46,20 +48,23 @@ describe('ApplicationPoliciesApi', () => {
       await client.applicationApi.deleteApplication({appId: application.id});
     }
     if (policy) {
-      let deactivated = false;
+      // Always attempt the delete. ACCESS_POLICY cannot be deactivated at all (400), so gating the
+      // delete on a successful deactivation leaked this policy on every run. Unexpected
+      // deactivation errors are still re-thrown, but only after the delete.
+      let deactivateError: unknown;
       try {
         await client.policyApi.deactivatePolicy({policyId: policy.id});
-        deactivated = true;
       } catch (err) {
         // Some policy types (e.g. Okta:SignOn) cannot be deactivated via API (returns 400).
-        // Only swallow the error in that case; re-throw anything unexpected.
+        // Only tolerate the error in that case; surface anything unexpected.
         const status = (err as HttpError).status ?? (err as HttpError).statusCode;
         if (status !== 400) {
-          throw err;
+          deactivateError = err;
         }
       }
-      if (deactivated) {
-        await client.policyApi.deletePolicy({policyId: policy.id});
+      await client.policyApi.deletePolicy({policyId: policy.id});
+      if (deactivateError) {
+        throw deactivateError;
       }
     }
   });
