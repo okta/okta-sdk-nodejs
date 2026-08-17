@@ -14,6 +14,36 @@
 const parseLinkHeader = require('parse-link-header');
 const { RequestContext, ResponseContext } = require('./generated/http/http');
 
+function splitUri(uri) {
+  const idx = uri.indexOf('?');
+  if (idx < 0) {
+    return { base: uri, query: '' };
+  }
+  return { base: uri.slice(0, idx), query: uri.slice(idx + 1) };
+}
+
+// Merge query params from the original request URI into the paginated `next`
+// URI, giving the `next` URI precedence. The Okta API does not always echo
+// request-shaping params (e.g. `expand`) in the Link header's `next` URL (#439),
+// which would otherwise drop them across pages.
+function mergePreservedQueryParams(originalQuery, nextUri) {
+  if (!originalQuery) {
+    return nextUri;
+  }
+  const { base, query: nextQuery } = splitUri(nextUri);
+  const originalParams = new URLSearchParams(originalQuery);
+  const nextParams = new URLSearchParams(nextQuery);
+  for (const key of new Set(originalParams.keys())) {
+    if (!nextParams.has(key)) {
+      for (const value of originalParams.getAll(key)) {
+        nextParams.append(key, value);
+      }
+    }
+  }
+  const merged = nextParams.toString();
+  return merged ? `${base}?${merged}` : base;
+}
+
 /**
  * Provides an interface to iterate over all objects in a collection that has pagination via Link headers
  */
@@ -28,6 +58,7 @@ class Collection {
    */
   constructor(httpApi, uri, factory, request) {
     this.nextUri = uri;
+    this.initialQuery = splitUri(uri).query;
     this.httpApi = httpApi;
     this.factory = factory;
     this.currentItems = [];
@@ -93,7 +124,7 @@ class Collection {
         if (link) {
           const parsed = parseLinkHeader(link);
           if (parsed.next) {
-            this.nextUri = parsed.next.url;
+            this.nextUri = mergePreservedQueryParams(this.initialQuery, parsed.next.url);
             return res instanceof ResponseContext ? this.factory.parseResponse(res) : res.json();
           }
         }
