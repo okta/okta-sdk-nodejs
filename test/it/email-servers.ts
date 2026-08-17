@@ -17,17 +17,20 @@ const client = new Client({
   ]
 });
 
+// Okta rejects hosts that don't resolve in DNS (400 E0000001 'Invalid URL detected'), and
+// faker.internet.domainName() picks the rarely-registered `.name` TLD 1 call in 6. example.com is
+// RFC 2606 reserved and always resolves.
+const EMAIL_SERVER_HOST = 'example.com';
+
 describe('EmailServerApi', () => {
   let emailServer: EmailServerResponse;
-  let emailServerHost: string;
 
   it('Create', async () => {
-    emailServerHost = faker.internet.domainName();
     const alias = `node-sdk: ${faker.random.word()}`;
     const username: string = faker.internet.userName();
     emailServer = await client.emailServerApi.createEmailServer({
       emailServerPost: {
-        host: emailServerHost,
+        host: EMAIL_SERVER_HOST,
         alias,
         username,
         password: 'Abcd1234#@',
@@ -38,7 +41,8 @@ describe('EmailServerApi', () => {
 
   it('List', async () => {
     const emailServerList = await client.emailServerApi.listEmailServers({});
-    expect(emailServerList.map(es => es.host)).to.include(emailServerHost);
+    // Matched on id, not the now-shared host, which a leftover server would also satisfy.
+    expect(emailServerList.map(es => es.id)).to.include(emailServer.id);
   });
 
   it('Get', async () => {
@@ -50,7 +54,7 @@ describe('EmailServerApi', () => {
 
   xit('Test', async () => {
     const from = 'test@oktapreview.com';
-    const to = faker.internet.email(faker.random.word(), faker.random.word(), emailServerHost);
+    const to = faker.internet.email(faker.random.word(), faker.random.word(), EMAIL_SERVER_HOST);
     await client.emailServerApi.testEmailServer({
       emailServerId: emailServer.id,
       emailTestAddresses: {

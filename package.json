@@ -29,7 +29,7 @@
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
     "test:integration:ssws": "./scripts/test-it-ssws.sh",
     "test:integration:oauth": "./scripts/test-it-oauth.sh",
-    "test:unit": "TEST_TYPE=unit mocha test/unit/*.js",
+    "test:unit": "TEST_TYPE=unit mocha test/unit",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
     "aftertest": "./scripts/test-it-clean.sh"

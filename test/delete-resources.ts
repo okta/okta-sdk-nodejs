@@ -257,23 +257,58 @@ async function cleanTestGroupRules() {
   return deletedCnt;
 }
 
+// Policy types the suite creates. Was OKTA_SIGN_ON only, so every other type (notably
+// ACCESS_POLICY) accumulated in the org. OAUTH_AUTHORIZATION_POLICY is omitted: listPolicies
+// rejects it with 400 E0000002.
+const TEST_POLICY_TYPES = ['ACCESS_POLICY', 'OKTA_SIGN_ON', 'PASSWORD', 'MFA_ENROLL'] as const;
+
 async function cleanTestPolicies() {
   let deletedCnt = 0;
-  await (await client.policyApi.listPolicies({ type: 'OKTA_SIGN_ON' })).each(async policy => {
-    const canDelete = policy.name!.startsWith('node-sdk:');
+  for (const type of TEST_POLICY_TYPES) {
+    await (await client.policyApi.listPolicies({ type })).each(async policy => {
+      const canDelete = policy.name!.startsWith('node-sdk:');
+      if (canDelete) {
+        try {
+          // ACTIVE policies can't be deleted. Failing to deactivate is fine (already INACTIVE, or
+          // type forbids it); the delete is what counts.
+          try {
+            await client.policyApi.deactivatePolicy({ policyId: policy.id! });
+          } catch (err) {
+            console.log(`Could not deactivate policy ${policy.name}: ${(err as Error).message}`);
+          }
+          await client.policyApi.deletePolicy({
+            policyId: policy.id!
+          });
+          deletedCnt++;
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        console.log(`Skipped policy to remove ${policy.name}`);
+      }
+    });
+  }
+  return deletedCnt;
+}
+
+async function cleanEmailServers() {
+  let deletedCnt = 0;
+  const emailServers = await client.emailServerApi.listEmailServers({});
+  for (const emailServer of emailServers) {
+    const canDelete = emailServer.alias?.startsWith('node-sdk');
     if (canDelete) {
       try {
-        await client.policyApi.deletePolicy({
-          policyId: policy.id!
+        await client.emailServerApi.deleteEmailServer({
+          emailServerId: emailServer.id!
         });
         deletedCnt++;
       } catch (err) {
         console.error(err);
       }
     } else {
-      console.log(`Skipped policy to remove ${policy.name}`);
+      console.log(`Skipped email server to remove ${emailServer.alias}`);
     }
-  });
+  }
   return deletedCnt;
 }
 
@@ -492,6 +527,7 @@ describe('Clean', () => {
       InlineHooks: await cleanInlineHooks(),
       HookKeys: await cleanHookKeys(),
       Policies: await cleanTestPolicies(),
+      EmailServers: await cleanEmailServers(),
       Idps: await cleanTestIdps(),
       EmailCustomizations: await cleanEmailCustomizations(),
       UserTypes: await cleanUserTypes(),
