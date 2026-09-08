@@ -17,7 +17,8 @@
 * [Building the SDK](#building-the-sdk)
 * [Contributing](#contributing)
 
-This repository contains the Okta management SDK for Node.js. This SDK can be used in your server-side code to interact with the Okta management API and:
+This repository contains the Okta management SDK for Node.js. 
+This SDK can be used in your server-side code to interact with the Okta management API and:
  
 * Create and update users with the [Users API](https://developer.okta.com/docs/api/resources/users)
 * Add security factors to users with the [Factors API](https://developer.okta.com/docs/api/resources/factors)
