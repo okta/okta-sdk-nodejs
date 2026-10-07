@@ -505,6 +505,7 @@ function fixExtensibleSchemas(spec) {
   // Schemas to add `x-okta-extensible`
   const schemasToForceExtensible = [
     'UserProfile',
+    'GroupProfile',
   ];
 
   for (const schemaKey in spec.components.schemas) {
