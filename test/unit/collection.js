@@ -82,6 +82,83 @@ describe('Collection', () => {
       const collection = new Collection(mockClient, '/', mockFactory, mockRequest);
       await collection.each(noop);
     });
+
+    it('should preserve original query params (e.g. expand) across paginated requests when the next Link header omits them', async () => {
+      // Regression test for #439: Okta's Link header does not echo `expand`
+      // in the next URL, so without preservation the second page drops it.
+      const requestedUris = [];
+      const mockClient = {
+        http: (uri) => {
+          requestedUris.push(uri);
+          return Promise.resolve({
+            headers: {
+              get: () => {
+                if (uri.startsWith('/api/v1/apps/app1/users?') && uri.includes('expand=user') && !uri.includes('after=')) {
+                  // First-page Link header — note: no expand param in next URL
+                  return '</api/v1/apps/app1/users?limit=5&after=cursor1>; rel="next"';
+                }
+              },
+            },
+            json: () => {
+              if (!uri.includes('after=')) {
+                return Promise.resolve([{ id: 'u1' }]);
+              }
+              if (uri.includes('after=cursor1')) {
+                return Promise.resolve([{ id: 'u2' }]);
+              }
+            }
+          });
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(
+        mockClient,
+        '/api/v1/apps/app1/users?limit=5&expand=user',
+        mockFactory
+      );
+      const collected = [];
+      await collection.each((item) => {
+        collected.push(item);
+      });
+      expect(collected).to.deep.equal([{ id: 'u1' }, { id: 'u2' }]);
+      expect(requestedUris).to.have.lengthOf(2);
+      expect(requestedUris[0]).to.equal('/api/v1/apps/app1/users?limit=5&expand=user');
+      expect(requestedUris[1]).to.include('after=cursor1');
+      expect(requestedUris[1]).to.include('expand=user');
+    });
+
+    it('should let the next Link header override overlapping query params (e.g. after/cursor)', async () => {
+      const requestedUris = [];
+      const mockClient = {
+        http: (uri) => {
+          requestedUris.push(uri);
+          return Promise.resolve({
+            headers: {
+              get: () => {
+                if (!uri.includes('after=cursor2')) {
+                  return '</api/v1/users?limit=5&after=cursor2>; rel="next"';
+                }
+              },
+            },
+            json: () => {
+              return Promise.resolve([{}]);
+            }
+          });
+        }
+      };
+      const mockFactory = { createInstance: (item) => item };
+      const collection = new Collection(
+        mockClient,
+        '/api/v1/users?limit=5&after=cursor1&expand=user',
+        mockFactory
+      );
+      await collection.each(() => {});
+      expect(requestedUris[1]).to.include('after=cursor2');
+      expect(requestedUris[1]).to.not.include('after=cursor1');
+      expect(requestedUris[1]).to.include('expand=user');
+    });
   });
 
   describe('.subscribe()', () => {
