@@ -55,7 +55,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^5.5.3",
+    "@faker-js/faker": "^10.5.0",
     "@types/chai": "^4.2.22",
     "@types/mocha": "10.0.10",
     "@types/node": "^20.18.1",
