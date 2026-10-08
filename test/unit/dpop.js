@@ -206,3 +206,37 @@ describe('DPoP', () => {
     });
   });
 });
+
+describe('DPoP signing keys', () => {
+  const nodeCrypto = require('crypto');
+
+  async function signWith(privateKey) {
+    const client = { baseUrl: 'https://dev-123456.okta.com', privateKey };
+    const token = await generateDpopJwt(null, client);
+    const header = JSON.parse(Buffer.from(token.split('.')[0], 'base64url').toString());
+    const verifyKey = await jose.JWK.asKey(header.jwk);
+    await jose.JWS.createVerify(verifyKey).verify(token);
+    return header;
+  }
+
+  it('signs with RS256 for an RSA key', async () => {
+    const { privateKey } = nodeCrypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+    const header = await signWith(privateKey.export({ format: 'jwk' }));
+    expect(header.alg).to.equal('RS256');
+    expect(header.jwk.kty).to.equal('RSA');
+  });
+
+  it('signs with ES256 for an EC key', async () => {
+    const { privateKey } = nodeCrypto.generateKeyPairSync('ec', { namedCurve: 'P-256' });
+    const header = await signWith(privateKey.export({ format: 'jwk' }));
+    expect(header.alg).to.equal('ES256');
+    expect(header.jwk.kty).to.equal('EC');
+    expect(header.jwk).to.not.have.property('d');
+  });
+
+  it('signs with ES256 for an EC key in PEM format', async () => {
+    const { privateKey } = nodeCrypto.generateKeyPairSync('ec', { namedCurve: 'P-256' });
+    const header = await signWith(privateKey.export({ format: 'pem', type: 'pkcs8' }));
+    expect(header.alg).to.equal('ES256');
+  });
+});

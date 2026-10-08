@@ -42,7 +42,7 @@ async function generateDpopJwt(request, client, accessToken = null, nonce = null
     format: 'compact',
     fields: {
       typ: 'dpop+jwt',
-      alg: 'RS256',
+      alg: jwk.alg || 'RS256',
       jwk: publicJwk,
     }
   }, privateKey)
