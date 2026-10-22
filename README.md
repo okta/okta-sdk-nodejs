@@ -70,7 +70,7 @@ npm install @okta/okta-sdk-nodejs
 
 All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it with your Okta Domain and an API token.  To obtain those, see [Getting Started With the Okta APIs](https://developer.okta.com/code/rest/).
 
-We also include an opt-in [default request executor](#default-request-executor) that you can configure, which will automatically handle rate limiting retries for you:
+By default, the client uses the [default request executor](#default-request-executor), which will automatically handle rate limiting retries for you:
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
@@ -689,9 +689,7 @@ The Okta API will return 429 responses if too many requests are made within a gi
 
 ### Built-In Retry
 
-You can configure your client to use the default request executor if you wish to automatically retry on 429 errors, please the [Default Request Executor](#default-request-executor) section.
-
-> Note: in the next major version the default request executor will be automatically added to the client.
+The client uses the default request executor unless you provide another one, so requests that receive a 429 error are retried automatically. To configure the retries, see the [Default Request Executor](#default-request-executor) section. To turn them off, see the [Base Request Executor](#base-request-executor) section.
 
 ### Manual Retry
 
@@ -764,7 +762,7 @@ The `requestId` and `delayMs` values are pulled from the request and passed as p
 
 See [RequestExecutor] for the class code.
 
-The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
+The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client uses the default executor if none is provided, so pass this executor explicitly if you wish to opt-out of the default executor:
 
 ```javascript
 const client = new okta.Client({
@@ -778,7 +776,7 @@ The base executor also emits `request` and `response` events, these can be usefu
 
 ```javascript
 const client = new okta.Client({
-  // uses the base executor by default
+  // uses the default executor, which extends the base executor
 });
 
 client.requestExecutor.on('request', (request) => {
