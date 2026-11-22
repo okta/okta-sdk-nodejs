@@ -18,7 +18,7 @@ class DefaultRequestExecutor extends RequestExecutor {
     super();
 
     if (config.maxRetries && config.maxRetries < 0) {
-      throw new Error(`okta.client.rateLimit.maxRetries provided as ${config.maxRetries} but must be 0 (disabled) or greater than zero`);
+      throw new Error(`okta.client.rateLimit.maxRetries provided as ${config.maxRetries} but must be 0 (unlimited) or greater than zero`);
     }
 
     if (config.requestTimeout && config.requestTimeout < 0) {
@@ -106,8 +106,9 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   maxRetriesReached(request) {
+    // 0 means the number of retries is not limited (requestTimeout still applies)
     if (this.maxRetries === 0) {
-      return true;
+      return false;
     }
     const retryCount = request.headers && request.headers[this.retryCountHeader];
     return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
