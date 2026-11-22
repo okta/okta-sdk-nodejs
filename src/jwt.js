@@ -16,6 +16,18 @@ const Rasha = require('rasha');
 const Eckles = require('eckles');
 const DEFAULT_RSA_ALG = 'RS256';
 const DEFAULT_EC_ALG = 'ES256';
+const EC_ALG_BY_CURVE = {
+  'P-256': 'ES256',
+  'P-384': 'ES384',
+};
+
+// EC signing algorithm is determined by the key's curve (RFC 7518)
+function getDefaultAlg(jwk) {
+  if (jwk.kty === 'EC') {
+    return EC_ALG_BY_CURVE[jwk.crv] || DEFAULT_EC_ALG;
+  }
+  return DEFAULT_RSA_ALG;
+}
 
 function getPemAndJwk(privateKey) {
   let jwk;
@@ -36,21 +48,18 @@ function getPemAndJwk(privateKey) {
 
   if (jwk) {
     let keyParsingLib;
-    let defaultAlgo;
     const options = {};
     if (jwk.kty === 'EC') {
       keyParsingLib = Eckles;
-      defaultAlgo = DEFAULT_EC_ALG;
       options.format = 'pkcs8';
     } else if (jwk.kty === 'RSA') {
       keyParsingLib = Rasha;
-      defaultAlgo = DEFAULT_RSA_ALG;
     } else {
       return Promise.reject(new Error(`Key type ${jwk.kty} is not supported.`));
     }
     return keyParsingLib.export({ jwk, ...options }).then(function (pem) {
       // PEM in PKCS1 (traditional) format for RSA keys and PKCS8 for EC keys
-      jwk.alg = jwk.alg || defaultAlgo;
+      jwk.alg = jwk.alg || getDefaultAlg(jwk);
       return { pem, jwk };
     });
   } else {
@@ -59,7 +68,7 @@ function getPemAndJwk(privateKey) {
       return { pem, jwk };
     }).catch(function (rsaError) {
       return Eckles.import({ pem }).then(function (jwk) {
-        jwk.alg = jwk.alg || DEFAULT_EC_ALG;
+        jwk.alg = jwk.alg || getDefaultAlg(jwk);
         return { pem, jwk };
       }).catch(function (ecError) {
         throw new Error(`Unable to convert private key from PEM to JWK: ${rsaError.message}, ${ecError.message}`);
