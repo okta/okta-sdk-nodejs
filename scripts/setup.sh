@@ -2,7 +2,7 @@
 
 # Install required node version
 export NVM_DIR="/root/.nvm"
-setup_service node v22.17.0
+setup_service node v22.23.4
 
 if ! npm install -g yarn@1.22.22; then
   echo "Failed to install yarn"
