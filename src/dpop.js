@@ -15,6 +15,21 @@ const { v4: uuidv4 } = require('uuid');
 const crypto = require('crypto').webcrypto;
 const {getPemAndJwk} = require('./jwt');
 
+// Characters that RFC 3986 allows unencoded in a path segment (pchar), other than unreserved ALPHA / DIGIT
+const PCHAR_SPECIALS = new Set(['-', '.', '_', '~', '!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '=', ':', '@']);
+
+// Build the `htu` claim: the request URL without query and fragment (RFC 9449, section 4.2).
+// Okta compares `htu` against the normalized request URI, so percent-encoded characters that are
+// valid unencoded in a path (eg. `%40` for `@` in a login) must be decoded. Encodings that would
+// change the meaning of the path (eg. `%2F`, `%25`) are kept as is.
+function getHtu(url) {
+  const urlWithoutQuery = url.split(/[?#]/)[0];
+  return urlWithoutQuery.replace(/%([0-9A-Fa-f]{2})/g, (match, hex) => {
+    const char = String.fromCharCode(parseInt(hex, 16));
+    return /[A-Za-z0-9]/.test(char) || PCHAR_SPECIALS.has(char) ? char : match;
+  });
+}
+
 // Generate a new DPoP Proof JWT
 async function generateDpopJwt(request, client, accessToken = null, nonce = null) {
   const { jwk } = await getPemAndJwk(client.privateKey);
@@ -23,7 +38,7 @@ async function generateDpopJwt(request, client, accessToken = null, nonce = null
 
   const payload = {
     htm: request ? request.method : 'POST',
-    htu: request ? request.url.split('?')[0] : `${client.baseUrl}/oauth2/v1/token`,
+    htu: request ? getHtu(request.url) : `${client.baseUrl}/oauth2/v1/token`,
     iat: Math.floor(Date.now() / 1000),
     jti: uuidv4(),
   };
@@ -53,5 +68,6 @@ async function generateDpopJwt(request, client, accessToken = null, nonce = null
 }
 
 module.exports = {
-  generateDpopJwt
+  generateDpopJwt,
+  getHtu
 };
