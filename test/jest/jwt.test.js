@@ -45,6 +45,13 @@ describe('JWT', () => {
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res, 'EC'));
     });
+    it('defaults EC alg based on the key curve', () => {
+      return JWT.getPemAndJwk(EC_PEM)
+        .then(res => expect(res.jwk.alg).toBe('ES256'))
+        .then(() => require('node-jose').JWK.createKey('EC', 'P-384'))
+        .then(key => JWT.getPemAndJwk(key.toJSON(true)))
+        .then(res => expect(res.jwk.alg).toBe('ES384'));
+    });
     it('Throws if invalid PEM is passed', () => {
       const privateKey = INVALID_PEM;
       return expect(JWT.getPemAndJwk(privateKey)).rejects.toThrow('not an RSA PKCS#8 public or private key (wrong format)');
