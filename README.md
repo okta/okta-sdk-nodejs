@@ -728,7 +728,7 @@ See [DefaultRequestExecutor] for the class code.
 
 The default executor extends the [base executor](#base-request-executor) and will automatically retry requests if a 429 error is returned.  Using these configuration options, you can configure your retry tolerance for your specific use case:
 
-* **`maxRetries`** - The number of times to retry, defaults to 2.  Set to 0 if you do not want to limit the number of retries.
+* **`maxRetries`** - The number of times to retry, defaults to 2.  Set to 0 if you do not want to limit the number of retries (`requestTimeout` still applies, so consider setting one).  To disable retries, use the [base request executor](#base-request-executor) instead.
 * **`requestTimeout`** - How long to wait before giving up on the request, regardless of how many retries are made.  Defined in milliseconds and defaults to 0, which disables the request timeout.
 
 ```javascript

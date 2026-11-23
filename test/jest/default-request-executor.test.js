@@ -35,7 +35,7 @@ describe('DefaultRequestExecutor', () => {
 
     it('should throw if maxRetries is less than 0', () => {
       expect(() => new DefaultRequestExecutor({ maxRetries: -1}))
-        .toThrow('okta.client.rateLimit.maxRetries provided as -1 but must be 0 (disabled) or greater than zero');
+        .toThrow('okta.client.rateLimit.maxRetries provided as -1 but must be 0 (unlimited) or greater than zero');
     });
   });
 
@@ -308,6 +308,21 @@ describe('DefaultRequestExecutor', () => {
       expect(requestExecutor.retryRequest.mock.calls[0][1]).toBe(mockResponse);
     });
 
+    it('should defer to retryRequest when maxRetries is 0, regardless of the retry count', () => {
+      requestExecutor = new DefaultRequestExecutor({ maxRetries: 0 });
+      requestExecutor.retryRequest = jest.fn();
+      const request = { method: 'GET', uri: '/foo', headers: {} };
+      request.headers[requestExecutor.retryCountHeader] = '10';
+      const mockResponse = buildMockResponse({
+        status: 429,
+        headers: {
+          'x-rate-limit-reset': String(new Date())
+        }
+      });
+      requestExecutor.parseResponse(request, mockResponse);
+      expect(requestExecutor.retryRequest).toHaveBeenCalledTimes(1);
+    });
+
     it('should reject if the request has timed out', async () => {
       // Rare case, but if node-fetch somehow resolves its promise before the request should be aborted we want to fail
       // Otherwise we will end up trying again when we shouldn't
@@ -394,16 +409,16 @@ describe('DefaultRequestExecutor', () => {
       expect(result).toBe(true);
     });
 
-    it('should return true if maxRetries is zero', () => {
+    it('should return false if maxRetries is zero (unlimited retries)', () => {
       const requestExecutor = new DefaultRequestExecutor({
         maxRetries: 0
       });
       const mockRequest = {
         headers: {}
       };
-      mockRequest.headers[requestExecutor.retryCountHeader] = '2';
+      mockRequest.headers[requestExecutor.retryCountHeader] = '100';
       const result = requestExecutor.maxRetriesReached(mockRequest);
-      expect(result).toBe(true);
+      expect(result).toBe(false);
     });
   });
 
